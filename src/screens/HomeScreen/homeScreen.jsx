@@ -12,8 +12,8 @@ function HomeScreen() {
                     <h1 style={styles.title}>Welcome to Devora</h1>
                     <p style={styles.subtitle}>Your journey to becoming a MERN Stack Developer starts here.</p>
                     <div style={styles.buttonContainer}>
-                        <button style={styles.button}>Login</button>
-                        <button style={{...styles.button, ...styles.secondaryButton}}>Sign Up</button>
+                        <button style={styles.button}>Start Journey</button>
+                        {/* <button style={{ ...styles.button, ...styles.secondaryButton }}>Sign Up</button> */}
                     </div>
                 </div>
                 <div style={styles.imageContainer}>
@@ -30,10 +30,10 @@ const styles = {
         width: '90%',
         display: 'flex',
         alignItems: 'center',
-        margin: '0 auto',
+        margin: '80px auto 0',
         justifyContent: 'space-around',
-                backgroundColor: '#bee9e8',
- borderRadius: '40px',
+        backgroundColor: '#bee9e8',
+        borderRadius: '40px',
         flexWrap: 'wrap',
         padding: '40px 32px',
         minHeight: 'calc(80vh - 120px)', // Adjust based on Header/Footer height
@@ -43,7 +43,7 @@ const styles = {
         minWidth: '300px',
         paddingRight: '20px',
         color: 'black',
-                paddingLeft: '100px'
+        paddingLeft: '100px'
 
     },
     title: {
@@ -66,7 +66,7 @@ const styles = {
         cursor: 'pointer',
         border: 'none',
         borderRadius: '8px',
-        backgroundColor: '#007bff',
+        backgroundColor: '#ff6700',
         color: 'white',
         boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
     },
@@ -81,9 +81,9 @@ const styles = {
         alignItems: 'center',
     },
     image: {
-        maxWidth: '70%',
+        maxWidth: '80%',
         height: 'auto',
-       
+
         // backgroundColor: '#bee9e8'
         // boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
     }
