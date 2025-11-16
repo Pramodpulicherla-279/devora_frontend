@@ -1,0 +1,193 @@
+/* --------------------------------------
+   GENERAL ADMIN STYLES
+-------------------------------------- */
+.admin-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* --------------------------------------
+   TOP ACTION BUTTONS
+-------------------------------------- */
+.admin-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.admin-btn {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+}
+
+.admin-btn:hover {
+  background-color: #4338ca;
+}
+
+/* --------------------------------------
+   FORM CONTAINERS
+-------------------------------------- */
+.admin-box {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.admin-box h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* --------------------------------------
+   INPUTS & SELECTS
+-------------------------------------- */
+.admin-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.25);
+}
+
+.admin-submit {
+  background-color: #10b981;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.admin-submit:hover {
+  background-color: #059669;
+}
+
+/* --------------------------------------
+   TIPTAP EDITOR
+-------------------------------------- */
+.editor-container {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 14px;
+}
+
+.tiptap {
+  min-height: 200px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.tiptap p {
+  margin: 8px 0;
+}
+
+/* --------------------------------------
+   EDITOR TOOLBAR
+-------------------------------------- */
+.editor-toolbar {
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.editor-btn {
+  background-color: #e5e7eb;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  transition: 0.2s;
+}
+
+.editor-btn:hover {
+  background-color: #d1d5db;
+}
+
+.editor-btn.is-active {
+  background-color: #6366f1;
+  color: white;
+}
+
+/* --------------------------------------
+   CODE BLOCK DROPDOWN
+-------------------------------------- */
+.editor-select {
+  background-color: #f3f4f6;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.editor-select:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+/* Tiptap Code Block Styling */
+pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* --------------------------------------
+   RESPONSIVE
+-------------------------------------- */
+@media (max-width: 600px) {
+  .admin-btn-group {
+    flex-direction: column;
+  }
+
+  .admin-btn {
+    width: 100%;
+  }
+}
