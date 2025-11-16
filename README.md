@@ -1,6 +1,6 @@
 # React + Vite
 
-Devora -- Bringing light and clarity to developers
+Dev-eL.io -- Bringing light and clarity to developers
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

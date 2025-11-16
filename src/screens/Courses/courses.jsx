@@ -1,28 +1,44 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 
-const coursesData = [
-    { title: 'HTML', description: 'Learn the structure of web pages.' },
-    { title: 'CSS', description: 'Style your websites with modern techniques.' },
-    { title: 'JavaScript', description: 'Add interactivity to your web applications.' },
-    { title: 'Git & GitHub', description: 'Master version control and collaboration.' },
-    { title: 'Node.js', description: 'Build scalable server-side applications.' },
-    { title: 'Express.js', description: 'Create robust APIs with this popular framework.' },
-    { title: 'MongoDB', description: 'Work with a leading NoSQL database.' },
-    { title: 'Real-time Projects', description: 'Apply your skills to build complete projects.' },
-];
+const API_BASE_URL = "http://localhost:5000";
 
 function CoursesScreen() {
+    const [courses, setCourses] = useState([]);
+
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/courses`);
+                const result = await response.json();
+                if (result.success) {
+                    // Map backend data to frontend state structure
+                    const fetchedCourses = result.data.map(course => ({
+                        id: course._id,
+                        name: course.title,
+                        description: course.description,
+                        parts: course.parts || [] // Assuming parts are populated or just IDs
+                    }));
+                    setCourses(fetchedCourses);
+                    console.log("Course List:", fetchedCourses)
+                }
+            } catch (error) {
+                console.error("Failed to fetch courses:", error);
+            }
+        };
+        fetchCourses();
+    }, []);
     return (
         <>
             <Header />
             <div style={styles.mainContainer}>
                 <h1 style={styles.pageTitle}>Our Courses</h1>
                 <div style={styles.coursesGrid}>
-                    {coursesData.map((course, index) => (
+                    {courses.map((course, index) => (
                         <div key={index} style={styles.courseCard}>
-                            <h3 style={styles.cardTitle}>{course.title}</h3>
+                            <h3 style={styles.cardTitle}>{course.name}</h3>
                             <p style={styles.cardDescription}>{course.description}</p>
                         </div>
                     ))}
@@ -35,7 +51,7 @@ function CoursesScreen() {
 
 const styles = {
     mainContainer: {
-                margin: '40px auto 0',
+        margin: '40px auto 0',
 
         padding: '20px',
         minHeight: 'calc(80vh - 120px)', // Adjust based on Header/Footer height

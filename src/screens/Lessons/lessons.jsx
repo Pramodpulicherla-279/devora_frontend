@@ -1,35 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 
-// Mock data for the course structure, focused on HTML
-const courseData = {
-    name: 'HTML',
-    parts: [
-        {
-            id: 'part1',
-            title: 'Part 1: HTML Fundamentals',
-            topics: [
-                { id: 'topic1-1', title: 'HTML Basics', content: 'Content for HTML Basics goes here. Learn about elements, tags, and attributes.' },
-                { id: 'topic1-2', title: 'HTML Forms & Inputs', content: 'Content for HTML Forms & Inputs goes here. Discover how to collect user data.' },
-                { id: 'topic1-3', title: 'HTML5 Semantic Elements', content: 'Content for HTML5 Semantic Elements goes here. Understand how to structure your pages meaningfully.' },
-            ],
-        },
-        {
-            id: 'part2',
-            title: 'Part 2: Advanced HTML',
-            topics: [
-                { id: 'topic2-1', title: 'Multimedia and Embedding', content: 'Content for Multimedia and Embedding goes here. Learn to add images, audio, and video.' },
-                { id: 'topic2-2', title: 'HTML Tables', content: 'Content for HTML Tables goes here. Learn to structure data in rows and columns.' },
-            ],
-        },
-    ],
-};
 
-function LessonsScreen() {
-    const [expandedPart, setExpandedPart] = useState(courseData.parts[0].id); // Expand the first part by default
-    const [activeTopic, setActiveTopic] = useState(courseData.parts[0].topics[0]);
+const API_BASE_URL = "http://localhost:5000";
+
+function CourseScreen() {
+    const { courseId } = useParams();
+    const [course, setCourse] = useState(null);
+    const [expandedPart, setExpandedPart] = useState(null); 
+    const [activeTopic, setActiveTopic] = useState(null);
+
+     useEffect(() => {
+        if (!courseId) return;
+
+        const fetchCourseDetails = async () => {
+            try {
+                // This endpoint needs to be created on your backend.
+                // It should fetch a course and populate its parts and lessons.
+                const response = await fetch(`${API_BASE_URL}/api/courses/${courseId}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const fetchedCourse = result.data;
+                    setCourse(fetchedCourse);
+
+                    // Set initial state after data is fetched
+                    if (fetchedCourse.parts && fetchedCourse.parts.length > 0) {
+                        setExpandedPart(fetchedCourse.parts[0]._id);
+                        if (fetchedCourse.parts[0].lessons && fetchedCourse.parts[0].lessons.length > 0) {
+                            setActiveTopic(fetchedCourse.parts[0].lessons[0]);
+                        }
+                    }
+                    console.log(fetchedCourse)
+                } else {
+                    console.error("Failed to fetch course details:", result.error);
+                }
+            } catch (error) {
+                console.error("Error fetching course details:", error);
+            }
+        };
+
+        fetchCourseDetails();
+    }, [courseId]);
 
     const handlePartClick = (partId) => {
         setExpandedPart(expandedPart === partId ? null : partId); // Toggle expansion
@@ -39,29 +54,42 @@ function LessonsScreen() {
         setActiveTopic(topic);
     };
 
-     return (
+    if (!course) {
+        return (
+            <div style={styles.screenContainer}>
+                <Header />
+                <div style={{...styles.pageContainer, justifyContent: 'center', alignItems: 'center'}}>
+                    <h1>Loading course...</h1>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    return (
         <div style={styles.screenContainer}>
             <Header />
             <div style={styles.pageContainer}>
                 {/* Left Sidebar */}
                 <aside style={styles.sidebar} className="hide-scrollbar">
-                    <h2 style={styles.courseTitle}>{courseData.name}</h2>
+                    <h2 style={styles.courseTitle}>{course.title}</h2>
                     <nav>
-                        {courseData.parts.map((part, index) => (
-                            <div key={part.id || index}>
-                                <div style={styles.partHeader} onClick={() => handlePartClick(part.id)}>
+                        {course.parts.map((part) => (
+                            <div key={part._id}>
+                                <div style={styles.partHeader} onClick={() => handlePartClick(part._id)}>
                                     {part.title}
-                                    <span style={styles.expandIcon}>{expandedPart === part.id ? '-' : '+'}</span>
+                                    <span style={styles.expandIcon}>{expandedPart === part._id ? '−' : '+'}</span>
                                 </div>
-                                {expandedPart === part.id && (
+                                {expandedPart === part._id && (
                                     <ul style={styles.topicList}>
-                                        {part.topics.map((topic) => (
+                                        {/* BUG FIX 2: Use 'lessons' instead of 'topics' */}
+                                        {part.lessons.map((lesson) => (
                                             <li
-                                                key={topic.id}
-                                                style={activeTopic.id === topic.id ? { ...styles.topicItem, ...styles.activeTopic } : styles.topicItem}
-                                                onClick={() => handleTopicClick(topic)}
+                                                key={lesson._id}
+                                                style={activeTopic?._id === lesson._id ? { ...styles.topicItem, ...styles.activeTopic } : styles.topicItem}
+                                                onClick={() => handleTopicClick(lesson)}
                                             >
-                                                {topic.title}
+                                                {lesson.title}
                                             </li>
                                         ))}
                                     </ul>
@@ -76,8 +104,9 @@ function LessonsScreen() {
                     {activeTopic ? (
                         <>
                             <h1>{activeTopic.title}</h1>
-                            <p>{activeTopic.content}</p>
-                            <div style={{ height: '800px', background: '#eee', marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Scrollable Content Area</div>
+                            {/* <p>{activeTopic.content}</p> */}
+                            <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                            {/* <div style={{ height: '800px', background: '#eee', marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Scrollable Content Area</div> */}
                         </>
                     ) : (
                         <h1>Select a topic to start learning</h1>
@@ -150,4 +179,4 @@ const styles = {
     },
 };
 
-export default LessonsScreen;
+export default CourseScreen;

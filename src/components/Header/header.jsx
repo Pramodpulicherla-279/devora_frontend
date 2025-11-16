@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuthPopup from '../AuthPopup/AuthPopup';
 
 function Header() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     // State to manage login status. Set to `true` to see the logged-in view.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
+    }, []);
 
     const handleOpenPopup = () => {
         setIsPopupOpen(true);
@@ -12,23 +20,28 @@ function Header() {
 
     const handleClosePopup = () => {
         setIsPopupOpen(false);
+        // Check for user info in case of successful login/signup
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
     };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
-        // Add any other logout logic here
+        localStorage.removeItem('userInfo');
+        setUser(null);
     };
 
     return (
         <>
             <header style={styles.headerContainer}>
-                <div style={styles.logo}>Devora</div>
+                <div style={styles.logo}>Dev.eL</div>
                 <div style={styles.navItems}>
-                    {!isLoggedIn ? (
+                    {user ? (
                         <div style={styles.profileContainer}>
-                            <span style={styles.userName}>Pramod</span>
+                            <span style={styles.userName}>{user.name}</span>
                             <img 
-                                src="https://placehold.co/40x40/EFEFEF/4A4A4A?text=P" 
+                                src={`https://placehold.co/40x40/EFEFEF/4A4A4A?text=${user.name.charAt(0).toUpperCase()}`} 
                                 alt="User Avatar" 
                                 style={styles.avatar} 
                             />
@@ -88,7 +101,7 @@ const styles = {
         cursor: 'pointer',
         border: '2px solid #007bff',
         borderRadius: '8px',
-        backgroundColor: '#007bff',
+        backgroundColor: '#081c15',
         color: 'white',
     }
 };

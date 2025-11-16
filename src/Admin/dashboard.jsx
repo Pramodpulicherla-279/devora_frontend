@@ -37,20 +37,6 @@ function AdminDashboard() {
         content: "<p>Write your lesson here ✒️</p>",
     });
 
-    // Mock Data
-    //   const courses = [
-    //     { id: 1, name: "React Fundamentals" },
-    //     { id: 2, name: "Advanced CSS" },
-    //     { id: 3, name: "Node.js Essentials" },
-    //   ];
-
-    //   const parts = [
-    //     { id: 1, courseId: 1, name: "Introduction to React" },
-    //     { id: 2, courseId: 1, name: "Components and Props" },
-    //     { id: 3, courseId: 2, name: "Flexbox Layouts" },
-    //     { id: 4, courseId: 3, name: "Getting Started with Node" },
-    //   ];
-
     // Fetch initial data from the backend
     useEffect(() => {
         const fetchCourses = async () => {

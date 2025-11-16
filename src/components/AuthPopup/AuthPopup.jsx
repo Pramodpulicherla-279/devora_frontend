@@ -1,11 +1,60 @@
 import React, { useState } from 'react';
 import './AuthPopup.css';
 
+const API_BASE_URL = "http://localhost:5000";
+
 function AuthPopup({ onClose }) {
     const [isLoginView, setIsLoginView] = useState(true);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const clearForm = () => {
+        setName('');
+        setEmail('');
+        setMobile('');
+        setPassword('');
+        setError('');
+    };
 
     const handleSwitch = () => {
         setIsLoginView(!isLoginView);
+        clearForm();
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(''); // Clear previous errors
+
+        const url = isLoginView ? '/api/users/login' : '/api/users/register';
+        const payload = isLoginView 
+            ? { email, password } 
+            : { name, email, mobile, password };
+
+        try {
+            const response = await fetch(API_BASE_URL + url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                throw new Error(data.error || 'Something went wrong');
+            }
+
+            // On success, store token and user data, then close popup
+            localStorage.setItem('userInfo', JSON.stringify(data));
+            onClose();
+
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     // Prevent clicks inside the popup from closing it
@@ -18,14 +67,15 @@ function AuthPopup({ onClose }) {
             <div className="popup-content" onClick={handleContentClick}>
                 <button className="close-button" onClick={onClose}>&times;</button>
                 <h2>{isLoginView ? 'Login' : 'Sign Up'}</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
+                    {error && <p className="error-message">{error}</p>}
                     {!isLoginView && (
-                        <input className="form-input" type="text" placeholder="Full Name" required />
+                        <input className="form-input" type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} required />
                     )}
-                    <input className="form-input" type="email" placeholder="Email Address" required />
-                    <input className="form-input" type="password" placeholder="Password" required />
+                    <input className="form-input" type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input className="form-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     {!isLoginView && (
-                        <input className="form-input" type="text" placeholder="Mobile NUmber" required />
+                        <input className="form-input" type="text" placeholder="Mobile Number" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
                     )}
                     <button className="form-button" type="submit">
                         {isLoginView ? 'Login' : 'Create Account'}
