@@ -3,6 +3,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { createLowlight, all } from "lowlight";
+import Link from '@tiptap/extension-link';
 import EditorMenuBar from "./EditorMenuBar";
 import './admin.css'
 
@@ -20,7 +21,7 @@ function AdminDashboard() {
     // Form state
     const [selectedCourse, setSelectedCourse] = useState("");
     const [selectedPart, setSelectedPart] = useState("");
-    const [selectedLesson, setSelectedLesson] = useState("");
+    const [selectedLessonId, setSelectedLessonId] = useState("");
     const [newCourseName, setNewCourseName] = useState("");
     const [newCourseDescription, setNewCourseDescription] = useState("");
     const [newPartName, setNewPartName] = useState("");
@@ -32,6 +33,10 @@ function AdminDashboard() {
             CodeBlockLowlight.configure({
                 lowlight,
                 defaultLanguage: "javascript",
+            }),
+            Link.configure({
+                openOnClick: false, // Prevents navigating away when clicking in the editor
+                autolink: true,     // Automatically detects and creates links from URLs
             }),
         ],
         content: "<p>Write your lesson here ✒️</p>",
@@ -88,7 +93,7 @@ function AdminDashboard() {
         fetchParts();
     }, [selectedCourse]);
 
-    // Fetch parts when a course is selected
+    // Fetch lessons when a part is selected
     useEffect(() => {
         const fetchLessons = async () => {
             if (selectedPart) {
@@ -97,11 +102,11 @@ function AdminDashboard() {
                     const response = await fetch(`${API_BASE_URL}/api/lessons/${selectedPart}/lessons`);
                     const result = await response.json();
                     if (result.success) {
-                        const fetchedLessons = result.data.map(lesson => ({
-                            id: lesson._id,
-                            name: lesson.title,
-                        }));
-                        setLessons(fetchedLessons);
+                        // const fetchedLessons = result.data.map(lesson => ({
+                        //     id: lesson._id,
+                        //     name: lesson.title,
+                        // }));
+                        setLessons(result.data);
                     } else {
                         setLessons([]); // Clear parts if fetching fails or course has no parts
                     }
@@ -116,6 +121,21 @@ function AdminDashboard() {
 
         fetchLessons();
     }, [selectedPart]);
+
+    // Effect to load selected lesson content into the editor
+    useEffect(() => {
+        if (selectedLessonId) {
+            const lesson = lessons.find(l => l._id === selectedLessonId);
+            if (lesson) {
+                setNewLessonTitle(lesson.title);
+                editor.commands.setContent(lesson.content || "");
+            }
+        } else {
+            // Clear form when no lesson is selected
+            setNewLessonTitle("");
+            editor.commands.setContent("<p>Write your lesson here ✒️</p>");
+        }
+    }, [selectedLessonId, lessons, editor]);
 
     const handleAddCourse = async () => {
         const trimmedCourseName = newCourseName.trim();
@@ -179,6 +199,14 @@ function AdminDashboard() {
         }
     };
 
+    const handleAddOrUpdateLesson = () => {
+        if (selectedLessonId) {
+            handleUpdateLesson();
+        } else {
+            handleAddLesson();
+        }
+    };
+
     const handleAddLesson = async () => {
         const trimmedLessonTitle = newLessonTitle.trim();
         const lessonContent = editor.getHTML();
@@ -210,6 +238,35 @@ function AdminDashboard() {
         } catch (error) {
             console.error("Failed to add lesson:", error);
             alert(`Error adding lesson: ${error.message}`);
+        }
+    };
+
+    const handleUpdateLesson = async () => {
+        const trimmedLessonTitle = newLessonTitle.trim();
+        const lessonContent = editor.getHTML();
+
+        if (!selectedLessonId || !trimmedLessonTitle) {
+            alert("Please select a lesson and provide a title.");
+            return;
+        }
+
+        try {
+            // Assuming a PUT endpoint to update a lesson by its ID
+            const response = await fetch(`${API_BASE_URL}/api/lessons/${selectedLessonId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: trimmedLessonTitle, content: lessonContent })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Failed to update the lesson.');
+
+            // Update the lesson in the local state
+            setLessons(lessons.map(l => l._id === selectedLessonId ? result.data : l));
+
+            alert(`Lesson "${trimmedLessonTitle}" updated successfully!`);
+        } catch (error) {
+            console.error("Failed to update lesson:", error);
+            alert(`Error updating lesson: ${error.message}`);
         }
     };
 
@@ -312,26 +369,38 @@ function AdminDashboard() {
                         </select>
                     )}
 
-                    {/* <h3>Existing lessons</h3> */}
+                    {/* Existing lessons */}
                     {selectedPart && lessons.length > 0 && (
                         <div className="mt-4">
-                            <h4 className="font-semibold mb-2">Existing Lessons:</h4>
-                            <ul className="list-disc list-inside bg-gray-100 p-3 rounded-md">
+                            <h4 className="font-semibold mb-2">Existing Lessons (click to edit):</h4>
+                            <select
+                                className="admin-input"
+                                value={selectedLessonId}
+                                onChange={(e) => setSelectedLessonId(e.target.value)}
+                            >
+                                <option value="">Select a lesson to edit...</option>
                                 {lessons.map((l) => (
-                                    <li key={l.id}>{l.name}</li>
+                                    <option key={l._id} value={l._id}>{l.title}</option>
                                 ))}
-                            </ul>
+                            </select>
                         </div>
                     )}
 
                     {/* Lesson name */}
-                    <h3>Add New Lesson</h3>
+                    <h3>{selectedLessonId ? "Edit Lesson" : "Add New Lesson"}</h3>
                     <input className="admin-input" type="text" placeholder="Lesson Title" value={newLessonTitle} onChange={(e) => setNewLessonTitle(e.target.value)} />
                     <div className="mt-5 border rounded-xl bg-white p-3 shadow">
                         <EditorMenuBar editor={editor} />
                         <EditorContent editor={editor} className="min-h-[250px] p-3" />
                     </div>
-                    <button className="admin-submit mt-4" onClick={handleAddLesson}>Submit</button>
+                    <button className="admin-submit mt-4" onClick={handleAddOrUpdateLesson}>
+                        {selectedLessonId ? "Update Lesson" : "Submit New Lesson"}
+                    </button>
+                    {selectedLessonId && (
+                        <button className="admin-cancel-btn mt-2" onClick={() => setSelectedLessonId("")}>
+                            Cancel Edit (Add New)
+                        </button>
+                    )}
                 </div>
             )}
         </div>
