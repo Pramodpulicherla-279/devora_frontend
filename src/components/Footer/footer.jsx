@@ -10,9 +10,9 @@ function Footer() {
 
 const styles = {
     footerContainer: {
-        backgroundColor: 'white',
-        color: 'black',
-        padding: '32px 32px',
+        backgroundColor: 'black',
+        color: 'white',
+        padding: '0px 32px',
         borderRadius: 12,
         fontSize: 16,
         fontWeight: 'bold',

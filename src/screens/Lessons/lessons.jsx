@@ -132,26 +132,36 @@ const styles = {
     },
     sidebar: {
         width: '300px',
-        backgroundColor: '#f4f4f4',
+        // backgroundColor: '#f4f4f4',
         padding: '20px',
-        borderRight: '1px solid #ddd',
-        borderRadius: '28px',
+        // borderRight: '1px solid #ddd',
+        // borderRadius: '28px',
         overflowY: 'auto', // Allows this column to scroll independently
     },
     courseTitle: {
         fontSize: '20px',
         fontWeight: 'bold',
         marginBottom: '20px',
+                // backgroundColor: '#da2424ff',
+                padding: '12px',
+                
+
+
     },
     partHeader: {
         fontSize: '16px',
         fontWeight: 'bold',
         padding: '10px',
         cursor: 'pointer',
+        marginBottom: '12px',
+        borderRadius: '28px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottom: '1px solid #eee',
+        // backgroundColor: '#5124daff',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+
     },
     expandIcon: {
         fontSize: '20px',
@@ -164,7 +174,7 @@ const styles = {
     topicItem: {
         padding: '10px',
         cursor: 'pointer',
-        borderRadius: '4px',
+        borderRadius: '28px',
         marginBottom: '4px',
     },
     activeTopic: {

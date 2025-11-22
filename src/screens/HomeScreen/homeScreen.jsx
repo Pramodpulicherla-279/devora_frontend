@@ -10,7 +10,9 @@ const API_BASE_URL = "http://localhost:5000";
 function HomeScreen() {
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
-    const coursesRef = useRef(null); 
+    const coursesRef = useRef(null);
+    const aboutRef = useRef(null);
+    const contactRef = useRef(null);
 
 
     useEffect(() => {
@@ -41,21 +43,38 @@ function HomeScreen() {
         // navigate(`/lessons`);
     };
 
-    
+
     const handleStartJourneyClick = () => {
         // Scroll to the courses section smoothly
         coursesRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    const handleAboutClick = () => {
+        // Scroll to the courses section smoothly
+        aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+        const handleContactClick = () => {
+        // Scroll to the courses section smoothly
+        contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+        const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("Thank you for your message. We will get back to you shortly.");
+        // Here you would typically handle form submission, e.g., send data to a server
+        e.target.reset();
+    };
+
     return (
         <>
-            <Header />
+            <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick}/>
             <div style={styles.mainContainer}>
                 <div style={styles.textContainer}>
-                    <h1 style={styles.title}>Welcome to Dev.eL</h1>
+                    <h1 style={styles.maintitle}>Welcome to Dev.eL</h1>
                     <p style={styles.subtitle}>Your journey to becoming a MERN Stack Developer starts here.</p>
                     <div style={styles.buttonContainer}>
-                        <button style={styles.button} onClick={handleStartJourneyClick}>Start Journey</button>
+                        <button style={styles.startbtn} onClick={handleStartJourneyClick}>Start Journey</button>
                         {/* <button style={{ ...styles.button, ...styles.secondaryButton }}>Sign Up</button> */}
                     </div>
                 </div>
@@ -74,6 +93,61 @@ function HomeScreen() {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div style={styles.aboutContainer} ref={aboutRef}>
+                <h2 style={styles.aboutTitle}>About Dev.eL</h2>
+
+                <p style={styles.aboutText}>
+                    Dev.eL is a modern learning platform designed to empower aspiring developers
+                    with clear, practical, and industry-focused MERN stack education.
+                    Whether you're a complete beginner or someone looking to strengthen your
+                    full-stack development skills, Dev.eL provides structured, easy-to-understand
+                    lessons that help you learn without confusion.
+                </p>
+
+                <p style={styles.aboutText}>
+                    Our platform focuses on teaching real web development—from HTML and CSS
+                    basics to advanced JavaScript, backend APIs, databases, authentication,
+                    deployment, real-time features, and more. Every topic is explained in a
+                    simple and hands-on approach so you can build real projects confidently.
+                </p>
+
+                <p style={styles.aboutText}>
+                    At Dev.eL, we believe in accessibility. That's why the content is free,
+                    open-source, and updated regularly to match modern industry standards.
+                    We want every student, beginner, and aspiring developer to have the resources
+                    they need to build meaningful projects and kickstart a successful tech career.
+                </p>
+
+                <p style={styles.aboutText}>
+                    Our mission is to create a supportive community of learners, encourage
+                    practical coding habits, and help you grow step-by-step as a developer.
+                    Start your learning journey today and experience a smarter, simpler, and
+                    more effective way to master the MERN stack with Dev.eL.
+                </p>
+
+            </div>
+
+            <div style={styles.formContainer}  ref={contactRef}>
+                <h1 style={styles.title}>Contact Us</h1>
+                <p style={styles.text}>
+                    Have a question or feedback? Fill out the form below, and we'll get back to you as soon as possible.
+                </p>
+                <form style={styles.form} onSubmit={handleSubmit}>
+                    <div style={styles.formGroup}>
+                        <label htmlFor="name" style={styles.label}>Name</label>
+                        <input type="text" id="name" name="name" style={styles.input} required />
+                    </div>
+                    <div style={styles.formGroup}>
+                        <label htmlFor="email" style={styles.label}>Email</label>
+                        <input type="email" id="email" name="email" style={styles.input} required />
+                    </div>
+                    <div style={styles.formGroup}>
+                        <label htmlFor="message" style={styles.label}>Message</label>
+                        <textarea id="message" name="message" style={styles.textarea} rows="6" required></textarea>
+                    </div>
+                    <button type="submit" style={styles.button}>Send Message</button>
+                </form>
             </div>
             <Footer />
         </>
@@ -123,7 +197,7 @@ const styles = {
         paddingLeft: '100px'
 
     },
-    title: {
+    maintitle: {
         fontSize: '48px',
         fontWeight: 'bold',
         marginBottom: '16px',
@@ -136,7 +210,7 @@ const styles = {
         display: 'flex',
         gap: '16px',
     },
-    button: {
+    startbtn: {
         padding: '12px 24px',
         fontSize: '16px',
         fontWeight: 'bold',
@@ -202,7 +276,84 @@ const styles = {
     cardDescription: {
         fontSize: '16px',
         color: '#555',
-    }
+    },
+    aboutContainer: {
+        padding: '60px 32px',
+        backgroundColor: '#f8f9fa',
+        textAlign: 'center',
+        width: '90%',
+        margin: '40px auto',
+        borderRadius: '20px',
+    },
+    aboutTitle: {
+        fontSize: '36px',
+        marginBottom: '20px',
+        color: '#333',
+    },
+    aboutText: {
+        fontSize: '18px',
+        color: '#555',
+        maxWidth: '800px',
+        margin: '0 auto',
+        lineHeight: '1.6',
+    },
+    formContainer: {
+        padding: '10px 5%',
+        maxWidth: '400px',
+        margin: '0 auto',
+        color: '#333',
+    },
+    title: {
+        fontSize: '28px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: '20px',
+    },
+    text: {
+        fontSize: '14px',
+        textAlign: 'center',
+        marginBottom: '40px',
+        color: '#555',
+    },
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0px',
+    },
+    formGroup: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    label: {
+        marginBottom: '8px',
+        fontWeight: 'bold',
+        fontSize: '16px',
+    },
+    input: {
+        padding: '12px',
+        fontSize: '16px',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+    },
+    textarea: {
+        padding: '12px',
+        fontSize: '16px',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+        resize: 'vertical',
+    },
+    button: {
+        padding: '15px',
+        fontSize: '18px',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: '#007bff',
+        border: 'none',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        marginTop: '10px',
+    },
+
 };
 
 export default HomeScreen;

@@ -4,6 +4,7 @@ import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { createLowlight, all } from "lowlight";
 import Link from '@tiptap/extension-link';
+import CharacterCount from '@tiptap/extension-character-count';
 import EditorMenuBar from "./EditorMenuBar";
 import './admin.css'
 
@@ -38,6 +39,7 @@ function AdminDashboard() {
                 openOnClick: false, // Prevents navigating away when clicking in the editor
                 autolink: true,     // Automatically detects and creates links from URLs
             }),
+            CharacterCount.configure(),
         ],
         content: "<p>Write your lesson here ✒️</p>",
     });
@@ -271,7 +273,7 @@ function AdminDashboard() {
     };
 
     return (
-        <div className="p-6 max-w-5xl mx-auto">
+        <div className="p-6 max-w-5xl mx-auto admin-container">
             <h2 className="text-3xl font-bold text-center mb-8">Admin Panel</h2>
 
             {/* TOP BUTTONS */}
@@ -391,7 +393,9 @@ function AdminDashboard() {
                     <input className="admin-input" type="text" placeholder="Lesson Title" value={newLessonTitle} onChange={(e) => setNewLessonTitle(e.target.value)} />
                     <div className="mt-5 border rounded-xl bg-white p-3 shadow">
                         <EditorMenuBar editor={editor} />
+                        <div style={{ height: '600px', overflowY: 'auto' }}>
                         <EditorContent editor={editor} className="min-h-[250px] p-3" />
+                         </div>
                     </div>
                     <button className="admin-submit mt-4" onClick={handleAddOrUpdateLesson}>
                         {selectedLessonId ? "Update Lesson" : "Submit New Lesson"}
