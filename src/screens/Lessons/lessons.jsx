@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
@@ -9,6 +9,8 @@ const API_BASE_URL = "http://localhost:5000";
 
 function CourseScreen() {
     const { courseId } = useParams();
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const [course, setCourse] = useState(null);
     const [expandedPart, setExpandedPart] = useState(null); 
     const [activeTopic, setActiveTopic] = useState(null);
@@ -27,11 +29,26 @@ function CourseScreen() {
                     const fetchedCourse = result.data;
                     setCourse(fetchedCourse);
 
-                    // Set initial state after data is fetched
-                    if (fetchedCourse.parts && fetchedCourse.parts.length > 0) {
+                    const lessonIdFromUrl = searchParams.get('lesson');
+
+                    // If a lesson ID is in the URL, find and set it as active
+                    if (lessonIdFromUrl) {
+                        for (const part of fetchedCourse.parts) {
+                            const lesson = part.lessons.find(l => l._id === lessonIdFromUrl);
+                            if (lesson) {
+                                setActiveTopic(lesson);
+                                setExpandedPart(part._id);
+                                break;
+                            }
+                        }
+                    } else if (fetchedCourse.parts && fetchedCourse.parts.length > 0) {
+                        // Otherwise, default to the first lesson of the first part
                         setExpandedPart(fetchedCourse.parts[0]._id);
                         if (fetchedCourse.parts[0].lessons && fetchedCourse.parts[0].lessons.length > 0) {
-                            setActiveTopic(fetchedCourse.parts[0].lessons[0]);
+                            const firstLesson = fetchedCourse.parts[0].lessons[0];
+                            setActiveTopic(firstLesson);
+                            // Update URL to reflect the default selection
+                            navigate(`?lesson=${firstLesson._id}`, { replace: true });
                         }
                     }
                     console.log(fetchedCourse)
@@ -44,7 +61,7 @@ function CourseScreen() {
         };
 
         fetchCourseDetails();
-    }, [courseId]);
+    }, [courseId, navigate, searchParams]);
 
     const handlePartClick = (partId) => {
         setExpandedPart(expandedPart === partId ? null : partId); // Toggle expansion
@@ -52,6 +69,7 @@ function CourseScreen() {
 
     const handleTopicClick = (topic) => {
         setActiveTopic(topic);
+        navigate(`?lesson=${topic._id}`, { replace: true });
     };
 
     if (!course) {

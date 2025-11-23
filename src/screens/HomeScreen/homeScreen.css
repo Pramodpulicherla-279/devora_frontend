@@ -1,0 +1,56 @@
+.courseCard {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 24px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.courseCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #f3f5f8, #e1dce9, #ccf7d6, #e8e2cf);
+    background-size: 400% 400%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.courseCard:hover::before {
+    opacity: 1;
+    animation: gradient-animation 8s ease infinite;
+}
+
+.courseCard > * {
+    position: relative;
+    z-index: 2;
+    color: #333; /* Default text color */
+    transition: color 0.3s ease-in-out;
+}
+
+.courseCard:hover > * {
+    color: white; /* Text color on hover */
+}
+
+.courseCard:hover{
+    color: white; /* Text color on hover */
+    scale: 105%;
+    transition: 0.3s ease-in-out;
+}
+
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

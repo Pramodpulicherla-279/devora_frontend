@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import coverImg from '../../assets/cover.png';
+import emailjs from '@emailjs/browser';
+import './homeScreen.css';
 
 const API_BASE_URL = "http://localhost:5000";
 
@@ -14,6 +16,17 @@ function HomeScreen() {
     const aboutRef = useRef(null);
     const contactRef = useRef(null);
 
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+    const [status, setStatus] = useState(''); // To show sending status or success/error messages
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -54,21 +67,34 @@ function HomeScreen() {
         aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-        const handleContactClick = () => {
+    const handleContactClick = () => {
         // Scroll to the courses section smoothly
         contactRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-        const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Thank you for your message. We will get back to you shortly.");
-        // Here you would typically handle form submission, e.g., send data to a server
-        e.target.reset();
+        setStatus('Sending...');
+
+        // Replace with your actual EmailJS credentials
+        const serviceID = 'service_w68uiig';
+        const templateID = 'template_sxdk7m1';
+        const publicKey = 'a0HMfFE13KWXlWuFs';
+
+        emailjs.send(serviceID, templateID, formData, publicKey)
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                setStatus('Message sent successfully!');
+                setFormData({ name: '', email: '', message: '' }); // Reset form
+            }, (error) => {
+                console.log('FAILED...', error);
+                setStatus('Failed to send message. Please try again.');
+            });
     };
 
     return (
         <>
-            <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick}/>
+            <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick} />
             <div style={styles.mainContainer}>
                 <div style={styles.textContainer}>
                     <h1 style={styles.maintitle}>Welcome to Dev.eL</h1>
@@ -87,7 +113,7 @@ function HomeScreen() {
                 <h1 style={styles.courseTitle}>Our Courses</h1>
                 <div style={styles.coursesGrid}>
                     {courses.map((course, index) => (
-                        <div key={index} style={styles.courseCard} onClick={() => handleCourseClick(course.id)}>
+                        <div key={index} className="courseCard" onClick={() => handleCourseClick(course.id)}>
                             <h3 style={styles.cardTitle}>{course.name}</h3>
                             <p style={styles.cardDescription}>{course.description}</p>
                         </div>
@@ -128,7 +154,7 @@ function HomeScreen() {
 
             </div>
 
-            <div style={styles.formContainer}  ref={contactRef}>
+            <div style={styles.formContainer} ref={contactRef}>
                 <h1 style={styles.title}>Contact Us</h1>
                 <p style={styles.text}>
                     Have a question or feedback? Fill out the form below, and we'll get back to you as soon as possible.
@@ -136,18 +162,21 @@ function HomeScreen() {
                 <form style={styles.form} onSubmit={handleSubmit}>
                     <div style={styles.formGroup}>
                         <label htmlFor="name" style={styles.label}>Name</label>
-                        <input type="text" id="name" name="name" style={styles.input} required />
+                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} style={styles.input} required />
                     </div>
                     <div style={styles.formGroup}>
                         <label htmlFor="email" style={styles.label}>Email</label>
-                        <input type="email" id="email" name="email" style={styles.input} required />
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} style={styles.input} required />
                     </div>
                     <div style={styles.formGroup}>
                         <label htmlFor="message" style={styles.label}>Message</label>
-                        <textarea id="message" name="message" style={styles.textarea} rows="6" required></textarea>
+                        <textarea id="message" name="message" value={formData.message} onChange={handleChange} style={styles.textarea} rows="6" required></textarea>
                     </div>
-                    <button type="submit" style={styles.button}>Send Message</button>
-                </form>
+                    <button type="submit" style={styles.button} disabled={status === 'Sending...'}>
+                        {status === 'Sending...' ? 'Sending...' : 'Send Message'}
+                    </button>   
+                 </form>
+                 {status && <p style={styles.statusText}>{status}</p>}
             </div>
             <Footer />
         </>
@@ -256,17 +285,17 @@ const styles = {
         justifyContent: 'center',
         gap: '24px',
     },
-    courseCard: {
-        backgroundColor: '#ffffff',
-        border: '1px solid #e0e0e0',
-        borderRadius: '20px',
-        padding: '24px',
-        width: '280px',
-        textAlign: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-        cursor: 'pointer',
-    },
+    // courseCard: {
+    //     backgroundColor: '#ffffff',
+    //     border: '1px solid #e0e0e0',
+    //     borderRadius: '20px',
+    //     padding: '24px',
+    //     width: '280px',
+    //     textAlign: 'center',
+    //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    //     transition: 'transform 0.2s, box-shadow 0.2s',
+    //     cursor: 'pointer',
+    // },
     cardTitle: {
         fontSize: '22px',
         fontWeight: 'bold',
