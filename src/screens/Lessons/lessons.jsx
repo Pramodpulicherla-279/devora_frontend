@@ -5,8 +5,6 @@ import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
 
-
-
 function CourseScreen() {
     const { courseId } = useParams();
     const navigate = useNavigate();
@@ -14,6 +12,7 @@ function CourseScreen() {
     const [course, setCourse] = useState(null);
     const [expandedPart, setExpandedPart] = useState(null); 
     const [activeTopic, setActiveTopic] = useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
      useEffect(() => {
         if (!courseId) return;
@@ -72,11 +71,27 @@ function CourseScreen() {
         navigate(`?lesson=${topic._id}`, { replace: true });
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     if (!course) {
         return (
-            <div style={styles.screenContainer}>
+            <div className="screen-container">
                 <Header />
-                <div style={{...styles.pageContainer, justifyContent: 'center', alignItems: 'center'}}>
+                <div className="page-container loading-container">
+                    <h1>Loading course...</h1>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (!course) {
+        return (
+            <div className="screen-container" style={styles.screenContainer}>
+                <Header />
+                <div className="page-container loading-container" style={{...styles.pageContainer, justifyContent: 'center', alignItems: 'center'}}>
                     <h1>Loading course...</h1>
                 </div>
                 <Footer />
@@ -85,26 +100,28 @@ function CourseScreen() {
     }
 
     return (
-        <div style={styles.screenContainer}>
+        <div className="screen-container">
             <Header />
-            <div style={styles.pageContainer}>
+            <div className="page-container">
+                <button type="button" className="hamburger-menu" onClick={toggleSidebar}>▶</button>
+                {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
                 {/* Left Sidebar */}
-                <aside style={styles.sidebar} className="hide-scrollbar">
-                    <h2 style={styles.courseTitle}>{course.title}</h2>
+                <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : ''}`}>
+                    <h2 className="course-title" style={styles.courseTitle}>{course.title}</h2>
                     <nav>
                         {course.parts.map((part) => (
                             <div key={part._id}>
-                                <div style={styles.partHeader} onClick={() => handlePartClick(part._id)}>
+                                <div className="part-header" style={styles.partHeader} onClick={() => handlePartClick(part._id)}>
                                     {part.title}
-                                    <span style={styles.expandIcon}>{expandedPart === part._id ? '−' : '+'}</span>
+                                    <span className="expand-icon" style={styles.expandIcon}>{expandedPart === part._id ? '−' : '+'}</span>
                                 </div>
                                 {expandedPart === part._id && (
-                                    <ul style={styles.topicList}>
+                                    <ul className="topic-list" style={styles.topicList}>
                                         {/* BUG FIX 2: Use 'lessons' instead of 'topics' */}
                                         {part.lessons.map((lesson) => (
                                             <li
                                                 key={lesson._id}
-                                                style={activeTopic?._id === lesson._id ? { ...styles.topicItem, ...styles.activeTopic } : styles.topicItem}
+                                                className={`topic-item ${activeTopic?._id === lesson._id ? 'active-topic' : ''}`}
                                                 onClick={() => handleTopicClick(lesson)}
                                             >
                                                 {lesson.title}
@@ -118,7 +135,7 @@ function CourseScreen() {
                 </aside>
 
                 {/* Right Content Area */}
-                <main style={styles.contentArea} className="hide-scrollbar">
+                <main className="content-area hide-scrollbar">
                     {activeTopic ? (
                         <>
                             <h1>{activeTopic.title}</h1>
@@ -137,74 +154,74 @@ function CourseScreen() {
 }
 
 const styles = {
-    screenContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-    },
-    pageContainer: {
-        paddingTop: '70px', // Height of the fixed header
-        display: 'flex',
-        flex: 1, // Takes up all available space between header and footer
-        overflow: 'hidden', // Prevents the container itself from scrolling
-    },
-    sidebar: {
-        width: '300px',
-        // backgroundColor: '#f4f4f4',
-        padding: '20px',
-        // borderRight: '1px solid #ddd',
-        // borderRadius: '28px',
-        overflowY: 'auto', // Allows this column to scroll independently
-    },
-    courseTitle: {
-        fontSize: '20px',
-        fontWeight: 'bold',
-        marginBottom: '20px',
-                // backgroundColor: '#da2424ff',
-                padding: '12px',
+    // screenContainer: {
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     height: '100vh',
+    // },
+    // pageContainer: {
+    //     paddingTop: '70px', // Height of the fixed header
+    //     display: 'flex',
+    //     flex: 1, // Takes up all available space between header and footer
+    //     overflow: 'hidden', // Prevents the container itself from scrolling
+    // },
+    // sidebar: {
+    //     width: '300px',
+    //     // backgroundColor: '#f4f4f4',
+    //     padding: '20px',
+    //     // borderRight: '1px solid #ddd',
+    //     // borderRadius: '28px',
+    //     overflowY: 'auto', // Allows this column to scroll independently
+    // },
+    // courseTitle: {
+    //     fontSize: '20px',
+    //     fontWeight: 'bold',
+    //     marginBottom: '20px',
+    //             // backgroundColor: '#da2424ff',
+    //             padding: '12px',
                 
 
 
-    },
-    partHeader: {
-        fontSize: '16px',
-        fontWeight: 'bold',
-        padding: '10px',
-        cursor: 'pointer',
-        marginBottom: '12px',
-        borderRadius: '28px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderBottom: '1px solid #eee',
-        // backgroundColor: '#5124daff',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    // },
+    // partHeader: {
+    //     fontSize: '16px',
+    //     fontWeight: 'bold',
+    //     padding: '10px',
+    //     cursor: 'pointer',
+    //     marginBottom: '12px',
+    //     borderRadius: '28px',
+    //     display: 'flex',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'center',
+    //     borderBottom: '1px solid #eee',
+    //     // backgroundColor: '#5124daff',
+    //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 
-    },
-    expandIcon: {
-        fontSize: '20px',
-    },
-    topicList: {
-        listStyle: 'none',
-        paddingLeft: '20px',
-        margin: 0,
-    },
-    topicItem: {
-        padding: '10px',
-        cursor: 'pointer',
-        borderRadius: '28px',
-        marginBottom: '4px',
-    },
-    activeTopic: {
-        backgroundColor: '#007bff',
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    contentArea: {
-        flex: 1,
-        padding: '40px',
-        overflowY: 'auto',
-    },
+    // },
+    // expandIcon: {
+    //     fontSize: '20px',
+    // },
+    // topicList: {
+    //     listStyle: 'none',
+    //     paddingLeft: '20px',
+    //     margin: 0,
+    // },
+    // topicItem: {
+    //     padding: '10px',
+    //     cursor: 'pointer',
+    //     borderRadius: '28px',
+    //     marginBottom: '4px',
+    // },
+    // activeTopic: {
+    //     backgroundColor: '#007bff',
+    //     color: 'white',
+    //     fontWeight: 'bold',
+    // },
+    // contentArea: {
+    //     flex: 1,
+    //     padding: '40px',
+    //     overflowY: 'auto',
+    // },
 };
 
 export default CourseScreen;
