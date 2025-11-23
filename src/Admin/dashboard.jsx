@@ -7,8 +7,9 @@ import Link from '@tiptap/extension-link';
 import CharacterCount from '@tiptap/extension-character-count';
 import EditorMenuBar from "./EditorMenuBar";
 import './admin.css'
+import { API_BASE_URL } from '../../config';
 
-const API_BASE_URL = "http://localhost:5000";
+
 
 const lowlight = createLowlight(all);
 

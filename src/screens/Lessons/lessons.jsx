@@ -3,9 +3,9 @@ import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
+import { API_BASE_URL } from '../../../config';
 
 
-const API_BASE_URL = "http://localhost:5000";
 
 function CourseScreen() {
     const { courseId } = useParams();

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './AuthPopup.css';
+import { API_BASE_URL } from '../../../config';
 
-const API_BASE_URL = "http://localhost:5000";
+
 
 function AuthPopup({ onClose }) {
     const [isLoginView, setIsLoginView] = useState(true);

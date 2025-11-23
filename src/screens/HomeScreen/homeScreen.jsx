@@ -6,8 +6,8 @@ import Footer from '../../components/Footer/footer';
 import coverImg from '../../assets/cover.png';
 import emailjs from '@emailjs/browser';
 import './homeScreen.css';
+import { API_BASE_URL } from '../../../config';
 
-const API_BASE_URL = "http://localhost:5000";
 
 function HomeScreen() {
     const [courses, setCourses] = useState([]);
