@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    /* overflow: hidden; */
     /* margin-top: 70px; */
 }
 
@@ -10,7 +11,7 @@
     display: flex;
     flex: 1;
     overflow: hidden;
-    position: relative; /* For positioning hamburger menu */
+    /* position: relative; */
 }
 
 .loading-container {
@@ -24,6 +25,27 @@
     padding: 20px;
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
+    /* border-right: 1px solid #ddd; */
+}
+
+.sidebar.closed {
+    width: 0;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.main-content-wrapper {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topic-title{
+    font-size: 20px;
+    font-weight: bold;
+
 }
 
 .course-title {
@@ -81,8 +103,67 @@
 
 .content-area {
     flex: 1;
-    padding: 40px;
+    padding: 20px 40px 20px 65px; /* Default padding to make space for hamburger */
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    transition: padding-left 0.3s ease-in-out;
+}
+
+.content-area.sidebar-open {
+    padding-left: 340px; /* sidebar width + 40px */
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.practice-toggle-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #007bff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.practice-toggle-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.content-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    /* min-height: 0; */
+}
+
+.lesson-view {
+    overflow-y: auto;
+    padding-right: 0px; /* Add some space for scrollbar */
+    /* overflow: hidden; */
+}
+
+.content-body > .lesson-view {
+    flex: 1;
+}
+
+.content-body > .practice-view {
+    flex: 1;
+}
+
+.practice-view {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: column;
 }
 
 .hide-scrollbar {
@@ -94,13 +175,75 @@
     display: none; /* Chrome, Safari, and Opera */
 }
 
-.hamburger-menu {
-    display: none; /* Hidden by default */
-}
+    .hamburger-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 85px;
+        left: 15px;
+        z-index: 1001;
+        color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        border: 2px solid #333;
+        border-radius: 5000;
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        cursor: pointer;
+        line-height: 1; /* Adjust line-height for better vertical centering */
+    }
+
+/* .sidebar.open ~ .hamburger-menu {
+    left: 315px; 
+} */
+
+/* .sidebar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+} */
+
+/* .sidebar.open {
+    transform: translateX(0);
+} */
 
 .overlay {
     display: none; /* Hidden by default */
 }
+
+/* --- Styles for react-split --- */
+.split {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.gutter {
+    background-color: #727171;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 20px;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: col-resize;
+}
+
+
+
 
 
 /* --- Responsive Styles for Tablet and Mobile --- */
@@ -142,7 +285,7 @@
     }
 
     .content-area {
-        padding: 50px 20px 20px; /* Add left padding to not be overlapped by hamburger */
+        padding: 40px 0px 20px 0px; /* Add left padding to not be overlapped by hamburger */
     }
 
     .overlay {
@@ -163,4 +306,32 @@
         opacity: 1;
         visibility: visible;
     }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+       /* Hide practice section on mobile */
+    .practice-toggle-btn,
+    .practice-view {
+        display: none;
+    }
+
+    .gutter{
+        display: none;
+    }
+
+     .split {
+        display: block; /* Remove the flex container behavior */
+    }
+
+    .split > .lesson-view {
+        width: 100% !important; /* Use !important to override inline styles from react-split */
+    }
+
+    .lesson-view{
+        overflow-y: auto;
+    }
+
 }

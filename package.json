@@ -1,5 +1,5 @@
 {
-  "name": "devora",
+  "name": "Dev.eL",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@emailjs/browser": "^4.4.1",
     "@tiptap/extension-character-count": "^3.10.7",
     "@tiptap/extension-code-block-lowlight": "^3.10.7",
@@ -19,7 +20,8 @@
     "lowlight": "^3.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "react-split": "^2.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

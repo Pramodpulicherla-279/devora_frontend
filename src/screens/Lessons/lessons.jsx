@@ -1,20 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
+import { Sandpack } from '@codesandbox/sandpack-react';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
+import Split from 'react-split';
+
+// A Code Editor component specifically for HTML, CSS, and JS
+function CodeEditor({ html = '', css = '', js = '' }) {
+    return (
+        <Sandpack
+            template="vanilla"
+            files={{
+                '/index.html': { code: html, active: true },
+                '/styles.css': css,
+                '/index.js': `import './styles.css';\n\n${js}`,
+            }}
+            options={{
+                showLineNumbers: true,
+                showTabs: true,
+                showConsole: true,
+                showConsoleButton: true,
+                editorHeight: '80vh', // Make editor height responsive
+            }}
+            theme="dark"
+        />
+    );
+}
 
 function CourseScreen() {
     const { courseId } = useParams();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [course, setCourse] = useState(null);
-    const [expandedPart, setExpandedPart] = useState(null); 
+    const [expandedPart, setExpandedPart] = useState(null);
     const [activeTopic, setActiveTopic] = useState(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);;
+    const [isPracticeOpen, setIsPracticeOpen] = useState(false);
 
-     useEffect(() => {
+    // Mock data for demonstration
+    const exampleCode = {
+        html: `<h1>Practice Zone</h1>\n<p>Edit the code to see changes.</p>`,
+        css: `body { background-color: #fff; color: #333; }`,
+        js: `console.log('Practice environment loaded.');`
+    };
+
+    useEffect(() => {
         if (!courseId) return;
 
         const fetchCourseDetails = async () => {
@@ -69,10 +101,17 @@ function CourseScreen() {
     const handleTopicClick = (topic) => {
         setActiveTopic(topic);
         navigate(`?lesson=${topic._id}`, { replace: true });
+        if (window.innerWidth < 768) {
+            setIsSidebarOpen(false);
+        }
     };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    const togglePractice = () => {
+        setIsPracticeOpen(!isPracticeOpen);
     };
 
     if (!course) {
@@ -87,37 +126,33 @@ function CourseScreen() {
         );
     }
 
-    if (!course) {
-        return (
-            <div className="screen-container" style={styles.screenContainer}>
-                <Header />
-                <div className="page-container loading-container" style={{...styles.pageContainer, justifyContent: 'center', alignItems: 'center'}}>
-                    <h1>Loading course...</h1>
-                </div>
-                <Footer />
-            </div>
-        );
-    }
+    // if (!course) {
+    //     return (
+    //         <div className="screen-container" style={styles.screenContainer}>
+    //             <Header />
+    //             <div className="page-container loading-container" style={{ ...styles.pageContainer, justifyContent: 'center', alignItems: 'center' }}>
+    //                 <h1>Loading course...</h1>
+    //             </div>
+    //             <Footer />
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="screen-container">
             <Header />
             <div className="page-container">
-                <button type="button" className="hamburger-menu" onClick={toggleSidebar}>▶</button>
-                {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
-                {/* Left Sidebar */}
-                <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : ''}`}>
-                    <h2 className="course-title" style={styles.courseTitle}>{course.title}</h2>
+                <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
+                    <h2 className="course-title">{course.title}</h2>
                     <nav>
                         {course.parts.map((part) => (
                             <div key={part._id}>
-                                <div className="part-header" style={styles.partHeader} onClick={() => handlePartClick(part._id)}>
+                                <div className="part-header" onClick={() => handlePartClick(part._id)}>
                                     {part.title}
-                                    <span className="expand-icon" style={styles.expandIcon}>{expandedPart === part._id ? '−' : '+'}</span>
+                                    <span className="expand-icon">{expandedPart === part._id ? '−' : '+'}</span>
                                 </div>
                                 {expandedPart === part._id && (
-                                    <ul className="topic-list" style={styles.topicList}>
-                                        {/* BUG FIX 2: Use 'lessons' instead of 'topics' */}
+                                    <ul className="topic-list">
                                         {part.lessons.map((lesson) => (
                                             <li
                                                 key={lesson._id}
@@ -134,19 +169,56 @@ function CourseScreen() {
                     </nav>
                 </aside>
 
+                <div className="main-content-wrapper">
+                <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
+                    {isSidebarOpen ? 'X' : '▶'}
+                </button>         
+                {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
+                
+
                 {/* Right Content Area */}
                 <main className="content-area hide-scrollbar">
                     {activeTopic ? (
                         <>
-                            <h1>{activeTopic.title}</h1>
-                            {/* <p>{activeTopic.content}</p> */}
-                            <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
-                            {/* <div style={{ height: '800px', background: '#eee', marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Scrollable Content Area</div> */}
+                            <div className="content-header">
+                                <p className='topic-title'>Topic: {activeTopic.title}</p>
+                                <button className="practice-toggle-btn" onClick={togglePractice}>
+                                    {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
+                                </button>
+                            </div>
+                            <div className="content-body">
+                                {isPracticeOpen ? (
+                                    <Split
+                                        className="split"
+                                        sizes={[50, 50]}
+                                        minSize={200}
+                                        gutterSize={10}
+                                        cursor="col-resize"
+                                    >
+                                <div className="lesson-view hide-scrollbar">
+                                    <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                </div>
+                                    <div className="practice-view">
+                                        <CodeEditor
+                                            html={activeTopic.code?.html || exampleCode.html}
+                                            css={activeTopic.code?.css || exampleCode.css}
+                                            js={activeTopic.code?.js || exampleCode.js}
+                                        />
+                                    </div>
+                                    </Split>
+                                ) : (
+                                    <div className="lesson-view">
+                                        <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                    </div>
+
+                                )}
+                            </div>
                         </>
                     ) : (
                         <h1>Select a topic to start learning</h1>
                     )}
                 </main>
+                </div>
             </div>
             {/* <Footer /> */}
         </div>
@@ -179,7 +251,7 @@ const styles = {
     //     marginBottom: '20px',
     //             // backgroundColor: '#da2424ff',
     //             padding: '12px',
-                
+
 
 
     // },
