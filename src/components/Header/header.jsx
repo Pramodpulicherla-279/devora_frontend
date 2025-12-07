@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AuthPopup from '../AuthPopup/AuthPopup';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../assets/D.png';
+import logo from '../../assets/logo.png';
 import './header.css';
 
 function Header({ onAboutClick, onContactClick }) {
