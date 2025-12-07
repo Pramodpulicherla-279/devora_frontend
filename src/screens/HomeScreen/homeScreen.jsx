@@ -38,11 +38,19 @@ function HomeScreen() {
                     const fetchedCourses = result.data.map(course => ({
                         id: course._id,
                         name: course.title,
+                        slug: course.slug,
                         description: course.description,
                         parts: course.parts || [] // Assuming parts are populated or just IDs
                     }));
                     setCourses(fetchedCourses);
                     console.log("Course List:", fetchedCourses)
+
+                    // Debug: Check if all courses have slugs
+                    fetchedCourses.forEach(course => {
+                        if (!course.slug) {
+                            console.warn(`Course "${course.name}" is missing a slug!`);
+                        }
+                    });
                 }
             } catch (error) {
                 console.error("Failed to fetch courses:", error);
@@ -51,9 +59,19 @@ function HomeScreen() {
         fetchCourses();
     }, []);
 
-    const handleCourseClick = (courseId) => {
-        navigate(`/course/${courseId}`);
+    const handleCourseClick = (course) => {
+        console.log("Course object:", course);
+        console.log("Course slug:", course.slug);
+        console.log("Has slug?", !!course.slug);
+
+        if (!course.slug) {
+            console.error("Course has no slug:", course);
+            alert("This course cannot be accessed (missing slug)");
+            return;
+        }
+        // navigate(`/course/${courseId}`);
         // navigate(`/lessons`);
+        navigate(`/course/${course.slug}`);
     };
 
 
@@ -104,7 +122,7 @@ function HomeScreen() {
                         {/* <button style={{ ...styles.button, ...styles.secondaryButton }}>Sign Up</button> */}
                     </div>
                 </div>
-                <div  className="image-container" style={styles.imageContainer}>
+                <div className="image-container" style={styles.imageContainer}>
                     <img src={coverImg} alt="Application preview" style={styles.image} className="image" />
                 </div>
             </div>
@@ -113,7 +131,7 @@ function HomeScreen() {
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>
                 <div className="courses-grid" style={styles.coursesGrid}>
                     {courses.map((course, index) => (
-                        <div key={index} className="courseCard" onClick={() => handleCourseClick(course.id)}>
+                        <div key={index} className="courseCard" onClick={() => handleCourseClick(course)}>
                             <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
                             <p className="card-description" style={styles.cardDescription}>{course.description}</p>
                         </div>
@@ -124,32 +142,41 @@ function HomeScreen() {
                 <h2 className="about-title" style={styles.aboutTitle}>About Dev.eL</h2>
 
                 <p className="about-text" style={styles.aboutText}>
-                    Dev.eL is a modern learning platform designed to empower aspiring developers
-                    with clear, practical, and industry-focused MERN stack education.
-                    Whether you're a complete beginner or someone looking to strengthen your
-                    full-stack development skills, Dev.eL provides structured, easy-to-understand
-                    lessons that help you learn without confusion.
+                    Dev.eL is a modern learning platform created to help aspiring developers
+                    learn full-stack web development with clarity and confidence. Our focus
+                    is on the MERN stack, but we start from the very basics so that complete
+                    beginners can follow along without feeling overwhelmed.
                 </p>
 
                 <p className="about-text" style={styles.aboutText}>
-                    Our platform focuses on teaching real web development—from HTML and CSS
-                    basics to advanced JavaScript, backend APIs, databases, authentication,
-                    deployment, real-time features, and more. Every topic is explained in a
-                    simple and hands-on approach so you can build real projects confidently.
+                    On Dev.eL, you learn real-world web development step by step—from HTML,
+                    CSS, and responsive layouts to JavaScript, frontend frameworks, backend
+                    APIs, databases, authentication, deployment, and real-time features.
+                    Every lesson is written in simple language, with clear examples and
+                    practical use cases so that you not only understand the concepts, but
+                    also know how to apply them in real projects.
                 </p>
 
                 <p className="about-text" style={styles.aboutText}>
-                    At Dev.eL, we believe in accessibility. That's why the content is free,
-                    open-source, and updated regularly to match modern industry standards.
-                    We want every student, beginner, and aspiring developer to have the resources
-                    they need to build meaningful projects and kickstart a successful tech career.
+                    We believe that quality technical education should be accessible.
+                    That&apos;s why Dev.eL is free to use and our content is openly
+                    available. We regularly review and update our lessons to keep them
+                    aligned with current industry practices and modern tools used by
+                    professional developers.
                 </p>
 
                 <p className="about-text" style={styles.aboutText}>
-                    Our mission is to create a supportive community of learners, encourage
-                    practical coding habits, and help you grow step-by-step as a developer.
-                    Start your learning journey today and experience a smarter, simpler, and
-                    more effective way to master the MERN stack with Dev.eL.
+                    Our mission is to support learners at every stage—whether you are
+                    just starting out or strengthening your full-stack development skills.
+                    We encourage consistent coding practice, project-based learning, and a
+                    supportive community mindset so that you can grow at your own pace,
+                    build meaningful applications, and prepare for real opportunities in
+                    the tech industry.
+                </p>
+
+                <p className="about-text" style={styles.aboutText}>
+                    Start your journey with Dev.eL today and experience a structured,
+                    simple, and practical way to master the MERN stack.
                 </p>
 
             </div>
@@ -174,9 +201,9 @@ function HomeScreen() {
                     </div>
                     <button type="submit" className="button" style={styles.button} disabled={status === 'Sending...'}>
                         {status === 'Sending...' ? 'Sending...' : 'Send Message'}
-                    </button>   
-                 </form>
-                 {status && <p className="status-text" style={styles.statusText}>{status}</p>}
+                    </button>
+                </form>
+                {status && <p className="status-text" style={styles.statusText}>{status}</p>}
             </div>
             <Footer />
         </>

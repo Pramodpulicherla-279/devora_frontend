@@ -30,7 +30,8 @@ function CodeEditor({ html = '', css = '', js = '' }) {
 }
 
 function CourseScreen() {
-    const { courseId } = useParams();
+    const params = useParams();
+    const { courseSlug, lessonSlug } = useParams();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [course, setCourse] = useState(null);
@@ -46,26 +47,34 @@ function CourseScreen() {
         js: `console.log('Practice environment loaded.');`
     };
 
+    // Debug logs
+    // console.log("All params:", params);
+    // console.log("Course slug:", courseSlug);
+    // console.log("Current URL:", window.location.href);
+
     useEffect(() => {
-        if (!courseId) return;
+        if (!courseSlug) {
+            console.log("No course slug provided in URL");
+            return;
+        }
 
         const fetchCourseDetails = async () => {
             try {
                 // This endpoint needs to be created on your backend.
                 // It should fetch a course and populate its parts and lessons.
-                const response = await fetch(`${API_BASE_URL}/api/courses/${courseId}`);
+                const response = await fetch(`${API_BASE_URL}/api/courses/${courseSlug}`);
                 const result = await response.json();
 
                 if (result.success) {
                     const fetchedCourse = result.data;
                     setCourse(fetchedCourse);
 
-                    const lessonIdFromUrl = searchParams.get('lesson');
+                    // const lessonSlugFromUrl = searchParams.get('lesson');
 
                     // If a lesson ID is in the URL, find and set it as active
-                    if (lessonIdFromUrl) {
+                    if (lessonSlug) {
                         for (const part of fetchedCourse.parts) {
-                            const lesson = part.lessons.find(l => l._id === lessonIdFromUrl);
+                            const lesson = part.lessons.find(l => l.slug === lessonSlug);
                             if (lesson) {
                                 setActiveTopic(lesson);
                                 setExpandedPart(part._id);
@@ -79,10 +88,10 @@ function CourseScreen() {
                             const firstLesson = fetchedCourse.parts[0].lessons[0];
                             setActiveTopic(firstLesson);
                             // Update URL to reflect the default selection
-                            navigate(`?lesson=${firstLesson._id}`, { replace: true });
+                            navigate(`/course/${courseSlug}/${firstLesson.slug}`, { replace: true });
                         }
                     }
-                    console.log(fetchedCourse)
+                    // console.log(fetchedCourse)
                 } else {
                     console.error("Failed to fetch course details:", result.error);
                 }
@@ -92,7 +101,7 @@ function CourseScreen() {
         };
 
         fetchCourseDetails();
-    }, [courseId, navigate, searchParams]);
+    }, [courseSlug, navigate, searchParams]);
 
     const handlePartClick = (partId) => {
         setExpandedPart(expandedPart === partId ? null : partId); // Toggle expansion
@@ -100,7 +109,7 @@ function CourseScreen() {
 
     const handleTopicClick = (topic) => {
         setActiveTopic(topic);
-        navigate(`?lesson=${topic._id}`, { replace: true });
+        navigate(`/course/${courseSlug}/${topic.slug}`);
         if (window.innerWidth < 768) {
             setIsSidebarOpen(false);
         }
@@ -112,6 +121,68 @@ function CourseScreen() {
 
     const togglePractice = () => {
         setIsPracticeOpen(!isPracticeOpen);
+    };
+
+    // Navigation helper function
+    const getNavigationInfo = () => {
+        if (!course || !activeTopic) return { prev: null, next: null, nextPart: null };
+
+        let currentPartIndex = -1;
+        let currentLessonIndex = -1;
+
+        // Find the current part and lesson indices
+        for (let i = 0; i < course.parts.length; i++) {
+            const lessonIndex = course.parts[i].lessons.findIndex(l => l._id === activeTopic._id);
+            if (lessonIndex !== -1) {
+                currentPartIndex = i;
+                currentLessonIndex = lessonIndex;
+                break;
+            }
+        }
+
+        if (currentPartIndex === -1) return { prev: null, next: null, nextPart: null };
+
+        const currentPart = course.parts[currentPartIndex];
+        const lessons = currentPart.lessons;
+
+        // Calculate previous lesson
+        let prev = null;
+        if (currentLessonIndex > 0) {
+            prev = lessons[currentLessonIndex - 1];
+        } else if (currentPartIndex > 0) {
+            const previousPart = course.parts[currentPartIndex - 1];
+            if (previousPart.lessons.length > 0) {
+                prev = previousPart.lessons[previousPart.lessons.length - 1];
+            }
+        }
+
+        // Calculate next lesson or next part
+        let next = null;
+        let nextPart = null;
+        if (currentLessonIndex < lessons.length - 1) {
+            next = lessons[currentLessonIndex + 1];
+        } else if (currentPartIndex < course.parts.length - 1) {
+            nextPart = course.parts[currentPartIndex + 1];
+        }
+
+        return { prev, next, nextPart };
+    };
+
+    const handleNavigation = (lesson, partId = null) => {
+        if (lesson) {
+            setActiveTopic(lesson);
+            if (partId) setExpandedPart(partId);
+            navigate(`/course/${courseSlug}/${lesson.slug}`, { replace: true });
+        } else if (partId) {
+            // Navigate to the first lesson of the next part
+            const part = course.parts.find(p => p._id === partId);
+            if (part && part.lessons.length > 0) {
+                const firstLesson = part.lessons[0];
+                setActiveTopic(firstLesson);
+                setExpandedPart(partId);
+                navigate(`/course/${courseSlug}/${firstLesson.slug}`, { replace: true });
+            }
+        }
     };
 
     if (!course) {
@@ -126,17 +197,7 @@ function CourseScreen() {
         );
     }
 
-    // if (!course) {
-    //     return (
-    //         <div className="screen-container" style={styles.screenContainer}>
-    //             <Header />
-    //             <div className="page-container loading-container" style={{ ...styles.pageContainer, justifyContent: 'center', alignItems: 'center' }}>
-    //                 <h1>Loading course...</h1>
-    //             </div>
-    //             <Footer />
-    //         </div>
-    //     );
-    // }
+    const { prev, next, nextPart } = getNavigationInfo();
 
     return (
         <div className="screen-container">
@@ -170,54 +231,84 @@ function CourseScreen() {
                 </aside>
 
                 <div className="main-content-wrapper">
-                <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
-                    {isSidebarOpen ? 'X' : '▶'}
-                </button>         
-                {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
-                
+                    <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
+                        {isSidebarOpen ? 'X' : '▶'}
+                    </button>
+                    {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
 
-                {/* Right Content Area */}
-                <main className="content-area hide-scrollbar">
-                    {activeTopic ? (
-                        <>
-                            <div className="content-header">
-                                <p className='topic-title'>Topic: {activeTopic.title}</p>
-                                <button className="practice-toggle-btn" onClick={togglePractice}>
-                                    {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
-                                </button>
-                            </div>
-                            <div className="content-body">
-                                {isPracticeOpen ? (
-                                    <Split
-                                        className="split"
-                                        sizes={[50, 50]}
-                                        minSize={200}
-                                        gutterSize={10}
-                                        cursor="col-resize"
-                                    >
-                                <div className="lesson-view hide-scrollbar">
-                                    <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+
+                    {/* Right Content Area */}
+                    <main className="content-area hide-scrollbar">
+                        {activeTopic ? (
+                            <>
+                                <div className="content-header">
+                                    <p className='topic-title'>Topic: {activeTopic.title}</p>
+                                    <button className="practice-toggle-btn" onClick={togglePractice}>
+                                        {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
+                                    </button>
                                 </div>
-                                    <div className="practice-view">
-                                        <CodeEditor
-                                            html={activeTopic.code?.html || exampleCode.html}
-                                            css={activeTopic.code?.css || exampleCode.css}
-                                            js={activeTopic.code?.js || exampleCode.js}
-                                        />
-                                    </div>
-                                    </Split>
-                                ) : (
-                                    <div className="lesson-view">
-                                        <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
-                                    </div>
+                                <div className="content-body">
+                                    {isPracticeOpen ? (
+                                        <Split
+                                            className="split"
+                                            sizes={[50, 50]}
+                                            minSize={200}
+                                            gutterSize={10}
+                                            cursor="col-resize"
+                                        >
+                                            <div className="lesson-view hide-scrollbar">
+                                                <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                            </div>
+                                            <div className="practice-view">
+                                                <CodeEditor
+                                                    html={activeTopic.code?.html || exampleCode.html}
+                                                    css={activeTopic.code?.css || exampleCode.css}
+                                                    js={activeTopic.code?.js || exampleCode.js}
+                                                />
+                                            </div>
+                                        </Split>
+                                    ) : (
+                                        <div className="lesson-view">
+                                            <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                        </div>
 
-                                )}
-                            </div>
-                        </>
-                    ) : (
-                        <h1>Select a topic to start learning</h1>
-                    )}
-                </main>
+                                    )}
+                                </div>
+
+                                {/* Navigation Buttons */}
+                                <div className="navigation-buttons">
+                                    {prev ? (
+                                        <button
+                                            className="nav-btn prev-btn"
+                                            onClick={() => handleNavigation(prev)}
+                                        >
+                                            ← Previous
+                                        </button>
+                                    ) : (
+                                        <div></div> // Empty div to maintain spacing
+                                    )}
+
+                                    {next ? (
+                                        <button
+                                            className="nav-btn next-btn"
+                                            onClick={() => handleNavigation(next)}
+                                        >
+                                            Next →
+                                        </button>
+                                    ) : nextPart ? (
+                                        <button
+                                            className="nav-btn next-part-btn"
+                                            onClick={() => handleNavigation(null, nextPart._id)}
+                                        >
+                                            Continue to {nextPart.title} →
+                                        </button>
+                                    ) : null}
+                                </div>
+                            </>
+                        ) : (
+                            <h1>Select a topic to start learning</h1>
+                        )}
+                    </main>
                 </div>
             </div>
             {/* <Footer /> */}

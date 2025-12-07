@@ -123,13 +123,13 @@
     color: #333; /* Default text color */
     transition: color 0.3s ease-in-out;
 }
-
+/* 
 .courseCard:hover > * {
-    color: white; /* Text color on hover */
-}
+    color: white;
+} */
 
 .courseCard:hover{
-    color: white; /* Text color on hover */
+
     scale: 105%;
     transition: 0.3s ease-in-out;
 }

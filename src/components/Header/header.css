@@ -13,11 +13,23 @@
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
-    color: black;
-    text-decoration: none;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo p {
+    margin: 0; /* Remove default paragraph margin */
+    line-height: 1; /* Ensure text aligns properly with the image */
 }
 
 .right-section {

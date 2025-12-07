@@ -7,7 +7,8 @@
 }
 
 .page-container {
-    padding-top: 20px; /* Height of the fixed header */
+    padding-top: 20px;
+    /* Height of the fixed header */
     display: flex;
     flex: 1;
     overflow: hidden;
@@ -42,7 +43,7 @@
     overflow: hidden;
 }
 
-.topic-title{
+.topic-title {
     font-size: 20px;
     font-weight: bold;
 
@@ -103,7 +104,8 @@
 
 .content-area {
     flex: 1;
-    padding: 20px 40px 20px 65px; /* Default padding to make space for hamburger */
+    padding: 20px 40px 20px 65px;
+    /* Default padding to make space for hamburger */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -112,7 +114,8 @@
 }
 
 .content-area.sidebar-open {
-    padding-left: 340px; /* sidebar width + 40px */
+    padding-left: 340px;
+    /* sidebar width + 40px */
 }
 
 .content-header {
@@ -148,15 +151,16 @@
 
 .lesson-view {
     overflow-y: auto;
-    padding-right: 0px; /* Add some space for scrollbar */
+    padding-right: 0px;
+    /* Add some space for scrollbar */
     /* overflow: hidden; */
 }
 
-.content-body > .lesson-view {
+.content-body>.lesson-view {
     flex: 1;
 }
 
-.content-body > .practice-view {
+.content-body>.practice-view {
     flex: 1;
 }
 
@@ -167,33 +171,76 @@
 }
 
 .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none;
+    /* Chrome, Safari, and Opera */
 }
 
-    .hamburger-menu {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 85px;
-        left: 15px;
-        z-index: 1001;
-        color: #333;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background: #fff;
-        border: 2px solid #333;
-        border-radius: 5000;
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-        cursor: pointer;
-        line-height: 1; /* Adjust line-height for better vertical centering */
-    }
+.hamburger-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 85px;
+    left: 15px;
+    z-index: 1001;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 5000;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    /* Adjust line-height for better vertical centering */
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+    /* transform: translateY(-2px); */
+}
+
+/* .nav-btn:active {
+    transform: translateY(0);
+} */
+
+.next-part-btn {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.next-part-btn:hover {
+    background-color: #218838;
+}
 
 /* .sidebar.open ~ .hamburger-menu {
     left: 315px; 
@@ -219,7 +266,8 @@
 } */
 
 .overlay {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 /* --- Styles for react-split --- */
@@ -257,7 +305,7 @@
         left: 15px;
         z-index: 1001;
         color: #333;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         background: #fff;
         /* border: 1px solid #333; */
@@ -265,27 +313,32 @@
         width: 32px;
         height: 32px;
         font-size: 16px;
-        line-height: 1; /* Adjust line-height for better vertical centering */
+        line-height: 1;
+        /* Adjust line-height for better vertical centering */
     }
 
     .sidebar {
         position: fixed;
-        top: 60px; /* Below header */
+        top: 60px;
+        /* Below header */
         left: 0;
         bottom: 0;
         height: calc(100vh - 70px);
         background-color: #f4f4f4;
         border-right: 1px solid #ddd;
         z-index: 1000;
-        transform: translateX(-100%); /* Hidden off-screen */
+        transform: translateX(-100%);
+        /* Hidden off-screen */
     }
 
     .sidebar.open {
-        transform: translateX(0); /* Shown on-screen */
+        transform: translateX(0);
+        /* Shown on-screen */
     }
 
     .content-area {
-        padding: 40px 0px 20px 0px; /* Add left padding to not be overlapped by hamburger */
+        padding: 40px 0px 20px 0px;
+        /* Add left padding to not be overlapped by hamburger */
     }
 
     .overlay {
@@ -296,13 +349,14 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 999; /* Below sidebar, above content */
+        z-index: 999;
+        /* Below sidebar, above content */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     }
 
-    .sidebar.open + .overlay {
+    .sidebar.open+.overlay {
         opacity: 1;
         visibility: visible;
     }
@@ -312,25 +366,27 @@
         align-items: flex-start;
     }
 
-       /* Hide practice section on mobile */
+    /* Hide practice section on mobile */
     .practice-toggle-btn,
     .practice-view {
         display: none;
     }
 
-    .gutter{
+    .gutter {
         display: none;
     }
 
-     .split {
-        display: block; /* Remove the flex container behavior */
+    .split {
+        display: block;
+        /* Remove the flex container behavior */
     }
 
-    .split > .lesson-view {
-        width: 100% !important; /* Use !important to override inline styles from react-split */
+    .split>.lesson-view {
+        width: 100% !important;
+        /* Use !important to override inline styles from react-split */
     }
 
-    .lesson-view{
+    .lesson-view {
         overflow-y: auto;
     }
 

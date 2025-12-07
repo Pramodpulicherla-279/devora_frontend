@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AuthPopup from '../AuthPopup/AuthPopup';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/D.png';
 import './header.css';
 
 function Header({ onAboutClick, onContactClick }) {
@@ -55,7 +56,7 @@ function Header({ onAboutClick, onContactClick }) {
         }
     };
 
-        const toggleSidebar = () => {
+    const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
@@ -70,7 +71,10 @@ function Header({ onAboutClick, onContactClick }) {
         <>
             <header className="header-container">
                 {/* Left: Logo */}
-                <div className="logo">Dev.eL</div>
+                <div className="logo">
+                    <img src={logo} alt="DevEL Logo" />
+                    <p>Dev.eL</p>
+                </div>
 
                 <button type="button" className="header-hamburger-menu" onClick={toggleSidebar}>
                     ☰
@@ -90,12 +94,12 @@ function Header({ onAboutClick, onContactClick }) {
                         ) : (
                             <Link to="/" className="nav-link">Home</Link>
                         )}
-                    <Link to="/privacy-policy" className="nav-link">Privacy Policy</Link>
-                    <Link to="/terms" className="nav-link">Terms & Conditions</Link>
-                </div>
+                        <Link to="/privacy-policy" className="nav-link">Privacy Policy</Link>
+                        <Link to="/terms" className="nav-link">Terms & Conditions</Link>
+                    </div>
 
-                {/* Profile/Login */}
-                <div className="profile-section">
+                    {/* Profile/Login */}
+                    <div className="profile-section">
                         {user ? (
                             <div className="profile-container">
                                 <img
@@ -110,11 +114,11 @@ function Header({ onAboutClick, onContactClick }) {
                             <button className="login-button" onClick={handleOpenPopup}>Login</button>
                         )}
                     </div>
-            </div>
-            {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
-        </header >
-            { isPopupOpen && <AuthPopup onClose={handleClosePopup} />
-}
+                </div>
+                {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+            </header >
+            {isPopupOpen && <AuthPopup onClose={handleClosePopup} />
+            }
         </>
     );
 }

@@ -8,48 +8,62 @@ function PrivacyPolicyScreen() {
             <Header />
             <div style={styles.container}>
                 <h1 style={styles.title}>Privacy Policy</h1>
-                <p style={styles.lastUpdated}>Last updated: November 22, 2025</p>
+                <p style={styles.lastUpdated}>Last updated: December 08, 2025</p>
 
                 <h2 style={styles.sectionTitle}>1. Introduction</h2>
                 <p style={styles.text}>
-                    Dev.eL is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service. By using the Service, you agree to the collection and use of information in accordance with this policy.
-                </p>
+                    At Dev.eL, we value your privacy and are committed to protecting your personal information. This Privacy Policy describes the types of data we collect, how we use it, and the measures we take to keep it secure. By accessing or using our Service, you acknowledge and agree to the practices described in this policy.                </p>
 
                 <h2 style={styles.sectionTitle}>2. Information We Collect</h2>
                 <p style={styles.text}>
-                    We may collect personal identification information in various ways, including, but not limited to, when you register on the site, subscribe to a newsletter, and in connection with other activities, services, features, or resources we make available.
+                    We collect information to provide a better learning experience and to maintain the functionality of our platform.
                 </p>
+
+                <p><strong>Personal Information</strong> <br /> We may ask you to provide certain details that help us identify or contact you. This may include, but is not limited to:</p>
                 <ul style={styles.list}>
-                    <li><strong>Personal Data:</strong> While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). This may include, but is not limited to, your email address and name.</li>
-                    <li><strong>Usage Data:</strong> We may also collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's IP address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, and other diagnostic data.</li>
+                    <li><strong>Your name</strong></li>
+                    <li><strong>Email address</strong></li>
+                    <li><strong>Mobile Number</strong></li>
                 </ul>
+                <p>These details are collected when you register on the site, subscribe to updates, or interact with features that require user input.</p>
+
+                <p><strong>Usage Information</strong><br />We also collect data related to how you access and interact with the Service. This may include:</p>
+
+                <ul>
+                    <li>IP address</li>
+                    <li>Browser type and version</li>
+                    <li>Pages you visit on our platform</li>
+                    <li>Time and date of your visits</li>
+                    <li>Device and diagnostic information</li>
+                </ul>
+                <p>This data helps us understand how users engage with Dev.eL and allows us to improve performance and usability.</p>
 
                 <h2 style={styles.sectionTitle}>3. How We Use Your Information</h2>
                 <p style={styles.text}>
-                    We use the collected data for various purposes:
+                    We use the information we collect for purposes such as:
                 </p>
                 <ul style={styles.list}>
-                    <li>To provide and maintain our Service.</li>
-                    <li>To notify you about changes to our Service.</li>
-                    <li>To allow you to participate in interactive features of our Service when you choose to do so.</li>
-                    <li>To provide customer support.</li>
-                    <li>To gather analysis or valuable information so that we can improve our Service.</li>
-                    <li>To monitor the usage of our Service.</li>
+                    <li>Operating and improving the Service</li>
+                    <li>Keeping you updated about changes or new features</li>
+                    <li>Enabling interactive or personalized features</li>
+                    <li>Providing customer support</li>
+                    <li>Analyzing usage patterns to enhance user experience</li>
+                    <li>Ensuring the overall stability and security of the platform</li>
                 </ul>
 
                 <h2 style={styles.sectionTitle}>4. Data Security</h2>
                 <p style={styles.text}>
-                    The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+                   We take data security seriously and use reasonable measures to protect your information. However, no method of online transmission or digital storage is completely secure. While we work to safeguard your Personal Data, we cannot guarantee absolute protection.
                 </p>
 
-                <h2 style={styles.sectionTitle}>5. Changes to This Privacy Policy</h2>
+                <h2 style={styles.sectionTitle}>5. Updates to This Policy</h2>
                 <p style={styles.text}>
-                    We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.
+                    We may revise this Privacy Policy periodically. When updates occur, we will post the latest version on this page. We encourage you to review the policy from time to time to stay informed about how we protect your information.
                 </p>
 
                 <h2 style={styles.sectionTitle}>6. Contact Us</h2>
                 <p style={styles.text}>
-                    If you have any questions about this Privacy Policy, please contact us.
+                    If you have any questions or concerns regarding this Privacy Policy or your personal data, feel free to contact us.
                 </p>
             </div>
             <Footer />
