@@ -11,6 +11,7 @@ import { API_BASE_URL } from '../../../config';
 
 function HomeScreen() {
     const [courses, setCourses] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const coursesRef = useRef(null);
     const aboutRef = useRef(null);
@@ -30,6 +31,7 @@ function HomeScreen() {
 
     useEffect(() => {
         const fetchCourses = async () => {
+            setIsLoading(true);
             try {
                 const response = await fetch(`${API_BASE_URL}/api/courses`);
                 const result = await response.json();
@@ -54,6 +56,8 @@ function HomeScreen() {
                 }
             } catch (error) {
                 console.error("Failed to fetch courses:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchCourses();
@@ -129,14 +133,21 @@ function HomeScreen() {
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>
-                <div className="courses-grid" style={styles.coursesGrid}>
-                    {courses.map((course, index) => (
-                        <div key={index} className="courseCard" onClick={() => handleCourseClick(course)}>
-                            <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
-                            <p className="card-description" style={styles.cardDescription}>{course.description}</p>
-                        </div>
-                    ))}
-                </div>
+
+                {isLoading ? (
+                    <div style={styles.loaderContainer}>
+                        <div style={styles.loader}></div>
+                    </div>
+                ) : (
+                    <div className="courses-grid" style={styles.coursesGrid}>
+                        {courses.map((course, index) => (
+                            <div key={index} className="courseCard" onClick={() => handleCourseClick(course)}>
+                                <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
+                                <p className="card-description" style={styles.cardDescription}>{course.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
             <div className="about-container" style={styles.aboutContainer} ref={aboutRef}>
                 <h2 className="about-title" style={styles.aboutTitle}>About Dev.eL</h2>
@@ -233,6 +244,27 @@ function HomeScreen() {
 // export default CoursesScreen;
 
 const styles = {
+        loaderContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '300px',
+        gap: '20px',
+    },
+    loader: {
+        border: '8px solid #f3f3f3',
+        borderTop: '8px solid #007bff',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        animation: 'spin 1s linear infinite',
+    },
+    loadingText: {
+        fontSize: '18px',
+        color: '#555',
+        fontWeight: '500',
+    },
     // mainContainer: {
     //     width: '90%',
     //     display: 'flex',
