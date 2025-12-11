@@ -5,29 +5,47 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="canonical" href="https://www.dev-el.co/" />
 
     <!-- SEO Meta Tags - IMPORTANT for search results -->
-    <meta name="description" content="Dev.eL is a modern learning platform for aspiring developers to learn full-stack web development with the MERN stack. Learn HTML, CSS, JavaScript, React, Node.js, and MongoDB step by step." />
-    <meta name="keywords" content="MERN stack, web development, learn coding, JavaScript tutorial, React tutorial, Node.js, MongoDB, full-stack development" />
+    <meta
+      name="description"
+      content="Dev.eL is a modern learning platform for aspiring developers to learn full-stack web development with the MERN stack. Learn HTML, CSS, JavaScript, React, Node.js, and MongoDB step by step."
+    />
+    <meta
+      name="keywords"
+      content="MERN stack, web development, learn coding, JavaScript tutorial, React tutorial, Node.js, MongoDB, full-stack development"
+    />
     <meta name="author" content="Dev.eL" />
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Dev.eL - Learn MERN Stack Development" />
-    <meta property="og:description" content="Your journey to becoming a MERN Stack Developer starts here. Learn web development step by step with Dev.eL." />
+    <meta
+      property="og:description"
+      content="Your journey to becoming a MERN Stack Developer starts here. Learn web development step by step with Dev.eL."
+    />
     <meta property="og:image" content="https://www.dev-el.co/logo.png" />
     <meta property="og:url" content="https://www.dev-el.co" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Dev.eL" />
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dev.eL - Learn MERN Stack Development" />
-    <meta name="twitter:description" content="Your journey to becoming a MERN Stack Developer starts here. Learn web development step by step." />
+    <meta
+      name="twitter:title"
+      content="Dev.eL - Learn MERN Stack Development"
+    />
+    <meta
+      name="twitter:description"
+      content="Your journey to becoming a MERN Stack Developer starts here. Learn web development step by step."
+    />
     <meta name="twitter:image" content="https://www.dev-el.co/logo.png" />
 
     <meta name="application-name" content="Dev.eL" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dev.eL - Learn MERN Stack Development | Free Web Development Courses</title>
+    <title>
+      Dev.eL - Learn MERN Stack Development | Free Web Development Courses
+    </title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -38,6 +56,29 @@
         "logo": "https://dev-el.co/logo.png",
         "sameAs": ["https://dev-el.co"]
       }
+    </script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAepcc4uUPtzM3BdoCv6lV5TVpUvQA3kNk",
+        authDomain: "devel-350.firebaseapp.com",
+        projectId: "devel-350",
+        storageBucket: "devel-350.firebasestorage.app",
+        messagingSenderId: "422516397474",
+        appId: "1:422516397474:web:8bc218821664362857cefb",
+        measurementId: "G-MSJY0K6P2C",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
     </script>
   </head>
 
