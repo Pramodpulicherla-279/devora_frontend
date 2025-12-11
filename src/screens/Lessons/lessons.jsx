@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
+import { Helmet } from 'react-helmet';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
@@ -201,6 +202,14 @@ function CourseScreen() {
 
     return (
         <div className="screen-container">
+            <Helmet>
+                <title>{activeTopic ? `${activeTopic.title} - ${course?.title}` : course?.title || 'Course'} | Dev.eL</title>
+                <meta
+                    name="description"
+                    content={activeTopic?.content?.substring(0, 155) || course?.description || 'Learn web development step by step with Dev.eL'}
+                />
+                <link rel="canonical" href={`https://www.dev-el.co/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`} />
+            </Helmet>
             <Header />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>

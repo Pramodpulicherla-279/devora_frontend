@@ -5,6 +5,7 @@ import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import coverImg from '../../assets/cover.png';
 import emailjs from '@emailjs/browser';
+import { Helmet } from 'react-helmet';
 import './homeScreen.css';
 import { API_BASE_URL } from '../../../config';
 
@@ -116,6 +117,15 @@ function HomeScreen() {
 
     return (
         <>
+            <Helmet>
+                <title>Dev.eL - MERN Courses & Web Development Learning</title>
+                <meta
+                    name="description"
+                    content="Dev.eL offers simple, step-by-step text courses on MERN stack, JavaScript, and web development. Learn anytime at your own pace."
+                />
+                <link rel="canonical" href="https://www.dev-el.co" />
+            </Helmet>
+
             <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick} />
             <div className="main-container" style={styles.mainContainer}>
                 <div className="text-container" style={styles.textContainer}>
@@ -244,7 +254,7 @@ function HomeScreen() {
 // export default CoursesScreen;
 
 const styles = {
-        loaderContainer: {
+    loaderContainer: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
