@@ -30,14 +30,81 @@
     cursor: pointer;
 }
 
+.upi-pay-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #60a917;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.upi-pay-btn:hover {
+    background: #4f8c13;
+}
+
+.divider {
+    margin: 15px 0;
+    color: #999;
+    font-size: 14px;
+}
+
 .qr-code {
-    width: 250px;
-    height: 250px;
-    margin: 20px 0;
+    width: 200px;
+    height: 200px;
+    margin: 15px 0;
+    border: 2px solid #eee;
+    border-radius: 8px;
+}
+
+.upi-id-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .upi-id {
     font-size: 14px;
     color: #666;
-    margin-top: 10px;
+    margin: 0;
+}
+
+.copy-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: #0056b3;
+}
+
+/* Hide UPI button and divider on desktop */
+@media (min-width: 769px) {
+    .upi-pay-btn,
+    .divider {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .donate-modal-content {
+        margin: 20px;
+        max-width: 90%;
+    }
+    
+    .qr-code {
+        width: 180px;
+        height: 180px;
+    }
 }
