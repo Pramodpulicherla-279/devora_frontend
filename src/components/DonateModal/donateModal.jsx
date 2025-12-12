@@ -1,5 +1,5 @@
 import React from 'react';
-import './DonateModal.css';
+import './donateModal.css';
 import qrCode from '../../assets/upi-qr-code.jpeg';
 function DonateModal({ onClose }) {
     return (
