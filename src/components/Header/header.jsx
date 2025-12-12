@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AuthPopup from '../AuthPopup/AuthPopup';
 import { Link, useLocation } from 'react-router-dom';
+import DonateModal from '../DonateModal/donateModal.jsx';
 import logo from '../../assets/logo.png';
 import './header.css';
 
@@ -11,6 +12,7 @@ function Header({ onAboutClick, onContactClick }) {
     const [user, setUser] = useState(null);
     const location = useLocation();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
 
 
     useEffect(() => {
@@ -60,6 +62,14 @@ function Header({ onAboutClick, onContactClick }) {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const handleOpenDonate = () => {
+        setIsDonateModalOpen(true);
+        setIsSidebarOpen(false);
+    };
+
+    const handleCloseDonate = () => {
+        setIsDonateModalOpen(false);
+    };
 
     // const handleTermsClick = () => {
     //     navigate('/terms')
@@ -100,6 +110,9 @@ function Header({ onAboutClick, onContactClick }) {
 
                     {/* Profile/Login */}
                     <div className="profile-section">
+                        <button className="donate-button" onClick={handleOpenDonate}>
+                            ☕ Buy Me a Coffee
+                        </button>
                         {user ? (
                             <div className="profile-container">
                                 <img
@@ -117,8 +130,8 @@ function Header({ onAboutClick, onContactClick }) {
                 </div>
                 {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
             </header >
-            {isPopupOpen && <AuthPopup onClose={handleClosePopup} />
-            }
+            {isPopupOpen && <AuthPopup onClose={handleClosePopup} />}
+            {isDonateModalOpen && <DonateModal onClose={handleCloseDonate} />}
         </>
     );
 }

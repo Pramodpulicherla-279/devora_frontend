@@ -53,6 +53,7 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
+    margin-top: 40px;
     padding: 12px;
 }
 
@@ -187,7 +188,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 85px;
+    top: 60px;
     left: 15px;
     z-index: 1001;
     color: #333;

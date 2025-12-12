@@ -98,6 +98,21 @@
     display: none;
 }
 
+.donate-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid #FFDD00;
+    border-radius: 8px;
+    background-color: #FFDD00;
+    color: #000;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.donate-button:hover {
+    background-color: #FFD700;
+}
 /* --- Responsive Styles for Mobile --- */
 @media (max-width: 768px) {
     .header-container {
