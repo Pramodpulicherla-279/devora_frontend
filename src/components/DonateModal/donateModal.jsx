@@ -15,7 +15,8 @@ function DonateModal({ onClose }) {
     };
 
     const handleUPIClick = () => {
-        window.location.href = upiLink;
+        const intent = `intent://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+        window.location.href = intent;
     };
 
     return (
@@ -24,7 +25,7 @@ function DonateModal({ onClose }) {
                 <button className="close-btn" onClick={onClose}>×</button>
                 <h2>☕ Buy Me a Coffee</h2>
                 <p>Support my work!</p>
-                
+
                 {/* UPI Button for Mobile */}
                 <button className="upi-pay-btn" onClick={handleUPIClick}>
                     💳 Pay via UPI Apps
@@ -33,12 +34,12 @@ function DonateModal({ onClose }) {
                 <div className="divider">OR</div>
 
                 {/* QR Code for Desktop/Another Device */}
-                <img 
-                    src={qrCode} 
-                    alt="UPI QR Code" 
+                <img
+                    src={qrCode}
+                    alt="UPI QR Code"
                     className="qr-code"
                 />
-                
+
                 {/* Copy UPI ID */}
                 <div className="upi-id-container">
                     <p className="upi-id">{upiId}</p>
