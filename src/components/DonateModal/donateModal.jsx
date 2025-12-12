@@ -14,9 +14,14 @@ function DonateModal({ onClose }) {
         setTimeout(() => setCopied(false), 2000);
     };
 
+    // const handleUPIClick = () => {
+    //     const intent = `intent://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+    //     window.location.href = intent;
+    // };
+
     const handleUPIClick = () => {
-        const intent = `intent://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-        window.location.href = intent;
+        const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR`;
+        window.location.href = upiLink;
     };
 
     return (
