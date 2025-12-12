@@ -5,7 +5,8 @@ import qrCode from '../../assets/upi-qr-code.jpeg';
 function DonateModal({ onClose }) {
     const [copied, setCopied] = useState(false);
     const upiId = 'pramod.pulicherla@ybl';
-    const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&cu=INR`;
+    // Fixed UPI link format with proper encoding
+    const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR`;
 
     const handleCopyUPI = () => {
         navigator.clipboard.writeText(upiId);
