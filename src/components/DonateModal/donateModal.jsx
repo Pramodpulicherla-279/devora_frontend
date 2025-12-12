@@ -5,8 +5,6 @@ import qrCode from '../../assets/upi-qr-code.jpeg';
 function DonateModal({ onClose }) {
     const [copied, setCopied] = useState(false);
     const upiId = 'pramod.pulicherla@ybl';
-    // Fixed UPI link format with proper encoding
-    const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR`;
 
     const handleCopyUPI = () => {
         navigator.clipboard.writeText(upiId);
@@ -14,13 +12,9 @@ function DonateModal({ onClose }) {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    // const handleUPIClick = () => {
-    //     const intent = `intent://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-    //     window.location.href = intent;
-    // };
-
     const handleUPIClick = () => {
-        const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&tn=Coffee%20Donation&cu=INR`;
+        // Simpler format without transaction note
+        const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&cu=INR`;
         window.location.href = upiLink;
     };
 
@@ -31,27 +25,29 @@ function DonateModal({ onClose }) {
                 <h2>☕ Buy Me a Coffee</h2>
                 <p>Support my work!</p>
 
+                {/* Copy UPI ID - Make it prominent */}
+                <div className="upi-id-box">
+                    <p className="upi-label">UPI ID</p>
+                    <p className="upi-id-large">{upiId}</p>
+                    <button className="copy-btn-large" onClick={handleCopyUPI}>
+                        {copied ? '✓ Copied!' : '📋 Copy UPI ID'}
+                    </button>
+                </div>
+
                 {/* UPI Button for Mobile */}
                 <button className="upi-pay-btn" onClick={handleUPIClick}>
-                    💳 Pay via UPI Apps
+                    💳 Open in UPI App
                 </button>
 
                 <div className="divider">OR</div>
 
                 {/* QR Code for Desktop/Another Device */}
+                <p className="scan-text">Scan QR Code</p>
                 <img
                     src={qrCode}
                     alt="UPI QR Code"
                     className="qr-code"
                 />
-
-                {/* Copy UPI ID */}
-                <div className="upi-id-container">
-                    <p className="upi-id">{upiId}</p>
-                    <button className="copy-btn" onClick={handleCopyUPI}>
-                        {copied ? '✓ Copied!' : '📋 Copy'}
-                    </button>
-                </div>
             </div>
         </div>
     );

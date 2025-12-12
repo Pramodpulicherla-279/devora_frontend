@@ -30,6 +30,46 @@
     cursor: pointer;
 }
 
+.upi-id-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px dashed #007bff;
+}
+
+.upi-label {
+    font-size: 12px;
+    color: #666;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.upi-id-large {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 15px 0;
+    word-break: break-all;
+}
+
+.copy-btn-large {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.copy-btn-large:hover {
+    background: #0056b3;
+}
+
 .upi-pay-btn {
     width: 100%;
     padding: 12px 20px;
@@ -53,47 +93,30 @@
     font-size: 14px;
 }
 
+.scan-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
 .qr-code {
     width: 200px;
     height: 200px;
-    margin: 15px 0;
+    margin: 0 auto;
     border: 2px solid #eee;
     border-radius: 8px;
-}
-
-.upi-id-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.upi-id {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-}
-
-.copy-btn {
-    padding: 6px 12px;
-    font-size: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.copy-btn:hover {
-    background: #0056b3;
 }
 
 /* Hide UPI button and divider on desktop */
 @media (min-width: 769px) {
     .upi-pay-btn,
-    .divider {
+    .divider,
+    .scan-text {
         display: none;
+    }
+    
+    .qr-code {
+        display: block;
     }
 }
 
