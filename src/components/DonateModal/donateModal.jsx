@@ -10,7 +10,6 @@ function DonateModal({ onClose }) {
     const upiId = 'pramod.pulicherla@ybl';
     const name = 'Pramod Pulicherla';
 
-    // Detect if device is iPhone (iOS UPI links are notoriously unreliable)
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     const handleCopyUPI = () => {
@@ -19,17 +18,12 @@ function DonateModal({ onClose }) {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    // Helper to get the valid amount
-    const getFinalAmount = () => {
-        const val = customAmount ? parseFloat(customAmount) : amount;
-        return val && val > 0 ? val.toFixed(2) : "0.00"; // FIX: UPI requires 2 decimal places (e.g. 10.00)
-    };
-
-    const finalAmount = getFinalAmount();
-
-    // Construct the UPI Link dynamically
-    // We use the standard upi:// scheme which works on most Android phones
-    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${finalAmount}&cu=INR&tn=Donation`;
+    // --- CRITICAL CHANGE ---
+    // For personal UPI IDs, we CANNOT send the amount (am) or note (tn) in the link.
+    // If we do, GPay/PhonePe will block the transaction for security.
+    // We only send the Payee Address (pa), Name (pn), and Currency (cu).
+    // We also add mc=0000 to suggest a generic transaction.
+    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&cu=INR&mc=0000`;
 
     return (
         <div className="donate-modal-overlay" onClick={onClose}>
@@ -39,9 +33,10 @@ function DonateModal({ onClose }) {
                 <h2>☕ Buy Me a Coffee</h2>
                 <p>Your support keeps my work going ❤️</p>
 
-                {/* AMOUNT SELECTOR */}
+                {/* NOTE: Since we can't pre-fill the amount in the app, 
+                    we show the selected amount visually here as a guide only */}
                 <div className="amount-section">
-                    <h3>Select Amount</h3>
+                    <h3>Amount to Pay</h3>
                     
                     <div className="amount-buttons">
                         {[10, 20, 50].map((amt) => (
@@ -62,9 +57,12 @@ function DonateModal({ onClose }) {
                         value={customAmount}
                         onChange={(e) => setCustomAmount(e.target.value)}
                     />
+                    <p style={{fontSize: '0.8rem', color: '#666', marginTop: '5px'}}>
+                        *You will need to enter this amount in your UPI app.
+                    </p>
                 </div>
 
-                {/* UPI PAYMENT BUTTON - CHANGED TO ANCHOR TAG */}
+                {/* PAY BUTTON */}
                 {!isIOS ? (
                     <a 
                         href={upiLink} 
@@ -73,7 +71,7 @@ function DonateModal({ onClose }) {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        💳 Pay Now via UPI
+                        💳 Open UPI App
                     </a>
                 ) : (
                     <p className="ios-warning">📱 iPhone users: Please scan the QR code below.</p>
@@ -91,7 +89,7 @@ function DonateModal({ onClose }) {
                 </div>
 
                 {/* QR */}
-                <p className="scan-text">Scan QR Code</p>
+                <p className="scan-text">Scan QR Code (Recommended)</p>
                 <img src={qrCode} alt="UPI QR" className="qr-code" />
             </div>
         </div>
