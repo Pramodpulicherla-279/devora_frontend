@@ -1,8 +1,8 @@
 .screen-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    /* overflow: hidden; */
+    height: 98.9vh;
+    /* overflow: hidden !important; */
     /* margin-top: 70px; */
 }
 
@@ -208,7 +208,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    /* margin-top: 0px; */
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
@@ -338,7 +338,7 @@
     }
 
     .content-area {
-        padding: 40px 0px 20px 0px;
+        padding: 60px 0px 20px 0px;
         /* Add left padding to not be overlapped by hamburger */
     }
 

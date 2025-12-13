@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { Helmet } from 'react-helmet';
@@ -40,6 +40,13 @@ function CourseScreen() {
     const [activeTopic, setActiveTopic] = useState(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);;
     const [isPracticeOpen, setIsPracticeOpen] = useState(false);
+    const contentAreaRef = useRef(null);
+
+    const scrollContentToTop = () => {
+        if (contentAreaRef.current) {
+            contentAreaRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
 
     // Mock data for demonstration
     const exampleCode = {
@@ -114,6 +121,8 @@ function CourseScreen() {
         if (window.innerWidth < 768) {
             setIsSidebarOpen(false);
         }
+        // Scroll to top of content area
+        scrollContentToTop();
     };
 
     const toggleSidebar = () => {
@@ -174,6 +183,10 @@ function CourseScreen() {
             setActiveTopic(lesson);
             if (partId) setExpandedPart(partId);
             navigate(`/course/${courseSlug}/${lesson.slug}`, { replace: true });
+            // Scroll to top when navigating
+            if (contentAreaRef.current) {
+                contentAreaRef.current.scrollTo = 0;
+            }
         } else if (partId) {
             // Navigate to the first lesson of the next part
             const part = course.parts.find(p => p._id === partId);
@@ -182,6 +195,8 @@ function CourseScreen() {
                 setActiveTopic(firstLesson);
                 setExpandedPart(partId);
                 navigate(`/course/${courseSlug}/${firstLesson.slug}`, { replace: true });
+                // Scroll to top
+                scrollContentToTop();
             }
         }
     };
@@ -247,7 +262,7 @@ function CourseScreen() {
 
 
                     {/* Right Content Area */}
-                    <main className="content-area hide-scrollbar">
+                    <main className="content-area hide-scrollbar" >
                         {activeTopic ? (
                             <>
                                 <div className="content-header">
@@ -277,7 +292,7 @@ function CourseScreen() {
                                             </div>
                                         </Split>
                                     ) : (
-                                        <div className="lesson-view">
+                                        <div className="lesson-view" ref={contentAreaRef}>
                                             <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
                                         </div>
 
