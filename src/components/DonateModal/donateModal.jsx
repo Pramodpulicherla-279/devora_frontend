@@ -7,7 +7,7 @@ function DonateModal({ onClose }) {
     const [customAmount, setCustomAmount] = useState('');
     const [copied, setCopied] = useState(false);
 
-    const upiId = 'pramod.pulicla@ybl';
+    const upiId = 'pramod.pulicherla@ybl';
     const name = 'Pramod Pulicherla';
 
     // Detect if device is iPhone (iOS UPI links won't work)
