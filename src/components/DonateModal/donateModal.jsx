@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './donateModal.css';
 import qrCode from '../../assets/upi-qr-code.jpeg';
 
@@ -7,10 +7,10 @@ function DonateModal({ onClose }) {
     const [customAmount, setCustomAmount] = useState('');
     const [copied, setCopied] = useState(false);
 
-    const upiId = 'pramod.pulicherla@ybl';
+    const upiId = 'pramod.pulichrla@ybl';
     const name = 'Pramod Pulicherla';
 
-    // Detect if device is iPhone (iOS UPI links won't work)
+    // Detect if device is iPhone (iOS UPI links are notoriously unreliable)
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     const handleCopyUPI = () => {
@@ -19,38 +19,17 @@ function DonateModal({ onClose }) {
         setTimeout(() => setCopied(false), 2000);
     };
 
+    // Helper to get the valid amount
     const getFinalAmount = () => {
-        return customAmount ? customAmount : amount;
+        const val = customAmount ? parseFloat(customAmount) : amount;
+        return val && val > 0 ? val.toFixed(2) : "0.00"; // FIX: UPI requires 2 decimal places (e.g. 10.00)
     };
 
-    const handleUPIPay = () => {
-        const finalAmount = getFinalAmount();
+    const finalAmount = getFinalAmount();
 
-        if (!finalAmount || finalAmount <= 0) {
-            alert("Please enter a valid amount.");
-            return;
-        }
-
-        const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(
-            name
-        )}&am=${finalAmount}&cu=INR&tn=${encodeURIComponent("Donation")}`;
-
-        if (!isIOS && /android/i.test(navigator.userAgent)) {
-            const intent = `intent://pay?pa=${upiId}&pn=${encodeURIComponent(
-                name
-            )}&am=${finalAmount}&cu=INR&tn=Donation#Intent;scheme=upi;end`;
-
-            window.location.href = intent;
-
-            // Fallback if UPI app didn't open
-            setTimeout(() => {
-                window.location.href = upiLink;
-            }, 700);
-        } else {
-            // iOS or browsers without UPI support
-            alert("iPhone/iOS does not support UPI links. Please scan the QR.");
-        }
-    };
+    // Construct the UPI Link dynamically
+    // We use the standard upi:// scheme which works on most Android phones
+    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${finalAmount}&cu=INR&tn=Donation`;
 
     return (
         <div className="donate-modal-overlay" onClick={onClose}>
@@ -68,7 +47,7 @@ function DonateModal({ onClose }) {
                         {[10, 20, 50].map((amt) => (
                             <button
                                 key={amt}
-                                className={amount === amt ? "amount-btn selected" : "amount-btn"}
+                                className={amount === amt && !customAmount ? "amount-btn selected" : "amount-btn"}
                                 onClick={() => { setAmount(amt); setCustomAmount(""); }}
                             >
                                 ₹{amt}
@@ -81,18 +60,24 @@ function DonateModal({ onClose }) {
                         className="custom-amount-input"
                         placeholder="Custom Amount"
                         value={customAmount}
-                        onChange={(e) => { setCustomAmount(e.target.value); setAmount(null); }}
+                        onChange={(e) => setCustomAmount(e.target.value)}
                     />
                 </div>
 
-                {/* UPI PAYMENT BUTTON */}
-                {!isIOS && (
-                    <button className="upi-pay-btn" onClick={handleUPIPay}>
+                {/* UPI PAYMENT BUTTON - CHANGED TO ANCHOR TAG */}
+                {!isIOS ? (
+                    <a 
+                        href={upiLink} 
+                        className="upi-pay-btn" 
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none' }}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
                         💳 Pay Now via UPI
-                    </button>
+                    </a>
+                ) : (
+                    <p className="ios-warning">📱 iPhone users: Please scan the QR code below.</p>
                 )}
-
-                {isIOS && <p className="ios-warning">📱 iPhone blocks UPI apps. Please use the QR code.</p>}
 
                 <div className="divider">OR</div>
 
