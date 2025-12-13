@@ -13,23 +13,24 @@ function DonateModal({ onClose }) {
     };
 
     const handleUPIClick = () => {
-        const upiLink = `upi://pay?pa=${upiId}&pn=Pramod%20Pulicherla&am=1&cu=INR&tn=Donation`;
+        const upiLink =
+            `upi://pay?pa=${upiId}&pn=Pramod%20Pulicherla&am=1&cu=INR&tn=Donation`;
 
-        // Android Chrome – best compatibility
         if (/android/i.test(navigator.userAgent)) {
-            const intentLink = `intent://pay?pa=${upiId}&pn=Pramod%20Pulicherla&am=1&cu=INR&tn=Donation#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-            window.location.href = intentLink;
+            const intent =
+                `intent://pay?pa=${upiId}&pn=Pramod%20Pulicherla&am=1&cu=INR&tn=Donation#Intent;scheme=upi;end`;
 
-            // fallback after 1 sec
+            window.location.href = intent;
+
             setTimeout(() => {
                 window.location.href = upiLink;
             }, 800);
 
         } else {
-            // iOS & Others (may work only if UPI app installed + browser supports)
             window.location.href = upiLink;
         }
     };
+
 
     return (
         <div className="donate-modal-overlay" onClick={onClose}>
