@@ -13,9 +13,17 @@ function DonateModal({ onClose }) {
     };
 
     const handleUPIClick = () => {
-        // Simpler format without transaction note
+        // Try multiple formats
         const upiLink = `upi://pay?pa=${upiId}&pn=Pramod&cu=INR`;
-        window.location.href = upiLink;
+        
+        // For Android Chrome
+        if (/android/i.test(navigator.userAgent)) {
+            const intent = `intent://pay?pa=${upiId}&pn=Pramod&cu=INR#Intent;scheme=upi;end`;
+            window.location.href = intent;
+        } else {
+            // For iOS or other browsers
+            window.location.href = upiLink;
+        }
     };
 
     return (
