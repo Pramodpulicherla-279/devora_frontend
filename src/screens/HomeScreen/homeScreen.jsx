@@ -67,12 +67,12 @@ function HomeScreen() {
             slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl',
             description: 'Power your application with APIs, servers, and business logic.',
         },
-        {
-            id: 'test',
-            name: 'Test',
-            slug: 'test-course/lesson-1',
-            description: 'test desc.',
-        },
+        // {
+        //     id: 'test',
+        //     name: 'Test',
+        //     slug: 'test-course/lesson-1',
+        //     description: 'test desc.',
+        // },
     ];
 
     // useEffect(() => {
