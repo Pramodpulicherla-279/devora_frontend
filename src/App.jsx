@@ -15,7 +15,7 @@ function App() {
         {/* <Route path="/courses" element={<CoursesScreen />} /> */}
         <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
         <Route path="/course/:courseSlug" element={<CourseScreen />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/terms" element={<TermsScreen />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyScreen />} />
 

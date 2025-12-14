@@ -5,6 +5,12 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { createLowlight, all } from "lowlight";
 import Link from '@tiptap/extension-link';
 import CharacterCount from '@tiptap/extension-character-count';
+import Image from '@tiptap/extension-image';
+import { Table } from '@tiptap/extension-table';
+import TableRow from '@tiptap/extension-table-row';
+import TableHeader from '@tiptap/extension-table-header';
+import TableCell from '@tiptap/extension-table-cell';
+import TextAlign from '@tiptap/extension-text-align';
 import EditorMenuBar from "./EditorMenuBar";
 import './admin.css'
 import { API_BASE_URL } from '../../config';
@@ -32,6 +38,14 @@ function AdminDashboard() {
     const editor = useEditor({
         extensions: [
             StarterKit,
+            Image,
+            Table.configure({ resizable: true }),
+            TableRow,
+            TableHeader,
+            TableCell,
+            TextAlign.configure({
+                types: ['heading', 'paragraph'],
+            }),
             CodeBlockLowlight.configure({
                 lowlight,
                 defaultLanguage: "javascript",
@@ -395,8 +409,8 @@ function AdminDashboard() {
                     <div className="mt-5 border rounded-xl bg-white p-3 shadow">
                         <EditorMenuBar editor={editor} />
                         <div style={{ height: '600px', overflowY: 'auto' }}>
-                        <EditorContent editor={editor} className="min-h-[250px] p-3" />
-                         </div>
+                            <EditorContent editor={editor} className="min-h-[250px] p-3" />
+                        </div>
                     </div>
                     <button className="admin-submit mt-4" onClick={handleAddOrUpdateLesson}>
                         {selectedLessonId ? "Update Lesson" : "Submit New Lesson"}

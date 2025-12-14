@@ -7,6 +7,7 @@ import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
 import Split from 'react-split';
+import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 
 // A Code Editor component specifically for HTML, CSS, and JS
 function CodeEditor({ html = '', css = '', js = '' }) {
@@ -59,6 +60,7 @@ function CourseScreen() {
     // console.log("All params:", params);
     // console.log("Course slug:", courseSlug);
     // console.log("Current URL:", window.location.href);
+    
 
     useEffect(() => {
         if (!courseSlug) {
@@ -255,8 +257,11 @@ function CourseScreen() {
                 </aside>
 
                 <div className="main-content-wrapper">
-                    <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
+                    {/* <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
                         {isSidebarOpen ? 'X' : '▶'}
+                    </button> */}
+                    <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
+                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled /> : <TbLayoutSidebarLeftExpandFilled />}
                     </button>
                     {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
 

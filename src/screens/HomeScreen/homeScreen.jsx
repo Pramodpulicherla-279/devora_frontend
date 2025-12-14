@@ -30,39 +30,84 @@ function HomeScreen() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    useEffect(() => {
-        const fetchCourses = async () => {
-            setIsLoading(true);
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/courses`);
-                const result = await response.json();
-                if (result.success) {
-                    // Map backend data to frontend state structure
-                    const fetchedCourses = result.data.map(course => ({
-                        id: course._id,
-                        name: course.title,
-                        slug: course.slug,
-                        description: course.description,
-                        parts: course.parts || [] // Assuming parts are populated or just IDs
-                    }));
-                    setCourses(fetchedCourses);
-                    console.log("Course List:", fetchedCourses)
+    const STATIC_COURSES = [
+        {
+            id: 'html',
+            name: 'HTML',
+            slug: 'html/introduction-to-html',
+            description: 'Build the structure of websites with clean, semantic markup.',
+        },
+        {
+            id: 'css',
+            name: 'CSS',
+            slug: 'css/css-get-started',
+            description: 'Style and design beautiful, responsive web pages.',
+        },
+        {
+            id: 'javascript',
+            name: 'javascript',
+            slug: 'javascript/variables-data-types',
+            description: 'Add interactivity, logic, and dynamic behavior to your apps.',
+        },
+        {
+            id: 'terminal-command-line',
+            name: 'Terminal / Command Line',
+            slug: 'terminal-command-line/terminal-basics-for-developers',
+            description: 'Control your system efficiently with essential CLI commands.',
+        },
+        {
+            id: 'git-github',
+            name: 'Git & Github',
+            slug: 'git-and-github/introduction-to-git-and-github-version-control-essentials',
+            description: 'Track changes, collaborate with teams, and manage your code',
+        },
+        {
+            id: 'backend-node-express',
+            name: 'Backend (Node.js / Express)',
+            slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl',
+            description: 'Power your application with APIs, servers, and business logic.',
+        },
+        {
+            id: 'test',
+            name: 'Test',
+            slug: 'test-course/lesson-1',
+            description: 'test desc.',
+        },
+    ];
 
-                    // Debug: Check if all courses have slugs
-                    fetchedCourses.forEach(course => {
-                        if (!course.slug) {
-                            console.warn(`Course "${course.name}" is missing a slug!`);
-                        }
-                    });
-                }
-            } catch (error) {
-                console.error("Failed to fetch courses:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchCourses();
-    }, []);
+    // useEffect(() => {
+    //     const fetchCourses = async () => {
+    //         setIsLoading(true);
+    //         try {
+    //             const response = await fetch(`${API_BASE_URL}/api/courses`);
+    //             const result = await response.json();
+    //             if (result.success) {
+    //                 // Map backend data to frontend state structure
+    //                 const fetchedCourses = result.data.map(course => ({
+    //                     id: course._id,
+    //                     name: course.title,
+    //                     slug: course.slug,
+    //                     description: course.description,
+    //                     parts: course.parts || [] // Assuming parts are populated or just IDs
+    //                 }));
+    //                 setCourses(fetchedCourses);
+    //                 console.log("Course List:", fetchedCourses)
+
+    //                 // Debug: Check if all courses have slugs
+    //                 fetchedCourses.forEach(course => {
+    //                     if (!course.slug) {
+    //                         console.warn(`Course "${course.name}" is missing a slug!`);
+    //                     }
+    //                 });
+    //             }
+    //         } catch (error) {
+    //             console.error("Failed to fetch courses:", error);
+    //         } finally {
+    //             setIsLoading(false);
+    //         }
+    //     };
+    //     fetchCourses();
+    // }, []);
 
     const handleCourseClick = (course) => {
         console.log("Course object:", course);
@@ -143,8 +188,22 @@ function HomeScreen() {
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>
+                <div className="courses-grid" style={styles.coursesGrid}>
+                    {STATIC_COURSES.map((course) => (
+                        <div
+                            key={course.id}
+                            className="courseCard"
+                            onClick={() => handleCourseClick(course)}
+                        >
+                            <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
+                            <p className="card-description" style={styles.cardDescription}>
+                                {course.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
 
-                {isLoading ? (
+                {/* {isLoading ? (
                     <div style={styles.loaderContainer}>
                         <div style={styles.loader}></div>
                     </div>
@@ -157,7 +216,7 @@ function HomeScreen() {
                             </div>
                         ))}
                     </div>
-                )}
+                )} */}
             </div>
             <div className="about-container" style={styles.aboutContainer} ref={aboutRef}>
                 <h2 className="about-title" style={styles.aboutTitle}>About Dev.eL</h2>
