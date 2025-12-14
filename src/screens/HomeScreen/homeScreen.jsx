@@ -8,6 +8,8 @@ import emailjs from '@emailjs/browser';
 import { Helmet } from 'react-helmet';
 import './homeScreen.css';
 import { API_BASE_URL } from '../../../config';
+import MernStackDiagram from '../../components/MernArch/mernArch';
+// import ArchitectureContainer from '../../components/MernArchitecture/ArchitectureContainer/architectureContainer';
 
 
 function HomeScreen() {
@@ -185,6 +187,10 @@ function HomeScreen() {
                     <img src={coverImg} alt="Application preview" style={styles.image} className="image" />
                 </div>
             </div>
+
+            {/* New MERN architecture section */}
+            <MernStackDiagram />
+            {/* <ArchitectureContainer/> */}
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>

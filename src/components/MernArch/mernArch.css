@@ -1,0 +1,342 @@
+.mern-section {
+    width: 90%;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.mern-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.mern-subtitle {
+    font-size: 14px;
+    text-align: center;
+    color: #6b7280;
+    max-width: 640px;
+    margin: 0 auto 24px;
+}
+
+.mern-content {
+    display: flex;
+    gap: 32px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+/* LEFT: layer diagram */
+.mern-diagram {
+    flex: 1;
+    min-width: 260px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.mern-diagram-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mern-layer {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 4px 0;
+    border-radius: 14px;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease;
+    text-align: left;
+}
+
+.mern-layer-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.mern-layer-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.mern-layer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+    /* background: #eef2ff; */
+}
+
+.mern-layer--in-flow {
+    border-style: dashed;
+    border-color: #4f46e5;
+    background: #eef2ff;
+}
+
+.mern-layer--active {
+    background: #111827;
+    color: #fbfaf9;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3);
+    transform: translateY(-1px);
+}
+
+.mern-layer--active .mern-layer-title {
+    color: #f9fafb;
+    
+}
+
+.mern-layer--active .mern-layer-label {
+    color: #d1d5db;
+}
+
+.mern-arrow {
+    font-size: 18px;
+    color: #9ca3af;
+    margin: 4px 0 8px;
+}
+
+/* RIGHT: details + flow simulator */
+.mern-right {
+    flex: 2;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* details card */
+.mern-details {
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #0f172a, #111827);
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mern-details-header {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.mern-details-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    margin-top: 4px;
+}
+
+.mern-details-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 2px;
+}
+
+.mern-details-flow {
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.mern-details-role {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 4px 0;
+}
+
+.mern-details-tech {
+    margin-top: 4px;
+}
+
+.mern-details-tech-label {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+}
+
+.mern-details-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mern-chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(249, 250, 251, 0.05);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.mern-details-tip {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 6px;
+}
+
+/* flow simulator */
+.mern-flow {
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mern-flow-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.mern-flow-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 2px;
+}
+
+.mern-flow-subtitle {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.mern-flow-select {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+    color: #0f172a;
+}
+
+.mern-flow-scenario {
+    font-size: 13px;
+    color: #4b5563;
+    margin: 0;
+}
+
+.mern-flow-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.mern-flow-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #374151;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.mern-flow-step:hover {
+    background: #eef2ff;
+    transform: translateY(-1px);
+}
+
+.mern-flow-step--active {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #f9fafb;
+}
+
+.mern-flow-step-index {
+    font-weight: 700;
+}
+
+.mern-flow-step-label {
+    white-space: nowrap;
+}
+
+.mern-flow-detail {
+    margin-top: 4px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #eef2ff;
+}
+
+.mern-flow-detail-layer {
+    font-size: 12px;
+    color: #4b5563;
+    margin: 0 0 4px;
+}
+
+.mern-flow-detail-layer-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.mern-flow-detail-text {
+    font-size: 13px;
+    color: #111827;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mern-section {
+        padding: 24px 16px;
+    }
+
+    .mern-content {
+        flex-direction: column;
+    }
+
+    .mern-right {
+        width: 100%;
+    }
+
+    .mern-flow-step-label {
+        white-space: normal;
+    }
+
+    .mern-diagram {
+        flex: 1;
+        min-width: 260px;
+        max-width: 5320px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        
+    }
+
+    .mern-layer {
+    width: 80%;
+    align-items: center;
+    text-align: left;
+}
+}
