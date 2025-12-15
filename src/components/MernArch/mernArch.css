@@ -306,6 +306,152 @@
     margin: 0;
 }
 
+/* Node-based flow simulator (used by newFlow.jsx) */
+.mern-node-section {
+    margin-top: 24px;
+    padding: 20px 18px;
+    border-radius: 16px;
+    background: #050816;
+    color: #f9fafb;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.mern-node-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mern-node-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.mern-node-subtitle {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.mern-node-select {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #4b5563;
+    background: #020617;
+    color: #f9fafb;
+    font-size: 13px;
+}
+
+.mern-node-scenario {
+    margin: 4px 0 12px;
+    font-size: 13px;
+    color: #e5e7eb;
+}
+
+.mern-node-track {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 4px 8px;
+}
+
+.mern-node-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mern-node-connector {
+    width: 32px;
+    height: 2px;
+    background: #4b5563;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.mern-node-connector--active {
+    background: #22c55e;
+}
+
+.mern-node {
+    min-width: 120px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 2px solid #374151;
+    background: #020617;
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.mern-node-icon {
+    font-size: 18px;
+}
+
+.mern-node-label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.mern-node-layer {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.mern-node--active {
+    background: rgba(59, 130, 246, 0.16);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.mern-node--past {
+    opacity: 0.85;
+}
+
+.mern-node-detail {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #111827;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mern-node-detail-layer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #e5e7eb;
+}
+
+.mern-node-detail-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+}
+
+.mern-node-detail-layer-name {
+    font-weight: 600;
+}
+
+.mern-node-detail-text {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #d1d5db;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .mern-section {
@@ -331,12 +477,42 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        
     }
 
     .mern-layer {
-    width: 80%;
-    align-items: center;
-    text-align: left;
-}
+        width: 80%;
+        align-items: center;
+        text-align: left;
+    }
+
+    /* Node-based flow mobile adjustments */
+    .mern-node-section {
+        margin-top: 20px;
+        padding: 16px 12px;
+    }
+
+    .mern-node-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .mern-node-title {
+        font-size: 16px;
+    }
+
+    .mern-node-subtitle,
+    .mern-node-scenario,
+    .mern-node-detail-text {
+        font-size: 12px;
+    }
+
+    .mern-node-track {
+        padding: 10px 0 6px;
+    }
+
+    .mern-node {
+        min-width: 110px;
+        padding: 8px;
+    }
 }

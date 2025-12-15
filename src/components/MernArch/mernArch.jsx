@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import './mernArch.css';
+import MernFlowNodeSimulator from './newFlow'
 
 const LAYERS = [
     {
@@ -283,7 +284,7 @@ function MernStackDiagram() {
                     </div>
 
                     {/* Advanced: request flow simulator */}
-                    <div className="mern-flow">
+                    {/* <div className="mern-flow">
                         <div className="mern-flow-header">
                             <div>
                                 <h3 className="mern-flow-title">Request Flow Simulator</h3>
@@ -346,7 +347,8 @@ function MernStackDiagram() {
                                 {activeStep.description}
                             </p>
                         </div>
-                    </div>
+                    </div> */}
+                    <MernFlowNodeSimulator/>
                 </div>
             </div>
         </section>

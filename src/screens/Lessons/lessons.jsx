@@ -230,7 +230,7 @@ function CourseScreen() {
             <Header />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
-                    <h2 className="course-title">{course.title}</h2>
+                    <h2 className="lesson-course-title">{course.title}</h2>
                     <nav>
                         {course.parts.map((part) => (
                             <div key={part._id}>

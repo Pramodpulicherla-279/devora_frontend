@@ -190,7 +190,6 @@ function HomeScreen() {
 
             {/* New MERN architecture section */}
             <MernStackDiagram />
-            {/* <ArchitectureContainer/> */}
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>
