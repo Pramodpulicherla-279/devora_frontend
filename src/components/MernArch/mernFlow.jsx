@@ -186,6 +186,7 @@ function MernFlowNodeSimulator() {
                     const layer = LAYERS[step.layerId];
                     const isActive = index === activeStepIndex;
                     const isPast = index < activeStepIndex;
+                    const isConnectorActive = index <= activeStepIndex; 
 
                     return (
                         <div key={step.id} className="mern-node-wrapper">
@@ -193,7 +194,7 @@ function MernFlowNodeSimulator() {
                                 <div
                                     className={
                                         'mern-node-connector' +
-                                        (isPast ? ' mern-node-connector--active' : '')
+                                        (isConnectorActive ? ' mern-node-connector--active' : '')
                                     }
                                 />
                             )}

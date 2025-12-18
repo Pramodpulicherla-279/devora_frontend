@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import './mernArch.css';
-import MernFlowNodeSimulator from './newFlow'
+import MernFlowNodeSimulator from './mernFlow'
 
 const LAYERS = [
     {

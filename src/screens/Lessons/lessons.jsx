@@ -60,7 +60,7 @@ function CourseScreen() {
     // console.log("All params:", params);
     // console.log("Course slug:", courseSlug);
     // console.log("Current URL:", window.location.href);
-    
+
 
     useEffect(() => {
         if (!courseSlug) {
@@ -134,6 +134,73 @@ function CourseScreen() {
     const togglePractice = () => {
         setIsPracticeOpen(!isPracticeOpen);
     };
+
+    useEffect(() => {
+
+        // Add "Copy" buttons to code blocks in the rendered lesson HTML
+        const containers = document.querySelectorAll('.lesson-view');
+
+        containers.forEach((container) => {
+            container
+                .querySelectorAll('.copy-code-btn')
+                .forEach((btn) => btn.remove());
+        });
+
+        containers.forEach((container) => {
+            const codeBlocks = container.querySelectorAll('pre');
+            codeBlocks.forEach((pre) => {
+                // Avoid adding multiple buttons to the same block
+                // if (pre.querySelector('.copy-code-btn')) return;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'copy-code-btn';
+                btn.textContent = 'Copy';
+
+                btn.addEventListener('click', () => {
+                    const text = pre.innerText || '';
+                    const copyFallback = () => {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.style.position = 'fixed';
+                        textarea.style.left = '-9999px';
+                        document.body.appendChild(textarea);
+                        textarea.focus();
+                        textarea.select();
+                        try {
+                            document.execCommand('copy');
+                        } finally {
+                            document.body.removeChild(textarea);
+                        }
+                    };
+
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).catch(copyFallback);
+                    } else {
+                        copyFallback();
+                    }
+                    // Show "Copied" for 3 seconds
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied';
+                    btn.disabled = true;
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                });
+
+                pre.appendChild(btn);
+            });
+        });
+        // Cleanup on unmount / dependency change
+        return () => {
+            containers.forEach((container) => {
+                container
+                    .querySelectorAll('.copy-code-btn')
+                    .forEach((btn) => btn.remove());
+            });
+        };
+    }, [activeTopic, isPracticeOpen, isSidebarOpen]);
 
     // Navigation helper function
     const getNavigationInfo = () => {
@@ -217,6 +284,22 @@ function CourseScreen() {
 
     const { prev, next, nextPart } = getNavigationInfo();
 
+    // Calculate progress
+    // Use course.progress if available, otherwise calculate based on completed lessons if that data exists
+    let progressPercentage = 0;
+    if (typeof course.progress === 'number') {
+        progressPercentage = course.progress;
+    } else {
+        const totalLessons = course.parts.reduce((acc, part) => acc + part.lessons.length, 0);
+        const completedLessons = course.parts.reduce((acc, part) => acc + part.lessons.filter(l => l.completed).length, 0);
+        progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
+    }
+
+    // Circle configuration
+    const radius = 18;
+    const circumference = 2 * Math.PI * radius;
+    const strokeDashoffset = circumference - (progressPercentage / 100) * circumference;
+
     return (
         <div className="screen-container">
             <Helmet>
@@ -231,6 +314,37 @@ function CourseScreen() {
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
                     <h2 className="lesson-course-title">{course.title}</h2>
+                   {/* Circular Progress Indicator */}
+                        <div className="course-progress-circle">
+                            <svg width="44" height="44" viewBox="0 0 44 44">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r={radius}
+                                    fill="none"
+                                    stroke="#e6e6e6"
+                                    strokeWidth="4"
+                                />
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r={radius}
+                                    fill="none"
+                                    stroke="#4caf50"
+                                    strokeWidth="4"
+                                    strokeDasharray={circumference}
+                                    strokeDashoffset={strokeDashoffset}
+                                    strokeLinecap="round"
+                                    transform="rotate(-90 22 22)"
+                                    style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+                                />
+                            </svg>
+                            <span className="course-progress-label">
+                                {Math.round(progressPercentage)}%
+                            </span>
+                        </div>
+                    
+                    
                     <nav>
                         {course.parts.map((part) => (
                             <div key={part._id}>

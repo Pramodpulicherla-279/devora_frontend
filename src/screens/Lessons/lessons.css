@@ -318,6 +318,65 @@
   font-weight: 600;
 }
 
+.lesson-view pre {
+  position: relative;
+max-width: 80%;          /* decrease width (adjust as needed) */
+  margin: 1rem 0;       /* center the block */
+  overflow-x: auto;    
+}
+
+.copy-code-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: #1f2933;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.copy-code-btn:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.course-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.lesson-course-title {
+    margin: 0;
+    flex: 1;
+}
+
+.course-progress-circle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+}
+
+.course-progress-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
 
 
 /* --- Responsive Styles for Tablet and Mobile --- */
