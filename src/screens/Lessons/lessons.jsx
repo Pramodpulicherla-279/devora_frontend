@@ -42,6 +42,11 @@ function CourseScreen() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);;
     const [isPracticeOpen, setIsPracticeOpen] = useState(false);
     const contentAreaRef = useRef(null);
+    const [user, setUser] = useState(null);
+    const [progressPercentage, setProgressPercentage] = useState(0);
+    const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
+
+    // const currentCourseId = currentCourse?._id;
 
     const scrollContentToTop = () => {
         if (contentAreaRef.current) {
@@ -61,8 +66,17 @@ function CourseScreen() {
     // console.log("Course slug:", courseSlug);
     // console.log("Current URL:", window.location.href);
 
+    // useEffect(() => {
+
+    // }, []);
 
     useEffect(() => {
+        const userInfo = localStorage.getItem('userInfo');
+
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
+
         if (!courseSlug) {
             console.log("No course slug provided in URL");
             return;
@@ -80,6 +94,16 @@ function CourseScreen() {
                     setCourse(fetchedCourse);
 
                     // const lessonSlugFromUrl = searchParams.get('lesson');
+                    // collect already-completed lessons from backend, if provided
+                    // const initialCompleted = [];
+                    // fetchedCourse.parts.forEach(part => {
+                    //     part.lessons.forEach(lesson => {
+                    //         if (lesson.completed) {
+                    //             initialCompleted.push(lesson._id);
+                    //         }
+                    //     });
+                    // });
+                    // setCompletedLessonIds(initialCompleted);
 
                     // If a lesson ID is in the URL, find and set it as active
                     if (lessonSlug) {
@@ -112,6 +136,44 @@ function CourseScreen() {
 
         fetchCourseDetails();
     }, [courseSlug, navigate, searchParams]);
+
+    // When user or course changes, load *course*-level progress
+    useEffect(() => {
+        console.log('useEffect[user,course] fired. user:', user, 'course:', course);
+
+        if (!user || !course) {
+            console.log('Skipping fetchUserCourseProgress because user or course is missing');
+            return;
+        }
+
+        console.log('user token:', user.token);
+        console.log('Calling fetchUserCourseProgress with courseId:', course._id);
+        fetchUserCourseProgress(course._id);
+    }, [user, course]);
+
+    useEffect(() => {
+        console.log('completedLessonIds state changed:', completedLessonIds);
+    }, [completedLessonIds]);
+
+    useEffect(() => {
+        if (!user || !contentAreaRef.current || !activeTopic) return;
+
+        const el = contentAreaRef.current;
+
+        const handleScroll = () => {
+            const nearBottom =
+                el.scrollTop + el.clientHeight >= el.scrollHeight - 50; // 50px buffer
+
+            if (nearBottom) {
+                // This will call your POST endpoint and update course % from response
+                markLessonCompleted();
+            }
+        };
+
+        el.addEventListener('scroll', handleScroll);
+        return () => el.removeEventListener('scroll', handleScroll);
+    }, [user, activeTopic, course]); // dependencies
+
 
     const handlePartClick = (partId) => {
         setExpandedPart(expandedPart === partId ? null : partId); // Toggle expansion
@@ -253,9 +315,10 @@ function CourseScreen() {
             if (partId) setExpandedPart(partId);
             navigate(`/course/${courseSlug}/${lesson.slug}`, { replace: true });
             // Scroll to top when navigating
-            if (contentAreaRef.current) {
-                contentAreaRef.current.scrollTo = 0;
-            }
+            scrollContentToTop();
+            // if (contentAreaRef.current) {
+            //     contentAreaRef.current.scrollTo = 0;
+            // }
         } else if (partId) {
             // Navigate to the first lesson of the next part
             const part = course.parts.find(p => p._id === partId);
@@ -284,16 +347,137 @@ function CourseScreen() {
 
     const { prev, next, nextPart } = getNavigationInfo();
 
-    // Calculate progress
-    // Use course.progress if available, otherwise calculate based on completed lessons if that data exists
-    let progressPercentage = 0;
-    if (typeof course.progress === 'number') {
-        progressPercentage = course.progress;
-    } else {
-        const totalLessons = course.parts.reduce((acc, part) => acc + part.lessons.length, 0);
-        const completedLessons = course.parts.reduce((acc, part) => acc + part.lessons.filter(l => l.completed).length, 0);
-        progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
-    }
+    // Find the part that contains the current lesson
+    const getCurrentPartForActiveLesson = () => {
+        if (!course || !activeTopic) return null;
+        return course.parts.find(part =>
+            part.lessons.some(l => l._id === activeTopic._id)
+        );
+    };
+
+    // Get user progress for that PART: /api/progress/parts/:partId
+    const fetchUserCourseProgress = async (courseId) => {
+        if (!user || !courseId) return;
+        const token = user.token;
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/progress/courses/${courseId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
+            });
+
+            if (!res.ok) {
+                console.error('fetchUserCourseProgress failed with status', res.status);
+                return;
+            }
+
+            const data = await res.json();
+            console.log('Progress API raw data:', data); // <--- log full response
+
+            // course percent
+            if (data && typeof data.percent === 'number') {
+                setProgressPercentage(data.percent);
+            }
+
+            // ✅ fill completedLessonIds from progress API
+            // adjust these field names to match your backend response
+            if (Array.isArray(data.completedLessonIds)) {
+                console.log('Completed lessons from API (ids):', data.completedLessonIds);
+                setCompletedLessonIds(data.completedLessonIds);
+            } else if (Array.isArray(data.completedLessons)) {
+                // if backend sends objects, extract ids
+                const ids = data.completedLessons.map((l) =>
+                    typeof l === 'string' ? l : l._id || l.lessonId
+                );
+                console.log('Completed lessons from API (objects -> ids):', ids);
+                setCompletedLessonIds(ids);
+            }
+
+        } catch (err) {
+            console.error('Failed to fetch user course progress', err);
+        }
+    };
+
+    const markLessonCompleted = async () => {
+        if (!user || !activeTopic || !course) return;
+
+        const token = user.token;
+
+        try {
+            // POST to your course-level progress endpoint
+            const res = await fetch(
+                `${API_BASE_URL}/api/progress/lessons/${activeTopic._id}/complete`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                    },
+                }
+            );
+
+            if (!res.ok) {
+                console.error('markLessonCompleted failed with status', res.status);
+                return;
+            }
+
+            const data = await res.json();
+            // saveProgress returns { success, total, completed, percent } at course level
+            if (data && typeof data.percent === 'number') {
+                setProgressPercentage(data.percent);
+
+                // mark this lesson as completed in local state
+                setCourse(prev => {
+                    if (!prev) return prev;
+                    return {
+                        ...prev,
+                        parts: prev.parts.map(part => ({
+                            ...part,
+                            lessons: part.lessons.map(lesson =>
+                                lesson._id === activeTopic._id
+                                    ? { ...lesson, completed: true }
+                                    : lesson
+                            ),
+                        })),
+                    };
+                });
+                setActiveTopic(prev =>
+                    prev ? { ...prev, completed: true } : prev
+                );
+
+                // also store id in our completed list (avoids losing it on navigation)
+                setCompletedLessonIds(prevIds =>
+                    prevIds.includes(activeTopic._id)
+                        ? prevIds
+                        : [...prevIds, activeTopic._id]
+                );
+
+            } else {
+                // fallback: re-fetch from GET /courses/:courseId
+                await fetchUserCourseProgress(course._id);
+            }
+        } catch (err) {
+            console.error('Failed to mark lesson as completed', err);
+        }
+    };
+
+    // Calculate progress only for logged in users
+    // let progressPercentage = 0;
+    // if (user) {
+    //     if (typeof course.progress === 'number') {
+    //         progressPercentage = course.progress;
+    //     } else {
+    //         const totalLessons = course.parts.reduce((acc, part) => acc + part.lessons.length, 0);
+    //         const completedLessons = course.parts.reduce(
+    //             (acc, part) => acc + part.lessons.filter(l => l.completed).length,
+    //             0
+    //         );
+    //         progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
+    //     }
+    // }
 
     // Circle configuration
     const radius = 18;
@@ -313,38 +497,44 @@ function CourseScreen() {
             <Header />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
-                    <h2 className="lesson-course-title">{course.title}</h2>
-                   {/* Circular Progress Indicator */}
-                        <div className="course-progress-circle">
-                            <svg width="44" height="44" viewBox="0 0 44 44">
-                                <circle
-                                    cx="22"
-                                    cy="22"
-                                    r={radius}
-                                    fill="none"
-                                    stroke="#e6e6e6"
-                                    strokeWidth="4"
-                                />
-                                <circle
-                                    cx="22"
-                                    cy="22"
-                                    r={radius}
-                                    fill="none"
-                                    stroke="#4caf50"
-                                    strokeWidth="4"
-                                    strokeDasharray={circumference}
-                                    strokeDashoffset={strokeDashoffset}
-                                    strokeLinecap="round"
-                                    transform="rotate(-90 22 22)"
-                                    style={{ transition: 'stroke-dashoffset 0.5s ease' }}
-                                />
-                            </svg>
-                            <span className="course-progress-label">
-                                {Math.round(progressPercentage)}%
-                            </span>
+                    {user ? (
+                        <div className="course-sidebar-header">
+                            <h2 className="lesson-course-title">{course.title}</h2>
+                            {/* Circular Progress Indicator */}
+                            <div className="course-progress-circle">
+                                <svg width="44" height="44" viewBox="0 0 44 44">
+                                    <circle
+                                        cx="22"
+                                        cy="22"
+                                        r={radius}
+                                        fill="none"
+                                        stroke="#e6e6e6"
+                                        strokeWidth="4"
+                                    />
+                                    <circle
+                                        cx="22"
+                                        cy="22"
+                                        r={radius}
+                                        fill="none"
+                                        stroke="#4caf50"
+                                        strokeWidth="4"
+                                        strokeDasharray={circumference}
+                                        strokeDashoffset={strokeDashoffset}
+                                        strokeLinecap="round"
+                                        transform="rotate(-90 22 22)"
+                                        style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+                                    />
+                                </svg>
+                                <span className="course-progress-label">
+                                    {Math.round(progressPercentage)}%
+                                </span>
+                            </div>
                         </div>
-                    
-                    
+                    ) : (
+                        <h2 className="lesson-course-title">{course.title}</h2>
+                    )}
+
+
                     <nav>
                         {course.parts.map((part) => (
                             <div key={part._id}>
@@ -360,7 +550,10 @@ function CourseScreen() {
                                                 className={`topic-item ${activeTopic?._id === lesson._id ? 'active-topic' : ''}`}
                                                 onClick={() => handleTopicClick(lesson)}
                                             >
-                                                {lesson.title}
+                                                <span>{lesson.title}</span>
+                                                {(lesson.completed || completedLessonIds.includes(lesson._id)) && (
+                                                    <span className="lesson-completed-icon">✔</span>
+                                                )}
                                             </li>
                                         ))}
                                     </ul>

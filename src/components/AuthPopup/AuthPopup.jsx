@@ -51,6 +51,7 @@ function AuthPopup({ onClose }) {
 
             // On success, store token and user data, then close popup
             localStorage.setItem('userInfo', JSON.stringify(data));
+            window.location.reload();
             onClose();
 
         } catch (err) {

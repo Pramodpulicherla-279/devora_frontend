@@ -40,6 +40,7 @@ function Header({ onAboutClick, onContactClick }) {
         localStorage.removeItem('userInfo');
         setUser(null);
         setIsSidebarOpen(false);
+        window.location.reload();
     };
 
     const handleAboutClick = (e) => {
