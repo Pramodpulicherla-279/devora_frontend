@@ -21,7 +21,7 @@ const LAYERS = [
         dataFlow:
             'Receives data from React, processes logic, and talks to MongoDB through Node.',
         tech: ['Express.js', 'Routing', 'Middleware', 'Controllers'],
-        color: '#000000',
+        color: '#000000ff',
     },
     {
         id: 'node',

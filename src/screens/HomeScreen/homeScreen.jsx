@@ -6,19 +6,71 @@ import Footer from '../../components/Footer/footer';
 import coverImg from '../../assets/cover.png';
 import emailjs from '@emailjs/browser';
 import { Helmet } from 'react-helmet';
+import { TrendingUp, ArrowRight } from 'lucide-react';
 import './homeScreen.css';
 import { API_BASE_URL } from '../../../config';
 import MernStackDiagram from '../../components/MernArch/mernArch';
+import AuthPopup from '../../components/AuthPopup/AuthPopup'
 // import ArchitectureContainer from '../../components/MernArchitecture/ArchitectureContainer/architectureContainer';
 
+function CourseProgressCircle({ progress = 0 }) {
+    const radius = 18;
+    const circumference = 2 * Math.PI * radius;
+    const clamped = Math.min(100, Math.max(0, progress));
+    const strokeDashoffset = circumference - (clamped / 100) * circumference;
+
+    return (
+        <div className="course-progress-circle">
+            <svg width="44" height="44" viewBox="0 0 44 44">
+                <circle
+                    cx="22"
+                    cy="22"
+                    r={radius}
+                    fill="none"
+                    stroke="#e6e6e6"
+                    strokeWidth="4"
+                />
+                <circle
+                    cx="22"
+                    cy="22"
+                    r={radius}
+                    fill="none"
+                    stroke="#4caf50"
+                    strokeWidth="4"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                    strokeLinecap="round"
+                    transform="rotate(-90 22 22)"
+                    style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+                />
+            </svg>
+            <span className="course-progress-label">
+                {Math.round(clamped)}%
+            </span>
+        </div>
+    );
+}
 
 function HomeScreen() {
-    const [courses, setCourses] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [courses, setCourses] = useState([]);
+    // const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const coursesRef = useRef(null);
     const aboutRef = useRef(null);
     const contactRef = useRef(null);
+    const [user, setUser] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [courseProgress, setCourseProgress] = useState({}); // courseId -> percent
+    const [isProgressLoading, setIsProgressLoading] = useState(false);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem('userInfo');
+
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
+    }, [])
 
     const [formData, setFormData] = useState({
         name: '',
@@ -32,39 +84,87 @@ function HomeScreen() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const fetchUserCourseProgress = async (courseId) => {
+        if (!user || !courseId) return;
+        const token = user.token;
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/progress/courses/${courseId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
+            });
+
+            if (!res.ok) {
+                console.error('fetchUserCourseProgress failed with status', res.status);
+                return;
+            }
+
+            const data = await res.json();
+            console.log('Progress API raw data:', data);
+
+            if (data && typeof data.percent === 'number') {
+                setCourseProgress((prev) => ({
+                    ...prev,
+                    [courseId]: data.percent,
+                }));
+            }
+        } catch (err) {
+            console.error('Failed to fetch user course progress', err);
+        }
+    };
+
+    // fetch progress for all courses when user logs in / changes
+    useEffect(() => {
+        if (!user) return;
+        setIsProgressLoading(true); // start loading
+        Promise.all(
+            STATIC_COURSES.map((course) => fetchUserCourseProgress(course.id))
+        )
+            .catch((err) => {
+                console.error('Error fetching course progresses', err);
+            })
+            .finally(() => {
+                setIsProgressLoading(false); // stop loading
+            });
+    }, [user]);
+
+
     const STATIC_COURSES = [
         {
-            id: 'html',
+            id: '6919f6286409cc0505808ac5',
             name: 'HTML',
             slug: 'html/introduction-to-html',
             description: 'Build the structure of websites with clean, semantic markup.',
         },
         {
-            id: 'css',
+            id: '6919f63e6409cc0505808ac7',
             name: 'CSS',
             slug: 'css/css-get-started',
             description: 'Style and design beautiful, responsive web pages.',
         },
         {
-            id: 'javascript',
+            id: '6919f6516409cc0505808ac9',
             name: 'javascript',
             slug: 'javascript/variables-data-types',
             description: 'Add interactivity, logic, and dynamic behavior to your apps.',
         },
         {
-            id: 'terminal-command-line',
+            id: '693afba9252afa6fafc011af',
             name: 'Terminal / Command Line',
             slug: 'terminal-command-line/terminal-basics-for-developers',
             description: 'Control your system efficiently with essential CLI commands.',
         },
         {
-            id: 'git-github',
+            id: '693afe6f252afa6fafc011ba',
             name: 'Git & Github',
             slug: 'git-and-github/introduction-to-git-and-github-version-control-essentials',
             description: 'Track changes, collaborate with teams, and manage your code',
         },
         {
-            id: 'backend-node-express',
+            id: '693c1db01270c2a321fa0356',
             name: 'Backend (Node.js / Express)',
             slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl',
             description: 'Power your application with APIs, servers, and business logic.',
@@ -162,6 +262,29 @@ function HomeScreen() {
             });
     };
 
+    const handleOpenPopup = () => {
+        setIsPopupOpen(true);
+        setIsSidebarOpen(false);
+    };
+
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+        // Check for user info in case of successful login/signup
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
+    };
+
+    const getCourseProgress = (course) => {
+        // TODO: replace with your real progress source
+        // e.g. from user data, localStorage, or API
+        // example if you store per-course percentage on user:
+        // return user?.courseProgress?.[course.id] ?? 0;
+
+        return courseProgress[course.id] ?? 0; // fallback for now
+    };
+
     return (
         <>
             <Helmet>
@@ -188,24 +311,65 @@ function HomeScreen() {
                 </div>
             </div>
 
+            {/* signup component */}
+            {!user && (
+                <div className="signup-card-container">
+                    <div className="signup-card-content">
+                        <div className='signup-card-1'>
+                            {/* <div className="icon-badge">📈</div> */}
+                            <div className="icon-wrapper">
+                                <TrendingUp size={48} strokeWidth={1.5} color="#ffffff" />
+                            </div>
+                            <div>
+                                <h2>Don't lose your progress!</h2>
+                                <p>
+                                    Sign up or log in to save your milestones, track your learning journey,
+                                    and pick up exactly where you left off.
+                                </p>
+                            </div>
+                        </div>
+                        <div className='signup-card-2'>
+                            <button onClick={handleOpenPopup} className="signup-button">
+                                Signup / Login
+                            </button>
+                        </div>
+                        {/* <p className="login-link">
+                        Already have an account? <span onClick={AuthPopup}>Log in</span>
+                    </p> */}
+                    </div>
+                </div>
+            )}
+
             {/* New MERN architecture section */}
             <MernStackDiagram />
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>
                 <h1 className="course-title" style={styles.courseTitle}>Our Courses</h1>
                 <div className="courses-grid" style={styles.coursesGrid}>
-                    {STATIC_COURSES.map((course) => (
-                        <div
-                            key={course.id}
-                            className="courseCard"
-                            onClick={() => handleCourseClick(course)}
-                        >
-                            <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
-                            <p className="card-description" style={styles.cardDescription}>
-                                {course.description}
-                            </p>
-                        </div>
-                    ))}
+                    {STATIC_COURSES.map((course) => {
+                        const progress = getCourseProgress(course);
+                        return (
+                            <div
+                                key={course.id}
+                                className="courseCard"
+                                onClick={() => handleCourseClick(course)}
+                            >
+                                {user && (
+                                    isProgressLoading ? (
+                                        // show loader while fetching
+                                        <div className="course-progress-loader" />
+                                    ) : (
+                                        // show circle only if progress > 0
+                                        progress > 0 && <CourseProgressCircle progress={progress} />
+                                    )
+                                )}
+                                <h3 className="card-title" style={styles.cardTitle}>{course.name}</h3>
+                                <p className="card-description" style={styles.cardDescription}>
+                                    {course.description}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* {isLoading ? (
@@ -291,6 +455,8 @@ function HomeScreen() {
                 {status && <p className="status-text" style={styles.statusText}>{status}</p>}
             </div>
             <Footer />
+            {isPopupOpen && <AuthPopup onClose={handleClosePopup} />}
+
         </>
     );
 }

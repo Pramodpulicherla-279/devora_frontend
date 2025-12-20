@@ -159,12 +159,14 @@
     }
 
     .profile-section {
+        display: block;
         width: 100%;
         border-top: 1px solid #eee;
         padding-top: 20px;
     }
 
     .profile-container {
+        margin-top: 20px;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;

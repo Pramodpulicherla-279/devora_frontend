@@ -5,6 +5,8 @@
     margin: 80px auto 0;
     justify-content: space-around;
     background-color: #bee9e8;
+    /* background: rgba(255, 255, 255, 0.7); */
+    /* backdrop-filter: blur(10px); */
     border-radius: 40px;
     flex-wrap: wrap;
     padding: 40px 32px;
@@ -243,6 +245,84 @@
     font-size: 16px;
 }
 
+.signup-card-container {
+  background: linear-gradient(135deg, #667eea90 0%, #764ba290 100%);
+  border-radius: 26px;
+  /* padding: 0rem; */
+  color: white;
+  max-width: 1400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.icon-badge {
+  font-size: 3rem;
+  /* margin-bottom: 1rem; */
+}
+
+.signup-card-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: center;
+}
+
+.signup-card-1 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: center;
+}
+
+.signup-card-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.signup-card-content p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.signup-button {
+  background-color: white;
+  color: #764ba2;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.signup-button:hover {
+  transform: scale(1.05);
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 0.8rem !important;
+}
+
+.login-link span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.course-progress-loader {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 4px solid #e6e6e6;
+  border-top-color: #007bff;
+  animation: spin 1s linear infinite;
+  margin-bottom: 8px;
+}
+
 @keyframes spin {
     0% { 
         transform: rotate(0deg); 
@@ -299,7 +379,7 @@
     .text-container {
         padding-left: 0;
         padding-right: 0;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
     }
 
     .maintitle {
@@ -335,4 +415,25 @@
     .courseCard {
         width: 90%;
     }
+
+    .signup-card-container {
+        padding: 2rem;
+
+    }
+    .signup-card-content {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-card-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+    
+.signup-card-1 {
+    display: inherit;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.5rem;
+    align-items: center;
+}
 }

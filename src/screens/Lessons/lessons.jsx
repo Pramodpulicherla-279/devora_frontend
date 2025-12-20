@@ -45,6 +45,7 @@ function CourseScreen() {
     const [user, setUser] = useState(null);
     const [progressPercentage, setProgressPercentage] = useState(0);
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
+    const [scrollProgress, setScrollProgress] = useState(0);
 
     // const currentCourseId = currentCourse?._id;
 
@@ -156,23 +157,34 @@ function CourseScreen() {
     }, [completedLessonIds]);
 
     useEffect(() => {
-        if (!user || !contentAreaRef.current || !activeTopic) return;
+        // if (!user || !contentAreaRef.current || !activeTopic) return;
 
         const el = contentAreaRef.current;
+        if (!el) return;
 
         const handleScroll = () => {
-            const nearBottom =
-                el.scrollTop + el.clientHeight >= el.scrollHeight - 50; // 50px buffer
+            // 1) update scroll progress (0–100)
+            const maxScroll = el.scrollHeight - el.clientHeight;
+            const percent = maxScroll > 0 ? (el.scrollTop / maxScroll) * 100 : 0;
+            setScrollProgress(percent);
 
-            if (nearBottom) {
-                // This will call your POST endpoint and update course % from response
-                markLessonCompleted();
+            // 2) if logged in, also run "near bottom" logic to mark lesson completed
+            if (user && activeTopic && course) {
+                const nearBottom =
+                    el.scrollTop + el.clientHeight >= el.scrollHeight - 50; // 50px buffer
+
+                if (nearBottom) {
+                    markLessonCompleted();
+                }
             }
         };
 
+        // initialize once, in case the content is short
+        handleScroll();
+
         el.addEventListener('scroll', handleScroll);
         return () => el.removeEventListener('scroll', handleScroll);
-    }, [user, activeTopic, course]); // dependencies
+    }, [user, activeTopic, course, isPracticeOpen]); // dependencies
 
 
     const handlePartClick = (partId) => {
@@ -577,12 +589,20 @@ function CourseScreen() {
                     <main className="content-area hide-scrollbar" >
                         {activeTopic ? (
                             <>
+                            {/* Scroll progress bar */}
+                                <div className="lesson-scroll-progress">
+                                    <div
+                                        className="lesson-scroll-progress-fill"
+                                        style={{ width: `${scrollProgress}%` }}
+                                    />
+                                </div>
                                 <div className="content-header">
                                     <p className='topic-title'>Topic: {activeTopic.title}</p>
                                     <button className="practice-toggle-btn" onClick={togglePractice}>
                                         {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
                                     </button>
                                 </div>
+
                                 <div className="content-body">
                                     {isPracticeOpen ? (
                                         <Split
