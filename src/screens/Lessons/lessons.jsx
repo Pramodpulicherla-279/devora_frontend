@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, memo } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { Helmet } from 'react-helmet';
@@ -10,26 +10,36 @@ import Split from 'react-split';
 import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 
 // A Code Editor component specifically for HTML, CSS, and JS
-function CodeEditor({ html = '', css = '', js = '' }) {
+const CodeEditor = memo(function CodeEditor({ html = '', css = '', js = '' }) {
+    const files = useMemo(
+        () => ({
+            '/index.html': { code: html, active: true },
+            '/styles.css': css,
+            '/index.js': `import './styles.css';\n\n${js}`,
+        }),
+        [html, css, js]
+    );
+
+    const options = useMemo(
+        () => ({
+            showLineNumbers: true,
+            showTabs: true,
+            showConsole: true,
+            showConsoleButton: true,
+            editorHeight: '80vh',
+        }),
+        []
+    );
+
     return (
         <Sandpack
             template="vanilla"
-            files={{
-                '/index.html': { code: html, active: true },
-                '/styles.css': css,
-                '/index.js': `import './styles.css';\n\n${js}`,
-            }}
-            options={{
-                showLineNumbers: true,
-                showTabs: true,
-                showConsole: true,
-                showConsoleButton: true,
-                editorHeight: '80vh', // Make editor height responsive
-            }}
+            files={files}
+            options={options}
             theme="dark"
         />
     );
-}
+});
 
 function CourseScreen() {
     const params = useParams();
@@ -92,19 +102,20 @@ function CourseScreen() {
 
                 if (result.success) {
                     const fetchedCourse = result.data;
+                    console.log('COURSE API result.data:', fetchedCourse);
                     setCourse(fetchedCourse);
 
                     // const lessonSlugFromUrl = searchParams.get('lesson');
                     // collect already-completed lessons from backend, if provided
-                    // const initialCompleted = [];
-                    // fetchedCourse.parts.forEach(part => {
-                    //     part.lessons.forEach(lesson => {
-                    //         if (lesson.completed) {
-                    //             initialCompleted.push(lesson._id);
-                    //         }
-                    //     });
-                    // });
-                    // setCompletedLessonIds(initialCompleted);
+                    const initialCompleted = [];
+                    fetchedCourse.parts.forEach(part => {
+                        part.lessons.forEach(lesson => {
+                            if (lesson.completed) {
+                                initialCompleted.push(String(lesson._id));
+                            }
+                        });
+                    });
+                    setCompletedLessonIds(initialCompleted);
 
                     // If a lesson ID is in the URL, find and set it as active
                     if (lessonSlug) {
@@ -170,6 +181,12 @@ function CourseScreen() {
 
             // 2) if logged in, also run "near bottom" logic to mark lesson completed
             if (user && activeTopic && course) {
+                const idStr = String(activeTopic._id);
+
+                if (completedLessonIds.includes(idStr)){
+                    return;
+                }
+
                 const nearBottom =
                     el.scrollTop + el.clientHeight >= el.scrollHeight - 50; // 50px buffer
 
@@ -184,7 +201,7 @@ function CourseScreen() {
 
         el.addEventListener('scroll', handleScroll);
         return () => el.removeEventListener('scroll', handleScroll);
-    }, [user, activeTopic, course, isPracticeOpen]); // dependencies
+    }, [user, activeTopic, course, isPracticeOpen, completedLessonIds]); // dependencies
 
 
     const handlePartClick = (partId) => {
@@ -209,72 +226,52 @@ function CourseScreen() {
         setIsPracticeOpen(!isPracticeOpen);
     };
 
-    useEffect(() => {
+//  useEffect(() => {
+//         const container = contentAreaRef.current;
+//         if (!container) return;
 
-        // Add "Copy" buttons to code blocks in the rendered lesson HTML
-        const containers = document.querySelectorAll('.lesson-view');
+//         const codeBlocks = container.querySelectorAll('pre');
 
-        containers.forEach((container) => {
-            container
-                .querySelectorAll('.copy-code-btn')
-                .forEach((btn) => btn.remove());
-        });
+//         codeBlocks.forEach((pre) => {
+//             // Remove old button if React re-renders
+//             const existing = pre.querySelector('.copy-code-btn');
+//             if (existing) existing.remove();
 
-        containers.forEach((container) => {
-            const codeBlocks = container.querySelectorAll('pre');
-            codeBlocks.forEach((pre) => {
-                // Avoid adding multiple buttons to the same block
-                // if (pre.querySelector('.copy-code-btn')) return;
+//             // Mark so we can style it
+//             pre.classList.add('has-copy-button');
 
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'copy-code-btn';
-                btn.textContent = 'Copy';
+//             const btn = document.createElement('button');
+//             btn.type = 'button';
+//             btn.className = 'copy-code-btn';
+//             btn.textContent = 'Copy';
 
-                btn.addEventListener('click', () => {
-                    const text = pre.innerText || '';
-                    const copyFallback = () => {
-                        const textarea = document.createElement('textarea');
-                        textarea.value = text;
-                        textarea.style.position = 'fixed';
-                        textarea.style.left = '-9999px';
-                        document.body.appendChild(textarea);
-                        textarea.focus();
-                        textarea.select();
-                        try {
-                            document.execCommand('copy');
-                        } finally {
-                            document.body.removeChild(textarea);
-                        }
-                    };
+//             btn.onclick = async (e) => {
+//                 e.preventDefault();
+//                 e.stopPropagation();
 
-                    if (navigator.clipboard && window.isSecureContext) {
-                        navigator.clipboard.writeText(text).catch(copyFallback);
-                    } else {
-                        copyFallback();
-                    }
-                    // Show "Copied" for 3 seconds
-                    const originalText = btn.textContent;
-                    btn.textContent = 'Copied';
-                    btn.disabled = true;
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.disabled = false;
-                    }, 3000);
-                });
+//                 // Prefer <code> text if present
+//                 const codeEl = pre.querySelector('code');
+//                 const rawText = codeEl ? codeEl.innerText : pre.innerText;
 
-                pre.appendChild(btn);
-            });
-        });
-        // Cleanup on unmount / dependency change
-        return () => {
-            containers.forEach((container) => {
-                container
-                    .querySelectorAll('.copy-code-btn')
-                    .forEach((btn) => btn.remove());
-            });
-        };
-    }, [activeTopic, isPracticeOpen, isSidebarOpen]);
+//                 const textToCopy = rawText.replace(/Copy|Copied!/g, '').trim();
+
+//                 try {
+//                     await navigator.clipboard.writeText(textToCopy);
+//                     btn.textContent = 'Copied!';
+//                     btn.style.backgroundColor = '#4caf50';
+
+//                     setTimeout(() => {
+//                         btn.textContent = 'Copy';
+//                         btn.style.backgroundColor = '';
+//                     }, 2000);
+//                 } catch (err) {
+//                     console.error('Copy failed', err);
+//                 }
+//             };
+
+//             pre.appendChild(btn);
+//         });
+//     }, [activeTopic, isPracticeOpen]);
 
     // Navigation helper function
     const getNavigationInfo = () => {
@@ -389,6 +386,10 @@ function CourseScreen() {
             const data = await res.json();
             console.log('Progress API raw data:', data); // <--- log full response
 
+            // many APIs wrap actual payload in data.data
+            const payload = data.data || data;
+            console.log('Progress API payload:', payload);
+
             // course percent
             if (data && typeof data.percent === 'number') {
                 setProgressPercentage(data.percent);
@@ -397,14 +398,15 @@ function CourseScreen() {
             // ✅ fill completedLessonIds from progress API
             // adjust these field names to match your backend response
             if (Array.isArray(data.completedLessonIds)) {
-                console.log('Completed lessons from API (ids):', data.completedLessonIds);
-                setCompletedLessonIds(data.completedLessonIds);
+                const ids = data.completedLessonIds.map((id) => String(id));
+                console.log('Completed lessons from API (ids -> strings):', ids);
+                setCompletedLessonIds(ids);
             } else if (Array.isArray(data.completedLessons)) {
                 // if backend sends objects, extract ids
                 const ids = data.completedLessons.map((l) =>
-                    typeof l === 'string' ? l : l._id || l.lessonId
+                    String(typeof l === 'string' ? l : l._id || l.lessonId)
                 );
-                console.log('Completed lessons from API (objects -> ids):', ids);
+                console.log('Completed lessons from API (objects -> ids strings):', ids);
                 setCompletedLessonIds(ids);
             }
 
@@ -412,6 +414,9 @@ function CourseScreen() {
             console.error('Failed to fetch user course progress', err);
         }
     };
+
+
+
 
     const markLessonCompleted = async () => {
         if (!user || !activeTopic || !course) return;
@@ -456,17 +461,20 @@ function CourseScreen() {
                         })),
                     };
                 });
-                setActiveTopic(prev =>
-                    prev ? { ...prev, completed: true } : prev
-                );
+                // setActiveTopic(prev =>
+                //     prev ? { ...prev, completed: true } : prev
+                // );
 
                 // also store id in our completed list (avoids losing it on navigation)
-                setCompletedLessonIds(prevIds =>
-                    prevIds.includes(activeTopic._id)
-                        ? prevIds
-                        : [...prevIds, activeTopic._id]
-                );
-
+                // setCompletedLessonIds(prevIds =>
+                //     prevIds.includes(activeTopic._id)
+                //         ? prevIds
+                //         : [...prevIds, activeTopic._id]
+                // );
+                setCompletedLessonIds(prevIds => {
+                    const idStr = String(activeTopic._id);
+                    return prevIds.includes(idStr) ? prevIds : [...prevIds, idStr];
+                });
             } else {
                 // fallback: re-fetch from GET /courses/:courseId
                 await fetchUserCourseProgress(course._id);
@@ -563,7 +571,7 @@ function CourseScreen() {
                                                 onClick={() => handleTopicClick(lesson)}
                                             >
                                                 <span>{lesson.title}</span>
-                                                {(lesson.completed || completedLessonIds.includes(lesson._id)) && (
+                                                {(lesson.completed || completedLessonIds.includes(String(lesson._id))) && (
                                                     <span className="lesson-completed-icon">✔</span>
                                                 )}
                                             </li>
@@ -589,7 +597,7 @@ function CourseScreen() {
                     <main className="content-area hide-scrollbar" >
                         {activeTopic ? (
                             <>
-                            {/* Scroll progress bar */}
+                                {/* Scroll progress bar */}
                                 <div className="lesson-scroll-progress">
                                     <div
                                         className="lesson-scroll-progress-fill"
@@ -612,7 +620,7 @@ function CourseScreen() {
                                             gutterSize={10}
                                             cursor="col-resize"
                                         >
-                                            <div className="lesson-view hide-scrollbar">
+                                            <div className="lesson-view hide-scrollbar" ref={contentAreaRef} >
                                                 <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
                                             </div>
                                             <div className="practice-view">

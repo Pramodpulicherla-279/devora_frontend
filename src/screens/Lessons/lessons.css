@@ -319,32 +319,7 @@
   font-weight: 600;
 }
 
-.lesson-view pre {
-  position: relative;
-max-width: 80%;          /* decrease width (adjust as needed) */
-  margin: 1rem 0;       /* center the block */
-  overflow-x: auto;    
-}
 
-.copy-code-btn {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  background: #1f2933;
-  color: #fff;
-  opacity: 0.8;
-  transition: opacity 0.2s, transform 0.1s;
-}
-
-.copy-code-btn:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-}
 
 .course-sidebar-header {
     display: flex;
