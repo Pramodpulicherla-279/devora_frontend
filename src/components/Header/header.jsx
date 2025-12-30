@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AuthPopup from '../AuthPopup/AuthPopup';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import DonateModal from '../DonateModal/donateModal.jsx';
 import logo from '../../assets/logo.png';
 import './header.css';
+import { API_BASE_URL } from '../../../config';
 
 function Header({ onAboutClick, onContactClick }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -13,6 +14,25 @@ function Header({ onAboutClick, onContactClick }) {
     const location = useLocation();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
+    const searchRef = useRef(null);
+    const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+    // Hide dropdown on outside click
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
 
     useEffect(() => {
@@ -78,6 +98,49 @@ function Header({ onAboutClick, onContactClick }) {
     // const handlePrivacyPolicyClick = () => {
     //     navigate('/privacy-policy')
     // };
+
+    const handleSearch = async (e) => {
+        const value = e.target.value;
+        setQuery(value);
+
+        if (value.length < 2) {
+            setResults([]);
+            setShowDropdown(false);
+            return;
+        }
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/lessons/lessons/search?q=${encodeURIComponent(value)}`);
+            const data = await res.json();
+            if (data.success) {
+                setResults(data.data);
+                setShowDropdown(true);
+            }
+        } catch (err) {
+            setResults([]);
+            setShowDropdown(false);
+        }
+    };
+
+    const handleSelect = async (lesson) => {
+        // Fetch lesson details to get courseSlug
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/lessons/slug/${lesson.slug}`);
+            const data = await res.json();
+            if (data.success && data.data && data.data.part && data.data.part.course) {
+                const courseSlug = data.data.part.course.slug;
+                navigate(`/course/${courseSlug}/${lesson.slug}`);
+            } else {
+                // fallback: show error or do nothing
+                alert('Course not found for this lesson.');
+            }
+        } catch (err) {
+            alert('Error fetching lesson details.');
+        }
+        setQuery('');
+        setResults([]);
+        setShowDropdown(false);
+    };
     return (
         <>
             <header className="header-container">
@@ -85,7 +148,26 @@ function Header({ onAboutClick, onContactClick }) {
                 <div className="logo">
                     <img src={logo} alt="DevEL Logo" />
                     <p>Dev.eL</p>
+                    <div className="lesson-search-bar" ref={searchRef}>
+                        <input
+                            type="text"
+                            placeholder="Search lessons..."
+                            value={query}
+                            onChange={handleSearch}
+                            onFocus={() => setShowDropdown(results.length > 0)}
+                        />
+                        {showDropdown && results.length > 0 && (
+                            <ul className="search-dropdown">
+                                {results.map(lesson => (
+                                    <li key={lesson.slug} onClick={() => handleSelect(lesson)}>
+                                        {lesson.title}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
+
 
                 <button type="button" className="header-hamburger-menu" onClick={toggleSidebar}>
                     ☰
@@ -137,63 +219,5 @@ function Header({ onAboutClick, onContactClick }) {
     );
 }
 const styles = {
-    // headerContainer: {
-    //     position: 'fixed',
-    //     top: 0,
-    //     left: 0,
-    //     right: 0,
-    //     zIndex: 1000,
-    //     backgroundColor: 'white',
-    //     color: 'black',
-    //     padding: '16px 32px',
-    //     display: 'flex',
-    //     justifyContent: 'space-between',
-    //     alignItems: 'center',
-    // },
-    // logo: {
-    //     fontSize: 24,
-    //     fontWeight: 'bold',
-    //     letterSpacing: '2px',
-    // },
-    // rightSection: {
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     gap: '40px',
-    // },
-    // navLinks: {
-    //     display: 'flex',
-    //     gap: '30px',
-    // },
-    // navLink: {
-    //     color: 'black',
-    //     textDecoration: 'none',
-    //     fontSize: '16px',
-    //     fontWeight: '500',
-    // },
-    // profileContainer: {
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     gap: '15px',
-    // },
-    // userName: {
-    //     fontWeight: 'bold',
-    //     fontSize: '16px',
-    // },
-    // avatar: {
-    //     width: '40px',
-    //     height: '40px',
-    //     borderRadius: '50%',
-    //     objectFit: 'cover',
-    // },
-    // loginButton: {
-    //     padding: '8px 20px',
-    //     fontSize: '16px',
-    //     fontWeight: 'bold',
-    //     cursor: 'pointer',
-    //     border: '2px solid #007bff',
-    //     borderRadius: '8px',
-    //     backgroundColor: '#081c15',
-    //     color: 'white',
-    // },
 };
 export default Header;
