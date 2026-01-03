@@ -369,7 +369,7 @@
 /* Mobile */
 @media (max-width: 768px) {
     .main-container {
-        width: 90%;
+        /* width: 90%; */
         margin: 90px auto 0;
         padding: 20px;
         flex-direction: column;

@@ -11,6 +11,7 @@ function AuthPopup({ onClose }) {
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const clearForm = () => {
         setName('');
@@ -28,6 +29,7 @@ function AuthPopup({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(''); // Clear previous errors
+        setIsLoading(true);
 
         const url = isLoginView ? '/api/users/login' : '/api/users/register';
         const payload = isLoginView 
@@ -56,6 +58,8 @@ function AuthPopup({ onClose }) {
 
         } catch (err) {
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -79,8 +83,10 @@ function AuthPopup({ onClose }) {
                     {!isLoginView && (
                         <input className="form-input" type="text" placeholder="Mobile Number" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
                     )}
-                    <button className="form-button" type="submit">
-                        {isLoginView ? 'Login' : 'Create Account'}
+                    <button className="form-button" type="submit" disabled={isLoading}>
+                        {isLoading
+                            ? (isLoginView ? 'Logging in...' : 'Creating account...')
+                            : (isLoginView ? 'Login' : 'Create Account')}
                     </button>
                 </form>
                 <p className="switch-auth">

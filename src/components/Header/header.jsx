@@ -166,12 +166,13 @@ function Header({ onAboutClick, onContactClick }) {
                             </ul>
                         )}
                     </div>
+                    <button type="button" className="header-hamburger-menu" onClick={toggleSidebar}>
+                        ☰
+                    </button>
                 </div>
 
 
-                <button type="button" className="header-hamburger-menu" onClick={toggleSidebar}>
-                    ☰
-                </button>
+
 
                 {/* Right: Nav and Profile */}
                 <div className={`right-section ${isSidebarOpen ? 'open' : ''}`}>
