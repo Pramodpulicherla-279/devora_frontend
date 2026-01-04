@@ -184,7 +184,7 @@ function CourseScreen() {
             if (user && activeTopic && course) {
                 const idStr = String(activeTopic._id);
 
-                if (completedLessonIds.includes(idStr)){
+                if (completedLessonIds.includes(idStr)) {
                     return;
                 }
 
@@ -224,7 +224,15 @@ function CourseScreen() {
     };
 
     const togglePractice = () => {
-        setIsPracticeOpen(!isPracticeOpen);
+        // setIsPracticeOpen(!isPracticeOpen);
+        setIsPracticeOpen((prev) => {
+            const next = !prev;
+            if (next) {
+                // when practice opens, close the sidebar
+                setIsSidebarOpen(false);
+            }
+            return next;
+        });
     };
 
     // Navigation helper function
@@ -560,6 +568,7 @@ function CourseScreen() {
                                             cursor="col-resize"
                                         >
                                             <div className="lesson-view hide-scrollbar" ref={contentAreaRef} >
+                                                {parseLessonContent(activeTopic.content)}
                                                 <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
                                             </div>
                                             <div className="practice-view">
