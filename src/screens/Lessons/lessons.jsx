@@ -62,7 +62,7 @@ function CourseScreen() {
 
     const scrollContentToTop = () => {
         if (contentAreaRef.current) {
-            contentAreaRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+            contentAreaRef.current.scrollTo({ top: 0 });
         }
     };
 
@@ -569,7 +569,7 @@ function CourseScreen() {
                                         >
                                             <div className="lesson-view hide-scrollbar" ref={contentAreaRef} >
                                                 {parseLessonContent(activeTopic.content)}
-                                                <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                                {/* <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} /> */}
                                             </div>
                                             <div className="practice-view">
                                                 <CodeEditor
@@ -582,7 +582,7 @@ function CourseScreen() {
                                     ) : (
                                         <div className="lesson-view" ref={contentAreaRef}>
                                             {parseLessonContent(activeTopic.content)}
-                                            <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
+                                            {/* <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} /> */}
                                         </div>
 
                                     )}
