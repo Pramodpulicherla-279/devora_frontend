@@ -8,6 +8,7 @@ import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
 import Split from 'react-split';
 import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
+import { parseLessonContent } from '../../components/visualizations/utils/lessonParser';
 
 // A Code Editor component specifically for HTML, CSS, and JS
 const CodeEditor = memo(function CodeEditor({ html = '', css = '', js = '' }) {
@@ -226,53 +227,6 @@ function CourseScreen() {
         setIsPracticeOpen(!isPracticeOpen);
     };
 
-//  useEffect(() => {
-//         const container = contentAreaRef.current;
-//         if (!container) return;
-
-//         const codeBlocks = container.querySelectorAll('pre');
-
-//         codeBlocks.forEach((pre) => {
-//             // Remove old button if React re-renders
-//             const existing = pre.querySelector('.copy-code-btn');
-//             if (existing) existing.remove();
-
-//             // Mark so we can style it
-//             pre.classList.add('has-copy-button');
-
-//             const btn = document.createElement('button');
-//             btn.type = 'button';
-//             btn.className = 'copy-code-btn';
-//             btn.textContent = 'Copy';
-
-//             btn.onclick = async (e) => {
-//                 e.preventDefault();
-//                 e.stopPropagation();
-
-//                 // Prefer <code> text if present
-//                 const codeEl = pre.querySelector('code');
-//                 const rawText = codeEl ? codeEl.innerText : pre.innerText;
-
-//                 const textToCopy = rawText.replace(/Copy|Copied!/g, '').trim();
-
-//                 try {
-//                     await navigator.clipboard.writeText(textToCopy);
-//                     btn.textContent = 'Copied!';
-//                     btn.style.backgroundColor = '#4caf50';
-
-//                     setTimeout(() => {
-//                         btn.textContent = 'Copy';
-//                         btn.style.backgroundColor = '';
-//                     }, 2000);
-//                 } catch (err) {
-//                     console.error('Copy failed', err);
-//                 }
-//             };
-
-//             pre.appendChild(btn);
-//         });
-//     }, [activeTopic, isPracticeOpen]);
-
     // Navigation helper function
     const getNavigationInfo = () => {
         if (!course || !activeTopic) return { prev: null, next: null, nextPart: null };
@@ -482,22 +436,7 @@ function CourseScreen() {
         } catch (err) {
             console.error('Failed to mark lesson as completed', err);
         }
-    };
-
-    // Calculate progress only for logged in users
-    // let progressPercentage = 0;
-    // if (user) {
-    //     if (typeof course.progress === 'number') {
-    //         progressPercentage = course.progress;
-    //     } else {
-    //         const totalLessons = course.parts.reduce((acc, part) => acc + part.lessons.length, 0);
-    //         const completedLessons = course.parts.reduce(
-    //             (acc, part) => acc + part.lessons.filter(l => l.completed).length,
-    //             0
-    //         );
-    //         progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
-    //     }
-    // }
+    }
 
     // Circle configuration
     const radius = 18;
@@ -633,6 +572,7 @@ function CourseScreen() {
                                         </Split>
                                     ) : (
                                         <div className="lesson-view" ref={contentAreaRef}>
+                                            {parseLessonContent(activeTopic.content)}
                                             <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} />
                                         </div>
 
@@ -681,74 +621,6 @@ function CourseScreen() {
 }
 
 const styles = {
-    // screenContainer: {
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     height: '100vh',
-    // },
-    // pageContainer: {
-    //     paddingTop: '70px', // Height of the fixed header
-    //     display: 'flex',
-    //     flex: 1, // Takes up all available space between header and footer
-    //     overflow: 'hidden', // Prevents the container itself from scrolling
-    // },
-    // sidebar: {
-    //     width: '300px',
-    //     // backgroundColor: '#f4f4f4',
-    //     padding: '20px',
-    //     // borderRight: '1px solid #ddd',
-    //     // borderRadius: '28px',
-    //     overflowY: 'auto', // Allows this column to scroll independently
-    // },
-    // courseTitle: {
-    //     fontSize: '20px',
-    //     fontWeight: 'bold',
-    //     marginBottom: '20px',
-    //             // backgroundColor: '#da2424ff',
-    //             padding: '12px',
-
-
-
-    // },
-    // partHeader: {
-    //     fontSize: '16px',
-    //     fontWeight: 'bold',
-    //     padding: '10px',
-    //     cursor: 'pointer',
-    //     marginBottom: '12px',
-    //     borderRadius: '28px',
-    //     display: 'flex',
-    //     justifyContent: 'space-between',
-    //     alignItems: 'center',
-    //     borderBottom: '1px solid #eee',
-    //     // backgroundColor: '#5124daff',
-    //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-
-    // },
-    // expandIcon: {
-    //     fontSize: '20px',
-    // },
-    // topicList: {
-    //     listStyle: 'none',
-    //     paddingLeft: '20px',
-    //     margin: 0,
-    // },
-    // topicItem: {
-    //     padding: '10px',
-    //     cursor: 'pointer',
-    //     borderRadius: '28px',
-    //     marginBottom: '4px',
-    // },
-    // activeTopic: {
-    //     backgroundColor: '#007bff',
-    //     color: 'white',
-    //     fontWeight: 'bold',
-    // },
-    // contentArea: {
-    //     flex: 1,
-    //     padding: '40px',
-    //     overflowY: 'auto',
-    // },
 };
 
 export default CourseScreen;
