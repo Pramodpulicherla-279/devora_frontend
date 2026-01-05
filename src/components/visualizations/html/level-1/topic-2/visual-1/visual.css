@@ -1,0 +1,323 @@
+/* Scope everything to this component */
+.html-tags-3d {
+  --accent-blue: #38bdf8;
+  --accent-purple: #a855f7;
+  --accent-green: #22c55e;
+  --accent-orange: #f97316;
+  --accent-pink: #ec4899;
+  --bg-dark: #020617;
+  --card-bg: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.html-tags-3d-inner {
+  /* max-width: 1150px; */
+  width: 100%;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.html-tags-3d h2 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  color: #111827;
+}
+
+.html-tags-3d p {
+  margin: 0;
+}
+
+.html-tags-3d-intro {
+  flex: 1 1 100%;
+  margin-bottom: 8px;
+}
+
+.html-tags-3d-intro p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* LAYOUT: left = tags, right = playground */
+.html-tags-3d-left {
+  flex: 1 1 320px;
+  max-width: 420px;
+  color: var(--text-main);
+}
+
+.html-tags-3d-right {
+  flex: 1 1 320px;
+  max-width: 500px;
+}
+
+/* TAG CARDS (draggable) */
+.tag-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  perspective: 1200px;
+}
+
+.tag-card {
+  position: relative;
+  background: radial-gradient(circle at top left, #1f2937, #020617);
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  padding: 12px 14px;
+  color: var(--text-main);
+  cursor: grab;
+  transform-style: preserve-3d;
+  transform: translateY(2px) translateZ(0) rotateX(5deg) rotateY(-10deg);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.tag-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at top,
+    rgba(56, 189, 248, 0.22),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tag-card:hover {
+  transform: translateY(-4px) translateZ(24px) rotateX(0deg) rotateY(0deg)
+    scale(1.03);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 1);
+  border-color: rgba(56, 189, 248, 0.9);
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+}
+
+.tag-card:active {
+  cursor: grabbing;
+}
+
+.tag-card:hover::before {
+  opacity: 1;
+}
+
+.tag-card-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tag-pill {
+  display: inline-block;
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.82rem;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.75);
+}
+
+.tag-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tag-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tag-card[data-tag="p"] {
+  border-left: 3px solid var(--accent-blue);
+}
+.tag-card[data-tag="h1"] {
+  border-left: 3px solid var(--accent-purple);
+}
+.tag-card[data-tag="img"] {
+  border-left: 3px solid var(--accent-green);
+}
+.tag-card[data-tag="b"] {
+  border-left: 3px solid var(--accent-orange);
+}
+.tag-card[data-tag="br"] {
+  border-left: 3px solid var(--accent-pink);
+}
+
+/* PLAYGROUND (drop zone + preview) */
+.playground-card {
+  background: #f3f4f6;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  padding: 14px 14px 16px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.3);
+}
+
+.playground-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.playground-subtitle {
+  font-size: 0.8rem;
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.tag-drop-zone {
+  position: relative;
+  border-radius: 14px;
+  border: 2px dashed #cbd5f5;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(148, 163, 184, 0.06),
+    rgba(148, 163, 184, 0.06) 6px,
+    rgba(148, 163, 184, 0.02) 6px,
+    rgba(148, 163, 184, 0.02) 12px
+  );
+  padding: 14px 12px;
+  text-align: center;
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tag-drop-zone.drag-over {
+  border-color: #38bdf8;
+  background: rgba(191, 219, 254, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+}
+
+.drop-hint {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.current-tag-label {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.divider {
+  margin: 12px 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+/* Code + result */
+.code-and-preview {
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr;
+  gap: 10px;
+}
+
+.code-box,
+.result-box {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 10px 12px;
+}
+
+.code-box-label,
+.result-box-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.code-output {
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #fff;
+}
+
+.result-output {
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #f9fafb;
+  min-height: 40px;
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.playground-footer {
+  margin-top: 6px;
+  font-size: 0.76rem;
+  color: #6b7280;
+}
+
+/* Simulated mini browser look for result */
+.result-output h1 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.result-output p {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .html-tags-3d-inner {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .html-tags-3d-inner {
+    flex-direction: row;
+  }
+
+  .html-tags-3d-left,
+  .html-tags-3d-right {
+    max-width: 100%;
+  }
+
+  .code-and-preview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .html-tags-3d {
+    padding: 16px 10px;
+  }
+
+  .tag-card {
+    padding: 10px 11px;
+  }
+
+  .tag-desc {
+    font-size: 0.76rem;
+  }
+
+  .playground-card {
+    padding: 12px;
+  }
+
+  .playground-subtitle,
+  .playground-footer {
+    font-size: 0.74rem;
+  }
+}
