@@ -1,0 +1,276 @@
+/* --- Variables --- */
+:root {
+    --hbv-bg-dark: #1e1e1e;
+    --hbv-bg-darker: #161616;
+    --hbv-text-light: #d4d4d4;
+    --hbv-accent-blue: #3794ff;
+    --hbv-accent-blue-dim: #3794ff40;
+    --hbv-accent-green: #4ec9b0;
+    --hbv-highlight: #ffffff1a;
+    --hbv-border: #333;
+    --hbv-wrapper-color: #c586c0; /* Color for structural tags like head/body */
+  }
+  
+  /* --- Global Styles for Component --- */
+  .hbv-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .hbv-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .hbv-header h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+
+  .hbv-instruction {
+      background-color: #eef6fc;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      border: 1px solid #d0e3f5;
+  }
+  
+  /* Code font utility */
+  .code-font {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  /* --- Main Layout --- */
+  .hbv-interactive-layout {
+    display: flex;
+    flex-direction: column; /* Mobile default: stack */
+    gap: 20px;
+    position: relative;
+  }
+  
+  /* --- Code Panel (Left/Top) --- */
+  .hbv-code-panel {
+    background-color: var(--hbv-bg-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+    flex: 1 1 60%;
+  }
+  
+  .hbv-code-window-controls {
+    background-color: var(--hbv-bg-darker);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--hbv-border);
+  }
+  
+  .hbv-dot {
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  .hbv-dot.red { background-color: #ff5f56; }
+  .hbv-dot.yellow { background-color: #ffbd2e; }
+  .hbv-dot.green { background-color: #27c93f; }
+  
+  .hbv-filename {
+    color: #888;
+    font-family: monospace;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9rem;
+  }
+  
+  .hbv-code-block {
+    margin: 0;
+    padding: 20px 0;
+    overflow-x: auto;
+    text-align: left;
+  }
+  
+  .hbv-code-line {
+    display: flex;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--hbv-text-light);
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1rem;
+    padding: 6px 0;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    position: relative;
+  }
+  
+  /* Hover and Active States for lines */
+  .hbv-code-line:hover {
+    background-color: var(--hbv-highlight);
+  }
+  
+  .hbv-code-line.active {
+    background-color: var(--hbv-accent-blue-dim);
+    box-shadow: inset 3px 0 0 var(--hbv-accent-blue);
+  }
+
+  /* Subtle coloring for wrapper tags when not active */
+  .hbv-wrapper-inactive .hbv-line-content {
+      color: var(--hbv-wrapper-color);
+      opacity: 0.8;
+  }
+
+  .hbv-line-number {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+    margin-right: 20px;
+    color: #555;
+    user-select: none;
+  }
+  
+  /* Visual Indentation Hierarchy */
+  .indent-0 .hbv-line-content { padding-left: 0; }
+  .indent-1 .hbv-line-content { padding-left: 20px; border-left: 1px solid #ffffff20; }
+  .indent-2 .hbv-line-content { padding-left: 40px; border-left: 1px solid #ffffff20; }
+  
+  /* --- Details Panel (Right/Bottom) --- */
+  .hbv-details-panel {
+    flex: 1 1 40%;
+    background-color: #fff;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    transition: all 0.3s ease;
+  }
+
+  .hbv-details-panel.is-open {
+      border-color: var(--hbv-accent-blue);
+      box-shadow: 0 0 20px rgba(55, 148, 255, 0.15);
+  }
+  
+  .hbv-details-placeholder {
+    text-align: center;
+    color: #888;
+  }
+  
+  .placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    /* On mobile flip the finger to point up */
+    transform: rotate(90deg);
+  }
+  
+  .hbv-details-title {
+    margin-top: 0;
+    color: var(--hbv-accent-blue);
+    background-color: #f0f7ff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 1.1rem;
+  }
+  
+  .hbv-details-body code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+  }
+
+  .hbv-close-mobile-btn {
+      display: none; /* Hidden on desktop */
+  }
+  
+  /* Animation */
+  .fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* --- Responsive Design (Tablet & Desktop) --- */
+  @media (min-width: 768px) {
+    .hbv-interactive-layout {
+      flex-direction: row; /* Switch to side-by-side */
+      align-items: flex-start;
+    }
+  
+    .hbv-code-line {
+      font-size: 1.1rem;
+    }
+  
+    .placeholder-icon {
+        /* Reset rotation for desktop */
+        transform: none;
+    }
+
+    /* Ensure details panel sticks to the top while scrolling long code */
+    .hbv-details-panel {
+        position: sticky;
+        top: 20px;
+    }
+  }
+
+  /* --- Responsive Design (Mobile Specific Tweaks) --- */
+  @media (max-width: 767px) {
+      .hbv-header h2 {
+          font-size: 1.6rem;
+      }
+
+      /* Make the active panel pop up fixed on mobile */
+      .hbv-details-panel.is-open {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 100;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+          animation: slideUp 0.3s ease-out;
+          /* Ensure it doesn't cover the whole screen on short devices */
+          max-height: 60vh; 
+          overflow-y: auto;
+      }
+
+      .hbv-close-mobile-btn {
+          display: block;
+          width: 100%;
+          padding: 12px;
+          margin-top: 15px;
+          background-color: #f0f0f0;
+          border: none;
+          border-radius: 8px;
+          font-weight: bold;
+          color: #555;
+      }
+      
+      /* Hide placeholder on mobile, it takes too much space */
+      .hbv-details-placeholder {
+        display: none;
+      }
+
+      .hbv-details-panel:not(.is-open) {
+          display: none;
+      }
+
+      @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+      }
+  }
