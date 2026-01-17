@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet';
 import { TrendingUp, ArrowRight } from 'lucide-react';
 import './homeScreen.css';
 import { API_BASE_URL } from '../../../config';
+import { getAnalytics, logEvent } from "firebase/analytics";
 import MernStackDiagram from '../../components/MernArch/mernArch';
 import AuthPopup from '../../components/AuthPopup/AuthPopup';
 import MernFlowVisualizer from '../../components/MernArch/MernArchitecture3D';
@@ -229,6 +230,16 @@ function HomeScreen() {
 
 
     const handleStartJourneyClick = () => {
+        // --- 1. Track the Event for Google Analytics ---
+        const analytics = getAnalytics();
+
+        logEvent(analytics, 'start_journey_click', {
+            content_type: 'button',
+            location: 'hero_section',
+            goal: 'user_started_course'
+        });
+
+        // --- 2. Existing Logic (Scroll) ---
         // Scroll to the courses section smoothly
         coursesRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
