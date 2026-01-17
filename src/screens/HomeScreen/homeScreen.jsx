@@ -10,7 +10,8 @@ import { TrendingUp, ArrowRight } from 'lucide-react';
 import './homeScreen.css';
 import { API_BASE_URL } from '../../../config';
 import MernStackDiagram from '../../components/MernArch/mernArch';
-import AuthPopup from '../../components/AuthPopup/AuthPopup'
+import AuthPopup from '../../components/AuthPopup/AuthPopup';
+import MernFlowVisualizer from '../../components/MernArch/MernArchitecture3D';
 // import ArchitectureContainer from '../../components/MernArchitecture/ArchitectureContainer/architectureContainer';
 
 function CourseProgressCircle({ progress = 0 }) {
@@ -341,6 +342,7 @@ function HomeScreen() {
             )}
 
             {/* New MERN architecture section */}
+            <MernFlowVisualizer />
             <MernStackDiagram />
 
             <div className="second-container" style={styles.secondContainer} ref={coursesRef}>

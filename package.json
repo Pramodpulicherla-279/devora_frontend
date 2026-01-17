@@ -12,6 +12,8 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.20.0",
     "@emailjs/browser": "^4.4.1",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@tiptap/extension-character-count": "^3.10.7",
     "@tiptap/extension-code-block-lowlight": "^3.10.7",
     "@tiptap/extension-image": "^3.13.0",
@@ -32,7 +34,8 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.6",
-    "react-split": "^2.0.14"
+    "react-split": "^2.0.14",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

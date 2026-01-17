@@ -1,0 +1,212 @@
+/* --- Variables (Light Theme) --- */
+:root {
+  --react-color: #00bcd4;
+  --node-color: #4caf50;
+  --mongo-color: #43a047;
+  --bg-color: #ffffff;
+  --panel-bg: #f8f9fa;
+  --border-color: #e0e0e0;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --packet-color: #ff9800; /* Orange for visibility */
+}
+
+.mfv-section {
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        width: 90%;
+        margin: 20px auto 0;
+        border-radius: 20px;
+
+}
+
+.mfv-header h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+.mfv-header p {
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* --- Container Layout --- */
+.mfv-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Common Module Styles --- */
+.mfv-module {
+  background: var(--panel-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.active-step {
+  border-color: var(--react-color);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+  transform: scale(1.05);
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+.module-header h3 { margin: 0; font-size: 1.1rem; }
+
+/* Icons */
+.react-icon { color: var(--react-color); font-size: 1.5rem; }
+.mongo-icon { color: var(--mongo-color); font-size: 1.5rem; }
+.spin { animation: spin 4s linear infinite; }
+
+/* React Screen */
+.screen-preview {
+  background: #fff;
+  border: 1px solid #ddd;
+  height: 80px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.demo-btn {
+  background: var(--react-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgba(0,188,212,0.3);
+}
+.demo-btn:hover { background: #00acc1; transform: translateY(-2px); }
+.demo-btn.disabled { background: #ccc; cursor: default; transform: none; box-shadow: none; }
+.success-text { color: var(--react-color); font-weight: bold; animation: popIn 0.3s ease; }
+
+/* --- Server Hub --- */
+.mfv-server-hub {
+  background: var(--panel-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+.mfv-server-hub.active-step {
+  border-color: var(--node-color);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.hub-label { 
+  text-transform: uppercase; font-size: 0.8rem; color: #999; margin-bottom: 10px; font-weight: bold; 
+}
+.internal-block {
+  background: white; border: 1px solid #eee; padding: 10px; border-radius: 6px; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px; font-size: 0.9rem; transition: 0.3s;
+}
+.internal-block.highlight {
+  background: #e8f5e9; border-color: var(--node-color); transform: translateX(5px);
+}
+.tech-icon { font-size: 1.2rem; }
+.express-icon { color: #333; }
+.node-icon { color: var(--node-color); }
+
+/* --- Mongo Preview --- */
+.db-preview {
+  background: #fff; border: 1px solid #ddd; height: 80px; border-radius: 6px;
+  display: flex; align-items: center; padding: 0 15px; position: relative; gap: 15px;
+}
+.db-icon { font-size: 2.5rem; color: #ccc; }
+.db-status-light {
+  position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; background: #ddd; border-radius: 50%;
+}
+.db-status-light.flash { background: var(--mongo-color); box-shadow: 0 0 8px var(--mongo-color); }
+.db-rows { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.db-row { height: 6px; background: #eee; border-radius: 4px; width: 100%; }
+
+/* --- Pipes & Connectors --- */
+.mfv-connector {
+  flex: 1;
+  height: 60px;
+  position: relative;
+  min-width: 100px;
+}
+.pipe-svg { width: 100%; height: 100%; overflow: visible; }
+.pipe-path { stroke: #e0e0e0; stroke-width: 6px; fill: none; stroke-linecap: round; }
+.data-packet { fill: var(--packet-color); opacity: 0; }
+
+.connector-labels {
+  display: flex; justify-content: space-between; font-size: 0.75rem; color: #999; margin-top: -15px; padding: 0 10px;
+}
+.lbl { transition: 0.3s; }
+.lbl-active { color: var(--packet-color); font-weight: bold; transform: scale(1.1); }
+
+/* --- Animations --- */
+.request-packet.animating { opacity: 1; offset-path: path("M0,30 C50,30 150,30 200,30"); animation: travel-right 2s linear forwards; }
+.db-query-packet.animating { opacity: 1; offset-path: path("M0,30 C50,30 150,30 200,30"); animation: travel-right 2s linear forwards; }
+.db-result-packet.animating-return { opacity: 1; offset-path: path("M0,30 C50,30 150,30 200,30"); animation: travel-left 2s linear forwards; }
+.response-packet.animating { opacity: 1; offset-path: path("M0,30 C50,30 150,30 200,30"); animation: travel-left 2s linear forwards; }
+
+@keyframes travel-right { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+@keyframes travel-left { 0% { offset-distance: 100%; } 100% { offset-distance: 0%; } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+  .mfv-container {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .mfv-module, .mfv-server-hub {
+    width: 80%;
+    max-width: 350px;
+  }
+
+  /* Rotate Pipes to Vertical */
+  .mfv-connector {
+    height: 100px;
+    width: 60px;
+    transform: rotate(90deg);
+    margin: 8px 0;
+    z-index: 1;
+  }
+  
+  /* Fix labels since pipe is rotated */
+  .connector-labels {
+    transform: rotate(-90deg); /* Rotate text back to horizontal */
+    width: 200px;
+    position: absolute;
+    top: 40px;
+    left: -70px;
+    text-align: center;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .mfv-section {
+  padding: 20px;
+}
+}
