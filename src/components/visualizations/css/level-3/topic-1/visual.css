@@ -1,0 +1,428 @@
+/* --- Global --- */
+.cev-container {
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.cev-header {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.cev-header h2 {
+    margin: 0 0 5px;
+}
+
+.cev-header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* --- Tabs --- */
+.cev-tabs {
+    display: flex;
+    background: #f4f4f4;
+    overflow-x: auto;
+}
+
+.cev-tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.cev-tab-btn.active {
+    background: #fff;
+    color: #8e44ad;
+    border-bottom-color: #8e44ad;
+}
+
+.cev-content {
+    padding: 12px;
+    min-height: 400px;
+}
+
+/* --- Cards & Layouts --- */
+.cev-split-card {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cev-card {
+    flex: 1;
+    min-width: 280px;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Box Styles --- */
+.cev-box {
+    width: 150px;
+    height: 100px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.alpha-box {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQYV2NkYGAwYcACGBkY/qOxh44CBiAAAGY0BAO91/5zAAAAAElFTkSuQmCC');
+    /* Checkered pattern for transparency proof */
+    position: relative;
+    z-index: 1;
+}
+
+.alpha-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: inherit;
+    /* Takes the RGBA from inline style */
+}
+
+/* --- Controls --- */
+.cev-controls {
+    width: 100%;
+}
+
+.cev-controls label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.cev-code {
+    display: block;
+    background: #222;
+    color: #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+/* --- Transform Tab --- */
+.cev-transform-layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cev-controls-panel {
+    flex: 1;
+    min-width: 250px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.cev-control-group {
+    margin-bottom: 15px;
+}
+
+.cev-visual-stage {
+    flex: 2;
+    min-width: 300px;
+    height: 350px;
+    border: 2px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cev-transform-box {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cev-code-block {
+    /* position: absolute;
+    bottom: 10px;
+    left: 10px; */
+    /* right: 10px; */
+    background: rgba(0, 0, 0, 0.8);
+    color: lime;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.cev-hover-trigger {
+    margin-top: 20px;
+    padding: 10px;
+    background: #e3f2fd;
+    border-radius: 4px;
+}
+
+/* --- Styling Tab --- */
+.shadow-demo-box {
+    background: white;
+    color: #333;
+}
+
+.bg-demo-box {
+    width: 100%;
+    height: 150px;
+    color: white;
+    text-shadow: 0 1px 3px black;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+}
+
+.cev-btn-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.cev-btn-group button {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    color: #333;
+}
+
+.cev-btn-group button.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.cev-hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- Positioning Tab --- */
+.cev-position-layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cev-btn-group.vertical {
+    flex-direction: column;
+}
+
+.cev-btn-group.vertical button {
+    text-align: left;
+    padding: 10px;
+}
+
+.cev-browser-mockup {
+    flex: 2;
+    min-width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cev-browser-header {
+    background: #ddd;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
+
+.cev-browser-body {
+    flex: 1;
+    background: #fff;
+    overflow-y: auto;
+    /* Allow scrolling for Fixed demo */
+    padding: 20px;
+    position: relative;
+}
+
+.cev-doc-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cev-block {
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cev-block.grey {
+    background: #f0f0f0;
+    color: #999;
+    border: 1px dashed #ccc;
+}
+
+.cev-block.ghost {
+    background: transparent;
+    border: 2px dashed #cecece;
+    color: #cecece;
+    height: 60px;
+}
+
+.cev-position-parent {
+    border: 2px solid #3498db;
+    background: rgba(52, 152, 219, 0.1);
+    padding: 20px;
+    position: relative;
+    /* Essential for Absolute demo */
+    border-radius: 4px;
+    min-height: 150px;
+}
+
+.cev-label-light {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-size: 0.7rem;
+    color: #3498db;
+    text-transform: uppercase;
+}
+
+.cev-target-element {
+    width: 100px;
+    height: 60px;
+    background: #e74c3c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: top 0.2s, left 0.2s;
+    /* Smooth movement */
+}
+
+.cev-target-element.static {
+    margin: 0 auto;
+}
+
+/* Center in parent flow */
+
+.cev-footer-note {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+    font-size: 0.9rem;
+}
+
+/* Animation */
+.fadeIn {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+
+    .cev-transform-layout,
+    .cev-position-layout {
+        flex-direction: column;
+    }
+
+    .cev-browser-mockup {
+        height: 300px;
+    }
+
+    .cev-visual-stage{
+        height: 500px !important;
+    }
+}
+
+@media (max-width: 769px) {
+
+    .cev-visual-stage{
+        height: 500px !important;
+    }
+}

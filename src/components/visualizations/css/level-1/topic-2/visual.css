@@ -1,0 +1,239 @@
+:root {
+  --ccl-bg: #ffffff;
+  --ccl-text: #111827;
+  --ccl-muted: #6b7280;
+  --ccl-border: #e5e7eb;
+  --ccl-accent: #2563eb;
+  --ccl-accent-soft: rgba(37, 99, 235, 0.12);
+  --ccl-code-bg: #020617;
+  --ccl-code-text: #e5e7eb;
+}
+
+/* container */
+.ccl-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* padding: 0 12px 32px; */
+  color: var(--ccl-text);
+  line-height: 1.6;
+}
+
+.ccl-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ccl-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.ccl-tagline {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.9rem;
+}
+
+/* layout */
+.ccl-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ccl-panel {
+  background: var(--ccl-bg);
+  border-radius: 14px;
+  border: 1px solid var(--ccl-border);
+  padding: 12px 14px 14px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+/* mode buttons */
+.ccl-mode-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.ccl-mode-btn {
+  border-radius: 999px;
+  border: 1px solid var(--ccl-border);
+  background: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #111827;
+}
+
+.ccl-mode-btn-active {
+  background: var(--ccl-accent);
+  border-color: var(--ccl-accent);
+  color: #ffffff;
+}
+
+/* controls */
+.ccl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+.ccl-section {
+  margin-top: 6px;
+}
+
+.ccl-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.84rem;
+  margin-bottom: 6px;
+}
+
+.ccl-inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ccl-input {
+  border-radius: 8px;
+  border: 1px solid var(--ccl-border);
+  padding: 6px 8px;
+  font-size: 0.86rem;
+  outline: none;
+}
+
+.ccl-input:focus {
+  border-color: var(--ccl-accent);
+  box-shadow: 0 0 0 1px var(--ccl-accent-soft);
+}
+
+.ccl-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ccl-chip {
+  border-radius: 999px;
+  border: 1px solid var(--ccl-border);
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  color: #111827;
+}
+
+.ccl-slider-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.ccl-slider-row label input[type="range"] {
+  width: 100%;
+}
+
+.ccl-small {
+  font-size: 0.8rem;
+  color: var(--ccl-muted);
+  margin: 4px 0 6px;
+}
+
+/* preview */
+.ccl-preview {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--ccl-border);
+  padding: 12px 10px;
+  background-color: #f9fafb;
+}
+
+.ccl-preview-title {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+}
+
+/* right side */
+.ccl-info-title {
+  font-size: 0.98rem;
+  margin: 0 0 4px;
+}
+
+.ccl-info-text {
+  font-size: 0.84rem;
+  margin: 0 0 6px;
+}
+
+.ccl-code-block {
+  background-color: var(--ccl-code-bg);
+  color: var(--ccl-code-text);
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  margin: 4px 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ccl-hints {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+}
+
+/* responsive */
+@media (min-width: 900px) {
+  .ccl-layout {
+    flex-direction: row;
+  }
+
+  .ccl-left {
+    flex: 1 1 55%;
+  }
+
+  .ccl-right {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .ccl-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ccl-panel {
+    padding: 10px 10px 12px;
+    box-shadow: none;
+  }
+
+  .ccl-mode-buttons {
+    overflow-x: auto;
+  }
+
+  .ccl-mode-btn {
+    white-space: nowrap;
+  }
+
+  .ccl-slider-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ccl-input {
+    width: 90%;
+  }
+}

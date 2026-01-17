@@ -1,0 +1,328 @@
+/* --- Variables (scoped to this component via prefix ha5-) --- */
+:root {
+  --ha5-bg-dark: #1e1e1e;
+  --ha5-bg-darker: #161616;
+  --ha5-text-light: #d4d4d4;
+  --ha5-accent-blue: #3794ff;
+  --ha5-accent-blue-dim: #3794ff40;
+  --ha5-accent-green: #4ec9b0;
+  --ha5-highlight: #ffffff1a;
+  --ha5-border: #333;
+  --ha5-wrapper-color: #c586c0;
+}
+
+/* --- Global Styles for Component --- */
+.ha5-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* padding: 20px; */
+  color: #333;
+  line-height: 1.6;
+}
+
+.ha5-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.ha5-header h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.ha5-instruction {
+  background-color: #eef6fc;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  border: 1px solid #d0e3f5;
+}
+
+/* Code font utility */
+.ha5-code-font {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* --- Main Layout --- */
+.ha5-interactive-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+/* --- Code Panel --- */
+.ha5-code-panel {
+  background-color: var(--ha5-bg-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  flex: 1 1 60%;
+}
+
+.ha5-code-window-controls {
+  background-color: var(--ha5-bg-darker);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--ha5-border);
+}
+
+.ha5-dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.ha5-dot-red {
+  background-color: #ff5f56;
+}
+.ha5-dot-yellow {
+  background-color: #ffbd2e;
+}
+.ha5-dot-green {
+  background-color: #27c93f;
+}
+
+.ha5-filename {
+  color: #888;
+  font-family: monospace;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
+}
+
+.ha5-code-block {
+  margin: 0;
+  padding: 20px 0;
+  overflow-x: auto;
+  text-align: left;
+}
+
+/* Code lines */
+.ha5-code-line {
+  display: flex;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--ha5-text-light);
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.95rem;
+  padding: 6px 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+/* Non-clickable lines (div) should visually match */
+.ha5-code-line:not(button) {
+  cursor: default;
+}
+
+.ha5-code-line:hover {
+  background-color: var(--ha5-highlight);
+}
+
+.ha5-code-line.ha5-active {
+  background-color: var(--ha5-accent-blue-dim);
+  box-shadow: inset 3px 0 0 var(--ha5-accent-blue);
+}
+
+/* Subtle coloring for wrapper tags when not active */
+.ha5-wrapper-inactive .ha5-line-content {
+  color: var(--ha5-wrapper-color);
+  opacity: 0.8;
+}
+
+.ha5-line-number {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-right: 12px;
+  color: #555;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Visual Indentation Hierarchy */
+.ha5-indent-0 .ha5-line-content {
+  padding-left: 0;
+}
+.ha5-indent-1 .ha5-line-content {
+  padding-left: 16px;
+  border-left: 1px solid #ffffff20;
+}
+.ha5-indent-2 .ha5-line-content {
+  padding-left: 32px;
+  border-left: 1px solid #ffffff20;
+}
+
+.ha5-line-content {
+  display: inline-block;
+  min-width: 0;
+}
+
+/* --- Details Panel --- */
+.ha5-details-panel {
+  flex: 1 1 40%;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  transition: all 0.3s ease;
+}
+
+.ha5-details-panel.ha5-is-open {
+  border-color: var(--ha5-accent-blue);
+  box-shadow: 0 0 20px rgba(55, 148, 255, 0.15);
+}
+
+.ha5-details-placeholder {
+  text-align: center;
+  color: #888;
+}
+
+.ha5-placeholder-icon {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  transform: rotate(90deg); /* Point up on mobile by default */
+}
+
+.ha5-details-title {
+  margin-top: 0;
+  color: var(--ha5-accent-blue);
+  background-color: #f0f7ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 1.05rem;
+}
+
+.ha5-details-body {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.ha5-details-body code {
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ha5-details-body pre {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  padding: 10px 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+.ha5-details-body ul {
+  padding-left: 20px;
+}
+
+.ha5-close-mobile-btn {
+  display: none;
+}
+
+/* Animation */
+.ha5-fadeIn {
+  animation: ha5-fadeIn 0.25s ease-in-out;
+}
+
+@keyframes ha5-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive: Tablet & Desktop --- */
+@media (min-width: 768px) {
+  .ha5-interactive-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .ha5-code-line {
+    font-size: 1rem;
+  }
+
+  .ha5-placeholder-icon {
+    transform: none; /* Normal on desktop */
+  }
+
+  .ha5-details-panel {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+/* --- Responsive: Mobile Tweaks --- */
+@media (max-width: 767px) {
+  .ha5-header h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Details panel becomes a bottom sheet on mobile */
+  .ha5-details-panel.ha5-is-open {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.18);
+    animation: ha5-slideUp 0.3s ease-out;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .ha5-close-mobile-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 14px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .ha5-details-placeholder {
+    display: none;
+  }
+
+  .ha5-details-panel:not(.ha5-is-open) {
+    display: none;
+  }
+
+  @keyframes ha5-slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}

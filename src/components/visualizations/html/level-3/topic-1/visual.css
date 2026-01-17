@@ -1,0 +1,242 @@
+/* Interactive HTML Tables visualization (ht2-) */
+:root {
+  --ht2-bg-panel: #ffffff;
+  --ht2-bg-soft: #eff6ff;
+  --ht2-text-main: #111827;
+  --ht2-text-muted: #6b7280;
+  --ht2-accent-blue: #2563eb;
+  --ht2-accent-blue-soft: rgba(37, 99, 235, 0.12);
+  --ht2-border-soft: #e5e7eb;
+  --ht2-code-bg: #020617;
+  --ht2-code-text: #e5e7eb;
+}
+
+/* Container & header */
+.ht2-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* padding: 20px 16px 32px; */
+  color: var(--ht2-text-main);
+  line-height: 1.6;
+}
+
+.ht2-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ht2-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.ht2-instruction {
+  display: inline-block;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Layout */
+.ht2-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ht2-panel {
+  background-color: var(--ht2-bg-panel);
+  border-radius: 14px;
+  border: 1px solid var(--ht2-border-soft);
+  padding: 12px 14px 14px;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+}
+
+.ht2-panel-sub {
+  font-size: 0.85rem;
+  color: var(--ht2-text-muted);
+  margin: 0 0 8px;
+}
+
+/* Controls */
+.ht2-controls-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ht2-controls-label {
+  font-size: 0.8rem;
+  color: var(--ht2-text-muted);
+  margin-right: 4px;
+}
+
+.ht2-highlight-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.ht2-chip {
+  border-radius: 999px;
+  border: 1px solid var(--ht2-border-soft);
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  background-color: #ffffff;
+  color: var(--ht2-text-main);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ht2-chip-active {
+  background-color: var(--ht2-accent-blue-soft);
+  border-color: var(--ht2-accent-blue);
+  color: #1d4ed8;
+}
+
+.ht2-toggle-extra {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--ht2-text-main);
+}
+
+.ht2-toggle-extra input {
+  accent-color: var(--ht2-accent-blue);
+}
+
+/* Table view */
+.ht2-table-shell {
+  border-radius: 10px;
+  border: 1px solid var(--ht2-border-soft);
+  overflow: hidden;
+  background-color: #f9fafb;
+  font-size: 0.85rem;
+}
+
+.ht2-caption {
+  padding: 6px 8px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #eef2ff;
+}
+
+.ht2-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.ht2-header-row {
+  background-color: #e5e7eb;
+}
+
+.ht2-data-row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.ht2-data-row:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.ht2-cell {
+  padding: 6px 8px;
+  border-top: 1px solid var(--ht2-border-soft);
+  border-right: 1px solid var(--ht2-border-soft);
+}
+
+.ht2-cell:last-child {
+  border-right: none;
+}
+
+.ht2-cell-header {
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Highlights */
+.ht2-highlight-outline {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.7);
+}
+
+.ht2-highlight-fill {
+  background-color: var(--ht2-accent-blue-soft) !important;
+}
+
+.ht2-highlight-row {
+  background-color: rgba(219, 234, 254, 0.85) !important;
+}
+
+.ht2-note {
+  font-size: 0.8rem;
+  color: var(--ht2-text-muted);
+  margin-top: 8px;
+}
+
+/* Right side: info & code */
+.ht2-info-card {
+  border-radius: 10px;
+  border: 1px solid var(--ht2-border-soft);
+  background-color: #f9fafb;
+  padding: 8px 10px 10px;
+}
+
+.ht2-info-title {
+  font-size: 0.96rem;
+  margin: 0 0 4px;
+}
+
+.ht2-info-text {
+  font-size: 0.84rem;
+  margin: 0 0 6px;
+}
+
+/* Code block */
+.ht2-code-box {
+  margin-top: 4px;
+}
+
+.ht2-code-label {
+  font-size: 0.8rem;
+  color: var(--ht2-text-muted);
+  margin: 0 0 4px;
+}
+
+.ht2-code-block {
+  background-color: var(--ht2-code-bg);
+  color: var(--ht2-code-text);
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  margin: 0 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ht2-hints {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .ht2-layout {
+    flex-direction: row;
+  }
+
+  .ht2-panel-left {
+    flex: 1 1 50%;
+  }
+
+  .ht2-panel-right {
+    flex: 1 1 50%;
+  }
+}

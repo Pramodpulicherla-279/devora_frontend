@@ -1,0 +1,257 @@
+/* ...existing code... */
+:root {
+  --cssv-bg: #ffffff;
+  --cssv-text: #111827;
+  --cssv-muted: #6b7280;
+  --cssv-border: #e5e7eb;
+  --cssv-accent: #2563eb;
+  --cssv-accent-soft: rgba(37, 99, 235, 0.12);
+  --cssv-code-bg: #020617;
+  --cssv-code-text: #e5e7eb;
+}
+
+/* container */
+.cssv-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* padding: 0 12px 32px; */
+  color: var(--cssv-text);
+  line-height: 1.6;
+}
+
+.cssv-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cssv-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.cssv-tagline {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.9rem;
+}
+
+/* layout */
+.cssv-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cssv-panel {
+  background: var(--cssv-bg);
+  border-radius: 14px;
+  border: 1px solid var(--cssv-border);
+  padding: 12px 14px 14px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+.cssv-right{
+  height: 0%;
+}
+
+.cssv-panel-sub {
+  font-size: 0.85rem;
+  color: var(--cssv-muted);
+  margin: 4px 0 8px;
+}
+
+/* mode buttons */
+.cssv-mode-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 2px;
+}
+
+.cssv-mode-btn {
+  border-radius: 999px;
+  border: 1px solid var(--cssv-border);
+  background: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  color: #111827;
+}
+
+.cssv-mode-btn-active {
+  background: var(--cssv-accent);
+  border-color: var(--cssv-accent);
+  color: #ffffff;
+}
+
+/* preview area */
+.cssv-preview {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--cssv-border);
+  padding: 16px 14px;
+  background-color: #f9fafb;
+}
+
+/* default (no css look) */
+.cssv-preview-none .cssv-heading,
+.cssv-preview-none .cssv-paragraph {
+  all: unset;
+  display: block;
+  font-family: inherit;
+  color: var(--cssv-text);
+}
+
+/* inline + internal + external share “styled” look */
+.cssv-preview-inline .cssv-heading,
+.cssv-preview-internal .cssv-heading,
+.cssv-preview-external .cssv-heading {
+  color: red;
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.cssv-preview-inline .cssv-paragraph,
+.cssv-preview-internal .cssv-paragraph,
+.cssv-preview-external .cssv-paragraph {
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+/* rule card */
+.cssv-rule-card {
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px dashed var(--cssv-border);
+  background-color: #f9fafb;
+  padding: 8px 10px 10px;
+}
+
+.cssv-rule-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cssv-rule-code {
+  background-color: #0b1120;
+  color: #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.cssv-selector {
+  color: #38bdf8;
+}
+
+.cssv-property {
+  color: #a5b4fc;
+}
+
+.cssv-value {
+  color: #f97316;
+}
+
+.cssv-rule-explain {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cssv-pill {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--cssv-border);
+}
+
+.cssv-pill-selector {
+  background-color: #77d6ff;
+}
+
+.cssv-pill-property {
+  background-color: #a5b4fc;
+}
+
+.cssv-pill-value {
+  background-color: #ffb986;
+}
+
+/* right side */
+.cssv-info-title {
+  font-size: 0.98rem;
+  margin: 0 0 4px;
+}
+
+.cssv-info-text {
+  font-size: 0.84rem;
+  margin: 0 0 6px;
+}
+
+.cssv-code-block {
+  background-color: var(--cssv-code-bg);
+  color: var(--cssv-code-text);
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  margin: 4px 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.cssv-hints {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+}
+
+/* responsive */
+@media (min-width: 900px) {
+  .cssv-layout {
+    flex-direction: row;
+  }
+
+  .cssv-left {
+    flex: 1 1 55%;
+  }
+
+  .cssv-right {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cssv-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cssv-panel {
+    padding: 10px 10px 12px;
+    box-shadow: none;
+  }
+
+  .cssv-preview {
+    padding: 12px 10px;
+  }
+
+  .cssv-mode-buttons {
+    overflow-x: auto;
+  }
+
+  .cssv-mode-btn {
+    white-space: nowrap;
+  }
+}
+/* ...existing code... */

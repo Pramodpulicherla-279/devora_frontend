@@ -7,7 +7,7 @@ import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
 import Split from 'react-split';
-import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
+import { TbBorderRadius, TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { parseLessonContent } from '../../components/visualizations/utils/lessonParser';
 
 // A Code Editor component specifically for HTML, CSS, and JS
@@ -57,6 +57,7 @@ function CourseScreen() {
     const [progressPercentage, setProgressPercentage] = useState(0);
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
     // const currentCourseId = currentCourse?._id;
 
@@ -81,6 +82,15 @@ function CourseScreen() {
     // useEffect(() => {
 
     // }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const userInfo = localStorage.getItem('userInfo');
@@ -464,8 +474,17 @@ function CourseScreen() {
             <Header />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
+                    {/* <div style={styles.bottomBar}> */}
+                     {!isDesktop && (
+                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
+                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
+                        <span>List of Lessons</span>
+                    </button>
+                    )}
+                    {/* </div> */}
                     {user ? (
                         <div className="course-sidebar-header">
+
                             <h2 className="lesson-course-title">{course.title}</h2>
                             {/* Circular Progress Indicator */}
                             <div className="course-progress-circle">
@@ -534,9 +553,15 @@ function CourseScreen() {
                     {/* <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
                         {isSidebarOpen ? 'X' : '▶'}
                     </button> */}
-                    <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
+                    {/* <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
                         {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled /> : <TbLayoutSidebarLeftExpandFilled />}
-                    </button>
+                    </button> */}
+                    {/* <div style={styles.bottomBar}>
+                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
+                            {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
+                            <span>List of Lessons</span>
+                        </button>
+                    </div> */}
                     {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
 
 
@@ -552,6 +577,12 @@ function CourseScreen() {
                                     />
                                 </div>
                                 <div className="content-header">
+                                    {/* <div style={styles.bottomBar}> */}
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
+                                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
+                                        <span>List of Lessons</span>
+                                    </button>
+                                    {/* </div> */}
                                     <p className='topic-title'>Topic: {activeTopic.title}</p>
                                     <button className="practice-toggle-btn" onClick={togglePractice}>
                                         {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
@@ -630,6 +661,33 @@ function CourseScreen() {
 }
 
 const styles = {
-};
+    bottomBar: {
 
+        // width: '100%',            // Spans full width
+        // backgroundColor: '#fff',  // White background
+
+        // padding: '0px 20px',     // Spacing inside the bar
+        // zIndex: 1000,             // Ensures it sits on top of content
+
+    },
+    button: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        background: 'none',
+        border: 'none',
+        color: '#333',
+        fontSize: '16px',
+        fontWeight: '600',
+        cursor: 'pointer',
+        border: '2px solid #e5e7eb', // Light gray border
+        boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', // Subtle shadow
+        borderRadius: '12px',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',        // Locks it to the screen
+        top: 0,                // Aligns to the bottom
+        left: 0,
+    }
+};
 export default CourseScreen;

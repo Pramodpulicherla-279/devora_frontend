@@ -184,6 +184,7 @@
         /* gap:4px; */
 
     }
+
     .lesson-search-bar {
         position: relative;
         /* display: inline-block; */
@@ -267,5 +268,11 @@
     .right-section.open+.overlay {
         opacity: 1;
         visibility: visible;
+    }
+
+    .search-dropdown {
+        width: 270%;
+        left: -110%;
+        z-index: 1001;
     }
 }

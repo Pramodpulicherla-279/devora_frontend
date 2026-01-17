@@ -1,0 +1,337 @@
+/* Simple HTML Entities & Emmet visualization (he1-) */
+:root {
+  --he1-bg-panel: #ffffff;
+  --he1-bg-soft: #eff6ff;
+  --he1-text-main: #111827;
+  --he1-text-muted: #6b7280;
+  --he1-accent-blue: #2563eb;
+  --he1-accent-blue-soft: rgba(37, 99, 235, 0.12);
+  --he1-border-soft: #e5e7eb;
+  --he1-code-bg: #020617;
+  --he1-code-text: #e5e7eb;
+  --he1-radius-lg: 18px;
+  --he1-radius-md: 12px;
+}
+
+/* Container & header */
+.he1-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 8px 32px;
+  color: var(--he1-text-main);
+  line-height: 1.6;
+}
+
+.he1-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.he1-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.he1-instruction {
+  display: inline-block;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Tabs */
+.he1-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.he1-tab {
+  border-radius: 999px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #ffffff;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--he1-text-main);
+  transition: all 0.18s ease;
+}
+
+.he1-tab-active {
+  background-color: var(--he1-accent-blue);
+  border-color: var(--he1-accent-blue);
+  color: #ffffff;
+}
+
+/* Panel */
+.he1-panel {
+  background-color: var(--he1-bg-panel);
+  border-radius: var(--he1-radius-lg);
+  border: 1px solid var(--he1-border-soft);
+  padding: 14px 14px 16px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+.he1-panel-sub {
+  font-size: 0.84rem;
+  color: var(--he1-text-muted);
+  margin: 0 0 10px;
+}
+
+/* Shared small box + code */
+.he1-box {
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: var(--he1-bg-soft);
+  padding: 8px 10px 10px;
+}
+
+.he1-box-label {
+  font-size: 0.8rem;
+  color: var(--he1-text-muted);
+  margin: 4px 0 4px;
+}
+
+.he1-code-block {
+  background-color: var(--he1-code-bg);
+  color: var(--he1-code-text);
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  margin: 0 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.he1-code-inline {
+  display: inline-block;
+}
+
+/* --- Entities tab --- */
+.he1-entity-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.he1-entity-list {
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #f9fafb;
+  padding: 6px 6px 8px;
+}
+
+.he1-entity-list-header {
+  display: grid;
+  grid-template-columns: 0.8fr 1.6fr;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--he1-text-muted);
+  padding: 2px 4px 4px;
+}
+
+.he1-entity-row {
+  display: grid;
+  grid-template-columns: 0.8fr 1.6fr;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+  transition: all 0.18s ease;
+}
+
+.he1-entity-row:hover {
+  background-color: #f3f4f6;
+}
+
+.he1-entity-row-active {
+  background-color: var(--he1-accent-blue-soft);
+  border-color: var(--he1-accent-blue);
+}
+
+.he1-entity-char {
+  font-weight: 600;
+  color: #111827;
+}
+
+.he1-entity-code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  color: #111827;
+}
+
+.he1-entity-detail {
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #f9fafb;
+  padding: 8px 10px 10px;
+}
+
+.he1-detail-title {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+
+.he1-detail-text {
+  margin: 0 0 6px;
+  font-size: 0.84rem;
+}
+
+.he1-preview-char {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  border: 1px solid var(--he1-border-soft);
+  font-size: 1.1rem;
+}
+
+/* --- Unicode tab --- */
+.he1-unicode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.he1-unicode-card {
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #f9fafb;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.he1-unicode-char {
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+}
+
+.he1-unicode-code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+}
+
+.he1-unicode-desc {
+  font-size: 0.78rem;
+  color: var(--he1-text-muted);
+  margin-top: 2px;
+}
+
+.he1-unicode-output {
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+}
+
+/* --- Emmet tab --- */
+.he1-emmet-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.he1-emmet-list {
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #f9fafb;
+  padding: 6px 6px 8px;
+}
+
+.he1-emmet-row {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  transition: all 0.18s ease;
+  font-size: 0.8rem;
+}
+
+.he1-emmet-row:hover {
+  background-color: #f3f4f6;
+}
+
+.he1-emmet-row-active {
+  background-color: var(--he1-accent-blue-soft);
+  border-color: var(--he1-accent-blue);
+}
+
+.he1-emmet-abbr {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #0f172a;
+  color: #e5e7eb;
+  padding: 2px 5px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+}
+
+.he1-emmet-title {
+  flex: 1;
+  color: #111827;
+}
+
+.he1-emmet-detail {
+  border-radius: 10px;
+  border: 1px solid var(--he1-border-soft);
+  background-color: #f9fafb;
+  padding: 8px 10px 10px;
+}
+
+.he1-tip {
+  font-size: 0.8rem;
+  color: var(--he1-text-muted);
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .he1-container {
+    padding: 26px 24px 40px;
+  }
+
+  .he1-header h2 {
+    font-size: 2rem;
+  }
+
+  .he1-entity-layout,
+  .he1-emmet-layout {
+    flex-direction: row;
+  }
+
+  .he1-entity-list,
+  .he1-emmet-list {
+    flex: 0 0 45%;
+  }
+
+  .he1-entity-detail,
+  .he1-emmet-detail {
+    flex: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .he1-layout {
+    padding: 14px;
+  }
+}

@@ -1,0 +1,332 @@
+:root {
+  --hf1-bg-panel: #ffffff;
+  --hf1-bg-soft: #eff6ff;
+  --hf1-text-main: #111827;
+  --hf1-text-muted: #6b7280;
+  --hf1-accent-blue: #2563eb;
+  --hf1-accent-blue-soft: rgba(37, 99, 235, 0.12);
+  --hf1-border-soft: #e5e7eb;
+  --hf1-code-bg: #020617;
+  --hf1-code-text: #e5e7eb;
+}
+
+/* Container & header */
+.hf1-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0 32px 0;
+  color: var(--hf1-text-main);
+  line-height: 1.6;
+}
+
+.hf1-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.hf1-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.hf1-instruction {
+  display: inline-block;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Tabs */
+.hf1-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.hf1-tab {
+  border-radius: 999px;
+  border: 1px solid var(--hf1-border-soft);
+  background-color: #ffffff;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--hf1-text-main);
+  transition: all 0.18s ease;
+}
+
+.hf1-tab-active {
+  background-color: var(--hf1-accent-blue);
+  border-color: var(--hf1-accent-blue);
+  color: #ffffff;
+}
+
+/* Layout & panels */
+.hf1-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hf1-panel {
+  background-color: var(--hf1-bg-panel);
+  border-radius: 14px;
+  border: 1px solid var(--hf1-border-soft);
+  padding: 12px 14px 14px;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+}
+
+.hf1-panel-sub {
+  font-size: 0.85rem;
+  color: var(--hf1-text-muted);
+  margin: 0 0 8px;
+}
+
+/* Form card */
+.hf1-form-card {
+  border-radius: 12px;
+  border: 1px solid var(--hf1-border-soft);
+  background-color: #f9fafb;
+  padding: 10px 12px 12px;
+  font-size: 0.9rem;
+}
+
+.hf1-form-tag {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  color: var(--hf1-text-muted);
+  margin-bottom: 6px;
+}
+
+.hf1-form-tag-close {
+  margin-top: 8px;
+}
+
+/* Inputs & labels */
+.hf1-field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.hf1-input {
+  border-radius: 8px;
+  border: 1px solid var(--hf1-border-soft);
+  padding: 6px 8px;
+  font-size: 0.86rem;
+  outline: none;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.hf1-input:focus {
+  border-color: var(--hf1-accent-blue);
+  box-shadow: 0 0 0 1px var(--hf1-accent-blue-soft);
+}
+
+.hf1-input-color {
+  padding: 0;
+  height: 32px;
+}
+
+.hf1-input-range {
+  width: 100%;
+}
+
+/* Highlight helpers */
+.hf1-highlight {
+  /* outline: 2px solid var(--hf1-accent-blue); */
+  outline-offset: 2px;
+}
+
+.hf1-highlight-soft {
+  background-color: #f3f4ff;
+}
+
+.hf1-highlight-name {
+  box-shadow: inset 0 0 0 2px #f97316;
+}
+
+.hf1-hint-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hf1-chip {
+  border-radius: 999px;
+  border: 1px solid var(--hf1-border-soft);
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  background-color: #ffffff;
+  color: var(--hf1-text-main);
+  cursor: pointer;
+}
+
+.hf1-chip-active {
+  background-color: var(--hf1-accent-blue-soft);
+  border-color: var(--hf1-accent-blue);
+}
+
+/* Button */
+.hf1-button {
+  margin-top: 10px;
+  border-radius: 999px;
+  border: none;
+  padding: 6px 14px;
+  font-size: 0.86rem;
+  background-color: var(--hf1-accent-blue);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Types grid */
+.hf1-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.hf1-type-item {
+  border-radius: 10px;
+  border: 1px solid var(--hf1-border-soft);
+  background-color: #f9fafb;
+  padding: 6px 8px 8px;
+}
+
+.hf1-type-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.hf1-inline-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
+
+.hf1-mini-code {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.74rem;
+  color: var(--hf1-text-muted);
+}
+
+/* URL box (YouTube) */
+.hf1-url-box {
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px dashed var(--hf1-border-soft);
+  background-color: #ffffff;
+  padding: 6px 8px;
+}
+
+.hf1-url-label {
+  font-size: 0.8rem;
+  color: var(--hf1-text-muted);
+  margin-bottom: 2px;
+}
+
+.hf1-url-value {
+  font-size: 0.78rem;
+  font-family: "Courier New", Courier, monospace;
+  word-break: break-all;
+}
+
+/* Right side explanation */
+.hf1-explain-title {
+  font-size: 0.96rem;
+  margin: 0 0 4px;
+}
+
+.hf1-explain-text {
+  font-size: 0.84rem;
+  margin: 0 0 6px;
+}
+
+.hf1-code-block {
+  background-color: var(--hf1-code-bg);
+  color: var(--hf1-code-text);
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  margin: 4px 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.hf1-hints {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (min-width: 900px) {
+  .hf1-layout {
+    flex-direction: row;
+  }
+
+  .hf1-panel-left {
+    flex: 1 1 55%;
+  }
+
+  .hf1-panel-right {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+      .hf1-layout {
+    flex-direction: row;
+  }
+  .hf1-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Extra tweaks for very small screens */
+@media (max-width: 600px) {
+      .hf1-layout {
+    flex-direction: column;
+  }
+  .hf1-panel {
+    padding: 10px 10px 12px;
+    box-shadow: none;
+  }
+
+  .hf1-form-card {
+    padding: 8px 10px 10px;
+  }
+
+  /* Make controls full‑width and easy to tap */
+  .hf1-input,
+  .hf1-button {
+    width: 90%;
+  }
+
+  /* Tabs become horizontally scrollable */
+  .hf1-tabs {
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .hf1-tab {
+    white-space: nowrap;
+  }
+
+  /* Grid collapses to single column on narrow screens */
+  .hf1-types-grid {
+    grid-template-columns: 1fr;
+  }
+}

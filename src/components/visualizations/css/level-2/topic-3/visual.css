@@ -1,0 +1,354 @@
+/* --- Global Container --- */
+.cbv-container {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    color: #333;
+    border: 1px solid #e1e4e8;
+}
+
+.cbv-header {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    color: white;
+    padding: 8px;
+    text-align: center;
+}
+
+.cbv-header h2 {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+}
+
+.cbv-header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* --- Tabs --- */
+.cbv-tabs {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.cbv-tab-btn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.cbv-tab-btn:hover {
+    background-color: #eee;
+}
+
+.cbv-tab-btn.active {
+    background-color: #fff;
+    color: #FF6B6B;
+    border-bottom-color: #FF6B6B;
+}
+
+.cbv-content {
+    padding: 12px;
+    min-height: 400px;
+}
+
+/* --- Box Model Tab --- */
+.cbv-split-view {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cbv-controls-panel {
+    flex: 1;
+    min-width: 250px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.cbv-control-group {
+    margin-bottom: 20px;
+}
+
+.cbv-control-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.cbv-slider {
+    width: 100%;
+    cursor: pointer;
+}
+
+.margin-slider {
+    accent-color: #f1c40f;
+}
+
+.border-slider {
+    accent-color: #e74c3c;
+}
+
+.padding-slider {
+    accent-color: #2ecc71;
+}
+
+.content-slider {
+    accent-color: #3498db;
+}
+
+.cbv-total-calc {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.cbv-total-calc strong {
+    display: block;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* The Nested Box Visualization */
+.cbv-visual-stage {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    overflow: hidden;
+    /* Prevent scrolling if box gets huge */
+}
+
+.cbv-box-wrapper,
+.cbv-box-border,
+.cbv-box-padding,
+.cbv-box-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cbv-label {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+.margin-label {
+    top: 2px;
+    left: 2px;
+    color: #b7950b;
+}
+
+.border-label {
+    top: 2px;
+    right: 2px;
+    color: #922b21;
+}
+
+.padding-label {
+    bottom: 2px;
+    left: 2px;
+    color: #1e8449;
+}
+
+.content-label {
+    color: #154360;
+    font-size: 0.8rem;
+}
+
+
+/* --- Display Property Tab --- */
+.cbv-display-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cbv-toggle {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+}
+
+.cbv-toggle.active {
+    background-color: #34495e;
+    color: white;
+    border-color: #34495e;
+}
+
+.cbv-display-explanation {
+    text-align: center;
+    background: #f0f8ff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.cbv-display-demo {
+    border: 2px solid #ddd;
+    padding: 20px;
+    background: #fff;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+.cbv-text-context {
+    color: #aaa;
+}
+
+.cbv-display-box {
+    background-color: #FF6B6B;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #c0392b;
+    text-align: center;
+    border-radius: 4px;
+}
+
+/* Mapping display states */
+.cbv-display-box.block {
+    display: block;
+    width: 100%;
+}
+
+/* Width 100% to simulate block behavior visually in this context */
+.cbv-display-box.inline {
+    display: inline;
+    padding: 0 5px;
+    border: none;
+}
+
+/* Inline often ignores vertical padding visual flow, kept simple */
+.cbv-display-box.inline-block {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+}
+
+
+/* --- Units Tab --- */
+.cbv-units-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cbv-unit-controls {
+    display: flex;
+    gap: 20px;
+    background: #f4f4f4;
+    padding: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cbv-units-demo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cbv-unit-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 200px;
+    text-align: center;
+    background: white;
+}
+
+.cbv-unit-box {
+    background: #eee;
+    padding: 8px;
+    margin: 15px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.cbv-calc {
+    font-size: 0.9rem;
+    color: #666;
+    background: #f9f9f9;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.cbv-hint {
+    font-size: 0.8rem;
+    color: #777;
+    margin: 5px 0 0 0;
+}
+
+/* Animation */
+.fadeIn {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .cbv-split-view {
+        flex-direction: column;
+    }
+
+    .cbv-visual-stage {
+        min-height: 250px;
+    }
+
+    .cbv-display-box.block {
+        width: 90%
+    }
+}

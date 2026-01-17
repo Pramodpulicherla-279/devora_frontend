@@ -1,0 +1,356 @@
+/* --- Variables (scoped to this component via prefix ha6-) --- */
+:root {
+  --ha6-bg-dark: #111827;
+  --ha6-bg-panel: #ffffff;
+  --ha6-text-main: #111827;
+  --ha6-text-muted: #6b7280;
+  --ha6-accent-blue: #2563eb;
+  --ha6-accent-blue-soft: rgba(37, 99, 235, 0.08);
+  --ha6-border-soft: #e5e7eb;
+  --ha6-border-strong: #d1d5db;
+  --ha6-code-bg: #111827;
+  --ha6-code-text: #e5e7eb;
+  --ha6-radius-lg: 16px;
+  --ha6-radius-md: 10px;
+}
+
+/* --- Container & Header --- */
+.ha6-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 8px 32px;
+  color: var(--ha6-text-main);
+  line-height: 1.6;
+}
+
+.ha6-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ha6-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.ha6-instruction {
+  display: inline-block;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+/* --- Layout --- */
+.ha6-layout {
+  background: linear-gradient(135deg, #f9fafb, #eff6ff);
+  border-radius: var(--ha6-radius-lg);
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* Tabs */
+.ha6-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.ha6-tab-btn {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--ha6-text-muted);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ha6-tab-btn:hover {
+  border-color: var(--ha6-border-soft);
+}
+
+.ha6-tab-btn-active {
+  background-color: var(--ha6-accent-blue);
+  color: #ffffff;
+  border-color: var(--ha6-accent-blue);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
+}
+
+/* Panels layout */
+.ha6-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ha6-controls-panel,
+.ha6-preview-panel {
+  background-color: var(--ha6-bg-panel);
+  border-radius: var(--ha6-radius-md);
+  border: 1px solid var(--ha6-border-soft);
+}
+
+/* Controls panel */
+.ha6-controls-panel {
+  padding: 14px 16px;
+}
+
+.ha6-controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ha6-controls-title {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.ha6-controls-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ha6-text-muted);
+}
+
+/* Toggle buttons */
+.ha6-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ha6-toggle-group-multi .ha6-toggle-btn {
+  flex: 1 1 30%;
+}
+
+.ha6-toggle-group-single .ha6-toggle-btn {
+  flex: 1 1 100%;
+}
+
+.ha6-toggle-btn {
+  border-radius: 999px;
+  border: 1px solid var(--ha6-border-strong);
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  background-color: #ffffff;
+  color: var(--ha6-text-main);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ha6-toggle-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.ha6-toggle-btn-active {
+  background-color: var(--ha6-accent-blue-soft);
+  border-color: var(--ha6-accent-blue);
+  color: #1d4ed8;
+}
+
+/* Preview panel */
+.ha6-preview-panel {
+  padding: 14px 16px;
+}
+
+.ha6-preview-card {
+  border-radius: 12px;
+  border: 1px solid var(--ha6-border-soft);
+  background-color: #f9fafb;
+  padding: 12px 14px;
+}
+
+.ha6-preview-header {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.ha6-preview-body {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.ha6-preview-label {
+  font-size: 0.85rem;
+  margin: 0 0 4px;
+  color: var(--ha6-text-muted);
+}
+
+.ha6-preview-sub {
+  font-size: 0.8rem;
+  color: var(--ha6-text-muted);
+  margin-top: 8px;
+}
+
+.ha6-preview-url {
+  color: #16a34a;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Link preview */
+.ha6-link-preview {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Code explainer */
+.ha6-code-explainer {
+  font-size: 0.85rem;
+  color: var(--ha6-text-main);
+}
+
+.ha6-code-block {
+  background-color: var(--ha6-code-bg);
+  color: var(--ha6-code-text);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  margin: 0 0 6px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ha6-code-inline {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Images */
+.ha6-image-frame {
+  width: 100%;
+  max-width: 260px;
+  height: 130px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+
+.ha6-image-ok {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ecfdf3;
+}
+
+.ha6-image-broken {
+  background: repeating-linear-gradient(
+    45deg,
+    #fef2f2,
+    #fef2f2 6px,
+    #fee2e2 6px,
+    #fee2e2 12px
+  );
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.ha6-image-label {
+  font-weight: 600;
+}
+
+.ha6-alt-preview {
+  font-style: italic;
+}
+
+/* Formatting preview */
+.ha6-format-text {
+  font-size: 0.95rem;
+}
+
+.ha6-format-bold {
+  font-weight: 700;
+}
+
+.ha6-format-italic {
+  font-style: italic;
+}
+
+.ha6-format-underline {
+  text-decoration: underline;
+}
+
+/* Comments / other */
+.ha6-comment-preview-wrapper {
+  margin-top: 10px;
+}
+
+.ha6-comment-muted {
+  opacity: 0.4;
+}
+
+/* --- Responsive: Tablet & Desktop --- */
+@media (min-width: 768px) {
+  .ha6-container {
+    padding: 28px 24px 40px;
+  }
+
+  .ha6-header h2 {
+    font-size: 2rem;
+  }
+
+  .ha6-layout {
+    padding: 18px 18px 20px;
+  }
+
+  .ha6-panels {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .ha6-controls-panel {
+    flex: 0 0 40%;
+  }
+
+  .ha6-preview-panel {
+    flex: 1 1 60%;
+  }
+
+  .ha6-preview-card {
+    position: relative;
+  }
+
+  .ha6-preview-card {
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+  }
+}
+
+/* --- Responsive: Mobile --- */
+@media (max-width: 767px) {
+  .ha6-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .ha6-layout {
+    padding: 14px;
+  }
+
+  .ha6-tabs {
+    margin-bottom: 12px;
+  }
+}

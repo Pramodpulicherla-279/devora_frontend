@@ -1,7 +1,7 @@
 .screen-container {
     display: flex;
     flex-direction: column;
-    height: 98.9vh;
+    height: 97.7vh;
     /* overflow: hidden !important; */
     /* margin-top: 70px; */
 }
@@ -382,6 +382,11 @@
 
 /* --- Responsive Styles for Tablet and Mobile --- */
 @media (max-width: 768px) {
+    .screen-container {
+    height: 92vh;
+    /* overflow: hidden !important; */
+    /* margin-top: 70px; */
+}
     .hamburger-menu {
         /* display: flex;
         justify-content: center;
@@ -449,7 +454,7 @@
     }
 
     .content-header {
-        padding: 30px 0 0;
+        padding: 10px 0 0;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -481,5 +486,4 @@
         overflow-x: hidden;
         overflow-y: auto;
     }
-
 }
