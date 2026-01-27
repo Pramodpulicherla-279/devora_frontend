@@ -169,7 +169,7 @@ function CourseScreen() {
             return;
         }
 
-        console.log('user token:', user.token);
+        // console.log('user token:', user.token);
         console.log('Calling fetchUserCourseProgress with courseId:', course._id);
         fetchUserCourseProgress(course._id);
     }, [user, course]);

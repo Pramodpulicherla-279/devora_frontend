@@ -12,6 +12,7 @@ import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
 import TextAlign from '@tiptap/extension-text-align';
 import EditorMenuBar from "./EditorMenuBar";
+import VisualizationEmbed from './extensions/VisualizationEmbed';
 import './admin.css'
 import { API_BASE_URL } from '../../config';
 
@@ -55,6 +56,7 @@ function AdminDashboard() {
                 autolink: true,     // Automatically detects and creates links from URLs
             }),
             CharacterCount.configure(),
+            VisualizationEmbed,
         ],
         content: "<p>Write your lesson here ✒️</p>",
     });
@@ -73,6 +75,7 @@ function AdminDashboard() {
                         parts: course.parts || [] // Assuming parts are populated or just IDs
                     }));
                     setCourses(fetchedCourses);
+                    console.log(fetchedCourses);
                 }
             } catch (error) {
                 console.error("Failed to fetch courses:", error);
@@ -95,6 +98,7 @@ function AdminDashboard() {
                             name: part.title,
                         }));
                         setParts(fetchedParts);
+                        console.log(fetchedParts)
                     } else {
                         setParts([]); // Clear parts if fetching fails or course has no parts
                     }
@@ -124,6 +128,7 @@ function AdminDashboard() {
                         //     name: lesson.title,
                         // }));
                         setLessons(result.data);
+                        console.log(result.data)
                     } else {
                         setLessons([]); // Clear parts if fetching fails or course has no parts
                     }

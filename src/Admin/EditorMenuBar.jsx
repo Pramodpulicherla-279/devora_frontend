@@ -19,6 +19,7 @@ import {
   FiCode,
   FiMinus,
   FiUpload,
+  FiBox,
 } from 'react-icons/fi';
 import { FaListOl } from 'react-icons/fa';
 import { TbH1, TbH2, TbH3 } from 'react-icons/tb';
@@ -28,6 +29,23 @@ import { storage } from '../firebase';
 const EditorMenuBar = ({ editor }) => {
   const [wordCount, setWordCount] = useState(0);
   const fileInputRef = useRef(null);
+
+   const insertVisualizationEmbed = useCallback(() => {
+    const type = window.prompt(
+      'Visualization type (e.g. web-stack, html-layers-1)',
+      'web-stack'
+    );
+    if (!type) return;
+
+    editor
+      .chain()
+      .focus()
+      .insertContent({
+        type: 'visualizationEmbed',
+        attrs: { type, class: 'visualization-embed' },
+      })
+      .run();
+  }, [editor]);
 
   useEffect(() => {
     if (!editor) return;
@@ -206,18 +224,21 @@ const EditorMenuBar = ({ editor }) => {
       <button onClick={deleteTable} title="Delete Table">
         <FiTrash2 /> Table
       </button>
+      <button onClick={insertVisualizationEmbed} title="Insert Visualization Embed">
+        <FiBox /> Visual
+      </button>
 
       {/* More existing buttons */}
       <button onClick={() => editor.chain().focus().setHardBreak().run()} title="Hard Break"><FiCornerDownLeft /></button>
       <button onClick={() => editor.chain().focus().undo().run()} title="Undo"><FiRotateCcw /></button>
       <button onClick={() => editor.chain().focus().redo().run()} title="Redo"><FiRotateCw /></button>
-      {/* {editor.storage.characterCount && (
+      {editor.storage.characterCount && (
         <div style={styles.wordCount}>
           {editor.storage.characterCount.words()} words
         </div>
-      )} */}
+      )}
       {/* Word count that updates while typing */}
-      <div style={styles.wordCount}>{wordCount} words</div>
+      {/* <div style={styles.wordCount}>{wordCount} words</div> */}
     </div>
 
   );

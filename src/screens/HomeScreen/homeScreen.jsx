@@ -149,7 +149,7 @@ function HomeScreen() {
         },
         {
             id: '6919f6516409cc0505808ac9',
-            name: 'javascript',
+            name: 'Javascript',
             slug: 'javascript/variables-data-types',
             description: 'Add interactivity, logic, and dynamic behavior to your apps.',
         },

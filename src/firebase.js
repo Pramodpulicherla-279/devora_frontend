@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage,  ref, uploadBytes } from 'firebase/storage';
 
-console.log('import.meta.env =', import.meta.env); 
+// console.log('import.meta.env =', import.meta.env); 
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-console.log('firebaseConfig.storageBucket =', firebaseConfig.storageBucket);
+// console.log('firebaseConfig.storageBucket =', firebaseConfig.storageBucket);
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
