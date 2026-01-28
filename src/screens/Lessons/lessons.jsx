@@ -99,10 +99,10 @@ function CourseScreen() {
             setUser(JSON.parse(userInfo));
         }
 
-        if (!courseSlug) {
-            console.log("No course slug provided in URL");
-            return;
-        }
+        // if (!courseSlug) {
+        //     console.log("No course slug provided in URL");
+        //     return;
+        // }
 
         const fetchCourseDetails = async () => {
             try {
@@ -113,7 +113,7 @@ function CourseScreen() {
 
                 if (result.success) {
                     const fetchedCourse = result.data;
-                    console.log('COURSE API result.data:', fetchedCourse);
+                    // console.log('COURSE API result.data:', fetchedCourse);
                     setCourse(fetchedCourse);
 
                     // const lessonSlugFromUrl = searchParams.get('lesson');
@@ -162,7 +162,7 @@ function CourseScreen() {
 
     // When user or course changes, load *course*-level progress
     useEffect(() => {
-        console.log('useEffect[user,course] fired. user:', user, 'course:', course);
+        // console.log('useEffect[user,course] fired. user:', user, 'course:', course);
 
         if (!user || !course) {
             console.log('Skipping fetchUserCourseProgress because user or course is missing');
@@ -170,13 +170,13 @@ function CourseScreen() {
         }
 
         // console.log('user token:', user.token);
-        console.log('Calling fetchUserCourseProgress with courseId:', course._id);
+        // console.log('Calling fetchUserCourseProgress with courseId:', course._id);
         fetchUserCourseProgress(course._id);
     }, [user, course]);
 
-    useEffect(() => {
-        console.log('completedLessonIds state changed:', completedLessonIds);
-    }, [completedLessonIds]);
+    // useEffect(() => {
+    //     console.log('completedLessonIds state changed:', completedLessonIds);
+    // }, [completedLessonIds]);
 
     useEffect(() => {
         // if (!user || !contentAreaRef.current || !activeTopic) return;
@@ -356,11 +356,11 @@ function CourseScreen() {
             }
 
             const data = await res.json();
-            console.log('Progress API raw data:', data); // <--- log full response
+            // console.log('Progress API raw data:', data); 
 
             // many APIs wrap actual payload in data.data
             const payload = data.data || data;
-            console.log('Progress API payload:', payload);
+            // console.log('Progress API payload:', payload);
 
             // course percent
             if (data && typeof data.percent === 'number') {
@@ -371,14 +371,14 @@ function CourseScreen() {
             // adjust these field names to match your backend response
             if (Array.isArray(data.completedLessonIds)) {
                 const ids = data.completedLessonIds.map((id) => String(id));
-                console.log('Completed lessons from API (ids -> strings):', ids);
+                // console.log('Completed lessons from API (ids -> strings):', ids);
                 setCompletedLessonIds(ids);
             } else if (Array.isArray(data.completedLessons)) {
                 // if backend sends objects, extract ids
                 const ids = data.completedLessons.map((l) =>
                     String(typeof l === 'string' ? l : l._id || l.lessonId)
                 );
-                console.log('Completed lessons from API (objects -> ids strings):', ids);
+                // console.log('Completed lessons from API (objects -> ids strings):', ids);
                 setCompletedLessonIds(ids);
             }
 
