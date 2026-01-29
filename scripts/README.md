@@ -1,14 +1,33 @@
 # Sitemap Generator
 
-This directory contains the sitemap generation script for the Dev.eL website.
+This directory contains the **fallback** sitemap generation script for the Dev.eL website.
+
+## ⚠️ Important Note
+
+**In production, the sitemap is served directly from the backend** at `https://devora-backend.onrender.com/sitemap.xml`. This script is provided as a fallback for development or when the backend is unavailable.
 
 ## Overview
 
-The `generate-sitemap.cjs` script automatically generates a comprehensive sitemap.xml file that includes:
+The `generate-sitemap.cjs` script generates a static sitemap.xml file that includes:
 
 - **Static pages**: Homepage, Terms of Service, Privacy Policy
 - **Dynamic course pages**: All available courses
 - **Dynamic lesson pages**: Individual lessons within each course (when API is accessible)
+
+## Production vs Development
+
+### Production (Recommended)
+- Sitemap served from backend: `https://devora-backend.onrender.com/sitemap.xml`
+- Firebase redirects `/sitemap.xml` → backend
+- Always up-to-date with database content
+- Includes all courses and lessons in real-time
+- No rebuild needed when content changes
+
+### Development (This Script)
+- Static sitemap generation on the frontend
+- Useful for local development
+- Fallback when backend is unavailable
+- Requires manual regeneration
 
 ## How It Works
 
@@ -20,22 +39,26 @@ The `generate-sitemap.cjs` script automatically generates a comprehensive sitema
 
 ## Usage
 
-### Automatic Generation
+### Manual Generation (Development)
 
-The sitemap is automatically generated during the build process:
-
-```bash
-npm run build
-```
-
-This runs the sitemap generator before building the app, ensuring the sitemap is always up-to-date.
-
-### Manual Generation
-
-To regenerate the sitemap without building:
+To generate a static sitemap for development:
 
 ```bash
 npm run generate-sitemap
+```
+
+### Build with Static Sitemap
+
+To build with a static sitemap (not recommended for production):
+
+```bash
+npm run build:with-sitemap
+```
+
+Standard build (uses backend sitemap via redirect):
+
+```bash
+npm run build
 ```
 
 ## Configuration
