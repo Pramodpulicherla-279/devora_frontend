@@ -22,6 +22,7 @@ const https = require('https');
 const API_BASE_URL = process.env.VITE_API_BASE_URL || 'https://devora-backend.onrender.com';
 const SITE_URL = 'https://www.dev-el.co';
 const OUTPUT_PATH = path.join(__dirname, '../public/sitemap.xml');
+const API_DELAY_MS = parseInt(process.env.SITEMAP_API_DELAY || '500', 10); // Delay between API calls
 
 // Static routes that don't change
 const STATIC_ROUTES = [
@@ -54,7 +55,7 @@ const FALLBACK_COURSES = [
   },
   {
     slug: 'javascript/variables-data-types',
-    title: 'Javascript',
+    title: 'JavaScript',
   },
   {
     slug: 'terminal-command-line/terminal-basics-for-developers',
@@ -136,10 +137,12 @@ async function fetchCourseDetails(courseSlug) {
       return result.data;
     } else {
       console.warn(`  Could not fetch details for course: ${courseSlug}`);
+      console.warn(`  → Check that the course slug is correct and the API is responding`);
       return null;
     }
   } catch (error) {
     console.warn(`  Error fetching course ${courseSlug}: ${error.message}`);
+    console.warn(`  → Verify API connectivity at ${API_BASE_URL}/api/courses/${courseSlug}`);
     return null;
   }
 }
@@ -173,6 +176,19 @@ function extractLessonUrls(course) {
 }
 
 /**
+ * Escape XML special characters
+ */
+function escapeXML(str) {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+/**
  * Generate XML sitemap content
  */
 function generateSitemapXML(urls) {
@@ -187,9 +203,9 @@ function generateSitemapXML(urls) {
   
   urls.forEach(url => {
     xml += '  <url>\n';
-    xml += `    <loc>${SITE_URL}${url.loc}</loc>\n`;
+    xml += `    <loc>${escapeXML(SITE_URL)}${escapeXML(url.loc)}</loc>\n`;
     xml += `    <lastmod>${lastmod}</lastmod>\n`;
-    xml += `    <changefreq>${url.changefreq}</changefreq>\n`;
+    xml += `    <changefreq>${escapeXML(url.changefreq)}</changefreq>\n`;
     xml += `    <priority>${url.priority}</priority>\n`;
     xml += '  </url>\n';
     xml += '  \n';
@@ -247,8 +263,8 @@ async function generateSitemap() {
       console.log(`  ℹ Using course landing page only for ${course.slug}`);
     }
     
-    // Small delay to avoid overwhelming the API
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Rate limiting delay to avoid overwhelming the API
+    await new Promise(resolve => setTimeout(resolve, API_DELAY_MS));
   }
   
   // Generate XML

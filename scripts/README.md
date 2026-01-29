@@ -43,15 +43,21 @@ npm run generate-sitemap
 You can customize the script behavior by setting environment variables:
 
 - `VITE_API_BASE_URL`: Override the default API URL (default: `https://devora-backend.onrender.com`)
+- `SITEMAP_API_DELAY`: Delay in milliseconds between API calls for rate limiting (default: `500`)
 
 Example:
 ```bash
 VITE_API_BASE_URL=http://localhost:5000 npm run generate-sitemap
 ```
 
+Or with custom delay:
+```bash
+SITEMAP_API_DELAY=1000 npm run generate-sitemap
+```
+
 ## Fallback Courses
 
-If the API is unavailable, the script uses hardcoded course data from `homeScreen.jsx`:
+If the API is unavailable, the script uses hardcoded course data from `src/screens/HomeScreen/homeScreen.jsx` (STATIC_COURSES array):
 
 - HTML
 - CSS
