@@ -17,13 +17,7 @@
         ]
       }
     ],
-    "redirects": [
-      {
-        "source": "/sitemap.xml",
-        "destination": "https://devora-backend.onrender.com/sitemap.xml",
-        "type": 301
-      }
-    ],
+
     "rewrites": [
       {
         "source": "**",
