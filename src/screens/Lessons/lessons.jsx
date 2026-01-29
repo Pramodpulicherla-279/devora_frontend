@@ -469,7 +469,7 @@ function CourseScreen() {
                     name="description"
                     content={activeTopic?.content?.substring(0, 155) || course?.description || 'Learn web development step by step with Dev.eL'}
                 />
-                <link rel="canonical" href={`https://www.dev-el.co/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`} />
+                <link rel="canonical" href={`https://dev-el.co/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`} />
             </Helmet>
             <Header />
             <div className="page-container">
