@@ -86,26 +86,44 @@ Your website already has the following SEO elements in place:
 
 ## Sitemap Contents
 
-The sitemap currently includes:
+The sitemap is dynamically generated and includes:
 
-- Homepage: `/`
-- Terms of Service: `/terms`
-- Privacy Policy: `/privacy-policy`
+- **Static pages**: Homepage (`/`), Terms of Service (`/terms`), Privacy Policy (`/privacy-policy`)
+- **Course pages**: All available courses (e.g., `/course/html/introduction-to-html`)
+- **Lesson pages**: Individual lessons within each course (when API is accessible)
 
-### Updating the Sitemap
+### Dynamic Sitemap Generation
 
-To add more pages to the sitemap (e.g., course pages), edit `/public/sitemap.xml`:
+The sitemap is automatically generated during the build process using `scripts/generate-sitemap.cjs`. This script:
 
-```xml
-<url>
-  <loc>https://www.dev-el.co/your-new-page</loc>
-  <lastmod>2026-01-29</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+1. Attempts to fetch all courses and lessons from the backend API
+2. Falls back to hardcoded course data if the API is unavailable
+3. Generates a complete sitemap with all discoverable URLs
+
+### Regenerating the Sitemap
+
+To manually regenerate the sitemap:
+
+```bash
+npm run generate-sitemap
 ```
 
-After updating, rebuild and redeploy your website.
+This will:
+- Fetch the latest courses and lessons from the API
+- Update `/public/sitemap.xml` with all current URLs
+- Include static pages, course pages, and lesson pages
+
+**Note**: The sitemap is automatically regenerated every time you run `npm run build`.
+
+### Adding New Content
+
+When you add new courses or lessons through the admin panel:
+
+1. They will be automatically included in the sitemap on the next build
+2. Run `npm run build` to regenerate the sitemap and build
+3. Deploy the updated build to make new pages discoverable
+
+No manual sitemap editing is required!
 
 ## Best Practices
 
