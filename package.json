@@ -6,10 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "build:with-sitemap": "npm run generate-sitemap && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "generate-sitemap": "node scripts/generate-sitemap.cjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.20.0",
