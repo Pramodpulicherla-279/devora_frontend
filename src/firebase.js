@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage,  ref, uploadBytes } from 'firebase/storage';
+import { getAnalytics } from 'firebase/analytics'; 
 
 // console.log('import.meta.env =', import.meta.env); 
 
@@ -10,11 +11,14 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // console.log('firebaseConfig.storageBucket =', firebaseConfig.storageBucket);
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
+const analytics = getAnalytics(app);
 
-export { storage };
+export { storage, analytics };
+export default app;
