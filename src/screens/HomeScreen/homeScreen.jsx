@@ -171,12 +171,12 @@ function HomeScreen() {
             slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl',
             description: 'Power your application with APIs, servers, and business logic.',
         },
-        // {
-        //     id: 'test',
-        //     name: 'Test',
-        //     slug: 'test-course/lesson-1',
-        //     description: 'test desc.',
-        // },
+        {
+            id: '6a0ecfdc690db01f804cb1d5',
+            name: 'SQL',
+            slug: 'sql/introduction-to-sql-and-databases',
+            description: 'Hands-On Guide to Mastering Structured Query Language',
+        },
     ];
 
     // useEffect(() => {
