@@ -12,7 +12,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 8px;
-    color: #111827;
+    color: #271a11;
 }
 
 .mern-subtitle {
@@ -73,7 +73,7 @@
 
 .mern-layer-label {
     font-size: 12px;
-    color: #6b7280;
+    color: #7c3aed;
     margin-top: 2px;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .mern-layer--active .mern-layer-label {
-    color: #d1d5db;
+    color: #c4b5fd;
 }
 
 .mern-arrow {
@@ -160,6 +160,7 @@
     font-size: 14px;
     line-height: 1.5;
     margin: 4px 0;
+    color: #7c3aed;
 }
 
 .mern-details-tech {

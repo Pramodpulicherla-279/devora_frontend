@@ -136,7 +136,7 @@
 
 .tag-desc {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
 }
 
 .tag-card[data-tag="p"] {

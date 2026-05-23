@@ -470,18 +470,19 @@ function CourseScreen() {
                     content={activeTopic?.content?.substring(0, 155) || course?.description || 'Learn web development step by step with Dev.eL'}
                 />
                 <link rel="canonical" href={`https://www.dev-el.co/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`} />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
             </Helmet>
             <Header />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
-                    {/* <div style={styles.bottomBar}> */}
                      {!isDesktop && (
-                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
-                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
-                        <span>List of Lessons</span>
+                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ls-sidebar-btn" style={{ margin: '12px 12px 4px' }}>
+                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={20} /> : <TbLayoutSidebarLeftExpandFilled size={20} />}
+                        <span>Close</span>
                     </button>
                     )}
-                    {/* </div> */}
                     {user ? (
                         <div className="course-sidebar-header">
 
@@ -549,44 +550,33 @@ function CourseScreen() {
                     </nav>
                 </aside>
 
+                {/* Mobile backdrop — closes sidebar when tapped */}
+                {!isDesktop && isSidebarOpen && (
+                    <div className="overlay" onClick={toggleSidebar} />
+                )}
+
                 <div className="main-content-wrapper">
-                    {/* <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
-                        {isSidebarOpen ? 'X' : '▶'}
-                    </button> */}
-                    {/* <button type="button" className="hamburger-menu" onClick={toggleSidebar}>
-                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled /> : <TbLayoutSidebarLeftExpandFilled />}
-                    </button> */}
-                    {/* <div style={styles.bottomBar}>
-                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
-                            {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
-                            <span>List of Lessons</span>
-                        </button>
-                    </div> */}
-                    {/* {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>} */}
-
-
                     {/* Right Content Area */}
                     <main className="content-area hide-scrollbar" >
                         {activeTopic ? (
                             <>
-                                {/* Scroll progress bar */}
+                                <div className="content-header">
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ls-sidebar-btn">
+                                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={20} /> : <TbLayoutSidebarLeftExpandFilled size={20} />}
+                                        <span>List of Lessons</span>
+                                    </button>
+                                    <p className='topic-title'>Topic: {activeTopic.title}</p>
+                                    <button className="practice-toggle-btn" onClick={togglePractice}>
+                                        {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
+                                    </button>
+                                </div>
+
+                                {/* Scroll progress bar — sits below the top bar */}
                                 <div className="lesson-scroll-progress">
                                     <div
                                         className="lesson-scroll-progress-fill"
                                         style={{ width: `${scrollProgress}%` }}
                                     />
-                                </div>
-                                <div className="content-header">
-                                    {/* <div style={styles.bottomBar}> */}
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={styles.button}>
-                                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={24} /> : <TbLayoutSidebarLeftExpandFilled size={24} />}
-                                        <span>List of Lessons</span>
-                                    </button>
-                                    {/* </div> */}
-                                    <p className='topic-title'>Topic: {activeTopic.title}</p>
-                                    <button className="practice-toggle-btn" onClick={togglePractice}>
-                                        {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
-                                    </button>
                                 </div>
 
                                 <div className="content-body">
@@ -660,34 +650,4 @@ function CourseScreen() {
     );
 }
 
-const styles = {
-    bottomBar: {
-
-        // width: '100%',            // Spans full width
-        // backgroundColor: '#fff',  // White background
-
-        // padding: '0px 20px',     // Spacing inside the bar
-        // zIndex: 1000,             // Ensures it sits on top of content
-
-    },
-    button: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        background: 'none',
-        border: 'none',
-        color: '#333',
-        fontSize: '16px',
-        fontWeight: '600',
-        cursor: 'pointer',
-        border: '2px solid #e5e7eb', // Light gray border
-        boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', // Subtle shadow
-        borderRadius: '12px',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',        // Locks it to the screen
-        top: 0,                // Aligns to the bottom
-        left: 0,
-    }
-};
 export default CourseScreen;

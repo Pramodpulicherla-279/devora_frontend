@@ -45,6 +45,14 @@
 /* Code font utility */
 .ha5-code-font {
   font-family: "Courier New", Courier, monospace;
+  color: #fff !important;
+}
+
+/* Keep attribute highlights white on the dark code panel */
+.ha5-line-content strong,
+.ha5-code-font strong {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* --- Main Layout --- */

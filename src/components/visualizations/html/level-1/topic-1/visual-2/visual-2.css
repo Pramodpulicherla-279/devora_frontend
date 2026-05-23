@@ -143,13 +143,14 @@ color: rgba(54, 54, 54, 0.87);}
 .layer-label {
   margin: 4px 0 2px;
   font-size: 0.9rem;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
 .layer-description {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: #ffffff !important;
 }
 
 .layer-description code {

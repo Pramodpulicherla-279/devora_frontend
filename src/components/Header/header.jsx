@@ -8,8 +8,6 @@ import { API_BASE_URL } from '../../../config';
 
 function Header({ onAboutClick, onContactClick }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    // State to manage login status. Set to `true` to see the logged-in view.
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const location = useLocation();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,9 +17,8 @@ function Header({ onAboutClick, onContactClick }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const searchRef = useRef(null);
-    const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-    // Hide dropdown on outside click
+    // Close search dropdown on outside click
     useEffect(() => {
         function handleClickOutside(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -29,31 +26,26 @@ function Header({ onAboutClick, onContactClick }) {
             }
         }
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-
+    // Load user from localStorage
     useEffect(() => {
         const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            setUser(JSON.parse(userInfo));
-        }
+        if (userInfo) setUser(JSON.parse(userInfo));
     }, []);
 
-    const handleOpenPopup = () => {
-        setIsPopupOpen(true);
-        setIsSidebarOpen(false);
-    };
+    // Lock body scroll when sidebar is open
+    useEffect(() => {
+        document.body.style.overflow = isSidebarOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [isSidebarOpen]);
 
-    const handleClosePopup = () => {
+    const openPopup = () => { setIsPopupOpen(true); setIsSidebarOpen(false); };
+    const closePopup = () => {
         setIsPopupOpen(false);
-        // Check for user info in case of successful login/signup
         const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            setUser(JSON.parse(userInfo));
-        }
+        if (userInfo) setUser(JSON.parse(userInfo));
     };
 
     const handleLogout = () => {
@@ -64,90 +56,50 @@ function Header({ onAboutClick, onContactClick }) {
     };
 
     const handleAboutClick = (e) => {
-        if (onAboutClick) {
-            e.preventDefault();
-            onAboutClick();
-            setIsSidebarOpen(false);
-        }
+        if (onAboutClick) { e.preventDefault(); onAboutClick(); setIsSidebarOpen(false); }
     };
-
     const handleContactClick = (e) => {
-        if (onAboutClick) {
-            e.preventDefault();
-            onContactClick();
-            setIsSidebarOpen(false);
-        }
+        if (onContactClick) { e.preventDefault(); onContactClick(); setIsSidebarOpen(false); }
     };
 
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
-
-    const handleOpenDonate = () => {
-        setIsDonateModalOpen(true);
-        setIsSidebarOpen(false);
-    };
-
-    const handleCloseDonate = () => {
-        setIsDonateModalOpen(false);
-    };
-
-    // const handleTermsClick = () => {
-    //     navigate('/terms')
-    // };
-    // const handlePrivacyPolicyClick = () => {
-    //     navigate('/privacy-policy')
-    // };
+    const openDonate = () => { setIsDonateModalOpen(true); setIsSidebarOpen(false); };
+    const closeDonate = () => setIsDonateModalOpen(false);
 
     const handleSearch = async (e) => {
         const value = e.target.value;
         setQuery(value);
-
-        if (value.length < 2) {
-            setResults([]);
-            setShowDropdown(false);
-            return;
-        }
-
+        if (value.length < 2) { setResults([]); setShowDropdown(false); return; }
         try {
             const res = await fetch(`${API_BASE_URL}/api/lessons/lessons/search?q=${encodeURIComponent(value)}`);
             const data = await res.json();
-            if (data.success) {
-                setResults(data.data);
-                setShowDropdown(true);
-            }
-        } catch (err) {
-            setResults([]);
-            setShowDropdown(false);
-        }
+            if (data.success) { setResults(data.data); setShowDropdown(true); }
+        } catch { setResults([]); setShowDropdown(false); }
     };
 
     const handleSelect = async (lesson) => {
-        // Fetch lesson details to get courseSlug
         try {
             const res = await fetch(`${API_BASE_URL}/api/lessons/slug/${lesson.slug}`);
             const data = await res.json();
-            if (data.success && data.data && data.data.part && data.data.part.course) {
-                const courseSlug = data.data.part.course.slug;
-                navigate(`/course/${courseSlug}/${lesson.slug}`);
+            if (data.success && data.data?.part?.course) {
+                navigate(`/course/${data.data.part.course.slug}/${lesson.slug}`);
             } else {
-                // fallback: show error or do nothing
                 alert('Course not found for this lesson.');
             }
-        } catch (err) {
-            alert('Error fetching lesson details.');
-        }
-        setQuery('');
-        setResults([]);
-        setShowDropdown(false);
+        } catch { alert('Error fetching lesson details.'); }
+        setQuery(''); setResults([]); setShowDropdown(false);
     };
+
     return (
         <>
             <header className="header-container">
-                {/* Left: Logo */}
-                <div className="logo">
-                    <img src={logo} alt="DevEL Logo" />
-                    <p>Dev.eL</p>
+
+                {/* ── LEFT: Logo + Search ── */}
+                <div className="hdr-left">
+                    <Link to="/" className="hdr-logo">
+                        <img src={logo} alt="Dev.eL" />
+                        <span>Dev<span className="hdr-dot">.</span>eL</span>
+                    </Link>
+
                     <div className="lesson-search-bar" ref={searchRef}>
                         <input
                             type="text"
@@ -166,59 +118,104 @@ function Header({ onAboutClick, onContactClick }) {
                             </ul>
                         )}
                     </div>
-                    <button type="button" className="header-hamburger-menu" onClick={toggleSidebar}>
+                </div>
+
+                {/* ── RIGHT (desktop): Nav links + profile ── */}
+                <div className="hdr-right">
+                    <nav className="hdr-nav-links">
+                        {location.pathname === '/' ? (
+                            <>
+                                <a href="/about"   className="hdr-nav-link" onClick={handleAboutClick}>About</a>
+                                <a href="/contact" className="hdr-nav-link" onClick={handleContactClick}>Contact</a>
+                            </>
+                        ) : (
+                            <Link to="/" className="hdr-nav-link">Home</Link>
+                        )}
+                        <Link to="/privacy-policy" className="hdr-nav-link">Privacy Policy</Link>
+                        <Link to="/terms"           className="hdr-nav-link">Terms</Link>
+                    </nav>
+
+                    <div className="hdr-profile">
+                        <button className="donate-button" onClick={openDonate}>☕ Buy Me a Coffee</button>
+                        {user ? (
+                            <div className="hdr-user">
+                                <div className="hdr-avatar">{user.name.charAt(0).toUpperCase()}</div>
+                                <span className="hdr-username">{user.name}</span>
+                                <button className="hdr-logout-btn" onClick={handleLogout}>Logout</button>
+                            </div>
+                        ) : (
+                            <button className="hdr-login-btn hdr-desktop-only" onClick={openPopup}>Login</button>
+                        )}
+                    </div>
+                </div>
+
+                {/* ── MOBILE BAR: login (guest) + hamburger ── */}
+                <div className="hdr-mobile-bar">
+                    {!user && (
+                        <button className="hdr-login-btn" onClick={openPopup}>Login</button>
+                    )}
+                    {user && (
+                        <div className="hdr-avatar hdr-avatar-mobile">{user.name.charAt(0).toUpperCase()}</div>
+                    )}
+                    <button className="hdr-hamburger" onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
                         ☰
                     </button>
                 </div>
 
+                {/* ── MOBILE SIDEBAR DRAWER ── */}
+                <nav className={`hdr-sidebar ${isSidebarOpen ? 'open' : ''}`}>
 
+                    {/* Sidebar header */}
+                    <div className="hdr-sb-head">
+                        <Link to="/" className="hdr-sb-brand" onClick={() => setIsSidebarOpen(false)}>
+                            <img src={logo} alt="Dev.eL" />
+                            <span>Dev<span className="hdr-dot">.</span>eL</span>
+                        </Link>
+                        <button className="hdr-sb-close" onClick={() => setIsSidebarOpen(false)}>✕</button>
+                    </div>
 
-
-                {/* Right: Nav and Profile */}
-                <div className={`right-section ${isSidebarOpen ? 'open' : ''}`}>
-                    <button type="button" className="close-sidebar" onClick={toggleSidebar}>×</button>
-                    {/* Navigation Links */}
-                    <div className="nav-links">
+                    {/* Nav links */}
+                    <div className="hdr-sb-links">
                         {location.pathname === '/' ? (
                             <>
-                                <a href="/about" className="nav-link" onClick={handleAboutClick} >About</a>
-                                <a href="/contact" className="nav-link" onClick={handleContactClick}>Contact</a>
-
+                                <a href="/about"   className="hdr-sb-link" onClick={handleAboutClick}>About</a>
+                                <a href="/contact" className="hdr-sb-link" onClick={handleContactClick}>Contact</a>
                             </>
                         ) : (
-                            <Link to="/" className="nav-link">Home</Link>
+                            <Link to="/" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Home</Link>
                         )}
-                        <Link to="/privacy-policy" className="nav-link">Privacy Policy</Link>
-                        <Link to="/terms" className="nav-link">Terms & Conditions</Link>
+                        <Link to="/privacy-policy" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Privacy Policy</Link>
+                        <Link to="/terms"           className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Terms & Conditions</Link>
                     </div>
 
-                    {/* Profile/Login */}
-                    <div className="profile-section">
-                        <button className="donate-button" onClick={handleOpenDonate}>
-                            ☕ Buy Me a Coffee
-                        </button>
+                    {/* Bottom: user section + coffee */}
+                    <div className="hdr-sb-bottom">
+                        <div className="hdr-sb-sep" />
                         {user ? (
-                            <div className="profile-container">
-                                <img
-                                    src={`https://placehold.co/40x40/EFEFEF/4A4A4A?text=${user.name.charAt(0).toUpperCase()}`}
-                                    alt="User Avatar"
-                                    className="avatar"
-                                />
-                                <span className="user-name">{user.name}</span>
-                                <button className="login-button" onClick={handleLogout}>Logout</button>
-                            </div>
-                        ) : (
-                            <button className="login-button" onClick={handleOpenPopup}>Login</button>
-                        )}
+                            <>
+                                <div className="hdr-sb-user">
+                                    <div className="hdr-avatar">{user.name.charAt(0).toUpperCase()}</div>
+                                    <div className="hdr-sb-user-info">
+                                        <span className="hdr-sb-uname">{user.name}</span>
+                                        <span className="hdr-sb-ustatus">Logged in</span>
+                                    </div>
+                                </div>
+                                <button className="hdr-sb-logout" onClick={handleLogout}>Logout</button>
+                            </>
+                        ) : null}
+                        <button className="hdr-sb-coffee" onClick={openDonate}>☕ Buy Me a Coffee</button>
                     </div>
-                </div>
-                {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
-            </header >
-            {isPopupOpen && <AuthPopup onClose={handleClosePopup} />}
-            {isDonateModalOpen && <DonateModal onClose={handleCloseDonate} />}
+                </nav>
+
+                {/* Overlay */}
+                {isSidebarOpen && <div className="hdr-overlay" onClick={() => setIsSidebarOpen(false)} />}
+
+            </header>
+
+            {isPopupOpen      && <AuthPopup    onClose={closePopup}  />}
+            {isDonateModalOpen && <DonateModal onClose={closeDonate} />}
         </>
     );
 }
-const styles = {
-};
+
 export default Header;
