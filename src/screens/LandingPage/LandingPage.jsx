@@ -160,6 +160,7 @@ export default function LandingPage() {
 
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [dbTracks, setDbTracks] = useState([]);
   
   
   const handleOpenDonate = () => {
@@ -184,6 +185,13 @@ export default function LandingPage() {
   useEffect(() => {
     const info = localStorage.getItem('userInfo');
     if (info) setUser(JSON.parse(info));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/tracks`)
+      .then(r => r.json())
+      .then(d => { if (d.success) setDbTracks(d.data); })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -216,6 +224,54 @@ export default function LandingPage() {
   }, [user]);
 
   const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: 'smooth' });
+
+  // Map a DB track's courses ObjectId array → STATIC_COURSES objects
+  const getDbTrackCourses = (track) => {
+    if (!track || !track.courses) return [];
+    return track.courses
+      .map(cId => STATIC_COURSES.find(c => c.id === cId.toString()))
+      .filter(Boolean);
+  };
+
+  // Merged list: DB tracks first (real), then hardcoded ones not in DB (Coming Soon)
+  const getMergedTracks = () => {
+    const dbNames = new Set(dbTracks.map(t => t.name));
+    const real = dbTracks.map(t => {
+      const h = LEARNING_TRACKS.find(x => x.name === t.name) || {};
+      const courses = getDbTrackCourses(t);
+      return {
+        ...h, ...t,
+        isDB: true,
+        icon: t.icon || h.icon || '🛤️',
+        color: h.color || '#6366f1',
+        techs: h.techs || [t.type || 'Programming'],
+        lessons: h.lessons || Math.max(courses.length * 8, 20),
+        level: h.level || 'Beginner → Advanced',
+        hours: h.hours || '20+',
+        hasCourses: courses.length > 0,
+      };
+    });
+    const comingSoon = LEARNING_TRACKS
+      .filter(t => !dbNames.has(t.name))
+      .map(t => ({ ...t, isDB: false, hasCourses: false }));
+    return [...real, ...comingSoon];
+  };
+
+  // Tracks the user has already started (has progress in any course)
+  const getMyTracks = () => {
+    if (!user || !Object.keys(courseProgress).length) return [];
+    return dbTracks
+      .map(t => {
+        const courses = getDbTrackCourses(t);
+        if (courses.length === 0) return null;
+        const started = courses.some(c => (courseProgress[c.id] ?? 0) > 0);
+        if (!started) return null;
+        const avgPct = Math.round(courses.reduce((s, c) => s + (courseProgress[c.id] ?? 0), 0) / courses.length);
+        const h = LEARNING_TRACKS.find(x => x.name === t.name) || {};
+        return { ...h, ...t, matchedCourses: courses, avgProgress: avgPct, icon: t.icon || h.icon || '🛤️', color: h.color || '#6366f1' };
+      })
+      .filter(Boolean);
+  };
 
   const handleCourseClick = (course) => {
     if (!course.slug) return;
@@ -250,8 +306,14 @@ export default function LandingPage() {
   const selectedTrackObj = COURSE_TRACKS.find(t => t.name === selectedCourseTrack);
   const selectedTrackCourses = selectedCourseTrack ? getTrackCourses(selectedCourseTrack) : [];
 
-  const expandedTrackObj = LEARNING_TRACKS.find(t => t.name === expandedLearningTrack);
-  const expandedTrackCourses = expandedLearningTrack ? getTrackCourses(expandedLearningTrack) : [];
+  // For expanded learning track panel — prefer DB track courses, fallback to hardcoded map
+  const expandedDbTrack = dbTracks.find(t => t.name === expandedLearningTrack);
+  const expandedTrackObj = getMergedTracks().find(t => t.name === expandedLearningTrack);
+  const expandedTrackCourses = expandedDbTrack
+    ? getDbTrackCourses(expandedDbTrack)
+    : (expandedLearningTrack ? getTrackCourses(expandedLearningTrack) : []);
+
+  const myTracks = getMyTracks();
 
   return (
     <>
@@ -455,6 +517,43 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── MY LEARNING (logged-in users with progress) ── */}
+      {user && myTracks.length > 0 && (
+        <section className="lp-section lp-my-learning" style={{ paddingTop: '48px', paddingBottom: '16px' }}>
+          <div className="lp-section-inner">
+            <div className="lp-section-header" style={{ marginBottom: '20px' }}>
+              <div className="lp-label-tag">Your Progress</div>
+              <h2 className="lp-section-h2" style={{ marginBottom: '4px' }}>
+                My <span className="lp-gradient-text">Learning Journey</span>
+              </h2>
+              <p className="lp-section-p">Continue where you left off</p>
+            </div>
+            <div className="lp-my-tracks-grid">
+              {myTracks.map((track, i) => (
+                <div
+                  key={i}
+                  className="lp-my-track-card"
+                  style={{ '--tc': track.color }}
+                  onClick={() => { setExpandedLearningTrack(track.name); scrollTo(tracksRef); }}
+                >
+                  <div className="lp-mt-glow" />
+                  <div className="lp-mt-left">
+                    <span className="lp-mt-icon">{track.icon}</span>
+                    <div>
+                      <div className="lp-mt-name">{track.name}</div>
+                      <div className="lp-mt-meta">{track.matchedCourses.length} courses · {track.avgProgress}% done</div>
+                    </div>
+                  </div>
+                  <div className="lp-mt-right">
+                    <CourseProgressRing pct={track.avgProgress} color={track.color} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── LEARNING TRACKS (Section 2) ── */}
       <section className="lp-section lp-tracks" ref={tracksRef} id="tracks">
         <div className="lp-section-inner">
@@ -465,8 +564,8 @@ export default function LandingPage() {
           </div>
 
           <div className="lp-tracks-grid">
-            {LEARNING_TRACKS.map((track, i) => {
-              const hasCourses = !!TRACK_COURSE_IDS[track.name];
+            {getMergedTracks().map((track, i) => {
+              const hasCourses = track.hasCourses;
               const isExpanded = expandedLearningTrack === track.name;
               return (
                 <div

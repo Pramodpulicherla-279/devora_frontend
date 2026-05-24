@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, memo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, memo, useCallback } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { Helmet } from 'react-helmet';
@@ -41,6 +41,145 @@ const CodeEditor = memo(function CodeEditor({ html = '', css = '', js = '' }) {
         />
     );
 });
+
+/* ── Quiz Section ── */
+function QuizSection({ quiz }) {
+    const [selected, setSelected] = useState({});
+    const [revealed, setRevealed] = useState({});
+
+    if (!quiz || quiz.length === 0) return null;
+
+    const handleSelect = (qi, oi) => {
+        if (revealed[qi]) return;
+        setSelected(prev => ({ ...prev, [qi]: oi }));
+    };
+
+    const handleReveal = (qi) => {
+        setRevealed(prev => ({ ...prev, [qi]: true }));
+    };
+
+    const score = Object.keys(revealed).reduce((acc, qi) => {
+        return acc + (selected[qi] === quiz[qi].correctIndex ? 1 : 0);
+    }, 0);
+
+    const allRevealed = Object.keys(revealed).length === quiz.length;
+
+    return (
+        <div className="lesson-quiz-section">
+            <div className="lqs-header">
+                <div className="lqs-title">
+                    <span className="lqs-icon">🧠</span>
+                    Knowledge Check
+                </div>
+                {allRevealed && (
+                    <div className="lqs-score">
+                        Score: {score}/{quiz.length}
+                        <span className="lqs-score-badge" style={{ background: score === quiz.length ? '#22c55e' : score >= quiz.length / 2 ? '#f59e0b' : '#ef4444' }}>
+                            {score === quiz.length ? '🎉 Perfect!' : score >= quiz.length / 2 ? '👍 Good' : '📚 Keep Learning'}
+                        </span>
+                    </div>
+                )}
+            </div>
+
+            {quiz.map((q, qi) => {
+                const isRevealed = !!revealed[qi];
+                const userAnswer = selected[qi];
+                return (
+                    <div key={qi} className="lqs-card">
+                        <div className="lqs-q-num">Question {qi + 1} of {quiz.length}</div>
+                        <div className="lqs-question">{q.question}</div>
+                        <div className="lqs-options">
+                            {q.options.map((opt, oi) => {
+                                let cls = 'lqs-option';
+                                if (isRevealed) {
+                                    if (oi === q.correctIndex) cls += ' correct';
+                                    else if (oi === userAnswer) cls += ' wrong';
+                                } else if (oi === userAnswer) {
+                                    cls += ' selected';
+                                }
+                                return (
+                                    <div key={oi} className={cls} onClick={() => handleSelect(qi, oi)}>
+                                        <span className="lqs-opt-letter">{String.fromCharCode(65 + oi)}</span>
+                                        <span className="lqs-opt-text">{opt}</span>
+                                        {isRevealed && oi === q.correctIndex && <span className="lqs-tick">✓</span>}
+                                        {isRevealed && oi === userAnswer && oi !== q.correctIndex && <span className="lqs-cross">✗</span>}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        {!isRevealed && userAnswer !== undefined && (
+                            <button className="lqs-reveal-btn" onClick={() => handleReveal(qi)}>
+                                Check Answer
+                            </button>
+                        )}
+                        {isRevealed && q.explanation && (
+                            <div className="lqs-explanation">
+                                <span className="lqs-exp-icon">💡</span>
+                                <span>{q.explanation}</span>
+                            </div>
+                        )}
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
+
+/* ── Interview Questions Section ── */
+function InterviewSection({ interviewQuestions }) {
+    const [expanded, setExpanded] = useState({});
+
+    if (!interviewQuestions || interviewQuestions.length === 0) return null;
+
+    const levels = ['beginner', 'intermediate', 'advanced'];
+    const levelConfig = {
+        beginner: { label: 'Beginner', color: '#22c55e', bg: '#f0fdf4', icon: '🌱' },
+        intermediate: { label: 'Intermediate', color: '#f59e0b', bg: '#fffbeb', icon: '🚀' },
+        advanced: { label: 'Advanced', color: '#ef4444', bg: '#fef2f2', icon: '🧠' },
+    };
+
+    const toggle = (i) => setExpanded(prev => ({ ...prev, [i]: !prev[i] }));
+
+    return (
+        <div className="lesson-iq-section">
+            <div className="liq-header">
+                <span className="liq-icon">🎯</span>
+                Interview Preparation
+            </div>
+            <p className="liq-sub">Practice these questions to prepare for technical interviews.</p>
+
+            {levels.map(level => {
+                const qs = interviewQuestions.filter(q => q.level === level);
+                if (qs.length === 0) return null;
+                const cfg = levelConfig[level];
+                return (
+                    <div key={level} className="liq-level-group">
+                        <div className="liq-level-badge" style={{ color: cfg.color, borderColor: cfg.color }}>
+                            {cfg.icon} {cfg.label} ({qs.length})
+                        </div>
+                        {qs.map((q, localIdx) => {
+                            const globalIdx = interviewQuestions.indexOf(q);
+                            const isOpen = !!expanded[globalIdx];
+                            return (
+                                <div key={globalIdx} className={`liq-card ${isOpen ? 'open' : ''}`}>
+                                    <div className="liq-q-row" onClick={() => toggle(globalIdx)}>
+                                        <span className="liq-q-text">{q.question}</span>
+                                        <span className="liq-toggle">{isOpen ? '▲' : '▼'}</span>
+                                    </div>
+                                    {isOpen && (
+                                        <div className="liq-answer" style={{ borderLeft: `3px solid ${cfg.color}` }}>
+                                            {q.answer}
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
 
 function CourseScreen() {
     const params = useParams();
@@ -590,7 +729,8 @@ function CourseScreen() {
                                         >
                                             <div className="lesson-view hide-scrollbar" ref={contentAreaRef} >
                                                 {parseLessonContent(activeTopic.content)}
-                                                {/* <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} /> */}
+                                                <QuizSection quiz={activeTopic.quiz} />
+                                                <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
                                             </div>
                                             <div className="practice-view">
                                                 <CodeEditor
@@ -603,7 +743,8 @@ function CourseScreen() {
                                     ) : (
                                         <div className="lesson-view" ref={contentAreaRef}>
                                             {parseLessonContent(activeTopic.content)}
-                                            {/* <div dangerouslySetInnerHTML={{ __html: activeTopic.content }} /> */}
+                                            <QuizSection quiz={activeTopic.quiz} />
+                                            <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
                                         </div>
 
                                     )}

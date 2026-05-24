@@ -1,434 +1,702 @@
-import { useState, useEffect } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { createLowlight, all } from "lowlight";
-import Link from '@tiptap/extension-link';
-import CharacterCount from '@tiptap/extension-character-count';
-import Image from '@tiptap/extension-image';
-import { Table } from '@tiptap/extension-table';
-import TableRow from '@tiptap/extension-table-row';
-import TableHeader from '@tiptap/extension-table-header';
-import TableCell from '@tiptap/extension-table-cell';
-import TextAlign from '@tiptap/extension-text-align';
-import EditorMenuBar from "./EditorMenuBar";
-import VisualizationEmbed from './extensions/VisualizationEmbed';
-import './admin.css'
+import { useState, useEffect, useRef } from 'react';
+import LessonEditor from './LessonEditor';
+import CourseManager from './CourseManager';
+import DeleteManager from './DeleteManager';
+import './admin.css';
 import { API_BASE_URL } from '../../config';
 
+const ADMIN_PASSWORD = 'dev.el@2026';
 
+const NAV = [
+  { id: 'courses', label: 'Technology Courses', icon: '📚', section: 'MAIN' },
+  { id: 'tracks', label: 'Learning Tracks', icon: '🛤️', section: 'MAIN' },
+  { id: 'lesson-editor', label: 'Add New Lesson', icon: '✏️', section: 'CONTENT' },
+  { id: 'visualizations', label: 'Visualizations', icon: '📊', section: 'CONTENT' },
+  { id: 'delete-manager', label: 'Delete Manager', icon: '🗑️', section: 'DANGER' },
+];
 
-const lowlight = createLowlight(all);
+/* ─── Admin Login Screen ─── */
+function AdminLogin({ onLogin }) {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = () => {
+    setLoading(true);
+    setTimeout(() => {
+      if (password === ADMIN_PASSWORD) {
+        sessionStorage.setItem('admin_auth', 'true');
+        onLogin();
+      } else {
+        setError('Incorrect password. Please try again.');
+        setPassword('');
+      }
+      setLoading(false);
+    }, 500);
+  };
+
+  return (
+    <div className="admin-login-screen">
+      <div className="admin-login-box">
+        <div className="admin-login-brand">
+          <div className="admin-login-icon">D</div>
+          <div className="admin-login-title">Dev.EL Admin</div>
+          <div className="admin-login-sub">Enter your admin password to access the studio</div>
+        </div>
+        <input
+          className="modal-input"
+          type="password"
+          placeholder="Admin password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleLogin()}
+          autoFocus
+        />
+        {error && <div className="admin-login-error">{error}</div>}
+        <button
+          className="modal-confirm"
+          style={{ width: '100%', marginTop: '4px' }}
+          onClick={handleLogin}
+          disabled={loading || !password}
+        >
+          {loading ? 'Verifying…' : 'Sign In'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+const TRACK_EMOJIS = [
+  '🧩','🔷','🎨','⚙️','🤖','🎭','📱','📊','🔥','🚀',
+  '💡','🌐','🛤️','📚','🧠','⚡','🔧','🎯','🌟','💻',
+  '🗄️','🔐','📡','🧪','🎮','🔬','📈','🏗️','🌊','🦾',
+];
+
+function CreateTrackModal({ onClose, onCreated }) {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [type, setType] = useState('Web Development');
+  const [icon, setIcon] = useState('🛤️');
+  const [saving, setSaving] = useState(false);
+
+  const handleCreate = async () => {
+    if (!name.trim()) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/tracks`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.trim(), description, type, icon }),
+      });
+      const data = await res.json();
+      if (data.success) onCreated(data.data);
+      onClose();
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-title">Create Learning Track</div>
+        <div className="modal-sub">Tracks are curated learning paths shown on the landing page.</div>
+
+        <label className="modal-label">Track Icon</label>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+          <div style={{
+            width: '48px', height: '48px', borderRadius: '12px',
+            background: 'var(--bg-input)', border: '2px solid var(--accent)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '24px', flexShrink: 0,
+          }}>
+            {icon}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            {TRACK_EMOJIS.map(e => (
+              <button
+                key={e}
+                onClick={() => setIcon(e)}
+                style={{
+                  width: '32px', height: '32px', border: icon === e ? '2px solid var(--accent)' : '1px solid var(--border)',
+                  borderRadius: '6px', background: icon === e ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+                  cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                {e}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <label className="modal-label">Track Name</label>
+        <input className="modal-input" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. MERN Stack" autoFocus />
+        <label className="modal-label">Category / Type</label>
+        <input className="modal-input" value={type} onChange={e => setType(e.target.value)} placeholder="e.g. Web Development, Data Science" />
+        <label className="modal-label">Description</label>
+        <textarea className="modal-textarea" value={description} onChange={e => setDescription(e.target.value)} placeholder="What will learners achieve?" rows={3} />
+        <div className="modal-actions">
+          <button className="modal-cancel" onClick={onClose}>Cancel</button>
+          <button className="modal-confirm" onClick={handleCreate} disabled={saving || !name.trim()}>
+            {saving ? 'Creating…' : 'Create Track'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CoursesView({ onSelectCourse, onNewLesson }) {
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+
+  const load = () => {
+    setLoading(true);
+    fetch(`${API_BASE_URL}/api/courses`)
+      .then(r => r.json())
+      .then(d => { if (d.success) setCourses(d.data); })
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(load, []);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="view-header">
+        <div>
+          <div className="view-title">Technology Courses</div>
+          <div className="view-subtitle">Manage all courses, parts, and lessons.</div>
+        </div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button className="topbar-btn" onClick={() => setShowCreateModal(true)}>+ New Course</button>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="empty-state"><div className="empty-state-icon">⏳</div><div>Loading...</div></div>
+      ) : courses.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-state-icon">📚</div>
+          <div className="empty-state-title">No courses yet</div>
+          <div className="empty-state-desc">Create your first course to get started.</div>
+        </div>
+      ) : (
+        <div className="course-grid">
+          {courses.map(course => {
+            const totalParts = course.parts?.length || 0;
+            return (
+              <div key={course._id} className="course-card" onClick={() => onSelectCourse(course._id, course.slug)}>
+                <div className="course-card-header">
+                  <div className="course-card-title">{course.title}</div>
+                  <span className={`status-badge ${course.status || 'draft'}`}>{course.status || 'draft'}</span>
+                </div>
+                <div className="course-card-desc">{course.description || 'No description provided.'}</div>
+                <div className="course-stats">
+                  <div className="stat-item">
+                    <div className="stat-value">{totalParts}</div>
+                    <div className="stat-label">Parts</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-value">{(course.domains?.length || 0) + (course.tracks?.length || 0)}</div>
+                    <div className="stat-label">Assigned</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-value">{course.status === 'published' ? '●' : '○'}</div>
+                    <div className="stat-label">Status</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {showCreateModal && (
+        <div className="modal-overlay" onClick={() => setShowCreateModal(false)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <CreateCourseModalInner onClose={() => setShowCreateModal(false)} onCreated={load} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CreateCourseModalInner({ onClose, onCreated }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const handleCreate = async () => {
+    if (!title.trim()) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/courses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: title.trim(), description }),
+      });
+      const data = await res.json();
+      if (data.success) { onCreated(); onClose(); }
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="modal-title">Create New Course</div>
+      <div className="modal-sub">Fill in the details to create a new course.</div>
+      <label className="modal-label">Course Title</label>
+      <input className="modal-input" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g. MongoDB Fundamentals" autoFocus />
+      <label className="modal-label">Description</label>
+      <textarea className="modal-textarea" value={description} onChange={e => setDescription(e.target.value)} rows={3} />
+      <div className="modal-actions">
+        <button className="modal-cancel" onClick={onClose}>Cancel</button>
+        <button className="modal-confirm" onClick={handleCreate} disabled={saving || !title.trim()}>
+          {saving ? 'Creating…' : 'Create Course'}
+        </button>
+      </div>
+    </>
+  );
+}
+
+function EditTrackModal({ track, onClose, onSaved }) {
+  const [name, setName] = useState(track.name || '');
+  const [description, setDescription] = useState(track.description || '');
+  const [type, setType] = useState(track.type || 'Web Development');
+  const [icon, setIcon] = useState(track.icon || '🛤️');
+  const [isOptional, setIsOptional] = useState(track.isOptional || false);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    if (!name.trim()) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/tracks/${track._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.trim(), description, type, icon, isOptional }),
+      });
+      const data = await res.json();
+      if (data.success) onSaved();
+      onClose();
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-title">Edit Track</div>
+        <div className="modal-sub">Update the details for this learning track.</div>
+
+        <label className="modal-label">Track Icon</label>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+          <div style={{
+            width: '48px', height: '48px', borderRadius: '12px',
+            background: 'var(--bg-input)', border: '2px solid var(--accent)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '24px', flexShrink: 0,
+          }}>
+            {icon}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            {TRACK_EMOJIS.map(e => (
+              <button
+                key={e}
+                onClick={() => setIcon(e)}
+                style={{
+                  width: '32px', height: '32px',
+                  border: icon === e ? '2px solid var(--accent)' : '1px solid var(--border)',
+                  borderRadius: '6px',
+                  background: icon === e ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+                  cursor: 'pointer', fontSize: '16px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                {e}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <label className="modal-label">Track Name</label>
+        <input className="modal-input" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. MERN Stack" autoFocus />
+
+        <label className="modal-label">Category / Type</label>
+        <input className="modal-input" value={type} onChange={e => setType(e.target.value)} placeholder="e.g. Web Development, Data Science" />
+
+        <label className="modal-label">Description</label>
+        <textarea className="modal-textarea" value={description} onChange={e => setDescription(e.target.value)} placeholder="What will learners achieve?" rows={3} />
+
+        <label className="modal-label">Visibility</label>
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+          {[{ label: 'Required', value: false }, { label: 'Optional', value: true }].map(opt => (
+            <button
+              key={opt.label}
+              onClick={() => setIsOptional(opt.value)}
+              style={{
+                flex: 1, padding: '8px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px',
+                border: isOptional === opt.value ? '2px solid var(--accent)' : '1px solid var(--border)',
+                background: isOptional === opt.value ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+                color: isOptional === opt.value ? 'var(--accent-hover)' : 'var(--text-secondary)',
+                fontWeight: isOptional === opt.value ? 600 : 400,
+              }}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="modal-actions">
+          <button className="modal-cancel" onClick={onClose}>Cancel</button>
+          <button className="modal-confirm" onClick={handleSave} disabled={saving || !name.trim()}>
+            {saving ? 'Saving…' : 'Save Changes'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TracksView() {
+  const [tracks, setTracks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [editingTrack, setEditingTrack] = useState(null);
+
+  const load = () => {
+    setLoading(true);
+    fetch(`${API_BASE_URL}/api/tracks`)
+      .then(r => r.json())
+      .then(d => { if (d.success) setTracks(d.data); })
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(load, []);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="view-header">
+        <div>
+          <div className="view-title">Learning Tracks</div>
+          <div className="view-subtitle">Curated course sequences for specific learning goals.</div>
+        </div>
+        <button className="topbar-btn" onClick={() => setShowModal(true)}>+ New Track</button>
+      </div>
+
+      {loading ? (
+        <div className="empty-state"><div>Loading...</div></div>
+      ) : tracks.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-state-icon">🛤️</div>
+          <div className="empty-state-title">No tracks yet</div>
+          <div className="empty-state-desc">Create learning tracks that sequence courses into a path.</div>
+        </div>
+      ) : (
+        <div className="dt-grid">
+          {tracks.map(t => (
+            <div key={t._id} className="dt-card">
+              <div className="dt-card-header">
+                <div className="dt-icon">{t.icon || '🛤️'}</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="dt-card-name">{t.name}</div>
+                  {t.domain?.name && (
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>{t.domain.name}</div>
+                  )}
+                </div>
+                <span className={`status-badge ${t.isOptional ? 'draft' : 'published'}`}>
+                  {t.isOptional ? 'Optional' : 'Required'}
+                </span>
+              </div>
+              <div className="dt-card-desc">{t.description || 'No description'}</div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '4px' }}>
+                <div className="dt-courses-count">{t.type} • {t.courses?.length || 0} courses</div>
+                <button
+                  onClick={e => { e.stopPropagation(); setEditingTrack(t); }}
+                  style={{
+                    padding: '4px 12px', borderRadius: '6px', fontSize: '12px',
+                    border: '1px solid var(--border)', background: 'var(--bg-input)',
+                    color: 'var(--text-secondary)', cursor: 'pointer',
+                    transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-hover)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                >
+                  ✏️ Edit
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {showModal && (
+        <CreateTrackModal onClose={() => setShowModal(false)} onCreated={load} />
+      )}
+
+      {editingTrack && (
+        <EditTrackModal
+          track={editingTrack}
+          onClose={() => setEditingTrack(null)}
+          onSaved={() => { setEditingTrack(null); load(); }}
+        />
+      )}
+    </div>
+  );
+}
 
 function AdminDashboard() {
-    // component state
-    const [view, setView] = useState("none");
-    const [courses, setCourses] = useState([]);
-    const [parts, setParts] = useState([]);
-    const [lessons, setLessons] = useState([]);
+  const [isAuthed, setIsAuthed] = useState(() => sessionStorage.getItem('admin_auth') === 'true');
+  const [currentView, setCurrentView] = useState('courses');
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-    // Form state
-    const [selectedCourse, setSelectedCourse] = useState("");
-    const [selectedPart, setSelectedPart] = useState("");
-    const [selectedLessonId, setSelectedLessonId] = useState("");
-    const [newCourseName, setNewCourseName] = useState("");
-    const [newCourseDescription, setNewCourseDescription] = useState("");
-    const [newPartName, setNewPartName] = useState("");
-    const [newLessonTitle, setNewLessonTitle] = useState("");
+  /* ── Search ── */
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchCourses, setSearchCourses] = useState([]);
+  const [searchTracks, setSearchTracks] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef(null);
 
-    const editor = useEditor({
-        extensions: [
-            StarterKit,
-            Image,
-            Table.configure({ resizable: true }),
-            TableRow,
-            TableHeader,
-            TableCell,
-            TextAlign.configure({
-                types: ['heading', 'paragraph'],
-            }),
-            CodeBlockLowlight.configure({
-                lowlight,
-                defaultLanguage: "javascript",
-            }),
-            Link.configure({
-                openOnClick: false, // Prevents navigating away when clicking in the editor
-                autolink: true,     // Automatically detects and creates links from URLs
-            }),
-            CharacterCount.configure(),
-            VisualizationEmbed,
-        ],
-        content: "<p>Write your lesson here ✒️</p>",
+  useEffect(() => {
+    if (!isAuthed) return;
+    Promise.all([
+      fetch(`${API_BASE_URL}/api/courses`).then(r => r.json()),
+      fetch(`${API_BASE_URL}/api/tracks`).then(r => r.json()),
+    ]).then(([co, tr]) => {
+      if (co.success) setSearchCourses(co.data);
+      if (tr.success) setSearchTracks(tr.data);
     });
+  }, [isAuthed]);
 
-    // Fetch initial data from the backend
-    useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/courses`);
-                const result = await response.json();
-                if (result.success) {
-                    // Map backend data to frontend state structure
-                    const fetchedCourses = result.data.map(course => ({
-                        id: course._id,
-                        name: course.title,
-                        parts: course.parts || [] // Assuming parts are populated or just IDs
-                    }));
-                    setCourses(fetchedCourses);
-                    console.log(fetchedCourses);
-                }
-            } catch (error) {
-                console.error("Failed to fetch courses:", error);
-            }
-        };
-        fetchCourses();
-    }, []);
-
-    // Fetch parts when a course is selected
-    useEffect(() => {
-        const fetchParts = async () => {
-            if (selectedCourse) {
-                try {
-                    // Assuming an endpoint like GET /api/courses/:courseId/parts
-                    const response = await fetch(`${API_BASE_URL}/api/parts/${selectedCourse}/parts`);
-                    const result = await response.json();
-                    if (result.success) {
-                        const fetchedParts = result.data.map(part => ({
-                            id: part._id,
-                            name: part.title,
-                        }));
-                        setParts(fetchedParts);
-                        console.log(fetchedParts)
-                    } else {
-                        setParts([]); // Clear parts if fetching fails or course has no parts
-                    }
-                } catch (error) {
-                    console.error("Failed to fetch parts:", error);
-                    setParts([]); // Clear parts on error
-                }
-            } else {
-                setParts([]); // Clear parts when no course is selected
-            }
-        };
-
-        fetchParts();
-    }, [selectedCourse]);
-
-    // Fetch lessons when a part is selected
-    useEffect(() => {
-        const fetchLessons = async () => {
-            if (selectedPart) {
-                try {
-                    // Assuming an endpoint like GET /api/courses/:courseId/parts
-                    const response = await fetch(`${API_BASE_URL}/api/lessons/${selectedPart}/lessons`);
-                    const result = await response.json();
-                    if (result.success) {
-                        // const fetchedLessons = result.data.map(lesson => ({
-                        //     id: lesson._id,
-                        //     name: lesson.title,
-                        // }));
-                        setLessons(result.data);
-                        console.log(result.data)
-                    } else {
-                        setLessons([]); // Clear parts if fetching fails or course has no parts
-                    }
-                } catch (error) {
-                    console.error("Failed to fetch parts:", error);
-                    setLessons([]); // Clear parts on error
-                }
-            } else {
-                setLessons([]); // Clear parts when no course is selected
-            }
-        };
-
-        fetchLessons();
-    }, [selectedPart]);
-
-    // Effect to load selected lesson content into the editor
-    useEffect(() => {
-        if (selectedLessonId) {
-            const lesson = lessons.find(l => l._id === selectedLessonId);
-            if (lesson) {
-                setNewLessonTitle(lesson.title);
-                editor.commands.setContent(lesson.content || "");
-            }
-        } else {
-            // Clear form when no lesson is selected
-            setNewLessonTitle("");
-            editor.commands.setContent("<p>Write your lesson here ✒️</p>");
-        }
-    }, [selectedLessonId, lessons, editor]);
-
-    const handleAddCourse = async () => {
-        const trimmedCourseName = newCourseName.trim();
-        const trimmedDescription = newCourseDescription.trim();
-        if (!trimmedCourseName) {
-            alert("Please enter a course name.");
-            return;
-        }
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/courses`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: trimmedCourseName, description: trimmedDescription })
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Failed to create the course.');
-
-            const newCourseFromApi = result.data;
-            const newCourseForState = { id: newCourseFromApi._id, name: newCourseFromApi.title };
-            setCourses([...courses, newCourseForState]);
-
-            setNewCourseName("");
-            setNewCourseDescription("");
-            setView("none");
-            alert(`Course "${trimmedCourseName}" added successfully!`);
-        } catch (error) {
-            console.error("Failed to add course:", error);
-            alert(`Error adding course: ${error.message}`);
-        }
+  useEffect(() => {
+    const handler = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false);
+      }
     };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
-    const handleAddPart = async () => {
-        const trimmedPartName = newPartName.trim();
-        if (!selectedCourse) {
-            alert("Please select a course.");
-            return;
-        }
-        if (!trimmedPartName) {
-            alert("Please enter a part name.");
-            return;
-        }
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/parts/${selectedCourse}/parts`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: trimmedPartName })
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Failed to create the part.');
+  const q = searchQuery.trim().toLowerCase();
+  const filteredCourses = q.length >= 2
+    ? searchCourses.filter(c => c.title.toLowerCase().includes(q)).slice(0, 5)
+    : [];
+  const filteredTracks = q.length >= 2
+    ? searchTracks.filter(t => t.name.toLowerCase().includes(q)).slice(0, 3)
+    : [];
+  const hasResults = filteredCourses.length > 0 || filteredTracks.length > 0;
 
-            // Optionally, you can update the local state to reflect the new part
-            // This requires a more complex state update or refetching data
+  const sections = [...new Set(NAV.map(n => n.section))];
 
-            setNewPartName("");
-            setSelectedCourse("");
-            setView("none");
-            alert(`Part "${trimmedPartName}" added successfully!`);
-        } catch (error) {
-            console.error("Failed to add part:", error);
-            alert(`Error adding part: ${error.message}`);
-        }
-    };
+  const handleLogout = () => {
+    sessionStorage.removeItem('admin_auth');
+    setIsAuthed(false);
+  };
 
-    const handleAddOrUpdateLesson = () => {
-        if (selectedLessonId) {
-            handleUpdateLesson();
-        } else {
-            handleAddLesson();
-        }
-    };
+  const navigate = (viewId) => {
+    setCurrentView(viewId);
+    if (viewId !== 'course-manager') setSelectedCourseId(null);
+  };
 
-    const handleAddLesson = async () => {
-        const trimmedLessonTitle = newLessonTitle.trim();
-        const lessonContent = editor.getHTML();
+  const handleSelectCourse = (courseId) => {
+    setSelectedCourseId(courseId);
+    setCurrentView('course-manager');
+  };
 
-        if (!selectedPart) {
-            alert("Please select a part.");
-            return;
-        }
-        if (!trimmedLessonTitle) {
-            alert("Please enter a lesson title.");
-            return;
-        }
+  const renderView = () => {
+    switch (currentView) {
+      case 'courses':
+        return (
+          <CoursesView
+            onSelectCourse={handleSelectCourse}
+            onNewLesson={() => navigate('lesson-editor')}
+          />
+        );
+      case 'course-manager':
+        return (
+          <CourseManager
+            courseId={selectedCourseId}
+            onBack={() => navigate('courses')}
+          />
+        );
+      case 'lesson-editor':
+        return (
+          <LessonEditor
+            onBack={() => navigate('courses')}
+          />
+        );
+      case 'tracks':
+        return <TracksView />;
+      case 'visualizations':
+        return (
+          <div className="empty-state" style={{ height: '100%' }}>
+            <div className="empty-state-icon">📊</div>
+            <div className="empty-state-title">Visualization Registry</div>
+            <div className="empty-state-desc">Visualization components are managed in the codebase under src/components/visualizations/. Use the embed button in the lesson editor to insert them.</div>
+          </div>
+        );
+      case 'delete-manager':
+        return <DeleteManager />;
+      default:
+        return <CoursesView onSelectCourse={handleSelectCourse} onNewLesson={() => navigate('lesson-editor')} />;
+    }
+  };
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/lessons/${selectedPart}/lessons`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: trimmedLessonTitle, content: lessonContent })
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Failed to create the lesson.');
+  /* Show login screen if not authenticated */
+  if (!isAuthed) {
+    return <AdminLogin onLogin={() => setIsAuthed(true)} />;
+  }
 
-            setNewLessonTitle("");
-            setSelectedPart("");
-            setSelectedCourse("");
-            editor.commands.clearContent();
-            setView("none");
-            alert(`Lesson "${trimmedLessonTitle}" added successfully!`);
-        } catch (error) {
-            console.error("Failed to add lesson:", error);
-            alert(`Error adding lesson: ${error.message}`);
-        }
-    };
-
-    const handleUpdateLesson = async () => {
-        const trimmedLessonTitle = newLessonTitle.trim();
-        const lessonContent = editor.getHTML();
-
-        if (!selectedLessonId || !trimmedLessonTitle) {
-            alert("Please select a lesson and provide a title.");
-            return;
-        }
-
-        try {
-            // Assuming a PUT endpoint to update a lesson by its ID
-            const response = await fetch(`${API_BASE_URL}/api/lessons/${selectedLessonId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: trimmedLessonTitle, content: lessonContent })
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Failed to update the lesson.');
-
-            // Update the lesson in the local state
-            setLessons(lessons.map(l => l._id === selectedLessonId ? result.data : l));
-
-            alert(`Lesson "${trimmedLessonTitle}" updated successfully!`);
-        } catch (error) {
-            console.error("Failed to update lesson:", error);
-            alert(`Error updating lesson: ${error.message}`);
-        }
-    };
-
-    return (
-        <div className="p-6 max-w-5xl mx-auto admin-container">
-            <h2 className="text-3xl font-bold text-center mb-8">Admin Panel</h2>
-
-            {/* TOP BUTTONS */}
-            <div className="flex gap-4 justify-center mb-8">
-                <button className="admin-btn" onClick={() => setView("course")}>
-                    ➕ Add Course
-                </button>
-                <button className="admin-btn" onClick={() => setView("part")}>
-                    ➕ Add Part
-                </button>
-                <button className="admin-btn" onClick={() => setView("lesson")}>
-                    ➕ Add Lesson
-                </button>
+  return (
+    <div className="admin-layout">
+      {/* Sidebar */}
+      <div className={`admin-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className="sidebar-brand">
+          <div className="sidebar-brand-icon">D</div>
+          {!sidebarCollapsed && (
+            <div className="sidebar-brand-text">
+              <div className="sidebar-brand-name">Dev.EL</div>
+              <div className="sidebar-brand-sub">Admin Studio</div>
             </div>
-
-            {/* ADD COURSE */}
-            {view === "course" && (
-                <div className="admin-box">
-                    <h3>Existings Courses:</h3>
-                    <select
-                        className="admin-input"
-                        value={selectedCourse}
-                        onChange={(e) => setSelectedCourse(e.target.value)}
-                    >
-                        <option value="">Select Course</option>
-                        {courses.map((c) => (
-                            <option key={c.id} value={c.id}>
-                                {c.name}
-                            </option>
-                        ))}
-                    </select>
-                    <h3>Add New Course</h3>
-                    <input className="admin-input" type="text" placeholder="Course Name" value={newCourseName} onChange={(e) => setNewCourseName(e.target.value)} />
-                    <textarea
-                        className="admin-input mt-2"
-                        placeholder="Course Description"
-                        value={newCourseDescription}
-                        onChange={(e) => setNewCourseDescription(e.target.value)}
-                        rows="3"
-                    ></textarea>                    <button className="admin-submit" onClick={handleAddCourse}>Submit</button>
-                </div>
-            )}
-
-            {/* ADD PART */}
-            {view === "part" && (
-                <div className="admin-box">
-                    <h2>Add Part to Course</h2>
-                    <h3>select course:</h3>
-                    <select
-                        className="admin-input"
-                        value={selectedCourse}
-                        onChange={(e) => setSelectedCourse(e.target.value)}
-                    >
-                        <option value="">Select Course</option>
-                        {courses.map((c) => (
-                            <option key={c.id} value={c.id}>
-                                {c.name}
-                            </option>
-                        ))}
-                    </select>
-                    <h3>Existing Parts</h3>
-                    <select className="admin-input" value={selectedPart} onChange={(e) => setSelectedPart(e.target.value)}>
-                        <option value="">Select Part</option>
-                        {parts.map((p) => (
-                            <option key={p.id} value={p.id}>
-                                {p.name}
-                            </option>
-                        ))}
-                    </select>
-
-                    <h3>Add New Part</h3>
-                    <input className="admin-input" type="text" placeholder="Part Name" value={newPartName} onChange={(e) => setNewPartName(e.target.value)} />
-                    <button className="admin-submit" onClick={handleAddPart}>Submit</button>
-                </div>
-            )}
-
-            {/* ADD LESSON + EDITOR */}
-            {view === "lesson" && (
-                <div className="admin-box">
-                    <h3>Select Course & Part</h3>
-                    <select className="admin-input" value={selectedCourse} onChange={(e) => { setSelectedCourse(e.target.value); setSelectedPart(""); }}>
-                        <option value="">Select Course</option>
-                        {courses.map((c) => (<option key={c.id} value={c.id}>{c.name}</option>))}
-                    </select>
-
-                    {/* Select Part */}
-                    {selectedCourse && (
-                        <select className="admin-input" value={selectedPart} onChange={(e) => setSelectedPart(e.target.value)}>
-                            <option value="">Select Part</option>
-                            {parts.map((p) => (
-                                <option key={p.id} value={p.id}>
-                                    {p.name}
-                                </option>
-                            ))}
-                        </select>
-                    )}
-
-                    {/* Existing lessons */}
-                    {selectedPart && lessons.length > 0 && (
-                        <div className="mt-4">
-                            <h4 className="font-semibold mb-2">Existing Lessons (click to edit):</h4>
-                            <select
-                                className="admin-input"
-                                value={selectedLessonId}
-                                onChange={(e) => setSelectedLessonId(e.target.value)}
-                            >
-                                <option value="">Select a lesson to edit...</option>
-                                {lessons.map((l) => (
-                                    <option key={l._id} value={l._id}>{l.title}</option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
-
-                    {/* Lesson name */}
-                    <h3>{selectedLessonId ? "Edit Lesson" : "Add New Lesson"}</h3>
-                    <input className="admin-input" type="text" placeholder="Lesson Title" value={newLessonTitle} onChange={(e) => setNewLessonTitle(e.target.value)} />
-                    <div className="mt-5 border rounded-xl bg-white p-3 shadow">
-                        <EditorMenuBar editor={editor} />
-                        <div style={{ height: '600px', overflowY: 'auto' }}>
-                            <EditorContent editor={editor} className="min-h-[250px] p-3" />
-                        </div>
-                    </div>
-                    <button className="admin-submit mt-4" onClick={handleAddOrUpdateLesson}>
-                        {selectedLessonId ? "Update Lesson" : "Submit New Lesson"}
-                    </button>
-                    {selectedLessonId && (
-                        <button className="admin-cancel-btn mt-2" onClick={() => setSelectedLessonId("")}>
-                            Cancel Edit (Add New)
-                        </button>
-                    )}
-                </div>
-            )}
+          )}
         </div>
-    );
+
+        <div className="sidebar-nav">
+          {sections.map(section => (
+            <div key={section}>
+              {!sidebarCollapsed && (
+                section === 'DANGER'
+                  ? <div className="sidebar-danger-label">{section}</div>
+                  : <div className="sidebar-section-label">{section}</div>
+              )}
+              {NAV.filter(n => n.section === section).map(item => (
+                <div
+                  key={item.id}
+                  className={`sidebar-item ${currentView === item.id || (item.id === 'courses' && currentView === 'course-manager') ? 'active' : ''} ${item.section === 'DANGER' ? 'danger-item' : ''}`}
+                  onClick={() => navigate(item.id)}
+                  title={sidebarCollapsed ? item.label : ''}
+                  style={item.section === 'DANGER' ? { color: currentView === item.id ? '#f87171' : 'rgba(239,68,68,0.7)' } : {}}
+                >
+                  <span className="icon">{item.icon}</span>
+                  {!sidebarCollapsed && <span>{item.label}</span>}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="sidebar-footer">
+          {!sidebarCollapsed && (
+            <div
+              className="sidebar-item"
+              onClick={handleLogout}
+              title="Sign out"
+              style={{ color: 'var(--text-muted)', fontSize: '13px' }}
+            >
+              <span className="icon">🚪</span>
+              <span>Sign Out</span>
+            </div>
+          )}
+          <div
+            className="sidebar-item"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            title="Toggle sidebar"
+          >
+            <span className="icon">{sidebarCollapsed ? '→' : '←'}</span>
+            {!sidebarCollapsed && <span>Collapse</span>}
+          </div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="admin-main">
+        <div className="admin-topbar">
+          <button className="topbar-toggle" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
+            ☰
+          </button>
+
+          {/* Search with dropdown */}
+          <div className="search-wrap" ref={searchRef}>
+            <input
+              className="topbar-search"
+              placeholder="Search courses, tracks… (type 2+ chars)"
+              autoComplete="off"
+              value={searchQuery}
+              onChange={e => { setSearchQuery(e.target.value); setSearchOpen(true); }}
+              onFocus={() => setSearchOpen(true)}
+              onKeyDown={e => { if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery(''); } }}
+            />
+            {searchOpen && searchQuery.length >= 2 && (
+              <div className="search-dropdown">
+                {!hasResults ? (
+                  <div className="search-empty">No results for "{searchQuery}"</div>
+                ) : (
+                  <>
+                    {filteredCourses.length > 0 && (
+                      <div className="search-group">
+                        <div className="search-group-label">Courses</div>
+                        {filteredCourses.map(c => (
+                          <div
+                            key={c._id}
+                            className="search-result-item"
+                            onClick={() => {
+                              handleSelectCourse(c._id);
+                              setSearchOpen(false);
+                              setSearchQuery('');
+                            }}
+                          >
+                            <span className="search-result-icon">📘</span>
+                            <span className="search-result-name">{c.title}</span>
+                            <span className={`status-badge ${c.status || 'draft'}`}>{c.status || 'draft'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {filteredTracks.length > 0 && (
+                      <div className="search-group">
+                        <div className="search-group-label">Tracks</div>
+                        {filteredTracks.map(t => (
+                          <div
+                            key={t._id}
+                            className="search-result-item"
+                            onClick={() => {
+                              navigate('tracks');
+                              setSearchOpen(false);
+                              setSearchQuery('');
+                            }}
+                          >
+                            <span className="search-result-icon">{t.icon || '🛤️'}</span>
+                            <span className="search-result-name">{t.name}</span>
+                            <span className="search-result-meta">{t.type || 'Track'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* <div className="topbar-actions">
+            <button className="topbar-btn" onClick={() => navigate('lesson-editor')}>
+              + Create New
+            </button>
+          </div> */}
+        </div>
+
+        <div className="admin-content">
+          {renderView()}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default AdminDashboard;
