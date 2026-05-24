@@ -212,25 +212,41 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!user) return;
-    STATIC_COURSES.forEach(async (c) => {
+    // Gather all unique course IDs: STATIC_COURSES + any DB track courses
+    const dbCourseIds = dbTracks.flatMap(t =>
+      (t.courses || []).map(c => (c._id || c).toString())
+    );
+    const allIds = [...new Set([...STATIC_COURSES.map(c => c.id), ...dbCourseIds])];
+    allIds.forEach(async (id) => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/progress/courses/${c.id}`, {
+        const res = await fetch(`${API_BASE_URL}/api/progress/courses/${id}`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         const data = await res.json();
-        if (data?.percent != null) setCourseProgress(p => ({ ...p, [c.id]: data.percent }));
+        if (data?.percent != null) setCourseProgress(p => ({ ...p, [id]: data.percent }));
       } catch { }
     });
-  }, [user]);
+  }, [user, dbTracks]);
 
   const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: 'smooth' });
 
-  // Map a DB track's courses ObjectId array → STATIC_COURSES objects
+  // Map a DB track's populated courses → display objects
+  // getTracks already populates courses with { _id, title, slug, status, parts }
   const getDbTrackCourses = (track) => {
     if (!track || !track.courses) return [];
-    return track.courses
-      .map(cId => STATIC_COURSES.find(c => c.id === cId.toString()))
-      .filter(Boolean);
+    return track.courses.map(c => {
+      const cId = (c._id || c).toString();
+      // Try to enrich with STATIC_COURSES data (icon, color, full nav slug)
+      const s = STATIC_COURSES.find(sc => sc.id === cId);
+      return {
+        id: cId,
+        name: s?.name || c.title || 'Course',
+        slug: s?.slug || c.slug || '',
+        description: s?.description || c.description || '',
+        icon: s?.icon || '📘',
+        color: s?.color || '#6366f1',
+      };
+    });
   };
 
   // Merged list: DB tracks first (real), then hardcoded ones not in DB (Coming Soon)
@@ -238,17 +254,20 @@ export default function LandingPage() {
     const dbNames = new Set(dbTracks.map(t => t.name));
     const real = dbTracks.map(t => {
       const h = LEARNING_TRACKS.find(x => x.name === t.name) || {};
-      const courses = getDbTrackCourses(t);
+      // Real lesson count from populated parts
+      const lessonCount = (t.courses || []).reduce((sum, c) => {
+        return sum + ((c.parts || []).reduce((s2, p) => s2 + (p.lessons?.length || 0), 0));
+      }, 0);
       return {
         ...h, ...t,
         isDB: true,
         icon: t.icon || h.icon || '🛤️',
         color: h.color || '#6366f1',
         techs: h.techs || [t.type || 'Programming'],
-        lessons: h.lessons || Math.max(courses.length * 8, 20),
+        lessons: lessonCount || h.lessons || 0,
         level: h.level || 'Beginner → Advanced',
         hours: h.hours || '20+',
-        hasCourses: courses.length > 0,
+        hasCourses: (t.courses?.length || 0) > 0,   // ← use raw DB count, not STATIC mapping
       };
     });
     const comingSoon = LEARNING_TRACKS
@@ -293,20 +312,20 @@ export default function LandingPage() {
     if (u) setUser(JSON.parse(u));
   };
 
-  // Main tracks shown in the "Our Courses" section
-  const COURSE_TRACKS = [
-    { name: 'MERN Stack', icon: '🧩', color: '#7c3aed', desc: 'MongoDB, Express, React, Node.js — the full JavaScript stack.' },
-    { name: 'MEAN Stack', icon: '🔷', color: '#1565c0', desc: 'MongoDB, Express, Angular, Node.js — enterprise full-stack.' },
-    { name: 'Frontend Development', icon: '🎨', color: '#7b1fa2', desc: 'HTML, CSS, JavaScript — build beautiful UIs.' },
-    { name: 'Backend Development', icon: '⚙️', color: '#2e7d32', desc: 'Node.js, Express, databases — power your server.' },
-    { name: 'Data Analytics', icon: '📊', color: '#0277bd', desc: 'SQL, Python, Power BI — make sense of data.' },
-    { name: 'DevOps', icon: '🛠️', color: '#5d4037', desc: 'Terminal, Git, CI/CD — ship faster.' },
-  ];
+  // "Our Learning Tracks" section — built from DB tracks (admin-created), not hardcoded
+  const selectedTrackDbObj = dbTracks.find(t => t.name === selectedCourseTrack);
+  const selectedTrackObj = selectedTrackDbObj
+    ? {
+        name: selectedTrackDbObj.name,
+        icon: selectedTrackDbObj.icon || LEARNING_TRACKS.find(h => h.name === selectedTrackDbObj.name)?.icon || '🛤️',
+        color: LEARNING_TRACKS.find(h => h.name === selectedTrackDbObj.name)?.color || '#6366f1',
+      }
+    : null;
+  const selectedTrackCourses = selectedCourseTrack && selectedTrackDbObj
+    ? getDbTrackCourses(selectedTrackDbObj)
+    : [];
 
-  const selectedTrackObj = COURSE_TRACKS.find(t => t.name === selectedCourseTrack);
-  const selectedTrackCourses = selectedCourseTrack ? getTrackCourses(selectedCourseTrack) : [];
-
-  // For expanded learning track panel — prefer DB track courses, fallback to hardcoded map
+  // For expanded learning track panel (top "Explore Popular Learning Tracks" section)
   const expandedDbTrack = dbTracks.find(t => t.name === expandedLearningTrack);
   const expandedTrackObj = getMergedTracks().find(t => t.name === expandedLearningTrack);
   const expandedTrackCourses = expandedDbTrack
@@ -890,7 +909,7 @@ console.log(reverseString('Dev.EL'));
       </section>
 
       {/* ── COURSES (Track drill-down) ── */}
-      <section className="lp-section lp-courses">
+      {/* <section className="lp-section lp-courses">
         <div className="lp-section-inner">
           <div className="lp-section-header">
             <div className="lp-label-tag">Start Learning Today</div>
@@ -910,27 +929,34 @@ console.log(reverseString('Dev.EL'));
             {!selectedCourseTrack && <p className="lp-section-p">Click a track to explore its courses</p>}
           </div>
 
-          {/* Level 1: Track cards */}
           {!selectedCourseTrack && (
             <div className="lp-course-tracks-grid">
-              {COURSE_TRACKS.map((track, i) => {
-                const courses = getTrackCourses(track.name);
+              {dbTracks.length === 0 ? (
+                <p style={{ color: '#aaa', fontSize: '14px', padding: '24px 0' }}>No tracks available yet. Check back soon!</p>
+              ) : dbTracks.map((track, i) => {
+                const h = LEARNING_TRACKS.find(x => x.name === track.name) || {};
+                const color = h.color || '#6366f1';
+                const courses = getDbTrackCourses(track);
                 const totalPct = user && courses.length > 0
                   ? Math.round(courses.reduce((s, c) => s + (courseProgress[c.id] ?? 0), 0) / courses.length)
                   : 0;
                 return (
-                  <div key={i} className="lp-ct-card" style={{ '--cc': track.color }}
-                    onClick={() => setSelectedCourseTrack(track.name)}>
+                  <div
+                    key={i}
+                    className="lp-ct-card"
+                    style={{ '--cc': color, cursor: courses.length > 0 ? 'pointer' : 'default', opacity: courses.length === 0 ? 0.7 : 1 }}
+                    onClick={() => courses.length > 0 && setSelectedCourseTrack(track.name)}
+                  >
                     <div className="lp-ct-glow" />
                     <div className="lp-ct-top">
-                      <span className="lp-ct-icon">{track.icon}</span>
-                      {user && totalPct > 0 && <CourseProgressRing pct={totalPct} color={track.color} />}
+                      <span className="lp-ct-icon">{track.icon || h.icon || '🛤️'}</span>
+                      {user && totalPct > 0 && <CourseProgressRing pct={totalPct} color={color} />}
                     </div>
                     <h3 className="lp-ct-name">{track.name}</h3>
-                    <p className="lp-ct-desc">{track.desc}</p>
+                    <p className="lp-ct-desc">{track.description || (h.techs ? h.techs.join(', ') + '.' : '')}</p>
                     <div className="lp-ct-footer">
-                      <span className="lp-ct-count">{courses.length} courses</span>
-                      <span className="lp-ct-cta">Explore →</span>
+                      <span className="lp-ct-count">{courses.length} course{courses.length !== 1 ? 's' : ''}</span>
+                      {courses.length > 0 && <span className="lp-ct-cta">Explore →</span>}
                     </div>
                   </div>
                 );
@@ -938,7 +964,6 @@ console.log(reverseString('Dev.EL'));
             </div>
           )}
 
-          {/* Level 2: Sub-course cards */}
           {selectedCourseTrack && (
             <div className="lp-courses-grid">
               {selectedTrackCourses.map((course) => {
@@ -960,7 +985,7 @@ console.log(reverseString('Dev.EL'));
             </div>
           )}
         </div>
-      </section>
+      </section> */}
 
       {/* ── ANALYTICS ── */}
       <section className="lp-section lp-analytics">
