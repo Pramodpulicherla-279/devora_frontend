@@ -7,6 +7,7 @@ import CourseScreen from './screens/Lessons/lessons.jsx';
 import AdminDashboard from './Admin/dashboard.jsx';
 import TermsScreen from './screens/TermsScreen/termsScreen.jsx';
 import PrivacyPolicyScreen from './screens/PrivacyPolicy/privacyPolicyScreen.jsx';
+import TrackScreen from './screens/Track/TrackScreen.jsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         {/* <Route path="/courses" element={<CoursesScreen />} /> */}
+        <Route path="/track/:slug" element={<TrackScreen />} />
         <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
         <Route path="/course/:courseSlug" element={<CourseScreen />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />

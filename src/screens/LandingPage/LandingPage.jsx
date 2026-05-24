@@ -585,20 +585,24 @@ export default function LandingPage() {
           <div className="lp-tracks-grid">
             {getMergedTracks().map((track, i) => {
               const hasCourses = track.hasCourses;
-              const isExpanded = expandedLearningTrack === track.name;
+              const trackIdentifier = track.slug || track._id;
               return (
                 <div
                   key={i}
-                  className={`lp-track-card ${isExpanded ? 'expanded' : ''} ${!hasCourses ? 'coming-soon' : 'clickable'}`}
+                  className={`lp-track-card ${!hasCourses ? 'coming-soon' : 'clickable'}`}
                   style={{ '--tc': track.color }}
-                  onClick={() => hasCourses && setExpandedLearningTrack(isExpanded ? null : track.name)}
+                  onClick={() => {
+                    if (!hasCourses) return;
+                    try { logEvent(getAnalytics(), 'track_click', { track: track.name }); } catch { }
+                    navigate(`/track/${trackIdentifier}`);
+                  }}
                 >
                   <div className="lp-tc-glow" />
                   <div className="lp-tc-top">
                     <span className="lp-tc-icon">{track.icon}</span>
                     {!hasCourses
                       ? <span className="lp-cs-badge">Coming Soon</span>
-                      : <span className="lp-expand-icon">{isExpanded ? '▲' : '▼'}</span>
+                      : <span className="lp-expand-icon">→</span>
                     }
                   </div>
                   <h3 className="lp-tc-name">{track.name}</h3>
@@ -940,12 +944,16 @@ console.log(reverseString('Dev.EL'));
                 const totalPct = user && courses.length > 0
                   ? Math.round(courses.reduce((s, c) => s + (courseProgress[c.id] ?? 0), 0) / courses.length)
                   : 0;
+                const trackIdentifier = track.slug || track._id;
                 return (
                   <div
                     key={i}
                     className="lp-ct-card"
-                    style={{ '--cc': color, cursor: courses.length > 0 ? 'pointer' : 'default', opacity: courses.length === 0 ? 0.7 : 1 }}
-                    onClick={() => courses.length > 0 && setSelectedCourseTrack(track.name)}
+                    style={{ '--cc': color, cursor: 'pointer' }}
+                    onClick={() => {
+                      try { logEvent(getAnalytics(), 'track_click', { track: track.name }); } catch { }
+                      navigate(`/track/${trackIdentifier}`);
+                    }}
                   >
                     <div className="lp-ct-glow" />
                     <div className="lp-ct-top">
@@ -956,7 +964,7 @@ console.log(reverseString('Dev.EL'));
                     <p className="lp-ct-desc">{track.description || (h.techs ? h.techs.join(', ') + '.' : '')}</p>
                     <div className="lp-ct-footer">
                       <span className="lp-ct-count">{courses.length} course{courses.length !== 1 ? 's' : ''}</span>
-                      {courses.length > 0 && <span className="lp-ct-cta">Explore →</span>}
+                      <span className="lp-ct-cta">Explore →</span>
                     </div>
                   </div>
                 );
