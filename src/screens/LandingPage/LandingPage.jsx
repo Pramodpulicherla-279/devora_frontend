@@ -30,6 +30,28 @@ const TRACK_COURSE_IDS = {
   'DevOps': ['693afba9252afa6fafc011af', '693afe6f252afa6fafc011ba'],
 };
 
+/* ─── STATIC DB TRACKS — instant seed, no cold-start wait ───────── */
+// Mirrors the shape returned by GET /api/tracks (populated courses+parts).
+// Only include tracks that actually exist in MongoDB.
+// The API fetch will silently overwrite this once Render wakes up.
+const STATIC_DB_TRACKS = [
+  {
+    _id: '6a11ee5865bcdb08d4ee66b3',
+    name: 'MERN Stack',
+    slug: 'mern-stack',
+    type: 'Full Stack',
+    description: 'Build full-stack JavaScript applications with MongoDB, Express, React and Node.js.',
+    courses: [
+      { _id: '6919f6286409cc0505808ac5', title: 'HTML',                    slug: 'html',                  status: 'published', parts: [] },
+      { _id: '6919f63e6409cc0505808ac7', title: 'CSS',                     slug: 'css',                   status: 'published', parts: [] },
+      { _id: '6919f6516409cc0505808ac9', title: 'JavaScript',              slug: 'javascript',            status: 'published', parts: [] },
+      { _id: '693afba9252afa6fafc011af', title: 'Terminal / CLI',          slug: 'terminal-command-line', status: 'published', parts: [] },
+      { _id: '693afe6f252afa6fafc011ba', title: 'Git & GitHub',            slug: 'git-and-github',        status: 'published', parts: [] },
+      { _id: '693c1db01270c2a321fa0356', title: 'Backend (Node / Express)',slug: 'backend-nodejs-express',status: 'published', parts: [] },
+    ],
+  },
+];
+
 /* ─── LEARNING TRACKS ─────────────────────── */
 const LEARNING_TRACKS = [
   { name: 'MERN Stack', icon: '🧩', techs: ['MongoDB', 'Express', 'React', 'Node.js'], lessons: 42, level: 'Beginner → Advanced', hours: '30+', color: '#7c3aed' },
@@ -160,7 +182,7 @@ export default function LandingPage() {
 
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [dbTracks, setDbTracks] = useState([]);
+  const [dbTracks, setDbTracks] = useState(STATIC_DB_TRACKS);
   
   
   const handleOpenDonate = () => {

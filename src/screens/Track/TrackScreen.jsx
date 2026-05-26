@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { API_BASE_URL } from '../../../config';
@@ -156,6 +156,82 @@ const DEFAULT_META = {
   ],
 };
 
+/* ─── Static track data — instant render, no API cold-start wait ─── */
+// Keyed by slug AND _id so both URL formats work:
+//   /track/mern-stack          (if DB row has a slug)
+//   /track/6a11ee5865bcdb08d4ee66b3  (if no slug)
+const _mernCourses = [
+  { _id: '6919f6286409cc0505808ac5', title: 'HTML',                    slug: 'html',                  status: 'published', parts: [] },
+  { _id: '6919f63e6409cc0505808ac7', title: 'CSS',                     slug: 'css',                   status: 'published', parts: [] },
+  { _id: '6919f6516409cc0505808ac9', title: 'JavaScript',              slug: 'javascript',             status: 'published', parts: [] },
+  { _id: '693afba9252afa6fafc011af', title: 'Terminal / CLI',          slug: 'terminal-command-line',  status: 'published', parts: [] },
+  { _id: '693afe6f252afa6fafc011ba', title: 'Git & GitHub',            slug: 'git-and-github',         status: 'published', parts: [] },
+  { _id: '693c1db01270c2a321fa0356', title: 'Backend (Node / Express)',slug: 'backend-nodejs-express', status: 'published', parts: [] },
+];
+
+const _frontendCourses = [
+  { _id: '6919f6286409cc0505808ac5', title: 'HTML',       slug: 'html',       status: 'published', parts: [] },
+  { _id: '6919f63e6409cc0505808ac7', title: 'CSS',        slug: 'css',        status: 'published', parts: [] },
+  { _id: '6919f6516409cc0505808ac9', title: 'JavaScript', slug: 'javascript', status: 'published', parts: [] },
+];
+
+const _backendCourses = [
+  { _id: '693c1db01270c2a321fa0356', title: 'Backend (Node / Express)', slug: 'backend-nodejs-express',           status: 'published', parts: [] },
+  { _id: '693afba9252afa6fafc011af', title: 'Terminal / CLI',           slug: 'terminal-command-line',             status: 'published', parts: [] },
+  { _id: '693afe6f252afa6fafc011ba', title: 'Git & GitHub',             slug: 'git-and-github',                    status: 'published', parts: [] },
+];
+
+const _analyticsCourses = [
+  { _id: '6a0ecfdc690db01f804cb1d5', title: 'SQL', slug: 'sql', status: 'published', parts: [] },
+];
+
+const _devopsCourses = [
+  { _id: '693afba9252afa6fafc011af', title: 'Terminal / CLI', slug: 'terminal-command-line', status: 'published', parts: [] },
+  { _id: '693afe6f252afa6fafc011ba', title: 'Git & GitHub',   slug: 'git-and-github',        status: 'published', parts: [] },
+];
+
+const STATIC_TRACKS = {};
+
+// helper to register under multiple keys
+function _reg(keys, data) { keys.forEach(k => { STATIC_TRACKS[k] = data; }); }
+
+_reg(['mern-stack', '6a11ee5865bcdb08d4ee66b3'], {
+  _id: '6a11ee5865bcdb08d4ee66b3', name: 'MERN Stack', slug: 'mern-stack',
+  type: 'Full Stack',
+  description: 'Build full-stack JavaScript applications with MongoDB, Express, React and Node.js.',
+  courses: _mernCourses,
+});
+_reg(['mean-stack'], {
+  _id: null, name: 'MEAN Stack', slug: 'mean-stack',
+  type: 'Full Stack',
+  description: 'Enterprise-grade full-stack development with MongoDB, Express, Angular and Node.js.',
+  courses: _mernCourses, // same base courses; Angular replaces React in meta
+});
+_reg(['frontend-development'], {
+  _id: null, name: 'Frontend Development', slug: 'frontend-development',
+  type: 'Frontend',
+  description: 'Craft beautiful, accessible and responsive user interfaces from scratch.',
+  courses: _frontendCourses,
+});
+_reg(['backend-development'], {
+  _id: null, name: 'Backend Development', slug: 'backend-development',
+  type: 'Backend',
+  description: 'Build robust servers, REST APIs and data layers that power modern apps.',
+  courses: _backendCourses,
+});
+_reg(['data-analytics'], {
+  _id: null, name: 'Data Analytics', slug: 'data-analytics',
+  type: 'Data',
+  description: 'Turn raw data into insights and data-driven decisions with SQL, Python and Power BI.',
+  courses: _analyticsCourses,
+});
+_reg(['devops'], {
+  _id: null, name: 'DevOps', slug: 'devops',
+  type: 'DevOps',
+  description: 'Ship faster and more reliably with CI/CD, Docker, Kubernetes and cloud automation.',
+  courses: _devopsCourses,
+});
+
 /* ─── Course icon/color enrichment for static courses ─── */
 const STATIC_COURSE_META = {
   '6919f6286409cc0505808ac5': { icon: '🌐', color: '#e34c26', desc: 'Build the structure of websites with clean, semantic markup.', slug: 'html/introduction-to-html' },
@@ -210,11 +286,17 @@ function ProgressRing({ pct, color, size = 56 }) {
 export default function TrackScreen() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [track, setTrack] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  // Seed state from static map so the page renders immediately
+  const staticSeed = STATIC_TRACKS[slug] || null;
+  const [track, setTrack] = useState(staticSeed);
+  const [loading, setLoading] = useState(!staticSeed); // skip spinner if static found
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
   const [courseProgress, setCourseProgress] = useState({});
+
+  // Reset scroll before first paint — no visible jump
+  useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
     const u = localStorage.getItem('userInfo');
@@ -222,6 +304,17 @@ export default function TrackScreen() {
   }, []);
 
   useEffect(() => {
+    // If we have static data, show it immediately; still fetch in background
+    // to pick up real part/lesson counts from the DB.
+    if (staticSeed) {
+      // background refresh — don't show spinner, silently update counts
+      fetch(`${API_BASE_URL}/api/tracks/${slug}`)
+        .then(r => r.json())
+        .then(d => { if (d.success) setTrack(d.data); })
+        .catch(() => { /* keep static data on network failure */ });
+      return;
+    }
+    // No static data → show loading spinner and wait for API
     setLoading(true);
     fetch(`${API_BASE_URL}/api/tracks/${slug}`)
       .then(r => r.json())
@@ -231,7 +324,7 @@ export default function TrackScreen() {
       })
       .catch(() => setError('Failed to load track'))
       .finally(() => setLoading(false));
-  }, [slug]);
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!user || !track?.courses) return;
