@@ -139,8 +139,8 @@ function Header({ onAboutClick, onContactClick }) {
                         <button className="donate-button" onClick={openDonate}>☕ Buy Me a Coffee</button>
                         {user ? (
                             <div className="hdr-user">
-                                <div className="hdr-avatar">{user.name.charAt(0).toUpperCase()}</div>
-                                <span className="hdr-username">{user.name}</span>
+                                <Link to="/profile" className="hdr-avatar" title="My Profile">{user.name.charAt(0).toUpperCase()}</Link>
+                                <Link to="/profile" className="hdr-username">{user.name}</Link>
                                 <button className="hdr-logout-btn" onClick={handleLogout}>Logout</button>
                             </div>
                         ) : (
@@ -193,13 +193,13 @@ function Header({ onAboutClick, onContactClick }) {
                         <div className="hdr-sb-sep" />
                         {user ? (
                             <>
-                                <div className="hdr-sb-user">
+                                <Link to="/profile" className="hdr-sb-user" onClick={() => setIsSidebarOpen(false)} style={{ textDecoration: 'none' }}>
                                     <div className="hdr-avatar">{user.name.charAt(0).toUpperCase()}</div>
                                     <div className="hdr-sb-user-info">
                                         <span className="hdr-sb-uname">{user.name}</span>
-                                        <span className="hdr-sb-ustatus">Logged in</span>
+                                        <span className="hdr-sb-ustatus">View Profile →</span>
                                     </div>
-                                </div>
+                                </Link>
                                 <button className="hdr-sb-logout" onClick={handleLogout}>Logout</button>
                             </>
                         ) : null}

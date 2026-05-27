@@ -10,59 +10,86 @@ import Split from 'react-split';
 import { TbBorderRadius, TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { parseLessonContent } from '../../components/visualizations/utils/lessonParser';
 
-// A Code Editor component specifically for HTML, CSS, and JS
-const CodeEditor = memo(function CodeEditor({ html = '', css = '', js = '' }) {
-    const files = useMemo(
-        () => ({
-            '/index.html': { code: html, active: true },
-            '/styles.css': css,
-            '/index.js': `import './styles.css';\n\n${js}`,
-        }),
-        [html, css, js]
-    );
+/* ── Dynamic Sandpack config by course ── */
+function getSandpackConfig(courseSlug) {
+    const s = (courseSlug || '').toLowerCase();
+    if (s === 'html') return {
+        template: 'static',
+        files: {
+            '/index.html': { code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>HTML Practice</title>\n  <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n\n  <h1>Hello, HTML! ✏️</h1>\n  <p>Edit this file to practice HTML.</p>\n\n</body>\n</html>`, active: true },
+            '/styles.css': { code: `body {\n  font-family: sans-serif;\n  padding: 24px;\n  background: #f9fafb;\n  color: #111;\n}` },
+        },
+    };
+    if (s === 'css') return {
+        template: 'static',
+        files: {
+            '/index.html': { code: `<!DOCTYPE html>\n<html>\n<head>\n  <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n  <h1>CSS Practice 🎨</h1>\n  <p class="subtitle">Style me with CSS!</p>\n  <div class="box">A box</div>\n  <button class="btn">Click me</button>\n</body>\n</html>` },
+            '/styles.css': { code: `/* ── Edit CSS here ── */\nbody {\n  font-family: sans-serif;\n  padding: 24px;\n}\n\n.subtitle { color: steelblue; font-size: 18px; }\n\n.box {\n  width: 120px;\n  height: 120px;\n  background: coral;\n  border-radius: 8px;\n  margin: 16px 0;\n}\n\n.btn {\n  padding: 10px 22px;\n  background: #6366f1;\n  color: #fff;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  font-size: 15px;\n}`, active: true },
+        },
+    };
+    if (s === 'javascript') return {
+        template: 'vanilla',
+        files: {
+            '/index.html': { code: `<!DOCTYPE html>\n<html>\n<body>\n  <h2>JavaScript Practice ⚡</h2>\n  <div id="output"></div>\n  <script type="module" src="index.js"></script>\n</body>\n</html>` },
+            '/index.js': { code: `// ── JavaScript Practice ──\n\nconst message = 'Hello, JavaScript!';\nconsole.log(message);\n\n// Render to the page\ndocument.getElementById('output').innerHTML =\n  \`<p style="color:#7c3aed;font-family:sans-serif">\${message}</p>\`;`, active: true },
+        },
+    };
+    if (s === 'backend-nodejs-express') return {
+        template: 'node',
+        files: {
+            '/index.js': { code: `// ── Node.js Practice 🟢 ──\n\nconsole.log('Hello from Node.js!');\n\nconst os = require('os');\nconsole.log('Platform:', os.platform());\nconsole.log('Node version:', process.version);\n\n// Try requiring a module:\nconst path = require('path');\nconsole.log('__dirname equivalent:', path.resolve('.'));`, active: true },
+        },
+    };
+    if (s === 'sql') return {
+        template: 'vanilla',
+        files: {
+            '/index.js': { code: `// ── SQL Practice (JS simulation) 🗄️ ──\n// Real SQL runs on a server. Here we simulate queries with JS arrays.\n\nconst users = [\n  { id: 1, name: 'Alice', age: 30, city: 'NYC' },\n  { id: 2, name: 'Bob',   age: 25, city: 'LA'  },\n  { id: 3, name: 'Charlie', age: 35, city: 'NYC' },\n];\n\n// SELECT * FROM users WHERE city = 'NYC'\nconst nycUsers = users.filter(u => u.city === 'NYC');\nconsole.log('NYC users:', nycUsers);\n\n// SELECT name, age ORDER BY age ASC\nconst sorted = [...users].sort((a,b)=>a.age-b.age).map(({name,age})=>({name,age}));\nconsole.log('By age:', sorted);`, active: true },
+        },
+    };
+    // terminal / git / default
+    return {
+        template: 'static',
+        files: {
+            '/index.html': { code: `<!DOCTYPE html>\n<html>\n<head><link rel="stylesheet" href="styles.css"></head>\n<body>\n  <h1>Practice Zone 🛠️</h1>\n  <p>Edit the code and see your changes live.</p>\n</body>\n</html>`, active: true },
+            '/styles.css': { code: `body { font-family: sans-serif; padding: 24px; color: #333; }` },
+        },
+    };
+}
 
-    const options = useMemo(
-        () => ({
-            showLineNumbers: true,
-            showTabs: true,
-            showConsole: true,
-            showConsoleButton: true,
-            editorHeight: '80vh',
-        }),
-        []
-    );
-
-    return (
-        <Sandpack
-            template="vanilla"
-            files={files}
-            options={options}
-            theme="dark"
-        />
-    );
+const DynamicSandbox = memo(function DynamicSandbox({ courseSlug }) {
+    const config = useMemo(() => getSandpackConfig(courseSlug), [courseSlug]);
+    const options = useMemo(() => ({
+        showLineNumbers: true,
+        showTabs: true,
+        showConsole: true,
+        showConsoleButton: true,
+        editorHeight: '76vh',
+    }), []);
+    return <Sandpack template={config.template} files={config.files} options={options} theme="dark" />;
 });
 
-/* ── Quiz Section ── */
+/* ── Quiz Section with performance insights + retry ── */
 function QuizSection({ quiz }) {
     const [selected, setSelected] = useState({});
     const [revealed, setRevealed] = useState({});
+    const [attempt, setAttempt] = useState(1);
 
     if (!quiz || quiz.length === 0) return null;
 
-    const handleSelect = (qi, oi) => {
-        if (revealed[qi]) return;
-        setSelected(prev => ({ ...prev, [qi]: oi }));
+    const handleSelect = (qi, oi) => { if (!revealed[qi]) setSelected(p => ({ ...p, [qi]: oi })); };
+    const handleReveal = (qi) => setRevealed(p => ({ ...p, [qi]: true }));
+    const handleRevealAll = () => {
+        const all = {};
+        quiz.forEach((_, i) => { all[i] = true; });
+        setRevealed(all);
     };
+    const handleRetry = () => { setSelected({}); setRevealed({}); setAttempt(a => a + 1); };
 
-    const handleReveal = (qi) => {
-        setRevealed(prev => ({ ...prev, [qi]: true }));
-    };
-
-    const score = Object.keys(revealed).reduce((acc, qi) => {
-        return acc + (selected[qi] === quiz[qi].correctIndex ? 1 : 0);
-    }, 0);
-
-    const allRevealed = Object.keys(revealed).length === quiz.length;
+    const revealedCount = Object.keys(revealed).length;
+    const score = Object.keys(revealed).reduce((acc, qi) =>
+        acc + (selected[qi] === quiz[Number(qi)].correctIndex ? 1 : 0), 0);
+    const allRevealed = revealedCount === quiz.length;
+    const pct = allRevealed ? Math.round((score / quiz.length) * 100) : 0;
 
     return (
         <div className="lesson-quiz-section">
@@ -70,14 +97,12 @@ function QuizSection({ quiz }) {
                 <div className="lqs-title">
                     <span className="lqs-icon">🧠</span>
                     Knowledge Check
+                    {attempt > 1 && <span className="lqs-attempt-badge">Attempt #{attempt}</span>}
                 </div>
-                {allRevealed && (
-                    <div className="lqs-score">
-                        Score: {score}/{quiz.length}
-                        <span className="lqs-score-badge" style={{ background: score === quiz.length ? '#22c55e' : score >= quiz.length / 2 ? '#f59e0b' : '#ef4444' }}>
-                            {score === quiz.length ? '🎉 Perfect!' : score >= quiz.length / 2 ? '👍 Good' : '📚 Keep Learning'}
-                        </span>
-                    </div>
+                {!allRevealed && revealedCount > 0 && (
+                    <button className="lqs-reveal-all-btn" onClick={handleRevealAll}>
+                        Reveal All
+                    </button>
                 )}
             </div>
 
@@ -85,7 +110,7 @@ function QuizSection({ quiz }) {
                 const isRevealed = !!revealed[qi];
                 const userAnswer = selected[qi];
                 return (
-                    <div key={qi} className="lqs-card">
+                    <div key={`${attempt}-${qi}`} className="lqs-card">
                         <div className="lqs-q-num">Question {qi + 1} of {quiz.length}</div>
                         <div className="lqs-question">{q.question}</div>
                         <div className="lqs-options">
@@ -94,9 +119,7 @@ function QuizSection({ quiz }) {
                                 if (isRevealed) {
                                     if (oi === q.correctIndex) cls += ' correct';
                                     else if (oi === userAnswer) cls += ' wrong';
-                                } else if (oi === userAnswer) {
-                                    cls += ' selected';
-                                }
+                                } else if (oi === userAnswer) cls += ' selected';
                                 return (
                                     <div key={oi} className={cls} onClick={() => handleSelect(qi, oi)}>
                                         <span className="lqs-opt-letter">{String.fromCharCode(65 + oi)}</span>
@@ -108,9 +131,7 @@ function QuizSection({ quiz }) {
                             })}
                         </div>
                         {!isRevealed && userAnswer !== undefined && (
-                            <button className="lqs-reveal-btn" onClick={() => handleReveal(qi)}>
-                                Check Answer
-                            </button>
+                            <button className="lqs-reveal-btn" onClick={() => handleReveal(qi)}>Check Answer</button>
                         )}
                         {isRevealed && q.explanation && (
                             <div className="lqs-explanation">
@@ -121,6 +142,42 @@ function QuizSection({ quiz }) {
                     </div>
                 );
             })}
+
+            {/* ── Performance summary ── */}
+            {allRevealed && (
+                <div className="lqs-summary">
+                    <div className="lqs-summary-top">
+                        <div className="lqs-summary-score">
+                            <span className="lqs-summary-num" style={{ color: pct === 100 ? '#22c55e' : pct >= 60 ? '#f59e0b' : '#ef4444' }}>
+                                {score}/{quiz.length}
+                            </span>
+                            <span className="lqs-summary-label">
+                                {pct === 100 ? '🎉 Perfect score!' : pct >= 60 ? '👍 Good job!' : '📚 Keep practising'}
+                            </span>
+                        </div>
+                        <button className="lqs-retry-btn" onClick={handleRetry}>🔄 Retry Quiz</button>
+                    </div>
+                    <div className="lqs-perf-bar">
+                        <div className="lqs-perf-correct" style={{ width: `${pct}%` }} />
+                    </div>
+                    <div className="lqs-perf-legend">
+                        <span className="lqs-legend-correct">✓ {score} correct</span>
+                        <span className="lqs-legend-wrong">✗ {quiz.length - score} incorrect</span>
+                        <span className="lqs-legend-pct">{pct}%</span>
+                    </div>
+                    {quiz.length - score > 0 && (
+                        <div className="lqs-missed-list">
+                            <p className="lqs-missed-title">Questions to review:</p>
+                            {quiz.map((q, qi) => selected[qi] !== q.correctIndex && (
+                                <div key={qi} className="lqs-missed-item">
+                                    <span className="lqs-missed-num">Q{qi + 1}</span>
+                                    <span className="lqs-missed-q">{q.question}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
@@ -197,6 +254,8 @@ function CourseScreen() {
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    const [showAiTutorPopup, setShowAiTutorPopup] = useState(false);
+    const [showAiChatPopup, setShowAiChatPopup] = useState(false);
 
     // const currentCourseId = currentCourse?._id;
 
@@ -705,9 +764,21 @@ function CourseScreen() {
                                         <span>List of Lessons</span>
                                     </button>
                                     <p className='topic-title'>Topic: {activeTopic.title}</p>
-                                    <button className="practice-toggle-btn" onClick={togglePractice}>
-                                        {isPracticeOpen ? 'Close Practice' : 'Start Practice'}
-                                    </button>
+                                    <div className="ls-header-actions">
+                                        {/* AI Tutor toggle */}
+                                        <button
+                                            className="ls-ai-tutor-toggle"
+                                            onClick={() => setShowAiTutorPopup(true)}
+                                            title="AI Tutor — coming soon"
+                                        >
+                                            <span className="ls-ai-dot" />
+                                            🤖 AI Tutor
+                                            <span className="ls-toggle-pill">OFF</span>
+                                        </button>
+                                        <button className="practice-toggle-btn" onClick={togglePractice}>
+                                            {isPracticeOpen ? '✕ Close Practice' : '⌨️ Practice'}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 {/* Scroll progress bar — sits below the top bar */}
@@ -727,17 +798,27 @@ function CourseScreen() {
                                             gutterSize={10}
                                             cursor="col-resize"
                                         >
-                                            <div className="lesson-view hide-scrollbar" ref={contentAreaRef} >
+                                            <div className="lesson-view hide-scrollbar" ref={contentAreaRef}>
                                                 {parseLessonContent(activeTopic.content)}
                                                 <QuizSection quiz={activeTopic.quiz} />
                                                 <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
                                             </div>
                                             <div className="practice-view">
-                                                <CodeEditor
-                                                    html={activeTopic.code?.html || exampleCode.html}
-                                                    css={activeTopic.code?.css || exampleCode.css}
-                                                    js={activeTopic.code?.js || exampleCode.js}
-                                                />
+                                                {/* AI Tutor panel inside sandbox */}
+                                                <div className="ls-ai-tutor-bar">
+                                                    <span className="ls-ai-tutor-bar-icon">🤖</span>
+                                                    <div className="ls-ai-tutor-bar-text">
+                                                        <strong>AI Tutor</strong>
+                                                        <span>Real-time hints and debugging help while you code</span>
+                                                    </div>
+                                                    <button
+                                                        className="ls-ai-tutor-bar-btn"
+                                                        onClick={() => setShowAiTutorPopup(true)}
+                                                    >
+                                                        Enable →
+                                                    </button>
+                                                </div>
+                                                <DynamicSandbox courseSlug={courseSlug} />
                                             </div>
                                         </Split>
                                     ) : (
@@ -787,6 +868,62 @@ function CourseScreen() {
                 </div>
             </div>
             {/* <Footer /> */}
+
+            {/* ── Floating AI Chat widget (desktop + mobile) ── */}
+            <div className="ls-ai-chat-fab-wrap">
+                <button
+                    className="ls-ai-chat-fab"
+                    onClick={() => setShowAiChatPopup(true)}
+                    title="AI Chat — context-based assistant"
+                >
+                    <span className="ls-ai-chat-fab-icon">💬</span>
+                    <span className="ls-ai-chat-fab-label">AI Chat</span>
+                    <span className="ls-ai-chat-coming">Soon</span>
+                </button>
+            </div>
+
+            {/* ── AI Tutor popup ── */}
+            {showAiTutorPopup && (
+                <div className="ls-ai-popup-overlay" onClick={() => setShowAiTutorPopup(false)}>
+                    <div className="ls-ai-popup" onClick={e => e.stopPropagation()}>
+                        <button className="ls-ai-popup-close" onClick={() => setShowAiTutorPopup(false)}>✕</button>
+                        <div className="ls-ai-popup-icon">🤖</div>
+                        <h3>AI Tutor</h3>
+                        <p>
+                            Your personal debugging companion — guides you through errors,
+                            gives contextual hints and explains concepts while you code in the sandbox.
+                        </p>
+                        <div className="ls-ai-popup-badge">🚧 Under Development</div>
+                        <p className="ls-ai-popup-sub">
+                            The AI Tutor feature is coming soon. Enable it from the toggle
+                            once it's live and get smarter as you practice!
+                        </p>
+                        <button className="ls-ai-popup-btn" onClick={() => setShowAiTutorPopup(false)}>Got it!</button>
+                    </div>
+                </div>
+            )}
+
+            {/* ── AI Chat popup ── */}
+            {showAiChatPopup && (
+                <div className="ls-ai-popup-overlay" onClick={() => setShowAiChatPopup(false)}>
+                    <div className="ls-ai-popup" onClick={e => e.stopPropagation()}>
+                        <button className="ls-ai-popup-close" onClick={() => setShowAiChatPopup(false)}>✕</button>
+                        <div className="ls-ai-popup-icon">💬</div>
+                        <h3>Context-Based AI Chat</h3>
+                        <p>
+                            Ask any question about the current lesson and your AI assistant
+                            — already aware of exactly what you're reading — will respond with
+                            pinpoint accurate answers.
+                        </p>
+                        <div className="ls-ai-popup-badge">🚧 Under Development</div>
+                        <p className="ls-ai-popup-sub">
+                            We're building this feature to make your learning conversations
+                            smarter and lesson-aware. Coming soon!
+                        </p>
+                        <button className="ls-ai-popup-btn" onClick={() => setShowAiChatPopup(false)}>Got it!</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

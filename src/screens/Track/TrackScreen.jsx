@@ -294,6 +294,8 @@ export default function TrackScreen() {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
   const [courseProgress, setCourseProgress] = useState({});
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [enrollLoading, setEnrollLoading] = useState(false);
 
   // Reset scroll before first paint — no visible jump
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
@@ -338,6 +340,35 @@ export default function TrackScreen() {
       } catch { }
     });
   }, [user, track]);
+
+  // Fetch enrollment status
+  useEffect(() => {
+    if (!user) return;
+    fetch(`${API_BASE_URL}/api/users/tracks/enrolled`, {
+      headers: { Authorization: `Bearer ${user.token}` },
+    })
+      .then(r => r.json())
+      .then(d => {
+        if (d.success) setIsEnrolled((d.enrolledTracks || []).includes(slug));
+      })
+      .catch(() => {});
+  }, [user, slug]);
+
+  const handleEnrollToggle = async () => {
+    if (!user) { navigate('/'); return; }
+    setEnrollLoading(true);
+    const action = isEnrolled ? 'unenroll' : 'enroll';
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${user.token}` },
+        body: JSON.stringify({ slug, action }),
+      });
+      const data = await res.json();
+      if (data.success) setIsEnrolled((data.enrolledTracks || []).includes(slug));
+    } catch { }
+    setEnrollLoading(false);
+  };
 
   if (loading) {
     return (
@@ -392,7 +423,7 @@ export default function TrackScreen() {
         </Link>
         <div className="ts-header-right">
           {user ? (
-            <div className="ts-user">
+            <div className="ts-user" style={{ cursor: 'pointer' }} onClick={() => navigate('/profile')}>
               <div className="ts-avatar" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.accent})` }}>{user.name.charAt(0).toUpperCase()}</div>
               <span>{user.name}</span>
             </div>
@@ -464,11 +495,21 @@ export default function TrackScreen() {
                   {user && overallPct > 0 ? 'Continue Learning' : 'Start Track'}
                   <span className="ts-btn-arrow">→</span>
                 </button>
-                <button className="ts-btn-outline ts-btn-lg" onClick={() => {
-                  document.querySelector('.ts-learn-section')?.scrollIntoView({ behavior: 'smooth' });
-                }}>
-                  What you'll learn
-                </button>
+                {user ? (
+                  <button
+                    className={`ts-btn-enroll ts-btn-lg ${isEnrolled ? 'enrolled' : ''}`}
+                    onClick={handleEnrollToggle}
+                    disabled={enrollLoading}
+                  >
+                    {enrollLoading ? '…' : isEnrolled ? '✓ Enrolled' : '+ Enroll in Track'}
+                  </button>
+                ) : (
+                  <button className="ts-btn-outline ts-btn-lg" onClick={() => {
+                    document.querySelector('.ts-learn-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}>
+                    What you'll learn
+                  </button>
+                )}
               </div>
             )}
 

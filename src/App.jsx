@@ -8,6 +8,7 @@ import AdminDashboard from './Admin/dashboard.jsx';
 import TermsScreen from './screens/TermsScreen/termsScreen.jsx';
 import PrivacyPolicyScreen from './screens/PrivacyPolicy/privacyPolicyScreen.jsx';
 import TrackScreen from './screens/Track/TrackScreen.jsx';
+import ProfileScreen from './screens/Profile/ProfileScreen.jsx';
 
 function App() {
   return (
@@ -18,10 +19,10 @@ function App() {
         <Route path="/track/:slug" element={<TrackScreen />} />
         <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
         <Route path="/course/:courseSlug" element={<CourseScreen />} />
+        <Route path="/profile" element={<ProfileScreen />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/terms" element={<TermsScreen />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyScreen />} />
-
       </Routes>
     </>
   );

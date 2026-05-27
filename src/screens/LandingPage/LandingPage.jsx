@@ -67,21 +67,21 @@ const LEARNING_TRACKS = [
 
 /* ─── OTHER DATA ──────────────────────────── */
 const WHY_FEATURES = [
-  { icon: '🤖', title: 'AI-Generated Lessons', desc: 'Claude AI crafts humanized, clear lessons you actually enjoy reading.' },
+  { icon: '🤖', title: 'AI Tutor While Practicing', desc: 'Get instant hints, explanations and code help from your AI tutor exactly when you need it.' },
   { icon: '✨', title: 'Interactive Visualizations', desc: 'Understand complex topics with animated, interactive diagrams.' },
   { icon: '⌨️', title: 'Live Coding Sandbox', desc: 'Practice directly in the browser with instant feedback.' },
   { icon: '🎯', title: 'Interview Preparation', desc: 'Curated interview questions organized by difficulty level.' },
   { icon: '📝', title: 'Smart Quizzes', desc: 'Reinforce learning with MCQs, quizzes, and knowledge tests.' },
-  { icon: '🗺️', title: 'Learning Roadmaps', desc: 'AI recommends the best learning path for your goals.' },
+  { icon: '💬', title: 'Context-Based AI Chat', desc: 'Ask questions about the current lesson — your AI assistant already knows what you\'re reading.' },
   { icon: '📈', title: 'Beginner to Advanced', desc: 'Every track takes you from zero to production-ready.' },
   { icon: '🌍', title: 'Real-World Projects', desc: 'Build projects you can put on your portfolio.' },
-  { icon: '🎓', title: 'Personalized AI Tutor', desc: 'Adaptive learning that adjusts to your pace and style.' },
+  { icon: '🗺️', title: 'Structured Roadmaps', desc: 'Curated learning paths guide you from zero to job-ready in the right order.' },
   { icon: '👁️', title: 'Visual-First Learning', desc: 'Architecture diagrams and flow charts before the code.' },
 ];
 
 const TESTIMONIALS = [
   { name: 'Sarah Johnson', role: 'Frontend Developer', avatar: 'SJ', rating: 5, text: 'Dev.EL changed the way I learn. The visualizations and interactive tools make complex topics so easy!' },
-  { name: 'Rohit Verma', role: 'Full Stack Developer', avatar: 'RV', rating: 5, text: 'The AI-generated explanations are super humanized and beginner-friendly. Highly recommended!' },
+  { name: 'Rohit Verma', role: 'Full Stack Developer', avatar: 'RV', rating: 5, text: 'The explanations are super clear and beginner-friendly. The AI tutor helped me whenever I got stuck. Highly recommended!' },
   { name: 'Alex Morgan', role: 'Backend Developer', avatar: 'AM', rating: 5, text: 'Best platform for mastering modern development. The practice sandbox is amazing!' },
   { name: 'Priya Shah', role: 'Software Engineer', avatar: 'PS', rating: 5, text: 'The interview preparation section literally helped me crack my dream job!' },
   { name: 'James Liu', role: 'DevOps Engineer', avatar: 'JL', rating: 5, text: 'The roadmap feature is a game changer. I always know exactly what to learn next.' },
@@ -89,12 +89,12 @@ const TESTIMONIALS = [
 ];
 
 const PIPELINE_STEPS = [
-  { icon: '👤', label: 'Admin', desc: 'Creates topics & outlines' },
-  { icon: '🤖', label: 'Claude AI + MCP', desc: 'Generates structured content' },
-  { icon: '📖', label: 'Humanized Lessons', desc: 'Clear, easy to understand' },
+  { icon: '👤', label: 'Expert Curated', desc: 'Topics & outlines crafted by developers' },
+  { icon: '📖', label: 'Clear Lessons', desc: 'Conversational, easy to understand' },
   { icon: '✨', label: 'Visualizations', desc: 'Diagrams & interactive visuals' },
   { icon: '📝', label: 'Quizzes', desc: 'MCQs, assessments & tests' },
   { icon: '⌨️', label: 'Practice Sandbox', desc: 'Hands-on coding practice' },
+  { icon: '🤖', label: 'AI Tutor & Chat', desc: 'Context-aware help while you learn' },
   { icon: '🎓', label: 'Students Learn', desc: 'Track progress & master skills' },
 ];
 
@@ -359,7 +359,7 @@ export default function LandingPage() {
   return (
     <>
       <Helmet>
-        <title>Dev.EL — AI-Powered Developer Education Platform</title>
+        <title>Dev.EL — Interactive Developer Education Platform</title>
         <meta name="description" content="Learn MERN, MEAN, Prompt Engineering, Automation Testing, AI Tools through visual-first lessons, interactive coding sandboxes, quizzes, and real-world projects." />
         <link rel="canonical" href="https://www.dev-el.co" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -416,11 +416,13 @@ export default function LandingPage() {
 
           <div className="lp-header-actions">
             {user ? (
-              <div className="lp-user-info">
-                <div className="lp-avatar-small">{user.name.charAt(0).toUpperCase()}</div>
-                <span className="lp-user-name">{user.name}</span>
+              <>
+                <div className="lp-user-info" style={{ cursor: 'pointer' }} onClick={() => navigate('/profile')}>
+                  <div className="lp-avatar-small">{user.name.charAt(0).toUpperCase()}</div>
+                  <span className="lp-user-name">{user.name}</span>
+                </div>
                 <button className="lp-btn-ghost lp-desktop-only" onClick={() => { localStorage.removeItem('userInfo'); window.location.reload(); }}>Logout</button>
-              </div>
+              </>
             ) : (
               <button className="lp-btn-primary lp-header-login-btn" onClick={() => setIsPopupOpen(true)}>Login & Start Learning</button>
             )}
@@ -446,12 +448,12 @@ export default function LandingPage() {
           <div className="lp-hero-text">
             <div className="lp-hero-badge">
               <span className="lp-badge-pulse" />
-              AI-Powered Developer Education Platform
+              Interactive Developer Education Platform
             </div>
             <h1 className="lp-hero-h1">
               Master Modern<br />
               Development with<br />
-              <span className="lp-gradient-text">Interactive AI-Powered</span><br />
+              <span className="lp-gradient-text">Visual & Interactive</span><br />
               Learning
             </h1>
             <p className="lp-hero-sub">
@@ -480,7 +482,7 @@ export default function LandingPage() {
               <div className="lp-stat-divider" />
               <div className="lp-stat">
                 <span className="lp-stat-num">{counters.tracks}+</span>
-                <span className="lp-stat-label">AI Powered Content</span>
+                <span className="lp-stat-label">Learning Tracks</span>
               </div>
             </div>
           </div>
@@ -550,7 +552,7 @@ export default function LandingPage() {
             <div className="lp-ai-pill lp-float-c">
               <span className="lp-ai-glow-dot" />
               <div>
-                <p className="lp-ai-pill-title">AI Lesson Generated</p>
+                <p className="lp-ai-pill-title">AI Tutor Ready</p>
                 <p className="lp-ai-pill-sub">useEffect Hook — React</p>
               </div>
             </div>
@@ -769,8 +771,8 @@ export default function LandingPage() {
       <section className="lp-section lp-pipeline">
         <div className="lp-section-inner">
           <div className="lp-section-header">
-            <div className="lp-label-tag">AI Education Pipeline</div>
-            <h2 className="lp-section-h2">How we build the <span className="lp-gradient-text">best learning experience</span></h2>
+            <div className="lp-label-tag">Learning Pipeline</div>
+            <h2 className="lp-section-h2">How we craft the <span className="lp-gradient-text">best learning experience</span></h2>
           </div>
           <div className="lp-pipeline-flow">
             {PIPELINE_STEPS.map((step, i) => (
@@ -1099,7 +1101,7 @@ console.log(reverseString('Dev.EL'));
         </div>
         <div className="lp-cta-inner">
           <h2 className="lp-cta-h2">Build Real Skills.<br /><span className="lp-gradient-text">Learn Visually. Grow Faster.</span></h2>
-          <p className="lp-cta-p">Join Dev.EL today and accelerate your developer journey with AI-powered interactive learning.</p>
+          <p className="lp-cta-p">Join Dev.EL today and accelerate your developer journey with visual, hands-on interactive learning.</p>
           <div className="lp-cta-btns">
             <button className="lp-btn-primary lp-btn-lg" onClick={() => setIsPopupOpen(true)}>Start Learning Now</button>
             <button className="lp-btn-outline lp-btn-lg" onClick={() => scrollTo(tracksRef)}>Explore Courses</button>
@@ -1115,7 +1117,7 @@ console.log(reverseString('Dev.EL'));
               <img src={logo} alt="Dev.EL" />
               <span>Dev<span className="lp-dot">.</span>EL</span>
             </div>
-            <p>AI-powered interactive platform for developers to learn, practice and grow.</p>
+            <p>Interactive platform for developers to learn, practice and grow with an AI tutor by your side.</p>
             <div className="lp-socials">
               <a href="https://github.com" target="_blank" rel="noreferrer">🐙</a>
               <a href="https://discord.com" target="_blank" rel="noreferrer">💬</a>

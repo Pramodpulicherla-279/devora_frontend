@@ -147,6 +147,37 @@
   box-shadow: 0 6px 18px -6px rgba(0,0,0,0.08);
 }
 
+/* Enroll button */
+.ts-btn-enroll {
+  background: rgba(255,255,255,0.12);
+  color: #000000;
+  border: 1.5px solid rgba(58, 35, 81, 0.5);
+  border-radius: 12px;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.ts-btn-enroll:hover:not(:disabled) {
+  background: rgba(255,255,255,0.22);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+.ts-btn-enroll.enrolled {
+  background: rgba(255,255,255,0.22);
+  border-color: #2a2254;
+  color: #000000;
+}
+.ts-btn-enroll.enrolled:hover:not(:disabled) {
+  background: rgba(239,68,68,0.18);
+  border-color: #fca5a5;
+  color: #fca5a5;
+}
+.ts-btn-enroll:disabled { opacity: 0.7; cursor: not-allowed; }
+
 .ts-btn-lg { padding: 14px 28px; font-size: 15px; }
 
 /* ─── Hero (full-bleed 3D bg + text overlay) ─── */
