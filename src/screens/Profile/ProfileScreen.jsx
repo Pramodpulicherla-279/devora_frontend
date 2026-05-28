@@ -2,6 +2,8 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { API_BASE_URL } from '../../../config';
+import { authFetch } from '../../utils/authFetch';
+import { getStreak, getQuizAccuracy } from '../../utils/userStats';
 import logo from '../../assets/logo.png';
 import './ProfileScreen.css';
 
@@ -55,11 +57,19 @@ function MiniBar({ pct, color }) {
 export default function ProfileScreen() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [progress, setProgress] = useState({});       // { courseId: percent }
-  const [enrolledSlugs, setEnrolledSlugs] = useState([]); // track slugs from API
+  const [progress, setProgress] = useState({});            // { courseId: percent } — global / legacy
+  const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: percent } }
+  const [enrolledSlugs, setEnrolledSlugs] = useState([]);  // track slugs from API
   const [loading, setLoading] = useState(true);
+  const [enrollLoading, setEnrollLoading] = useState(true); // true until enrolled slugs resolve
 
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // Helper: if any API returns 401 (stale/deleted account), clear and redirect to login
+  const handleAuthError = () => {
+    localStorage.removeItem('userInfo');
+    navigate('/');
+  };
 
   useEffect(() => {
     const raw = localStorage.getItem('userInfo');
@@ -73,9 +83,8 @@ export default function ProfileScreen() {
     let done = 0;
     KNOWN_COURSES.forEach(async (c) => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/progress/courses/${c.id}`, {
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
+        const res = await authFetch(`${API_BASE_URL}/api/progress/courses/${c.id}`);
+        if (res.status === 401) { handleAuthError(); return; }
         const data = await res.json();
         if (data?.percent != null) setProgress(p => ({ ...p, [c.id]: data.percent }));
       } catch { /* keep 0 */ } finally {
@@ -83,28 +92,83 @@ export default function ProfileScreen() {
         if (done === KNOWN_COURSES.length) setLoading(false);
       }
     });
-  }, [user]);
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Fetch explicitly enrolled tracks from API
   useEffect(() => {
     if (!user) return;
-    fetch(`${API_BASE_URL}/api/users/tracks/enrolled`, {
-      headers: { Authorization: `Bearer ${user.token}` },
-    })
-      .then(r => r.json())
-      .then(d => { if (d.success) setEnrolledSlugs(d.enrolledTracks || []); })
-      .catch(() => {});
-  }, [user]);
+    authFetch(`${API_BASE_URL}/api/users/tracks/enrolled`)
+      .then(r => {
+        if (r.status === 401) { handleAuthError(); return null; }
+        return r.json();
+      })
+      .then(d => {
+        if (d?.success) setEnrolledSlugs(d.enrolledTracks || []);
+        setEnrollLoading(false);
+      })
+      .catch(() => { setEnrollLoading(false); });
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Fetch track-scoped progress for each enrolled track
+  useEffect(() => {
+    if (!user || enrolledSlugs.length === 0) return;
+    enrolledSlugs.forEach(trackSlug => {
+      const track = KNOWN_TRACKS.find(t => t.slug === trackSlug);
+      if (!track) return;
+      track.courseIds.forEach(async (courseId) => {
+        try {
+          const res = await authFetch(
+            `${API_BASE_URL}/api/progress/courses/${courseId}?trackSlug=${trackSlug}`
+          );
+          if (res.status === 401) { handleAuthError(); return; }
+          const data = await res.json();
+          if (data?.percent != null) {
+            setTrackProgress(p => ({
+              ...p,
+              [trackSlug]: { ...(p[trackSlug] || {}), [courseId]: data.percent },
+            }));
+          }
+        } catch { /* keep 0 */ }
+      });
+    });
+  }, [user, enrolledSlugs]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) return null;
 
+  /* ── Activity stats (localStorage) ── */
+  const streak      = getStreak();
+  const quizAccPct  = getQuizAccuracy(); // null if no quizzes taken yet
+
+  /* ── Helpers ── */
+  // Aggregate best progress for a course across global + all enrolled tracks
+  const getCoursePct = (courseId) => {
+    const globalPct = progress[courseId] ?? 0;
+    const trackMax = enrolledSlugs.length > 0
+      ? Math.max(0, ...enrolledSlugs.map(slug => trackProgress[slug]?.[courseId] ?? 0))
+      : 0;
+    return Math.max(globalPct, trackMax);
+  };
+
   /* ── Derived stats ── */
-  const started   = KNOWN_COURSES.filter(c => (progress[c.id] ?? 0) > 0);
-  const completed = KNOWN_COURSES.filter(c => (progress[c.id] ?? 0) >= 100);
+  const started   = KNOWN_COURSES.filter(c => getCoursePct(c.id) > 0);
+  const completed = KNOWN_COURSES.filter(c => getCoursePct(c.id) >= 100);
   // Use explicitly enrolled tracks from API (not inferred from progress)
   const enrolledTracks = KNOWN_TRACKS.filter(t => enrolledSlugs.includes(t.slug));
-  const overallPct = started.length === 0 ? 0 :
-    Math.round(started.reduce((s, c) => s + (progress[c.id] ?? 0), 0) / started.length);
+
+  // Overall progress = average of enrolled-track averages (track-scoped, not global).
+  // Falls back to global course average only when user has no enrolled tracks.
+  const overallPct = (() => {
+    if (enrolledTracks.length > 0) {
+      const trackAvgs = enrolledTracks.map(track => {
+        const tProg = trackProgress[track.slug] || {};
+        return track.courseIds.reduce((s, id) => s + (tProg[id] ?? 0), 0) / track.courseIds.length;
+      });
+      return Math.round(trackAvgs.reduce((s, v) => s + v, 0) / trackAvgs.length);
+    }
+    // No enrolled tracks — fall back to global average of started courses
+    return started.length === 0 ? 0
+      : Math.round(started.reduce((s, c) => s + getCoursePct(c.id), 0) / started.length);
+  })();
 
   return (
     <div className="ps-screen">
@@ -168,6 +232,45 @@ export default function ProfileScreen() {
         </div>
       </section>
 
+      {/* ── Activity row: streak + quiz accuracy ── */}
+      <section className="ps-activity-bar">
+        <div className="ps-activity-card ps-streak-card">
+          <span className="ps-activity-icon">🔥</span>
+          <div className="ps-activity-body">
+            <span className="ps-activity-num">{streak}</span>
+            <span className="ps-activity-label">Day Streak</span>
+          </div>
+          <div className="ps-activity-sub">
+            {streak === 0
+              ? 'Complete a lesson to start'
+              : streak === 1
+              ? 'Keep it up!'
+              : `${streak} days in a row!`}
+          </div>
+        </div>
+
+        <div className="ps-activity-card ps-quiz-card">
+          <span className="ps-activity-icon">🧠</span>
+          <div className="ps-activity-body">
+            <span className="ps-activity-num">
+              {quizAccPct !== null ? `${quizAccPct}%` : '—'}
+            </span>
+            <span className="ps-activity-label">Quiz Accuracy</span>
+          </div>
+          <div className="ps-activity-sub">
+            {quizAccPct === null
+              ? 'Take a quiz to see your score'
+              : quizAccPct === 100
+              ? 'Perfect score! 🎉'
+              : quizAccPct >= 75
+              ? 'Great work!'
+              : quizAccPct >= 50
+              ? 'Keep practising'
+              : 'Review the lessons'}
+          </div>
+        </div>
+      </section>
+
       {/* ── Enrolled tracks ── */}
       {enrolledTracks.length > 0 && (
         <section className="ps-section">
@@ -177,10 +280,11 @@ export default function ProfileScreen() {
           </div>
           <div className="ps-tracks-grid">
             {enrolledTracks.map(track => {
+              const tProg = trackProgress[track.slug] || {};
               const avgPct = Math.round(
-                track.courseIds.reduce((s, id) => s + (progress[id] ?? 0), 0) / track.courseIds.length
+                track.courseIds.reduce((s, id) => s + (tProg[id] ?? 0), 0) / track.courseIds.length
               );
-              const doneCourses = track.courseIds.filter(id => (progress[id] ?? 0) >= 100).length;
+              const doneCourses = track.courseIds.filter(id => (tProg[id] ?? 0) >= 100).length;
               return (
                 <div key={track.slug} className="ps-track-card" onClick={() => navigate(`/track/${track.slug}`)}>
                   <div className="ps-track-icon" style={{ background: `${track.color}18`, color: track.color }}>{track.icon}</div>
@@ -205,13 +309,12 @@ export default function ProfileScreen() {
         </div>
         <div className="ps-courses-grid">
           {KNOWN_COURSES.map(c => {
-            const pct = progress[c.id] ?? 0;
+            const pct = getCoursePct(c.id);
             const status = pct >= 100 ? 'completed' : pct > 0 ? 'in-progress' : 'not-started';
             return (
               <div
                 key={c.id}
                 className={`ps-course-card ${status}`}
-                onClick={() => navigate(`/course/${c.slug}`)}
               >
                 <div className="ps-course-icon" style={{ background: `${c.color}15`, color: c.color }}>{c.icon}</div>
                 <div className="ps-course-info">
@@ -229,7 +332,7 @@ export default function ProfileScreen() {
       </section>
 
       {/* ── Empty state for new users ── */}
-      {started.length === 0 && !loading && (
+      {started.length === 0 && !loading && !enrollLoading && enrolledSlugs.length === 0 && (
         <div className="ps-empty">
           <div className="ps-empty-icon">🚀</div>
           <h3>You haven't started any courses yet</h3>

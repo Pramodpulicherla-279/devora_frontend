@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { API_BASE_URL } from '../../../config';
+import { authFetch } from '../../utils/authFetch';
 import logo from '../../assets/logo.png';
 import TrackScene3D from './TrackScene3D';
 import './TrackScreen.css';
@@ -232,6 +233,22 @@ _reg(['devops'], {
   courses: _devopsCourses,
 });
 
+/* ─── Reverse map: courseId → [{name, slug}] across all tracks ─── */
+// Built once at module load — powers the "already in progress" floating badge.
+const COURSE_TO_TRACKS = (() => {
+  const map = {};
+  const seen = new Set();
+  Object.values(STATIC_TRACKS).forEach(t => {
+    if (!t || seen.has(t.slug)) return;
+    seen.add(t.slug);
+    (t.courses || []).forEach(c => {
+      if (!map[c._id]) map[c._id] = [];
+      map[c._id].push({ name: t.name, slug: t.slug });
+    });
+  });
+  return map;
+})();
+
 /* ─── Course icon/color enrichment for static courses ─── */
 const STATIC_COURSE_META = {
   '6919f6286409cc0505808ac5': { icon: '🌐', color: '#e34c26', desc: 'Build the structure of websites with clean, semantic markup.', slug: 'html/introduction-to-html' },
@@ -328,13 +345,18 @@ export default function TrackScreen() {
       .finally(() => setLoading(false));
   }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Persist canonical track slug in localStorage so the lesson page can scope its progress records
+  useEffect(() => {
+    const canonicalSlug = staticSeed?.slug || slug;
+    localStorage.setItem('currentTrackSlug', canonicalSlug);
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (!user || !track?.courses) return;
+    const trackSlug = track.slug || slug; // canonical slug (never the MongoDB ID)
     track.courses.forEach(async (c) => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/progress/courses/${c._id}`, {
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
+        const res = await authFetch(`${API_BASE_URL}/api/progress/courses/${c._id}?trackSlug=${trackSlug}`);
         const data = await res.json();
         if (data?.percent != null) setCourseProgress(p => ({ ...p, [c._id]: data.percent }));
       } catch { }
@@ -344,9 +366,7 @@ export default function TrackScreen() {
   // Fetch enrollment status
   useEffect(() => {
     if (!user) return;
-    fetch(`${API_BASE_URL}/api/users/tracks/enrolled`, {
-      headers: { Authorization: `Bearer ${user.token}` },
-    })
+    authFetch(`${API_BASE_URL}/api/users/tracks/enrolled`)
       .then(r => r.json())
       .then(d => {
         if (d.success) setIsEnrolled((d.enrolledTracks || []).includes(slug));
@@ -359,9 +379,8 @@ export default function TrackScreen() {
     setEnrollLoading(true);
     const action = isEnrolled ? 'unenroll' : 'enroll';
     try {
-      const res = await fetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
+      const res = await authFetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${user.token}` },
         body: JSON.stringify({ slug, action }),
       });
       const data = await res.json();
@@ -402,7 +421,11 @@ export default function TrackScreen() {
   const handleCourseClick = (course) => {
     const cmeta = STATIC_COURSE_META[course._id?.toString()];
     const goSlug = cmeta?.slug || course.slug;
-    if (goSlug) navigate(`/course/${goSlug}`);
+    if (goSlug) {
+      // Persist for auto-enroll on first lesson completion (lessons.jsx reads this)
+      localStorage.setItem('lastTrackSlug', staticSeed?.slug || slug);
+      navigate(`/course/${goSlug}`);
+    }
   };
 
   return (
@@ -581,9 +604,17 @@ export default function TrackScreen() {
                 const courseDesc = meta2.desc || course.description || `Master the fundamentals of ${course.title}.`;
                 const partsCount = course.parts?.length || 0;
                 const lessonsCount = (course.parts || []).reduce((s, p) => s + (p.lessons?.length || 0), 0);
+                // Real course progress (course-level, not track-level)
                 const pct = courseProgress[course._id] ?? 0;
-                const isCompleted = pct >= 100;
-                const isStarted = pct > 0;
+                // Only show enrolled-track UI when user is enrolled here
+                const enrolledPct = isEnrolled ? pct : 0;
+                const isCompleted = isEnrolled && pct >= 100;
+                const isStarted   = isEnrolled && pct > 0;
+
+                // Floating badge: show when NOT enrolled but course has progress from another track
+                const sharedBadgeTracks = (!isEnrolled && user && pct > 0)
+                  ? (COURSE_TO_TRACKS[course._id] || []).filter(t => t.slug !== slug)
+                  : [];
 
                 return (
                   <div
@@ -605,6 +636,12 @@ export default function TrackScreen() {
                           {course.status === 'published' && <span className="ts-badge published">● Published</span>}
                           {isCompleted && <span className="ts-badge done">✓ Completed</span>}
                           {isStarted && !isCompleted && <span className="ts-badge progress">In Progress</span>}
+                          {/* Shared-course badge: progress exists but user not enrolled here */}
+                          {sharedBadgeTracks.length > 0 && (
+                            <span className="ts-badge ts-badge-shared" title={`You have progress in this course from ${sharedBadgeTracks.map(t => t.name).join(', ')}`}>
+                              ↗ {Math.round(pct)}% from {sharedBadgeTracks[0].name}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <p className="ts-course-desc">{courseDesc}</p>
@@ -612,15 +649,17 @@ export default function TrackScreen() {
                         <span>📂 {partsCount} module{partsCount !== 1 ? 's' : ''}</span>
                         <span>📝 {lessonsCount} lesson{lessonsCount !== 1 ? 's' : ''}</span>
                       </div>
-                      {user && pct > 0 && (
+                      {isEnrolled && enrolledPct > 0 && (
                         <div className="ts-course-progress-bar">
-                          <div className="ts-course-progress-fill" style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${courseColor}, ${meta.accent})` }} />
+                          <div className="ts-course-progress-fill" style={{ width: `${enrolledPct}%`, background: `linear-gradient(90deg, ${courseColor}, ${meta.accent})` }} />
                         </div>
                       )}
                     </div>
 
                     <div className="ts-course-action">
-                      {user && pct > 0 ? <ProgressRing pct={pct} color={courseColor} size={52} /> : <span className="ts-arrow">→</span>}
+                      {isEnrolled && enrolledPct > 0
+                        ? <ProgressRing pct={enrolledPct} color={courseColor} size={52} />
+                        : <span className="ts-arrow">→</span>}
                     </div>
                   </div>
                 );

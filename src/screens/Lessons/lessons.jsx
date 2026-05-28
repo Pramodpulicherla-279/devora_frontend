@@ -6,6 +6,8 @@ import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
+import { authFetch } from '../../utils/authFetch';
+import { updateStreak, recordQuizResult } from '../../utils/userStats';
 import Split from 'react-split';
 import { TbBorderRadius, TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { parseLessonContent } from '../../components/visualizations/utils/lessonParser';
@@ -73,6 +75,7 @@ function QuizSection({ quiz }) {
     const [selected, setSelected] = useState({});
     const [revealed, setRevealed] = useState({});
     const [attempt, setAttempt] = useState(1);
+    const recordedRef = React.useRef(false); // guard: record once per attempt
 
     if (!quiz || quiz.length === 0) return null;
 
@@ -83,12 +86,25 @@ function QuizSection({ quiz }) {
         quiz.forEach((_, i) => { all[i] = true; });
         setRevealed(all);
     };
-    const handleRetry = () => { setSelected({}); setRevealed({}); setAttempt(a => a + 1); };
+    const handleRetry = () => {
+        setSelected({});
+        setRevealed({});
+        setAttempt(a => a + 1);
+        recordedRef.current = false; // allow recording on the next attempt
+    };
 
     const revealedCount = Object.keys(revealed).length;
     const score = Object.keys(revealed).reduce((acc, qi) =>
         acc + (selected[qi] === quiz[Number(qi)].correctIndex ? 1 : 0), 0);
     const allRevealed = revealedCount === quiz.length;
+
+    // Record quiz result once when all answers are revealed (not on re-renders)
+    React.useEffect(() => {
+        if (allRevealed && !recordedRef.current) {
+            recordedRef.current = true;
+            recordQuizResult(score, quiz.length);
+        }
+    }, [allRevealed, score, quiz.length]);
     const pct = allRevealed ? Math.round((score / quiz.length) * 100) : 0;
 
     return (
@@ -249,6 +265,7 @@ function CourseScreen() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);;
     const [isPracticeOpen, setIsPracticeOpen] = useState(false);
     const contentAreaRef = useRef(null);
+    const savedScrollRef = useRef(0);  // persists lesson scroll pos across practice toggle
     const [user, setUser] = useState(null);
     const [progressPercentage, setProgressPercentage] = useState(0);
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
@@ -256,6 +273,10 @@ function CourseScreen() {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
     const [showAiTutorPopup, setShowAiTutorPopup] = useState(false);
     const [showAiChatPopup, setShowAiChatPopup] = useState(false);
+
+    // Track slug for progress scoping — read once at mount from localStorage (set by TrackScreen).
+    // Falls back to 'global' when a lesson is opened directly without a track context.
+    const trackSlugRef = useRef(localStorage.getItem('currentTrackSlug') || 'global');
 
     // const currentCourseId = currentCourse?._id;
 
@@ -432,16 +453,27 @@ function CourseScreen() {
     };
 
     const togglePractice = () => {
-        // setIsPracticeOpen(!isPracticeOpen);
         setIsPracticeOpen((prev) => {
             const next = !prev;
             if (next) {
-                // when practice opens, close the sidebar
+                // Save current scroll before the lesson-view ref gets a new DOM node
+                savedScrollRef.current = contentAreaRef.current?.scrollTop ?? 0;
                 setIsSidebarOpen(false);
             }
             return next;
         });
     };
+
+    // Restore scroll position after Split mounts the new lesson-view DOM node
+    useEffect(() => {
+        if (!isPracticeOpen) return;
+        const id = requestAnimationFrame(() => {
+            if (contentAreaRef.current) {
+                contentAreaRef.current.scrollTop = savedScrollRef.current;
+            }
+        });
+        return () => cancelAnimationFrame(id);
+    }, [isPracticeOpen]);
 
     // Navigation helper function
     const getNavigationInfo = () => {
@@ -540,13 +572,10 @@ function CourseScreen() {
         const token = user.token;
 
         try {
-            const res = await fetch(`${API_BASE_URL}/api/progress/courses/${courseId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                },
-            });
+            const res = await authFetch(
+                `${API_BASE_URL}/api/progress/courses/${courseId}?trackSlug=${trackSlugRef.current}`,
+                { method: 'GET' }
+            );
 
             if (!res.ok) {
                 console.error('fetchUserCourseProgress failed with status', res.status);
@@ -595,14 +624,11 @@ function CourseScreen() {
 
         try {
             // POST to your course-level progress endpoint
-            const res = await fetch(
+            const res = await authFetch(
                 `${API_BASE_URL}/api/progress/lessons/${activeTopic._id}/complete`,
                 {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                    },
+                    body: JSON.stringify({ trackSlug: trackSlugRef.current }),
                 }
             );
 
@@ -615,6 +641,20 @@ function CourseScreen() {
             // saveProgress returns { success, total, completed, percent } at course level
             if (data && typeof data.percent === 'number') {
                 setProgressPercentage(data.percent);
+
+                // Update day-streak on every lesson completion
+                updateStreak();
+
+                // Auto-enroll in the track the user navigated from (stored by TrackScreen)
+                const savedTrackSlug = localStorage.getItem('lastTrackSlug');
+                if (savedTrackSlug) {
+                    authFetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
+                        method: 'POST',
+                        body: JSON.stringify({ slug: savedTrackSlug, action: 'enroll' }),
+                    }).catch(() => {});
+                    // Clear so we don't re-enroll on every lesson completion
+                    localStorage.removeItem('lastTrackSlug');
+                }
 
                 // mark this lesson as completed in local state
                 setCourse(prev => {
@@ -760,8 +800,13 @@ function CourseScreen() {
                             <>
                                 <div className="content-header">
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ls-sidebar-btn">
-                                        {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={20} /> : <TbLayoutSidebarLeftExpandFilled size={20} />}
-                                        <span>List of Lessons</span>
+                                        <span className="ls-sidebar-icon" aria-hidden="true">
+                                            {isSidebarOpen ? <TbLayoutSidebarLeftCollapseFilled size={20} /> : <TbLayoutSidebarLeftExpandFilled size={20} />}
+                                        </span>
+                                        <span className="ls-sidebar-icon-fallback" aria-hidden="true">
+                                            {isSidebarOpen ? '✕' : '☰'}
+                                        </span>
+                                        <span className="ls-sidebar-label">List of Lessons</span>
                                     </button>
                                     <p className='topic-title'>Topic: {activeTopic.title}</p>
                                     <div className="ls-header-actions">
@@ -798,7 +843,7 @@ function CourseScreen() {
                                             gutterSize={10}
                                             cursor="col-resize"
                                         >
-                                            <div className="lesson-view hide-scrollbar" ref={contentAreaRef}>
+                                            <div className="lesson-view" ref={contentAreaRef}>
                                                 {parseLessonContent(activeTopic.content)}
                                                 <QuizSection quiz={activeTopic.quiz} />
                                                 <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
@@ -818,7 +863,9 @@ function CourseScreen() {
                                                         Enable →
                                                     </button>
                                                 </div>
-                                                <DynamicSandbox courseSlug={courseSlug} />
+                                                <div className="ls-sandbox-inner">
+                                                    <DynamicSandbox courseSlug={courseSlug} />
+                                                </div>
                                             </div>
                                         </Split>
                                     ) : (

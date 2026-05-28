@@ -8,6 +8,8 @@ import { Helmet } from 'react-helmet';
 import logo from '../../assets/logo.png';
 import './LandingPage.css';
 import { API_BASE_URL } from '../../../config';
+import { authFetch } from '../../utils/authFetch';
+import { getStreak } from '../../utils/userStats';
 
 /* ─── COURSES ─────────────────────────────── */
 const STATIC_COURSES = [
@@ -169,6 +171,8 @@ export default function LandingPage() {
   const [user, setUser] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [courseProgress, setCourseProgress] = useState({});
+  const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: pct } }
+  const [enrolledSlugs, setEnrolledSlugs] = useState([]);
   const [activeTab, setActiveTab] = useState('mcq');
   const [editorTab, setEditorTab] = useState('app');
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -241,14 +245,45 @@ export default function LandingPage() {
     const allIds = [...new Set([...STATIC_COURSES.map(c => c.id), ...dbCourseIds])];
     allIds.forEach(async (id) => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/progress/courses/${id}`, {
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
+        const res = await authFetch(`${API_BASE_URL}/api/progress/courses/${id}`);
         const data = await res.json();
         if (data?.percent != null) setCourseProgress(p => ({ ...p, [id]: data.percent }));
       } catch { }
     });
   }, [user, dbTracks]);
+
+  // Fetch explicitly enrolled tracks from API
+  useEffect(() => {
+    if (!user) return;
+    authFetch(`${API_BASE_URL}/api/users/tracks/enrolled`)
+      .then(r => r.json())
+      .then(d => { if (d.success) setEnrolledSlugs(d.enrolledTracks || []); })
+      .catch(() => {});
+  }, [user]);
+
+  // Fetch track-scoped progress for each enrolled track (powers "My Learning Journey")
+  useEffect(() => {
+    if (!user || enrolledSlugs.length === 0 || dbTracks.length === 0) return;
+    enrolledSlugs.forEach(tSlug => {
+      const dbTrack = dbTracks.find(dt => dt.slug === tSlug);
+      if (!dbTrack?.courses) return;
+      dbTrack.courses.forEach(async (c) => {
+        const courseId = (c._id || c).toString();
+        try {
+          const res = await authFetch(
+            `${API_BASE_URL}/api/progress/courses/${courseId}?trackSlug=${tSlug}`
+          );
+          const data = await res.json();
+          if (data?.percent != null) {
+            setTrackProgress(p => ({
+              ...p,
+              [tSlug]: { ...(p[tSlug] || {}), [courseId]: data.percent },
+            }));
+          }
+        } catch { /* keep 0 */ }
+      });
+    });
+  }, [user, enrolledSlugs, dbTracks]);
 
   const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -298,16 +333,18 @@ export default function LandingPage() {
     return [...real, ...comingSoon];
   };
 
-  // Tracks the user has already started (has progress in any course)
+  // Tracks the user has explicitly enrolled in — no false positives from shared courses.
+  // Progress is scoped to each track (trackProgress) so HTML in MERN Stack ≠ HTML in Frontend Dev.
   const getMyTracks = () => {
-    if (!user || !Object.keys(courseProgress).length) return [];
+    if (!user || enrolledSlugs.length === 0) return [];
     return dbTracks
       .map(t => {
+        const tSlug = t.slug || '';
+        if (!enrolledSlugs.includes(tSlug)) return null;
         const courses = getDbTrackCourses(t);
         if (courses.length === 0) return null;
-        const started = courses.some(c => (courseProgress[c.id] ?? 0) > 0);
-        if (!started) return null;
-        const avgPct = Math.round(courses.reduce((s, c) => s + (courseProgress[c.id] ?? 0), 0) / courses.length);
+        const tProg = trackProgress[tSlug] || {};
+        const avgPct = Math.round(courses.reduce((s, c) => s + (tProg[c.id] ?? 0), 0) / courses.length);
         const h = LEARNING_TRACKS.find(x => x.name === t.name) || {};
         return { ...h, ...t, matchedCourses: courses, avgProgress: avgPct, icon: t.icon || h.icon || '🛤️', color: h.color || '#6366f1' };
       })
@@ -559,6 +596,44 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ── PROFILE CARD (logged-in users, below hero) ── */}
+      {user && (
+        <div className="lp-profile-card-wrap">
+          <div className="lp-profile-card">
+            <div className="lp-pc-avatar">{user.name.charAt(0).toUpperCase()}</div>
+            <div className="lp-pc-main">
+              <span className="lp-pc-name">{user.name}</span>
+              <div className="lp-pc-tracks-row">
+                {enrolledSlugs.length > 0 ? (
+                  enrolledSlugs.map(slug => {
+                    const dbTrack = dbTracks.find(t => t.slug === slug);
+                    const ltTrack = LEARNING_TRACKS.find(t => t.name === dbTrack?.name);
+                    return (
+                      <span
+                        key={slug}
+                        className="lp-pc-track-pill"
+                        style={{ '--tc': ltTrack?.color || '#6366f1' }}
+                      >
+                        {ltTrack?.icon || dbTrack?.icon || '🛤️'} {dbTrack?.name || slug}
+                      </span>
+                    );
+                  })
+                ) : (
+                  <span className="lp-pc-no-tracks">No tracks enrolled yet — pick one below!</span>
+                )}
+              </div>
+            </div>
+            <div className="lp-pc-streak">
+              <span className="lp-pc-streak-icon">🔥</span>
+              <div className="lp-pc-streak-info">
+                <span className="lp-pc-streak-num">{getStreak()}</span>
+                <span className="lp-pc-streak-label">Day Streak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── MY LEARNING (logged-in users with progress) ── */}
       {user && myTracks.length > 0 && (

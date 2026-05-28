@@ -220,6 +220,10 @@
 /* ─────────────────────────────
    SIDEBAR TOGGLE BUTTON
 ───────────────────────────── */
+/* Desktop defaults */
+.ls-sidebar-icon-fallback { display: none; }  /* hide emoji fallback on desktop */
+.ls-sidebar-label { /* inherits display: inline */ }
+
 .ls-sidebar-btn {
   display: inline-flex;
   align-items: center;
@@ -363,10 +367,39 @@
 .practice-view {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: hidden;  /* panel itself doesn't scroll — children handle it */
 }
 
 .content-body > .practice-view { flex: 1; }
+
+/* AI tutor bar: pinned to top of the IDE panel */
+.ls-ai-tutor-bar { flex-shrink: 0; }
+
+/* The actual sandbox / code area scrolls independently */
+.ls-sandbox-inner {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #c4b5fd #f1f5f9;
+}
+.ls-sandbox-inner::-webkit-scrollbar { width: 6px; }
+.ls-sandbox-inner::-webkit-scrollbar-track { background: #f1f5f9; }
+.ls-sandbox-inner::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 99px; }
+.ls-sandbox-inner::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+
+/* ─────────────────────────────
+   LESSON VIEW — scrollbar shows when in split mode
+───────────────────────────── */
+.split .lesson-view {
+  scrollbar-width: thin;
+  scrollbar-color: #c4b5fd #f1f5f9;
+}
+.split .lesson-view::-webkit-scrollbar { width: 6px; }
+.split .lesson-view::-webkit-scrollbar-track { background: #f1f5f9; }
+.split .lesson-view::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 99px; }
+.split .lesson-view::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
 
 /* ─────────────────────────────
    NAVIGATION BUTTONS
@@ -680,14 +713,18 @@
 }
 
 /* ── Tables ── */
+/* Wrap every table so it can scroll horizontally on small screens */
 .lesson-view table {
+  display: block;        /* enables overflow-x on the table itself */
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   margin: 1.4rem 0 1.6rem;
   font-size: 14.5px;
   font-family: 'Inter', sans-serif;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
@@ -780,7 +817,7 @@
 
   /* Top bar */
   .content-header {
-    padding: 8px 12px;
+    padding: 50px 12px 10px;
     gap: 8px;
   }
 
@@ -789,9 +826,11 @@
     text-align: left;
   }
 
-  /* Hide button label text on small screens, keep icon */
-  .ls-sidebar-btn span { display: none; }
-  .ls-sidebar-btn { padding: 7px 9px; }
+  /* On mobile: hide react-icons SVG (may not render), show fallback char + label */
+  .ls-sidebar-btn { padding: 7px 11px; gap: 5px; font-size: 13px; }
+  .ls-sidebar-icon { display: none; }          /* hide react-icon svg */
+  .ls-sidebar-icon-fallback { display: inline; font-size: 16px; line-height: 1; }
+  .ls-sidebar-label { display: inline; }       /* show "List of Lessons" text */
 
   /* Hide practice on mobile */
   .practice-toggle-btn,
@@ -1158,7 +1197,7 @@
 ══════════════════════════════════════════════ */
 .ls-ai-chat-fab-wrap {
   position: fixed;
-  bottom: 28px;
+  bottom: 80px;   /* clear the ~56px navigation-buttons bar */
   right: 24px;
   z-index: 200;
 }
@@ -1370,9 +1409,11 @@
 /* Mobile tweaks */
 @media (max-width: 640px) {
   .ls-header-actions { gap: 6px; }
-  .ls-ai-tutor-toggle { padding: 5px 9px; font-size: 12px; }
+  .ls-ai-tutor-toggle { display: none; }
   .ls-toggle-pill { display: none; }
-  .ls-ai-chat-fab-wrap { bottom: 20px; right: 16px; }
+  /* screen-container is 92vh, so nav-buttons sit ~8vh above viewport bottom;
+     add nav-buttons height (~54px) + gap to clear it completely */
+  .ls-ai-chat-fab-wrap { bottom: calc(8vh + 70px); right: 16px; }
   .ls-ai-chat-fab { padding: 10px 14px; font-size: 13px; }
   .ls-ai-chat-fab-label { display: none; }
   .ls-ai-popup { padding: 32px 20px 24px; }

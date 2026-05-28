@@ -155,7 +155,9 @@ function Header({ onAboutClick, onContactClick }) {
                         <button className="hdr-login-btn" onClick={openPopup}>Login</button>
                     )}
                     {user && (
-                        <div className="hdr-avatar hdr-avatar-mobile">{user.name.charAt(0).toUpperCase()}</div>
+                        <Link to="/profile" className="hdr-avatar hdr-avatar-mobile" title="My Profile">
+                            {user.name.charAt(0).toUpperCase()}
+                        </Link>
                     )}
                     <button className="hdr-hamburger" onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
                         ☰

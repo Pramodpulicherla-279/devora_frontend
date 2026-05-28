@@ -1,75 +1,311 @@
-.popup-overlay {
+/* ═══════════════════════════════════════════════════════════
+   AUTH POPUP — Redesigned
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Overlay ── */
+.ap-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 2000;
+    padding: 16px;
+    animation: ap-fade 0.18s ease;
 }
 
-.popup-content {
-    background: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
+@keyframes ap-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ── Card ── */
+.ap-card {
+    background: #ffffff;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 430px;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 24px 64px rgba(15, 23, 42, 0.28),
+        0 0 0 1px rgba(124, 58, 237, 0.08);
+    animation: ap-pop 0.26s cubic-bezier(0.34, 1.42, 0.64, 1);
+    overflow: hidden;
+}
+
+@keyframes ap-pop {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* ── Top gradient stripe ── */
+.ap-stripe {
+    height: 4px;
+    background: linear-gradient(90deg, #7c3aed 0%, #2563eb 55%, #0ea5e9 100%);
+}
+
+/* ── Close button ── */
+.ap-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    line-height: 1;
+}
+.ap-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+/* ── Brand ── */
+.ap-brand {
+    padding: 24px 28px 0;
     text-align: center;
 }
+.ap-brand-logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+.ap-dot {
+    /* colour handled by gradient above */
+}
+.ap-brand-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 5px 0 0;
+    font-family: inherit;
+}
 
-.close-button {
+/* ── Tab switcher ── */
+.ap-tabs {
+    display: flex;
+    margin: 20px 28px 0;
+    background: #f1f5f9;
+    border-radius: 11px;
+    padding: 3px;
+    position: relative;
+    gap: 0;
+}
+.ap-tab {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 9px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+.ap-tab.active { color: #7c3aed; }
+
+.ap-tab-slider {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    bottom: 3px;
+    background: #ffffff;
+    border-radius: 9px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* ── Form ── */
+.ap-form {
+    padding: 18px 28px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+/* ── Field ── */
+.ap-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ap-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+.ap-optional {
+    font-weight: 400;
+    text-transform: none;
+    color: #94a3b8;
+    letter-spacing: 0;
+    font-size: 11px;
+}
+
+/* ── Input ── */
+.ap-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14.5px;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    outline: none;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.ap-input::placeholder { color: #b4bfc9; }
+.ap-input:focus {
+    border-color: #7c3aed;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* ── Password wrap ── */
+.ap-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.ap-input-wrap .ap-input {
+    padding-right: 42px;
+}
+
+.ap-eye-btn {
+    position: absolute;
+    right: 12px;
     background: none;
     border: none;
-    font-size: 24px;
+    padding: 0;
     cursor: pointer;
-    color: #888;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s;
+    line-height: 0;
+    flex-shrink: 0;
 }
+.ap-eye-btn:hover { color: #7c3aed; }
 
-.popup-content h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    color: #333;
+/* ── Error banner ── */
+.ap-error {
+    background: #fef2f2;
+    border: 1.5px solid #fca5a5;
+    border-radius: 9px;
+    padding: 9px 13px;
+    font-size: 13px;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
 }
-
-.form-input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.form-button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.switch-auth {
-    margin-top: 20px;
+.ap-error-icon {
     font-size: 14px;
+    flex-shrink: 0;
 }
 
-.switch-auth-link {
-    color: #007bff;
+/* ── Submit button ── */
+.ap-submit {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
+    margin-top: 4px;
+    transition: opacity 0.15s, transform 0.12s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+}
+.ap-submit:hover:not(:disabled) {
+    opacity: 0.93;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.48);
+    transform: translateY(-1px);
+}
+.ap-submit:active:not(:disabled) { transform: translateY(0); }
+.ap-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none !important; }
+
+/* ── Loading spinner ── */
+.ap-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: ap-spin 0.65s linear infinite;
+    display: inline-block;
+    flex-shrink: 0;
+}
+@keyframes ap-spin { to { transform: rotate(360deg); } }
+
+/* ── Switch link ── */
+.ap-switch {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    padding: 12px 28px 22px;
+    margin: 0;
+    font-family: inherit;
+}
+.ap-switch-btn {
+    background: none;
+    border: none;
+    color: #7c3aed;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+    font-family: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+}
+.ap-switch-btn:hover { color: #6d28d9; }
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+    .ap-card { border-radius: 18px; }
+    .ap-brand { padding: 20px 20px 0; }
+    .ap-tabs { margin: 16px 20px 0; }
+    .ap-form { padding: 16px 20px 4px; gap: 11px; }
+    .ap-switch { padding: 10px 20px 20px; }
 }
