@@ -420,6 +420,7 @@ export default function LandingPage() {
             {/* Nav links */}
             <div className="lp-nav-links">
               <a href="#tracks" onClick={e => { e.preventDefault(); scrollTo(tracksRef); setMobileOpen(false); }}>Tracks</a>
+              <Link to="/roadmaps" onClick={() => setMobileOpen(false)}>Roadmaps</Link>
               <a href="#features" onClick={e => { e.preventDefault(); scrollTo(featuresRef); setMobileOpen(false); }}>Features</a>
               <Link to="/privacy-policy" onClick={() => setMobileOpen(false)}>Privacy</Link>
               <Link to="/terms" onClick={() => setMobileOpen(false)}>Terms</Link>

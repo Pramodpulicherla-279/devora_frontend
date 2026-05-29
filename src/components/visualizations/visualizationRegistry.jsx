@@ -21,6 +21,7 @@ import CssBoxModelVisualizer from './css/level-2/topic-3/visual';
 import CssEffectsVisualizer from './css/level-3/topic-1/visual';
 import FlexboxLauncher from './css/level-3/topic-2/launcher';
 import GridLauncher from './css/level-3/topic-3/launcher';
+import SqlQueryVisual from './sql/level-1/topic-1/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -49,6 +50,7 @@ const visualizationRegistry = {
   'css-effects-visualizer' : CssEffectsVisualizer,
   'flexbox-visualizer' : FlexboxLauncher,
   'css-master-visualizer' : GridLauncher,
+  'sql-intro-visualization' : SqlQueryVisual,
 
 
   // 'css-box-model': BoxModelViz,

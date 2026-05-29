@@ -1,0 +1,525 @@
+/* sql-visual.css
+   Mirrors the structure and naming convention of visual.css.
+   Prefix: sqlv- (SQL Visual)
+   ─────────────────────────────────────────────────────────── */
+
+/* ── Container & header ───────────────────────────────────── */
+.sqlv-container {
+  max-width: 50%;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+.sqlv-header {
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sqlv-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 6px;
+}
+
+.sqlv-tagline {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Two-column layout (mirrors cssv-layout) ─────────────── */
+.sqlv-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .sqlv-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Panel base ───────────────────────────────────────────── */
+.sqlv-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Mode buttons (mirrors cssv-mode-buttons) ────────────── */
+.sqlv-mode-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.sqlv-mode-btn {
+  padding: 6px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: "SFMono-Regular", Consolas, "Courier New", monospace;
+  color: #374151;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.sqlv-mode-btn:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+.sqlv-mode-btn-active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.sqlv-panel-sub {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+/* ── Preview box (mirrors cssv-preview) ──────────────────── */
+.sqlv-preview {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  margin-bottom: 16px;
+}
+
+/* Per-mode accent border (visual signal of which clause is active) */
+.sqlv-preview-select  { border-color: #93c5fd; }
+.sqlv-preview-where   { border-color: #3b82f6; }
+.sqlv-preview-orderby { border-color: #8b5cf6; }
+.sqlv-preview-join    { border-color: #10b981; }
+.sqlv-preview-groupby { border-color: #f59e0b; }
+
+/* ── Table (query result) ─────────────────────────────────── */
+.sqlv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.sqlv-table-sm {
+  font-size: 12px;
+}
+
+.sqlv-th {
+  text-align: left;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.sqlv-th-sort {
+  color: #7c3aed;
+}
+
+.sqlv-th-center {
+  text-align: center;
+}
+
+.sqlv-td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.sqlv-tr:last-child .sqlv-td {
+  border-bottom: none;
+}
+
+.sqlv-td-muted {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.sqlv-td-price {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #111827;
+}
+
+.sqlv-td-strong {
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.sqlv-td-center {
+  text-align: center;
+}
+
+/* ── Row states ───────────────────────────────────────────── */
+/* Matching row (WHERE / JOIN) */
+.sqlv-tr-match {
+  background-color: #f0fdf4;
+}
+
+.sqlv-tr-match .sqlv-td {
+  border-bottom-color: #dcfce7;
+}
+
+/* Filtered-out row (dims non-matching WHERE rows) */
+.sqlv-tr-dim {
+  opacity: 0.3;
+}
+
+/* Top result row (ORDER BY) */
+.sqlv-tr-top {
+  background-color: #faf5ff;
+}
+
+.sqlv-tr-top .sqlv-td {
+  border-bottom-color: #ede9fe;
+}
+
+/* ── Category badges ─────────────────────────────────────── */
+.sqlv-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sqlv-badge-electronics { background: #eff6ff; color: #1d4ed8; }
+.sqlv-badge-furniture   { background: #fffbeb; color: #b45309; }
+.sqlv-badge-accessories { background: #f0fdf4; color: #15803d; }
+
+/* ── JOIN-specific layout ─────────────────────────────────── */
+.sqlv-join-sources {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding: 10px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sqlv-join-side {
+  flex: 1;
+  min-width: 0;
+}
+
+.sqlv-join-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.sqlv-join-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 28px;
+  min-width: 46px;
+}
+
+.sqlv-join-connector-line {
+  width: 34px;
+  height: 1.5px;
+  background: #d1d5db;
+  position: relative;
+}
+
+.sqlv-join-connector-line::after {
+  content: "→";
+  position: absolute;
+  right: -10px;
+  top: -8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.sqlv-join-connector-text {
+  font-size: 9px;
+  color: #9ca3af;
+  margin-top: 5px;
+  white-space: nowrap;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  text-align: center;
+}
+
+.sqlv-join-result-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  padding: 8px 10px 4px;
+  background: #ffffff;
+}
+
+.sqlv-excluded {
+  color: #ef4444;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ── GROUP BY bar chart ───────────────────────────────────── */
+.sqlv-bar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+  height: 10px;
+  overflow: hidden;
+  min-width: 50px;
+}
+
+.sqlv-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.sqlv-bar-electronics { background: #3b82f6; }
+.sqlv-bar-furniture   { background: #f59e0b; }
+.sqlv-bar-accessories { background: #10b981; }
+
+.sqlv-group-note {
+  font-size: 11.5px;
+  color: #6b7280;
+  padding: 8px 10px;
+  background: #f9fafb;
+  border-top: 1px solid #f3f4f6;
+}
+
+.sqlv-group-note strong {
+  color: #374151;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+
+/* ── Info section (mirrors cssv-info-title / cssv-info-text) */
+.sqlv-info-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 6px;
+}
+
+.sqlv-info-text {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+
+/* ── Code block (mirrors cssv-code-block) ─────────────────── */
+.sqlv-code-block {
+  background: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+
+.sqlv-code-block code {
+  font-family: "SFMono-Regular", Consolas, "Courier New", monospace;
+  font-size: 13px;
+  color: #cdd6f4;
+  line-height: 1.75;
+  white-space: pre;
+}
+
+/* ── Hints list (mirrors cssv-hints) ─────────────────────── */
+.sqlv-hints {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.sqlv-hints li {
+  font-size: 12.5px;
+  color: #6b7280;
+  margin-bottom: 5px;
+  line-height: 1.55;
+}
+
+.sqlv-hints strong {
+  color: #374151;
+  font-weight: 600;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+/* ── RIGHT PANEL ──────────────────────────────────────────── */
+
+/* Anatomy card (mirrors cssv-rule-card) */
+.sqlv-rule-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.sqlv-rule-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+.sqlv-rule-code {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 0 0 12px;
+  overflow: hidden;
+}
+
+.sqlv-rule-code code {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.85;
+  display: block;
+}
+
+/* Anatomy lines */
+.sqlv-anat-line {
+  display: flex;
+  gap: 2px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.sqlv-anat-line-active {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* Clause keyword spans (mirrors cssv-selector / cssv-property / cssv-value) */
+.sqlv-kw-select  { color: #3b82f6; font-weight: 700; min-width: 72px; display: inline-block; }
+.sqlv-kw-from    { color: #10b981; font-weight: 700; min-width: 72px; display: inline-block; }
+.sqlv-kw-where   { color: #ef4444; font-weight: 700; min-width: 72px; display: inline-block; }
+.sqlv-kw-orderby { color: #8b5cf6; font-weight: 700; min-width: 72px; display: inline-block; }
+.sqlv-kw-join    { color: #10b981; font-weight: 700; min-width: 72px; display: inline-block; }
+.sqlv-kw-groupby { color: #f59e0b; font-weight: 700; min-width: 72px; display: inline-block; }
+
+/* Column, table, value, direction tokens */
+.sqlv-col   { color: #374151; }
+.sqlv-table { color: #374151; font-style: italic; }
+.sqlv-val   { color: #dc2626; }
+.sqlv-dir   { color: #8b5cf6; }
+.sqlv-semi  { color: #9ca3af; }
+
+/* Anatomy pills (mirrors cssv-pill) */
+.sqlv-rule-explain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.sqlv-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sqlv-pill-select  { background: #eff6ff; color: #1d4ed8; }
+.sqlv-pill-from    { background: #f0fdf4; color: #15803d; }
+.sqlv-pill-where   { background: #fef2f2; color: #b91c1c; }
+.sqlv-pill-orderby { background: #faf5ff; color: #6d28d9; }
+.sqlv-pill-join    { background: #f0fdf4; color: #065f46; }
+.sqlv-pill-groupby { background: #fffbeb; color: #b45309; }
+.sqlv-pill-col     { background: #f3f4f6; color: #374151; }
+.sqlv-pill-val     { background: #fef2f2; color: #dc2626; }
+.sqlv-pill-dir     { background: #faf5ff; color: #7c3aed; }
+
+/* ── Execution order card ────────────────────────────────── */
+.sqlv-order-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.sqlv-order-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+.sqlv-order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: exec-counter;
+  display: flex;
+  flex-direction: column;
+}
+
+.sqlv-order-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  border-radius: 4px;
+  counter-increment: exec-counter;
+  transition: background 0.15s;
+}
+
+.sqlv-order-item::before {
+  content: counter(exec-counter);
+  font-size: 10px;
+  font-weight: 600;
+  color: #d1d5db;
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sqlv-order-item-active {
+  background: #eff6ff;
+}
+
+.sqlv-order-clause {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  color: #374151;
+  font-weight: 500;
+  min-width: 76px;
+  flex-shrink: 0;
+}
+
+.sqlv-order-item-active .sqlv-order-clause {
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.sqlv-order-desc {
+  font-size: 11px;
+  color: #9ca3af;
+}

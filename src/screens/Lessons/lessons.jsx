@@ -72,12 +72,33 @@ const DynamicSandbox = memo(function DynamicSandbox({ courseSlug }) {
 
 /* ── Quiz Section with performance insights + retry ── */
 function QuizSection({ quiz }) {
+    // ── ALL hooks must be called unconditionally at the top ──
     const [selected, setSelected] = useState({});
     const [revealed, setRevealed] = useState({});
     const [attempt, setAttempt] = useState(1);
     const recordedRef = React.useRef(false); // guard: record once per attempt
 
-    if (!quiz || quiz.length === 0) return null;
+    // Derived values needed by the effect — safe even when quiz is empty
+    const hasQuiz = Array.isArray(quiz) && quiz.length > 0;
+    const revealedCount = Object.keys(revealed).length;
+    const score = hasQuiz
+        ? Object.keys(revealed).reduce(
+              (acc, qi) => acc + (selected[qi] === quiz[Number(qi)].correctIndex ? 1 : 0),
+              0
+          )
+        : 0;
+    const allRevealed = hasQuiz && revealedCount === quiz.length;
+
+    // useEffect BEFORE the early return — keeps hook order stable on every render
+    React.useEffect(() => {
+        if (allRevealed && !recordedRef.current) {
+            recordedRef.current = true;
+            recordQuizResult(score, hasQuiz ? quiz.length : 0);
+        }
+    }, [allRevealed, score, hasQuiz, quiz?.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Early return AFTER all hooks
+    if (!hasQuiz) return null;
 
     const handleSelect = (qi, oi) => { if (!revealed[qi]) setSelected(p => ({ ...p, [qi]: oi })); };
     const handleReveal = (qi) => setRevealed(p => ({ ...p, [qi]: true }));
@@ -93,18 +114,6 @@ function QuizSection({ quiz }) {
         recordedRef.current = false; // allow recording on the next attempt
     };
 
-    const revealedCount = Object.keys(revealed).length;
-    const score = Object.keys(revealed).reduce((acc, qi) =>
-        acc + (selected[qi] === quiz[Number(qi)].correctIndex ? 1 : 0), 0);
-    const allRevealed = revealedCount === quiz.length;
-
-    // Record quiz result once when all answers are revealed (not on re-renders)
-    React.useEffect(() => {
-        if (allRevealed && !recordedRef.current) {
-            recordedRef.current = true;
-            recordQuizResult(score, quiz.length);
-        }
-    }, [allRevealed, score, quiz.length]);
     const pct = allRevealed ? Math.round((score / quiz.length) * 100) : 0;
 
     return (
