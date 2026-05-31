@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import LessonEditor from './LessonEditor';
 import { API_BASE_URL } from '../../config';
 
+const COURSE_EMOJIS = [
+  '📘','🌐','🎨','⚡','💻','🗄️','🔐','🚀','🧪','🔧',
+  '🧩','⚙️','📊','🔬','🏗️','🐍','🐙','🟢','☁️','🎯',
+  '📱','🔌','🤖','🦾','📡','💡','🌟','🔥','🛠️','🗺️',
+];
+
 function AssignModal({ courseId, allTracks, onClose, onAssigned }) {
   const [selectedId, setSelectedId] = useState('');
 
@@ -62,6 +68,7 @@ function AssignModal({ courseId, allTracks, onClose, onAssigned }) {
 function CreateCourseModal({ onClose, onCreated }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [icon, setIcon] = useState('📘');
   const [saving, setSaving] = useState(false);
 
   const handleCreate = async () => {
@@ -71,7 +78,7 @@ function CreateCourseModal({ onClose, onCreated }) {
       const res = await fetch(`${API_BASE_URL}/api/courses`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: title.trim(), description }),
+        body: JSON.stringify({ title: title.trim(), description, icon }),
       });
       const data = await res.json();
       if (data.success) onCreated(data.data);
@@ -86,6 +93,22 @@ function CreateCourseModal({ onClose, onCreated }) {
       <div className="modal-box" onClick={e => e.stopPropagation()}>
         <div className="modal-title">Create New Course</div>
         <div className="modal-sub">Fill in the details to create a new course.</div>
+
+        <label className="modal-label">Course Icon</label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+          {COURSE_EMOJIS.map(e => (
+            <button
+              key={e} type="button" onClick={() => setIcon(e)}
+              style={{
+                fontSize: '20px', width: '36px', height: '36px', cursor: 'pointer',
+                border: icon === e ? '2px solid var(--accent)' : '1px solid var(--border)',
+                borderRadius: '6px',
+                background: icon === e ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+              }}
+            >{e}</button>
+          ))}
+        </div>
+
         <label className="modal-label">Course Title</label>
         <input className="modal-input" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g. MongoDB Fundamentals" />
         <label className="modal-label">Description</label>
@@ -150,6 +173,7 @@ function CourseManager({ courseId, onBack }) {
   const [showAddPartModal, setShowAddPartModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [leftCollapsed, setLeftCollapsed] = useState(false);
+  const [iconPickerOpen, setIconPickerOpen] = useState(false);
 
   const loadCourse = async () => {
     setLoading(true);
@@ -172,7 +196,53 @@ function CourseManager({ courseId, onBack }) {
       .then(d => { if (d.success) setAllTracks(d.data); });
   }, []);
 
+  // Close icon picker on outside click
+  useEffect(() => {
+    if (!iconPickerOpen) return;
+    const close = () => setIconPickerOpen(false);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, [iconPickerOpen]);
+
+  const saveIcon = async (emoji) => {
+    setIconPickerOpen(false);
+    setCourse(prev => ({ ...prev, icon: emoji }));
+    await fetch(`${API_BASE_URL}/api/courses/${courseId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ icon: emoji }),
+    });
+  };
+
   const togglePart = (partId) => setExpandedParts(prev => ({ ...prev, [partId]: !prev[partId] }));
+
+  const reorderLesson = async (partId, fromIndex, toIndex) => {
+    const part = course.parts.find(p => p._id === partId);
+    if (!part) return;
+
+    const newLessons = [...part.lessons];
+    const [moved] = newLessons.splice(fromIndex, 1);
+    newLessons.splice(toIndex, 0, moved);
+
+    // Optimistic update — reflect the new order instantly in the UI
+    setCourse(prev => ({
+      ...prev,
+      parts: prev.parts.map(p =>
+        p._id === partId ? { ...p, lessons: newLessons } : p
+      ),
+    }));
+
+    try {
+      await fetch(`${API_BASE_URL}/api/lessons/${partId}/reorder`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lessonIds: newLessons.map(l => l._id) }),
+      });
+    } catch {
+      // Revert to server state on failure
+      loadCourse();
+    }
+  };
 
   const handleRemoveTrack = async (trackId) => {
     await fetch(`${API_BASE_URL}/api/tracks/${trackId}/courses/${courseId}`, { method: 'DELETE' });
@@ -211,6 +281,46 @@ function CourseManager({ courseId, onBack }) {
                 ←
               </button>
             )}
+
+            {/* ── Course icon — click to change ── */}
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              <button
+                title="Change course icon"
+                onClick={e => { e.stopPropagation(); setIconPickerOpen(p => !p); }}
+                style={{
+                  background: 'var(--bg-input)', border: '1px solid var(--border)',
+                  borderRadius: '6px', padding: '3px 6px', cursor: 'pointer',
+                  fontSize: '18px', lineHeight: 1,
+                }}
+              >
+                {course.icon || '📘'}
+              </button>
+              {iconPickerOpen && (
+                <div
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 100,
+                    background: 'var(--bg-card)', border: '1px solid var(--border)',
+                    borderRadius: '10px', padding: '10px',
+                    display: 'flex', flexWrap: 'wrap', gap: '5px', width: '220px',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {COURSE_EMOJIS.map(e => (
+                    <button
+                      key={e} onClick={() => saveIcon(e)}
+                      style={{
+                        fontSize: '18px', width: '32px', height: '32px', cursor: 'pointer',
+                        border: (course.icon || '📘') === e ? '2px solid var(--accent)' : '1px solid var(--border)',
+                        borderRadius: '6px',
+                        background: (course.icon || '📘') === e ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+                      }}
+                    >{e}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div className="cm-course-title" style={{ flex: 1, minWidth: 0 }}>
               {course.title}
               <span className={`status-badge ${course.status || 'draft'}`}>{course.status || 'draft'}</span>
@@ -281,17 +391,31 @@ function CourseManager({ courseId, onBack }) {
                         {(!part.lessons || part.lessons.length === 0) ? (
                           <div style={{ fontSize: '12px', color: 'var(--text-muted)', padding: '6px 0' }}>No lessons yet.</div>
                         ) : (
-                          part.lessons.map(lesson => (
+                          part.lessons.map((lesson, li) => (
                             <div
                               key={lesson._id}
                               className={`cm-lesson-item ${selectedLesson?._id === lesson._id ? 'selected' : ''}`}
                               onClick={() => setSelectedLesson({ ...lesson, partId: part._id, partTitle: part.title })}
                             >
                               <div className="cm-lesson-dot" />
-                              {lesson.title}
+                              <span className="cm-lesson-title">{lesson.title}</span>
                               {lesson.status === 'published' && (
-                                <span style={{ marginLeft: 'auto', fontSize: '10px', color: 'var(--green)' }}>●</span>
+                                <span style={{ fontSize: '10px', color: 'var(--green)', flexShrink: 0 }}>●</span>
                               )}
+                              <div className="cm-lesson-reorder-btns" onClick={e => e.stopPropagation()}>
+                                <button
+                                  className="cm-lesson-reorder-btn"
+                                  disabled={li === 0}
+                                  onClick={() => reorderLesson(part._id, li, li - 1)}
+                                  title="Move up"
+                                >▲</button>
+                                <button
+                                  className="cm-lesson-reorder-btn"
+                                  disabled={li === part.lessons.length - 1}
+                                  onClick={() => reorderLesson(part._id, li, li + 1)}
+                                  title="Move down"
+                                >▼</button>
+                              </div>
                             </div>
                           ))
                         )}

@@ -262,6 +262,104 @@ function CreateCourseModalInner({ onClose, onCreated }) {
   );
 }
 
+function ManageCoursesModal({ track, onClose }) {
+  const [courses, setCourses] = useState([...(track.courses || [])]);
+  const [saving, setSaving] = useState(false);
+
+  const move = async (fromIndex, toIndex) => {
+    const prev = [...courses];
+    const next = [...courses];
+    const [item] = next.splice(fromIndex, 1);
+    next.splice(toIndex, 0, item);
+    setCourses(next);
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/tracks/${track._id}/reorder`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseIds: next.map(c => c._id) }),
+      });
+      const data = await res.json();
+      if (!data.success) setCourses(prev);
+    } catch {
+      setCourses(prev);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-title">Course Order — {track.name}</div>
+        <div className="modal-sub">Use arrows to reorder. Order is saved immediately and reflected on the track page.</div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '420px', overflowY: 'auto', marginBottom: '16px' }}>
+          {courses.length === 0 ? (
+            <div style={{ color: 'var(--text-muted)', fontSize: '13px', padding: '24px 0', textAlign: 'center' }}>
+              No courses assigned yet. Use Course Manager to assign courses to this track.
+            </div>
+          ) : courses.map((course, i) => (
+            <div
+              key={course._id}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '10px',
+                padding: '10px 12px', borderRadius: '8px',
+                background: 'var(--bg-input)', border: '1px solid var(--border)',
+              }}
+            >
+              <div style={{
+                width: '26px', height: '26px', borderRadius: '6px', flexShrink: 0,
+                background: 'var(--bg-card)', border: '1px solid var(--border)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)',
+              }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {course.title}
+                </div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>
+                  {course.status || 'draft'} · {course.parts?.length || 0} parts
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', flexShrink: 0 }}>
+                {[
+                  { label: '↑', disabled: i === 0, action: () => move(i, i - 1) },
+                  { label: '↓', disabled: i === courses.length - 1, action: () => move(i, i + 1) },
+                ].map(btn => (
+                  <button
+                    key={btn.label}
+                    onClick={btn.action}
+                    disabled={btn.disabled || saving}
+                    style={{
+                      width: '26px', height: '26px', border: '1px solid var(--border)',
+                      borderRadius: '5px', background: 'var(--bg-card)',
+                      cursor: btn.disabled || saving ? 'not-allowed' : 'pointer',
+                      opacity: btn.disabled ? 0.25 : 1,
+                      fontSize: '12px', display: 'flex', alignItems: 'center',
+                      justifyContent: 'center', color: 'var(--text-secondary)', padding: 0,
+                    }}
+                  >
+                    {btn.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="modal-actions">
+          <button className="modal-confirm" onClick={onClose}>Done</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function EditTrackModal({ track, onClose, onSaved }) {
   const [name, setName] = useState(track.name || '');
   const [description, setDescription] = useState(track.description || '');
@@ -367,6 +465,7 @@ function TracksView() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingTrack, setEditingTrack] = useState(null);
+  const [managingTrack, setManagingTrack] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -415,19 +514,34 @@ function TracksView() {
               <div className="dt-card-desc">{t.description || 'No description'}</div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '4px' }}>
                 <div className="dt-courses-count">{t.type} • {t.courses?.length || 0} courses</div>
-                <button
-                  onClick={e => { e.stopPropagation(); setEditingTrack(t); }}
-                  style={{
-                    padding: '4px 12px', borderRadius: '6px', fontSize: '12px',
-                    border: '1px solid var(--border)', background: 'var(--bg-input)',
-                    color: 'var(--text-secondary)', cursor: 'pointer',
-                    transition: 'all 0.15s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-hover)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
-                >
-                  ✏️ Edit
-                </button>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <button
+                    onClick={e => { e.stopPropagation(); setManagingTrack(t); }}
+                    style={{
+                      padding: '4px 12px', borderRadius: '6px', fontSize: '12px',
+                      border: '1px solid var(--border)', background: 'var(--bg-input)',
+                      color: 'var(--text-secondary)', cursor: 'pointer',
+                      transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-hover)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                  >
+                    ↕ Order
+                  </button>
+                  <button
+                    onClick={e => { e.stopPropagation(); setEditingTrack(t); }}
+                    style={{
+                      padding: '4px 12px', borderRadius: '6px', fontSize: '12px',
+                      border: '1px solid var(--border)', background: 'var(--bg-input)',
+                      color: 'var(--text-secondary)', cursor: 'pointer',
+                      transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-hover)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                  >
+                    ✏️ Edit
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -436,6 +550,13 @@ function TracksView() {
 
       {showModal && (
         <CreateTrackModal onClose={() => setShowModal(false)} onCreated={load} />
+      )}
+
+      {managingTrack && (
+        <ManageCoursesModal
+          track={managingTrack}
+          onClose={() => { setManagingTrack(null); load(); }}
+        />
       )}
 
       {editingTrack && (

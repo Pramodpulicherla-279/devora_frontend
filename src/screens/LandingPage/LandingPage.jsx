@@ -19,7 +19,7 @@ const STATIC_COURSES = [
   { id: '693afba9252afa6fafc011af', name: 'Terminal / CLI', slug: 'terminal-command-line/terminal-basics-for-developers', description: 'Control your system efficiently with essential CLI commands.', icon: '💻', color: '#00897b' },
   { id: '693afe6f252afa6fafc011ba', name: 'Git & GitHub', slug: 'git-and-github/introduction-to-git-and-github-version-control-essentials', description: 'Track changes, collaborate with teams, and manage your code.', icon: '🐙', color: '#e64a19' },
   { id: '693c1db01270c2a321fa0356', name: 'Backend (Node / Express)', slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl', description: 'Power your application with APIs, servers, and business logic.', icon: '🚀', color: '#2e7d32' },
-  { id: '6a0ecfdc690db01f804cb1d5', name: 'SQL', slug: 'sql/introduction-to-sql-and-databases', description: 'Hands-On Guide to Mastering Structured Query Language.', icon: '🗄️', color: '#1565c0' },
+  { id: '6a0ecfdc690db01f804cb1d5', name: 'SQL', slug: 'sql/every-app-runs-on-a-database', description: 'Hands-On Guide to Mastering Structured Query Language.', icon: '🗄️', color: '#1565c0' },
 ];
 
 /* ─── TRACK → COURSE MAPPING ─────────────── */
@@ -653,7 +653,7 @@ export default function LandingPage() {
                   key={i}
                   className="lp-my-track-card"
                   style={{ '--tc': track.color }}
-                  onClick={() => { setExpandedLearningTrack(track.name); scrollTo(tracksRef); }}
+                  onClick={() => navigate(`/track/${track.slug}`)}
                 >
                   <div className="lp-mt-glow" />
                   <div className="lp-mt-left">
@@ -844,7 +844,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── AI PIPELINE ── */}
-      <section className="lp-section lp-pipeline">
+      {/* <section className="lp-section lp-pipeline">
         <div className="lp-section-inner">
           <div className="lp-section-header">
             <div className="lp-label-tag">Learning Pipeline</div>
@@ -861,7 +861,7 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── VISUAL SHOWCASE ── */}
       <section className="lp-section lp-showcase">
@@ -1179,7 +1179,7 @@ console.log(reverseString('Dev.EL'));
           <h2 className="lp-cta-h2">Build Real Skills.<br /><span className="lp-gradient-text">Learn Visually. Grow Faster.</span></h2>
           <p className="lp-cta-p">Join Dev.EL today and accelerate your developer journey with visual, hands-on interactive learning.</p>
           <div className="lp-cta-btns">
-            <button className="lp-btn-primary lp-btn-lg" onClick={() => setIsPopupOpen(true)}>Start Learning Now</button>
+            <button className="lp-btn-primary lp-btn-lg" onClick={() => { scrollTo(tracksRef); try { logEvent(getAnalytics(), 'start_learning_click'); } catch { } }}>Start Learning Now</button>
             <button className="lp-btn-outline lp-btn-lg" onClick={() => scrollTo(tracksRef)}>Explore Courses</button>
           </div>
         </div>

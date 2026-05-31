@@ -6,7 +6,16 @@ import logo from '../../assets/logo.png';
 import './header.css';
 import { API_BASE_URL } from '../../../config';
 
-function Header({ onAboutClick, onContactClick }) {
+function isTokenExpired(token) {
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return Date.now() >= payload.exp * 1000;
+    } catch {
+        return true;
+    }
+}
+
+function Header({ onAboutClick, onContactClick, backToTrack = false }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [user, setUser] = useState(null);
     const location = useLocation();
@@ -29,10 +38,44 @@ function Header({ onAboutClick, onContactClick }) {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Load user from localStorage
+    // Load user from localStorage — clear + show login if token already expired
     useEffect(() => {
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) setUser(JSON.parse(userInfo));
+        const raw = localStorage.getItem('userInfo');
+        if (!raw) return;
+        const userInfo = JSON.parse(raw);
+        if (isTokenExpired(userInfo.token)) {
+            localStorage.removeItem('userInfo');
+            setIsPopupOpen(true);
+            return;
+        }
+        setUser(userInfo);
+    }, []);
+
+    // Periodically check whether the token has expired while the tab is open
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const raw = localStorage.getItem('userInfo');
+            if (!raw) return;
+            const userInfo = JSON.parse(raw);
+            if (isTokenExpired(userInfo.token)) {
+                localStorage.removeItem('userInfo');
+                setUser(null);
+                setIsSidebarOpen(false);
+                setIsPopupOpen(true);
+            }
+        }, 60_000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Listen for 401s dispatched by authFetch — show login popup immediately
+    useEffect(() => {
+        const handleAuthExpired = () => {
+            setUser(null);
+            setIsSidebarOpen(false);
+            setIsPopupOpen(true);
+        };
+        window.addEventListener('auth-expired', handleAuthExpired);
+        return () => window.removeEventListener('auth-expired', handleAuthExpired);
     }, []);
 
     // Lock body scroll when sidebar is open
@@ -60,6 +103,11 @@ function Header({ onAboutClick, onContactClick }) {
     };
     const handleContactClick = (e) => {
         if (onContactClick) { e.preventDefault(); onContactClick(); setIsSidebarOpen(false); }
+    };
+
+    const handleBackToTrack = () => {
+        const trackSlug = localStorage.getItem('currentTrackSlug');
+        navigate(trackSlug && trackSlug !== 'global' ? `/track/${trackSlug}` : '/');
     };
 
     const openDonate = () => { setIsDonateModalOpen(true); setIsSidebarOpen(false); };
@@ -93,12 +141,18 @@ function Header({ onAboutClick, onContactClick }) {
         <>
             <header className="header-container">
 
-                {/* ── LEFT: Logo + Search ── */}
+                {/* ── LEFT: Logo (or back button) + Search ── */}
                 <div className="hdr-left">
-                    <Link to="/" className="hdr-logo">
-                        <img src={logo} alt="Dev.eL" />
-                        <span>Dev<span className="hdr-dot">.</span>eL</span>
-                    </Link>
+                    {backToTrack ? (
+                        <button onClick={handleBackToTrack} className="hdr-back-btn">
+                            ← Back to Track
+                        </button>
+                    ) : (
+                        <Link to="/" className="hdr-logo">
+                            <img src={logo} alt="Dev.eL" />
+                            <span>Dev<span className="hdr-dot">.</span>eL</span>
+                        </Link>
+                    )}
 
                     <div className="lesson-search-bar" ref={searchRef}>
                         <input

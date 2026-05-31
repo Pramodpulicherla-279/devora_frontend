@@ -31,6 +31,15 @@ export async function authFetch(url, options = {}) {
 
     const response = await fetch(url, { ...options, headers });
 
+    // ── Token expired / unauthorised ───────────────────────────────────────
+    // Clear stored credentials and tell the Header to open the login popup.
+    if (response.status === 401) {
+        localStorage.removeItem('userInfo');
+        window.dispatchEvent(new Event('auth-expired'));
+        return response;
+    }
+    // ───────────────────────────────────────────────────────────────────────
+
     // ── Sliding-expiry token rotation ──────────────────────────────────────
     // If the backend issued a fresh token (X-New-Token header), silently
     // update localStorage so the next request carries the renewed token.

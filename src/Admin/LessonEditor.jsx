@@ -15,6 +15,7 @@ import EditorMenuBar from './EditorMenuBar';
 import VisualizationEmbed from './extensions/VisualizationEmbed';
 import { API_BASE_URL } from '../../config';
 import { parseLessonContent } from '../components/visualizations/utils/lessonParser';
+import './MdImport.css';
 
 const lowlight = createLowlight(all);
 
@@ -26,6 +27,148 @@ const EMPTY_QUIZ = () => ({
 });
 
 const EMPTY_IQ = (level) => ({ level, question: '', answer: '' });
+
+/* ── Markdown → TipTap-compatible HTML converter ── */
+function convertMdToHtml(md) {
+  if (!md || !md.trim()) return '';
+
+  const lines = md.split('\n');
+  const out = [];
+  let i = 0;
+
+  const escHtml = (s) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // Inline: bold, italic, inline-code, links
+  const parseInline = (s) => {
+    return s
+      // inline code first (greedy-safe)
+      .replace(/`([^`]+)`/g, (_, c) => `<code>${escHtml(c)}</code>`)
+      // bold+italic
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+      // bold
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(.+?)__/g, '<strong>$1</strong>')
+      // italic
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/_(.+?)_/g, '<em>$1</em>')
+      // links
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  };
+
+  while (i < lines.length) {
+    const raw = lines[i];
+    const line = raw.trimEnd();
+
+    // ── Fenced code block ──────────────────────────────────────────
+    if (/^```/.test(line)) {
+      const langMatch = line.match(/^```(\w*)/);
+      const lang = langMatch?.[1] || '';
+      const codeLines = [];
+      i++;
+      while (i < lines.length && !/^```/.test(lines[i])) {
+        codeLines.push(escHtml(lines[i]));
+        i++;
+      }
+      const langAttr = lang ? ` class="language-${lang}"` : '';
+      out.push(`<pre><code${langAttr}>${codeLines.join('\n')}</code></pre>`);
+      i++;
+      continue;
+    }
+
+    // ── Headings ───────────────────────────────────────────────────
+    const h = line.match(/^(#{1,6})\s+(.*)/);
+    if (h) {
+      const level = h[1].length;
+      out.push(`<h${level}>${parseInline(h[2])}</h${level}>`);
+      i++;
+      continue;
+    }
+
+    // ── Horizontal rule ────────────────────────────────────────────
+    if (/^[-*_]{3,}$/.test(line.trim())) {
+      out.push('<hr/>');
+      i++;
+      continue;
+    }
+
+    // ── Blockquote ─────────────────────────────────────────────────
+    if (/^>/.test(line)) {
+      const bqLines = [];
+      while (i < lines.length && /^>/.test(lines[i])) {
+        bqLines.push(parseInline(lines[i].replace(/^>\s?/, '')));
+        i++;
+      }
+      out.push(`<blockquote><p>${bqLines.join('<br/>')}</p></blockquote>`);
+      continue;
+    }
+
+    // ── GFM Table ─────────────────────────────────────────────────
+    if (/^\|/.test(line) && i + 1 < lines.length && /^\|[-| :]+\|/.test(lines[i + 1])) {
+      const headerCells = line.split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1);
+      i += 2; // skip header + separator
+      const rows = [];
+      while (i < lines.length && /^\|/.test(lines[i])) {
+        rows.push(lines[i].split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1));
+        i++;
+      }
+      const thead = headerCells.map(c => `<th>${parseInline(c.trim())}</th>`).join('');
+      const tbody = rows.map(row =>
+        `<tr>${row.map(c => `<td>${parseInline(c.trim())}</td>`).join('')}</tr>`
+      ).join('');
+      out.push(`<table><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table>`);
+      continue;
+    }
+
+    // ── Unordered list ────────────────────────────────────────────
+    if (/^[-*+]\s/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^[-*+]\s/.test(lines[i])) {
+        items.push(`<li>${parseInline(lines[i].replace(/^[-*+]\s+/, ''))}</li>`);
+        i++;
+      }
+      out.push(`<ul>${items.join('')}</ul>`);
+      continue;
+    }
+
+    // ── Ordered list ──────────────────────────────────────────────
+    if (/^\d+\.\s/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
+        items.push(`<li>${parseInline(lines[i].replace(/^\d+\.\s+/, ''))}</li>`);
+        i++;
+      }
+      out.push(`<ol>${items.join('')}</ol>`);
+      continue;
+    }
+
+    // ── Empty line ────────────────────────────────────────────────
+    if (line.trim() === '') {
+      i++;
+      continue;
+    }
+
+    // ── Paragraph (collect multi-line) ────────────────────────────
+    const paraLines = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() !== '' &&
+      !/^#{1,6}\s/.test(lines[i]) &&
+      !/^```/.test(lines[i]) &&
+      !/^[-*+]\s/.test(lines[i]) &&
+      !/^\d+\.\s/.test(lines[i]) &&
+      !/^\|/.test(lines[i]) &&
+      !/^>/.test(lines[i]) &&
+      !/^[-*_]{3,}$/.test(lines[i].trim())
+    ) {
+      paraLines.push(parseInline(lines[i].trim()));
+      i++;
+    }
+    if (paraLines.length) out.push(`<p>${paraLines.join(' ')}</p>`);
+  }
+
+  return out.join('\n');
+}
 
 function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSaved }) {
   const [courses, setCourses] = useState([]);
@@ -50,6 +193,11 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
   const [lastSaved, setLastSaved] = useState(null);
   const [previewHtml, setPreviewHtml] = useState('');
   const [aiLoading, setAiLoading] = useState({});
+
+  // MD Import modal state
+  const [showMdModal, setShowMdModal] = useState(false);
+  const [mdInput, setMdInput] = useState('');
+  const [mdImportMode, setMdImportMode] = useState('replace'); // 'replace' | 'append'
 
   const editor = useEditor({
     extensions: [
@@ -256,6 +404,24 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
     } finally {
       setAiLoading({});
     }
+  };
+
+  /* ── MD Import ── */
+  const handleMdImport = () => {
+    if (!mdInput.trim()) return;
+    const html = convertMdToHtml(mdInput);
+    if (!html) return;
+    if (mdImportMode === 'replace') {
+      editor?.commands.setContent(html);
+    } else {
+      // append: insert after existing content
+      const current = editor?.getHTML() || '';
+      const cleaned = current === '<p>Write your lesson here...</p>' ? '' : current;
+      editor?.commands.setContent(cleaned + html);
+    }
+    setPreviewHtml(editor?.getHTML() || html);
+    setMdInput('');
+    setShowMdModal(false);
   };
 
   const addTag = () => {
@@ -475,6 +641,13 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
           title="Generate 6 interview questions from lesson content"
         >
           {aiLoading.interview ? '⏳' : '✦'} Generate Interview Qs
+        </button>
+        <button
+          className="le-ai-btn md-import-btn"
+          onClick={() => setShowMdModal(true)}
+          title="Paste Markdown and convert it to rich content"
+        >
+          ⇩ Import Markdown
         </button>
         <span style={{ marginLeft: 'auto', fontSize: '11px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
           <span style={{ color: '#22c55e' }}>●</span> Gemini AI Active
@@ -898,6 +1071,86 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
         </div>
 
       </div>
+
+      {/* ── Markdown Import Modal ── */}
+      {showMdModal && (
+        <div
+          className="md-modal-overlay"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowMdModal(false); }}
+        >
+          <div className="md-modal">
+            <div className="md-modal-header">
+              <div className="md-modal-title">
+                <span className="md-modal-icon">⇩</span>
+                Import Markdown
+              </div>
+              <button className="md-modal-close" onClick={() => setShowMdModal(false)}>✕</button>
+            </div>
+
+            <div className="md-modal-body">
+              <div className="md-modal-hint">
+                Paste your Markdown below. Headings, code blocks (with language), tables, lists, bold, italic, and inline code are all supported.
+              </div>
+
+              <div className="md-mode-toggle">
+                <label className="md-mode-label">Import mode:</label>
+                <div className="md-mode-options">
+                  <button
+                    className={`md-mode-btn ${mdImportMode === 'replace' ? 'active' : ''}`}
+                    onClick={() => setMdImportMode('replace')}
+                  >
+                    Replace content
+                  </button>
+                  <button
+                    className={`md-mode-btn ${mdImportMode === 'append' ? 'active' : ''}`}
+                    onClick={() => setMdImportMode('append')}
+                  >
+                    Append to existing
+                  </button>
+                </div>
+              </div>
+
+              <textarea
+                className="md-textarea"
+                value={mdInput}
+                onChange={e => setMdInput(e.target.value)}
+                placeholder={`# My Lesson Heading\n\nPaste your markdown here...\n\n\`\`\`javascript\nconst x = 1;\n\`\`\`\n\n| Col A | Col B |\n|-------|-------|\n| val 1 | val 2 |`}
+                spellCheck={false}
+                autoFocus
+              />
+
+              {mdInput.trim() && (
+                <div className="md-preview-section">
+                  <div className="md-preview-label">Preview</div>
+                  <div
+                    className="md-preview-box"
+                    dangerouslySetInnerHTML={{ __html: convertMdToHtml(mdInput) }}
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="md-modal-footer">
+              <div className="md-char-count">
+                {mdInput.length} characters
+              </div>
+              <div className="md-footer-actions">
+                <button className="md-btn-cancel" onClick={() => { setShowMdModal(false); setMdInput(''); }}>
+                  Cancel
+                </button>
+                <button
+                  className="md-btn-import"
+                  onClick={handleMdImport}
+                  disabled={!mdInput.trim()}
+                >
+                  ⇩ Import into Editor
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

@@ -178,6 +178,40 @@
 }
 .ts-btn-enroll:disabled { opacity: 0.7; cursor: not-allowed; }
 
+/* Enrolled status badge (non-interactive) */
+.ts-enrolled-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--tc);
+  background: transparent;
+  border: 2px solid var(--tc);
+  pointer-events: none;
+}
+
+/* Leave track button */
+.ts-btn-leave {
+  background: transparent;
+  color: #ef4444;
+  border: 1.5px solid #fca5a5;
+  border-radius: 12px;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ts-btn-leave:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #ef4444;
+  transform: translateY(-2px);
+}
+.ts-btn-leave:disabled { opacity: 0.7; cursor: not-allowed; }
+
 .ts-btn-lg { padding: 14px 28px; font-size: 15px; }
 
 /* ─── Hero (full-bleed 3D bg + text overlay) ─── */
@@ -751,6 +785,100 @@
   color: #64748b;
   margin: 0 0 28px;
   font-size: 16px;
+}
+
+/* ─── Leave track confirmation modal ─── */
+.ts-leave-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: ts-fade-in 0.15s ease;
+}
+@keyframes ts-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ts-leave-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 64px -12px rgba(15, 23, 42, 0.22);
+  animation: ts-slide-up 0.18s ease;
+}
+@keyframes ts-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ts-leave-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+.ts-leave-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+.ts-leave-body {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+.ts-leave-body strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+.ts-leave-actions {
+  display: flex;
+  gap: 10px;
+}
+.ts-leave-cancel {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ts-leave-cancel:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+}
+.ts-leave-confirm {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ts-leave-confirm:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+.ts-leave-confirm:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* ─── Responsive ─── */

@@ -174,7 +174,7 @@ function HomeScreen() {
         {
             id: '6a0ecfdc690db01f804cb1d5',
             name: 'SQL',
-            slug: 'sql/introduction-to-sql-and-databases',
+            slug: 'sql/every-app-runs-on-a-database',
             description: 'Hands-On Guide to Mastering Structured Query Language',
         },
     ];

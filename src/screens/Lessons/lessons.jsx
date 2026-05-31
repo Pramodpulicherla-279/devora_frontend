@@ -556,7 +556,7 @@ function CourseScreen() {
     if (!course) {
         return (
             <div className="screen-container">
-                <Header />
+                <Header backToTrack={true} />
                 <div className="page-container loading-container">
                     <h1>Loading course...</h1>
                 </div>
@@ -721,7 +721,7 @@ function CourseScreen() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
             </Helmet>
-            <Header />
+            <Header backToTrack={true} />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>
                      {!isDesktop && (
@@ -730,6 +730,7 @@ function CourseScreen() {
                         <span>Close</span>
                     </button>
                     )}
+
                     {user ? (
                         <div className="course-sidebar-header">
 

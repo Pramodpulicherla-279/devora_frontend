@@ -230,7 +230,7 @@ export const ROADMAPS = [
       {
         id: 'be-p3', title: 'Databases',
         steps: [
-          { id: 'be-sql', title: 'SQL', icon: '🗄️', type: 'required', courseSlug: 'sql/introduction-to-sql-and-databases', description: 'Query and manage relational databases with SQL.', topics: ['SELECT, INSERT, UPDATE, DELETE', 'Joins', 'Indexes', 'Transactions', 'Stored procedures'] },
+          { id: 'be-sql', title: 'SQL', icon: '🗄️', type: 'required', courseSlug: 'sql/every-app-runs-on-a-database', description: 'Query and manage relational databases with SQL.', topics: ['SELECT, INSERT, UPDATE, DELETE', 'Joins', 'Indexes', 'Transactions', 'Stored procedures'] },
           { id: 'be-mongo', title: 'MongoDB', icon: '🍃', type: 'required', description: 'NoSQL data modelling and querying with MongoDB.', topics: ['CRUD', 'Aggregation', 'Indexes', 'Schema design'] },
           { id: 'be-orm', title: 'ORMs & ODMs', icon: '🗃️', type: 'optional', description: 'Mongoose for MongoDB and Prisma/Sequelize for SQL.', topics: ['Mongoose', 'Prisma', 'Migrations', 'Relations'] },
         ],
@@ -321,7 +321,7 @@ export const ROADMAPS = [
       {
         id: 'da-p1', title: 'Data Foundations',
         steps: [
-          { id: 'da-sql', title: 'SQL', icon: '🗄️', type: 'required', courseSlug: 'sql/introduction-to-sql-and-databases', description: 'Query, filter and aggregate data with SQL — the #1 analyst skill.', topics: ['SELECT & WHERE', 'Aggregations (GROUP BY)', 'Joins', 'Subqueries', 'Window functions'] },
+          { id: 'da-sql', title: 'SQL', icon: '🗄️', type: 'required', courseSlug: 'sql/every-app-runs-on-a-database', description: 'Query, filter and aggregate data with SQL — the #1 analyst skill.', topics: ['SELECT & WHERE', 'Aggregations (GROUP BY)', 'Joins', 'Subqueries', 'Window functions'] },
           { id: 'da-spreadsheets', title: 'Spreadsheets', icon: '📑', type: 'required', description: 'Excel and Google Sheets for quick data exploration and reporting.', topics: ['Formulas', 'Pivot tables', 'VLOOKUP / INDEX-MATCH', 'Charts', 'Data cleaning'] },
         ],
       },

@@ -257,7 +257,7 @@ const STATIC_COURSE_META = {
   '693afba9252afa6fafc011af': { icon: '💻', color: '#00897b', desc: 'Control your system efficiently with essential CLI commands.', slug: 'terminal-command-line/terminal-basics-for-developers' },
   '693afe6f252afa6fafc011ba': { icon: '🐙', color: '#e64a19', desc: 'Track changes, collaborate with teams, and manage code.',      slug: 'git-and-github/introduction-to-git-and-github-version-control-essentials' },
   '693c1db01270c2a321fa0356': { icon: '🚀', color: '#2e7d32', desc: 'Power your application with APIs, servers, and business logic.', slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl' },
-  '6a0ecfdc690db01f804cb1d5': { icon: '🗄️', color: '#1565c0', desc: 'Hands-on guide to mastering Structured Query Language.',      slug: 'sql/introduction-to-sql-and-databases' },
+  '6a0ecfdc690db01f804cb1d5': { icon: '🗄️', color: '#1565c0', desc: 'Hands-on guide to mastering Structured Query Language.',      slug: 'sql/every-app-runs-on-a-database' },
 };
 
 /* ─── Animated counter ─── */
@@ -313,6 +313,7 @@ export default function TrackScreen() {
   const [courseProgress, setCourseProgress] = useState({});
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [enrollLoading, setEnrollLoading] = useState(false);
+  const [showLeaveConfirm, setShowLeaveConfirm] = useState(false);
 
   // Reset scroll before first paint — no visible jump
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
@@ -374,17 +375,36 @@ export default function TrackScreen() {
       .catch(() => {});
   }, [user, slug]);
 
-  const handleEnrollToggle = async () => {
+  const handleEnroll = async () => {
     if (!user) { navigate('/'); return; }
     setEnrollLoading(true);
-    const action = isEnrolled ? 'unenroll' : 'enroll';
     try {
       const res = await authFetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
         method: 'POST',
-        body: JSON.stringify({ slug, action }),
+        body: JSON.stringify({ slug, action: 'enroll' }),
       });
       const data = await res.json();
       if (data.success) setIsEnrolled((data.enrolledTracks || []).includes(slug));
+    } catch { }
+    setEnrollLoading(false);
+  };
+
+  const handleLeaveTrack = async () => {
+    setShowLeaveConfirm(false);
+    setEnrollLoading(true);
+    try {
+      const [unenrollRes] = await Promise.all([
+        authFetch(`${API_BASE_URL}/api/users/tracks/enroll`, {
+          method: 'POST',
+          body: JSON.stringify({ slug, action: 'unenroll' }),
+        }),
+        authFetch(`${API_BASE_URL}/api/progress/tracks/${slug}`, { method: 'DELETE' }),
+      ]);
+      const data = await unenrollRes.json();
+      if (data.success) {
+        setIsEnrolled(false);
+        setCourseProgress({});
+      }
     } catch { }
     setEnrollLoading(false);
   };
@@ -519,13 +539,26 @@ export default function TrackScreen() {
                   <span className="ts-btn-arrow">→</span>
                 </button>
                 {user ? (
-                  <button
-                    className={`ts-btn-enroll ts-btn-lg ${isEnrolled ? 'enrolled' : ''}`}
-                    onClick={handleEnrollToggle}
-                    disabled={enrollLoading}
-                  >
-                    {enrollLoading ? '…' : isEnrolled ? '✓ Enrolled' : '+ Enroll in Track'}
-                  </button>
+                  isEnrolled ? (
+                    <>
+                      <span className="ts-enrolled-badge">✓ Enrolled</span>
+                      <button
+                        className="ts-btn-leave ts-btn-lg"
+                        onClick={() => setShowLeaveConfirm(true)}
+                        disabled={enrollLoading}
+                      >
+                        Leave Track
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      className="ts-btn-enroll ts-btn-lg"
+                      onClick={handleEnroll}
+                      disabled={enrollLoading}
+                    >
+                      {enrollLoading ? '…' : '+ Enroll in Track'}
+                    </button>
+                  )
                 ) : (
                   <button className="ts-btn-outline ts-btn-lg" onClick={() => {
                     document.querySelector('.ts-learn-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -599,7 +632,7 @@ export default function TrackScreen() {
             <div className="ts-courses-list">
               {track.courses.map((course, i) => {
                 const meta2 = STATIC_COURSE_META[course._id?.toString()] || {};
-                const courseIcon = meta2.icon || '📘';
+                const courseIcon = course.icon || meta2.icon || '📘';
                 const courseColor = meta2.color || meta.color;
                 const courseDesc = meta2.desc || course.description || `Master the fundamentals of ${course.title}.`;
                 const partsCount = course.parts?.length || 0;
@@ -680,6 +713,27 @@ export default function TrackScreen() {
             </button>
           </div>
         </section>
+      )}
+
+      {/* LEAVE TRACK CONFIRMATION */}
+      {showLeaveConfirm && (
+        <div className="ts-leave-overlay" onClick={() => setShowLeaveConfirm(false)}>
+          <div className="ts-leave-box" onClick={e => e.stopPropagation()}>
+            <div className="ts-leave-icon">🚪</div>
+            <h3 className="ts-leave-title">Leave this track?</h3>
+            <p className="ts-leave-body">
+              You'll be unenrolled from <strong>{track.name}</strong>. Your progress in individual courses will be saved.
+            </p>
+            <div className="ts-leave-actions">
+              <button className="ts-leave-cancel" onClick={() => setShowLeaveConfirm(false)}>
+                Cancel
+              </button>
+              <button className="ts-leave-confirm" onClick={handleLeaveTrack} disabled={enrollLoading}>
+                {enrollLoading ? '…' : 'Yes, Leave Track'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

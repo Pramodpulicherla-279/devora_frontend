@@ -15,16 +15,18 @@ const KNOWN_COURSES = [
   { id: '693afba9252afa6fafc011af', name: 'Terminal / CLI',         icon: '💻', color: '#00897b', slug: 'terminal-command-line/terminal-basics-for-developers' },
   { id: '693afe6f252afa6fafc011ba', name: 'Git & GitHub',           icon: '🐙', color: '#e64a19', slug: 'git-and-github/introduction-to-git-and-github-version-control-essentials' },
   { id: '693c1db01270c2a321fa0356', name: 'Backend (Node/Express)', icon: '🚀', color: '#2e7d32', slug: 'backend-nodejs-express/introduction-to-nodejs-and-node-repl' },
-  { id: '6a0ecfdc690db01f804cb1d5', name: 'SQL',                    icon: '🗄️', color: '#1565c0', slug: 'sql/introduction-to-sql-and-databases' },
+  { id: '6a0ecfdc690db01f804cb1d5', name: 'SQL',                    icon: '🗄️', color: '#1565c0', slug: 'sql/every-app-runs-on-a-database' },
 ];
 
-const KNOWN_TRACKS = [
-  { name: 'MERN Stack',           icon: '🧩', color: '#7c3aed', slug: 'mern-stack',           courseIds: ['6919f6286409cc0505808ac5','6919f63e6409cc0505808ac7','6919f6516409cc0505808ac9','693afba9252afa6fafc011af','693afe6f252afa6fafc011ba','693c1db01270c2a321fa0356'] },
-  { name: 'Frontend Development', icon: '🎨', color: '#7b1fa2', slug: 'frontend-development',  courseIds: ['6919f6286409cc0505808ac5','6919f63e6409cc0505808ac7','6919f6516409cc0505808ac9'] },
-  { name: 'Backend Development',  icon: '⚙️', color: '#2e7d32', slug: 'backend-development',   courseIds: ['693c1db01270c2a321fa0356','693afba9252afa6fafc011af','693afe6f252afa6fafc011ba'] },
-  { name: 'Data Analytics',       icon: '📊', color: '#0277bd', slug: 'data-analytics',        courseIds: ['6a0ecfdc690db01f804cb1d5'] },
-  { name: 'DevOps',               icon: '🛠️', color: '#5d4037', slug: 'devops',                courseIds: ['693afba9252afa6fafc011af','693afe6f252afa6fafc011ba'] },
-];
+/* Fallback colors for tracks; unknown tracks get indigo */
+const TRACK_COLORS = {
+  'mern-stack':           '#7c3aed',
+  'frontend-development': '#7b1fa2',
+  'backend-development':  '#2e7d32',
+  'data-analytics':       '#0277bd',
+  'devops':               '#5d4037',
+  'mean-stack':           '#0097a7',
+};
 
 /* ─── Progress ring ─── */
 function ProgressRing({ pct, color, size = 52 }) {
@@ -60,6 +62,7 @@ export default function ProfileScreen() {
   const [progress, setProgress] = useState({});            // { courseId: percent } — global / legacy
   const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: percent } }
   const [enrolledSlugs, setEnrolledSlugs] = useState([]);  // track slugs from API
+  const [dbTracks, setDbTracks] = useState([]);             // all tracks from API
   const [loading, setLoading] = useState(true);
   const [enrollLoading, setEnrollLoading] = useState(true); // true until enrolled slugs resolve
 
@@ -94,6 +97,14 @@ export default function ProfileScreen() {
     });
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Fetch all tracks from API so we're never limited by a hardcoded list
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/tracks`)
+      .then(r => r.json())
+      .then(d => { if (d.success) setDbTracks(d.data); })
+      .catch(() => {});
+  }, []);
+
   // Fetch explicitly enrolled tracks from API
   useEffect(() => {
     if (!user) return;
@@ -111,11 +122,12 @@ export default function ProfileScreen() {
 
   // Fetch track-scoped progress for each enrolled track
   useEffect(() => {
-    if (!user || enrolledSlugs.length === 0) return;
+    if (!user || enrolledSlugs.length === 0 || dbTracks.length === 0) return;
     enrolledSlugs.forEach(trackSlug => {
-      const track = KNOWN_TRACKS.find(t => t.slug === trackSlug);
+      const track = dbTracks.find(t => t.slug === trackSlug);
       if (!track) return;
-      track.courseIds.forEach(async (courseId) => {
+      const courseIds = (track.courses || []).map(c => (typeof c === 'object' ? c._id?.toString() : c));
+      courseIds.forEach(async (courseId) => {
         try {
           const res = await authFetch(
             `${API_BASE_URL}/api/progress/courses/${courseId}?trackSlug=${trackSlug}`
@@ -131,7 +143,7 @@ export default function ProfileScreen() {
         } catch { /* keep 0 */ }
       });
     });
-  }, [user, enrolledSlugs]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user, enrolledSlugs, dbTracks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) return null;
 
@@ -152,8 +164,14 @@ export default function ProfileScreen() {
   /* ── Derived stats ── */
   const started   = KNOWN_COURSES.filter(c => getCoursePct(c.id) > 0);
   const completed = KNOWN_COURSES.filter(c => getCoursePct(c.id) >= 100);
-  // Use explicitly enrolled tracks from API (not inferred from progress)
-  const enrolledTracks = KNOWN_TRACKS.filter(t => enrolledSlugs.includes(t.slug));
+  // Build enrolled tracks from live API data — never limited by a hardcoded list
+  const enrolledTracks = dbTracks
+    .filter(t => enrolledSlugs.includes(t.slug))
+    .map(t => ({
+      ...t,
+      color: TRACK_COLORS[t.slug] || '#6366f1',
+      courseIds: (t.courses || []).map(c => (typeof c === 'object' ? c._id?.toString() : c)),
+    }));
 
   // Overall progress = average of enrolled-track averages (track-scoped, not global).
   // Falls back to global course average only when user has no enrolled tracks.

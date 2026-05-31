@@ -1,0 +1,354 @@
+/* ── MD Import button (in le-ai-row) ───────────────────────────────── */
+.md-import-btn {
+  border: 1.5px dashed var(--border, #d1d5db) !important;
+  color: var(--text-muted, #6b7280) !important;
+  background: transparent !important;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.md-import-btn:hover {
+  border-color: #6366f1 !important;
+  color: #6366f1 !important;
+  background: rgba(99, 102, 241, 0.06) !important;
+}
+
+/* ── Modal overlay ──────────────────────────────────────────────────── */
+.md-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: md-overlay-in 0.15s ease;
+}
+
+@keyframes md-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal shell ────────────────────────────────────────────────────── */
+.md-modal {
+  background: var(--bg-main, #ffffff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+  animation: md-modal-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes md-modal-in {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.md-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+  flex-shrink: 0;
+}
+
+.md-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+}
+
+.md-modal-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.md-modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text-muted, #9ca3af);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.md-modal-close:hover {
+  background: var(--bg-card, #f3f4f6);
+  color: var(--text-primary, #111827);
+}
+
+/* ── Body ───────────────────────────────────────────────────────────── */
+.md-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.md-modal-hint {
+  font-size: 12.5px;
+  color: var(--text-muted, #6b7280);
+  line-height: 1.6;
+  padding: 10px 14px;
+  background: var(--bg-card, #f9fafb);
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+}
+
+/* ── Mode toggle ────────────────────────────────────────────────────── */
+.md-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.md-mode-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary, #374151);
+  white-space: nowrap;
+}
+
+.md-mode-options {
+  display: flex;
+  gap: 6px;
+}
+
+.md-mode-btn {
+  padding: 5px 14px;
+  font-size: 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border, #d1d5db);
+  background: transparent;
+  color: var(--text-muted, #6b7280);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.md-mode-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.md-mode-btn.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ── Markdown textarea ───────────────────────────────────────────────── */
+.md-textarea {
+  width: 100%;
+  min-height: 220px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border, #d1d5db);
+  border-radius: 8px;
+  background: var(--bg-main, #fff);
+  color: var(--text-primary, #111827);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.md-textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.md-textarea::placeholder {
+  color: var(--text-muted, #9ca3af);
+  font-family: inherit;
+}
+
+/* ── Preview section ─────────────────────────────────────────────────── */
+.md-preview-section {
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.md-preview-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted, #9ca3af);
+  background: var(--bg-card, #f9fafb);
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.md-preview-box {
+  padding: 16px 20px;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary, #111827);
+}
+
+/* preview content rendering */
+.md-preview-box h1 { font-size: 1.5em; font-weight: 700; margin: 0.5em 0 0.25em; color: var(--text-primary, #111827); }
+.md-preview-box h2 { font-size: 1.25em; font-weight: 700; margin: 0.75em 0 0.25em; color: var(--text-primary, #111827); }
+.md-preview-box h3 { font-size: 1.1em; font-weight: 600; margin: 0.6em 0 0.2em; color: var(--text-primary, #111827); }
+.md-preview-box h4,
+.md-preview-box h5,
+.md-preview-box h6 { font-weight: 600; margin: 0.5em 0 0.2em; color: var(--text-primary, #111827); }
+.md-preview-box p { margin: 0.4em 0; }
+.md-preview-box ul,
+.md-preview-box ol { margin: 0.4em 0 0.4em 1.4em; padding: 0; }
+.md-preview-box li { margin: 0.2em 0; }
+.md-preview-box code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85em;
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.md-preview-box pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 14px 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.md-preview-box pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+.md-preview-box table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  font-size: 13px;
+}
+.md-preview-box th {
+  background: var(--bg-card, #f3f4f6);
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--border, #e5e7eb);
+}
+.md-preview-box td {
+  padding: 7px 12px;
+  border: 1px solid var(--border, #e5e7eb);
+}
+.md-preview-box tr:nth-child(even) td {
+  background: var(--bg-card, #f9fafb);
+}
+.md-preview-box blockquote {
+  border-left: 3px solid #6366f1;
+  margin: 0.5em 0;
+  padding: 6px 14px;
+  background: rgba(99,102,241,0.05);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-secondary, #374151);
+  font-style: italic;
+}
+.md-preview-box hr {
+  border: none;
+  border-top: 1px solid var(--border, #e5e7eb);
+  margin: 0.75em 0;
+}
+.md-preview-box strong { font-weight: 700; }
+.md-preview-box em { font-style: italic; }
+.md-preview-box a { color: #6366f1; text-decoration: underline; }
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+.md-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--border, #e5e7eb);
+  flex-shrink: 0;
+}
+
+.md-char-count {
+  font-size: 12px;
+  color: var(--text-muted, #9ca3af);
+}
+
+.md-footer-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.md-btn-cancel {
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #d1d5db);
+  background: transparent;
+  color: var(--text-secondary, #374151);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.md-btn-cancel:hover {
+  background: var(--bg-card, #f3f4f6);
+}
+
+.md-btn-import {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.35);
+}
+
+.md-btn-import:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.md-btn-import:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}

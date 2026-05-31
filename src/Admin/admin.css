@@ -672,6 +672,50 @@
   background: var(--accent);
 }
 
+.cm-lesson-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cm-lesson-reorder-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.cm-lesson-item:hover .cm-lesson-reorder-btns,
+.cm-lesson-item.selected .cm-lesson-reorder-btns {
+  opacity: 1;
+}
+
+.cm-lesson-reorder-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 8px;
+  color: var(--text-muted);
+  padding: 1px 3px;
+  line-height: 1;
+  border-radius: 3px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.cm-lesson-reorder-btn:hover:not(:disabled) {
+  color: var(--accent);
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.cm-lesson-reorder-btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
 /* Assignment Panel */
 .cm-assign-panel {
   padding: 16px;
