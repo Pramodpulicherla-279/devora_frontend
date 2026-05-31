@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo, memo, useCallback } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
-import { Helmet } from 'react-helmet';
 import Header from '../../components/Header/header';
+import { useSEO } from '../../hooks/useSEO';
+import { htmlToPlain, slugToTitle } from '../../utils/seoHelpers';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
@@ -286,6 +287,85 @@ function CourseScreen() {
     // Track slug for progress scoping — read once at mount from localStorage (set by TrackScreen).
     // Falls back to 'global' when a lesson is opened directly without a track context.
     const trackSlugRef = useRef(localStorage.getItem('currentTrackSlug') || 'global');
+
+    // ── SEO: dynamic meta + structured data per lesson ──────────────────────
+    const seoJsonLd = useMemo(() => {
+        if (!activeTopic) return null;
+
+        const courseTitle = course?.title || slugToTitle(courseSlug);
+        const lessonUrl   = `https://www.dev-el.co/course/${courseSlug}/${activeTopic.slug}`;
+        const courseUrl   = `https://www.dev-el.co/course/${courseSlug}`;
+        const description = htmlToPlain(activeTopic.content, 158);
+
+        const schemas = [
+            // 1. LearningResource — unlocks e-learning rich results in Google
+            {
+                '@type':              'LearningResource',
+                '@id':                lessonUrl,
+                name:                 activeTopic.title,
+                description,
+                url:                  lessonUrl,
+                learningResourceType: 'Tutorial',
+                teaches:              activeTopic.title,
+                educationalLevel:     activeTopic.difficulty || 'beginner',
+                inLanguage:           'en',
+                isPartOf: {
+                    '@type': 'Course',
+                    '@id':   courseUrl,
+                    name:    courseTitle,
+                    url:     courseUrl,
+                },
+                provider: {
+                    '@type': 'EducationalOrganization',
+                    name:    'Dev.EL',
+                    url:     'https://www.dev-el.co',
+                },
+                ...(activeTopic.estimatedTime && {
+                    timeRequired: `PT${activeTopic.estimatedTime}M`,
+                }),
+            },
+            // 2. BreadcrumbList — enables sitelink breadcrumbs in SERP
+            {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home',          item: 'https://www.dev-el.co/'  },
+                    { '@type': 'ListItem', position: 2, name: courseTitle,      item: courseUrl                 },
+                    { '@type': 'ListItem', position: 3, name: activeTopic.title, item: lessonUrl               },
+                ],
+            },
+        ];
+
+        // 3. FAQPage from quiz — targets "People Also Ask" rich results.
+        //    Each lesson already has 5 MCQs with explanations, which map
+        //    perfectly to FAQ entries with zero extra content effort.
+        if (activeTopic.quiz?.length > 0) {
+            schemas.push({
+                '@type': 'FAQPage',
+                mainEntity: activeTopic.quiz.map(q => ({
+                    '@type': 'Question',
+                    name:    q.question,
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text:    q.explanation || q.options?.[q.correctIndex] || '',
+                    },
+                })),
+            });
+        }
+
+        return schemas;
+    }, [activeTopic, course, courseSlug]);
+
+    useSEO({
+        title:       activeTopic && course
+                        ? `${activeTopic.title} — ${course.title}`
+                        : course
+                            ? `${course.title} Course`
+                            : null,
+        description: activeTopic ? htmlToPlain(activeTopic.content, 158) : null,
+        canonical:   `/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`,
+        jsonLd:      seoJsonLd,
+    });
+    // ────────────────────────────────────────────────────────────────────────
 
     // const currentCourseId = currentCourse?._id;
 
@@ -710,17 +790,6 @@ function CourseScreen() {
 
     return (
         <div className="screen-container">
-            <Helmet>
-                <title>{activeTopic ? `${activeTopic.title} - ${course?.title}` : course?.title || 'Course'} | Dev.eL</title>
-                <meta
-                    name="description"
-                    content={activeTopic?.content?.substring(0, 155) || course?.description || 'Learn web development step by step with Dev.eL'}
-                />
-                <link rel="canonical" href={`https://www.dev-el.co/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`} />
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-            </Helmet>
             <Header backToTrack={true} />
             <div className="page-container">
                 <aside className={`sidebar hide-scrollbar ${isSidebarOpen ? 'open' : 'closed'}`}>

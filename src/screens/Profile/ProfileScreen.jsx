@@ -1,6 +1,6 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { useSEO } from '../../hooks/useSEO';
 import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
 import { getStreak, getQuizAccuracy } from '../../utils/userStats';
@@ -57,6 +57,9 @@ function MiniBar({ pct, color }) {
 }
 
 export default function ProfileScreen() {
+  // Block Googlebot from indexing user-specific pages
+  useSEO({ title: 'My Profile', noindex: true });
+
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [progress, setProgress] = useState({});            // { courseId: percent } — global / legacy
@@ -190,8 +193,6 @@ export default function ProfileScreen() {
 
   return (
     <div className="ps-screen">
-      <Helmet><title>My Profile — Dev.EL</title></Helmet>
-
       {/* ── Header ── */}
       <header className="ps-header">
         <button className="ps-back" onClick={() => navigate(-1)}>← Back</button>

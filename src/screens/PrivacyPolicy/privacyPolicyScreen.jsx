@@ -12,7 +12,7 @@ function PrivacyPolicyScreen() {
 
                 <h2 style={styles.sectionTitle}>1. Introduction</h2>
                 <p style={styles.text}>
-                    At Dev.eL, we value your privacy and are committed to protecting your personal information. This Privacy Policy describes the types of data we collect, how we use it, and the measures we take to keep it secure. By accessing or using our Service, you acknowledge and agree to the practices described in this policy.                </p>
+                    At Dev.EL, we value your privacy and are committed to protecting your personal information. This Privacy Policy describes the types of data we collect, how we use it, and the measures we take to keep it secure. By accessing or using our Service, you acknowledge and agree to the practices described in this policy.                </p>
 
                 <h2 style={styles.sectionTitle}>2. Information We Collect</h2>
                 <p style={styles.text}>
@@ -36,7 +36,7 @@ function PrivacyPolicyScreen() {
                     <li>Time and date of your visits</li>
                     <li>Device and diagnostic information</li>
                 </ul>
-                <p>This data helps us understand how users engage with Dev.eL and allows us to improve performance and usability.</p>
+                <p>This data helps us understand how users engage with Dev.EL and allows us to improve performance and usability.</p>
 
                 <h2 style={styles.sectionTitle}>3. How We Use Your Information</h2>
                 <p style={styles.text}>

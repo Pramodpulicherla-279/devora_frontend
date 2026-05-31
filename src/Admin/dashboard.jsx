@@ -4,6 +4,7 @@ import CourseManager from './CourseManager';
 import DeleteManager from './DeleteManager';
 import './admin.css';
 import { API_BASE_URL } from '../../config';
+import { useSEO } from '../hooks/useSEO';
 
 const ADMIN_PASSWORD = 'dev.el@2026';
 
@@ -571,6 +572,9 @@ function TracksView() {
 }
 
 function AdminDashboard() {
+  // Block Googlebot — admin dashboard has no public value
+  useSEO({ title: 'Admin Dashboard', noindex: true });
+
   const [isAuthed, setIsAuthed] = useState(() => sessionStorage.getItem('admin_auth') === 'true');
   const [currentView, setCurrentView] = useState('courses');
   const [selectedCourseId, setSelectedCourseId] = useState(null);

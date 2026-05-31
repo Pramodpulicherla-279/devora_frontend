@@ -149,7 +149,7 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
                         </button>
                     ) : (
                         <Link to="/" className="hdr-logo">
-                            <img src={logo} alt="Dev.eL" />
+                            <img src={logo} alt="Dev.EL" />
                             <span>Dev<span className="hdr-dot">.</span>eL</span>
                         </Link>
                     )}
@@ -224,7 +224,7 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
                     {/* Sidebar header */}
                     <div className="hdr-sb-head">
                         <Link to="/" className="hdr-sb-brand" onClick={() => setIsSidebarOpen(false)}>
-                            <img src={logo} alt="Dev.eL" />
+                            <img src={logo} alt="Dev.EL" />
                             <span>Dev<span className="hdr-dot">.</span>eL</span>
                         </Link>
                         <button className="hdr-sb-close" onClick={() => setIsSidebarOpen(false)}>✕</button>

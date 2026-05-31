@@ -300,10 +300,10 @@ function HomeScreen() {
     return (
         <>
             <Helmet>
-                <title>Dev.eL - MERN Courses & Web Development Learning</title>
+                <title>Dev.EL - MERN Courses & Web Development Learning</title>
                 <meta
                     name="description"
-                    content="Dev.eL offers simple, step-by-step text courses on MERN stack, JavaScript, and web development. Learn anytime at your own pace."
+                    content="Dev.EL offers simple, step-by-step text courses on MERN stack, JavaScript, and web development. Learn anytime at your own pace."
                 />
                 <link rel="canonical" href="https://www.dev-el.co" />
             </Helmet>
@@ -311,7 +311,7 @@ function HomeScreen() {
             <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick} />
             <div className="main-container" style={styles.mainContainer}>
                 <div className="text-container" style={styles.textContainer}>
-                    <h1 className="maintitle" style={styles.maintitle}>Welcome to Dev.eL</h1>
+                    <h1 className="maintitle" style={styles.maintitle}>Welcome to Dev.EL</h1>
                     <p className="subtitle" style={styles.subtitle}>Your journey to becoming a MERN Stack Developer starts here.</p>
                     <div className="button-container" style={styles.buttonContainer}>
                         <button className="startbtn" style={styles.startbtn} onClick={handleStartJourneyClick}>Start Journey</button>
@@ -401,17 +401,17 @@ function HomeScreen() {
                 )} */}
             </div>
             <div className="about-container" style={styles.aboutContainer} ref={aboutRef}>
-                <h2 className="about-title" style={styles.aboutTitle}>About Dev.eL</h2>
+                <h2 className="about-title" style={styles.aboutTitle}>About Dev.EL</h2>
 
                 <p className="about-text" style={styles.aboutText}>
-                    Dev.eL is a modern learning platform created to help aspiring developers
+                    Dev.EL is a modern learning platform created to help aspiring developers
                     learn full-stack web development with clarity and confidence. Our focus
                     is on the MERN stack, but we start from the very basics so that complete
                     beginners can follow along without feeling overwhelmed.
                 </p>
 
                 <p className="about-text" style={styles.aboutText}>
-                    On Dev.eL, you learn real-world web development step by step—from HTML,
+                    On Dev.EL, you learn real-world web development step by step—from HTML,
                     CSS, and responsive layouts to JavaScript, frontend frameworks, backend
                     APIs, databases, authentication, deployment, and real-time features.
                     Every lesson is written in simple language, with clear examples and
@@ -421,7 +421,7 @@ function HomeScreen() {
 
                 <p className="about-text" style={styles.aboutText}>
                     We believe that quality technical education should be accessible.
-                    That&apos;s why Dev.eL is free to use and our content is openly
+                    That&apos;s why Dev.EL is free to use and our content is openly
                     available. We regularly review and update our lessons to keep them
                     aligned with current industry practices and modern tools used by
                     professional developers.
@@ -437,7 +437,7 @@ function HomeScreen() {
                 </p>
 
                 <p className="about-text" style={styles.aboutText}>
-                    Start your journey with Dev.eL today and experience a structured,
+                    Start your journey with Dev.EL today and experience a structured,
                     simple, and practical way to master the MERN stack.
                 </p>
 

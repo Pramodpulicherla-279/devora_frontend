@@ -1,3 +1,13 @@
 User-agent: *
 Allow: /
+
+# Block private / zero-value pages — preserves crawl budget for lesson pages
+Disallow: /admin-dashboard
+Disallow: /profile
+
+# Legal pages are low crawl priority; blocked to save budget
+Disallow: /terms
+Disallow: /privacy-policy
+
+# Sitemap (served via firebase.json 301 → Render backend)
 Sitemap: https://www.dev-el.co/sitemap.xml

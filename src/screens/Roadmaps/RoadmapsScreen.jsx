@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { useSEO } from '../../hooks/useSEO';
 import logo from '../../assets/logo.png';
 import { ROADMAPS } from './roadmapData';
 import './RoadmapsScreen.css';
@@ -158,13 +158,49 @@ export default function RoadmapsScreen() {
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // ── SEO — dynamic per active roadmap ────────────────────────────────────
+  useSEO({
+    title:       urlSlug
+      ? `${roadmap.name} Developer Roadmap 2025`
+      : 'Web Developer Roadmaps 2025 — Step-by-Step Learning Paths',
+    description: urlSlug
+      ? `Complete ${roadmap.name} learning roadmap — every skill you need, in the right order, with free interactive courses on Dev.EL.`
+      : 'Step-by-step interactive developer roadmaps for Frontend, Backend, Full Stack, Data Analytics, DevOps, Automation Testing, Prompt Engineering, and AI Engineering — all free on Dev.EL.',
+    canonical:   urlSlug ? `/roadmaps/${urlSlug}` : '/roadmaps',
+    jsonLd: urlSlug
+      ? [
+          {
+            '@type': 'HowTo',
+            name:    `How to become a ${roadmap.name} developer`,
+            description: roadmap.description,
+            totalTime:   'P3M',
+            step: roadmap.phases.map((phase, i) => ({
+              '@type': 'HowToSection',
+              position: i + 1,
+              name:    phase.title,
+              itemListElement: phase.steps.map((step, j) => ({
+                '@type':    'HowToStep',
+                position:   j + 1,
+                name:       step.title,
+                text:       step.description || step.title,
+              })),
+            })),
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://www.dev-el.co/'        },
+              { '@type': 'ListItem', position: 2, name: 'Roadmaps', item: 'https://www.dev-el.co/roadmaps' },
+              { '@type': 'ListItem', position: 3, name: roadmap.name, item: `https://www.dev-el.co/roadmaps/${urlSlug}` },
+            ],
+          },
+        ]
+      : null,
+  });
+  // ────────────────────────────────────────────────────────────────────────
+
   return (
     <div className="rm-screen">
-      <Helmet>
-        <title>Learning Roadmaps — Dev.EL</title>
-        <meta name="description" content="Step-by-step interactive learning roadmaps for MERN, MEAN, Frontend, Backend, CI/CD, Data Analytics, Playwright, Appium, Prompt Engineering and AI Engineering." />
-      </Helmet>
-
       {/* ── HEADER ── */}
       <header className="rm-header">
         <button className="rm-back" onClick={() => navigate('/')}>← Home</button>

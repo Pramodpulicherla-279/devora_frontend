@@ -4,7 +4,7 @@ import AuthPopup from '../../components/AuthPopup/AuthPopup';
 import DonateModal from '../../components/DonateModal/donateModal';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 import emailjs from '@emailjs/browser';
-import { Helmet } from 'react-helmet';
+import { useSEO } from '../../hooks/useSEO';
 import logo from '../../assets/logo.png';
 import './LandingPage.css';
 import { API_BASE_URL } from '../../../config';
@@ -393,15 +393,105 @@ export default function LandingPage() {
 
   const myTracks = getMyTracks();
 
+  // ── SEO ────────────────────────────────────────────────────────────────────
+  useSEO({
+    title:       'Go from Beginner to Advanced Developer — Free Coding Courses',
+    description: 'Dev.EL transforms beginners into advanced developers with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, Prompt Engineering, and more — live coding, AI tutoring, quizzes, and roadmaps all included.',
+    canonical:   '/',
+    jsonLd: [
+      {
+        '@type': 'WebSite',
+        '@id':   'https://www.dev-el.co/#website',
+        url:     'https://www.dev-el.co',
+        name:    'Dev.EL',
+        description: 'Go from beginner to advanced developer with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more.',
+        potentialAction: {
+          '@type':       'SearchAction',
+          target: {
+            '@type':      'EntryPoint',
+            urlTemplate:  'https://www.dev-el.co/?q={search_term_string}',
+          },
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type':       'EducationalOrganization',
+        '@id':         'https://www.dev-el.co/#org',
+        name:          'Dev.EL',
+        url:           'https://www.dev-el.co',
+        logo:          'https://www.dev-el.co/dev-el-logo-v2.png',
+        description:   'Dev.EL transforms beginners into advanced developers — free courses covering web development, backend, databases, automation testing, prompt engineering, AI engineering, and more.',
+        offers: {
+          '@type':        'Offer',
+          price:          '0',
+          priceCurrency:  'USD',
+          availability:   'https://schema.org/InStock',
+        },
+      },
+      // SiteNavigationElement — tells Google exactly which pages to show
+      // as sitelinks below the main search result for branded queries like "dev.el"
+      {
+        '@type': 'ItemList',
+        '@id':   'https://www.dev-el.co/#site-navigation',
+        name:    'Dev.EL — Free Coding Courses',
+        itemListElement: [
+          {
+            '@type':    'SiteNavigationElement',
+            position:   1,
+            name:       'HTML Course — Free',
+            description:'Learn HTML from scratch — structure, tags, semantic markup, and forms.',
+            url:        'https://www.dev-el.co/course/html/introduction-to-html',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   2,
+            name:       'CSS Course — Free',
+            description:'Master CSS — selectors, flexbox, grid, animations, and responsive design.',
+            url:        'https://www.dev-el.co/course/css/css-get-started',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   3,
+            name:       'JavaScript Course — Free',
+            description:'Learn JavaScript from variables to async — the language of the web.',
+            url:        'https://www.dev-el.co/course/javascript/variables-data-types',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   4,
+            name:       'Node.js & Express Course — Free',
+            description:'Build REST APIs and backend servers with Node.js and Express.',
+            url:        'https://www.dev-el.co/course/backend-nodejs-express/introduction-to-nodejs-and-node-repl',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   5,
+            name:       'SQL Course — Free',
+            description:'Master SQL — queries, joins, aggregations, and database design.',
+            url:        'https://www.dev-el.co/course/sql/every-app-runs-on-a-database',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   6,
+            name:       'Git & GitHub Course — Free',
+            description:'Learn version control, branching, and collaboration with Git and GitHub.',
+            url:        'https://www.dev-el.co/course/git-and-github/introduction-to-git-and-github-version-control-essentials',
+          },
+          {
+            '@type':    'SiteNavigationElement',
+            position:   7,
+            name:       'Developer Roadmaps',
+            description:'Step-by-step learning roadmaps — from beginner to job-ready developer.',
+            url:        'https://www.dev-el.co/roadmaps',
+          },
+        ],
+      },
+    ],
+  });
+  // ────────────────────────────────────────────────────────────────────────
+
   return (
     <>
-      <Helmet>
-        <title>Dev.EL — Interactive Developer Education Platform</title>
-        <meta name="description" content="Learn MERN, MEAN, Prompt Engineering, Automation Testing, AI Tools through visual-first lessons, interactive coding sandboxes, quizzes, and real-world projects." />
-        <link rel="canonical" href="https://www.dev-el.co" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      </Helmet>
-
       {/* ── HEADER ── */}
       <header className="lp-header">
         <div className="lp-header-inner">
@@ -762,7 +852,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── WHY DEV.EL ── */}
+      {/* ── WHY Dev.EL ── */}
       <section className="lp-section lp-why" ref={featuresRef} id="features">
         <div className="lp-section-inner">
           <div className="lp-section-header">

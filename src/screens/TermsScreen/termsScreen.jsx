@@ -12,7 +12,7 @@ function TermsScreen() {
 
         <h2 style={styles.sectionTitle}>1. Introduction</h2>
         <p style={styles.text}>
-          Welcome to <b>Dev.eL</b> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). These Terms &amp;
+          Welcome to <b>Dev.EL</b> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). These Terms &amp;
           Conditions (&quot;Terms&quot;) govern your access to and use of our website,
           content, and services (collectively, the &quot;Service&quot;). By accessing
           or using the Service, you agree to be bound by these Terms. If you do
@@ -21,7 +21,7 @@ function TermsScreen() {
 
         <h2 style={styles.sectionTitle}>2. Use of the Service</h2>
         <p style={styles.text}>
-          Dev.eL provides educational content related to web development and the
+          Dev.EL provides educational content related to web development and the
           MERN stack. The content is provided for informational and educational
           purposes only and should not be considered professional advice.
         </p>
@@ -50,7 +50,7 @@ function TermsScreen() {
         <p style={styles.text}>
           Unless otherwise stated, the Service and all original content,
           including text, code samples, graphics, and other materials, are the
-          intellectual property of Dev.eL and its licensors. All rights are
+          intellectual property of Dev.EL and its licensors. All rights are
           reserved. You may use the content for personal learning and reference,
           but you may not copy, reproduce, distribute, or create derivative
           works from our content without prior written permission.
@@ -105,7 +105,7 @@ function TermsScreen() {
 
         <h2 style={styles.sectionTitle}>9. Limitation of Liability</h2>
         <p style={styles.text}>
-          To the maximum extent permitted by law, Dev.eL shall not be liable for
+          To the maximum extent permitted by law, Dev.EL shall not be liable for
           any indirect, incidental, special, consequential, or punitive damages,
           including without limitation loss of profits, data, or other
           intangible losses, arising out of or in connection with your access to

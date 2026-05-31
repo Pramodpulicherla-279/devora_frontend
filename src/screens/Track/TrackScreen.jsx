@@ -1,6 +1,6 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { useSEO } from '../../hooks/useSEO';
 import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
 import logo from '../../assets/logo.png';
@@ -448,13 +448,28 @@ export default function TrackScreen() {
     }
   };
 
+  // ── SEO ──────────────────────────────────────────────────────────────────
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useSEO({
+    title:       track ? `${track.name} Learning Track — Dev.EL` : null,
+    description: track
+      ? `${track.description || meta?.tagline || ''} Learn with free interactive lessons, quizzes, and live coding on Dev.EL.`
+      : null,
+    canonical:   `/track/${slug}`,
+    jsonLd: track
+      ? [{
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home',    item: 'https://www.dev-el.co/'       },
+            { '@type': 'ListItem', position: 2, name: track.name, item: `https://www.dev-el.co/track/${slug}` },
+          ],
+        }]
+      : null,
+  });
+  // ────────────────────────────────────────────────────────────────────────
+
   return (
     <div className="ts-screen" style={{ '--tc': meta.color, '--ta': meta.accent }}>
-      <Helmet>
-        <title>{track.name} — Dev.EL</title>
-        <meta name="description" content={track.description || meta.tagline} />
-      </Helmet>
-
       {/* Header */}
       <header className="ts-header">
         <button className="ts-back" onClick={() => navigate('/')}>
