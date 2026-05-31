@@ -12,7 +12,8 @@ const ProfileScreen      = lazy(() => import('./screens/Profile/ProfileScreen.js
 const RoadmapsScreen     = lazy(() => import('./screens/Roadmaps/RoadmapsScreen.jsx'));
 const AdminDashboard     = lazy(() => import('./Admin/dashboard.jsx'));
 const TermsScreen        = lazy(() => import('./screens/TermsScreen/termsScreen.jsx'));
-const PrivacyPolicyScreen = lazy(() => import('./screens/PrivacyPolicy/privacyPolicyScreen.jsx'));
+const PrivacyPolicyScreen   = lazy(() => import('./screens/PrivacyPolicy/privacyPolicyScreen.jsx'));
+const ResetPasswordScreen   = lazy(() => import('./screens/ResetPassword/ResetPasswordScreen.jsx'));
 
 function PageLoader() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/admin-dashboard"                element={<AdminDashboard />} />
         <Route path="/terms"                          element={<TermsScreen />} />
         <Route path="/privacy-policy"                 element={<PrivacyPolicyScreen />} />
+        <Route path="/reset-password/:token"          element={<ResetPasswordScreen />} />
       </Routes>
     </Suspense>
   );

@@ -52,7 +52,8 @@ function PasswordInput({ label, placeholder, value, onChange, required = true })
 }
 
 function AuthPopup({ onClose }) {
-    const [isLoginView, setIsLoginView] = useState(true);
+    // 'login' | 'signup' | 'forgot'
+    const [view, setView] = useState('login');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [mobile, setMobile] = useState('');
@@ -60,26 +61,29 @@ function AuthPopup({ onClose }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [forgotSent, setForgotSent] = useState(false);
 
     const clearForm = () => {
         setName(''); setEmail(''); setMobile('');
-        setPassword(''); setConfirmPassword(''); setError('');
+        setPassword(''); setConfirmPassword('');
+        setError(''); setForgotSent(false);
     };
 
-    const switchView = (login) => { setIsLoginView(login); clearForm(); };
+    const switchView = (v) => { setView(v); clearForm(); };
 
+    /* ── Login / Sign-up submit ── */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
-        if (!isLoginView && password !== confirmPassword) {
+        if (view === 'signup' && password !== confirmPassword) {
             setError('Passwords do not match. Please try again.');
             return;
         }
 
         setIsLoading(true);
-        const url = isLoginView ? '/api/users/login' : '/api/users/register';
-        const payload = isLoginView
+        const url = view === 'login' ? '/api/users/login' : '/api/users/register';
+        const payload = view === 'login'
             ? { email, password }
             : { name, email, mobile, password };
 
@@ -101,6 +105,29 @@ function AuthPopup({ onClose }) {
         }
     };
 
+    /* ── Forgot password submit ── */
+    const handleForgot = async (e) => {
+        e.preventDefault();
+        setError('');
+        setIsLoading(true);
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/users/forgot-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.error || 'Something went wrong');
+            setForgotSent(true);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const isLogin = view === 'login';
+
     return (
         <div className="ap-overlay" onClick={onClose}>
             <div className="ap-card" onClick={e => e.stopPropagation()}>
@@ -117,90 +144,150 @@ function AuthPopup({ onClose }) {
                     <p className="ap-brand-sub">Your interactive developer education platform</p>
                 </div>
 
-                {/* Tab switcher */}
-                <div className="ap-tabs">
-                    <button className={`ap-tab ${isLoginView ? 'active' : ''}`} onClick={() => switchView(true)}>Login</button>
-                    <button className={`ap-tab ${!isLoginView ? 'active' : ''}`} onClick={() => switchView(false)}>Sign Up</button>
-                    <div className="ap-tab-slider" style={{ transform: isLoginView ? 'translateX(0%)' : 'translateX(100%)' }} />
-                </div>
-
-                {/* Form */}
-                <form className="ap-form" onSubmit={handleSubmit} noValidate>
-                    {error && (
-                        <div className="ap-error">
-                            <span className="ap-error-icon">⚠</span>
-                            {error}
+                {/* ── Forgot password view ── */}
+                {view === 'forgot' ? (
+                    forgotSent ? (
+                        <div className="ap-forgot-success">
+                            <div className="ap-forgot-icon">📬</div>
+                            <h3>Check your inbox</h3>
+                            <p>We sent a password reset link to <strong>{email}</strong>. It expires in 15 minutes.</p>
+                            <button className="ap-switch-btn" style={{ marginTop: '12px' }} onClick={() => switchView('login')}>
+                                ← Back to Login
+                            </button>
                         </div>
-                    )}
-
-                    {!isLoginView && (
-                        <div className="ap-field">
-                            <label className="ap-label">Full Name</label>
-                            <input
-                                className="ap-input"
-                                type="text"
-                                placeholder="John Doe"
-                                value={name}
-                                onChange={e => setName(e.target.value)}
-                                required
-                            />
-                        </div>
-                    )}
-
-                    <div className="ap-field">
-                        <label className="ap-label">Email Address</label>
-                        <input
-                            className="ap-input"
-                            type="email"
-                            placeholder="you@example.com"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <PasswordInput
-                        label="Password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-
-                    {!isLoginView && (
+                    ) : (
                         <>
-                            <PasswordInput
-                                label="Confirm Password"
-                                placeholder="••••••••"
-                                value={confirmPassword}
-                                onChange={e => setConfirmPassword(e.target.value)}
-                            />
+                            <div className="ap-forgot-header">
+                                <h3>Forgot your password?</h3>
+                                <p>Enter your email and we'll send you a reset link.</p>
+                            </div>
+                            <form className="ap-form" onSubmit={handleForgot} noValidate>
+                                {error && (
+                                    <div className="ap-error">
+                                        <span className="ap-error-icon">⚠</span>
+                                        {error}
+                                    </div>
+                                )}
+                                <div className="ap-field">
+                                    <label className="ap-label">Email Address</label>
+                                    <input
+                                        className="ap-input"
+                                        type="email"
+                                        placeholder="you@example.com"
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                        required
+                                        autoFocus
+                                    />
+                                </div>
+                                <button className="ap-submit" type="submit" disabled={isLoading || !email}>
+                                    {isLoading ? <span className="ap-spinner" /> : 'Send Reset Link →'}
+                                </button>
+                            </form>
+                            <p className="ap-switch">
+                                <button className="ap-switch-btn" onClick={() => switchView('login')}>← Back to Login</button>
+                            </p>
+                        </>
+                    )
+                ) : (
+                    <>
+                        {/* Tab switcher */}
+                        <div className="ap-tabs">
+                            <button className={`ap-tab ${isLogin ? 'active' : ''}`} onClick={() => switchView('login')}>Login</button>
+                            <button className={`ap-tab ${!isLogin ? 'active' : ''}`} onClick={() => switchView('signup')}>Sign Up</button>
+                            <div className="ap-tab-slider" style={{ transform: isLogin ? 'translateX(0%)' : 'translateX(100%)' }} />
+                        </div>
+
+                        {/* Form */}
+                        <form className="ap-form" onSubmit={handleSubmit} noValidate>
+                            {error && (
+                                <div className="ap-error">
+                                    <span className="ap-error-icon">⚠</span>
+                                    {error}
+                                </div>
+                            )}
+
+                            {view === 'signup' && (
+                                <div className="ap-field">
+                                    <label className="ap-label">Full Name</label>
+                                    <input
+                                        className="ap-input"
+                                        type="text"
+                                        placeholder="John Doe"
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            )}
+
                             <div className="ap-field">
-                                <label className="ap-label">Mobile Number <span className="ap-optional">(optional)</span></label>
+                                <label className="ap-label">Email Address</label>
                                 <input
                                     className="ap-input"
-                                    type="tel"
-                                    placeholder="+1 234 567 8900"
-                                    value={mobile}
-                                    onChange={e => setMobile(e.target.value)}
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    required
                                 />
                             </div>
-                        </>
-                    )}
 
-                    <button className="ap-submit" type="submit" disabled={isLoading}>
-                        {isLoading
-                            ? <span className="ap-spinner" />
-                            : (isLoginView ? 'Login →' : 'Create Account →')}
-                    </button>
-                </form>
+                            <div style={{ position: 'relative' }}>
+                                <PasswordInput
+                                    label="Password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
+                                />
+                                {isLogin && (
+                                    <button
+                                        type="button"
+                                        className="ap-forgot-link"
+                                        onClick={() => switchView('forgot')}
+                                    >
+                                        Forgot password?
+                                    </button>
+                                )}
+                            </div>
 
-                {/* Switch */}
-                <p className="ap-switch">
-                    {isLoginView ? "Don't have an account? " : 'Already have an account? '}
-                    <button className="ap-switch-btn" onClick={() => switchView(!isLoginView)}>
-                        {isLoginView ? 'Sign Up' : 'Login'}
-                    </button>
-                </p>
+                            {view === 'signup' && (
+                                <>
+                                    <PasswordInput
+                                        label="Confirm Password"
+                                        placeholder="••••••••"
+                                        value={confirmPassword}
+                                        onChange={e => setConfirmPassword(e.target.value)}
+                                    />
+                                    <div className="ap-field">
+                                        <label className="ap-label">Mobile Number <span className="ap-optional">(optional)</span></label>
+                                        <input
+                                            className="ap-input"
+                                            type="tel"
+                                            placeholder="+1 234 567 8900"
+                                            value={mobile}
+                                            onChange={e => setMobile(e.target.value)}
+                                        />
+                                    </div>
+                                </>
+                            )}
+
+                            <button className="ap-submit" type="submit" disabled={isLoading}>
+                                {isLoading
+                                    ? <span className="ap-spinner" />
+                                    : (isLogin ? 'Login →' : 'Create Account →')}
+                            </button>
+                        </form>
+
+                        {/* Switch */}
+                        <p className="ap-switch">
+                            {isLogin ? "Don't have an account? " : 'Already have an account? '}
+                            <button className="ap-switch-btn" onClick={() => switchView(isLogin ? 'signup' : 'login')}>
+                                {isLogin ? 'Sign Up' : 'Login'}
+                            </button>
+                        </p>
+                    </>
+                )}
             </div>
         </div>
     );

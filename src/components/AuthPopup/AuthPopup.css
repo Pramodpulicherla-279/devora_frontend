@@ -301,6 +301,67 @@
 }
 .ap-switch-btn:hover { color: #6d28d9; }
 
+/* ── Forgot password link (below password field) ── */
+.ap-forgot-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    color: #7c3aed;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+    display: block;
+    margin-top: 4px;
+    text-align: right;
+    width: 100%;
+}
+.ap-forgot-link:hover { color: #6d28d9; }
+
+/* ── Forgot password header ── */
+.ap-forgot-header {
+    padding: 4px 28px 0;
+    text-align: center;
+}
+.ap-forgot-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px;
+}
+.ap-forgot-header p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Forgot password success state ── */
+.ap-forgot-success {
+    padding: 12px 28px 28px;
+    text-align: center;
+}
+.ap-forgot-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+.ap-forgot-success h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px;
+}
+.ap-forgot-success p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+}
+.ap-forgot-success strong { color: #0f172a; }
+
 /* ── Mobile ── */
 @media (max-width: 480px) {
     .ap-card { border-radius: 18px; }
