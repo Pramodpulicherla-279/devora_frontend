@@ -1,60 +1,71 @@
-// App.jsx — lazy-loaded routes for maximum bundle splitting.
-// Each route chunk is only downloaded when the user navigates to it.
-// The Suspense fallback is a minimal full-screen loader so the UX
-// stays smooth even on slow connections.
+// App.jsx
+//
+// Loading strategy:
+//   EAGER  — routes users reach via direct URL, bookmark, or shared link.
+//            These must paint instantly on hard load/refresh with zero Suspense flash.
+//   LAZY   — secondary routes only ever reached by in-app navigation.
+//            A brief branded loader on first visit is acceptable.
+//
+//   Eager:  LandingPage, TrackScreen, ProfileScreen, CourseScreen
+//   Lazy:   RoadmapsScreen, AdminDashboard, TermsScreen, PrivacyPolicyScreen,
+//           ResetPasswordScreen
+
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import './components/DevLoader/DevLoader.css';
 
-const LandingPage        = lazy(() => import('./screens/LandingPage/LandingPage.jsx'));
-const CourseScreen       = lazy(() => import('./screens/Lessons/lessons.jsx'));
-const TrackScreen        = lazy(() => import('./screens/Track/TrackScreen.jsx'));
-const ProfileScreen      = lazy(() => import('./screens/Profile/ProfileScreen.jsx'));
-const RoadmapsScreen     = lazy(() => import('./screens/Roadmaps/RoadmapsScreen.jsx'));
-const AdminDashboard     = lazy(() => import('./Admin/dashboard.jsx'));
-const TermsScreen        = lazy(() => import('./screens/TermsScreen/termsScreen.jsx'));
-const PrivacyPolicyScreen   = lazy(() => import('./screens/PrivacyPolicy/privacyPolicyScreen.jsx'));
-const ResetPasswordScreen   = lazy(() => import('./screens/ResetPassword/ResetPasswordScreen.jsx'));
+// ── Eager ────────────────────────────────────────────────────────────────────
+import LandingPage    from './screens/LandingPage/LandingPage.jsx';
+import TrackScreen    from './screens/Track/TrackScreen.jsx';
+import ProfileScreen  from './screens/Profile/ProfileScreen.jsx';
+import CourseScreen   from './screens/Lessons/lessons.jsx';
 
+// ── Lazy ─────────────────────────────────────────────────────────────────────
+const RoadmapsScreen      = lazy(() => import('./screens/Roadmaps/RoadmapsScreen.jsx'));
+const AdminDashboard      = lazy(() => import('./Admin/dashboard.jsx'));
+const TermsScreen         = lazy(() => import('./screens/TermsScreen/termsScreen.jsx'));
+const PrivacyPolicyScreen = lazy(() => import('./screens/PrivacyPolicy/privacyPolicyScreen.jsx'));
+const ResetPasswordScreen = lazy(() => import('./screens/ResetPassword/ResetPasswordScreen.jsx'));
+
+/** Suspense fallback — only fires for secondary lazy routes.
+ *  Uses the same .dvl-* classes as DevLoader so the design is consistent. */
 function PageLoader() {
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      background: '#0f0f13',
-    }}>
-      <div style={{
-        width: 40,
-        height: 40,
-        border: '3px solid #7c3aed33',
-        borderTop: '3px solid #7c3aed',
-        borderRadius: '50%',
-        animation: 'spin 0.8s linear infinite',
-      }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    <div className="dvl-screen">
+      <div className="dvl-card">
+        <div className="dvl-spinner-wrap">
+          <div className="dvl-halo" />
+          <div className="dvl-spinner">
+            <div className="dvl-spinner-mask" />
+          </div>
+          <span className="dvl-letter">D</span>
+        </div>
+        <div className="dvl-brand">Dev<span className="dvl-dot">.</span>EL</div>
+        <div className="dvl-dots"><span /><span /><span /></div>
+      </div>
     </div>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
+        {/* ── Eager routes — zero Suspense flash ── */}
         <Route path="/"                               element={<LandingPage />} />
         <Route path="/track/:slug"                    element={<TrackScreen />} />
         <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
         <Route path="/course/:courseSlug"             element={<CourseScreen />} />
         <Route path="/profile"                        element={<ProfileScreen />} />
-        <Route path="/roadmaps"                       element={<RoadmapsScreen />} />
-        <Route path="/roadmaps/:slug"                 element={<RoadmapsScreen />} />
-        <Route path="/admin-dashboard"                element={<AdminDashboard />} />
-        <Route path="/terms"                          element={<TermsScreen />} />
-        <Route path="/privacy-policy"                 element={<PrivacyPolicyScreen />} />
-        <Route path="/reset-password/:token"          element={<ResetPasswordScreen />} />
+
+        {/* ── Lazy routes — brief loader on first visit is fine ── */}
+        <Route path="/roadmaps"              element={<RoadmapsScreen />} />
+        <Route path="/roadmaps/:slug"        element={<RoadmapsScreen />} />
+        <Route path="/admin-dashboard"       element={<AdminDashboard />} />
+        <Route path="/terms"                 element={<TermsScreen />} />
+        <Route path="/privacy-policy"        element={<PrivacyPolicyScreen />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
       </Routes>
     </Suspense>
   );
 }
-
-export default App;

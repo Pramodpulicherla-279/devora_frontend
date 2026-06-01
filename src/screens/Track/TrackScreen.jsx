@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
 import logo from '../../assets/logo.png';
 import TrackScene3D from './TrackScene3D';
+import DevLoader from '../../components/DevLoader/DevLoader';
 import './TrackScreen.css';
 
 /* ─── Track meta: color palette, tagline, 3D nodes, skills ─── */
@@ -304,12 +305,17 @@ export default function TrackScreen() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  // Seed state from static map so the page renders immediately
+  // Static seed provides instant fallback content if the API fails.
+  // loading always starts true — resolved only when the API responds.
   const staticSeed = STATIC_TRACKS[slug] || null;
   const [track, setTrack] = useState(staticSeed);
-  const [loading, setLoading] = useState(!staticSeed); // skip spinner if static found
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  // Read user synchronously from localStorage — no async flash
+  const [user, setUser] = useState(() => {
+    const raw = localStorage.getItem('userInfo');
+    return raw ? JSON.parse(raw) : null;
+  });
   const [courseProgress, setCourseProgress] = useState({});
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [enrollLoading, setEnrollLoading] = useState(false);
@@ -319,30 +325,18 @@ export default function TrackScreen() {
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
-    const u = localStorage.getItem('userInfo');
-    if (u) setUser(JSON.parse(u));
-  }, []);
-
-  useEffect(() => {
-    // If we have static data, show it immediately; still fetch in background
-    // to pick up real part/lesson counts from the DB.
-    if (staticSeed) {
-      // background refresh — don't show spinner, silently update counts
-      fetch(`${API_BASE_URL}/api/tracks/${slug}`)
-        .then(r => r.json())
-        .then(d => { if (d.success) setTrack(d.data); })
-        .catch(() => { /* keep static data on network failure */ });
-      return;
-    }
-    // No static data → show loading spinner and wait for API
+    // Always fetch fresh data from the API.
+    // loading=true until the response arrives; static seed is the fallback
+    // if the API fails (network error, cold-start, etc.).
     setLoading(true);
     fetch(`${API_BASE_URL}/api/tracks/${slug}`)
       .then(r => r.json())
       .then(d => {
         if (d.success) setTrack(d.data);
-        else setError(d.error || 'Track not found');
+        else if (!staticSeed) setError(d.error || 'Track not found');
+        // if we have static seed and API errored, keep showing static data silently
       })
-      .catch(() => setError('Failed to load track'))
+      .catch(() => { if (!staticSeed) setError('Failed to load track'); })
       .finally(() => setLoading(false));
   }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -409,14 +403,26 @@ export default function TrackScreen() {
     setEnrollLoading(false);
   };
 
-  if (loading) {
-    return (
-      <div className="ts-loading">
-        <div className="ts-spinner" />
-        <p>Loading track…</p>
-      </div>
-    );
-  }
+  // ── SEO — must be called unconditionally, before any early returns ────────
+  useSEO({
+    title:       track ? `${track.name} Learning Track — Dev.EL` : null,
+    description: track
+      ? `${track.description || (TRACK_META[track.name] || DEFAULT_META).tagline || ''} Learn with free interactive lessons, quizzes, and live coding on Dev.EL.`
+      : null,
+    canonical:   `/track/${slug}`,
+    jsonLd: track
+      ? [{
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://www.dev-el.co/' },
+            { '@type': 'ListItem', position: 2, name: track.name, item: `https://www.dev-el.co/track/${slug}` },
+          ],
+        }]
+      : null,
+  });
+  // ─────────────────────────────────────────────────────────────────────────
+
+  if (loading) return <DevLoader />;
 
   if (error || !track) {
     return (
@@ -442,31 +448,10 @@ export default function TrackScreen() {
     const cmeta = STATIC_COURSE_META[course._id?.toString()];
     const goSlug = cmeta?.slug || course.slug;
     if (goSlug) {
-      // Persist for auto-enroll on first lesson completion (lessons.jsx reads this)
       localStorage.setItem('lastTrackSlug', staticSeed?.slug || slug);
       navigate(`/course/${goSlug}`);
     }
   };
-
-  // ── SEO ──────────────────────────────────────────────────────────────────
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useSEO({
-    title:       track ? `${track.name} Learning Track — Dev.EL` : null,
-    description: track
-      ? `${track.description || meta?.tagline || ''} Learn with free interactive lessons, quizzes, and live coding on Dev.EL.`
-      : null,
-    canonical:   `/track/${slug}`,
-    jsonLd: track
-      ? [{
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home',    item: 'https://www.dev-el.co/'       },
-            { '@type': 'ListItem', position: 2, name: track.name, item: `https://www.dev-el.co/track/${slug}` },
-          ],
-        }]
-      : null,
-  });
-  // ────────────────────────────────────────────────────────────────────────
 
   return (
     <div className="ts-screen" style={{ '--tc': meta.color, '--ta': meta.accent }}>

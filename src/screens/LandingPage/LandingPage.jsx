@@ -34,22 +34,57 @@ const TRACK_COURSE_IDS = {
 
 /* ─── STATIC DB TRACKS — instant seed, no cold-start wait ───────── */
 // Mirrors the shape returned by GET /api/tracks (populated courses+parts).
-// Only include tracks that actually exist in MongoDB.
 // The API fetch will silently overwrite this once Render wakes up.
+const _c = (id, title, slug) => ({ _id: id, title, slug, status: 'published', parts: [] });
 const STATIC_DB_TRACKS = [
   {
     _id: '6a11ee5865bcdb08d4ee66b3',
-    name: 'MERN Stack',
-    slug: 'mern-stack',
-    type: 'Full Stack',
+    name: 'MERN Stack', slug: 'mern-stack', type: 'Full Stack',
     description: 'Build full-stack JavaScript applications with MongoDB, Express, React and Node.js.',
     courses: [
-      { _id: '6919f6286409cc0505808ac5', title: 'HTML',                    slug: 'html',                  status: 'published', parts: [] },
-      { _id: '6919f63e6409cc0505808ac7', title: 'CSS',                     slug: 'css',                   status: 'published', parts: [] },
-      { _id: '6919f6516409cc0505808ac9', title: 'JavaScript',              slug: 'javascript',            status: 'published', parts: [] },
-      { _id: '693afba9252afa6fafc011af', title: 'Terminal / CLI',          slug: 'terminal-command-line', status: 'published', parts: [] },
-      { _id: '693afe6f252afa6fafc011ba', title: 'Git & GitHub',            slug: 'git-and-github',        status: 'published', parts: [] },
-      { _id: '693c1db01270c2a321fa0356', title: 'Backend (Node / Express)',slug: 'backend-nodejs-express',status: 'published', parts: [] },
+      _c('6919f6286409cc0505808ac5', 'HTML',                    'html'),
+      _c('6919f63e6409cc0505808ac7', 'CSS',                     'css'),
+      _c('6919f6516409cc0505808ac9', 'JavaScript',              'javascript'),
+      _c('693afba9252afa6fafc011af', 'Terminal / CLI',          'terminal-command-line'),
+      _c('693afe6f252afa6fafc011ba', 'Git & GitHub',            'git-and-github'),
+      _c('693c1db01270c2a321fa0356', 'Backend (Node / Express)','backend-nodejs-express'),
+    ],
+  },
+  {
+    _id: null, name: 'MEAN Stack', slug: 'mean-stack', type: 'Full Stack',
+    description: 'Enterprise-grade full-stack development with MongoDB, Express, Angular and Node.js.',
+    courses: [
+      _c('6919f6286409cc0505808ac5', 'HTML',                    'html'),
+      _c('6919f63e6409cc0505808ac7', 'CSS',                     'css'),
+      _c('6919f6516409cc0505808ac9', 'JavaScript',              'javascript'),
+      _c('693afba9252afa6fafc011af', 'Terminal / CLI',          'terminal-command-line'),
+      _c('693afe6f252afa6fafc011ba', 'Git & GitHub',            'git-and-github'),
+      _c('693c1db01270c2a321fa0356', 'Backend (Node / Express)','backend-nodejs-express'),
+    ],
+  },
+  {
+    _id: null, name: 'Frontend Development', slug: 'frontend-development', type: 'Frontend',
+    description: 'Craft beautiful, accessible and responsive user interfaces from scratch.',
+    courses: [
+      _c('6919f6286409cc0505808ac5', 'HTML',       'html'),
+      _c('6919f63e6409cc0505808ac7', 'CSS',        'css'),
+      _c('6919f6516409cc0505808ac9', 'JavaScript', 'javascript'),
+    ],
+  },
+  {
+    _id: null, name: 'Backend Development', slug: 'backend-development', type: 'Backend',
+    description: 'Build robust servers, REST APIs and data layers that power modern apps.',
+    courses: [
+      _c('693c1db01270c2a321fa0356', 'Backend (Node / Express)','backend-nodejs-express'),
+      _c('693afba9252afa6fafc011af', 'Terminal / CLI',          'terminal-command-line'),
+      _c('693afe6f252afa6fafc011ba', 'Git & GitHub',            'git-and-github'),
+    ],
+  },
+  {
+    _id: null, name: 'Data Analytics', slug: 'data-analytics', type: 'Data',
+    description: 'Turn raw data into insights with SQL, Python and Power BI.',
+    courses: [
+      _c('6a0ecfdc690db01f804cb1d5', 'SQL', 'sql'),
     ],
   },
 ];
@@ -173,6 +208,7 @@ export default function LandingPage() {
   const [courseProgress, setCourseProgress] = useState({});
   const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: pct } }
   const [enrolledSlugs, setEnrolledSlugs] = useState([]);
+  const [enrollLoading, setEnrollLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('mcq');
   const [editorTab, setEditorTab] = useState('app');
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -254,11 +290,12 @@ export default function LandingPage() {
 
   // Fetch explicitly enrolled tracks from API
   useEffect(() => {
-    if (!user) return;
+    if (!user) { setEnrollLoading(false); return; }
     authFetch(`${API_BASE_URL}/api/users/tracks/enrolled`)
       .then(r => r.json())
       .then(d => { if (d.success) setEnrolledSlugs(d.enrolledTracks || []); })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setEnrollLoading(false));
   }, [user]);
 
   // Fetch track-scoped progress for each enrolled track (powers "My Learning Journey")
@@ -696,7 +733,11 @@ export default function LandingPage() {
             <div className="lp-pc-main">
               <span className="lp-pc-name">{user.name}</span>
               <div className="lp-pc-tracks-row">
-                {enrolledSlugs.length > 0 ? (
+                {enrollLoading ? (
+                  [100, 118, 88].map(w => (
+                    <span key={w} className="lp-skel lp-skel-pill" style={{ width: w }} />
+                  ))
+                ) : enrolledSlugs.length > 0 ? (
                   enrolledSlugs.map(slug => {
                     const dbTrack = dbTracks.find(t => t.slug === slug);
                     const ltTrack = LEARNING_TRACKS.find(t => t.name === dbTrack?.name);
@@ -727,7 +768,7 @@ export default function LandingPage() {
       )}
 
       {/* ── MY LEARNING (logged-in users with progress) ── */}
-      {user && myTracks.length > 0 && (
+      {user && (enrollLoading || myTracks.length > 0) && (
         <section className="lp-section lp-my-learning" style={{ paddingTop: '48px', paddingBottom: '16px' }}>
           <div className="lp-section-inner">
             <div className="lp-section-header" style={{ marginBottom: '20px' }}>
@@ -738,26 +779,39 @@ export default function LandingPage() {
               <p className="lp-section-p">Continue where you left off</p>
             </div>
             <div className="lp-my-tracks-grid">
-              {myTracks.map((track, i) => (
-                <div
-                  key={i}
-                  className="lp-my-track-card"
-                  style={{ '--tc': track.color }}
-                  onClick={() => navigate(`/track/${track.slug}`)}
-                >
-                  <div className="lp-mt-glow" />
-                  <div className="lp-mt-left">
-                    <span className="lp-mt-icon">{track.icon}</span>
-                    <div>
-                      <div className="lp-mt-name">{track.name}</div>
-                      <div className="lp-mt-meta">{track.matchedCourses.length} courses · {track.avgProgress}% done</div>
+              {enrollLoading ? (
+                [1, 2, 3].map(i => (
+                  <div key={i} className="lp-my-track-skel">
+                    <div className="lp-skel lp-skel-icon-sq" />
+                    <div className="lp-skel-lines">
+                      <div className="lp-skel lp-skel-line" style={{ width: '62%' }} />
+                      <div className="lp-skel lp-skel-line" style={{ width: '42%', marginTop: '8px' }} />
+                    </div>
+                    <div className="lp-skel lp-skel-ring" />
+                  </div>
+                ))
+              ) : (
+                myTracks.map((track, i) => (
+                  <div
+                    key={i}
+                    className="lp-my-track-card"
+                    style={{ '--tc': track.color }}
+                    onClick={() => navigate(`/track/${track.slug}`)}
+                  >
+                    <div className="lp-mt-glow" />
+                    <div className="lp-mt-left">
+                      <span className="lp-mt-icon">{track.icon}</span>
+                      <div>
+                        <div className="lp-mt-name">{track.name}</div>
+                        <div className="lp-mt-meta">{track.matchedCourses.length} courses · {track.avgProgress}% done</div>
+                      </div>
+                    </div>
+                    <div className="lp-mt-right">
+                      <CourseProgressRing pct={track.avgProgress} color={track.color} />
                     </div>
                   </div>
-                  <div className="lp-mt-right">
-                    <CourseProgressRing pct={track.avgProgress} color={track.color} />
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </section>

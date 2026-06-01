@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
 import { getStreak, getQuizAccuracy } from '../../utils/userStats';
 import logo from '../../assets/logo.png';
+import DevLoader from '../../components/DevLoader/DevLoader';
 import './ProfileScreen.css';
 
 /* ─── Static data ─── */
@@ -61,27 +62,34 @@ export default function ProfileScreen() {
   useSEO({ title: 'My Profile', noindex: true });
 
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+
+  // Read user synchronously — no async flash, no useEffect needed for auth check.
+  const [user] = useState(() => {
+    const raw = localStorage.getItem('userInfo');
+    return raw ? JSON.parse(raw) : null;
+  });
+
   const [progress, setProgress] = useState({});            // { courseId: percent } — global / legacy
   const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: percent } }
   const [enrolledSlugs, setEnrolledSlugs] = useState([]);  // track slugs from API
   const [dbTracks, setDbTracks] = useState([]);             // all tracks from API
   const [loading, setLoading] = useState(true);
-  const [enrollLoading, setEnrollLoading] = useState(true); // true until enrolled slugs resolve
+  // enrollLoading gates the full-page DevLoader — stays true until the
+  // enrolled-tracks API call resolves (the first meaningful async wait).
+  const [enrollLoading, setEnrollLoading] = useState(!!user);
 
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // Redirect non-authenticated users immediately
+  useEffect(() => {
+    if (!user) navigate('/');
+  }, [user, navigate]);
 
   // Helper: if any API returns 401 (stale/deleted account), clear and redirect to login
   const handleAuthError = () => {
     localStorage.removeItem('userInfo');
     navigate('/');
   };
-
-  useEffect(() => {
-    const raw = localStorage.getItem('userInfo');
-    if (!raw) { navigate('/'); return; }
-    setUser(JSON.parse(raw));
-  }, [navigate]);
 
   useEffect(() => {
     if (!user) return;
@@ -148,7 +156,11 @@ export default function ProfileScreen() {
     });
   }, [user, enrolledSlugs, dbTracks]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!user) return null;
+  // Block render until both enrolled-tracks AND course-progress fetches have resolved.
+  // enrollLoading: guards the enrolled tracks API call
+  // loading: guards the course-progress API calls (7 parallel fetches)
+  // Together they ensure the profile renders fully populated on first paint.
+  if (!user || enrollLoading || loading) return <DevLoader />;
 
   /* ── Activity stats (localStorage) ── */
   const streak      = getStreak();
