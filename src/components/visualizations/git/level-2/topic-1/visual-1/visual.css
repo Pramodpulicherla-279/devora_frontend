@@ -1,0 +1,89 @@
+/* Git: Remote Repos — prefix: gitrr- */
+.gitrr-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 900px; margin: 0 auto; border: 1px solid #21262d;
+}
+.gitrr-head { text-align: center; margin-bottom: 20px; }
+.gitrr-badge {
+  background: #F05032; color: #fff;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.gitrr-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F05032; }
+.gitrr-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.gitrr-ops { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.gitrr-op-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: #161b22; border: 2px solid transparent;
+  border-radius: 10px; padding: 10px 16px; cursor: pointer;
+  min-height: 56px; transition: all 0.15s; flex: 1; min-width: 100px;
+}
+.gitrr-op-btn:hover { border-color: var(--oc); }
+.gitrr-op-btn--on { border-color: var(--oc); background: color-mix(in srgb, var(--oc) 10%, #161b22); }
+.gitrr-op-icon  { font-size: 1.1rem; }
+.gitrr-op-label { font-family: monospace; font-size: 0.8rem; color: #c9d1d9; }
+
+/* Diagram */
+.gitrr-diagram {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 12px; align-items: start; margin-bottom: 16px;
+}
+@media (max-width: 620px) {
+  .gitrr-diagram { grid-template-columns: 1fr; }
+  .gitrr-arrow-col { flex-direction: row; justify-content: center; }
+}
+
+.gitrr-machine { background: #161b22; border-radius: 10px; padding: 14px; }
+.gitrr-machine-head { font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; color: #c9d1d9; }
+.gitrr-commits { display: flex; flex-direction: column; gap: 5px; }
+.gitrr-commit {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px; border-radius: 6px; font-size: 0.78rem;
+}
+.gitrr-commit code { font-size: 0.72rem; color: #a3adbb; }
+.gitrr-commit span { color: #c9d1d9; }
+.gitrr-commit--synced { background: #0d2a1b; border: 1px solid #1a4a2a; }
+.gitrr-commit--local  { background: #1e1012; border: 1px solid #3a1a1a; }
+.gitrr-unpushed { font-size: 0.68rem; color: #f85149; margin-left: auto; }
+.gitrr-synced-badge { color: #6cc644; font-size: 0.78rem; text-align: center; padding: 4px; }
+
+.gitrr-arrow-col {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 10px 0;
+}
+.gitrr-arrow { font-size: 2rem; font-weight: 700; }
+.gitrr-op-pill { color: #fff; font-family: monospace; font-size: 0.75rem; padding: 3px 10px; border-radius: 99px; }
+.gitrr-run-btn {
+  background: none; border: 1px solid; border-radius: 6px;
+  padding: 5px 14px; cursor: pointer; font-size: 0.78rem;
+  min-height: 36px; transition: opacity 0.15s;
+}
+.gitrr-run-btn:hover { opacity: 0.7; }
+
+.gitrr-op-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.6; margin: 0 0 10px; }
+.gitrr-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.82rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 16px;
+}
+
+/* Auth */
+.gitrr-auth { border-top: 1px solid #21262d; padding-top: 16px; }
+.gitrr-auth h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.gitrr-auth-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+.gitrr-auth-tab {
+  background: #161b22; border: 1px solid #30363d; color: #a3adbb;
+  padding: 5px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+  min-height: 36px; transition: all 0.15s;
+}
+.gitrr-auth-tab--on { background: #F05032; border-color: #F05032; color: #fff; font-weight: 700; }
+.gitrr-auth-tip { font-size: 0.8rem; color: #a3adbb; margin: 0; }
+
+@media (max-width: 480px) {
+  .gitrr-code   { font-size: 0.72rem; padding: 10px; }
+  .gitrr-op-btn { min-width: 80px; padding: 8px; }
+  .gitrr-op-label{ font-size: 0.72rem; }
+}

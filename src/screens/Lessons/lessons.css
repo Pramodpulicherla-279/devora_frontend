@@ -559,6 +559,11 @@
   color: #2d2d42;
 }
 
+/* Prose element styles live in a cascade layer so embedded visualizations
+   (.dvz-embed → unlayered component CSS) always win, and this light-theme
+   prose never bleeds into the dark visualization cards. */
+@layer dvz-lesson-prose {
+
 /* ── Body text ── */
 .lesson-view p {
   margin: 0 0 1.25rem;
@@ -747,6 +752,8 @@
 
 .lesson-view tr:nth-child(even) td { background: #fafafe; }
 .lesson-view tr:hover td { background: #f5f3ff; transition: background 0.15s; }
+
+} /* end @layer dvz-lesson-prose */
 
 /* ── Callout boxes ── */
 .lesson-view .note,

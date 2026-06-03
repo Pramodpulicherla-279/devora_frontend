@@ -1,0 +1,104 @@
+/* JS Objects & Math — prefix: jsob- */
+.jsob-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsob-head { text-align: center; margin-bottom: 24px; }
+.jsob-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jsob-head h2 { margin: 10px 0 0; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F7DF1E; }
+
+.jsob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .jsob-grid { grid-template-columns: 1fr; } }
+
+.jsob-panel { background: #161b22; border-radius: 12px; padding: 18px; }
+.jsob-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 14px; }
+
+/* Object card */
+.jsob-obj-card {
+  background: #010409; border-radius: 8px;
+  padding: 12px 14px; font-family: monospace;
+  font-size: 0.85rem; margin-bottom: 14px;
+}
+.jsob-obj-brace { color: #a3adbb; }
+.jsob-prop {
+  padding: 5px 8px; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s;
+}
+.jsob-prop:hover { background: #21262d; }
+.jsob-prop--active { background: color-mix(in srgb, #F7DF1E 10%, #010409); }
+.jsob-key    { color: #61AFEF; }
+.jsob-colon  { color: #a3adbb; }
+.jsob-str    { color: #98C379; }
+.jsob-num    { color: #E5C07B; }
+.jsob-arr    { color: #C678DD; }
+.jsob-nested { color: #a3adbb; }
+.jsob-comma  { color: #a3adbb; }
+
+/* Access section */
+.jsob-access-section { }
+.jsob-access-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+.jsob-access-tab {
+  background: none; border: 1px solid #30363d;
+  color: #a3adbb; padding: 4px 12px;
+  border-radius: 6px; cursor: pointer; font-size: 0.78rem; transition: all 0.15s;
+}
+.jsob-access-tab--on { background: #F7DF1E; color: #0d1117; border-color: #F7DF1E; font-weight: 700; }
+
+/* Math panel */
+.jsob-math-list {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6px; margin-bottom: 14px;
+}
+.jsob-math-btn {
+  background: #0d1117; border: 1px solid #30363d;
+  border-radius: 6px; padding: 6px 8px; cursor: pointer;
+  text-align: left; font-size: 0.75rem; color: #e6edf3;
+  transition: all 0.15s;
+}
+.jsob-math-btn code { color: #E5C07B; font-size: 0.73rem; }
+.jsob-math-btn:hover { border-color: #F7DF1E; }
+.jsob-math-btn--on { border-color: #F7DF1E; background: color-mix(in srgb, #F7DF1E 8%, #0d1117); }
+
+.jsob-math-detail { background: #0d1117; border-radius: 8px; padding: 12px; }
+.jsob-math-result {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;
+}
+.jsob-math-label { font-size: 0.75rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; }
+.jsob-math-val { font-size: 1.4rem; font-weight: 700; color: #F7DF1E; font-family: monospace; }
+.jsob-math-desc { font-size: 0.82rem; color: #a3adbb; margin: 0 0 10px; }
+
+.jsob-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 8px; padding: 10px 12px;
+  font-family: 'Consolas', monospace; font-size: 0.83rem;
+  color: #e6edf3; overflow-x: auto; margin: 0;
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .jsob-math-list     { grid-template-columns: 1fr; }
+  .jsob-math-btn      { font-size: 0.8rem; min-height: 40px; }
+}
+@media (max-width: 480px) {
+  .jsob-code          { font-size: 0.74rem; padding: 8px 10px; }
+  .jsob-obj-card      { font-size: 0.8rem; padding: 10px; }
+  .jsob-prop          { padding: 6px; }
+  .jsob-math-val      { font-size: 1.2rem; }
+  .jsob-panel         { padding: 14px; }
+  .jsob-access-tab    { min-height: 40px; padding: 6px 10px; }
+}

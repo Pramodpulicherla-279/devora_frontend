@@ -1,0 +1,121 @@
+/* ============================================================
+   Global responsive guardrails for ALL lesson visualizations
+   ------------------------------------------------------------
+   Every visualization's root element uses the naming convention
+   "<prefix>-wrap" (e.g. bnni-wrap, authjwt-wrap). These rules
+   keep every card inside the screen on mobile.
+
+   SCOPE: only applied inside the containers where lessons render
+   their parsed HTML —
+     .content-body                     → student Lessons screen
+     .le-theory-full / .le-editor-pane → admin Lesson Editor preview
+   so unrelated app chrome (3D canvas, SVG rings, search dropdowns,
+   chat FAB, etc.) that also happen to use a "-wrap" class are
+   never affected.
+
+   Imported once in visualizationRegistry.jsx.
+   ============================================================ */
+
+/* 1. The card itself never exceeds the available width, and any
+      stray horizontal overflow is clipped. overflow-x:clip leaves
+      the vertical axis visible, so tooltips / badges still show. */
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+/* 2. Predictable box model for everything inside a card. */
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] * {
+  box-sizing: border-box;
+}
+
+/* 3. THE KEY FIX: grid & flex children default to min-width:auto,
+      which makes a long <pre> / table force its track wider than
+      the viewport. Allowing these containers to shrink to 0 lets
+      the inner element's own overflow-x:auto scroll instead.
+      The whole selector is wrapped in :where() → specificity 0,
+      so any intentional component min-width still wins. */
+:where(.content-body, .le-theory-full, .le-editor-pane)
+  :where([class$="-wrap"])
+  :where(div, section, article, header, ul, ol, pre, table, label) {
+  min-width: 0;
+}
+
+/* 4. Code blocks scroll internally, never stretch the layout. */
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* 5. Raster/media is fluid; SVG icons keep their own aspect. */
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] :is(img, canvas, video) {
+  max-width: 100%;
+  height: auto;
+}
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] svg {
+  max-width: 100%;
+}
+
+/* 6. Tables & form controls stay within the card. */
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] table {
+  max-width: 100%;
+}
+:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] :is(input, select, textarea) {
+  max-width: 100%;
+}
+
+/* 7. Any container that directly holds a <table> becomes a horizontal
+      scroll area, so wide tables scroll instead of being clipped by the
+      card's overflow-x:clip on very narrow screens. The :has() bumps
+      specificity above rule 1, so a table-wrapper that is itself a
+      "-wrap" still scrolls rather than clips. */
+:where(.content-body, .le-theory-full, .le-editor-pane)
+  [class$="-wrap"] :is(div, section):has(> table) {
+  overflow-x: auto;
+}
+:where(.content-body, .le-theory-full, .le-editor-pane)
+  [class$="-wrap"]:has(> table) {
+  overflow-x: auto;
+}
+
+/* ============================================================
+   8. Insulate embedded visualizations from leaked lesson prose.
+   The lesson + admin prose element styles now live in
+   @layer dvz-lesson-prose, so each visualization's own (unlayered)
+   component CSS already wins every direct conflict (text colours,
+   table borders, code-block backgrounds, etc.). These unlayered
+   resets clean up the handful of prose declarations that have NO
+   component counterpart and would otherwise still show through:
+   zebra rows, the ▸ bullets, the pre gradient bar, light inline
+   code chips, and dark colours on bare strong/em/a.
+   Low specificity → they beat the layered prose (unlayered always
+   wins over a layer) yet still lose to component rules on ties.
+   ============================================================ */
+.dvz-embed { display: block; }
+
+/* leaked decorations with no component competitor */
+.dvz-embed pre::before { content: none; }
+.dvz-embed ul li::before { content: none; }
+.dvz-embed ol li::marker { color: inherit; }
+.dvz-embed ul,
+.dvz-embed ol { list-style: revert; }
+
+/* leaked light table striping / hover → let the card's own rows show */
+.dvz-embed tr td { background: transparent; }
+.dvz-embed table { display: table; box-shadow: none; }
+
+/* leaked light inline-code chips → transparent, inherit card colour */
+.dvz-embed :is(p, li, td, h2, h3, span) code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  white-space: normal;
+}
+
+/* leaked dark prose colours on bare inline elements */
+.dvz-embed strong,
+.dvz-embed em,
+.dvz-embed a { color: inherit; }
+.dvz-embed a { text-decoration: none; }

@@ -1,0 +1,50 @@
+/* MongoDB: CRUD — prefix: mdbcrud- */
+.mdbcrud-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.mdbcrud-head { text-align: center; margin-bottom: 20px; }
+.mdbcrud-badge { background: #001E2B; color: #00ED64; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #00ED64; letter-spacing: 1.5px; }
+.mdbcrud-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #00ED64; }
+.mdbcrud-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.mdbcrud-ops { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+@media (max-width: 560px) { .mdbcrud-ops { grid-template-columns: repeat(2, 1fr); } }
+.mdbcrud-op-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; background: #161b22; border: 2px solid transparent; border-radius: 10px; padding: 12px 8px; cursor: pointer; min-height: 70px; transition: all 0.15s; }
+.mdbcrud-op-btn--on { border-color: var(--oc); background: color-mix(in srgb, var(--oc) 10%, #161b22); }
+.mdbcrud-op-icon { font-size: 1.2rem; }
+.mdbcrud-op-label { font-size: 0.82rem; font-weight: 700; color: #c9d1d9; }
+.mdbcrud-op-method { font-size: 0.68rem; color: var(--oc); }
+
+.mdbcrud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .mdbcrud-grid { grid-template-columns: 1fr; } }
+.mdbcrud-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+.mdbcrud-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.mdbcrud-form label { display: flex; flex-direction: column; gap: 4px; font-size: 0.76rem; color: #a3adbb; }
+.mdbcrud-input { background: #010409; border: 1px solid #30363d; color: #e6edf3; border-radius: 6px; padding: 7px 10px; font-size: 0.84rem; font-family: monospace; box-sizing: border-box; }
+.mdbcrud-input:focus { outline: none; border-color: #00ED64; }
+.mdbcrud-read-note { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin: 0; }
+.mdbcrud-run { border: none; color: #001E2B; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.84rem; font-weight: 700; min-height: 44px; transition: opacity 0.15s; }
+.mdbcrud-run:hover { opacity: 0.88; }
+
+.mdbcrud-coll-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.mdbcrud-coll-head h3 { margin: 0; }
+.mdbcrud-reset { background: none; border: 1px solid #30363d; color: #a3adbb; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; min-height: 32px; }
+.mdbcrud-docs { display: flex; flex-direction: column; gap: 6px; }
+.mdbcrud-doc { background: #010409; border: 1px solid #21262d; border-radius: 7px; padding: 9px 12px; font-family: 'Consolas', monospace; font-size: 0.76rem; color: #c9d1d9; overflow-x: auto; margin: 0; transition: all 0.3s; }
+.mdbcrud-doc--create { border-color: #00ED64; background: color-mix(in srgb, #00ED64 12%, #010409); animation: mdbcrud-in 0.4s ease; }
+.mdbcrud-doc--update { border-color: #E5C07B; background: color-mix(in srgb, #E5C07B 12%, #010409); }
+.mdbcrud-doc--delete { border-color: #E06C75; background: color-mix(in srgb, #E06C75 12%, #010409); opacity: 0.4; }
+@keyframes mdbcrud-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.mdbcrud-empty { text-align: center; color: #8b949e; font-size: 0.8rem; padding: 16px; }
+.mdbcrud-count { font-size: 0.74rem; color: #a3adbb; margin: 6px 0 0; }
+
+.mdbcrud-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 10px 12px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 8px 0 0; }
+@media (max-width: 480px) {
+  .mdbcrud-code { font-size: 0.7rem; padding: 9px; }
+  .mdbcrud-doc { font-size: 0.7rem; }
+  .mdbcrud-op-method { font-size: 0.62rem; }
+}

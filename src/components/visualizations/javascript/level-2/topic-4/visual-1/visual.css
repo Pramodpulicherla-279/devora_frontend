@@ -1,0 +1,107 @@
+/* JS This, Arrow, Async — prefix: jsta- */
+.jsta-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsta-head { text-align: center; margin-bottom: 24px; }
+.jsta-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jsta-head h2 { margin: 10px 0 0; font-size: clamp(1rem, 3vw, 1.35rem); color: #F7DF1E; }
+
+.jsta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 660px) { .jsta-grid { grid-template-columns: 1fr; } }
+
+.jsta-panel { }
+.jsta-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.jsta-panel h3 code { color: #c9d1d9; text-transform: none; letter-spacing: 0; }
+
+.jsta-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.jsta-tab {
+  background: #161b22; border: 1px solid #30363d;
+  color: #a3adbb; padding: 6px 14px; border-radius: 7px;
+  cursor: pointer; font-size: 0.78rem; transition: all 0.15s;
+}
+.jsta-tab--on { background: #F7DF1E; color: #0d1117; border-color: #F7DF1E; font-weight: 700; }
+
+.jsta-this-badge {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid; border-radius: 8px; padding: 8px 14px;
+  margin-bottom: 10px;
+}
+.jsta-this-label { font-size: 0.78rem; color: #a3adbb; font-family: monospace; }
+.jsta-this-val   { font-size: 0.83rem; font-weight: 600; }
+
+.jsta-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 10px; padding: 12px 14px;
+  font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 10px;
+}
+.jsta-note { font-size: 0.8rem; color: #a3adbb; line-height: 1.5; margin: 0; }
+
+/* Timer panel */
+.jsta-sub { font-size: 0.8rem; color: #a3adbb; margin: 0 0 12px; }
+.jsta-timeline { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.jsta-tstep {
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0.3; transition: opacity 0.3s;
+}
+.jsta-tstep--on { opacity: 1; }
+.jsta-tstep-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--sc); flex-shrink: 0;
+}
+.jsta-tstep-info { display: flex; gap: 10px; align-items: baseline; }
+.jsta-tstep-ms { font-family: monospace; font-size: 0.78rem; color: var(--sc); min-width: 36px; }
+.jsta-tstep-label { font-size: 0.78rem; color: #a3adbb; }
+
+.jsta-btn {
+  padding: 7px 16px; border-radius: 7px; cursor: pointer;
+  border: none; font-size: 0.82rem; font-weight: 600;
+  background: #F7DF1E; color: #0d1117; margin-bottom: 16px;
+  transition: opacity 0.15s;
+}
+.jsta-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Try/catch */
+.jsta-trycatch { border-top: 1px solid #21262d; padding-top: 14px; }
+.jsta-trycatch-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.jsta-trycatch-head h3 { margin: 0; color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+.jsta-toggle {
+  background: #161b22; border: 1px solid #30363d;
+  color: #a3adbb; padding: 4px 10px; border-radius: 6px;
+  cursor: pointer; font-size: 0.75rem; transition: all 0.15s;
+}
+.jsta-toggle--on { background: #21262d; border-color: #F7DF1E; color: #F7DF1E; }
+
+.jsta-error-badge { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.jsta-err { background: #3a1c1c; color: #f85149; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; font-family: monospace; }
+.jsta-fin { background: #1c2a1c; color: #56d364; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; font-family: monospace; }
+
+/* === Mobile === */
+@media (max-width: 480px) {
+  .jsta-code          { font-size: 0.72rem; padding: 10px; }
+  .jsta-tabs          { gap: 5px; }
+  .jsta-tab           { padding: 8px 10px; min-height: 40px; font-size: 0.75rem; }
+  .jsta-this-badge    { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .jsta-tstep-info    { flex-direction: column; gap: 2px; }
+  .jsta-tstep-ms      { min-width: unset; }
+  .jsta-tstep-label   { font-size: 0.74rem; }
+  .jsta-btn           { min-height: 44px; padding: 10px; width: 100%; }
+  .jsta-trycatch-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .jsta-toggle        { min-height: 36px; padding: 6px 12px; }
+}

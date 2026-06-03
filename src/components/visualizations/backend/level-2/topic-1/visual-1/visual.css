@@ -1,0 +1,66 @@
+/* Backend: Express Intro — prefix: bnei- */
+.bnei-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 900px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnei-head { text-align: center; margin-bottom: 20px; }
+.bnei-badge { background: #888; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnei-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #c9d1d9; }
+.bnei-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.bnei-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.bnei-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.bnei-tab--on { background: #68A063; border-color: #68A063; color: #fff; font-weight: 700; }
+
+/* Setup */
+.bnei-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.bnei-step-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: #161b22; border: 2px solid #21262d; border-radius: 8px;
+  padding: 10px 14px; cursor: pointer; min-height: 48px; transition: all 0.15s; text-align: left;
+}
+.bnei-step-btn:hover { border-color: #68A063; }
+.bnei-step-btn--on   { border-color: #68A063; background: color-mix(in srgb, #68A063 10%, #161b22); }
+.bnei-step-btn--done { border-color: #6cc644; background: color-mix(in srgb, #6cc644 6%, #161b22); }
+.bnei-step-num { width: 22px; height: 22px; border-radius: 50%; background: #68A063; color: #fff; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bnei-nav-btns { display: flex; gap: 8px; margin: 10px 0; }
+.bnei-nav { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; min-height: 36px; transition: all 0.15s; }
+.bnei-nav--next { background: #68A063; border-color: #68A063; color: #fff; }
+.bnei-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+.bnei-code--full { margin-top: 12px; }
+
+/* Methods */
+.bnei-method-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.bnei-method-pill { background: #161b22; border: 2px solid transparent; border-radius: 6px; padding: 6px 16px; cursor: pointer; font-family: monospace; font-size: 0.84rem; font-weight: 700; color: #a3adbb; min-height: 40px; transition: all 0.15s; }
+.bnei-method-pill--on { border-color: var(--mc); color: var(--mc); background: color-mix(in srgb, var(--mc) 10%, #161b22); }
+.bnei-method-detail { background: #161b22; border-radius: 10px; padding: 16px; border-left: 3px solid; margin-bottom: 14px; }
+.bnei-method-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 8px; font-family: monospace; }
+.bnei-method-desc { font-size: 0.84rem; color: #a3adbb; margin: 0 0 10px; }
+.bnei-req-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 14px; background: #161b22; border-radius: 10px; justify-content: center; }
+.bnei-flow-box { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 10px 14px; font-size: 0.76rem; color: #a3adbb; text-align: center; }
+.bnei-flow-box code { display: block; color: #c9d1d9; margin-top: 4px; font-size: 0.7rem; }
+.bnei-flow-arrow { font-size: 0.82rem; font-weight: 700; white-space: nowrap; }
+
+/* Compare table */
+.bnei-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.bnei-table th, .bnei-table td { padding: 8px 12px; border-bottom: 1px solid #21262d; text-align: left; }
+.bnei-table th { background: #161b22; color: #a3adbb; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 1px; }
+.bnei-td-feature { color: #c9d1d9; font-weight: 500; }
+.bnei-td-node code, .bnei-td-express code { font-size: 0.74rem; color: #a3adbb; }
+.bnei-td-express code { color: #68A063; }
+.bnei-compare-note { font-size: 0.8rem; color: #a3adbb; margin-top: 12px; line-height: 1.5; background: #161b22; border-radius: 8px; padding: 10px 14px; border-left: 3px solid #68A063; }
+
+.bnei-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin: 8px 0;
+}
+@media (max-width: 600px) {
+  .bnei-req-flow { flex-direction: column; align-items: stretch; }
+  .bnei-flow-arrow { text-align: center; transform: rotate(90deg); }
+  .bnei-code { font-size: 0.72rem; }
+  .bnei-table { font-size: 0.72rem; }
+  .bnei-table th, .bnei-table td { padding: 6px 8px; }
+}

@@ -1,0 +1,48 @@
+/* Auth: Sessions vs Tokens — prefix: authst- */
+.authst-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.authst-head { text-align: center; margin-bottom: 20px; }
+.authst-badge { background: #2a210a; color: #FBBF24; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #FBBF24; letter-spacing: 1.5px; }
+.authst-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.5rem); color: #FBBF24; }
+.authst-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.authst-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.authst-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.authst-tab--on { background: #2a210a; border-color: #FBBF24; color: #FBBF24; font-weight: 700; }
+
+.authst-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: 16px; }
+.authst-table th, .authst-table td { padding: 9px 12px; border-bottom: 1px solid #21262d; text-align: left; }
+.authst-table th { background: #161b22; color: #a3adbb; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; }
+.authst-td-label { color: #c9d1d9; font-weight: 500; }
+.authst-td-session { color: #E5C07B; }
+.authst-td-token { color: #FBBF24; }
+.authst-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 540px) { .authst-summary { grid-template-columns: 1fr; } }
+.authst-sum-card { background: #161b22; border-radius: 9px; padding: 14px; }
+.authst-sum-card--session { border-top: 3px solid #E5C07B; }
+.authst-sum-card--token { border-top: 3px solid #FBBF24; }
+.authst-sum-card strong { display: block; margin-bottom: 5px; color: #c9d1d9; }
+.authst-sum-card p { font-size: 0.78rem; color: #a3adbb; margin: 0; line-height: 1.5; }
+
+.authst-flow-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 14px; }
+.authst-flow-desc strong { color: #FBBF24; }
+.authst-flow-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.authst-flow-step { display: flex; align-items: center; gap: 12px; background: #161b22; border: 1px solid #21262d; border-radius: 9px; padding: 11px 14px; cursor: pointer; opacity: 0.45; transition: all 0.25s; text-align: left; }
+.authst-flow-step--on { opacity: 1; border-color: #E5C07B; }
+.authst-flow-step--token.authst-flow-step--on { border-color: #FBBF24; }
+.authst-flow-icon { font-size: 1.3rem; flex-shrink: 0; }
+.authst-flow-step-title { font-size: 0.84rem; font-weight: 700; color: #c9d1d9; }
+.authst-flow-step-detail { font-size: 0.76rem; color: #a3adbb; }
+.authst-flow-controls { display: flex; gap: 8px; }
+.authst-btn { background: #2a210a; border: 1px solid #FBBF24; color: #FBBF24; padding: 8px 16px; border-radius: 7px; cursor: pointer; font-size: 0.8rem; font-weight: 600; min-height: 40px; transition: all 0.15s; }
+.authst-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.authst-btn--reset { background: #161b22; border-color: #30363d; color: #a3adbb; }
+
+@media (max-width: 480px) {
+  .authst-table { font-size: 0.72rem; }
+  .authst-table th, .authst-table td { padding: 6px 8px; }
+}

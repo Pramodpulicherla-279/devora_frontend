@@ -1,0 +1,76 @@
+/* React: Events & Conditional — prefix: rctec- */
+.rctec-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.rctec-head { text-align: center; margin-bottom: 20px; }
+.rctec-badge { background: #20232A; color: #61DAFB; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #61DAFB; letter-spacing: 1.5px; }
+.rctec-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #61DAFB; }
+.rctec-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.rctec-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.rctec-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.rctec-tab--on { background: #20232A; border-color: #61DAFB; color: #61DAFB; font-weight: 700; }
+
+/* Events */
+.rctec-event-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 18px; margin-bottom: 18px; }
+@media (max-width: 640px) { .rctec-event-grid { grid-template-columns: 1fr; } }
+.rctec-event-list { display: flex; flex-direction: column; gap: 5px; }
+.rctec-event-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 9px 12px; cursor: pointer; text-align: left; min-height: 44px;
+  display: flex; align-items: center; gap: 10px; transition: all 0.15s;
+}
+.rctec-event-btn:hover { border-color: var(--ec); }
+.rctec-event-btn--on { border-color: var(--ec); background: color-mix(in srgb, var(--ec) 10%, #161b22); }
+.rctec-event-btn code { font-size: 0.82rem; color: var(--ec); min-width: 100px; }
+.rctec-event-btn span:last-child { font-size: 0.76rem; color: #a3adbb; }
+.rctec-event-detail { background: #161b22; border-left: 3px solid; border-radius: 10px; padding: 14px; }
+
+.rctec-live-demos h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.rctec-demo-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.rctec-demo-btn { background: #20232A; border: 1px solid #61DAFB; color: #61DAFB; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; white-space: nowrap; }
+.rctec-demo-btn:hover { background: color-mix(in srgb, #61DAFB 15%, #20232A); }
+.rctec-demo-input { background: #161b22; border: 1px solid #30363d; color: #e6edf3; border-radius: 7px; padding: 8px 12px; font-size: 0.84rem; min-width: 160px; }
+.rctec-demo-input:focus { outline: none; border-color: #61DAFB; }
+.rctec-demo-value { font-family: monospace; font-size: 0.78rem; color: #61DAFB; background: #161b22; padding: 4px 10px; border-radius: 6px; }
+.rctec-demo-hover { background: #161b22; border: 1px dashed #30363d; border-radius: 8px; padding: 9px 16px; cursor: default; font-size: 0.82rem; color: #a3adbb; transition: all 0.2s; min-height: 40px; display: flex; align-items: center; }
+.rctec-demo-hover--on { border-color: #C678DD; color: #C678DD; background: color-mix(in srgb, #C678DD 10%, #161b22); }
+
+/* Conditional */
+.rctec-cond-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.rctec-cond-tab { background: #161b22; border: 2px solid transparent; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-size: 0.8rem; color: #a3adbb; min-height: 40px; transition: all 0.15s; }
+.rctec-cond-tab--on { border-color: var(--cc); color: var(--cc); background: color-mix(in srgb, var(--cc) 10%, #161b22); }
+
+.rctec-cond-playground h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 10px; }
+.rctec-playground-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 540px) { .rctec-playground-row { grid-template-columns: 1fr; } }
+.rctec-pg-block { background: #161b22; border-radius: 10px; padding: 14px; }
+.rctec-toggle-btn { width: 100%; background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 9px 12px; border-radius: 7px; cursor: pointer; font-size: 0.8rem; min-height: 40px; margin-bottom: 10px; text-align: left; }
+.rctec-pg-result { min-height: 36px; }
+.rctec-pg-yes { color: #6cc644; font-size: 0.82rem; }
+.rctec-pg-no  { color: #a3adbb; font-size: 0.82rem; }
+.rctec-spinner { color: #E5C07B; font-size: 0.82rem; }
+.rctec-pg-component { background: #20232A; color: #61DAFB; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.78rem; }
+
+/* Lists */
+.rctec-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 14px; }
+.rctec-desc code { color: #61DAFB; }
+.rctec-list-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+@media (max-width: 600px) { .rctec-list-grid { grid-template-columns: 1fr; } }
+.rctec-list-result { background: #161b22; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.rctec-list-label { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.rctec-rendered-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.rctec-list-item { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 8px 12px; font-size: 0.84rem; animation: rctec-in 0.2s ease; }
+@keyframes rctec-in { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: none; } }
+.rctec-key-rule { background: #161b22; border-left: 3px solid #E5C07B; border-radius: 8px; padding: 12px 14px; font-size: 0.8rem; }
+.rctec-key-rule strong { color: #E5C07B; display: block; margin-bottom: 6px; }
+.rctec-key-rule p { color: #a3adbb; margin: 0 0 4px; line-height: 1.4; }
+
+.rctec-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0 0 12px; }
+@media (max-width: 480px) {
+  .rctec-code { font-size: 0.7rem; padding: 9px; }
+  .rctec-event-btn code { min-width: 80px; font-size: 0.76rem; }
+}

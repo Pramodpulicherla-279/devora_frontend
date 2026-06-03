@@ -1,0 +1,44 @@
+/* Auth: RBAC — prefix: authrbac- */
+.authrbac-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.authrbac-head { text-align: center; margin-bottom: 18px; }
+.authrbac-badge { background: #2a210a; color: #FBBF24; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #FBBF24; letter-spacing: 1.5px; }
+.authrbac-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #FBBF24; }
+.authrbac-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.authrbac-role-picker { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; justify-content: center; }
+.authrbac-picker-label { font-size: 0.78rem; color: #a3adbb; }
+.authrbac-role-btn { background: #161b22; border: 2px solid transparent; color: #a3adbb; padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; min-height: 38px; transition: all 0.15s; }
+.authrbac-role-btn--on { border-color: var(--rc); color: var(--rc); background: color-mix(in srgb, var(--rc) 10%, #161b22); }
+
+.authrbac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+@media (max-width: 640px) { .authrbac-grid { grid-template-columns: 1fr; } }
+.authrbac-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+.authrbac-actions { display: flex; flex-direction: column; gap: 6px; }
+.authrbac-action { display: flex; align-items: center; gap: 10px; border-radius: 8px; padding: 9px 12px; transition: all 0.2s; }
+.authrbac-action--allow { background: #0d2a1b; border: 1px solid #1a4a2a; }
+.authrbac-action--deny { background: #161b22; border: 1px solid #21262d; opacity: 0.5; }
+.authrbac-action-icon { font-size: 1.05rem; }
+.authrbac-action-label { flex: 1; font-size: 0.8rem; color: #c9d1d9; }
+.authrbac-action-status { font-size: 0.72rem; font-weight: 600; }
+.authrbac-action--allow .authrbac-action-status { color: #00ED64; }
+.authrbac-action--deny .authrbac-action-status { color: #f85149; }
+
+.authrbac-hierarchy { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.authrbac-tier { display: flex; align-items: center; justify-content: space-between; background: #161b22; border-left: 3px solid var(--rc); border-radius: 7px; padding: 9px 14px; transition: all 0.2s; }
+.authrbac-tier--on { background: color-mix(in srgb, var(--rc) 12%, #161b22); }
+.authrbac-tier-name { font-size: 0.84rem; font-weight: 700; color: var(--rc); }
+.authrbac-tier-count { font-size: 0.74rem; color: #a3adbb; }
+
+.authrbac-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.76rem; color: #e6edf3; overflow-x: auto; margin: 0; }
+.authrbac-note { background: #161b22; border-left: 3px solid #FBBF24; border-radius: 8px; padding: 12px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.authrbac-note strong { color: #FBBF24; }
+.authrbac-note code { color: #FBBF24; }
+@media (max-width: 480px) {
+  .authrbac-code { font-size: 0.68rem; padding: 9px; }
+}

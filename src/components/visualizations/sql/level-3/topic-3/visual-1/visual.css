@@ -1,0 +1,73 @@
+/* SQL: Stored Procedures — prefix: sqlsp- */
+.sqlsp-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 940px; margin: 0 auto; border: 1px solid #21262d;
+}
+.sqlsp-head { text-align: center; margin-bottom: 20px; }
+.sqlsp-badge { background: #336791; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.sqlsp-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #4EA5D9; }
+.sqlsp-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.sqlsp-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.sqlsp-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.sqlsp-tab--on { background: #336791; border-color: #336791; color: #fff; font-weight: 700; }
+
+/* Anatomy */
+.sqlsp-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+@media (max-width: 660px) { .sqlsp-grid { grid-template-columns: 1fr; } }
+.sqlsp-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+.sqlsp-parts { display: flex; flex-direction: column; gap: 5px; }
+.sqlsp-part-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 9px 12px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  min-height: 44px; transition: all 0.15s; text-align: left; flex-wrap: wrap;
+}
+.sqlsp-part-btn:hover { border-color: var(--pc); }
+.sqlsp-part-btn--on { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, #161b22); }
+.sqlsp-part-btn code { font-size: 0.8rem; color: var(--pc); }
+.sqlsp-part-desc { width: 100%; font-size: 0.76rem; color: #a3adbb; line-height: 1.4; padding-top: 4px; border-top: 1px solid #21262d; }
+
+/* Why */
+.sqlsp-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+@media (max-width: 600px) { .sqlsp-why-grid { grid-template-columns: 1fr; } }
+.sqlsp-why-col { display: flex; flex-direction: column; }
+.sqlsp-why-head { font-size: 0.82rem; font-weight: 700; padding: 8px 12px; border-radius: 6px 6px 0 0; }
+.sqlsp-why-head--bad  { background: #2a1212; color: #f85149; }
+.sqlsp-why-head--good { background: #0d2a1b; color: #6cc644; }
+.sqlsp-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 540px) { .sqlsp-benefits { grid-template-columns: 1fr; } }
+.sqlsp-benefit { background: #161b22; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; border-left: 3px solid #4EA5D9; }
+.sqlsp-benefit strong { font-size: 0.82rem; color: #c9d1d9; }
+.sqlsp-benefit span { font-size: 0.76rem; color: #a3adbb; }
+
+/* Demo */
+.sqlsp-call-form { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.sqlsp-call-form label { display: flex; flex-direction: column; gap: 5px; font-size: 0.76rem; color: #a3adbb; flex: 1; min-width: 140px; }
+.sqlsp-select, .sqlsp-input {
+  background: #010409; border: 1px solid #30363d; color: #e6edf3;
+  border-radius: 6px; padding: 7px 10px; font-size: 0.84rem;
+  font-family: monospace; width: 100%; box-sizing: border-box;
+}
+.sqlsp-select:focus, .sqlsp-input:focus { outline: none; border-color: #4EA5D9; }
+.sqlsp-call-btn { background: #336791; border: none; color: #fff; padding: 9px 20px; border-radius: 8px; cursor: pointer; font-size: 0.84rem; font-weight: 700; min-height: 40px; margin-bottom: 14px; }
+.sqlsp-results { border-top: 1px solid #21262d; padding-top: 14px; animation: sqlsp-in 0.2s ease; }
+@keyframes sqlsp-in { from { opacity: 0; } to { opacity: 1; } }
+.sqlsp-out-param { background: #0d2a1b; border: 1px solid #1a4a2a; border-radius: 7px; padding: 8px 14px; font-size: 0.82rem; color: #6cc644; font-family: monospace; margin-bottom: 10px; }
+.sqlsp-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.sqlsp-table th { background: #161b22; color: #a3adbb; padding: 7px 10px; text-align: left; border-bottom: 1px solid #21262d; font-size: 0.72rem; text-transform: uppercase; }
+.sqlsp-table td { padding: 7px 10px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+.sqlsp-empty { background: #161b22; border-radius: 8px; padding: 14px; text-align: center; font-size: 0.8rem; color: #a3adbb; }
+
+.sqlsp-code, .sqlsp-code--scroll {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.76rem;
+  color: #e6edf3; overflow-x: auto; margin: 0 0 8px;
+}
+.sqlsp-code--scroll { max-height: 300px; overflow-y: auto; }
+@media (max-width: 480px) {
+  .sqlsp-code { font-size: 0.68rem; padding: 9px; }
+  .sqlsp-call-btn { width: 100%; }
+}

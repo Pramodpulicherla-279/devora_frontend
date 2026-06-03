@@ -1,0 +1,23 @@
+/* Desc Stats: Summary Statistics in Python — prefix: dssp- */
+.dssp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 720px; margin: 0 auto; border: 1px solid #21262d; }
+.dssp-head { text-align: center; margin-bottom: 16px; }
+.dssp-badge { background: #13313a; color: #2dd4bf; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #2dd4bf; letter-spacing: 1.5px; }
+.dssp-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
+.dssp-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.dssp-head p code { color: #2dd4bf; }
+.dssp-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0 0 14px; }
+.dssp-code--sm { font-size: 0.74rem; padding: 8px 10px; }
+.dssp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .dssp-grid { grid-template-columns: 1fr; } }
+.dssp-output { background: #161b22; border-radius: 10px; padding: 10px; }
+.dssp-out-head { font-size: 0.7rem; color: #7d8590; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.dssp-row { width: 100%; display: flex; justify-content: space-between; align-items: center; background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 7px 12px; cursor: pointer; margin-bottom: 4px; transition: all 0.15s; }
+.dssp-row--on { border-color: #2dd4bf; background: #0d2a2a; }
+.dssp-stat { font-family: monospace; font-size: 0.82rem; color: #2dd4bf; }
+.dssp-val { font-family: monospace; font-size: 0.82rem; color: #c9d1d9; }
+.dssp-detail { background: #161b22; border-radius: 10px; padding: 14px; }
+.dssp-detail-stat { font-family: monospace; font-size: 1.1rem; color: #2dd4bf; font-weight: 700; }
+.dssp-detail-desc { font-size: 0.82rem; color: #c9d1d9; margin: 6px 0 10px; }
+.dssp-hint { font-size: 0.8rem; color: #a3adbb; margin: 0 0 10px; }
+.dssp-tip { font-size: 0.76rem; color: #a3adbb; line-height: 1.5; border-top: 1px solid #21262d; padding-top: 10px; }
+.dssp-tip code { color: #2dd4bf; }

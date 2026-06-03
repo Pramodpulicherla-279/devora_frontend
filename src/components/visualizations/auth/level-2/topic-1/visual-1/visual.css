@@ -1,0 +1,43 @@
+/* Auth: Middleware — prefix: authmw- */
+.authmw-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.authmw-head { text-align: center; margin-bottom: 20px; }
+.authmw-badge { background: #2a210a; color: #FBBF24; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #FBBF24; letter-spacing: 1.5px; }
+.authmw-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #FBBF24; }
+.authmw-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.authmw-scenarios { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; justify-content: center; }
+.authmw-scenario { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.authmw-scenario--on { background: #2a210a; border-color: #FBBF24; color: #FBBF24; font-weight: 700; }
+
+.authmw-pipeline { display: flex; flex-direction: column; margin-bottom: 16px; }
+.authmw-pipe-row { display: flex; flex-direction: column; align-items: stretch; }
+.authmw-node { display: flex; align-items: center; gap: 12px; background: #161b22; border: 2px solid #21262d; border-radius: 10px; padding: 12px 14px; opacity: 0.4; transition: all 0.3s; }
+.authmw-node--on { opacity: 1; border-color: var(--nc); background: color-mix(in srgb, var(--nc) 10%, #161b22); }
+.authmw-node--blocked { opacity: 1; border-color: #f85149; background: color-mix(in srgb, #f85149 10%, #161b22); }
+.authmw-node-icon { font-size: 1.3rem; flex-shrink: 0; }
+.authmw-node-body { display: flex; flex-direction: column; flex: 1; }
+.authmw-node-label { font-size: 0.84rem; font-weight: 700; color: #c9d1d9; }
+.authmw-node-detail { font-size: 0.74rem; color: #a3adbb; }
+.authmw-401 { font-size: 0.7rem; color: #f85149; background: #2a1212; border: 1px solid #f85149; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+.authmw-pipe-line { width: 2px; height: 14px; background: #21262d; align-self: center; transition: background 0.3s; }
+.authmw-pipe-line--on { background: #FBBF24; }
+
+.authmw-controls { display: flex; gap: 8px; margin-bottom: 14px; justify-content: center; }
+.authmw-btn { background: #2a210a; border: 1px solid #FBBF24; color: #FBBF24; padding: 9px 18px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; font-weight: 600; min-height: 40px; transition: all 0.15s; }
+.authmw-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.authmw-btn--reset { background: #161b22; border-color: #30363d; color: #a3adbb; }
+
+.authmw-full { border-top: 1px solid #21262d; padding-top: 16px; }
+.authmw-full h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.authmw-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0 0 12px; }
+.authmw-code--err { border-color: #f85149; }
+@media (max-width: 480px) {
+  .authmw-code { font-size: 0.7rem; padding: 9px; }
+  .authmw-node { flex-wrap: wrap; }
+  .authmw-401 { margin-left: auto; }
+}

@@ -1,0 +1,65 @@
+/* Backend: REST & CRUD — prefix: bnrc- */
+.bnrc-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnrc-head { text-align: center; margin-bottom: 22px; }
+.bnrc-badge { background: #5B6EAE; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnrc-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #61AFEF; }
+.bnrc-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.bnrc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .bnrc-grid { grid-template-columns: 1fr; } }
+.bnrc-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* CRUD */
+.bnrc-crud-btns { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.bnrc-crud-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 9px 12px; cursor: pointer; min-height: 44px; transition: all 0.15s; text-align: left;
+}
+.bnrc-crud-btn:hover { border-color: var(--cc); }
+.bnrc-crud-btn--on { border-color: var(--cc); background: color-mix(in srgb, var(--cc) 10%, #161b22); }
+.bnrc-method-pill { color: #fff; font-family: monospace; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+.bnrc-crud-btn span:last-child { font-size: 0.82rem; color: #a3adbb; }
+.bnrc-crud-btn--on span:last-child { color: #c9d1d9; }
+
+.bnrc-crud-detail { background: #161b22; border-radius: 10px; padding: 14px; border-left: 3px solid; }
+.bnrc-detail-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; font-size: 0.78rem; flex-wrap: wrap; }
+.bnrc-detail-row span { color: #a3adbb; min-width: 60px; }
+.bnrc-detail-row code { color: #c9d1d9; background: #0d1117; padding: 2px 6px; border-radius: 4px; font-size: 0.74rem; word-break: break-all; }
+.bnrc-status-badge { color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+
+/* Principles */
+.bnrc-principles { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.bnrc-principle-btn {
+  background: #161b22; border: 1px solid #21262d; border-radius: 7px;
+  padding: 8px 12px; cursor: pointer; text-align: left; font-size: 0.8rem; color: #a3adbb;
+  min-height: 40px; transition: all 0.15s;
+}
+.bnrc-principle-btn:hover { border-color: #68A063; }
+.bnrc-principle-btn--on { border-color: #68A063; background: color-mix(in srgb, #68A063 10%, #161b22); color: #c9d1d9; }
+.bnrc-principle-desc { font-size: 0.8rem; color: #a3adbb; line-height: 1.5; margin: 0 0 14px; }
+
+/* Status codes */
+.bnrc-status-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.bnrc-status-tab {
+  display: flex; flex-direction: column; align-items: center;
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; min-height: 44px; transition: all 0.15s; flex: 1;
+}
+.bnrc-status-tab--on { border-color: var(--sc); background: color-mix(in srgb, var(--sc) 10%, #161b22); }
+.bnrc-status-tab span:first-child { font-size: 0.9rem; font-weight: 700; color: var(--sc); font-family: monospace; }
+.bnrc-status-label { font-size: 0.68rem; color: #a3adbb; }
+.bnrc-status-list { display: flex; flex-direction: column; gap: 6px; }
+.bnrc-status-row { display: flex; align-items: center; gap: 12px; background: #161b22; border-radius: 7px; padding: 8px 12px; }
+.bnrc-status-code { font-family: monospace; font-size: 0.9rem; font-weight: 700; min-width: 36px; }
+.bnrc-status-meaning { font-size: 0.78rem; color: #a3adbb; }
+
+@media (max-width: 480px) {
+  .bnrc-crud-btn { min-height: 48px; }
+  .bnrc-status-tab { padding: 5px 8px; }
+}

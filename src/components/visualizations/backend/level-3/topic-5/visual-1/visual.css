@@ -1,0 +1,51 @@
+/* Backend: JS OOP — prefix: bnoo- */
+.bnoo-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnoo-head { text-align: center; margin-bottom: 22px; }
+.bnoo-badge { background: #C678DD; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnoo-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #C678DD; }
+.bnoo-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.bnoo-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; }
+@media (max-width: 660px) { .bnoo-grid { grid-template-columns: 1fr; } }
+.bnoo-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* Pillars */
+.bnoo-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.bnoo-pillar-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  background: #161b22; border: 2px solid transparent; border-radius: 10px;
+  padding: 12px 10px; cursor: pointer; min-height: 60px; transition: all 0.15s;
+}
+.bnoo-pillar-btn:hover { border-color: var(--pc); }
+.bnoo-pillar-btn--on { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, #161b22); }
+.bnoo-pillar-icon  { font-size: 1.2rem; }
+.bnoo-pillar-label { font-size: 0.76rem; color: #c9d1d9; text-align: center; }
+.bnoo-pillar-detail { background: #161b22; border-radius: 10px; padding: 14px; border-left: 3px solid; }
+.bnoo-pillar-desc { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin: 0 0 10px; }
+
+/* Class Anatomy */
+.bnoo-anatomy-code { background: #010409; border: 1px solid #21262d; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; overflow-x: auto; }
+.bnoo-anat-line {
+  display: block; padding: 3px 6px; border-radius: 4px; cursor: pointer;
+  border-left: 3px solid transparent; transition: all 0.15s; margin-bottom: 2px;
+}
+.bnoo-anat-line:hover { background: #161b22; border-color: var(--ac); }
+.bnoo-anat-line--on  { background: color-mix(in srgb, var(--ac) 12%, #010409); border-color: var(--ac); }
+.bnoo-anat-line code { font-size: 0.8rem; color: #c9d1d9; font-family: 'Consolas', monospace; }
+.bnoo-anat-detail { background: #161b22; border-radius: 8px; padding: 10px 14px; border-left: 3px solid; margin-bottom: 10px; font-size: 0.82rem; font-weight: 600; }
+
+.bnoo-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 10px 12px; font-family: 'Consolas', monospace; font-size: 0.78rem;
+  color: #e6edf3; overflow-x: auto; margin: 0;
+}
+@media (max-width: 480px) {
+  .bnoo-pillars { grid-template-columns: 1fr 1fr; }
+  .bnoo-code { font-size: 0.7rem; padding: 9px; }
+  .bnoo-pillar-btn { min-height: 52px; }
+}

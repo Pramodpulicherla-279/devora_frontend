@@ -1,0 +1,19 @@
+/* Desc Stats: Probability Distributions — prefix: dspd- */
+.dspd-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 720px; margin: 0 auto; border: 1px solid #21262d; }
+.dspd-head { text-align: center; margin-bottom: 16px; }
+.dspd-badge { background: #2a1f4d; color: #a78bfa; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #a78bfa; letter-spacing: 1.5px; }
+.dspd-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #a78bfa; }
+.dspd-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+.dspd-tabs { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+.dspd-tab { display: flex; flex-direction: column; align-items: center; gap: 2px; background: #161b22; border: 2px solid transparent; color: #a3adbb; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 44px; transition: all 0.15s; }
+.dspd-tab--on { border-color: #a78bfa; color: #a78bfa; background: #1c1430; font-weight: 700; }
+.dspd-kind { font-size: 0.62rem; color: #7d8590; }
+.dspd-chart-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
+.dspd-svg { width: 100%; height: auto; display: block; }
+.dspd-bar { fill: #a78bfa; opacity: 0.85; }
+.dspd-curve { fill: none; stroke: #a78bfa; stroke-width: 2.5; }
+.dspd-axis { stroke: #30363d; stroke-width: 1.5; }
+.dspd-control { margin-bottom: 14px; }
+.dspd-control label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
+.dspd-slider { width: 100%; accent-color: #a78bfa; }
+.dspd-note { background: #161b22; border-left: 3px solid #a78bfa; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }

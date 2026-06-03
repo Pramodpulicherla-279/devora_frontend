@@ -1,0 +1,95 @@
+/* Git: Branching & Merging — prefix: gitbm- */
+.gitbm-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+.gitbm-head { text-align: center; margin-bottom: 20px; }
+.gitbm-badge {
+  background: #F05032; color: #fff;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.gitbm-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F05032; }
+.gitbm-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.gitbm-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.gitbm-tab {
+  background: #161b22; border: 1px solid #30363d; color: #a3adbb;
+  padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem;
+  min-height: 40px; transition: all 0.15s;
+}
+.gitbm-tab--on { background: #F05032; border-color: #F05032; color: #fff; font-weight: 700; }
+
+/* Branch Tree */
+.gitbm-tree-panel { }
+.gitbm-branch-row { display: flex; align-items: center; gap: 0; margin-bottom: 10px; overflow-x: auto; padding-bottom: 4px; }
+.gitbm-branch-name { font-size: 0.76rem; font-family: monospace; font-weight: 700; min-width: 110px; flex-shrink: 0; }
+.gitbm-commit-node { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.gitbm-node-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #0d1117; }
+.gitbm-node-label { display: none; }
+.gitbm-commit-node:hover .gitbm-node-label {
+  display: flex; flex-direction: column;
+  background: #161b22; border: 1px solid #30363d;
+  border-radius: 6px; padding: 4px 8px; font-size: 0.7rem;
+  position: absolute; transform: translateY(20px);
+  z-index: 10; white-space: nowrap;
+}
+.gitbm-line { width: 32px; height: 3px; background: #30363d; flex-shrink: 0; }
+.gitbm-line--merge { background: #6cc644; }
+.gitbm-commit-node--merge .gitbm-node-dot { border-color: #6cc644; }
+.gitbm-branch-connector { margin: 0 0 4px 110px; }
+.gitbm-connector-line { border-left: 2px dashed #30363d; height: 14px; margin-left: 7px; }
+.gitbm-feature-offset { width: 32px; flex-shrink: 0; }
+.gitbm-feature-row { opacity: 0.85; }
+.gitbm-branch-cmds {
+  margin-top: 16px; background: #010409;
+  border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.gitbm-branch-cmds code { color: #F05032; font-size: 0.82rem; }
+.gitbm-branch-cmds span { color: #a3adbb; font-size: 0.78rem; }
+
+/* Merge Types */
+.gitbm-merge-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.gitbm-merge-tab {
+  background: #161b22; border: 2px solid transparent;
+  border-radius: 7px; padding: 7px 14px; cursor: pointer;
+  font-size: 0.78rem; color: #a3adbb; transition: all 0.15s; min-height: 40px;
+}
+.gitbm-merge-tab:hover { border-color: var(--mc); }
+.gitbm-merge-tab--on { border-color: var(--mc); color: var(--mc); background: color-mix(in srgb, var(--mc) 10%, #161b22); }
+.gitbm-merge-detail { border: 1px solid #21262d; border-radius: 10px; padding: 16px; border-left-width: 3px; }
+.gitbm-merge-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.6; margin: 0 0 12px; }
+.gitbm-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin: 0 0 10px;
+}
+.gitbm-resolve-btn {
+  padding: 8px 16px; border-radius: 7px; cursor: pointer; border: 1px solid #E06C75;
+  background: #2a1212; color: #E06C75; font-size: 0.82rem; min-height: 40px;
+  transition: all 0.2s;
+}
+.gitbm-resolve-btn--done { background: #0d2a1b; border-color: #6cc644; color: #6cc644; }
+
+/* Commands List */
+.gitbm-cmds-panel { display: flex; flex-direction: column; gap: 6px; }
+.gitbm-cmd-row {
+  display: flex; gap: 12px; align-items: center;
+  background: #161b22; border-radius: 8px; padding: 10px 14px; flex-wrap: wrap;
+}
+.gitbm-cmd { color: #F05032; font-size: 0.8rem; font-family: monospace; }
+.gitbm-cmd-desc { color: #a3adbb; font-size: 0.78rem; }
+
+@media (max-width: 480px) {
+  .gitbm-code       { font-size: 0.72rem; padding: 10px; }
+  .gitbm-cmd        { font-size: 0.74rem; }
+  .gitbm-cmd-row    { gap: 6px; }
+  .gitbm-branch-row { gap: 0; }
+}

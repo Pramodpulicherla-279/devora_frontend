@@ -1,0 +1,45 @@
+/* MongoDB: Aggregation — prefix: mdbagg- */
+.mdbagg-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 940px; margin: 0 auto; border: 1px solid #21262d;
+}
+.mdbagg-head { text-align: center; margin-bottom: 20px; }
+.mdbagg-badge { background: #001E2B; color: #00ED64; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #00ED64; letter-spacing: 1.5px; }
+.mdbagg-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #00ED64; }
+.mdbagg-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+/* Pipeline */
+.mdbagg-pipeline { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; background: #010409; border: 1px solid #21262d; border-radius: 12px; padding: 14px; }
+.mdbagg-stage-node { display: flex; flex-direction: column; align-items: center; gap: 3px; background: #161b22; border: 2px solid #21262d; border-radius: 9px; padding: 10px 14px; cursor: pointer; min-height: 50px; transition: all 0.15s; }
+.mdbagg-stage-node--on { border-color: var(--sc, #00ED64); background: color-mix(in srgb, var(--sc, #00ED64) 12%, #161b22); }
+.mdbagg-stage-node--done { border-color: #1a4a2a; }
+.mdbagg-stage-icon { font-size: 1.1rem; }
+.mdbagg-stage-name { font-size: 0.74rem; color: #a3adbb; }
+.mdbagg-stage-code { font-size: 0.78rem; color: #c9d1d9; }
+.mdbagg-flow-arrow { color: #00ED64; font-size: 1.1rem; }
+
+.mdbagg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+@media (max-width: 640px) { .mdbagg-grid { grid-template-columns: 1fr; } }
+.mdbagg-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.mdbagg-desc { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin: 0 0 12px; }
+.mdbagg-controls { display: flex; gap: 8px; margin-top: 12px; }
+.mdbagg-btn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 7px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.mdbagg-btn--next { background: #001E2B; border-color: #00ED64; color: #00ED64; }
+.mdbagg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.mdbagg-output { display: flex; flex-direction: column; gap: 6px; }
+.mdbagg-output-row { background: #010409; border: 1px solid; border-left-width: 3px; border-radius: 7px; padding: 9px 12px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #c9d1d9; animation: mdbagg-in 0.25s ease; }
+@keyframes mdbagg-in { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: none; } }
+.mdbagg-doc-count { font-size: 0.74rem; color: #a3adbb; margin-top: 8px; }
+
+.mdbagg-full { border-top: 1px solid #21262d; padding-top: 16px; }
+.mdbagg-full h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+.mdbagg-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0; }
+@media (max-width: 480px) {
+  .mdbagg-code { font-size: 0.7rem; padding: 9px; }
+  .mdbagg-stage-node { padding: 8px 10px; }
+  .mdbagg-output-row { font-size: 0.72rem; }
+}

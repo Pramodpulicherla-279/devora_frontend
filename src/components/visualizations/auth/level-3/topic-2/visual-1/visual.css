@@ -1,0 +1,42 @@
+/* Auth: Password Reset — prefix: authpwr- */
+.authpwr-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.authpwr-head { text-align: center; margin-bottom: 20px; }
+.authpwr-badge { background: #2a210a; color: #FBBF24; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #FBBF24; letter-spacing: 1.5px; }
+.authpwr-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #FBBF24; }
+.authpwr-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.authpwr-stepper { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 18px; flex-wrap: wrap; }
+.authpwr-step-node { position: relative; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; background: #161b22; border: 2px solid #21262d; cursor: pointer; transition: all 0.2s; }
+.authpwr-step-node--on { border-color: var(--sc); background: color-mix(in srgb, var(--sc) 15%, #161b22); transform: scale(1.1); }
+.authpwr-step-node--done { border-color: var(--sc); }
+.authpwr-step-icon { font-size: 1.2rem; }
+.authpwr-step-num { position: absolute; bottom: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%; background: #FBBF24; color: #0d1117; font-size: 0.62rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.authpwr-connector { width: 24px; height: 2px; background: #21262d; transition: background 0.3s; }
+.authpwr-connector--on { background: #FBBF24; }
+
+.authpwr-detail { background: #161b22; border-left: 3px solid; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.authpwr-detail-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.authpwr-detail-icon { font-size: 1.6rem; flex-shrink: 0; }
+.authpwr-detail-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
+.authpwr-detail-text { font-size: 0.8rem; color: #a3adbb; line-height: 1.4; }
+.authpwr-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.76rem; color: #e6edf3; overflow-x: auto; margin: 0; }
+
+.authpwr-controls { display: flex; gap: 8px; justify-content: center; margin-bottom: 18px; }
+.authpwr-btn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 9px 18px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.authpwr-btn--next { background: #2a210a; border-color: #FBBF24; color: #FBBF24; font-weight: 600; }
+.authpwr-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.authpwr-rules { border-top: 1px solid #21262d; padding-top: 16px; }
+.authpwr-rules h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px; }
+.authpwr-rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 540px) { .authpwr-rules-grid { grid-template-columns: 1fr; } }
+.authpwr-rule { background: #0d2a1b; border: 1px solid #1a4a2a; border-radius: 8px; padding: 10px 12px; font-size: 0.78rem; color: #a6e3a1; line-height: 1.4; }
+@media (max-width: 480px) {
+  .authpwr-code { font-size: 0.68rem; padding: 9px; }
+  .authpwr-step-node { width: 44px; height: 44px; }
+}

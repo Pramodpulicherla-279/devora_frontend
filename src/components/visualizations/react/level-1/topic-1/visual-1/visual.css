@@ -1,0 +1,72 @@
+/* React: Components — prefix: rctcp- */
+.rctcp-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.rctcp-head { text-align: center; margin-bottom: 20px; }
+.rctcp-badge { background: #20232A; color: #61DAFB; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; border: 1px solid #61DAFB; }
+.rctcp-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.5rem); color: #61DAFB; }
+.rctcp-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.rctcp-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.rctcp-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.rctcp-tab--on { background: #20232A; border-color: #61DAFB; color: #61DAFB; font-weight: 700; }
+
+.rctcp-hint { font-size: 0.78rem; color: #a3adbb; margin: 0 0 12px; }
+.rctcp-hint code { color: #61DAFB; }
+
+/* Tree */
+.rctcp-tree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .rctcp-tree-grid { grid-template-columns: 1fr; } }
+.rctcp-tree { background: #010409; border: 1px solid #21262d; border-radius: 10px; padding: 14px; }
+.rctcp-tree-node { }
+.rctcp-node-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: 1px solid transparent; border-radius: 6px;
+  padding: 5px 10px; cursor: pointer; font-family: monospace;
+  font-size: 0.8rem; color: #a3adbb; margin: 2px 0;
+  transition: all 0.15s; text-align: left; width: fit-content;
+}
+.rctcp-node-btn:hover { border-color: var(--nc); background: color-mix(in srgb, var(--nc) 10%, #010409); }
+.rctcp-node-btn--on { border-color: var(--nc); background: color-mix(in srgb, var(--nc) 15%, #010409); }
+.rctcp-node-tag { color: var(--nc); }
+
+.rctcp-tree-note { display: flex; flex-direction: column; gap: 12px; }
+.rctcp-tree-rule { display: flex; gap: 10px; align-items: flex-start; background: #161b22; border-radius: 9px; padding: 12px; }
+.rctcp-rule-icon { font-size: 1.2rem; flex-shrink: 0; }
+.rctcp-tree-rule strong { display: block; font-size: 0.84rem; color: #c9d1d9; margin-bottom: 3px; }
+.rctcp-tree-rule p { font-size: 0.78rem; color: #a3adbb; margin: 0; line-height: 1.4; }
+
+/* Anatomy */
+.rctcp-anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .rctcp-anatomy-grid { grid-template-columns: 1fr; } }
+.rctcp-parts { display: flex; flex-direction: column; gap: 5px; }
+.rctcp-part-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 9px 12px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  min-height: 44px; transition: all 0.15s; text-align: left; flex-wrap: wrap;
+}
+.rctcp-part-btn:hover { border-color: var(--pc); }
+.rctcp-part-btn--on { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, #161b22); }
+.rctcp-part-btn code { color: var(--pc); font-size: 0.82rem; }
+.rctcp-part-desc { width: 100%; font-size: 0.76rem; color: #a3adbb; padding-top: 5px; border-top: 1px solid #21262d; }
+
+/* Reuse */
+.rctcp-reuse-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .rctcp-reuse-compare { grid-template-columns: 1fr; } }
+.rctcp-way-label { font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; padding: 6px 12px; border-radius: 6px; }
+.rctcp-way-label--bad  { background: #2a1212; color: #f85149; }
+.rctcp-way-label--good { background: #0d2a1b; color: #6cc644; }
+
+.rctcp-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem;
+  color: #e6edf3; overflow-x: auto; margin: 0 0 8px;
+}
+@media (max-width: 480px) {
+  .rctcp-code { font-size: 0.7rem; padding: 10px; }
+  .rctcp-node-btn { font-size: 0.74rem; padding: 4px 8px; }
+  .rctcp-tab { font-size: 0.76rem; padding: 7px 10px; }
+}

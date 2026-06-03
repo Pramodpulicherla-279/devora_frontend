@@ -1188,6 +1188,10 @@
   line-height: 1.7;
 }
 
+/* Admin preview prose lives in the same cascade layer so embedded
+   visualizations (.dvz-embed, unlayered) win and prose never leaks in. */
+@layer dvz-lesson-prose {
+
 .le-preview-content h1, .le-preview-content h2, .le-preview-content h3 {
   color: var(--text-primary);
   margin: 1em 0 0.5em;
@@ -1234,6 +1238,8 @@
   color: var(--text-muted);
   font-style: italic;
 }
+
+} /* end @layer dvz-lesson-prose */
 
 /* TipTap editor inside dark admin */
 .le-theory-full .ProseMirror,

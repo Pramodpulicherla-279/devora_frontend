@@ -1,0 +1,111 @@
+/* JS Functions — prefix: jsfn- */
+.jsfn-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsfn-head { text-align: center; margin-bottom: 24px; }
+.jsfn-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jsfn-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F7DF1E; }
+.jsfn-head p  { color: #a3adbb; font-size: 0.83rem; margin: 0; }
+
+.jsfn-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+}
+@media (max-width: 660px) { .jsfn-grid { grid-template-columns: 1fr; } }
+
+.jsfn-panel { }
+.jsfn-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px; }
+
+.jsfn-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.jsfn-tab {
+  background: #161b22; border: 1px solid #30363d;
+  color: #a3adbb; padding: 6px 14px; border-radius: 7px;
+  cursor: pointer; font-size: 0.8rem; transition: all 0.15s;
+}
+.jsfn-tab--on { background: #F7DF1E; color: #0d1117; border-color: #F7DF1E; font-weight: 700; }
+
+.jsfn-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 10px; padding: 14px 16px;
+  font-family: 'Consolas', monospace; font-size: 0.83rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 14px;
+}
+.jsfn-code--result { border-color: #56d364; }
+
+/* Parts */
+.jsfn-parts { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.jsfn-part {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #161b22; border-radius: 7px; padding: 7px 12px;
+  border-left: 3px solid var(--pc);
+}
+.jsfn-part-text { font-family: monospace; font-size: 0.82rem; color: var(--pc); }
+.jsfn-part-label { font-size: 0.72rem; color: #a3adbb; }
+
+.jsfn-tip {
+  background: #1c2a1c; border-radius: 8px; padding: 10px 14px;
+  font-size: 0.82rem; color: #a6e3a1; border: 1px solid #2a4a2a;
+}
+
+/* Live call */
+.jsfn-live { display: flex; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+.jsfn-live label { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #a3adbb; }
+.jsfn-input {
+  background: #010409; border: 1px solid #30363d;
+  color: #e6edf3; border-radius: 6px; padding: 5px 8px;
+  font-family: monospace; font-size: 0.85rem; width: 80px;
+}
+.jsfn-input:focus { outline: none; border-color: #F7DF1E; }
+
+/* Call Stack */
+.jsfn-stack-desc { font-size: 0.82rem; color: #a3adbb; margin-bottom: 10px; }
+.jsfn-stack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.jsfn-frame {
+  padding: 8px 14px; border-radius: 6px;
+  font-family: monospace; font-size: 0.82rem;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.25s;
+}
+.jsfn-frame--on { opacity: 1; transform: translateX(0); }
+.jsfn-frame--off { opacity: 0.15; }
+.jsfn-frame-arrow { font-size: 0.7rem; color: #F7DF1E; }
+
+.jsfn-stack-controls { display: flex; gap: 8px; }
+.jsfn-btn {
+  padding: 7px 16px; border-radius: 7px; cursor: pointer;
+  border: none; font-size: 0.82rem; font-weight: 600; transition: opacity 0.15s;
+  background: #F7DF1E; color: #0d1117;
+}
+.jsfn-btn--pop { background: #21262d; color: #a3adbb; }
+.jsfn-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* === Mobile === */
+@media (max-width: 660px) {
+  .jsfn-tabs          { gap: 5px; }
+  .jsfn-tab           { padding: 7px 11px; min-height: 40px; font-size: 0.76rem; }
+}
+@media (max-width: 480px) {
+  .jsfn-code          { font-size: 0.74rem; padding: 10px 12px; }
+  .jsfn-live          { flex-direction: column; gap: 8px; }
+  .jsfn-live label    { flex-direction: row; justify-content: space-between; width: 100%; }
+  .jsfn-input         { width: auto; flex: 1; max-width: 140px; }
+  .jsfn-btn           { min-height: 44px; padding: 10px 14px; font-size: 0.82rem; }
+  .jsfn-frame         { font-size: 0.76rem; padding: 7px 10px; }
+  .jsfn-frame-arrow   { font-size: 0.65rem; }
+  .jsfn-stack-controls{ gap: 6px; }
+  .jsfn-part          { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .jsfn-part-label    { font-size: 0.66rem; }
+}

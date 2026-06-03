@@ -17,9 +17,16 @@ const parserOptions = {
       // Look up the component in our registry
       const Component = visualizationRegistry[vizType];
 
-      // If a matching component exists, render it
+      // If a matching component exists, render it inside an isolating
+      // wrapper so the lesson's prose styles (which are placed in the
+      // @layer dvz-lesson-prose cascade layer) never bleed into the
+      // dark-themed visualization.
       if (Component) {
-        return <Component />;
+        return (
+          <div className="dvz-embed">
+            <Component />
+          </div>
+        );
       }
       
       // Optional: Return an error message or null if type is not found

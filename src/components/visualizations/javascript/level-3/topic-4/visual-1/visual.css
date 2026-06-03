@@ -1,0 +1,121 @@
+/* JS Async, Promises & APIs — prefix: jsap- */
+.jsap-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsap-head { text-align: center; margin-bottom: 24px; }
+.jsap-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jsap-head h2 { margin: 10px 0 0; font-size: clamp(1rem, 3vw, 1.35rem); color: #F7DF1E; }
+
+.jsap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .jsap-grid { grid-template-columns: 1fr; } }
+
+.jsap-panel { }
+.jsap-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px; }
+
+.jsap-sub { font-size: 0.8rem; color: #a3adbb; margin: 0 0 12px; }
+
+/* Promise states */
+.jsap-states { display: flex; gap: 8px; margin-bottom: 14px; }
+.jsap-state {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 6px; border-radius: 10px;
+  border: 2px solid #21262d; transition: all 0.3s;
+  opacity: 0.35;
+}
+.jsap-state--active { opacity: 1; border-color: var(--sc); background: color-mix(in srgb, var(--sc) 12%, #161b22); }
+.jsap-state-icon { font-size: 1.2rem; }
+.jsap-state-name { font-size: 0.72rem; color: var(--sc); font-family: monospace; text-transform: uppercase; letter-spacing: 1px; }
+
+.jsap-sim-controls { display: flex; gap: 8px; margin-bottom: 10px; }
+.jsap-btn {
+  flex: 1; padding: 7px; border-radius: 7px; cursor: pointer;
+  border: none; font-size: 0.8rem; font-weight: 600; transition: opacity 0.15s;
+}
+.jsap-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.jsap-btn--ok  { background: #1c3a2a; color: #56d364; border: 1px solid #56d364; }
+.jsap-btn--err { background: #3a1c1c; color: #f85149; border: 1px solid #f85149; }
+
+.jsap-result {
+  border-radius: 8px; padding: 8px 12px;
+  font-size: 0.82rem; margin-bottom: 12px; font-family: monospace;
+  animation: jsap-pop 0.3s ease;
+}
+@keyframes jsap-pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: none; } }
+.jsap-result--ok  { background: #1c3a2a; color: #56d364; }
+.jsap-result--err { background: #3a1c1c; color: #f85149; }
+.jsap-result code { color: inherit; }
+
+/* Style tabs */
+.jsap-style-tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.jsap-stab {
+  background: #161b22; border: 2px solid transparent;
+  border-radius: 7px; padding: 5px 12px; cursor: pointer;
+  font-size: 0.78rem; color: #a3adbb; transition: all 0.15s;
+}
+.jsap-stab:hover { border-color: var(--stc); }
+.jsap-stab--on { border-color: var(--stc); color: var(--stc); background: color-mix(in srgb, var(--stc) 10%, #161b22); }
+
+.jsap-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 10px; padding: 12px 14px;
+  font-family: 'Consolas', monospace; font-size: 0.78rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 14px;
+}
+.jsap-code--style { border-width: 1.5px; }
+
+/* Fetch */
+.jsap-fetch { }
+.jsap-fetch-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.jsap-fetch-head h3 { margin: 0; }
+.jsap-fetch-btn {
+  background: #161b22; border: 1px solid #30363d;
+  color: #a3adbb; padding: 5px 12px; border-radius: 6px;
+  cursor: pointer; font-size: 0.78rem; transition: all 0.15s;
+}
+.jsap-fetch-btn:hover:not(:disabled) { border-color: #F7DF1E; color: #F7DF1E; }
+.jsap-fetch-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.jsap-fetch-log {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 8px; padding: 10px; min-height: 80px;
+}
+.jsap-fetch-empty { font-size: 0.78rem; color: #8b949e; font-family: monospace; }
+.jsap-fetch-entry {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; padding: 3px 0;
+  animation: jsap-pop 0.25s ease;
+}
+.jsap-fetch-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* === Mobile === */
+@media (max-width: 480px) {
+  .jsap-states        { flex-wrap: wrap; }
+  .jsap-state         { min-width: 80px; flex: 1 1 auto; padding: 8px 4px; }
+  .jsap-state-name    { font-size: 0.66rem; }
+  .jsap-sim-controls  { flex-direction: column; gap: 6px; }
+  .jsap-btn           { min-height: 44px; }
+  .jsap-code          { font-size: 0.7rem; padding: 10px; }
+  .jsap-style-tabs    { gap: 5px; }
+  .jsap-stab          { padding: 7px 10px; min-height: 40px; font-size: 0.75rem; }
+  .jsap-fetch-head    { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .jsap-fetch-btn     { min-height: 40px; padding: 8px 14px; width: 100%; }
+  .jsap-fetch-entry   { font-size: 0.74rem; }
+  .jsap-result        { font-size: 0.78rem; }
+  .jsap-result code   { word-break: break-all; }
+}

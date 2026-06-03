@@ -1,0 +1,65 @@
+/* React: useContext — prefix: rctux- */
+.rctux-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 940px; margin: 0 auto; border: 1px solid #21262d;
+}
+.rctux-head { text-align: center; margin-bottom: 20px; }
+.rctux-badge { background: #20232A; color: #61DAFB; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #61DAFB; letter-spacing: 1.5px; }
+.rctux-head h2 { margin: 10px 0 4px; font-size: clamp(1rem, 3vw, 1.4rem); color: #61DAFB; }
+.rctux-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.rctux-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.rctux-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.rctux-tab--on { background: #20232A; border-color: #61DAFB; color: #61DAFB; font-weight: 700; }
+
+/* Problem */
+.rctux-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 14px; }
+.rctux-drill-steps { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.rctux-drill-step {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  background: #161b22; border: 1px solid #21262d; border-radius: 8px;
+  padding: 9px 14px; cursor: pointer; min-height: 44px; transition: all 0.15s; text-align: left;
+}
+.rctux-drill-step--on { border-color: #E06C75; background: color-mix(in srgb, #E06C75 8%, #161b22); }
+.rctux-drill-comp { font-family: monospace; font-size: 0.84rem; color: #c9d1d9; }
+.rctux-drill-arrow { font-size: 0.72rem; color: #E06C75; }
+.rctux-code--bad { border-color: #E06C75; }
+
+/* Solution */
+.rctux-solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .rctux-solution-grid { grid-template-columns: 1fr; } }
+.rctux-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.rctux-flow { background: #0d2a1b; border-radius: 10px; padding: 14px; margin: 14px 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.rctux-flow-provider { background: #1a4a2a; color: #6cc644; padding: 6px 18px; border-radius: 7px; font-family: monospace; font-size: 0.82rem; }
+.rctux-flow-line { font-size: 0.8rem; color: #68A063; font-weight: 700; }
+.rctux-flow-consumer { background: #20232A; color: #61DAFB; padding: 6px 18px; border-radius: 7px; font-family: monospace; font-size: 0.78rem; text-align: center; }
+.rctux-when { background: #161b22; border-radius: 8px; padding: 12px 14px; }
+.rctux-when strong { font-size: 0.8rem; color: #c9d1d9; display: block; margin-bottom: 6px; }
+.rctux-when ul { padding: 0 0 0 16px; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.rctux-when li { font-size: 0.78rem; color: #a3adbb; }
+
+/* Demo */
+.rctux-demo-controls { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.rctux-control-group { display: flex; flex-direction: column; gap: 6px; }
+.rctux-control-group label { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; }
+.rctux-demo-btns { display: flex; gap: 6px; }
+.rctux-demo-btn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; min-height: 34px; transition: all 0.15s; }
+.rctux-demo-btn--on { background: #20232A; border-color: #61DAFB; color: #61DAFB; font-weight: 700; }
+
+.rctux-consumers { margin-bottom: 14px; }
+.rctux-consumers h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.rctux-consumer-row { display: flex; align-items: center; gap: 10px; background: #161b22; border-radius: 8px; padding: 8px 12px; margin-bottom: 5px; flex-wrap: wrap; }
+.rctux-consumer-name { font-family: monospace; font-size: 0.8rem; color: #61DAFB; min-width: 100px; }
+.rctux-ctx-badge { display: flex; gap: 10px; font-size: 0.76rem; flex-wrap: wrap; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; }
+.rctux-ctx-badge--light { background: #1a3a1a; color: #6cc644; }
+.rctux-ctx-badge--dark  { background: #21262d; color: #61DAFB; }
+.rctux-ctx-badge strong { font-weight: 700; }
+
+.rctux-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 8px 0; }
+@media (max-width: 480px) {
+  .rctux-code { font-size: 0.7rem; padding: 9px; }
+  .rctux-drill-step { padding: 8px 10px; }
+  .rctux-drill-comp { font-size: 0.78rem; }
+}

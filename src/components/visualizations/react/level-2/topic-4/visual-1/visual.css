@@ -1,0 +1,51 @@
+/* React: Custom Hooks — prefix: rctch- */
+.rctch-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.rctch-head { text-align: center; margin-bottom: 20px; }
+.rctch-badge { background: #20232A; color: #61DAFB; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #61DAFB; letter-spacing: 1.5px; }
+.rctch-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #61DAFB; }
+.rctch-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.rctch-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.rctch-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.rctch-tab--on { background: #20232A; border-color: #61DAFB; color: #61DAFB; font-weight: 700; }
+
+/* Hooks */
+.rctch-hook-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.rctch-hook-btn { display: flex; align-items: center; gap: 8px; background: #161b22; border: 2px solid transparent; border-radius: 9px; padding: 10px 16px; cursor: pointer; font-size: 0.82rem; color: #a3adbb; min-height: 44px; flex: 1; justify-content: center; transition: all 0.15s; }
+.rctch-hook-btn code { font-size: 0.82rem; }
+.rctch-hook-btn--on { border-color: var(--hc); color: var(--hc); background: color-mix(in srgb, var(--hc) 10%, #161b22); }
+
+.rctch-hook-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 12px; }
+
+.rctch-code-toggle { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.rctch-toggle-btn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-size: 0.8rem; min-height: 38px; transition: all 0.15s; }
+.rctch-toggle-btn--on { background: #2a1212; border-color: #f85149; color: #f85149; }
+.rctch-toggle-btn--after.rctch-toggle-btn--on { background: #0d2a1b; border-color: #6cc644; color: #6cc644; }
+
+.rctch-benefit { display: flex; gap: 10px; background: #161b22; border-left: 3px solid #61DAFB; border-radius: 8px; padding: 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; align-items: flex-start; margin-top: 10px; }
+.rctch-benefit-icon { font-size: 1.2rem; flex-shrink: 0; }
+.rctch-benefit strong { color: #c9d1d9; }
+
+/* Rules */
+.rctch-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 14px; }
+.rctch-rules-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.rctch-rule-card { display: flex; gap: 12px; align-items: flex-start; background: #161b22; border-left: 3px solid; border-radius: 10px; padding: 14px; }
+.rctch-rule-num { width: 24px; height: 24px; border-radius: 50%; color: #0d1117; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rctch-rule-card strong { font-size: 0.84rem; display: block; margin-bottom: 4px; }
+.rctch-rule-card p { font-size: 0.78rem; color: #a3adbb; margin: 0; line-height: 1.4; }
+
+.rctch-code {
+  background: #010409; border: 1px solid; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem;
+  color: #e6edf3; overflow-x: auto; margin: 0 0 10px;
+}
+@media (max-width: 480px) {
+  .rctch-code { font-size: 0.7rem; padding: 9px; }
+  .rctch-hook-btn { font-size: 0.76rem; padding: 8px 10px; }
+  .rctch-toggle-btn { font-size: 0.76rem; padding: 6px 10px; }
+}

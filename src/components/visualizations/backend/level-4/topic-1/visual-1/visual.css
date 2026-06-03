@@ -1,0 +1,57 @@
+/* Backend: MVC Project — prefix: bnmv- */
+.bnmv-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 940px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnmv-head { text-align: center; margin-bottom: 20px; }
+.bnmv-badge { background: #68A063; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnmv-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #68A063; }
+.bnmv-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.bnmv-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.bnmv-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.bnmv-tab--on { background: #68A063; border-color: #68A063; color: #fff; font-weight: 700; }
+
+/* MVC Layers */
+.bnmv-layer-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.bnmv-layer-btn { flex: 1; background: #161b22; border: 2px solid transparent; border-radius: 9px; padding: 10px 16px; cursor: pointer; font-size: 0.84rem; color: #a3adbb; min-height: 44px; transition: all 0.15s; }
+.bnmv-layer-btn--on { border-color: var(--lc); color: var(--lc); font-weight: 700; background: color-mix(in srgb, var(--lc) 10%, #161b22); }
+.bnmv-layer-detail { background: #161b22; border-radius: 10px; padding: 16px; border-left: 3px solid; }
+.bnmv-layer-resp { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 10px; }
+.bnmv-layer-files { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.bnmv-file-chip { background: #0d1117; border: 1px solid #30363d; color: #a3adbb; padding: 3px 10px; border-radius: 6px; font-size: 0.74rem; }
+
+/* Flow */
+.bnmv-flow-desc { font-size: 0.84rem; color: #a3adbb; margin: 0 0 14px; }
+.bnmv-flow-desc code { color: #68A063; }
+.bnmv-flow-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.bnmv-flow-step {
+  display: flex; align-items: center; gap: 12px;
+  background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 10px 14px;
+  opacity: 0.3; transition: opacity 0.25s; flex-wrap: wrap;
+}
+.bnmv-flow-step--on { opacity: 1; border-color: var(--fc); }
+.bnmv-flow-from, .bnmv-flow-to { font-size: 0.82rem; color: #c9d1d9; font-weight: 600; white-space: nowrap; }
+.bnmv-flow-arrow-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 80px; }
+.bnmv-flow-line { width: 100%; height: 2px; background: var(--fc); border-radius: 1px; }
+.bnmv-flow-label { font-size: 0.68rem; color: var(--fc); margin-top: 3px; text-align: center; font-family: monospace; }
+.bnmv-flow-controls { display: flex; gap: 8px; }
+.bnmv-btn { background: #68A063; border: none; color: #fff; padding: 8px 16px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: opacity 0.15s; }
+.bnmv-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.bnmv-btn--reset { background: #21262d; color: #a3adbb; }
+
+/* Structure */
+.bnmv-struct-desc { font-size: 0.84rem; color: #a3adbb; margin: 0 0 12px; line-height: 1.5; }
+
+.bnmv-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0; }
+.bnmv-code--large { font-size: 0.76rem; }
+
+@media (max-width: 480px) {
+  .bnmv-code { font-size: 0.7rem; padding: 10px; }
+  .bnmv-layer-btn { font-size: 0.78rem; }
+  .bnmv-flow-step { gap: 6px; }
+  .bnmv-flow-controls { flex-direction: column; }
+  .bnmv-btn { width: 100%; }
+}

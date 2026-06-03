@@ -1,0 +1,94 @@
+/* JS Loops — prefix: jslp- */
+.jslp-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 780px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jslp-head { text-align: center; margin-bottom: 20px; }
+.jslp-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jslp-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F7DF1E; }
+.jslp-head p  { color: #a3adbb; font-size: 0.83rem; margin: 0; }
+
+.jslp-tabs { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.jslp-tab {
+  background: #161b22; border: 1px solid #30363d;
+  color: #a3adbb; padding: 7px 16px; border-radius: 8px;
+  cursor: pointer; font-size: 0.83rem; transition: all 0.15s;
+}
+.jslp-tab--on { background: #F7DF1E; color: #0d1117; border-color: #F7DF1E; font-weight: 700; }
+
+.jslp-desc {
+  font-size: 0.84rem; color: #a3adbb;
+  background: #161b22; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 16px;
+}
+
+/* Array display */
+.jslp-array { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.jslp-item {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 10px 12px;
+  background: #161b22; border: 2px solid #30363d;
+  border-radius: 10px; transition: all 0.2s;
+  min-width: 60px;
+}
+.jslp-item--active {
+  border-color: #F7DF1E;
+  background: color-mix(in srgb, #F7DF1E 15%, #161b22);
+  transform: translateY(-4px) scale(1.05);
+}
+.jslp-item--done { border-color: #56d364; background: color-mix(in srgb, #56d364 8%, #161b22); }
+.jslp-emoji { font-size: 1.5rem; }
+.jslp-idx   { font-size: 0.68rem; color: #a3adbb; font-family: monospace; }
+
+.jslp-status {
+  text-align: center; padding: 8px;
+  font-size: 0.88rem; font-family: monospace;
+  min-height: 32px; margin-bottom: 12px;
+}
+.jslp-status-idle { color: #a3adbb; }
+.jslp-status-run  { color: #F7DF1E; }
+.jslp-status-done { color: #56d364; }
+
+.jslp-controls { display: flex; gap: 10px; margin-bottom: 16px; justify-content: center; }
+.jslp-btn {
+  padding: 8px 20px; border-radius: 8px; cursor: pointer;
+  font-size: 0.85rem; font-weight: 600; border: none; transition: opacity 0.15s;
+}
+.jslp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.jslp-btn--run   { background: #F7DF1E; color: #0d1117; }
+.jslp-btn--reset { background: #21262d; color: #a3adbb; }
+
+.jslp-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 10px; padding: 14px 18px;
+  font-family: 'Consolas', monospace; font-size: 0.88rem;
+  color: #e6edf3; overflow-x: auto;
+}
+
+/* === Mobile === */
+@media (max-width: 560px) {
+  .jslp-tabs        { gap: 6px; }
+  .jslp-tab         { padding: 8px 12px; min-height: 40px; font-size: 0.78rem; }
+  .jslp-item        { min-width: 48px; padding: 8px; }
+  .jslp-emoji       { font-size: 1.25rem; }
+  .jslp-idx         { font-size: 0.62rem; }
+  .jslp-btn         { padding: 10px 18px; min-height: 44px; font-size: 0.82rem; }
+  .jslp-code        { font-size: 0.75rem; padding: 10px 12px; }
+  .jslp-status      { font-size: 0.8rem; }
+}
+@media (max-width: 400px) {
+  .jslp-array       { gap: 5px; }
+  .jslp-item        { min-width: 40px; padding: 6px 5px; }
+  .jslp-emoji       { font-size: 1.1rem; }
+}

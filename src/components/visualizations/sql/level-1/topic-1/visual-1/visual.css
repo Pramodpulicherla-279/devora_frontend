@@ -1,0 +1,76 @@
+/* SQL: DB Foundations — prefix: sqldf- */
+.sqldf-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 900px; margin: 0 auto; border: 1px solid #21262d;
+}
+.sqldf-head { text-align: center; margin-bottom: 20px; }
+.sqldf-badge { background: #336791; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.sqldf-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.5rem); color: #4EA5D9; }
+.sqldf-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.sqldf-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.sqldf-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.sqldf-tab--on { background: #336791; border-color: #336791; color: #fff; font-weight: 700; }
+
+/* Table panel */
+.sqldf-hint { font-size: 0.78rem; color: #a3adbb; margin: 0 0 8px; }
+.sqldf-table-name { font-family: monospace; font-size: 0.8rem; color: #4EA5D9; margin-bottom: 8px; }
+.sqldf-table-name code { color: #4EA5D9; }
+.sqldf-table-wrap { overflow-x: auto; margin-bottom: 12px; }
+.sqldf-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.sqldf-table th, .sqldf-table td { border: 1px solid #21262d; padding: 8px 12px; text-align: left; }
+.sqldf-th { background: #161b22; color: #a3adbb; cursor: pointer; transition: all 0.15s; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.sqldf-th--on { background: color-mix(in srgb, #4EA5D9 20%, #161b22); color: #4EA5D9; }
+.sqldf-tr { cursor: pointer; transition: background 0.12s; }
+.sqldf-tr--on td { background: color-mix(in srgb, #68A063 10%, #0d1117); }
+.sqldf-td { color: #c9d1d9; }
+.sqldf-td--col { background: color-mix(in srgb, #4EA5D9 8%, #0d1117); }
+.sqldf-td--row { background: color-mix(in srgb, #68A063 8%, #0d1117); }
+.sqldf-legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.sqldf-leg { font-size: 0.76rem; padding: 3px 10px; border-radius: 99px; }
+.sqldf-leg--col { background: color-mix(in srgb, #4EA5D9 15%, #0d1117); color: #4EA5D9; }
+.sqldf-leg--row { background: color-mix(in srgb, #68A063 15%, #0d1117); color: #68A063; }
+
+/* Compare */
+.sqldf-cmp-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: 20px; }
+.sqldf-cmp-table th, .sqldf-cmp-table td { padding: 8px 12px; border-bottom: 1px solid #21262d; text-align: left; }
+.sqldf-cmp-table th { background: #161b22; color: #a3adbb; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 1px; }
+.sqldf-cmp-label { color: #c9d1d9; font-weight: 500; }
+.sqldf-cmp-db { color: #4EA5D9; }
+.sqldf-cmp-sheet { color: #a3adbb; }
+.sqldf-db-types h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.sqldf-db-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 540px) { .sqldf-db-grid { grid-template-columns: 1fr; } }
+.sqldf-db-card { background: #161b22; border: 1px solid; border-radius: 9px; padding: 12px; display: flex; flex-direction: column; gap: 5px; }
+.sqldf-db-name { font-size: 0.82rem; font-weight: 700; }
+.sqldf-db-desc { font-size: 0.75rem; color: #a3adbb; line-height: 1.4; }
+
+/* Query anatomy */
+.sqldf-anatomy { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.sqldf-part-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 10px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  min-height: 44px; transition: all 0.15s; text-align: left; flex-wrap: wrap;
+}
+.sqldf-part-btn:hover { border-color: var(--pc); }
+.sqldf-part-btn--on { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, #161b22); }
+.sqldf-part-btn code { font-size: 0.85rem; color: var(--pc); min-width: 100px; }
+.sqldf-part-desc { font-size: 0.78rem; color: #a3adbb; flex: 1; }
+.sqldf-clause-list { display: flex; flex-direction: column; gap: 5px; }
+.sqldf-clause-row { display: flex; align-items: center; gap: 12px; background: #161b22; border-left: 3px solid; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: all 0.15s; min-height: 40px; }
+.sqldf-clause-row--on { background: color-mix(in srgb, currentColor 5%, #161b22); }
+.sqldf-clause-row code { min-width: 90px; font-size: 0.82rem; }
+.sqldf-clause-row span { font-size: 0.78rem; color: #a3adbb; }
+
+.sqldf-code, .sqldf-code--query {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin: 10px 0;
+}
+@media (max-width: 480px) {
+  .sqldf-code { font-size: 0.72rem; padding: 10px; }
+  .sqldf-cmp-table { font-size: 0.72rem; }
+  .sqldf-cmp-table th, .sqldf-cmp-table td { padding: 6px 8px; }
+}

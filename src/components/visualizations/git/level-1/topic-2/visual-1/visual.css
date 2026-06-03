@@ -1,0 +1,103 @@
+/* Git: First Repository — prefix: gitfr- */
+.gitfr-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+.gitfr-head { text-align: center; margin-bottom: 24px; }
+.gitfr-badge {
+  background: #F05032; color: #fff;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.gitfr-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F05032; }
+.gitfr-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.gitfr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) { .gitfr-grid { grid-template-columns: 1fr; } }
+
+.gitfr-panel { }
+.gitfr-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* Commands */
+.gitfr-cmds { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.gitfr-cmd-btn {
+  background: #161b22; border: 1px solid #30363d;
+  border-radius: 8px; padding: 10px 12px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 3px; text-align: left;
+  transition: border-color 0.15s; min-height: 52px;
+}
+.gitfr-cmd-btn:hover { border-color: #F05032; }
+.gitfr-cmd-btn--active { border-color: #F05032; background: color-mix(in srgb, #F05032 8%, #161b22); }
+.gitfr-cmd-text { color: #F05032; font-size: 0.82rem; font-family: monospace; }
+.gitfr-cmd-desc { color: #a3adbb; font-size: 0.74rem; }
+.gitfr-reset {
+  background: none; border: 1px solid #30363d; color: #a3adbb;
+  padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.78rem;
+  min-height: 36px; transition: all 0.15s;
+}
+.gitfr-reset:hover { border-color: #F05032; color: #F05032; }
+
+/* Zones */
+.gitfr-zones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.gitfr-zone { }
+.gitfr-zone-label { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.gitfr-zone-files { display: flex; flex-wrap: wrap; gap: 5px; min-height: 32px; }
+.gitfr-zone-arrow { color: #30363d; font-size: 1rem; padding: 2px 0; }
+.gitfr-file-chip {
+  display: flex; align-items: center; gap: 5px;
+  background: #161b22; border: 1px solid;
+  border-radius: 6px; padding: 4px 10px; font-size: 0.78rem;
+  font-family: monospace; animation: gitfr-in 0.2s ease;
+}
+@keyframes gitfr-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.gitfr-empty { color: #8b949e; font-size: 0.78rem; }
+
+/* Commit input */
+.gitfr-commit-input { margin-bottom: 10px; }
+.gitfr-commit-input label { font-size: 0.75rem; color: #a3adbb; display: block; margin-bottom: 4px; }
+.gitfr-input {
+  width: 100%; background: #010409; border: 1px solid #30363d;
+  color: #e6edf3; border-radius: 6px; padding: 7px 10px;
+  font-family: monospace; font-size: 0.83rem; box-sizing: border-box;
+}
+.gitfr-input:focus { outline: none; border-color: #F05032; }
+
+/* Log */
+.gitfr-log { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 10px; }
+.gitfr-log-head { font-size: 0.7rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.gitfr-log-entry { display: flex; gap: 8px; align-items: baseline; font-size: 0.78rem; padding: 3px 0; }
+.gitfr-log-hash { font-family: monospace; color: #F05032; }
+.gitfr-log-msg { color: #c9d1d9; flex: 1; }
+.gitfr-log-time { color: #a3adbb; font-size: 0.7rem; }
+
+/* .gitignore */
+.gitfr-gitignore { border-top: 1px solid #21262d; padding-top: 16px; }
+.gitfr-ignore-toggle {
+  width: 100%; background: #161b22; border: 1px solid #30363d;
+  color: #e6edf3; padding: 12px 16px; border-radius: 8px;
+  cursor: pointer; text-align: left; font-size: 0.84rem;
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 48px;
+}
+.gitfr-ignore-list { padding: 12px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.gitfr-ignore-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.gitfr-ignore-pat { color: #F05032; background: #1e1012; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+.gitfr-ignore-reason { font-size: 0.78rem; color: #a3adbb; }
+
+@media (max-width: 480px) {
+  .gitfr-cmd-btn  { min-height: 56px; }
+  .gitfr-cmd-text { font-size: 0.78rem; }
+  .gitfr-cmd-desc { font-size: 0.7rem; }
+  .gitfr-file-chip{ font-size: 0.74rem; }
+}

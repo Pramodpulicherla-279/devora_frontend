@@ -1,0 +1,77 @@
+/* Git: Advanced Commands — prefix: gitac- */
+.gitac-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.gitac-head { text-align: center; margin-bottom: 20px; }
+.gitac-badge {
+  background: #F05032; color: #fff;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.gitac-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F05032; }
+.gitac-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.gitac-cmd-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.gitac-cmd-tab {
+  display: flex; align-items: center; gap: 7px;
+  background: #161b22; border: 2px solid transparent;
+  border-radius: 9px; padding: 9px 16px; cursor: pointer;
+  font-size: 0.82rem; color: #a3adbb; min-height: 44px;
+  transition: all 0.15s; flex: 1;
+}
+.gitac-cmd-tab:hover { border-color: var(--cc); }
+.gitac-cmd-tab--on { border-color: var(--cc); color: var(--cc); background: color-mix(in srgb, var(--cc) 10%, #161b22); font-weight: 700; }
+.gitac-tab-icon { font-size: 1rem; }
+
+.gitac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .gitac-grid { grid-template-columns: 1fr; } }
+.gitac-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px; }
+.gitac-desc { font-size: 0.84rem; color: #a3adbb; line-height: 1.6; margin: 0 0 14px; }
+
+/* Before / After */
+.gitac-before-after { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.gitac-state {
+  width: 100%; background: #161b22; border: 1px solid #21262d;
+  border-radius: 10px; padding: 14px; transition: all 0.3s;
+}
+.gitac-state--active { border-color: #F05032; }
+.gitac-state--dim    { opacity: 0.45; }
+.gitac-state-head { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: #a3adbb; margin-bottom: 8px; }
+.gitac-state-line {
+  font-family: monospace; font-size: 0.8rem; color: #c9d1d9;
+  padding: 3px 0; line-height: 1.5;
+}
+.gitac-state-line--warn { color: #f85149; }
+.gitac-state-placeholder { font-size: 0.78rem; color: #8b949e; font-style: italic; }
+
+.gitac-run-btn {
+  background: none; border: 2px solid; border-radius: 8px;
+  padding: 8px 20px; cursor: pointer; font-size: 0.84rem; font-weight: 600;
+  min-height: 40px; transition: opacity 0.15s; white-space: nowrap;
+}
+.gitac-run-btn:hover { opacity: 0.7; }
+
+/* Code */
+.gitac-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 10px;
+  padding: 14px 16px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 12px;
+}
+.gitac-warning {
+  background: #2a1212; border: 1px solid #f85149; border-radius: 8px;
+  padding: 12px 14px; font-size: 0.8rem; color: #f85149; line-height: 1.6;
+}
+.gitac-warning code { color: #E5C07B; }
+.gitac-tip {
+  background: #0d2a1b; border: 1px solid #6cc644; border-radius: 8px;
+  padding: 12px 14px; font-size: 0.8rem; color: #6cc644; line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .gitac-cmd-tab  { font-size: 0.74rem; padding: 8px 10px; }
+  .gitac-code     { font-size: 0.72rem; padding: 10px; }
+  .gitac-run-btn  { font-size: 0.78rem; padding: 8px 14px; width: 100%; }
+}

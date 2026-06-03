@@ -1,0 +1,79 @@
+/* Backend: Node.js Intro — prefix: bnni- */
+.bnni-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 900px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnni-head { text-align: center; margin-bottom: 24px; }
+.bnni-badge { background: #68A063; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnni-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.5rem); color: #68A063; }
+.bnni-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+.bnni-section { margin-bottom: 28px; }
+.bnni-section h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+
+/* Architecture */
+.bnni-arch { display: flex; flex-direction: column; gap: 4px; }
+.bnni-layer {
+  background: #161b22; border: 2px solid transparent; border-radius: 10px;
+  padding: 12px 16px; cursor: pointer; transition: all 0.15s;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 48px;
+}
+.bnni-layer:hover { border-color: var(--lc); }
+.bnni-layer--on { border-color: var(--lc); background: color-mix(in srgb, var(--lc) 10%, #161b22); }
+.bnni-layer-icon  { font-size: 1.1rem; flex-shrink: 0; }
+.bnni-layer-label { font-size: 0.84rem; font-weight: 600; color: #c9d1d9; flex: 1; }
+.bnni-layer-desc  { width: 100%; font-size: 0.8rem; color: #a3adbb; margin: 6px 0 0; line-height: 1.5; }
+.bnni-arch-note   { font-size: 0.78rem; color: #68A063; background: #0d2a1b; padding: 8px 14px; border-radius: 7px; margin-top: 8px; border: 1px solid #1a4a2a; }
+
+/* Event Loop */
+.bnni-loop-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; }
+@media (max-width: 600px) { .bnni-loop-grid { grid-template-columns: 1fr; } }
+.bnni-loop-diagram { display: flex; flex-direction: column; gap: 6px; position: relative; }
+.bnni-phase {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 8px 14px; cursor: pointer; font-size: 0.82rem; color: #a3adbb;
+  min-height: 40px; transition: all 0.15s; text-align: left;
+}
+.bnni-phase:hover { border-color: var(--pc); }
+.bnni-phase--on { border-color: var(--pc); color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, #161b22); }
+.bnni-loop-arrow { font-size: 1.5rem; color: #68A063; text-align: center; }
+.bnni-phase-detail { background: #161b22; border-radius: 10px; padding: 16px; border-left: 3px solid; }
+.bnni-phase-name   { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; font-family: monospace; }
+.bnni-phase-detail p { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin: 0 0 10px; }
+
+/* Modules */
+.bnni-module-tabs { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.bnni-mod-tab {
+  flex: 1; background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 9px 14px; cursor: pointer; font-size: 0.82rem; color: #a3adbb;
+  min-height: 44px; transition: all 0.15s;
+}
+.bnni-mod-tab--on { border-color: var(--mc); color: var(--mc); background: color-mix(in srgb, var(--mc) 10%, #161b22); font-weight: 700; }
+.bnni-module-body { background: #161b22; border-radius: 10px; padding: 16px; border-left: 3px solid; }
+.bnni-mod-badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; color: #0d1117; margin-bottom: 10px; font-family: monospace; }
+.bnni-mod-examples { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.bnni-ex-tab { background: #0d1117; border: 1px solid #30363d; color: #a3adbb; padding: 4px 12px; border-radius: 5px; cursor: pointer; font-size: 0.76rem; min-height: 32px; }
+.bnni-ex-tab--on { border-color: #68A063; color: #68A063; }
+.bnni-mod-notes { padding: 0 0 0 16px; margin: 10px 0 0; display: flex; flex-direction: column; gap: 4px; }
+.bnni-mod-notes li { font-size: 0.78rem; color: #a3adbb; }
+
+/* NPM */
+.bnni-npm-list { display: flex; flex-direction: column; gap: 6px; }
+.bnni-npm-row { display: flex; align-items: center; gap: 10px; background: #161b22; border-radius: 8px; padding: 10px 14px; flex-wrap: wrap; min-height: 44px; }
+.bnni-npm-icon { font-size: 1rem; flex-shrink: 0; }
+.bnni-npm-cmd  { color: #68A063; font-size: 0.82rem; flex-shrink: 0; }
+.bnni-npm-desc { font-size: 0.78rem; color: #a3adbb; }
+
+.bnni-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin: 8px 0 0;
+}
+
+@media (max-width: 480px) {
+  .bnni-code     { font-size: 0.72rem; padding: 10px; }
+  .bnni-npm-row  { gap: 6px; }
+  .bnni-npm-cmd  { font-size: 0.75rem; }
+  .bnni-layer    { min-height: 44px; }
+}

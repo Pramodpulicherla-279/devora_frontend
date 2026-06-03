@@ -1,0 +1,100 @@
+/* JS Array Methods, Spread & Destructuring — prefix: jsam- */
+.jsam-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsam-head { text-align: center; margin-bottom: 24px; }
+.jsam-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.jsam-head h2 { margin: 10px 0 0; font-size: clamp(1rem, 3vw, 1.4rem); color: #F7DF1E; }
+
+.jsam-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .jsam-grid { grid-template-columns: 1fr; } }
+
+.jsam-panel { }
+.jsam-panel h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* Method tabs */
+.jsam-method-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.jsam-mtab {
+  background: #161b22;
+  border: 2px solid transparent;
+  border-radius: 7px; padding: 5px 12px; cursor: pointer;
+  font-family: monospace; font-size: 0.8rem; color: #a3adbb;
+  transition: all 0.15s;
+}
+.jsam-mtab:hover { border-color: var(--mc); }
+.jsam-mtab--on { border-color: var(--mc); color: var(--mc); background: color-mix(in srgb, var(--mc) 10%, #161b22); }
+
+.jsam-desc { font-size: 0.83rem; color: #a3adbb; margin: 0 0 14px; line-height: 1.5; }
+
+/* Pipeline */
+.jsam-pipeline { margin-bottom: 14px; }
+.jsam-arr-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.jsam-arr-label { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; min-width: 48px; }
+.jsam-boxes { display: flex; flex-wrap: wrap; gap: 5px; }
+.jsam-box {
+  width: 32px; height: 32px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace; font-size: 0.82rem; font-weight: 700;
+  border: 2px solid; transition: all 0.2s;
+}
+.jsam-box--in  { border-color: #30363d; color: #a3adbb; background: #161b22; }
+.jsam-box--out { color: #e6edf3; background: color-mix(in srgb, var(--b-color, #F7DF1E) 15%, #161b22); }
+
+.jsam-arrow {
+  font-family: monospace; font-weight: 700; font-size: 0.9rem;
+  padding: 6px 0;
+}
+
+/* Spread tabs */
+.jsam-spread-tabs { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+.jsam-stab {
+  background: #161b22; border: 1px solid #30363d;
+  border-radius: 7px; padding: 7px 12px; cursor: pointer;
+  font-size: 0.8rem; color: #a3adbb; text-align: left;
+  transition: all 0.15s;
+}
+.jsam-stab--on { background: #21262d; border-color: #F7DF1E; color: #F7DF1E; }
+
+.jsam-code {
+  background: #010409; border: 1px solid #21262d;
+  border-radius: 10px; padding: 12px 14px;
+  font-family: 'Consolas', monospace; font-size: 0.82rem;
+  color: #e6edf3; overflow-x: auto; margin-bottom: 10px;
+}
+.jsam-code--spread { border-color: #F7DF1E; }
+
+.jsam-spread-tip {
+  background: #161b22; border-radius: 8px; padding: 10px 14px;
+  font-size: 0.8rem; color: #a3adbb; line-height: 1.5;
+  border-left: 3px solid #F7DF1E;
+}
+.jsam-spread-tip strong { color: #F7DF1E; }
+.jsam-spread-tip em { color: #c9d1d9; font-style: normal; }
+
+/* === Mobile === */
+@media (max-width: 480px) {
+  .jsam-method-tabs   { gap: 5px; }
+  .jsam-mtab          { padding: 7px 10px; min-height: 40px; font-size: 0.75rem; }
+  .jsam-code          { font-size: 0.73rem; padding: 10px; }
+  .jsam-box           { width: 28px; height: 28px; font-size: 0.75rem; }
+  .jsam-arr-label     { font-size: 0.66rem; min-width: 40px; }
+  .jsam-arrow         { font-size: 0.8rem; }
+  .jsam-stab          { min-height: 44px; padding: 10px 12px; font-size: 0.78rem; }
+  .jsam-spread-tip    { font-size: 0.75rem; }
+}

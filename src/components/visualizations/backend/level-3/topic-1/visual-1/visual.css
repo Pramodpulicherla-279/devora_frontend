@@ -1,0 +1,65 @@
+/* Backend: EJS Templating — prefix: bnej- */
+.bnej-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 920px; margin: 0 auto; border: 1px solid #21262d;
+}
+.bnej-head { text-align: center; margin-bottom: 22px; }
+.bnej-badge { background: #a0522d; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px; }
+.bnej-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #E5C07B; }
+.bnej-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+.bnej-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; }
+@media (max-width: 640px) { .bnej-grid { grid-template-columns: 1fr; } }
+.bnej-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* Tags */
+.bnej-tags { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.bnej-tag-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  min-height: 44px; transition: all 0.15s; text-align: left;
+}
+.bnej-tag-btn:hover { border-color: var(--tc); }
+.bnej-tag-btn--on { border-color: var(--tc); background: color-mix(in srgb, var(--tc) 10%, #161b22); }
+.bnej-tag-btn code { font-size: 0.78rem; color: var(--tc); flex-shrink: 0; }
+.bnej-tag-btn span { font-size: 0.74rem; color: #a3adbb; }
+.bnej-tag-detail { background: #161b22; border-radius: 10px; padding: 14px; border-left: 3px solid; }
+.bnej-tag-desc { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin: 0 0 10px; }
+
+/* Render Flow */
+.bnej-render-steps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.bnej-rstep {
+  display: flex; align-items: center; gap: 5px;
+  background: #161b22; border: 2px solid #21262d; border-radius: 7px;
+  padding: 7px 12px; cursor: pointer; font-size: 0.78rem; color: #a3adbb;
+  min-height: 40px; transition: all 0.15s;
+}
+.bnej-rstep:hover { border-color: #68A063; }
+.bnej-rstep--on   { border-color: #68A063; color: #c9d1d9; background: color-mix(in srgb, #68A063 10%, #161b22); }
+.bnej-rstep--done { border-color: #6cc644; }
+.bnej-next-btn { background: #68A063; border: none; color: #fff; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; min-height: 36px; margin: 8px 0; }
+
+/* Live Demo */
+.bnej-live { border-top: 1px solid #21262d; padding-top: 14px; margin-top: 14px; }
+.bnej-live label { font-size: 0.78rem; color: #a3adbb; display: block; margin-bottom: 6px; }
+.bnej-live label code { color: #E5C07B; }
+.bnej-input { width: 100%; background: #010409; border: 1px solid #30363d; color: #e6edf3; border-radius: 6px; padding: 7px 10px; font-size: 0.84rem; font-family: monospace; box-sizing: border-box; margin-bottom: 10px; }
+.bnej-input:focus { outline: none; border-color: #68A063; }
+.bnej-live-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.bnej-live-side { flex: 1; min-width: 140px; }
+.bnej-live-label { font-size: 0.68rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.bnej-live-arrow { color: #68A063; font-size: 1.2rem; font-weight: 700; }
+.bnej-live-output { background: #0d2a1b; border: 1px solid #1a4a2a; border-radius: 8px; padding: 10px 14px; color: #a6e3a1; }
+
+.bnej-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px;
+  padding: 10px 12px; font-family: 'Consolas', monospace; font-size: 0.78rem;
+  color: #e6edf3; overflow-x: auto; margin: 0 0 8px;
+}
+@media (max-width: 480px) {
+  .bnej-code { font-size: 0.7rem; padding: 8px 10px; }
+  .bnej-live-row { flex-direction: column; align-items: stretch; }
+  .bnej-live-arrow { transform: rotate(90deg); text-align: center; }
+}

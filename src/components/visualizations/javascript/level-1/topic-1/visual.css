@@ -1,0 +1,136 @@
+/* JS Variables & Data Types — prefix: jsvd- */
+.jsvd-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  border-radius: 14px;
+  padding: clamp(16px, 4vw, 32px);
+  color: #e6edf3;
+  max-width: 820px;
+  margin: 0 auto;
+  border: 1px solid #21262d;
+}
+
+.jsvd-head { text-align: center; margin-bottom: 24px; }
+.jsvd-js-badge {
+  background: #F7DF1E; color: #0d1117;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px;
+  letter-spacing: 1.5px;
+}
+.jsvd-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.5rem); color: #F7DF1E; }
+.jsvd-head p  { color: #a3adbb; font-size: 0.85rem; margin: 0; }
+
+.jsvd-body {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+@media (max-width: 580px) { .jsvd-body { grid-template-columns: 1fr; } }
+
+.jsvd-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  align-content: start;
+}
+
+.jsvd-type-btn {
+  background: #161b22;
+  border: 2px solid #21262d;
+  border-radius: 10px;
+  padding: 12px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: border-color 0.18s, transform 0.15s, background 0.18s;
+  color: #e6edf3;
+}
+.jsvd-type-btn:hover { border-color: var(--tc); transform: translateY(-2px); }
+.jsvd-type-btn--on {
+  border-color: var(--tc);
+  background: color-mix(in srgb, var(--tc) 12%, #161b22);
+}
+.jsvd-ticon { font-size: 1rem; font-weight: 700; color: var(--tc); font-family: monospace; }
+.jsvd-tlabel { font-size: 0.72rem; color: #a3adbb; }
+
+.jsvd-detail {
+  background: #161b22;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 3px solid var(--tc);
+}
+.jsvd-dtop { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.jsvd-dbadge { font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; color: #0d1117; }
+.jsvd-typeof { font-size: 0.78rem; color: #a6e3a1; background: #1e2a1e; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+.jsvd-desc { font-size: 0.84rem; line-height: 1.6; color: #a3adbb; margin: 0 0 12px; }
+.jsvd-code {
+  background: #010409;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #e6edf3;
+  margin: 0 0 12px;
+  overflow-x: auto;
+  font-family: 'Consolas', monospace;
+}
+.jsvd-samples { display: flex; flex-wrap: wrap; gap: 6px; }
+.jsvd-chip {
+  background: #21262d;
+  color: var(--tc);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-family: monospace;
+}
+
+.jsvd-kw-section { border-top: 1px solid #21262d; padding-top: 20px; }
+.jsvd-kw-section h3 { color: #a3adbb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 14px; }
+
+.jsvd-kw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 500px) { .jsvd-kw-grid { grid-template-columns: 1fr; } }
+
+.jsvd-kw-card {
+  background: #161b22;
+  border-radius: 10px;
+  padding: 16px;
+  border-top: 3px solid var(--kc);
+  cursor: default;
+  transition: transform 0.15s;
+}
+.jsvd-kw-card--hover { transform: translateY(-3px); }
+.jsvd-kwname { font-size: 1.05rem; font-weight: 700; color: var(--kc); margin-bottom: 12px; font-family: monospace; }
+.jsvd-kwrows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.jsvd-kwrows li { display: flex; justify-content: space-between; font-size: 0.75rem; color: #a3adbb; }
+.jsvd-kwval { color: #c9d1d9; }
+.jsvd-yes { color: #56d364; }
+.jsvd-no  { color: #f85149; }
+.jsvd-kwtip {
+  margin: 10px 0 0;
+  font-size: 0.75rem;
+  color: #c9d1d9;
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid #21262d;
+}
+
+/* === Mobile === */
+@media (max-width: 480px) {
+  .jsvd-type-grid      { grid-template-columns: repeat(4, 1fr); }
+  .jsvd-type-btn       { min-height: 64px; padding: 8px 4px; }
+  .jsvd-ticon          { font-size: 0.88rem; }
+  .jsvd-tlabel         { font-size: 0.65rem; }
+  .jsvd-kw-grid        { grid-template-columns: 1fr; }
+  .jsvd-code           { font-size: 0.78rem; }
+  .jsvd-kwrows li      { font-size: 0.72rem; }
+  .jsvd-detail         { padding: 14px; }
+}
+@media (max-width: 360px) {
+  .jsvd-type-grid      { grid-template-columns: repeat(3, 1fr); }
+}

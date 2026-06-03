@@ -1,0 +1,102 @@
+/* Git: Pull Requests — prefix: gitpr- */
+.gitpr-wrap {
+  font-family: system-ui, sans-serif;
+  background: #0d1117; border-radius: 14px;
+  padding: clamp(14px, 4vw, 32px); color: #e6edf3;
+  max-width: 900px; margin: 0 auto; border: 1px solid #21262d;
+}
+.gitpr-head { text-align: center; margin-bottom: 20px; }
+.gitpr-badge {
+  background: #F05032; color: #fff;
+  font-size: 0.65rem; font-weight: 800;
+  padding: 2px 10px; border-radius: 99px; letter-spacing: 1.5px;
+}
+.gitpr-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #F05032; }
+.gitpr-head p  { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+
+/* Lifecycle */
+.gitpr-lifecycle { margin-bottom: 24px; }
+.gitpr-lifecycle h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px; }
+.gitpr-stages {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 0; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px;
+}
+.gitpr-stage {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 12px; border-radius: 8px; cursor: pointer; border: 2px solid #21262d;
+  background: #161b22; transition: all 0.15s; min-width: 70px; min-height: 60px;
+}
+.gitpr-stage:hover { border-color: #F05032; }
+.gitpr-stage--done   { border-color: #6cc644; background: color-mix(in srgb, #6cc644 8%, #161b22); }
+.gitpr-stage--active { border-color: #F05032; background: color-mix(in srgb, #F05032 10%, #161b22); }
+.gitpr-stage-icon  { font-size: 1.1rem; }
+.gitpr-stage-label { font-size: 0.68rem; color: #a3adbb; text-align: center; }
+.gitpr-stage-line  { width: 16px; height: 2px; background: #30363d; flex-shrink: 0; }
+.gitpr-stage-line--done { background: #6cc644; }
+
+.gitpr-stage-detail {
+  background: #161b22; border-radius: 10px; padding: 14px 16px;
+  font-size: 0.84rem; border-left: 3px solid #F05032;
+}
+.gitpr-stage-detail strong { color: #c9d1d9; display: block; margin-bottom: 6px; }
+.gitpr-stage-detail p { color: #a3adbb; margin: 0 0 10px; line-height: 1.5; }
+.gitpr-next {
+  background: #F05032; border: none; color: #fff;
+  padding: 7px 16px; border-radius: 6px; cursor: pointer;
+  font-size: 0.8rem; min-height: 36px;
+}
+
+.gitpr-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+@media (max-width: 640px) { .gitpr-grid { grid-template-columns: 1fr; } }
+.gitpr-panel { }
+.gitpr-panel h3 { color: #a3adbb; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+
+/* Review */
+.gitpr-review-states { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.gitpr-review-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: #161b22; border: 2px solid transparent; border-radius: 8px;
+  padding: 10px 14px; cursor: pointer; min-height: 48px;
+  transition: all 0.15s; width: 100%; text-align: left;
+}
+.gitpr-review-btn:hover { border-color: var(--rc); }
+.gitpr-review-btn--on { border-color: var(--rc); background: color-mix(in srgb, var(--rc) 10%, #161b22); }
+.gitpr-review-icon { font-size: 1.1rem; font-weight: 700; }
+.gitpr-review-label { font-size: 0.82rem; color: #c9d1d9; }
+.gitpr-review-desc { font-size: 0.8rem; color: #a3adbb; margin: 0 0 12px; line-height: 1.5; }
+
+.gitpr-pr-card {
+  background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px;
+}
+.gitpr-pr-title { font-size: 0.85rem; color: #c9d1d9; margin-bottom: 6px; }
+.gitpr-pr-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.74rem; color: #a3adbb; }
+.gitpr-pr-meta code { color: #61AFEF; }
+
+/* Strategies */
+.gitpr-strats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.gitpr-strat-btn {
+  background: #161b22; border: 2px solid transparent; border-radius: 7px;
+  padding: 7px 14px; cursor: pointer; font-size: 0.8rem; color: #a3adbb;
+  transition: all 0.15s; min-height: 40px;
+}
+.gitpr-strat-btn:hover { border-color: var(--sc); }
+.gitpr-strat-btn--on { border-color: var(--sc); color: var(--sc); }
+.gitpr-strat-detail { background: #161b22; border-radius: 8px; padding: 14px; border-left: 3px solid; }
+.gitpr-strat-row { margin-bottom: 6px; font-size: 0.82rem; }
+.gitpr-pro { color: #6cc644; }
+.gitpr-con { color: #f85149; }
+.gitpr-code {
+  background: #010409; border: 1px solid #21262d; border-radius: 7px;
+  padding: 10px 12px; font-family: 'Consolas', monospace; font-size: 0.8rem;
+  color: #e6edf3; overflow-x: auto; margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .gitpr-stages  { gap: 0; }
+  .gitpr-stage   { min-width: 56px; padding: 8px 6px; }
+  .gitpr-stage-icon { font-size: 0.95rem; }
+  .gitpr-stage-label{ font-size: 0.6rem; }
+  .gitpr-code    { font-size: 0.72rem; }
+}

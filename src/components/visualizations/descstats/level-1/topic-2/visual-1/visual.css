@@ -1,0 +1,28 @@
+/* Desc Stats: Spread & Variance — prefix: dssv- */
+.dssv-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 720px; margin: 0 auto; border: 1px solid #21262d; }
+.dssv-head { text-align: center; margin-bottom: 18px; }
+.dssv-badge { background: #2a1f4d; color: #a78bfa; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #a78bfa; letter-spacing: 1.5px; }
+.dssv-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #a78bfa; }
+.dssv-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+.dssv-plot-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
+.dssv-svg { width: 100%; height: auto; display: block; }
+.dssv-band { fill: rgba(167,139,250,0.18); stroke: #a78bfa; stroke-width: 1; stroke-dasharray: 3 3; }
+.dssv-axis { stroke: #30363d; stroke-width: 1.5; }
+.dssv-dot { fill: #61afef; opacity: 0.9; }
+.dssv-mean { stroke: #f85149; stroke-width: 2; }
+.dssv-mean-label { fill: #f85149; font-size: 9px; text-anchor: middle; font-weight: 700; }
+.dssv-band-label { fill: #a78bfa; font-size: 8px; text-anchor: middle; }
+.dssv-control { margin-bottom: 14px; }
+.dssv-control label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
+.dssv-slider { width: 100%; accent-color: #a78bfa; }
+.dssv-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+@media (max-width: 520px) { .dssv-stats { grid-template-columns: 1fr; } }
+.dssv-stat { background: #161b22; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.dssv-stat--std { border-left: 3px solid #a78bfa; }
+.dssv-stat span { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; }
+.dssv-stat strong { font-size: 1.3rem; color: #e6edf3; font-family: monospace; }
+.dssv-stat em { font-size: 0.7rem; color: #7d8590; font-style: normal; }
+.dssv-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0 0 12px; }
+.dssv-note { background: #161b22; border-left: 3px solid #a78bfa; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.dssv-note strong { color: #a78bfa; }
+@media (max-width: 480px) { .dssv-code { font-size: 0.7rem; } }
