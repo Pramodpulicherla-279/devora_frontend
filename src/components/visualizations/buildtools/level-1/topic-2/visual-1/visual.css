@@ -1,0 +1,23 @@
+/* Build Tools: Vite — prefix: btvite- */
+.btvite-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.btvite-head { text-align: center; margin-bottom: 16px; }
+.btvite-badge { background: #1a1b40; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #646cff; letter-spacing: 1.5px; }
+.btvite-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #818cf8; }
+.btvite-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.btvite-toggle { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.btvite-tbtn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.btvite-tbtn--on { border-color: #646cff; color: #818cf8; background: #1a1b40; font-weight: 700; }
+.btvite-diagram { background: #161b22; border-radius: 10px; padding: 16px; margin-bottom: 14px; text-align: center; }
+.btvite-step { font-size: 0.84rem; color: #c9d1d9; margin-bottom: 10px; }
+.btvite-bar { height: 12px; background: #0d1117; border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
+.btvite-fill { height: 100%; background: #34d399; width: 100%; animation: btvite-fast 0.4s ease; }
+.btvite-fill--slow { background: #f0883e; animation: btvite-slow 1.5s ease; }
+@keyframes btvite-fast { from { width: 0; } to { width: 100%; } }
+@keyframes btvite-slow { from { width: 0; } to { width: 100%; } }
+.btvite-time { font-size: 0.8rem; margin-bottom: 6px; }
+.btvite-diagram--vite .btvite-time { color: #34d399; }
+.btvite-diagram--old .btvite-time { color: #f0883e; }
+.btvite-then { font-size: 0.74rem; color: #a3adbb; }
+.btvite-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; }
+.btvite-note { background: #161b22; border-left: 3px solid #646cff; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+@media (max-width: 480px) { .btvite-code { font-size: 0.68rem; } }

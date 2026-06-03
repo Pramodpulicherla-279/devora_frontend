@@ -1,0 +1,23 @@
+/* AI Apps: A/B Testing Prompts — prefix: aiab- */
+.aiab-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.aiab-head { text-align: center; margin-bottom: 16px; }
+.aiab-badge { background: #0a2a3a; color: #38bdf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #38bdf8; letter-spacing: 1.5px; }
+.aiab-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #38bdf8; }
+.aiab-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.aiab-variants { display: flex; align-items: stretch; gap: 10px; margin-bottom: 14px; }
+@media (max-width: 560px) { .aiab-variants { flex-direction: column; } }
+.aiab-variant { flex: 1; background: #161b22; border-radius: 10px; padding: 14px; text-align: center; border-top: 3px solid; }
+.aiab-variant--a { border-color: #7d8590; }
+.aiab-variant--b { border-color: #38bdf8; }
+.aiab-vtag { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.aiab-prompt { display: block; font-size: 0.74rem; color: #c9d1d9; background: #010409; border-radius: 6px; padding: 8px; margin-bottom: 8px; min-height: 44px; }
+.aiab-wins { font-size: 1.2rem; font-weight: 700; color: #e6edf3; font-family: monospace; margin-bottom: 8px; }
+.aiab-slider { width: 100%; accent-color: #7d8590; }
+.aiab-slider--b { accent-color: #38bdf8; }
+.aiab-vs { align-self: center; font-size: 0.85rem; color: #7d8590; font-weight: 700; }
+.aiab-verdict { border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; font-weight: 700; text-align: center; margin-bottom: 12px; }
+.aiab-verdict--b { background: #0a2a3a; color: #38bdf8; border: 1px solid #1a4a5a; }
+.aiab-verdict--a { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; }
+.aiab-verdict--none { background: #161b22; color: #a3adbb; border: 1px solid #30363d; }
+.aiab-note { background: #161b22; border-left: 3px solid #38bdf8; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.aiab-note strong { color: #38bdf8; }

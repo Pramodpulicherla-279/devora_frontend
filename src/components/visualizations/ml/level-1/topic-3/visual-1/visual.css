@@ -1,0 +1,28 @@
+/* ML: Train/Test Split & Overfitting — prefix: mlsplit- */
+.mlsplit-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.mlsplit-head { text-align: center; margin-bottom: 16px; }
+.mlsplit-badge { background: #3a2708; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
+.mlsplit-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f59e0b; }
+.mlsplit-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.mlsplit-chart-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; display: flex; justify-content: center; }
+.mlsplit-svg { width: 100%; max-width: 340px; height: auto; display: block; }
+.mlsplit-axis { stroke: #30363d; stroke-width: 1.5; }
+.mlsplit-pt { fill: #61afef; opacity: 0.85; }
+.mlsplit-fit { fill: none; stroke-width: 2.5; }
+.mlsplit-fit--under { stroke: #f0883e; }
+.mlsplit-fit--good { stroke: #34d399; }
+.mlsplit-fit--over { stroke: #f85149; }
+.mlsplit-control { margin-bottom: 12px; }
+.mlsplit-control label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
+.mlsplit-slider { width: 100%; accent-color: #f59e0b; }
+.mlsplit-scale { display: flex; justify-content: space-between; font-size: 0.7rem; color: #7d8590; }
+.mlsplit-verdict { border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; margin-bottom: 12px; }
+.mlsplit-verdict--under { background: #2a1f0a; color: #f0883e; border: 1px solid #5a4a1a; }
+.mlsplit-verdict--good { background: #0d2a1b; color: #34d399; border: 1px solid #1a4a2a; }
+.mlsplit-verdict--over { background: #2a1212; color: #f85149; border: 1px solid #4a1a1a; }
+.mlsplit-split { display: flex; gap: 4px; margin-bottom: 12px; }
+.mlsplit-bar { padding: 6px; border-radius: 6px; font-size: 0.74rem; text-align: center; font-weight: 600; }
+.mlsplit-bar--train { flex: 4; background: #1a2a3a; color: #61afef; }
+.mlsplit-bar--test { flex: 1; background: #3a2708; color: #f59e0b; }
+.mlsplit-note { background: #161b22; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.mlsplit-note strong { color: #f59e0b; }

@@ -1,0 +1,19 @@
+/* Angular: Router — prefix: ngrouter- */
+.ngrouter-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.ngrouter-head { text-align: center; margin-bottom: 16px; }
+.ngrouter-badge { background: #3a0a12; color: #f87171; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #dd0031; letter-spacing: 1.5px; }
+.ngrouter-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f87171; }
+.ngrouter-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.ngrouter-browser { background: #161b22; border: 1px solid #30363d; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.ngrouter-urlbar { background: #010409; padding: 8px 12px; font-size: 0.74rem; color: #a3adbb; font-family: monospace; }
+.ngrouter-path { color: #f87171; }
+.ngrouter-nav { display: flex; gap: 4px; flex-wrap: wrap; padding: 8px; border-bottom: 1px solid #21262d; }
+.ngrouter-link { background: #0d1117; border: 1px solid #30363d; color: #a3adbb; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.74rem; font-family: monospace; min-height: 32px; transition: all 0.15s; }
+.ngrouter-link--on { background: #3a0a12; border-color: #dd0031; color: #f87171; }
+.ngrouter-view { padding: 16px; }
+.ngrouter-comp { font-size: 0.72rem; color: #dd0031; font-family: monospace; margin-bottom: 8px; }
+.ngrouter-body { font-size: 0.95rem; color: #c9d1d9; }
+.ngrouter-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.74rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; }
+.ngrouter-note { background: #161b22; border-left: 3px solid #dd0031; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.ngrouter-note code { color: #f87171; }
+@media (max-width: 480px) { .ngrouter-code { font-size: 0.66rem; } }

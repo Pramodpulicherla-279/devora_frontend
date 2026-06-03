@@ -1,0 +1,23 @@
+/* RAG: Function Calling — prefix: ragtool- */
+.ragtool-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 660px; margin: 0 auto; border: 1px solid #21262d; }
+.ragtool-head { text-align: center; margin-bottom: 16px; }
+.ragtool-badge { background: #0d2e2b; color: #2dd4bf; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #2dd4bf; letter-spacing: 1.5px; }
+.ragtool-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
+.ragtool-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.ragtool-track { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.ragtool-dot { width: 32px; height: 32px; border-radius: 50%; background: #161b22; border: 2px solid #30363d; color: #a3adbb; cursor: pointer; font-weight: 700; font-size: 0.82rem; transition: all 0.15s; }
+.ragtool-dot--on { border-color: #2dd4bf; color: #2dd4bf; background: #0d2e2b; }
+.ragtool-dot--done { border-color: #1a5a52; }
+.ragtool-card { background: #161b22; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.ragtool-who { display: inline-block; font-size: 0.7rem; padding: 3px 10px; border-radius: 99px; margin-bottom: 8px; font-weight: 700; background: #2dd4bf22; color: #2dd4bf; }
+.ragtool-who[data-who="LLM"] { background: #34d39922; color: #34d399; }
+.ragtool-who[data-who="Your code"] { background: #60a5fa22; color: #60a5fa; }
+.ragtool-label { font-size: 0.84rem; color: #c9d1d9; font-weight: 600; margin-bottom: 8px; }
+.ragtool-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 10px 12px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0; }
+.ragtool-nav { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
+.ragtool-btn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 18px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; min-height: 40px; }
+.ragtool-btn--next { background: #0d2e2b; border-color: #2dd4bf; color: #2dd4bf; font-weight: 600; }
+.ragtool-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ragtool-note { background: #161b22; border-left: 3px solid #2dd4bf; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.ragtool-note strong { color: #2dd4bf; }
+@media (max-width: 480px) { .ragtool-code { font-size: 0.7rem; } }

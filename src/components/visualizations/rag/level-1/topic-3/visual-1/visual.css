@@ -1,0 +1,20 @@
+/* RAG: Advanced Retrieval — prefix: ragret- */
+.ragret-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.ragret-head { text-align: center; margin-bottom: 16px; }
+.ragret-badge { background: #0d2e2b; color: #2dd4bf; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #2dd4bf; letter-spacing: 1.5px; }
+.ragret-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
+.ragret-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.ragret-tabs { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+.ragret-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 0.76rem; min-height: 36px; transition: all 0.15s; }
+.ragret-tab--on { background: #0d2e2b; border-color: #2dd4bf; color: #2dd4bf; font-weight: 700; }
+.ragret-detail { background: #161b22; border-left: 3px solid #2dd4bf; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
+.ragret-d { font-size: 0.84rem; color: #c9d1d9; line-height: 1.5; margin: 0 0 8px; }
+.ragret-when { font-size: 0.78rem; color: #a3adbb; }
+.ragret-when strong { color: #2dd4bf; }
+.ragret-hybrid { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+.ragret-h { padding: 8px 14px; border-radius: 8px; font-size: 0.76rem; font-weight: 600; }
+.ragret-h--dense { background: #0d2e2b; color: #2dd4bf; }
+.ragret-h--sparse { background: #1a2a3a; color: #60a5fa; }
+.ragret-h--merged { background: #2a1f08; color: #f59e0b; }
+.ragret-plus, .ragret-eq { color: #7d8590; font-weight: 700; }
+.ragret-note { background: #161b22; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }

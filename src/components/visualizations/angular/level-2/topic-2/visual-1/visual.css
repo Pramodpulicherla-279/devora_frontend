@@ -1,0 +1,24 @@
+/* Angular: HttpClient — prefix: nghttp- */
+.nghttp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.nghttp-head { text-align: center; margin-bottom: 16px; }
+.nghttp-badge { background: #3a0a12; color: #f87171; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #dd0031; letter-spacing: 1.5px; }
+.nghttp-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f87171; }
+.nghttp-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.nghttp-flow { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.nghttp-node { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px; font-size: 0.78rem; color: #c9d1d9; text-align: center; flex-shrink: 0; }
+.nghttp-wire { flex: 1; text-align: center; font-size: 0.72rem; color: #7d8590; font-family: monospace; border-top: 2px dashed #30363d; padding-top: 4px; transition: all 0.3s; }
+.nghttp-wire--on { color: #f87171; border-color: #dd0031; }
+.nghttp-state { border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; text-align: center; margin-bottom: 14px; }
+.nghttp-state--idle { background: #161b22; color: #a3adbb; }
+.nghttp-state--loading { background: #2a1f0a; color: #f0883e; }
+.nghttp-state--success { background: #0d2a1b; color: #34d399; }
+.nghttp-state--error { background: #2a1212; color: #f85149; }
+.nghttp-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+.nghttp-btn { border: 1px solid; padding: 9px 16px; border-radius: 7px; cursor: pointer; font-size: 0.8rem; min-height: 40px; }
+.nghttp-btn--ok { background: #0d2a1b; border-color: #1a4a2a; color: #34d399; }
+.nghttp-btn--err { background: #2a1212; border-color: #4a1a1a; color: #f85149; }
+.nghttp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nghttp-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; }
+.nghttp-note { background: #161b22; border-left: 3px solid #dd0031; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.nghttp-note strong { color: #f87171; }
+@media (max-width: 480px) { .nghttp-code { font-size: 0.68rem; } }

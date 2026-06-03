@@ -1,6 +1,54 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LessonEditor from './LessonEditor';
 import { API_BASE_URL } from '../../config';
+
+/* ─── Content health ─────────────────────────────────────────────
+   Returns how complete a lesson's content is across four sections.
+   The course API returns full lesson documents (content, quiz,
+   interviewQuestions are all present in the payload).
+   Visualization is detected by the presence of a viz embed
+   placeholder in the HTML content:
+     <div data-type="…" class="visualization-embed"></div>
+───────────────────────────────────────────────────────────────── */
+function getLessonHealth(lesson) {
+  const content = lesson.content || '';
+  return {
+    theory:        content.trim().length > 100,
+    quiz:          Array.isArray(lesson.quiz) && lesson.quiz.length > 0,
+    interview:     Array.isArray(lesson.interviewQuestions) && lesson.interviewQuestions.length > 0,
+    visualization: content.includes('visualization-embed') || content.includes('data-type='),
+  };
+}
+
+const HEALTH_CONFIG = [
+  { key: 'theory',        label: 'T', title: 'Theory',          color: '#7c3aed' },
+  { key: 'quiz',          label: 'Q', title: 'Quiz',            color: '#f59e0b' },
+  { key: 'interview',     label: 'I', title: 'Interview Qs',    color: '#06b6d4' },
+  { key: 'visualization', label: 'V', title: 'Visualization',   color: '#10b981' },
+];
+
+function HealthDots({ lesson }) {
+  const h = getLessonHealth(lesson);
+  const tip = HEALTH_CONFIG
+    .map(c => `${c.title}: ${h[c.key] ? '✓' : '✗'}`)
+    .join(' | ');
+  return (
+    <div
+      className="cm-health-dots"
+      title={tip}
+    >
+      {HEALTH_CONFIG.map(c => (
+        <span
+          key={c.key}
+          className={`cm-health-dot ${h[c.key] ? 'filled' : ''}`}
+          style={{ '--hc': c.color }}
+        >
+          {c.label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 const COURSE_EMOJIS = [
   '📘','🌐','🎨','⚡','💻','🗄️','🔐','🚀','🧪','🔧',
@@ -174,6 +222,8 @@ function CourseManager({ courseId, onBack }) {
   const [loading, setLoading] = useState(true);
   const [leftCollapsed, setLeftCollapsed] = useState(false);
   const [iconPickerOpen, setIconPickerOpen] = useState(false);
+  const [editingPart, setEditingPart] = useState(null); // { id, title }
+  const partEditRef = useRef(null);
 
   const loadCourse = async () => {
     setLoading(true);
@@ -215,6 +265,22 @@ function CourseManager({ courseId, onBack }) {
   };
 
   const togglePart = (partId) => setExpandedParts(prev => ({ ...prev, [partId]: !prev[partId] }));
+
+  const savePartName = async (partId, newTitle) => {
+    const trimmed = newTitle.trim();
+    if (!trimmed) { setEditingPart(null); return; }
+    // Optimistic update
+    setCourse(prev => ({
+      ...prev,
+      parts: prev.parts.map(p => p._id === partId ? { ...p, title: trimmed } : p),
+    }));
+    setEditingPart(null);
+    await fetch(`${API_BASE_URL}/api/parts/${partId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: trimmed }),
+    });
+  };
 
   const reorderLesson = async (partId, fromIndex, toIndex) => {
     const part = course.parts.find(p => p._id === partId);
@@ -378,14 +444,52 @@ function CourseManager({ courseId, onBack }) {
               ) : (
                 course.parts.map((part, pi) => (
                   <div key={part._id} className="cm-part-item">
-                    <div className="cm-part-header" onClick={() => togglePart(part._id)}>
+                    {/* ── Part header ── */}
+                    <div
+                      className="cm-part-header"
+                      onClick={() => editingPart?.id !== part._id && togglePart(part._id)}
+                    >
                       <div className="cm-part-num">{pi + 1}</div>
-                      <span style={{ flex: 1 }}>{part.title}</span>
+
+                      {editingPart?.id === part._id ? (
+                        /* ── Inline edit input ── */
+                        <input
+                          ref={partEditRef}
+                          className="cm-part-edit-input"
+                          value={editingPart.title}
+                          autoFocus
+                          onChange={e => setEditingPart(p => ({ ...p, title: e.target.value }))}
+                          onBlur={() => savePartName(part._id, editingPart.title)}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter')  savePartName(part._id, editingPart.title);
+                            if (e.key === 'Escape') setEditingPart(null);
+                          }}
+                          onClick={e => e.stopPropagation()}
+                        />
+                      ) : (
+                        <span className="cm-part-title-text">{part.title}</span>
+                      )}
+
+                      {/* Edit pencil — hidden while editing */}
+                      {editingPart?.id !== part._id && (
+                        <button
+                          className="cm-part-edit-btn"
+                          title="Edit part name"
+                          onClick={e => {
+                            e.stopPropagation();
+                            setEditingPart({ id: part._id, title: part.title });
+                          }}
+                        >
+                          ✏️
+                        </button>
+                      )}
+
                       <span className="cm-part-lessons-count">{part.lessons?.length || 0} lessons</span>
                       <span style={{ color: 'var(--text-muted)', fontSize: '12px', marginLeft: '6px' }}>
                         {expandedParts[part._id] ? '▲' : '▼'}
                       </span>
                     </div>
+
                     {expandedParts[part._id] !== false && (
                       <div className="cm-lesson-list">
                         {(!part.lessons || part.lessons.length === 0) ? (
@@ -399,9 +503,8 @@ function CourseManager({ courseId, onBack }) {
                             >
                               <div className="cm-lesson-dot" />
                               <span className="cm-lesson-title">{lesson.title}</span>
-                              {lesson.status === 'published' && (
-                                <span style={{ fontSize: '10px', color: 'var(--green)', flexShrink: 0 }}>●</span>
-                              )}
+                              {/* ── Content health dots ── */}
+                              <HealthDots lesson={lesson} />
                               <div className="cm-lesson-reorder-btns" onClick={e => e.stopPropagation()}>
                                 <button
                                   className="cm-lesson-reorder-btn"

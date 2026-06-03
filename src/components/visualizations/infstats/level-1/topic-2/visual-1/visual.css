@@ -1,0 +1,20 @@
+/* InfStats: Probability — prefix: isprob- */
+.isprob-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.isprob-head { text-align: center; margin-bottom: 18px; }
+.isprob-badge { background: #1e2150; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #818cf8; letter-spacing: 1.5px; }
+.isprob-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #818cf8; }
+.isprob-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
+.isprob-gauge { margin-bottom: 14px; }
+.isprob-bar { position: relative; height: 28px; background: #161b22; border: 1px solid #30363d; border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
+.isprob-fill { height: 100%; background: linear-gradient(90deg,#818cf8,#a78bfa); transition: width 0.3s; }
+.isprob-target { position: absolute; top: -3px; bottom: -3px; width: 2px; background: #f0883e; }
+.isprob-readout { display: flex; justify-content: space-between; font-size: 0.82rem; color: #a3adbb; }
+.isprob-pct { color: #818cf8; font-weight: 700; font-family: monospace; }
+.isprob-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+.isprob-btn { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.isprob-btn--big { background: #1e2150; border-color: #818cf8; color: #818cf8; font-weight: 700; }
+.isprob-btn--reset { color: #a3adbb; }
+.isprob-rules { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.isprob-rule { background: #161b22; border-radius: 7px; padding: 8px 12px; font-size: 0.78rem; color: #a3adbb; }
+.isprob-rule code { color: #818cf8; }
+.isprob-insight { background: #1a1d3a; border: 1px solid #3a3f6a; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #b8bef0; }

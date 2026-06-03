@@ -1,0 +1,23 @@
+/* RAG: Evaluating Fine-Tuned — prefix: rageval- */
+.rageval-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.rageval-head { text-align: center; margin-bottom: 16px; }
+.rageval-badge { background: #2a1f08; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
+.rageval-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
+.rageval-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.rageval-toggle { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.rageval-tbtn { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; min-height: 40px; transition: all 0.15s; }
+.rageval-tbtn--on { border-color: #60a5fa; color: #60a5fa; background: #1a2a3a; }
+.rageval-tbtn--ft.rageval-tbtn--on { border-color: #34d399; color: #34d399; background: #0d2a1f; }
+.rageval-metrics { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.rageval-metric { display: flex; align-items: center; gap: 10px; }
+.rageval-mk { font-size: 0.78rem; color: #a3adbb; min-width: 130px; }
+.rageval-bar { flex: 1; height: 14px; background: #161b22; border-radius: 99px; overflow: hidden; }
+.rageval-fill { display: block; height: 100%; transition: width 0.4s; }
+.rageval-val { font-family: monospace; font-size: 0.78rem; color: #c9d1d9; min-width: 44px; text-align: right; }
+.rageval-methods { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+@media (max-width: 540px) { .rageval-methods { grid-template-columns: 1fr; } }
+.rageval-method { background: #161b22; border-radius: 8px; padding: 10px; }
+.rageval-method strong { font-size: 0.78rem; color: #c9d1d9; }
+.rageval-method p { font-size: 0.72rem; color: #a3adbb; margin: 4px 0 0; }
+.rageval-note { background: #161b22; border-left: 3px solid #2dd4bf; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.rageval-note strong { color: #2dd4bf; }

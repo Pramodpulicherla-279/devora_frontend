@@ -1,0 +1,24 @@
+/* Python: Loops — prefix: pyloop- */
+.pyloop-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 600px; margin: 0 auto; border: 1px solid #21262d; }
+.pyloop-head { text-align: center; margin-bottom: 16px; }
+.pyloop-badge { background: #0e2238; color: #5a9fd4; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #5a9fd4; letter-spacing: 1.5px; }
+.pyloop-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #5a9fd4; }
+.pyloop-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.pyloop-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 14px; }
+.pyloop-items { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
+.pyloop-item { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #161b22; border: 2px solid #30363d; border-radius: 8px; font-family: monospace; font-size: 1rem; color: #c9d1d9; transition: all 0.2s; }
+.pyloop-item--on { border-color: #5a9fd4; background: #0e2238; color: #5a9fd4; transform: scale(1.1); }
+.pyloop-item--done { opacity: 0.5; }
+.pyloop-branches { display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; }
+.pyloop-branch { padding: 8px 14px; border-radius: 8px; font-size: 0.78rem; font-family: monospace; opacity: 0.4; transition: all 0.2s; }
+.pyloop-branch--even { background: #0d2a1b; color: #34d399; }
+.pyloop-branch--odd { background: #2a1f0a; color: #f0883e; }
+.pyloop-branch--lit { opacity: 1; transform: scale(1.05); }
+.pyloop-output { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 10px 14px; font-family: monospace; font-size: 0.84rem; color: #5a9fd4; text-align: center; margin-bottom: 12px; min-height: 20px; }
+.pyloop-controls { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
+.pyloop-btn { background: #0e2238; border: 1px solid #5a9fd4; color: #5a9fd4; padding: 9px 18px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; font-weight: 600; min-height: 40px; }
+.pyloop-btn--reset { background: #161b22; border-color: #30363d; color: #a3adbb; }
+.pyloop-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.pyloop-note { background: #161b22; border-left: 3px solid #5a9fd4; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.pyloop-note code { color: #5a9fd4; }
+@media (max-width: 480px) { .pyloop-code { font-size: 0.68rem; } }

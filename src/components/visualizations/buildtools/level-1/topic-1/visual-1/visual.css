@@ -1,0 +1,27 @@
+/* Build Tools: Why — prefix: btwhy- */
+.btwhy-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.btwhy-head { text-align: center; margin-bottom: 16px; }
+.btwhy-badge { background: #1a1b40; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #646cff; letter-spacing: 1.5px; }
+.btwhy-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #818cf8; }
+.btwhy-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.btwhy-flow { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+.btwhy-modules { display: flex; flex-direction: column; gap: 4px; }
+.btwhy-mod { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 5px 10px; font-size: 0.72rem; font-family: monospace; color: #c9d1d9; transition: all 0.4s; }
+.btwhy-mod--building { transform: translateX(8px); opacity: 0.6; }
+.btwhy-mod--gone { opacity: 0.2; transform: translateX(16px) scale(0.9); }
+.btwhy-arrow { font-size: 1.2rem; color: #30363d; transition: color 0.3s; }
+.btwhy-arrow--on { color: #646cff; }
+.btwhy-output { display: flex; flex-direction: column; gap: 5px; min-width: 120px; }
+.btwhy-placeholder { background: #161b22; border: 1px dashed #30363d; border-radius: 8px; padding: 14px; text-align: center; color: #7d8590; font-family: monospace; }
+.btwhy-bundle { background: #1a1b40; border: 1px solid #646cff; border-radius: 7px; padding: 8px 12px; font-size: 0.76rem; font-family: monospace; color: #818cf8; animation: btwhy-in 0.4s ease; }
+.btwhy-bundle--small { font-size: 0.7rem; }
+.btwhy-min { font-size: 0.6rem; background: #34d39922; color: #34d399; padding: 1px 6px; border-radius: 99px; }
+@keyframes btwhy-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; } }
+.btwhy-btn { display: block; margin: 0 auto 14px; background: #1a1b40; border: 1px solid #646cff; color: #818cf8; padding: 9px 20px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; font-weight: 600; min-height: 40px; }
+.btwhy-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btwhy-reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 520px) { .btwhy-reasons { grid-template-columns: 1fr; } }
+.btwhy-reason { display: flex; gap: 8px; align-items: flex-start; background: #161b22; border-radius: 8px; padding: 10px; }
+.btwhy-reason span { font-size: 1.1rem; }
+.btwhy-reason strong { font-size: 0.78rem; color: #c9d1d9; }
+.btwhy-reason p { font-size: 0.7rem; color: #a3adbb; margin: 2px 0 0; }

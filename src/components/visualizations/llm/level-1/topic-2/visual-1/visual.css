@@ -1,0 +1,21 @@
+/* LLM: Tokenisation — prefix: llmtok- */
+.llmtok-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.llmtok-head { text-align: center; margin-bottom: 16px; }
+.llmtok-badge { background: #0d3324; color: #34d399; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #34d399; letter-spacing: 1.5px; }
+.llmtok-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #34d399; }
+.llmtok-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.llmtok-input { width: 100%; background: #010409; border: 1px solid #30363d; color: #e6edf3; border-radius: 8px; padding: 10px 12px; font-size: 0.9rem; font-family: inherit; box-sizing: border-box; margin-bottom: 14px; resize: vertical; }
+.llmtok-input:focus { outline: none; border-color: #34d399; }
+.llmtok-tokens { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; min-height: 30px; }
+.llmtok-token { font-family: monospace; font-size: 0.8rem; padding: 3px 8px; border-radius: 5px; border: 1px solid; }
+.llmtok-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+.llmtok-stat { background: #161b22; border-radius: 9px; padding: 10px; text-align: center; }
+.llmtok-stat span { font-size: 0.7rem; color: #a3adbb; display: block; }
+.llmtok-stat strong { font-size: 1.2rem; color: #34d399; font-family: monospace; }
+.llmtok-window { background: #161b22; border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.llmtok-window-label { font-size: 0.74rem; color: #a3adbb; margin-bottom: 6px; }
+.llmtok-meter { height: 12px; background: #0d1117; border-radius: 99px; overflow: hidden; }
+.llmtok-meter-fill { height: 100%; background: #34d399; transition: width 0.2s; }
+.llmtok-meter-fill--full { background: #f85149; }
+.llmtok-warn { font-size: 0.74rem; color: #f0883e; margin-top: 6px; }
+.llmtok-note { background: #161b22; border-left: 3px solid #34d399; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }

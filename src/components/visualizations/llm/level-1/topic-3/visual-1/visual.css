@@ -1,0 +1,20 @@
+/* LLM: Temperature — prefix: llmtemp- */
+.llmtemp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 660px; margin: 0 auto; border: 1px solid #21262d; }
+.llmtemp-head { text-align: center; margin-bottom: 16px; }
+.llmtemp-badge { background: #0d3324; color: #34d399; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #34d399; letter-spacing: 1.5px; }
+.llmtemp-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #34d399; }
+.llmtemp-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.llmtemp-bars { background: #161b22; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.llmtemp-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.llmtemp-tok { font-family: monospace; font-size: 0.82rem; color: #c9d1d9; min-width: 56px; }
+.llmtemp-bar { flex: 1; height: 14px; background: #0d1117; border-radius: 99px; overflow: hidden; }
+.llmtemp-fill { display: block; height: 100%; background: #34d399; transition: width 0.2s; }
+.llmtemp-prob { font-family: monospace; font-size: 0.78rem; color: #34d399; min-width: 34px; text-align: right; }
+.llmtemp-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+.llmtemp-controls label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
+.llmtemp-slider { width: 100%; accent-color: #34d399; }
+.llmtemp-slider--p { accent-color: #60a5fa; }
+.llmtemp-desc { background: #161b22; border-left: 3px solid #34d399; border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #a3adbb; margin-bottom: 12px; line-height: 1.5; }
+.llmtemp-params { display: flex; flex-direction: column; gap: 6px; }
+.llmtemp-param { background: #161b22; border-radius: 7px; padding: 8px 12px; font-size: 0.78rem; color: #a3adbb; }
+.llmtemp-param code { color: #34d399; }

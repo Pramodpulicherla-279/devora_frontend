@@ -1,0 +1,18 @@
+/* AI Apps: Chains — prefix: aichain- */
+.aichain-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 600px; margin: 0 auto; border: 1px solid #21262d; }
+.aichain-head { text-align: center; margin-bottom: 16px; }
+.aichain-badge { background: #0a2a3a; color: #38bdf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #38bdf8; letter-spacing: 1.5px; }
+.aichain-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #38bdf8; }
+.aichain-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.aichain-flow { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 14px; }
+.aichain-pipe { color: #30363d; font-size: 0.8rem; }
+.aichain-pipe--on { color: #38bdf8; }
+.aichain-link { width: 100%; max-width: 320px; background: #161b22; border: 2px solid #21262d; border-radius: 9px; padding: 10px 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; transition: all 0.2s; }
+.aichain-link-label { font-size: 0.82rem; font-weight: 700; color: #c9d1d9; }
+.aichain-link-io { font-size: 0.74rem; color: #a3adbb; }
+.aichain-controls { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
+.aichain-btn { background: #0a2a3a; border: 1px solid #38bdf8; color: #38bdf8; padding: 9px 18px; border-radius: 7px; cursor: pointer; font-size: 0.82rem; font-weight: 600; min-height: 40px; }
+.aichain-btn--reset { background: #161b22; border-color: #30363d; color: #a3adbb; }
+.aichain-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.aichain-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 10px 12px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #e6edf3; overflow-x: auto; margin: 0 0 12px; }
+.aichain-note { background: #161b22; border-left: 3px solid #38bdf8; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }

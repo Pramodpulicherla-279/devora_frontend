@@ -1,0 +1,23 @@
+/* Python: Variables — prefix: pyvar- */
+.pyvar-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.pyvar-head { text-align: center; margin-bottom: 16px; }
+.pyvar-badge { background: #0e2238; color: #5a9fd4; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #5a9fd4; letter-spacing: 1.5px; }
+.pyvar-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #5a9fd4; }
+.pyvar-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.pyvar-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 14px; }
+.pyvar-types { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+.pyvar-type { background: #161b22; border: 1px solid #30363d; padding: 6px 12px; border-radius: 8px; cursor: pointer; min-height: 34px; transition: all 0.15s; }
+.pyvar-type code { font-size: 0.78rem; color: #a3adbb; }
+.pyvar-type--on { background: #0e2238; border-color: #5a9fd4; }
+.pyvar-type--on code { color: #5a9fd4; font-weight: 700; }
+.pyvar-detail { background: #161b22; border-left: 3px solid #5a9fd4; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+.pyvar-d-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pyvar-d-type { font-size: 0.95rem; font-weight: 700; color: #5a9fd4; font-family: monospace; }
+.pyvar-mut { font-size: 0.68rem; padding: 2px 8px; border-radius: 99px; }
+.pyvar-mut--y { background: #0d2a1b; color: #34d399; }
+.pyvar-mut--n { background: #2a1f0a; color: #f0883e; }
+.pyvar-d-ex { display: block; font-family: monospace; font-size: 0.9rem; color: #c9d1d9; margin-bottom: 8px; }
+.pyvar-d-note { font-size: 0.8rem; color: #a3adbb; margin: 0; }
+.pyvar-tip { background: #161b22; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.pyvar-tip code { color: #5a9fd4; }
+@media (max-width: 480px) { .pyvar-code { font-size: 0.68rem; } }

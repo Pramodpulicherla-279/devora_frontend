@@ -622,10 +622,11 @@
 }
 
 .cm-part-lessons-count {
-  margin-left: auto;
   font-size: 11px;
   color: var(--text-muted);
   font-weight: 400;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .cm-lesson-list {
@@ -2533,3 +2534,85 @@
   opacity: 0.8;
 }
 .divider { height: 1px; background: var(--border); margin: 12px 0; }
+
+/* ═══════════════════════════════════════════
+   CONTENT HEALTH DOTS (lesson sidebar)
+═══════════════════════════════════════════ */
+.cm-health-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cm-health-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.cm-health-dot.filled {
+  background: color-mix(in srgb, var(--hc) 18%, transparent);
+  border-color: color-mix(in srgb, var(--hc) 50%, transparent);
+  color: var(--hc);
+}
+
+/* ═══════════════════════════════════════════
+   PART NAME INLINE EDIT
+═══════════════════════════════════════════ */
+.cm-part-title-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cm-part-edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cm-part-header:hover .cm-part-edit-btn {
+  opacity: 1;
+}
+
+.cm-part-edit-btn:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.cm-part-edit-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-input);
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 8px;
+  outline: none;
+  font-family: inherit;
+}
+
+.cm-part-edit-input:focus {
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}

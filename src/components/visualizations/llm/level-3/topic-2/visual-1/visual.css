@@ -1,0 +1,21 @@
+/* LLM: Prompt Injection — prefix: llminj- */
+.llminj-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 660px; margin: 0 auto; border: 1px solid #21262d; }
+.llminj-head { text-align: center; margin-bottom: 16px; }
+.llminj-badge { background: #2a1212; color: #f85149; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f85149; letter-spacing: 1.5px; }
+.llminj-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #34d399; }
+.llminj-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.llminj-flow { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.llminj-box { border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; }
+.llminj-box--sys { background: #0d2a1f; border: 1px solid #1a4a2a; color: #a6e3a1; }
+.llminj-box--data { background: #161b22; border: 1px dashed #f0883e; }
+.llminj-box-label { font-size: 0.7rem; color: #f0883e; margin-bottom: 6px; }
+.llminj-attack { font-family: monospace; font-size: 0.8rem; color: #f85149; margin-bottom: 8px; }
+.llminj-attack-picker { display: flex; gap: 6px; }
+.llminj-apick { background: #0d1117; border: 1px solid #30363d; color: #a3adbb; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 0.72rem; min-height: 30px; }
+.llminj-apick--on { border-color: #f0883e; color: #f0883e; }
+.llminj-result { border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; font-weight: 600; line-height: 1.5; }
+.llminj-result--blocked { background: #0d2a1b; color: #34d399; border: 1px solid #1a4a2a; }
+.llminj-result--pwned { background: #2a1212; color: #f85149; border: 1px solid #4a1a1a; }
+.llminj-toggle { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #c9d1d9; cursor: pointer; margin: 14px 0; }
+.llminj-defenses { display: flex; flex-direction: column; gap: 6px; }
+.llminj-def { background: #161b22; border-radius: 7px; padding: 8px 12px; font-size: 0.76rem; color: #a3adbb; }

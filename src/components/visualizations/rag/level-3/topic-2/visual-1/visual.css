@@ -1,0 +1,21 @@
+/* RAG: Preparing Dataset — prefix: ragdata- */
+.ragdata-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.ragdata-head { text-align: center; margin-bottom: 16px; }
+.ragdata-badge { background: #2a1f08; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
+.ragdata-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
+.ragdata-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.ragdata-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.ragdata-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
+.ragdata-tab--on { background: #0d2e2b; border-color: #2dd4bf; color: #2dd4bf; font-weight: 700; }
+.ragdata-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 14px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #e6edf3; overflow-x: auto; margin: 0 0 12px; }
+.ragdata-note { background: #161b22; border-left: 3px solid #2dd4bf; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.ragdata-note strong { color: #2dd4bf; }
+.ragdata-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 540px) { .ragdata-rules { grid-template-columns: 1fr; } }
+.ragdata-rule { display: flex; gap: 8px; align-items: flex-start; background: #161b22; border-radius: 8px; padding: 10px 12px; border-left: 3px solid; }
+.ragdata-rule--ok { border-color: #34d399; }
+.ragdata-rule--bad { border-color: #f85149; }
+.ragdata-rule-icon { font-size: 0.9rem; }
+.ragdata-rule strong { font-size: 0.8rem; color: #c9d1d9; }
+.ragdata-rule p { font-size: 0.72rem; color: #a3adbb; margin: 2px 0 0; }
+@media (max-width: 480px) { .ragdata-code { font-size: 0.68rem; } }

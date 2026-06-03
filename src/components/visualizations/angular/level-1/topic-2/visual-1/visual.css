@@ -1,0 +1,21 @@
+/* Angular: Components — prefix: ngcomp- */
+.ngcomp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 660px; margin: 0 auto; border: 1px solid #21262d; }
+.ngcomp-head { text-align: center; margin-bottom: 16px; }
+.ngcomp-badge { background: #3a0a12; color: #f87171; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #dd0031; letter-spacing: 1.5px; }
+.ngcomp-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f87171; }
+.ngcomp-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.ngcomp-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 14px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; line-height: 1.6; }
+.ngcomp-code--sm { font-size: 0.74rem; padding: 10px; }
+.ngcomp-k { cursor: pointer; }
+.ngcomp-k--on { background: #dd003133; border-radius: 3px; color: #f87171; }
+.ngcomp-detail { background: #161b22; border-left: 3px solid #dd0031; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+.ngcomp-detail strong { color: #f87171; font-family: monospace; }
+.ngcomp-detail p { font-size: 0.8rem; color: #a3adbb; margin: 4px 0 0; line-height: 1.5; }
+.ngcomp-template { margin-bottom: 12px; }
+.ngcomp-t-label { font-size: 0.7rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.ngcomp-render { display: flex; justify-content: center; margin-top: 10px; }
+.ngcomp-card { background: #161b22; border: 1px solid #dd0031; border-radius: 10px; padding: 16px 28px; }
+.ngcomp-card h3 { margin: 0; color: #f87171; }
+.ngcomp-note { background: #161b22; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.ngcomp-note code { color: #f87171; }
+@media (max-width: 480px) { .ngcomp-code { font-size: 0.68rem; } }

@@ -1,0 +1,20 @@
+/* Pandas: Select/Filter/Sort — prefix: pdselect- */
+.pdselect-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
+.pdselect-head { text-align: center; margin-bottom: 16px; }
+.pdselect-badge { background: #2e2606; color: #eab308; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #eab308; letter-spacing: 1.5px; }
+.pdselect-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #eab308; }
+.pdselect-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.pdselect-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+.pdselect-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.78rem; min-height: 40px; transition: all 0.15s; }
+.pdselect-tab--on { background: #2e2606; border-color: #eab308; color: #eab308; font-weight: 700; }
+.pdselect-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.8rem; color: #eab308; overflow-x: auto; margin: 0 0 12px; }
+.pdselect-table-wrap { overflow-x: auto; margin-bottom: 8px; }
+.pdselect-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.pdselect-table th { background: #161b22; color: #a3adbb; padding: 7px 10px; border-bottom: 1px solid #21262d; }
+.pdselect-table td { padding: 7px 10px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+.pdselect-row-in { animation: pdselect-in 0.2s ease; }
+@keyframes pdselect-in { from { opacity: 0; } to { opacity: 1; } }
+.pdselect-hl { color: #eab308; font-weight: 700; }
+.pdselect-count { font-size: 0.74rem; color: #a3adbb; margin-bottom: 12px; }
+.pdselect-note { background: #161b22; border-left: 3px solid #eab308; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+.pdselect-note code { color: #eab308; }

@@ -1,0 +1,24 @@
+/* InfStats: t/z Tests — prefix: istz- */
+.istz-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 680px; margin: 0 auto; border: 1px solid #21262d; }
+.istz-head { text-align: center; margin-bottom: 16px; }
+.istz-badge { background: #1e2150; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #818cf8; letter-spacing: 1.5px; }
+.istz-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #818cf8; }
+.istz-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
+.istz-chart-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
+.istz-svg { width: 100%; height: auto; display: block; }
+.istz-norm { fill: none; stroke: #7d8590; stroke-width: 2; stroke-dasharray: 4 3; }
+.istz-t { fill: none; stroke: #818cf8; stroke-width: 2.5; }
+.istz-axis { stroke: #30363d; stroke-width: 1.5; }
+.istz-legend { display: flex; gap: 14px; justify-content: center; margin-top: 6px; }
+.istz-leg { font-size: 0.74rem; display: flex; align-items: center; gap: 5px; }
+.istz-leg--z { color: #7d8590; }
+.istz-leg--t { color: #818cf8; }
+.istz-control { margin-bottom: 14px; }
+.istz-control label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
+.istz-slider { width: 100%; accent-color: #818cf8; }
+.istz-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+@media (max-width: 480px) { .istz-cards { grid-template-columns: 1fr; } }
+.istz-card { background: #161b22; border-radius: 9px; padding: 12px; border-top: 3px solid #818cf8; }
+.istz-card strong { display: block; color: #c9d1d9; margin-bottom: 4px; }
+.istz-card p { font-size: 0.76rem; color: #a3adbb; margin: 0; line-height: 1.4; }
+.istz-note { background: #161b22; border-left: 3px solid #818cf8; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
