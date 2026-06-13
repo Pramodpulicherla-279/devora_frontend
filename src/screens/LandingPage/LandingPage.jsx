@@ -580,6 +580,11 @@ export default function LandingPage() {
           </nav>
 
           <div className="lp-header-actions">
+            {/* Buy Me a Coffee — desktop only */}
+            <button className="lp-coffee-btn lp-desktop-only" onClick={handleOpenDonate}>
+              ☕ <span>Buy me a coffee</span>
+            </button>
+
             {user ? (
               <>
                 <div className="lp-user-info" style={{ cursor: 'pointer' }} onClick={() => navigate('/profile')}>

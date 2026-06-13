@@ -2,7 +2,12 @@
    DEV.EL LANDING PAGE — LIGHT THEME
    ═══════════════════════════════════════════ */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Global reset — scoped to @layer reset so it zeroes browser defaults
+   app-wide but never overrides the lesson/admin prose in the later
+   @layer dvz-lesson-prose. Layer order is declared in index.css. */
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+}
 
 :root {
   --bg:        #ffffff;
@@ -71,6 +76,31 @@ body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antial
   transition: color .2s, border-color .2s, background .2s;
 }
 .lp-btn-ghost:hover { color: var(--text); border-color: var(--purple2); background: rgba(124,58,237,.05); }
+
+/* ── Buy Me a Coffee — desktop header button ── */
+.lp-coffee-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+.lp-coffee-btn:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+.lp-coffee-btn:active { transform: translateY(0); }
 
 .lp-btn-outline {
   background: transparent;

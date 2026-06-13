@@ -1,5 +1,5 @@
 import React from 'react';
-import parse from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import visualizationRegistry from '../visualizationRegistry';
 
 /**
@@ -31,7 +31,20 @@ const parserOptions = {
       
       // Optional: Return an error message or null if type is not found
       console.warn(`No visualization found for type: ${vizType}`);
-      return null; 
+      return null;
+    }
+
+    // Wrap prose tables in a scroll container so they fill the available
+    // width and distribute columns normally, while still scrolling
+    // horizontally (instead of being clipped) on narrow screens.
+    // Children are rendered with the same options so any nested embeds
+    // still resolve, and we avoid re-processing this same <table> node.
+    if (domNode.name === 'table') {
+      return (
+        <div className="ls-table-wrap">
+          <table>{domToReact(domNode.children, parserOptions)}</table>
+        </div>
+      );
     }
   },
 };

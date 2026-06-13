@@ -56,15 +56,15 @@ import RagDatasetVisualization from './rag/level-3/topic-2/visual-1/visual';
 import RagEvalVisualization from './rag/level-3/topic-3/visual-1/visual';
 
 // Building AI Apps course visualizations
-import AiAppApiBasicsVisualization from './aiapps/level-1/topic-1/visual-1/visual';
-import AiAppStreamingVisualization from './aiapps/level-1/topic-2/visual-1/visual';
-import AiAppCostVisualization from './aiapps/level-1/topic-3/visual-1/visual';
-import AiAppChainsVisualization from './aiapps/level-2/topic-1/visual-1/visual';
-import AiAppDocsVisualization from './aiapps/level-2/topic-2/visual-1/visual';
-import AiAppLlamaIndexVisualization from './aiapps/level-2/topic-3/visual-1/visual';
-import AiAppEvalVisualization from './aiapps/level-3/topic-1/visual-1/visual';
-import AiAppAbPromptsVisualization from './aiapps/level-3/topic-2/visual-1/visual';
-import AiAppRedTeamVisualization from './aiapps/level-3/topic-3/visual-1/visual';
+// import AiAppApiBasicsVisualization from './aiapps/level-1/topic-1/visual-1/visual';
+// import AiAppStreamingVisualization from './aiapps/level-1/topic-2/visual-1/visual';
+// import AiAppCostVisualization from './aiapps/level-1/topic-3/visual-1/visual';
+// import AiAppChainsVisualization from './aiapps/level-2/topic-1/visual-1/visual';
+// import AiAppDocsVisualization from './aiapps/level-2/topic-2/visual-1/visual';
+// import AiAppLlamaIndexVisualization from './aiapps/level-2/topic-3/visual-1/visual';
+// import AiAppEvalVisualization from './aiapps/level-3/topic-1/visual-1/visual';
+// import AiAppAbPromptsVisualization from './aiapps/level-3/topic-2/visual-1/visual';
+// import AiAppRedTeamVisualization from './aiapps/level-3/topic-3/visual-1/visual';
 
 // Angular course visualizations
 import NgCliVisualization from './angular/level-1/topic-1/visual-1/visual';
@@ -295,15 +295,15 @@ const visualizationRegistry = {
   'rag-eval-fine-tuned-visualization'         : RagEvalVisualization,
 
   // Building AI Apps course
-  'aiapps-api-basics-visualization'           : AiAppApiBasicsVisualization,
-  'aiapps-streaming-visualization'            : AiAppStreamingVisualization,
-  'aiapps-cost-optimisation-visualization'    : AiAppCostVisualization,
-  'aiapps-chains-visualization'               : AiAppChainsVisualization,
-  'aiapps-loaders-vectorstores-visualization' : AiAppDocsVisualization,
-  'aiapps-llamaindex-visualization'           : AiAppLlamaIndexVisualization,
-  'aiapps-evaluation-metrics-visualization'   : AiAppEvalVisualization,
-  'aiapps-ab-testing-prompts-visualization'   : AiAppAbPromptsVisualization,
-  'aiapps-red-teaming-visualization'          : AiAppRedTeamVisualization,
+  // 'aiapps-api-basics-visualization'           : AiAppApiBasicsVisualization,
+  // 'aiapps-streaming-visualization'            : AiAppStreamingVisualization,
+  // 'aiapps-cost-optimisation-visualization'    : AiAppCostVisualization,
+  // 'aiapps-chains-visualization'               : AiAppChainsVisualization,
+  // 'aiapps-loaders-vectorstores-visualization' : AiAppDocsVisualization,
+  // 'aiapps-llamaindex-visualization'           : AiAppLlamaIndexVisualization,
+  // 'aiapps-evaluation-metrics-visualization'   : AiAppEvalVisualization,
+  // 'aiapps-ab-testing-prompts-visualization'   : AiAppAbPromptsVisualization,
+  // 'aiapps-red-teaming-visualization'          : AiAppRedTeamVisualization,
 
   // Angular course
   'angular-cli-structure-visualization'       : NgCliVisualization,

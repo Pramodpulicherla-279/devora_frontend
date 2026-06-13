@@ -1180,65 +1180,204 @@
   background: var(--green);
 }
 
+/* The admin Live Preview mirrors the student Lesson reader (.lesson-view)
+   one-to-one, so authors see exactly what learners get: a light reading
+   surface with identical typography, code blocks, tables and spacing. */
 .le-preview-content {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
-  color: var(--text-primary);
-  font-size: 14px;
-  line-height: 1.7;
+  padding: 28px 32px 40px;
+  background: #ffffff;
+  color: #1e1e2e;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Admin preview prose lives in the same cascade layer so embedded
-   visualizations (.dvz-embed, unlayered) win and prose never leaks in. */
+.le-preview-content > * { max-width: 100%; }
+
+/* Prose lives in the same cascade layer so embedded visualizations
+   (.dvz-embed, unlayered) win and prose never leaks into them. */
 @layer dvz-lesson-prose {
 
-.le-preview-content h1, .le-preview-content h2, .le-preview-content h3 {
-  color: var(--text-primary);
-  margin: 1em 0 0.5em;
+/* Headings */
+.le-preview-content h1,
+.le-preview-content h2,
+.le-preview-content h3,
+.le-preview-content h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  color: #0f0f1a;
+}
+.le-preview-content h1 {
+  font-size: 1.95rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 1.1rem;
+}
+.le-preview-content h2 {
+  font-size: 1.5rem;
+  margin: 2.2rem 0 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #f0f0f8;
+}
+.le-preview-content h3 { font-size: 1.2rem; margin: 1.8rem 0 0.65rem; }
+.le-preview-content h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.55rem;
+  color: #2d2d42;
 }
 
-.le-preview-content code {
-  background: rgba(99, 102, 241, 0.12);
-  border-radius: 4px;
-  padding: 2px 5px;
-  font-size: 13px;
-  color: var(--accent-hover);
-}
-
-.le-preview-content pre {
-  background: #1e1e2e;
-  border-radius: 8px;
-  padding: 16px;
-  overflow-x: auto;
-  margin: 12px 0;
-  border: 1px solid var(--border);
-}
-
-.le-preview-content pre code {
-  background: none;
-  padding: 0;
-  color: #d4d4d4;
-  font-size: 13px;
-}
-
+/* Body text */
 .le-preview-content p {
-  margin: 8px 0;
-  color: var(--text-secondary);
+  margin: 0 0 1.25rem;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2d2d42;
+}
+.le-preview-content strong { font-weight: 600; color: #111122; }
+.le-preview-content em { font-style: italic; color: #3d3d55; }
+
+/* Lists */
+.le-preview-content ul,
+.le-preview-content ol { margin: 0 0 1.25rem 0; padding-left: 1.5rem; }
+.le-preview-content ul { list-style: none; padding-left: 0; }
+.le-preview-content ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #2d2d42;
+  line-height: 1.7;
+}
+.le-preview-content ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #7c3aed;
+  font-size: 0.8em;
+  top: 0.18em;
+}
+.le-preview-content ol { list-style: decimal; }
+.le-preview-content ol li {
+  margin-bottom: 0.5rem;
+  color: #2d2d42;
+  line-height: 1.7;
+  padding-left: 0.3rem;
+}
+.le-preview-content ol li::marker { color: #7c3aed; font-weight: 600; }
+
+/* Inline code */
+.le-preview-content p code,
+.le-preview-content li code,
+.le-preview-content h2 code,
+.le-preview-content h3 code,
+.le-preview-content td code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.845em;
+  font-weight: 500;
+  background: #f0edff;
+  color: #5b21b6;
+  padding: 2px 6px 3px;
+  border-radius: 5px;
+  border: 1px solid #e0d9ff;
+  white-space: nowrap;
 }
 
-.le-preview-content ul, .le-preview-content ol {
-  padding-left: 20px;
-  color: var(--text-secondary);
+/* Code blocks */
+.le-preview-content pre {
+  background: #13131f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 1.4rem 0 1.6rem;
+  overflow-x: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  max-width: 100%;
+  position: relative;
+}
+.le-preview-content pre::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #0891b2);
+  border-radius: 12px 12px 0 0;
+}
+.le-preview-content pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #c9d1d9;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: pre;
 }
 
+/* Blockquote */
 .le-preview-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding-left: 12px;
-  margin: 12px 0;
-  color: var(--text-muted);
+  margin: 1.6rem 0;
+  padding: 14px 20px 14px 22px;
+  border-left: 4px solid #7c3aed;
+  background: #f7f5ff;
+  border-radius: 0 10px 10px 0;
+  color: #4a4a6a;
   font-style: italic;
 }
+.le-preview-content blockquote p { margin: 0; }
+
+/* Horizontal rule */
+.le-preview-content hr {
+  border: none;
+  border-top: 2px solid #f0f0f8;
+  margin: 2.25rem 0;
+}
+
+/* Links */
+.le-preview-content a {
+  color: #6d28d9;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+/* Tables — parser wraps each in .ls-table-wrap (scroll + rounded card) */
+.le-preview-content .ls-table-wrap {
+  margin: 1.4rem 0 1.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+.le-preview-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+.le-preview-content .ls-table-wrap > table { margin: 0; box-shadow: none; }
+.le-preview-content th,
+.le-preview-content td {
+  border: 1px solid #e5e7f0;
+  padding: 10px 16px;
+  text-align: left;
+  line-height: 1.5;
+  color: #2d2d42;
+}
+.le-preview-content th {
+  background: linear-gradient(135deg, #f0edff, #e8f4ff);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #3b0764;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.le-preview-content tr:nth-child(even) td { background: #fafafe; }
 
 } /* end @layer dvz-lesson-prose */
 

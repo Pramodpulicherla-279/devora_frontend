@@ -550,4 +550,149 @@ export const ROADMAPS = [
       },
     ],
   },
+
+  /* ═══════════════════════════════════════════════════════════════
+     11. DSA WITH PYTHON
+  ═══════════════════════════════════════════════════════════════ */
+  {
+    slug: 'dsa-python',
+    name: 'DSA with Python',
+    icon: '🐍',
+    color: '#306998',
+    description: 'Master data structures and algorithms using Python — from Big-O and recursion to dynamic programming and interview prep.',
+    phases: [
+      {
+        id: 'dsapy-p1', title: 'Python Foundations',
+        steps: [
+          { id: 'dsapy-basics', title: 'Python Basics', icon: '🐍', type: 'required', courseSlug: 'javascript/variables-data-types', description: 'Core Python syntax, control flow and functions needed to write algorithms.', topics: ['Variables & types', 'Control flow', 'Functions', 'Input / output', 'Modules & imports'] },
+          { id: 'dsapy-builtins', title: 'Built-in Data Types', icon: '📦', type: 'required', description: 'Python\'s built-in containers that power most data-structure work.', topics: ['Lists & tuples', 'Dictionaries', 'Sets', 'Strings', 'Comprehensions'] },
+          { id: 'dsapy-oop', title: 'OOP in Python', icon: '🧱', type: 'optional', description: 'Use classes to model nodes, linked lists, trees and graphs.', topics: ['Classes & objects', '__init__ & self', 'Magic methods', 'Inheritance', 'Encapsulation'] },
+        ],
+      },
+      {
+        id: 'dsapy-p2', title: 'Complexity Analysis',
+        steps: [
+          { id: 'dsapy-bigo', title: 'Big-O Notation', icon: '📈', type: 'required', description: 'Measure how time and space scale as input grows.', topics: ['Time complexity', 'Space complexity', 'Best / average / worst case', 'Asymptotic notation', 'Amortized analysis'] },
+          { id: 'dsapy-recursion', title: 'Recursion', icon: '🔁', type: 'required', description: 'Think recursively with base cases, the call stack and backtracking.', topics: ['Base & recursive case', 'Call stack', 'Recursion vs iteration', 'Tail recursion', 'Backtracking intro'] },
+        ],
+      },
+      {
+        id: 'dsapy-p3', title: 'Linear Data Structures',
+        steps: [
+          { id: 'dsapy-arrays', title: 'Arrays & Lists', icon: '🔢', type: 'required', description: 'Traverse, slice and manipulate lists with classic patterns.', topics: ['Indexing & slicing', 'Traversal', 'Insertion / deletion', 'Two-pointer technique', 'Sliding window'] },
+          { id: 'dsapy-strings', title: 'Strings', icon: '🔤', type: 'required', description: 'String manipulation and common interview string problems.', topics: ['String methods', 'Pattern matching', 'Palindromes', 'Anagrams', 'ASCII / Unicode'] },
+          { id: 'dsapy-linkedlist', title: 'Linked Lists', icon: '🔗', type: 'required', description: 'Build and manipulate singly and doubly linked lists.', topics: ['Singly linked list', 'Doubly linked list', 'Reversal', 'Cycle detection', 'Fast & slow pointers'] },
+          { id: 'dsapy-stackqueue', title: 'Stacks & Queues', icon: '🥞', type: 'required', description: 'LIFO and FIFO structures and where they shine.', topics: ['Stack (LIFO)', 'Queue (FIFO)', 'collections.deque', 'Monotonic stack', 'Applications'] },
+          { id: 'dsapy-hash', title: 'Hash Tables', icon: '🗂️', type: 'required', description: 'Use dicts and sets for O(1) lookups and counting.', topics: ['dict & set internals', 'Hashing', 'Collisions', 'Frequency counting', 'Two-sum pattern'] },
+        ],
+      },
+      {
+        id: 'dsapy-p4', title: 'Non-Linear Data Structures',
+        steps: [
+          { id: 'dsapy-trees', title: 'Trees', icon: '🌳', type: 'required', description: 'Binary trees, BSTs and tree traversals.', topics: ['Binary tree', 'Binary search tree', 'DFS & BFS traversals', 'Height & depth', 'Recursion on trees'] },
+          { id: 'dsapy-heaps', title: 'Heaps & Priority Queues', icon: '⛰️', type: 'optional', description: 'Priority queues with Python\'s heapq module.', topics: ['Min / max heap', 'heapq module', 'Heapify', 'Top-K problems', 'Heap sort'] },
+          { id: 'dsapy-trie', title: 'Tries', icon: '🌲', type: 'advanced', description: 'Prefix trees for fast string lookups and autocomplete.', topics: ['Prefix tree', 'Insert & search', 'Autocomplete', 'Word dictionaries'] },
+          { id: 'dsapy-graphs', title: 'Graphs', icon: '🕸️', type: 'required', description: 'Represent and traverse graphs with BFS and DFS.', topics: ['Adjacency list / matrix', 'BFS', 'DFS', 'Connected components', 'Topological sort'] },
+        ],
+      },
+      {
+        id: 'dsapy-p5', title: 'Core Algorithms',
+        steps: [
+          { id: 'dsapy-search', title: 'Searching', icon: '🔍', type: 'required', description: 'Linear and binary search, including binary search on the answer.', topics: ['Linear search', 'Binary search', 'Binary search on answer', 'Search in rotated array'] },
+          { id: 'dsapy-sort', title: 'Sorting', icon: '🗃️', type: 'required', description: 'Classic sorting algorithms and Python\'s built-in sort.', topics: ['Bubble / insertion / selection', 'Merge sort', 'Quick sort', 'Counting / radix sort', 'sorted() & .sort()'] },
+          { id: 'dsapy-backtrack', title: 'Recursion & Backtracking', icon: '♟️', type: 'required', description: 'Generate combinations and solve constraint problems.', topics: ['Subsets & permutations', 'N-Queens', 'Sudoku solver', 'Pruning'] },
+        ],
+      },
+      {
+        id: 'dsapy-p6', title: 'Advanced Techniques',
+        steps: [
+          { id: 'dsapy-greedy', title: 'Greedy Algorithms', icon: '💰', type: 'optional', description: 'Make locally optimal choices for global solutions.', topics: ['Greedy choice property', 'Interval scheduling', 'Huffman coding', 'Activity selection'] },
+          { id: 'dsapy-dp', title: 'Dynamic Programming', icon: '🧩', type: 'required', description: 'Solve overlapping subproblems with memoization and tabulation.', topics: ['Memoization', 'Tabulation', '0/1 Knapsack', 'LCS / LIS', 'DP on grids'] },
+          { id: 'dsapy-graphalgo', title: 'Advanced Graph Algorithms', icon: '🛰️', type: 'advanced', description: 'Shortest paths, union-find and minimum spanning trees.', topics: ['Dijkstra', 'Bellman-Ford', 'Union-Find (DSU)', 'MST (Kruskal / Prim)', 'Floyd-Warshall'] },
+          { id: 'dsapy-bits', title: 'Bit Manipulation', icon: '🔣', type: 'optional', description: 'Solve problems efficiently with bitwise tricks.', topics: ['Bitwise operators', 'Bit masks', 'XOR tricks', 'Power of two', 'Counting bits'] },
+        ],
+      },
+      {
+        id: 'dsapy-p7', title: 'Interview Preparation',
+        steps: [
+          { id: 'dsapy-patterns', title: 'Problem Patterns', icon: '🎯', type: 'required', description: 'Recognise the patterns behind most coding-interview questions.', topics: ['Two pointers', 'Sliding window', 'Fast & slow pointers', 'Prefix sum', 'Binary search patterns'] },
+          { id: 'dsapy-practice', title: 'Coding Practice', icon: '🏋️', type: 'required', description: 'Build problem-solving speed on LeetCode and HackerRank.', topics: ['LeetCode / HackerRank', 'Easy → hard progression', 'Mock interviews', 'Time management'] },
+          { id: 'dsapy-sysdesign', title: 'System Design Basics', icon: '🏗️', type: 'optional', description: 'Understand the data-structure trade-offs behind scalable systems.', topics: ['Scalability basics', 'Caching', 'Load balancing', 'DS trade-offs'] },
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════
+     12. DSA WITH C++
+  ═══════════════════════════════════════════════════════════════ */
+  {
+    slug: 'dsa-cpp',
+    name: 'DSA with C++',
+    icon: '🔵',
+    color: '#00599c',
+    description: 'Master data structures and algorithms using C++ and the STL — from pointers and Big-O to dynamic programming and competitive coding.',
+    phases: [
+      {
+        id: 'dsacpp-p1', title: 'C++ Foundations',
+        steps: [
+          { id: 'dsacpp-basics', title: 'C++ Basics', icon: '🔵', type: 'required', description: 'Core C++ syntax, I/O and functions to start writing algorithms.', topics: ['Syntax & I/O (cin/cout)', 'Data types', 'Control flow', 'Functions', 'Header files'] },
+          { id: 'dsacpp-pointers', title: 'Pointers & Memory', icon: '📍', type: 'required', description: 'Pointers, references and dynamic memory — the heart of C++ DSA.', topics: ['Pointers & references', 'new / delete', 'Memory layout', 'Pointer arithmetic', 'Smart pointers'] },
+          { id: 'dsacpp-stl', title: 'STL Essentials', icon: '🧰', type: 'required', description: 'The Standard Template Library containers and algorithms.', topics: ['vector & pair', 'string', 'Iterators', '<algorithm> header', 'Templates'] },
+          { id: 'dsacpp-oop', title: 'OOP in C++', icon: '🧱', type: 'optional', description: 'Model data structures with classes and operator overloading.', topics: ['Classes & objects', 'Constructors / destructors', 'Operator overloading', 'Templates', 'Inheritance'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p2', title: 'Complexity Analysis',
+        steps: [
+          { id: 'dsacpp-bigo', title: 'Big-O Notation', icon: '📈', type: 'required', description: 'Measure how time and space scale as input grows.', topics: ['Time complexity', 'Space complexity', 'Best / average / worst case', 'Asymptotic notation', 'Amortized analysis'] },
+          { id: 'dsacpp-recursion', title: 'Recursion', icon: '🔁', type: 'required', description: 'Think recursively with base cases, the call stack and backtracking.', topics: ['Base & recursive case', 'Call stack', 'Recursion vs iteration', 'Tail recursion', 'Backtracking intro'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p3', title: 'Linear Data Structures',
+        steps: [
+          { id: 'dsacpp-arrays', title: 'Arrays & Vectors', icon: '🔢', type: 'required', description: 'Static arrays and dynamic std::vector with classic patterns.', topics: ['Static vs dynamic arrays', 'std::vector', 'Traversal', 'Two-pointer technique', 'Sliding window'] },
+          { id: 'dsacpp-strings', title: 'Strings', icon: '🔤', type: 'required', description: 'std::string, char arrays and pattern-matching algorithms.', topics: ['std::string', 'Manipulation', 'Pattern matching (KMP)', 'Palindromes', 'char arrays'] },
+          { id: 'dsacpp-linkedlist', title: 'Linked Lists', icon: '🔗', type: 'required', description: 'Build singly and doubly linked lists with pointers.', topics: ['Singly linked list', 'Doubly linked list', 'std::list', 'Reversal', 'Cycle detection'] },
+          { id: 'dsacpp-stackqueue', title: 'Stacks & Queues', icon: '🥞', type: 'required', description: 'STL stack, queue and deque and their applications.', topics: ['std::stack', 'std::queue', 'std::deque', 'Monotonic stack', 'Applications'] },
+          { id: 'dsacpp-hash', title: 'Hash Tables', icon: '🗂️', type: 'required', description: 'O(1) lookups with unordered_map and unordered_set.', topics: ['unordered_map', 'unordered_set', 'Hashing', 'Collisions', 'Frequency counting'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p4', title: 'Non-Linear Data Structures',
+        steps: [
+          { id: 'dsacpp-trees', title: 'Trees', icon: '🌳', type: 'required', description: 'Binary trees, BSTs and tree traversals.', topics: ['Binary tree', 'Binary search tree', 'DFS & BFS traversals', 'Height & depth', 'Recursion on trees'] },
+          { id: 'dsacpp-heaps', title: 'Heaps & Priority Queues', icon: '⛰️', type: 'optional', description: 'Priority queues with std::priority_queue.', topics: ['std::priority_queue', 'Min / max heap', 'Heapify', 'Top-K problems', 'Heap sort'] },
+          { id: 'dsacpp-trie', title: 'Tries', icon: '🌲', type: 'advanced', description: 'Prefix trees for fast string lookups and autocomplete.', topics: ['Prefix tree', 'Insert & search', 'Autocomplete', 'Word dictionaries'] },
+          { id: 'dsacpp-graphs', title: 'Graphs', icon: '🕸️', type: 'required', description: 'Represent and traverse graphs with BFS and DFS.', topics: ['Adjacency list / matrix', 'BFS', 'DFS', 'Connected components', 'Topological sort'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p5', title: 'Core Algorithms',
+        steps: [
+          { id: 'dsacpp-search', title: 'Searching', icon: '🔍', type: 'required', description: 'Linear and binary search with STL helpers.', topics: ['Linear search', 'Binary search', 'lower_bound / upper_bound', 'Search in rotated array'] },
+          { id: 'dsacpp-sort', title: 'Sorting', icon: '🗃️', type: 'required', description: 'Classic sorting algorithms and std::sort.', topics: ['Bubble / insertion / selection', 'Merge sort', 'Quick sort', 'Counting / radix sort', 'std::sort'] },
+          { id: 'dsacpp-backtrack', title: 'Recursion & Backtracking', icon: '♟️', type: 'required', description: 'Generate combinations and solve constraint problems.', topics: ['Subsets & permutations', 'N-Queens', 'Sudoku solver', 'Pruning'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p6', title: 'Advanced Techniques',
+        steps: [
+          { id: 'dsacpp-greedy', title: 'Greedy Algorithms', icon: '💰', type: 'optional', description: 'Make locally optimal choices for global solutions.', topics: ['Greedy choice property', 'Interval scheduling', 'Huffman coding', 'Activity selection'] },
+          { id: 'dsacpp-dp', title: 'Dynamic Programming', icon: '🧩', type: 'required', description: 'Solve overlapping subproblems with memoization and tabulation.', topics: ['Memoization', 'Tabulation', '0/1 Knapsack', 'LCS / LIS', 'DP on grids'] },
+          { id: 'dsacpp-graphalgo', title: 'Advanced Graph Algorithms', icon: '🛰️', type: 'advanced', description: 'Shortest paths, union-find and minimum spanning trees.', topics: ['Dijkstra', 'Bellman-Ford', 'Union-Find (DSU)', 'MST (Kruskal / Prim)', 'Floyd-Warshall'] },
+          { id: 'dsacpp-bits', title: 'Bit Manipulation', icon: '🔣', type: 'optional', description: 'Solve problems efficiently with bitwise tricks.', topics: ['Bitwise operators', 'Bit masks', 'XOR tricks', 'Power of two', '__builtin_popcount'] },
+        ],
+      },
+      {
+        id: 'dsacpp-p7', title: 'Competitive & Interview Prep',
+        steps: [
+          { id: 'dsacpp-patterns', title: 'Problem Patterns', icon: '🎯', type: 'required', description: 'Recognise the patterns behind most coding-interview questions.', topics: ['Two pointers', 'Sliding window', 'Prefix sum', 'Binary search patterns', 'Greedy patterns'] },
+          { id: 'dsacpp-competitive', title: 'Competitive Coding', icon: '🏆', type: 'optional', description: 'Speed and tricks for Codeforces, AtCoder and contests.', topics: ['Fast I/O', 'Codeforces / AtCoder', 'Time limits', 'Templates', 'Number theory basics'] },
+          { id: 'dsacpp-practice', title: 'Coding Practice', icon: '🏋️', type: 'required', description: 'Build problem-solving speed on LeetCode and GeeksforGeeks.', topics: ['LeetCode / GfG', 'Easy → hard progression', 'Mock interviews', 'Time management'] },
+        ],
+      },
+    ],
+  },
 ];

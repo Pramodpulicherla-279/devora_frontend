@@ -1,126 +1,266 @@
-.donate-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+/* ════════════════════════════════════════════
+   DONATE MODAL — clean, minimal, elegant
+   ════════════════════════════════════════════ */
+
+/* ── Overlay ─────────────────────────────── */
+.dm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+  animation: dm-overlay-in 0.22s ease both;
 }
 
-.donate-modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 400px;
-    position: relative;
+@keyframes dm-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.close-btn {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    background: transparent;
-    border: none;
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-    color: #333;
-    z-index: 2;
+/* ── Card ────────────────────────────────── */
+.dm-card {
+  background: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 360px;
+  padding: 36px 32px 28px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 8px 24px -4px rgba(15, 23, 42, 0.14),
+    0 32px 64px -12px rgba(15, 23, 42, 0.18);
+  animation: dm-card-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  text-align: center;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
-.upi-id-box {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 2px dashed #007bff;
+@keyframes dm-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.upi-label {
+/* ── Close button ────────────────────────── */
+.dm-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s;
+  padding: 0;
+}
+.dm-close:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+  transform: rotate(90deg);
+}
+
+/* ── Header ──────────────────────────────── */
+.dm-header {
+  margin-bottom: 24px;
+}
+
+.dm-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+  animation: dm-icon-pop 0.4s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes dm-icon-pop {
+  from { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+  to   { opacity: 1; transform: scale(1)   rotate(0deg);   }
+}
+
+.dm-icon {
+  font-size: 26px;
+  line-height: 1;
+  display: block;
+}
+
+.dm-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px;
+  letter-spacing: -0.025em;
+}
+
+.dm-sub {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── QR Code ─────────────────────────────── */
+.dm-qr-wrap {
+  margin-bottom: 20px;
+  animation: dm-fade-up 0.35s 0.18s ease both;
+}
+
+@keyframes dm-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dm-qr {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  border: 1.5px solid #e2e8f0;
+  display: block;
+  margin: 0 auto 10px;
+  object-fit: cover;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.dm-qr:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+.dm-qr-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* ── Divider ─────────────────────────────── */
+.dm-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  animation: dm-fade-up 0.35s 0.24s ease both;
+}
+.dm-divider::before,
+.dm-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #f1f5f9;
+}
+.dm-divider span {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── UPI row ─────────────────────────────── */
+.dm-upi-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  transition: border-color 0.18s;
+  animation: dm-fade-up 0.35s 0.28s ease both;
+}
+.dm-upi-row:focus-within,
+.dm-upi-row:hover {
+  border-color: #c4b5fd;
+}
+
+.dm-upi-id {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.dm-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: inherit;
+  transition: all 0.18s;
+}
+.dm-copy-btn:hover {
+  border-color: #7c3aed;
+  color: #7c3aed;
+  background: #faf5ff;
+}
+.dm-copy-btn.copied {
+  border-color: #22c55e;
+  color: #16a34a;
+  background: #f0fdf4;
+  animation: dm-copy-pop 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dm-copy-pop {
+  0%   { transform: scale(0.88); }
+  60%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ── Footer ──────────────────────────────── */
+.dm-footer {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+  animation: dm-fade-up 0.35s 0.32s ease both;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 480px) {
+  .dm-card {
+    padding: 28px 22px 24px;
+    border-radius: 20px;
+  }
+  .dm-qr {
+    width: 160px;
+    height: 160px;
+  }
+  .dm-upi-id {
     font-size: 12px;
-    color: #666;
-    margin: 0 0 8px 0;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.upi-id-large {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin: 0 0 15px 0;
-    word-break: break-all;
-}
-
-.copy-btn-large {
-    width: 100%;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.copy-btn-large:hover {
-    background: #0056b3;
-}
-
-.instruction-text {
-    font-size: 12px;
-    color: #666;
-    margin: 10px 0 0 0;
-}
-
-.divider {
-    margin: 15px 0;
-    color: #999;
-    font-size: 14px;
-}
-
-.scan-text {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.qr-code {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border: 2px solid #eee;
-    border-radius: 8px;
-}
-
-/* Hide UPI button and divider on desktop */
-@media (min-width: 769px) {
-    .upi-pay-btn,
-    .divider,
-    .scan-text {
-        display: none;
-    }
-    
-    .qr-code {
-        display: block;
-    }
-}
-
-@media (max-width: 768px) {
-    .donate-modal-content {
-        margin: 20px;
-        max-width: 90%;
-    }
-    
-    .qr-code {
-        width: 180px;
-        height: 180px;
-    }
+  }
 }
