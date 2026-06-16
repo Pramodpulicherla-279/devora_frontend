@@ -1,0 +1,68 @@
+.unsuptsne-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+.unsuptsne-header { margin-bottom: 14px; }
+.unsuptsne-title { color: #e6edf3; font-size: clamp(14px, 2.5vw, 17px); margin: 0; }
+.unsuptsne-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.unsuptsne-view-btns { display: flex; gap: 6px; }
+.unsuptsne-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.unsuptsne-btn:hover { border-color: #818cf8; }
+.unsuptsne-btn--on { border-color: #818cf8; background: #1c1f3a; color: #818cf8; }
+.unsuptsne-perp { display: flex; align-items: center; gap: 6px; }
+.unsuptsne-perp-label { color: #6b7785; font-size: 12px; }
+.unsuptsne-perp-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #a3adbb;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.unsuptsne-perp-btn--on { border-color: #818cf8; color: #818cf8; }
+.unsuptsne-svg { width: 100%; height: auto; display: block; background: #161b22; border-radius: 8px; margin-bottom: 12px; }
+.unsuptsne-compare { margin-bottom: 12px; }
+.unsuptsne-badge {
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.unsuptsne-badge--tsne { background: #1c1f3a; border: 1px solid #818cf8; color: #a3adbb; }
+.unsuptsne-badge--pca { background: #161b22; border: 1px solid #30363d; color: #a3adbb; }
+.unsuptsne-params {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.unsuptsne-param {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #161b22;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.unsuptsne-param span:first-child { color: #6b7785; }
+.unsuptsne-param span:last-child { color: #e6edf3; }

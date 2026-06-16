@@ -1,0 +1,32 @@
+/* Inferential Stats: A/B Testing — prefix: isab- */
+.isab-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.isab-head { text-align:center; margin-bottom:14px; }
+.isab-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.isab-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.isab-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.isab-variants { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:start; margin-bottom:12px; }
+.isab-variant { background:#161b22; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:8px; }
+.isab-var-hd { font-size:0.72rem; font-weight:700; text-align:center; padding:4px 8px; border-radius:6px; }
+.isab-var-hd--a { background:rgba(167,139,250,0.15); color:#a78bfa; }
+.isab-var-hd--b { background:rgba(86,211,100,0.15); color:#56d364; }
+.isab-field { display:flex; flex-direction:column; gap:3px; }
+.isab-field span { font-size:0.62rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; }
+.isab-input { background:#0d1117; border:1px solid #30363d; color:#e6edf3; border-radius:6px; padding:5px 8px; font-size:0.82rem; width:100%; }
+.isab-rate { font-size:1.2rem; font-weight:700; text-align:center; font-family:'Consolas',monospace; }
+.isab-rate--a { color:#a78bfa; }
+.isab-rate--b { color:#56d364; }
+.isab-vs { font-size:0.65rem; font-weight:800; color:#6b7785; letter-spacing:1px; align-self:center; }
+.isab-bar-wrap { display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+.isab-bar-row { display:flex; align-items:center; gap:8px; font-size:0.75rem; color:#a3adbb; }
+.isab-bar-row span:first-child { min-width:12px; }
+.isab-bar-bg { flex:1; background:#161b22; border-radius:4px; height:12px; overflow:hidden; }
+.isab-bar { height:100%; border-radius:4px; transition:width .3s; }
+.isab-bar--a { background:#a78bfa; }
+.isab-bar--b { background:#56d364; }
+.isab-result { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:12px; }
+.isab-stat { background:#161b22; border-radius:8px; padding:8px; text-align:center; display:flex; flex-direction:column; gap:3px; }
+.isab-stat span { font-size:0.58rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; }
+.isab-stat strong { font-size:0.88rem; font-family:'Consolas',monospace; }
+.isab-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.isab-note em { color:#c9d1d9; font-style:normal; font-weight:600; }
+@media (max-width:400px) { .isab-result { grid-template-columns:1fr 1fr; } .isab-variants { grid-template-columns:1fr; } .isab-vs { text-align:center; } }

@@ -1,41 +1,85 @@
-/* Lesson: Functions
+/* Lesson: Jupyter Notebooks — Your Interactive Data Playground
  * Visual type: ILLUSTRATION
- * Reason: A function's anatomy (def, params, defaults, return) is structural — an
- * annotated breakdown mapping each part teaches the syntax cleanly. */
+ * Mock notebook with 3 cell types — Code / Markdown / Output — user can click each to see it */
 import React, { useState } from 'react';
 import './visual.css';
 
-const PARTS = {
-  def: { label: 'def', d: 'Keyword that defines a function.' },
-  name: { label: 'greet', d: 'Function name (snake_case by convention).' },
-  params: { label: '(name, greeting="Hi")', d: 'Parameters. greeting has a default value.' },
-  body: { label: 'indented body', d: 'The code that runs — defined by indentation.' },
-  ret: { label: 'return', d: 'Sends a value back. Without it, returns None.' },
-};
+const CELLS = [
+  {
+    id: 'md',
+    type: 'Markdown',
+    content: '# Zephyr Orders Analysis\nLoad and inspect the June dataset.',
+    rendered: <div className="pyjup-md-rendered"><h3>Zephyr Orders Analysis</h3><p>Load and inspect the June dataset.</p></div>,
+    note: 'Markdown cells render formatted text — headings, bullet points, bold. Use them to explain your analysis.',
+  },
+  {
+    id: 'code1',
+    type: 'Code',
+    content: `import pandas as pd
+df = pd.read_csv('orders.csv')
+df.shape`,
+    output: '(500, 8)',
+    note: 'Code cells run Python. The last expression is auto-printed as output. Press Shift+Enter to run.',
+  },
+  {
+    id: 'code2',
+    type: 'Code',
+    content: `df.head()`,
+    output: (
+      <table className="pyjup-output-table">
+        <thead><tr><th>city</th><th>amount</th><th>category</th></tr></thead>
+        <tbody>
+          <tr><td>Mumbai</td><td>4200</td><td>Electronics</td></tr>
+          <tr><td>Pune</td><td>1850</td><td>Accessories</td></tr>
+          <tr><td>Delhi</td><td>6700</td><td>Electronics</td></tr>
+        </tbody>
+      </table>
+    ),
+    note: 'DataFrames render as interactive HTML tables in Jupyter — no print() needed.',
+  },
+  {
+    id: 'code3',
+    type: 'Code',
+    content: `df['amount'].hist(bins=20)`,
+    output: <div className="pyjup-chart-mock">📊 [histogram rendered inline]</div>,
+    note: 'matplotlib/seaborn charts appear directly under the cell — this is Jupyter\'s superpower.',
+  },
+];
 
-const PyFunctionsVisualization = () => {
-  const [hl, setHl] = useState('def');
+const PyJupyterVisualization = () => {
+  const [active, setActive] = useState('code1');
+  const cell = CELLS.find(c=>c.id===active);
+
   return (
-    <div className="pyfunc-wrap">
-      <header className="pyfunc-head">
-        <span className="pyfunc-badge">Python</span>
-        <h2>Functions</h2>
-        <p>Reusable, named blocks of logic</p>
+    <div className="pyjup-wrap">
+      <header className="pyjup-head">
+        <span className="pyjup-badge">Python Basics</span>
+        <h2>Jupyter Notebooks</h2>
+        <p>Click a cell to see what each type does</p>
       </header>
-      <pre className="pyfunc-code"><code>{``}<span className={`pyfunc-k ${hl==='def'?'pyfunc-k--on':''}`} onClick={()=>setHl('def')}>def</span>{` `}<span className={`pyfunc-k ${hl==='name'?'pyfunc-k--on':''}`} onClick={()=>setHl('name')}>greet</span><span className={`pyfunc-k ${hl==='params'?'pyfunc-k--on':''}`} onClick={()=>setHl('params')}>(name, greeting="Hi")</span>{`:
-    `}<span className={`pyfunc-k ${hl==='body'?'pyfunc-k--on':''}`} onClick={()=>setHl('body')}>{'msg = f"{greeting}, {name}!"'}</span>{`
-    `}<span className={`pyfunc-k ${hl==='ret'?'pyfunc-k--on':''}`} onClick={()=>setHl('ret')}>return msg</span>{`
 
-greet("Ali")            # → "Hi, Ali!"
-greet("Sam", "Hello")   # → "Hello, Sam!"`}</code></pre>
-      <div className="pyfunc-detail"><strong>{PARTS[hl].label}</strong><p>{PARTS[hl].d}</p></div>
-      <div className="pyfunc-concepts">
-        <div className="pyfunc-c"><strong>Default args</strong><p>greeting="Hi" makes that param optional.</p></div>
-        <div className="pyfunc-c"><strong>Keyword args</strong><p>greet(name="Ali") — call by name for clarity.</p></div>
-        <div className="pyfunc-c"><strong>Return</strong><p>No return → the function gives back None.</p></div>
+      <div className="pyjup-notebook">
+        {CELLS.map((c, i) => (
+          <div key={c.id} className={`pyjup-cell ${active===c.id?'pyjup-cell--on':''}`} onClick={()=>setActive(c.id)}>
+            <div className="pyjup-cell-meta">
+              <span className={`pyjup-cell-type pyjup-cell-type--${c.type.toLowerCase()}`}>{c.type}</span>
+              <span className="pyjup-cell-num">In [{i+1}]:</span>
+            </div>
+            <pre className="pyjup-cell-code"><code>{typeof c.content === 'string' ? c.content : ''}</code></pre>
+            {c.output && active===c.id && (
+              <div className="pyjup-output">
+                <span className="pyjup-output-label">Out [{i+1}]:</span>
+                {typeof c.output === 'string' ? <code className="pyjup-output-text">{c.output}</code> : c.output}
+              </div>
+            )}
+            {c.id==='md' && active===c.id && c.rendered}
+          </div>
+        ))}
       </div>
-      <div className="pyfunc-note">Tap any highlighted part. Functions keep code DRY — write once, call everywhere with different arguments.</div>
+
+      <div className="pyjup-note">{cell.note}</div>
     </div>
   );
 };
-export default PyFunctionsVisualization;
+
+export default PyJupyterVisualization;

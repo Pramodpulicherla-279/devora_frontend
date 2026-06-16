@@ -1,76 +1,57 @@
-/* Lesson: Distributions
+/* Lesson: Spread: std, IQR, CV
  * Visual type: INTERACTIVE
- * Reason: A histogram's "shape" only clicks when you can re-bin the same data
- * and switch between distribution shapes to compare them side by side. */
+ * Reason: Two teams can share an identical mean yet need totally different
+ * management — only by widening one team's spread and watching range, std and CV
+ * climb (while the mean stays put) does "spread" become tangible. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const SHAPES = {
-  uniform: { label: 'Uniform', gen: (n) => 50 },
-  normal: { label: 'Normal (bell)', gen: () => { let s = 0; for (let i = 0; i < 6; i++) s += Math.random(); return (s / 6) * 100; } },
-  rightskew: { label: 'Right-skewed', gen: () => Math.min(100, -Math.log(1 - Math.random()) * 22) },
-  bimodal: { label: 'Bimodal', gen: () => (Math.random() < 0.5 ? 25 : 72) + (Math.random() - 0.5) * 22 },
-};
-
-// deterministic-ish sample per shape (fixed seed feel via fixed arrays)
-function sample(shape, bins) {
-  const counts = new Array(bins).fill(0);
-  const N = 400;
-  for (let i = 0; i < N; i++) {
-    let v;
-    if (shape === 'uniform') v = Math.random() * 100;
-    else v = SHAPES[shape].gen();
-    v = Math.max(0, Math.min(99.9, v));
-    counts[Math.floor((v / 100) * bins)]++;
-  }
-  return counts;
+function stats(arr) {
+  const n = arr.length, mean = arr.reduce((s, v) => s + v, 0) / n;
+  const sd = Math.sqrt(arr.reduce((s, v) => s + (v - mean) ** 2, 0) / n);
+  const s = [...arr].sort((a, b) => a - b);
+  const q = (p) => { const i = p * (n - 1); const lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+  return { mean, sd, range: s[n - 1] - s[0], iqr: q(0.75) - q(0.25), cv: (sd / mean) * 100 };
 }
 
-const DescStatsDistributionsVisualization = () => {
-  const [shape, setShape] = useState('normal');
-  const [bins, setBins] = useState(12);
-  const [seed, setSeed] = useState(0); // re-roll
-  const counts = React.useMemo(() => sample(shape, bins), [shape, bins, seed]);
-  const max = Math.max(...counts, 1);
-  const W = 320, H = 130, pad = 16;
-  const bw = (W - 2 * pad) / bins;
-
+const DescStatsSpreadVisualization = () => {
+  const [spread, setSpread] = useState(20);
+  const mean = 50000;
+  const teamA = [48, 49, 50, 51, 52].map(v => v * 1000);
+  const f = spread / 100;
+  const teamB = [1 - 2 * f, 1 - f, 1, 1 + f, 1 + 2 * f].map(v => Math.round(mean * v));
+  const A = stats(teamA), B = stats(teamB);
+  const lo = 0, hi = 120000; const X = (v) => Math.min(100, Math.max(0, ((v - lo) / (hi - lo)) * 100));
   return (
-    <div className="dsdist-wrap">
-      <header className="dsdist-head">
-        <span className="dsdist-badge">Statistics</span>
-        <h2>Distributions</h2>
-        <p>The shape of your data — re-bin it &amp; compare shapes</p>
+    <div className="dssprd-wrap">
+      <header className="dssprd-head">
+        <span className="dssprd-badge">Statistics</span>
+        <h2>Measures of Spread</h2>
+        <p>Same mean, very different stories</p>
       </header>
-
-      <div className="dsdist-tabs">
-        {Object.entries(SHAPES).map(([k, s]) => (
-          <button key={k} className={`dsdist-tab ${shape === k ? 'dsdist-tab--on' : ''}`} onClick={() => setShape(k)}>{s.label}</button>
-        ))}
-      </div>
-
-      <div className="dsdist-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="dsdist-svg" preserveAspectRatio="xMidYMid meet">
-          {counts.map((c, i) => {
-            const h = (c / max) * (H - 28);
-            return <rect key={i} x={pad + i * bw + 1} y={H - 18 - h} width={bw - 2} height={h} className="dsdist-bar" rx="1" />;
-          })}
-          <line x1={pad} y1={H - 18} x2={W - pad} y2={H - 18} className="dsdist-axis" />
-        </svg>
-      </div>
-
-      <div className="dsdist-controls">
-        <label>Bins: {bins}
-          <input type="range" min="5" max="24" value={bins} onChange={(e) => setBins(Number(e.target.value))} className="dsdist-slider" />
+      {[['Team A', teamA, A, '#56d364'], ['Team B', teamB, B, '#f0883e']].map(([name, arr, st, c]) => (
+        <div key={name} className="dssprd-row">
+          <div className="dssprd-row-head"><span style={{ color: c }}>{name}</span><em>mean ₹{Math.round(st.mean / 1000)}k</em></div>
+          <div className="dssprd-track">
+            <span className="dssprd-mean" style={{ left: `${X(st.mean)}%` }} />
+            {arr.map((v, i) => (<span key={i} className="dssprd-dot" style={{ left: `${X(v)}%`, background: c }} />))}
+          </div>
+        </div>
+      ))}
+      <div className="dssprd-control">
+        <label>Team B spread = {spread}%
+          <input type="range" min="2" max="48" value={spread} onChange={e => setSpread(Number(e.target.value))} className="dssprd-slider" />
         </label>
-        <button className="dsdist-reroll" onClick={() => setSeed((s) => s + 1)}>↻ Re-sample</button>
       </div>
-
-      <div className="dsdist-note">
-        Fewer bins hide detail; too many bins make it noisy. The same data can look very different depending on bin width.
+      <div className="dssprd-stats">
+        <div className="dssprd-stat"><span>Range</span><strong>₹{Math.round(B.range / 1000)}k</strong></div>
+        <div className="dssprd-stat"><span>Std dev</span><strong>₹{Math.round(B.sd / 1000)}k</strong></div>
+        <div className="dssprd-stat"><span>IQR</span><strong>₹{Math.round(B.iqr / 1000)}k</strong></div>
+        <div className="dssprd-stat"><span>CV</span><strong>{B.cv.toFixed(0)}%</strong></div>
       </div>
+      <div className="dssprd-note">Both teams average ₹50k. <strong>Std dev</strong> &amp; <strong>range</strong> grow with spread; <strong>CV</strong> (std ÷ mean) lets you compare variability across different scales. Low spread = predictable, high = risky.</div>
     </div>
   );
 };
 
-export default DescStatsDistributionsVisualization;
+export default DescStatsSpreadVisualization;

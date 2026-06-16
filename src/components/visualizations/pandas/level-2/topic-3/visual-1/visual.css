@@ -1,17 +1,20 @@
-/* Pandas: Missing Data — prefix: pdna- */
-.pdna-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 600px; margin: 0 auto; border: 1px solid #21262d; }
-.pdna-head { text-align: center; margin-bottom: 16px; }
-.pdna-badge { background: #2e2606; color: #eab308; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #eab308; letter-spacing: 1.5px; }
-.pdna-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #eab308; }
-.pdna-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.pdna-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-.pdna-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 0.76rem; font-family: monospace; min-height: 38px; transition: all 0.15s; }
-.pdna-tab--on { background: #2e2606; border-color: #eab308; color: #eab308; font-weight: 700; }
-.pdna-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #eab308; overflow-x: auto; margin: 0 0 12px; }
-.pdna-table-wrap { overflow-x: auto; margin-bottom: 12px; }
-.pdna-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-.pdna-table th { background: #161b22; color: #a3adbb; padding: 7px 10px; border-bottom: 1px solid #21262d; }
-.pdna-table td { padding: 7px 10px; color: #c9d1d9; border-bottom: 1px solid #21262d; text-align: center; }
-.pdna-nan { color: #f85149; font-style: italic; }
-.pdna-filled { color: #34d399; background: #0d2a1b44; }
-.pdna-note { background: #161b22; border-left: 3px solid #eab308; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
+/* Pandas: apply/map/vectorised — prefix: pdapm- */
+.pdapm-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:660px; margin:0 auto; border:1px solid #21262d; }
+.pdapm-head { text-align:center; margin-bottom:14px; }
+.pdapm-badge { background:#132a3d; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.pdapm-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.pdapm-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pdapm-tabs { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.pdapm-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:9px 14px; font-size:0.8rem; color:#a3adbb; cursor:pointer; text-align:left; display:flex; align-items:center; gap:10px; transition:all .15s; }
+.pdapm-tab--on { border-color:#58a6ff; color:#e6edf3; background:#132a3d; }
+.pdapm-badge-sm { font-size:0.6rem; font-weight:800; padding:2px 8px; border-radius:99px; letter-spacing:1px; }
+.pdapm-badge-sm--vec { background:rgba(86,211,100,0.15); color:#56d364; border:1px solid rgba(86,211,100,0.3); }
+.pdapm-badge-sm--apply { background:rgba(240,136,62,0.15); color:#f0883e; border:1px solid rgba(240,136,62,0.3); }
+.pdapm-badge-sm--map { background:rgba(167,139,250,0.15); color:#a78bfa; border:1px solid rgba(167,139,250,0.3); }
+.pdapm-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; line-height:1.55; }
+.pdapm-table-wrap { overflow-x:auto; margin-bottom:12px; }
+.pdapm-table { border-collapse:collapse; width:100%; font-size:0.8rem; }
+.pdapm-table th { background:#21262d; color:#6b7785; padding:6px 14px; text-align:left; font-size:0.72rem; font-weight:700; border-bottom:1px solid #30363d; }
+.pdapm-table td { padding:6px 14px; color:#c9d1d9; border-bottom:1px solid #161b22; }
+.pdapm-result { color:#56d364; font-family:'Consolas',monospace; }
+.pdapm-note { background:#161b22; border-left:3px solid #58a6ff; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

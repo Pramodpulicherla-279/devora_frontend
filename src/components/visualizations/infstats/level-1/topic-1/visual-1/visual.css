@@ -1,21 +1,24 @@
-/* InfStats: Intro — prefix: isintro- */
-.isintro-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 700px; margin: 0 auto; border: 1px solid #21262d; }
-.isintro-head { text-align: center; margin-bottom: 18px; }
-.isintro-badge { background: #1e2150; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #818cf8; letter-spacing: 1.5px; }
-.isintro-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #818cf8; }
-.isintro-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
-.isintro-flow { display: flex; align-items: stretch; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; justify-content: center; }
-.isintro-arrow { color: #818cf8; font-size: 1.3rem; align-self: center; }
-.isintro-node { flex: 1; min-width: 130px; background: #161b22; border: 2px solid #21262d; border-radius: 10px; padding: 14px 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: all 0.15s; }
-.isintro-node--on { border-color: #818cf8; background: #1a1d3a; }
-.isintro-icon { font-size: 1.6rem; }
-.isintro-label { font-size: 0.9rem; font-weight: 700; color: #c9d1d9; }
-.isintro-sub { font-size: 0.7rem; color: #a3adbb; text-align: center; }
-.isintro-detail { background: #161b22; border-left: 3px solid #818cf8; border-radius: 8px; padding: 12px 14px; font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin-bottom: 14px; }
-.isintro-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-@media (max-width: 480px) { .isintro-compare { grid-template-columns: 1fr; } }
-.isintro-card { background: #161b22; border-radius: 9px; padding: 12px; border-top: 3px solid #30363d; }
-.isintro-card--hl { border-color: #818cf8; }
-.isintro-card strong { display: block; color: #c9d1d9; margin-bottom: 4px; }
-.isintro-card p { font-size: 0.78rem; color: #a3adbb; margin: 0; }
-.isintro-card em { color: #818cf8; font-style: normal; }
+/* Inferential Stats: Probability Intro — prefix: isfpi- */
+.isfpi-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.isfpi-head { text-align:center; margin-bottom:14px; }
+.isfpi-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.isfpi-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.isfpi-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.isfpi-bridge { display:flex; align-items:center; gap:8px; justify-content:center; margin-bottom:14px; flex-wrap:wrap; }
+.isfpi-node { background:#161b22; border:1px solid #30363d; border-radius:10px; padding:12px 14px; text-align:center; min-width:100px; display:flex; flex-direction:column; gap:3px; }
+.isfpi-node-label { font-size:0.62rem; color:#a3adbb; text-transform:uppercase; letter-spacing:1px; }
+.isfpi-node strong { font-size:1.15rem; color:#a78bfa; font-family:'Consolas',monospace; }
+.isfpi-node-sub { font-size:0.7rem; color:#6b7785; }
+.isfpi-arrow { color:#30363d; font-size:1.2rem; flex-shrink:0; }
+.isfpi-toggle { display:flex; gap:8px; justify-content:center; margin-bottom:12px; flex-wrap:wrap; }
+.isfpi-t { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:7px 14px; border-radius:7px; cursor:pointer; font-size:0.78rem; min-height:36px; transition:all .15s; }
+.isfpi-t--on { background:#1a1040; }
+.isfpi-msg { background:#161b22; border-radius:8px; padding:11px 14px; font-size:0.82rem; color:#c9d1d9; line-height:1.5; margin-bottom:14px; min-height:48px; }
+.isfpi-pillars { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; margin-bottom:12px; }
+.isfpi-pillar { background:#161b22; border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px; }
+.isfpi-pillar--inf { border:1px solid #2a1f4d; }
+.isfpi-pillar-h { font-size:0.72rem; font-weight:700; color:#a78bfa; }
+.isfpi-pillar-b { font-size:0.74rem; color:#a3adbb; line-height:1.4; }
+.isfpi-vs { font-size:0.65rem; font-weight:800; color:#6b7785; letter-spacing:1px; }
+.isfpi-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+@media (max-width:420px) { .isfpi-bridge { gap:4px; } .isfpi-node { min-width:80px; padding:8px; } }

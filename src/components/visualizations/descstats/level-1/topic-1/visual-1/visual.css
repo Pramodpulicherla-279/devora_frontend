@@ -1,35 +1,20 @@
-/* Desc Stats: Central Tendency — prefix: dsct- */
-.dsct-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 720px; margin: 0 auto; border: 1px solid #21262d; }
-.dsct-head { text-align: center; margin-bottom: 18px; }
-.dsct-badge { background: #2a1f4d; color: #a78bfa; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #a78bfa; letter-spacing: 1.5px; }
-.dsct-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #a78bfa; }
-.dsct-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
-.dsct-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
-.dsct-preset { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 38px; transition: all 0.15s; text-transform: capitalize; }
-.dsct-preset--on { background: #2a1f4d; border-color: #a78bfa; color: #a78bfa; font-weight: 700; }
-.dsct-plot-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
-.dsct-svg { width: 100%; height: auto; display: block; }
-.dsct-axis { stroke: #30363d; stroke-width: 1.5; }
-.dsct-tick { stroke: #30363d; stroke-width: 1; }
-.dsct-tick-label { fill: #7d8590; font-size: 8px; text-anchor: middle; }
-.dsct-dot { fill: #a78bfa; opacity: 0.85; }
-.dsct-dot--outlier { fill: #f0883e; }
-.dsct-mean-line { stroke: #f85149; stroke-width: 2; }
-.dsct-mean-label { fill: #f85149; font-size: 9px; text-anchor: middle; font-weight: 700; }
-.dsct-median-line { stroke: #56d364; stroke-width: 2; }
-.dsct-median-label { fill: #56d364; font-size: 9px; text-anchor: middle; font-weight: 700; }
-.dsct-outlier { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
-.dsct-outlier label { flex: 1; min-width: 180px; font-size: 0.8rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
-.dsct-slider, .dsct-outlier input[type=range] { width: 100%; accent-color: #f0883e; }
-.dsct-clear { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; min-height: 34px; }
-.dsct-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
-@media (max-width: 520px) { .dsct-stats { grid-template-columns: 1fr; } }
-.dsct-stat { background: #161b22; border-radius: 9px; padding: 10px 12px; border-top: 3px solid #30363d; display: flex; flex-direction: column; gap: 2px; }
-.dsct-stat--mean { border-color: #f85149; }
-.dsct-stat--median { border-color: #56d364; }
-.dsct-stat--mode { border-color: #a78bfa; }
-.dsct-stat span { font-size: 0.72rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; }
-.dsct-stat strong { font-size: 1.3rem; color: #e6edf3; font-family: monospace; }
-.dsct-stat em { font-size: 0.7rem; color: #7d8590; font-style: normal; }
-.dsct-insight { background: #1c1430; border: 1px solid #3a2a5a; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #c9b8f0; line-height: 1.5; }
-.dsct-insight strong { color: #a78bfa; }
+/* Desc Stats: What is statistics — prefix: dswhat- */
+.dswhat-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.dswhat-head { text-align:center; margin-bottom:16px; }
+.dswhat-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.dswhat-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.dswhat-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.dswhat-body { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.dswhat-raw { flex:0 0 auto; background:#161b22; border-radius:10px; padding:10px; display:flex; flex-direction:column; gap:3px; max-height:210px; overflow:auto; }
+.dswhat-raw-label { font-size:0.6rem; color:#a3adbb; text-transform:uppercase; letter-spacing:1px; margin-bottom:3px; }
+.dswhat-num { font-family:'Consolas',monospace; font-size:0.8rem; color:#c9d1d9; text-align:right; }
+.dswhat-num--out { color:#f0883e; font-weight:700; }
+.dswhat-arrow { color:#a78bfa; font-size:1.4rem; flex:0 0 auto; }
+.dswhat-lenses { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; min-width:0; }
+.dswhat-lens { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:12px 8px; border-radius:8px; cursor:pointer; font-size:0.82rem; font-weight:600; min-height:46px; transition:all .15s; }
+.dswhat-lens--on { border-color:#a78bfa; color:#a78bfa; background:#2a1f4d; }
+.dswhat-detail { background:#161b22; border-radius:10px; padding:14px; margin-bottom:12px; }
+.dswhat-detail strong { color:#a78bfa; font-size:0.9rem; display:block; margin-bottom:4px; }
+.dswhat-detail p { margin:0; color:#c9d1d9; font-size:0.82rem; line-height:1.5; }
+.dswhat-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+@media (max-width:480px){ .dswhat-body{ flex-direction:column; align-items:stretch; } .dswhat-arrow{ transform:rotate(90deg); text-align:center; } .dswhat-raw{ flex-direction:row; flex-wrap:wrap; max-height:none; justify-content:center; } .dswhat-raw-label{ width:100%; text-align:center; } }

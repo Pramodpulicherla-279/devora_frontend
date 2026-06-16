@@ -1,0 +1,9 @@
+.pymcond-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymcond-title { color: #a78bfa; margin: 0 0 4px; font-size: clamp(15px,3vw,18px); }
+.pymcond-sub { color: #6b7785; font-size: 13px; margin: 0 0 16px; }
+.pymcond-body { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+.pymcond-svg { flex: 1; min-width: 220px; max-width: 340px; background: #0d1117; border: 1px solid #21262d; border-radius: 8px; }
+.pymcond-info { flex: 1; min-width: 180px; }
+.pymcond-hint { color: #6b7785; font-size: 13px; margin: 0; padding: 20px 0; }
+.pymcond-code { color: #e6edf3; font-size: 13px; white-space: pre; background: #0d1117; border: 1px solid; border-radius: 6px; padding: 12px; margin: 0 0 10px; overflow-x: auto; }
+.pymcond-result { font-family: monospace; font-size: 14px; background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 8px 12px; }

@@ -1,52 +1,72 @@
-/* Lesson: A/B Testing
- * Visual type: INTERACTIVE
- * Reason: A/B testing is conversion-rate comparison + significance. Letting the
- * learner set each variant's conversions and sample size and seeing the "winner"
- * verdict (with a significance check) mirrors a real experiment dashboard. */
+/* Lesson: Type I and Type II Errors — False Positives and False Negatives
+ * Visual type: ILLUSTRATION
+ * Reason: The 2×2 decision matrix (Reality × Decision) is the canonical way to
+ * teach this. Making it clickable — selecting a cell to see the real-world
+ * consequence — connects abstract error names to the A/B test story from the lesson. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const InfStatsABVisualization = () => {
-  const [aConv, setAConv] = useState(100);
-  const [bConv, setBConv] = useState(125);
-  const n = 1000;
-  const pA = aConv / n, pB = bConv / n;
-  const se = Math.sqrt(pA * (1 - pA) / n + pB * (1 - pB) / n);
-  const z = se ? Math.abs(pB - pA) / se : 0;
-  const significant = z > 1.96;
-  const lift = pA ? ((pB - pA) / pA) * 100 : 0;
+const CELLS = {
+  tp: { label: 'True Positive', sub: 'Correct Rejection', color: '#56d364', desc: 'You shipped the new checkout flow. It really does convert better. Evidence and reality agree. ✓', cost: 'No cost' },
+  fp: { label: 'Type I Error', sub: 'False Positive (α)', color: '#f85149', desc: 'You shipped the new checkout flow — but the original test was a fluke. Six weeks later: no real lift. This is the error α controls.', cost: 'Wasted engineering + bad decision' },
+  fn: { label: 'Type II Error', sub: 'False Negative (β)', color: '#f0883e', desc: 'You ran the pricing page test. p = 0.12 — "not significant." You reverted. But the new page really did convert better. You missed a real win.', cost: 'Missed opportunity' },
+  tn: { label: 'True Negative', sub: 'Correct Acceptance', color: '#56d364', desc: 'Your test found no effect, and there was no effect. You correctly kept the original. ✓', cost: 'No cost' },
+};
+
+const InfStatsErrorTypesVisualization = () => {
+  const [sel, setSel] = useState('fp');
+  const c = CELLS[sel];
 
   return (
-    <div className="isab-wrap">
-      <header className="isab-head">
-        <span className="isab-badge">Inferential</span>
-        <h2>A/B Testing</h2>
-        <p>Is variant B really better, or just luck?</p>
+    <div className="iserr-wrap">
+      <header className="iserr-head">
+        <span className="iserr-badge">Inferential</span>
+        <h2>Type I &amp; Type II Errors</h2>
+        <p>Four possible outcomes — two of them are wrong</p>
       </header>
-      <div className="isab-variants">
-        <div className="isab-variant isab-variant--a">
-          <div className="isab-vtag">A (control)</div>
-          <div className="isab-rate">{(pA * 100).toFixed(1)}%</div>
-          <div className="isab-vsub">{aConv} / {n} converted</div>
-          <input type="range" min="50" max="300" value={aConv} onChange={(e) => setAConv(Number(e.target.value))} className="isab-slider" />
+
+      <div className="iserr-matrix">
+        <div className="iserr-col-hd"></div>
+        <div className="iserr-col-hd">H₀ True (no effect)</div>
+        <div className="iserr-col-hd">H₀ False (real effect)</div>
+
+        <div className="iserr-row-hd">Reject H₀</div>
+        <button className={`iserr-cell iserr-cell--fp ${sel === 'fp' ? 'iserr-cell--sel' : ''}`} onClick={() => setSel('fp')}>
+          <strong>Type I Error</strong><span>α = P(FP)</span>
+        </button>
+        <button className={`iserr-cell iserr-cell--tp ${sel === 'tp' ? 'iserr-cell--sel' : ''}`} onClick={() => setSel('tp')}>
+          <strong>True Positive</strong><span>Power = 1−β</span>
+        </button>
+
+        <div className="iserr-row-hd">Fail to Reject</div>
+        <button className={`iserr-cell iserr-cell--tn ${sel === 'tn' ? 'iserr-cell--sel' : ''}`} onClick={() => setSel('tn')}>
+          <strong>True Negative</strong><span>1 − α</span>
+        </button>
+        <button className={`iserr-cell iserr-cell--fn ${sel === 'fn' ? 'iserr-cell--sel' : ''}`} onClick={() => setSel('fn')}>
+          <strong>Type II Error</strong><span>β = P(FN)</span>
+        </button>
+      </div>
+
+      <div className="iserr-detail" style={{ borderColor: c.color }}>
+        <div className="iserr-detail-hd">
+          <strong style={{ color: c.color }}>{c.label}</strong>
+          <span>({c.sub})</span>
         </div>
-        <div className="isab-vs">VS</div>
-        <div className="isab-variant isab-variant--b">
-          <div className="isab-vtag">B (variant)</div>
-          <div className="isab-rate">{(pB * 100).toFixed(1)}%</div>
-          <div className="isab-vsub">{bConv} / {n} converted</div>
-          <input type="range" min="50" max="300" value={bConv} onChange={(e) => setBConv(Number(e.target.value))} className="isab-slider isab-slider--b" />
-        </div>
+        <p className="iserr-desc">{c.desc}</p>
+        <div className="iserr-cost"><span>Business cost:</span> {c.cost}</div>
       </div>
-      <div className={`isab-verdict ${significant ? (pB > pA ? 'isab-verdict--win' : 'isab-verdict--lose') : 'isab-verdict--none'}`}>
-        {significant ? `${pB > pA ? 'B wins' : 'A wins'} — statistically significant (z = ${z.toFixed(2)})` : `No significant difference yet (z = ${z.toFixed(2)} < 1.96)`}
+
+      <div className="iserr-trade">
+        <div className="iserr-trade-item">Reducing α → raises β</div>
+        <div className="iserr-trade-arrow">⟺</div>
+        <div className="iserr-trade-item">Reducing β → raises α</div>
       </div>
-      <div className="isab-stats">
-        <div className="isab-stat"><span>Lift</span><strong style={{ color: lift >= 0 ? '#34d399' : '#f85149' }}>{lift >= 0 ? '+' : ''}{lift.toFixed(1)}%</strong></div>
-        <div className="isab-stat"><span>z-score</span><strong>{z.toFixed(2)}</strong></div>
+
+      <div className="iserr-note">
+        You can't eliminate both errors at once. The trade-off is managed by choosing α, running a power analysis, and collecting enough data — not by hoping the test comes out significant.
       </div>
-      <div className="isab-note">A difference isn't real until it's <strong>significant</strong> — small samples produce noisy "winners". Bigger n → more reliable verdicts.</div>
     </div>
   );
 };
-export default InfStatsABVisualization;
+
+export default InfStatsErrorTypesVisualization;

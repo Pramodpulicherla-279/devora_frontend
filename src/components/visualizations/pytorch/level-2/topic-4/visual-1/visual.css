@@ -1,0 +1,118 @@
+.ptckpt-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.ptckpt-title {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.ptckpt-chart-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.ptckpt-chart-label {
+  font-size: 11px;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.ptckpt-svg {
+  width: 100%;
+  display: block;
+}
+
+.ptckpt-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #6b7785;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.ptckpt-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ptckpt-dot--best { background: #f97316; }
+.ptckpt-dot--ckpt { background: #21262d; border: 2px solid #58a6ff; }
+
+.ptckpt-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ptckpt-tab {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 7px 0;
+  color: #a3adbb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ptckpt-tab--active {
+  border-color: #f97316;
+  color: #f97316;
+  background: #f9731610;
+}
+
+.ptckpt-code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 11px;
+  color: #56d364;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0 0 12px;
+  line-height: 1.7;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.ptckpt-tip {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-left: 3px solid #58a6ff;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #a3adbb;
+  line-height: 1.5;
+}
+
+.ptckpt-tip code {
+  background: #21262d;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #f97316;
+  font-family: 'JetBrains Mono', monospace;
+}

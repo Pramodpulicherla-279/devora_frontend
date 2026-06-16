@@ -1,0 +1,114 @@
+.mfwhy-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfwhy-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin: 0 0 4px;
+}
+
+.mfwhy-subtitle {
+  color: #6b7785;
+  font-size: 0.85rem;
+  margin: 0 0 20px;
+}
+
+.mfwhy-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mfwhy-stage-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mfwhy-stage {
+  background: #0d1117;
+  border: 1.5px solid #21262d;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-width: 90px;
+}
+
+.mfwhy-stage:hover {
+  border-color: var(--accent);
+}
+
+.mfwhy-active {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.mfwhy-stage-label {
+  color: #e6edf3;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.mfwhy-stage-math {
+  color: var(--accent, #58a6ff);
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.mfwhy-arrow {
+  color: #6b7785;
+  font-size: 1.1rem;
+}
+
+.mfwhy-info {
+  background: #0d1117;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 20px;
+  animation: mfwhy-fadein 0.2s ease;
+}
+
+@keyframes mfwhy-fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mfwhy-info-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.mfwhy-info-math {
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: #a3adbb;
+  margin-bottom: 8px;
+}
+
+.mfwhy-info-desc {
+  color: #a3adbb;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.mfwhy-placeholder {
+  color: #6b7785;
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 16px;
+}

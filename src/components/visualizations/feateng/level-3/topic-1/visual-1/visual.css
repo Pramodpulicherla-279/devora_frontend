@@ -1,0 +1,115 @@
+.fesel-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.fesel-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.fesel-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.fesel-tab {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: all 0.2s;
+}
+.fesel-tab--on {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+.fesel-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.fesel-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.3s;
+}
+.fesel-row--drop {
+  opacity: 0.45;
+}
+.fesel-name {
+  width: 88px;
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: #e6edf3;
+  flex-shrink: 0;
+}
+.fesel-bar-track {
+  flex: 1;
+  height: 10px;
+  background: #21262d;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.fesel-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease, background 0.3s;
+}
+.fesel-val {
+  width: 36px;
+  text-align: right;
+  font-size: 0.78rem;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+.fesel-status {
+  width: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.fesel-status--keep { color: #56d364; }
+.fesel-status--drop { color: #6b7785; }
+.fesel-summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.fesel-sum-keep {
+  font-size: 0.82rem;
+  color: #56d364;
+  background: rgba(86,211,100,0.1);
+  border: 1px solid rgba(86,211,100,0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+.fesel-sum-drop {
+  font-size: 0.82rem;
+  color: #6b7785;
+  background: rgba(107,119,133,0.1);
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+.fesel-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

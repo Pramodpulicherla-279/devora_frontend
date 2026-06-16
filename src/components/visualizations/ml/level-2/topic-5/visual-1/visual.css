@@ -1,0 +1,20 @@
+/* ML: K-Means Clustering — prefix: mlkm- */
+.mlkm-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.mlkm-head { text-align:center; margin-bottom:14px; }
+.mlkm-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.mlkm-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.mlkm-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.mlkm-steps { display:flex; gap:8px; justify-content:center; margin-bottom:12px; flex-wrap:wrap; }
+.mlkm-step-pill { font-size:0.7rem; padding:4px 10px; border-radius:99px; border:1px solid #30363d; color:#a3adbb; }
+.mlkm-step-pill--on { border-color:#a78bfa; color:#a78bfa; background:#2a1f4d; }
+.mlkm-svg { display:block; background:#161b22; border-radius:8px; margin-bottom:10px; }
+.mlkm-controls { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:10px; }
+.mlkm-btn { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:6px 14px; border-radius:7px; cursor:pointer; font-size:0.78rem; }
+.mlkm-btn:disabled { opacity:0.35; cursor:not-allowed; }
+.mlkm-iter { font-size:0.75rem; color:#a3adbb; }
+.mlkm-legend { display:flex; flex-direction:column; gap:5px; margin-bottom:12px; }
+.mlkm-leg { font-size:0.74rem; color:#a3adbb; display:flex; align-items:center; gap:6px; }
+.mlkm-dot { display:inline-block; width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.mlkm-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.mlkm-note code { color:#a78bfa; font-size:0.78rem; }
+.mlkm-note strong { color:#c9d1d9; }

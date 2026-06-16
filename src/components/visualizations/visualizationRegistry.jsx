@@ -2,37 +2,50 @@
 import './_viz-responsive.css';
 
 // Descriptive Statistics course visualizations
-import DescStatsCentralTendencyVisualization from './descstats/level-1/topic-1/visual-1/visual';
-import DescStatsSpreadVarianceVisualization from './descstats/level-1/topic-2/visual-1/visual';
-import DescStatsDistributionsVisualization from './descstats/level-1/topic-3/visual-1/visual';
-import DescStatsProbDistributionsVisualization from './descstats/level-2/topic-1/visual-1/visual';
-import DescStatsNormalZVisualization from './descstats/level-2/topic-2/visual-1/visual';
-import DescStatsSkewKurtosisVisualization from './descstats/level-2/topic-3/visual-1/visual';
-import DescStatsOutliersVisualization from './descstats/level-3/topic-1/visual-1/visual';
-import DescStatsCorrelationVisualization from './descstats/level-3/topic-2/visual-1/visual';
-import DescStatsSummaryPyVisualization from './descstats/level-3/topic-3/visual-1/visual';
+import DescStatsWhatIsVisualization from './descstats/level-1/topic-1/visual-1/visual';
+import DescStatsCentralTendencyVisualization from './descstats/level-1/topic-2/visual-1/visual';
+import DescStatsSpreadVisualization from './descstats/level-1/topic-3/visual-1/visual';
+import DescStatsPercentilesVisualization from './descstats/level-1/topic-4/visual-1/visual';
+import DescStatsSkewKurtosisVisualization from './descstats/level-1/topic-5/visual-1/visual';
+import DescStatsCorrelationVisualization from './descstats/level-2/topic-1/visual-1/visual';
+import DescStatsContingencyVisualization from './descstats/level-2/topic-2/visual-1/visual';
+import DescStatsOutliersVisualization from './descstats/level-2/topic-3/visual-1/visual';
+import DescStatsPythonVisualization from './descstats/level-2/topic-4/visual-1/visual';
+import DescStatsChoosingVisualization from './descstats/level-3/topic-1/visual-1/visual';
+import DescStatsSimpsonsVisualization from './descstats/level-3/topic-2/visual-1/visual';
+import DescStatsWeightedVisualization from './descstats/level-3/topic-3/visual-1/visual';
+import DescStatsReportVisualization from './descstats/level-3/topic-4/visual-1/visual';
 
 // Inferential Statistics course visualizations
-import InfStatsIntroVisualization from './infstats/level-1/topic-1/visual-1/visual';
-import InfStatsProbabilityVisualization from './infstats/level-1/topic-2/visual-1/visual';
-import InfStatsSamplingVisualization from './infstats/level-1/topic-3/visual-1/visual';
+import InfStatsProbIntroVisualization from './infstats/level-1/topic-1/visual-1/visual';
+import InfStatsDistributionsVisualization from './infstats/level-1/topic-2/visual-1/visual';
+import InfStatsCltVisualization from './infstats/level-1/topic-3/visual-1/visual';
+import InfStatsSamplingVisualization from './infstats/level-1/topic-4/visual-1/visual';
 import InfStatsHypothesisVisualization from './infstats/level-2/topic-1/visual-1/visual';
-import InfStatsPValueVisualization from './infstats/level-2/topic-2/visual-1/visual';
-import InfStatsTZVisualization from './infstats/level-2/topic-3/visual-1/visual';
+import InfStatsTTestsVisualization from './infstats/level-2/topic-2/visual-1/visual';
+import InfStatsChiSquareVisualization from './infstats/level-2/topic-3/visual-1/visual';
+import InfStatsAnovaVisualization from './infstats/level-2/topic-4/visual-1/visual';
 import InfStatsCIVisualization from './infstats/level-3/topic-1/visual-1/visual';
-import InfStatsABVisualization from './infstats/level-3/topic-2/visual-1/visual';
-import InfStatsChiSquareVisualization from './infstats/level-3/topic-3/visual-1/visual';
+import InfStatsErrorTypesVisualization from './infstats/level-3/topic-2/visual-1/visual';
+import InfStatsPowerVisualization from './infstats/level-3/topic-3/visual-1/visual';
+import InfStatsABTestVisualization from './infstats/level-3/topic-4/visual-1/visual';
 
 // Machine Learning Intro course visualizations
 import MlWhatIsVisualization from './ml/level-1/topic-1/visual-1/visual';
-import MlFeatureEngVisualization from './ml/level-1/topic-2/visual-1/visual';
-import MlTrainTestSplitVisualization from './ml/level-1/topic-3/visual-1/visual';
+import MlSupervisedUnsupervisedVisualization from './ml/level-1/topic-2/visual-1/visual';
+import MlFirstPipelineVisualization from './ml/level-1/topic-3/visual-1/visual';
+import MlFeatureEngVisualization from './ml/level-1/topic-4/visual-1/visual';
+import MlBiasVarianceVisualization from './ml/level-1/topic-5/visual-1/visual';
 import MlLinearRegressionVisualization from './ml/level-2/topic-1/visual-1/visual';
-import MlDecisionTreeVisualization from './ml/level-2/topic-2/visual-1/visual';
-import MlClassMetricsVisualization from './ml/level-2/topic-3/visual-1/visual';
-import MlSklearnApiVisualization from './ml/level-3/topic-1/visual-1/visual';
+import MlLogisticRegressionVisualization from './ml/level-2/topic-2/visual-1/visual';
+import MlDecisionTreeVisualization from './ml/level-2/topic-3/visual-1/visual';
+import MlRandomForestVisualization from './ml/level-2/topic-4/visual-1/visual';
+import MlKMeansVisualization from './ml/level-2/topic-5/visual-1/visual';
+import MlModelEvalVisualization from './ml/level-3/topic-1/visual-1/visual';
 import MlCrossValidationVisualization from './ml/level-3/topic-2/visual-1/visual';
-import MlPipelineVisualization from './ml/level-3/topic-3/visual-1/visual';
+import MlOverfittingVisualization from './ml/level-3/topic-3/visual-1/visual';
+import MlSaveLoadVisualization from './ml/level-3/topic-4/visual-1/visual';
+import MlEndToEndVisualization from './ml/level-3/topic-5/visual-1/visual';
 
 // AI & LLM Basics course visualizations
 import LlmWhatIsVisualization from './llm/level-1/topic-1/visual-1/visual';
@@ -79,28 +92,37 @@ import NgGuardVisualization from './angular/level-3/topic-2/visual-1/visual';
 import NgReactiveFormsVisualization from './angular/level-3/topic-3/visual-1/visual';
 
 // Pandas & NumPy course visualizations
-import PdReadVisualization from './pandas/level-1/topic-1/visual-1/visual';
-import PdWhatVisualization from './pandas/level-1/topic-2/visual-1/visual';
-import PdSelectVisualization from './pandas/level-1/topic-3/visual-1/visual';
-import PdExploreVisualization from './pandas/level-1/topic-4/visual-1/visual';
-import PdGroupVisualization from './pandas/level-2/topic-1/visual-1/visual';
-import PdColsVisualization from './pandas/level-2/topic-2/visual-1/visual';
-import PdNaVisualization from './pandas/level-2/topic-3/visual-1/visual';
-import PdDatesVisualization from './pandas/level-2/topic-4/visual-1/visual';
-import PdStrVisualization from './pandas/level-2/topic-5/visual-1/visual';
-import PdCleanVisualization from './pandas/level-3/topic-1/visual-1/visual';
-import PdNumpyVisualization from './pandas/level-3/topic-2/visual-1/visual';
-import PdWorkflowVisualization from './pandas/level-3/topic-3/visual-1/visual';
+import PdWhatIsVisualization from './pandas/level-1/topic-1/visual-1/visual';
+import PdLoadingVisualization from './pandas/level-1/topic-2/visual-1/visual';
+import PdExploreDataVisualization from './pandas/level-1/topic-3/visual-1/visual';
+import PdSelectLocVisualization from './pandas/level-1/topic-4/visual-1/visual';
+import PdNumpyArraysVisualization from './pandas/level-1/topic-5/visual-1/visual';
+import PdFilterSortVisualization from './pandas/level-2/topic-1/visual-1/visual';
+import PdMissingDataVisualization from './pandas/level-2/topic-2/visual-1/visual';
+import PdApplyMapVisualization from './pandas/level-2/topic-3/visual-1/visual';
+import PdStrAccessorVisualization from './pandas/level-2/topic-4/visual-1/visual';
+import PdColManageVisualization from './pandas/level-2/topic-5/visual-1/visual';
+import PdGroupByVisualization from './pandas/level-3/topic-1/visual-1/visual';
+import PdMergeJoinVisualization from './pandas/level-3/topic-2/visual-1/visual';
+import PdPivotTableVisualization from './pandas/level-3/topic-3/visual-1/visual';
+import PdExportVisualization from './pandas/level-3/topic-4/visual-1/visual';
+import PdTimeSeriesVisualization from './pandas/level-3/topic-5/visual-1/visual';
 
-// Python Basics for Analysts course visualizations
+// Python Basics for Data Analysts course visualizations
+import PySetupVisualization from './python/level-1/topic-1/visual-1/visual';
 import PyVariablesVisualization from './python/level-1/topic-2/visual-1/visual';
 import PyCollectionsVisualization from './python/level-1/topic-3/visual-1/visual';
-import PyLoopVisualization from './python/level-2/topic-1/visual-1/visual';
-import PyFunctionsVisualization from './python/level-2/topic-2/visual-1/visual';
-import PyComprehensionVisualization from './python/level-3/topic-1/visual-1/visual';
-import PyErrorVisualization from './python/level-3/topic-2/visual-1/visual';
-import PyProjectVisualization from './python/level-3/topic-3/visual-1/visual';
-import PyRegexVisualization from './python/level-3/topic-4/visual-1/visual';
+import PyLoopsVisualization from './python/level-1/topic-4/visual-1/visual';
+import PyFunctionsVisualization from './python/level-1/topic-5/visual-1/visual';
+import PyFileIOVisualization from './python/level-1/topic-6/visual-1/visual';
+import PyVenvVisualization from './python/level-2/topic-1/visual-1/visual';
+import PyJupyterVisualization from './python/level-2/topic-2/visual-1/visual';
+import PyReadCsvJsonVisualization from './python/level-2/topic-3/visual-1/visual';
+import PyStrManipVisualization from './python/level-2/topic-4/visual-1/visual';
+import PyErrorHandlingVisualization from './python/level-3/topic-1/visual-1/visual';
+import PyComprehensionVisualization from './python/level-3/topic-2/visual-1/visual';
+import PyDatesVisualization from './python/level-3/topic-3/visual-1/visual';
+import PyPipelineVisualization from './python/level-3/topic-4/visual-1/visual';
 
 // Vite / Webpack course visualizations
 import BtWhyVisualization from './buildtools/level-1/topic-1/visual-1/visual';
@@ -155,6 +177,253 @@ import SqlWindowFunctionsVisualization from './sql/level-2/topic-3/visual-1/visu
 import SqlIndexesPerformanceVisualization from './sql/level-3/topic-1/visual-1/visual';
 import SqlTransactionsVisualization from './sql/level-3/topic-2/visual-1/visual';
 import SqlStoredProceduresVisualization from './sql/level-3/topic-3/visual-1/visual';
+// Data Visualisation — Matplotlib, Seaborn & Beyond course visualizations
+import DvWhyVisualization from './dataviz/level-1/topic-1/visual-1/visual';
+import DvLineBarVisualization from './dataviz/level-1/topic-2/visual-1/visual';
+import DvScatterVisualization from './dataviz/level-1/topic-3/visual-1/visual';
+import DvHistogramVisualization from './dataviz/level-1/topic-4/visual-1/visual';
+import DvCustomizeVisualization from './dataviz/level-1/topic-5/visual-1/visual';
+import DvSeabornIntroVisualization from './dataviz/level-2/topic-1/visual-1/visual';
+import DvDistplotVisualization from './dataviz/level-2/topic-2/visual-1/visual';
+import DvCatplotVisualization from './dataviz/level-2/topic-3/visual-1/visual';
+import DvHeatmapVisualization from './dataviz/level-2/topic-4/visual-1/visual';
+import DvPairplotVisualization from './dataviz/level-2/topic-5/visual-1/visual';
+import DvSubplotsVisualization from './dataviz/level-3/topic-1/visual-1/visual';
+import DvChartDecisionVisualization from './dataviz/level-3/topic-2/visual-1/visual';
+import DvPowerBiVisualization from './dataviz/level-3/topic-3/visual-1/visual';
+import DvPlotlyVisualization from './dataviz/level-3/topic-4/visual-1/visual';
+
+// Spreadsheets — Excel & Google Sheets for Analysts course visualizations
+import XlWhyVisualization from './sheets/level-1/topic-1/visual-1/visual';
+import XlGridVisualization from './sheets/level-1/topic-2/visual-1/visual';
+import XlFormulasVisualization from './sheets/level-1/topic-3/visual-1/visual';
+import XlReferencesVisualization from './sheets/level-1/topic-4/visual-1/visual';
+import XlTextFnVisualization from './sheets/level-1/topic-5/visual-1/visual';
+import XlIfVisualization from './sheets/level-2/topic-1/visual-1/visual';
+import XlVlookupVisualization from './sheets/level-2/topic-2/visual-1/visual';
+import XlIndexMatchVisualization from './sheets/level-2/topic-3/visual-1/visual';
+import XlCleanVisualization from './sheets/level-2/topic-4/visual-1/visual';
+import XlCfVisualization from './sheets/level-2/topic-5/visual-1/visual';
+import XlPivotVisualization from './sheets/level-3/topic-1/visual-1/visual';
+import XlPivotChartVisualization from './sheets/level-3/topic-2/visual-1/visual';
+import XlChartTypeVisualization from './sheets/level-3/topic-3/visual-1/visual';
+import XlValidateVisualization from './sheets/level-3/topic-4/visual-1/visual';
+
+// SQL — From Zero to Data Queries course visualizations
+import SqlFzWhyVisualization from './sqlfz/level-1/topic-1/visual-1/visual';
+import SqlFzSetupVisualization from './sqlfz/level-1/topic-2/visual-1/visual';
+import SqlFzSelectVisualization from './sqlfz/level-1/topic-3/visual-1/visual';
+import SqlFzWhereVisualization from './sqlfz/level-1/topic-4/visual-1/visual';
+import SqlFzOrderByVisualization from './sqlfz/level-1/topic-5/visual-1/visual';
+import SqlFzNullVisualization from './sqlfz/level-1/topic-6/visual-1/visual';
+import SqlFzAggVisualization from './sqlfz/level-2/topic-1/visual-1/visual';
+import SqlFzGroupByVisualization from './sqlfz/level-2/topic-2/visual-1/visual';
+import SqlFzHavingVisualization from './sqlfz/level-2/topic-3/visual-1/visual';
+import SqlFzAliasVisualization from './sqlfz/level-2/topic-4/visual-1/visual';
+import SqlFzRelationsVisualization from './sqlfz/level-3/topic-1/visual-1/visual';
+import SqlFzJoinsVisualization from './sqlfz/level-3/topic-2/visual-1/visual';
+import SqlFzSubqueriesVisualization from './sqlfz/level-3/topic-3/visual-1/visual';
+import SqlFzWindowVisualization from './sqlfz/level-3/topic-4/visual-1/visual';
+import SqlFzCteVisualization from './sqlfz/level-3/topic-5/visual-1/visual';
+
+// Python (Programming & Math) course visualizations
+import PyMathWhatIsVisualization from './pythonmath/level-1/topic-1/visual-1/visual';
+import PyMathSetupVisualization from './pythonmath/level-1/topic-2/visual-1/visual';
+import PyMathVarsVisualization from './pythonmath/level-1/topic-3/visual-1/visual';
+import PyMathStringsVisualization from './pythonmath/level-1/topic-4/visual-1/visual';
+import PyMathConditionalsVisualization from './pythonmath/level-1/topic-5/visual-1/visual';
+import PyMathListsVisualization from './pythonmath/level-2/topic-1/visual-1/visual';
+import PyMathDictsVisualization from './pythonmath/level-2/topic-2/visual-1/visual';
+import PyMathLoopsVisualization from './pythonmath/level-2/topic-3/visual-1/visual';
+import PyMathFunctionsVisualization from './pythonmath/level-2/topic-4/visual-1/visual';
+import PyMathComprehensionVisualization from './pythonmath/level-2/topic-5/visual-1/visual';
+import PyMathFileVisualization from './pythonmath/level-3/topic-1/visual-1/visual';
+import PyMathErrorVisualization from './pythonmath/level-3/topic-2/visual-1/visual';
+import PyMathOopVisualization from './pythonmath/level-3/topic-3/visual-1/visual';
+import PyMathLibsVisualization from './pythonmath/level-3/topic-4/visual-1/visual';
+import PyMathJupyterVisualization from './pythonmath/level-3/topic-5/visual-1/visual';
+
+// Transformers & LLMs course visualizations
+import TrSeqVisualization from './transformers/level-1/topic-1/visual-1/visual';
+import TrRnnVisualization from './transformers/level-1/topic-2/visual-1/visual';
+import TrAttentionVisualization from './transformers/level-1/topic-3/visual-1/visual';
+import TrMultiHeadVisualization from './transformers/level-1/topic-4/visual-1/visual';
+import TrArchVisualization from './transformers/level-1/topic-5/visual-1/visual';
+import TrPosEncodingVisualization from './transformers/level-2/topic-1/visual-1/visual';
+import TrScratchVisualization from './transformers/level-2/topic-2/visual-1/visual';
+import TrPretrainingVisualization from './transformers/level-2/topic-3/visual-1/visual';
+import TrFinetuneVisualization from './transformers/level-2/topic-4/visual-1/visual';
+import TrTokenizationVisualization from './transformers/level-2/topic-5/visual-1/visual';
+import TrPromptingVisualization from './transformers/level-3/topic-1/visual-1/visual';
+import TrLoraVisualization from './transformers/level-3/topic-2/visual-1/visual';
+import TrRagVisualization from './transformers/level-3/topic-3/visual-1/visual';
+import TrEvalVisualization from './transformers/level-3/topic-4/visual-1/visual';
+import TrEndToEndVisualization from './transformers/level-3/topic-5/visual-1/visual';
+
+// Deployment & MLOps course visualizations
+import MlopsApiVisualization from './mlops/level-1/topic-1/visual-1/visual';
+import MlopsLatencyVisualization from './mlops/level-1/topic-2/visual-1/visual';
+import MlopsDockerVisualization from './mlops/level-1/topic-3/visual-1/visual';
+import MlopsServeLlmVisualization from './mlops/level-1/topic-4/visual-1/visual';
+import MlopsVersioningVisualization from './mlops/level-1/topic-5/visual-1/visual';
+import MlopsExperimentVisualization from './mlops/level-2/topic-1/visual-1/visual';
+import MlopsDvcVisualization from './mlops/level-2/topic-2/visual-1/visual';
+import MlopsCicdVisualization from './mlops/level-2/topic-3/visual-1/visual';
+import MlopsMonitorVisualization from './mlops/level-2/topic-4/visual-1/visual';
+import MlopsRetrainVisualization from './mlops/level-2/topic-5/visual-1/visual';
+import MlopsCloudVisualization from './mlops/level-3/topic-1/visual-1/visual';
+import MlopsManagedApisVisualization from './mlops/level-3/topic-2/visual-1/visual';
+import MlopsServerlessVisualization from './mlops/level-3/topic-3/visual-1/visual';
+import MlopsVectorDbVisualization from './mlops/level-3/topic-4/visual-1/visual';
+import MlopsEndToEndVisualization from './mlops/level-3/topic-5/visual-1/visual';
+
+// Jupyter Notebooks course visualizations
+import JnbSetupVisualization from './jupyter/level-1/topic-1/visual-1/visual';
+import JnbCellsVisualization from './jupyter/level-1/topic-2/visual-1/visual';
+import JnbWidgetsVisualization from './jupyter/level-1/topic-3/visual-1/visual';
+import JnbOrganiseVisualization from './jupyter/level-2/topic-1/visual-1/visual';
+import JnbDebuggingVisualization from './jupyter/level-2/topic-2/visual-1/visual';
+import JnbProductionVisualization from './jupyter/level-2/topic-3/visual-1/visual';
+import JnbExportVisualization from './jupyter/level-3/topic-1/visual-1/visual';
+import JnbGithubVisualization from './jupyter/level-3/topic-2/visual-1/visual';
+import JnbCollabVisualization from './jupyter/level-3/topic-3/visual-1/visual';
+
+// Data Analytics Intro course visualizations
+import DaiWhatIsVisualization from './daintro/level-1/topic-1/visual-1/visual';
+
+// Supervised Learning course visualizations
+import SvWhatIsVisualization from './supervised/level-1/topic-1/visual-1/visual';
+import SvRvsCVisualization from './supervised/level-1/topic-2/visual-1/visual';
+import SvSplitsVisualization from './supervised/level-1/topic-3/visual-1/visual';
+import SvLinearRegrVisualization from './supervised/level-1/topic-4/visual-1/visual';
+import SvRegrEvalVisualization from './supervised/level-1/topic-5/visual-1/visual';
+import SvLogisticVisualization from './supervised/level-2/topic-1/visual-1/visual';
+import SvDecisionTreeVisualization from './supervised/level-2/topic-2/visual-1/visual';
+import SvKnnVisualization from './supervised/level-2/topic-3/visual-1/visual';
+import SvClassEvalVisualization from './supervised/level-2/topic-4/visual-1/visual';
+import SvConfMatrixVisualization from './supervised/level-2/topic-5/visual-1/visual';
+import SvOverfitVisualization from './supervised/level-3/topic-1/visual-1/visual';
+import SvCrossValVisualization from './supervised/level-3/topic-2/visual-1/visual';
+import SvScalingVisualization from './supervised/level-3/topic-3/visual-1/visual';
+import SvRandomForestVisualization from './supervised/level-3/topic-4/visual-1/visual';
+import SvEndToEndVisualization from './supervised/level-3/topic-5/visual-1/visual';
+
+// Unsupervised Learning course visualizations
+import UnsupWhatIsVisualization from './unsupervised/level-1/topic-1/visual-1/visual';
+import UnsupKMeansVisualization from './unsupervised/level-1/topic-2/visual-1/visual';
+import UnsupClustersNumVisualization from './unsupervised/level-1/topic-3/visual-1/visual';
+import UnsupEvalVisualization from './unsupervised/level-1/topic-4/visual-1/visual';
+import UnsupHierarchVisualization from './unsupervised/level-1/topic-5/visual-1/visual';
+import UnsupCurseVisualization from './unsupervised/level-2/topic-1/visual-1/visual';
+import UnsupPcaVisualization from './unsupervised/level-2/topic-2/visual-1/visual';
+import UnsupPcaVizVisualization from './unsupervised/level-2/topic-3/visual-1/visual';
+import UnsupTsneVisualization from './unsupervised/level-2/topic-4/visual-1/visual';
+import UnsupDbscanVisualization from './unsupervised/level-2/topic-5/visual-1/visual';
+import UnsupAnomalyVisualization from './unsupervised/level-3/topic-1/visual-1/visual';
+import UnsupIsoForestVisualization from './unsupervised/level-3/topic-2/visual-1/visual';
+import UnsupSegmentVisualization from './unsupervised/level-3/topic-3/visual-1/visual';
+import UnsupClusFeatVisualization from './unsupervised/level-3/topic-4/visual-1/visual';
+import UnsupEndToEndVisualization from './unsupervised/level-3/topic-5/visual-1/visual';
+
+// Feature Engineering course visualizations
+import FeWhatIsVisualization from './feateng/level-1/topic-1/visual-1/visual';
+import FeMissingVisualization from './feateng/level-1/topic-2/visual-1/visual';
+import FeEncodingVisualization from './feateng/level-1/topic-3/visual-1/visual';
+import FeScalingVisualization from './feateng/level-1/topic-4/visual-1/visual';
+import FeDatetimeVisualization from './feateng/level-1/topic-5/visual-1/visual';
+import FeBinningVisualization from './feateng/level-2/topic-1/visual-1/visual';
+import FeInteractionVisualization from './feateng/level-2/topic-2/visual-1/visual';
+import FePolynomialVisualization from './feateng/level-2/topic-3/visual-1/visual';
+import FeTextVisualization from './feateng/level-2/topic-4/visual-1/visual';
+import FeAggregateVisualization from './feateng/level-2/topic-5/visual-1/visual';
+import FeSelectionVisualization from './feateng/level-3/topic-1/visual-1/visual';
+import FeCorrelationVisualization from './feateng/level-3/topic-2/visual-1/visual';
+import FeLeakageVisualization from './feateng/level-3/topic-3/visual-1/visual';
+import FePipelineVisualization from './feateng/level-3/topic-4/visual-1/visual';
+import FeEndToEndVisualization from './feateng/level-3/topic-5/visual-1/visual';
+
+// Neural Networks course visualizations
+import NnWhatIsVisualization from './neuralnet/level-1/topic-1/visual-1/visual';
+import NnActivationVisualization from './neuralnet/level-1/topic-2/visual-1/visual';
+import NnForwardPropVisualization from './neuralnet/level-1/topic-3/visual-1/visual';
+import NnLossVisualization from './neuralnet/level-1/topic-4/visual-1/visual';
+import NnBackpropVisualization from './neuralnet/level-1/topic-5/visual-1/visual';
+import NnScratchVisualization from './neuralnet/level-2/topic-1/visual-1/visual';
+import NnGdVariantsVisualization from './neuralnet/level-2/topic-2/visual-1/visual';
+import NnWeightInitVisualization from './neuralnet/level-2/topic-3/visual-1/visual';
+import NnOverfitVisualization from './neuralnet/level-2/topic-4/visual-1/visual';
+import NnBatchNormVisualization from './neuralnet/level-2/topic-5/visual-1/visual';
+import NnPytorchIntroVisualization from './neuralnet/level-3/topic-1/visual-1/visual';
+import NnNnModuleVisualization from './neuralnet/level-3/topic-2/visual-1/visual';
+import NnTrainingLoopsVisualization from './neuralnet/level-3/topic-3/visual-1/visual';
+import NnDebuggingVisualization from './neuralnet/level-3/topic-4/visual-1/visual';
+import NnEndToEndVisualization from './neuralnet/level-3/topic-5/visual-1/visual';
+
+// PyTorch course visualizations
+import PtDataLoaderVisualization from './pytorch/level-1/topic-1/visual-1/visual';
+import PtCustomDatasetVisualization from './pytorch/level-1/topic-2/visual-1/visual';
+import PtTransformsVisualization from './pytorch/level-1/topic-3/visual-1/visual';
+import PtImageTensorsVisualization from './pytorch/level-1/topic-4/visual-1/visual';
+import PtEmbeddingsVisualization from './pytorch/level-1/topic-5/visual-1/visual';
+import PtTensorOpsVisualization from './pytorch/level-2/topic-1/visual-1/visual';
+import PtGpuVisualization from './pytorch/level-2/topic-2/visual-1/visual';
+import PtCustomLayersVisualization from './pytorch/level-2/topic-3/visual-1/visual';
+import PtCheckpointVisualization from './pytorch/level-2/topic-4/visual-1/visual';
+import PtMixedPrecisionVisualization from './pytorch/level-2/topic-5/visual-1/visual';
+import PtTransferVisualization from './pytorch/level-3/topic-1/visual-1/visual';
+import PtFinetuneVisualization from './pytorch/level-3/topic-2/visual-1/visual';
+import PtExperimentVisualization from './pytorch/level-3/topic-3/visual-1/visual';
+import PtPitfallsVisualization from './pytorch/level-3/topic-4/visual-1/visual';
+import PtEndToEndVisualization from './pytorch/level-3/topic-5/visual-1/visual';
+
+// CNNs & Vision course visualizations
+import CnnWhyConvVisualization from './cnnvision/level-1/topic-1/visual-1/visual';
+import CnnConvLayersVisualization from './cnnvision/level-1/topic-2/visual-1/visual';
+import CnnPoolingVisualization from './cnnvision/level-1/topic-3/visual-1/visual';
+import CnnScratchVisualization from './cnnvision/level-1/topic-4/visual-1/visual';
+import CnnVisualizingVisualization from './cnnvision/level-1/topic-5/visual-1/visual';
+import CnnArchitecturesVisualization from './cnnvision/level-2/topic-1/visual-1/visual';
+import CnnAugmentVisualization from './cnnvision/level-2/topic-2/visual-1/visual';
+import CnnImbalancedVisualization from './cnnvision/level-2/topic-3/visual-1/visual';
+import CnnDetectionVisualization from './cnnvision/level-2/topic-4/visual-1/visual';
+import CnnVitVisualization from './cnnvision/level-2/topic-5/visual-1/visual';
+import CnnInterpretVisualization from './cnnvision/level-3/topic-1/visual-1/visual';
+import CnnDebuggingVisualization from './cnnvision/level-3/topic-2/visual-1/visual';
+import CnnExportVisualization from './cnnvision/level-3/topic-3/visual-1/visual';
+import CnnChooseArchVisualization from './cnnvision/level-3/topic-4/visual-1/visual';
+import CnnEndToEndVisualization from './cnnvision/level-3/topic-5/visual-1/visual';
+
+// Math Foundations course visualizations
+import MfWhyVisualization from './mathfoundations/level-1/topic-1/visual-1/visual';
+import MfVectorsVisualization from './mathfoundations/level-1/topic-2/visual-1/visual';
+import MfMatricesVisualization from './mathfoundations/level-1/topic-3/visual-1/visual';
+import MfMatrixOpsVisualization from './mathfoundations/level-1/topic-4/visual-1/visual';
+import MfDotProductVisualization from './mathfoundations/level-1/topic-5/visual-1/visual';
+import MfDerivativeVisualization from './mathfoundations/level-2/topic-1/visual-1/visual';
+import MfGradientsVisualization from './mathfoundations/level-2/topic-2/visual-1/visual';
+import MfChainRuleVisualization from './mathfoundations/level-2/topic-3/visual-1/visual';
+import MfGradientDescentVisualization from './mathfoundations/level-2/topic-4/visual-1/visual';
+import MfVizFunctionsVisualization from './mathfoundations/level-2/topic-5/visual-1/visual';
+import MfProbabilityVisualization from './mathfoundations/level-3/topic-1/visual-1/visual';
+import MfDescStatsVisualization from './mathfoundations/level-3/topic-2/visual-1/visual';
+import MfDistributionsVisualization from './mathfoundations/level-3/topic-3/visual-1/visual';
+import MfBayesVisualization from './mathfoundations/level-3/topic-4/visual-1/visual';
+import MfSynthesisVisualization from './mathfoundations/level-3/topic-5/visual-1/visual';
+
+// Capstone Project course visualizations
+import CapBriefVisualization from './capstone/level-1/topic-1/visual-1/visual';
+import CapQuestionVisualization from './capstone/level-1/topic-2/visual-1/visual';
+import CapEdaVisualization from './capstone/level-1/topic-3/visual-1/visual';
+import CapCleanVisualization from './capstone/level-1/topic-4/visual-1/visual';
+import CapSqlAnalysisVisualization from './capstone/level-2/topic-1/visual-1/visual';
+import CapPandasVisualization from './capstone/level-2/topic-2/visual-1/visual';
+import CapStatsVisualization from './capstone/level-2/topic-3/visual-1/visual';
+import CapResultsVisualization from './capstone/level-2/topic-4/visual-1/visual';
+import CapDashboardVisualization from './capstone/level-3/topic-1/visual-1/visual';
+import CapReportVisualization from './capstone/level-3/topic-2/visual-1/visual';
+import CapStoryVisualization from './capstone/level-3/topic-3/visual-1/visual';
+import CapGithubVisualization from './capstone/level-3/topic-4/visual-1/visual';
+
 // Backend (Node.js / Express) visualizations
 import BkndNodeIntroVisualization from './backend/level-1/topic-1/visual-1/visual';
 import BkndExpressIntroVisualization from './backend/level-2/topic-1/visual-1/visual';
@@ -241,37 +510,50 @@ const visualizationRegistry = {
   'sql-intro-visualization' : SqlQueryVisual,
 
   // Descriptive Statistics course
-  'descstats-central-tendency-visualization'  : DescStatsCentralTendencyVisualization,
-  'descstats-spread-variance-visualization'   : DescStatsSpreadVarianceVisualization,
-  'descstats-distributions-visualization'     : DescStatsDistributionsVisualization,
-  'descstats-prob-distributions-visualization': DescStatsProbDistributionsVisualization,
-  'descstats-normal-zscores-visualization'    : DescStatsNormalZVisualization,
-  'descstats-skewness-kurtosis-visualization' : DescStatsSkewKurtosisVisualization,
-  'descstats-outliers-visualization'          : DescStatsOutliersVisualization,
-  'descstats-correlation-visualization'       : DescStatsCorrelationVisualization,
-  'descstats-summary-python-visualization'    : DescStatsSummaryPyVisualization,
+  'descstats-what-is-visualization'              : DescStatsWhatIsVisualization,
+  'descstats-central-tendency-visualization'     : DescStatsCentralTendencyVisualization,
+  'descstats-spread-variance-visualization'      : DescStatsSpreadVisualization,
+  'descstats-percentiles-quartiles-visualization': DescStatsPercentilesVisualization,
+  'descstats-skewness-kurtosis-visualization'    : DescStatsSkewKurtosisVisualization,
+  'descstats-correlation-visualization'          : DescStatsCorrelationVisualization,
+  'descstats-contingency-tables-visualization'   : DescStatsContingencyVisualization,
+  'descstats-outliers-visualization'             : DescStatsOutliersVisualization,
+  'descstats-python-describe-visualization'      : DescStatsPythonVisualization,
+  'descstats-choosing-statistic-visualization'   : DescStatsChoosingVisualization,
+  'descstats-simpsons-paradox-visualization'     : DescStatsSimpsonsVisualization,
+  'descstats-weighted-averages-visualization'    : DescStatsWeightedVisualization,
+  'descstats-report-visualization'               : DescStatsReportVisualization,
 
   // Inferential Statistics course
-  'infstats-intro-visualization'              : InfStatsIntroVisualization,
-  'infstats-probability-visualization'        : InfStatsProbabilityVisualization,
-  'infstats-sampling-visualization'           : InfStatsSamplingVisualization,
-  'infstats-hypothesis-visualization'         : InfStatsHypothesisVisualization,
-  'infstats-pvalue-visualization'             : InfStatsPValueVisualization,
-  'infstats-t-z-tests-visualization'          : InfStatsTZVisualization,
-  'infstats-confidence-intervals-visualization': InfStatsCIVisualization,
-  'infstats-ab-testing-visualization'         : InfStatsABVisualization,
-  'infstats-chi-square-visualization'         : InfStatsChiSquareVisualization,
+  'infstats-probability-intro-visualization'     : InfStatsProbIntroVisualization,
+  'infstats-distributions-visualization'         : InfStatsDistributionsVisualization,
+  'infstats-clt-visualization'                   : InfStatsCltVisualization,
+  'infstats-sampling-visualization'              : InfStatsSamplingVisualization,
+  'infstats-hypothesis-visualization'            : InfStatsHypothesisVisualization,
+  'infstats-t-tests-visualization'               : InfStatsTTestsVisualization,
+  'infstats-chi-square-visualization'            : InfStatsChiSquareVisualization,
+  'infstats-anova-visualization'                 : InfStatsAnovaVisualization,
+  'infstats-confidence-intervals-visualization'  : InfStatsCIVisualization,
+  'infstats-error-types-visualization'           : InfStatsErrorTypesVisualization,
+  'infstats-power-visualization'                 : InfStatsPowerVisualization,
+  'infstats-ab-test-visualization'               : InfStatsABTestVisualization,
 
   // Machine Learning Intro course
   'ml-what-is-visualization'                  : MlWhatIsVisualization,
+  'ml-supervised-unsupervised-visualization'  : MlSupervisedUnsupervisedVisualization,
+  'ml-first-pipeline-visualization'           : MlFirstPipelineVisualization,
   'ml-feature-engineering-visualization'      : MlFeatureEngVisualization,
-  'ml-train-test-split-visualization'         : MlTrainTestSplitVisualization,
+  'ml-bias-variance-visualization'            : MlBiasVarianceVisualization,
   'ml-linear-regression-visualization'        : MlLinearRegressionVisualization,
+  'ml-logistic-regression-visualization'      : MlLogisticRegressionVisualization,
   'ml-decision-trees-visualization'           : MlDecisionTreeVisualization,
-  'ml-classification-metrics-visualization'   : MlClassMetricsVisualization,
-  'ml-sklearn-api-visualization'              : MlSklearnApiVisualization,
+  'ml-random-forest-visualization'            : MlRandomForestVisualization,
+  'ml-k-means-visualization'                  : MlKMeansVisualization,
+  'ml-model-evaluation-visualization'         : MlModelEvalVisualization,
   'ml-cross-validation-visualization'         : MlCrossValidationVisualization,
-  'ml-pipeline-visualization'                 : MlPipelineVisualization,
+  'ml-overfitting-visualization'              : MlOverfittingVisualization,
+  'ml-save-load-visualization'                : MlSaveLoadVisualization,
+  'ml-end-to-end-visualization'               : MlEndToEndVisualization,
 
   // AI & LLM Basics course
   'llm-what-is-visualization'                 : LlmWhatIsVisualization,
@@ -318,28 +600,37 @@ const visualizationRegistry = {
   'angular-reactive-forms-visualization'      : NgReactiveFormsVisualization,
 
   // Pandas & NumPy course
-  'pandas-reading-data-visualization'         : PdReadVisualization,
-  'pandas-what-is-visualization'              : PdWhatVisualization,
-  'pandas-select-filter-sort-visualization'   : PdSelectVisualization,
-  'pandas-exploring-visualization'            : PdExploreVisualization,
-  'pandas-groupby-merge-visualization'        : PdGroupVisualization,
-  'pandas-transform-columns-visualization'    : PdColsVisualization,
-  'pandas-missing-data-visualization'         : PdNaVisualization,
-  'pandas-dates-times-visualization'          : PdDatesVisualization,
-  'pandas-string-cleaning-visualization'      : PdStrVisualization,
-  'pandas-data-cleaning-visualization'        : PdCleanVisualization,
-  'pandas-numpy-arrays-visualization'         : PdNumpyVisualization,
-  'pandas-workflow-visualization'             : PdWorkflowVisualization,
+  'pandas-what-is-visualization'              : PdWhatIsVisualization,
+  'pandas-loading-visualization'              : PdLoadingVisualization,
+  'pandas-explore-data-visualization'         : PdExploreDataVisualization,
+  'pandas-select-loc-visualization'           : PdSelectLocVisualization,
+  'pandas-numpy-arrays-visualization'         : PdNumpyArraysVisualization,
+  'pandas-filter-sort-visualization'          : PdFilterSortVisualization,
+  'pandas-missing-data-visualization'         : PdMissingDataVisualization,
+  'pandas-apply-map-visualization'            : PdApplyMapVisualization,
+  'pandas-str-accessor-visualization'         : PdStrAccessorVisualization,
+  'pandas-col-manage-visualization'           : PdColManageVisualization,
+  'pandas-groupby-visualization'              : PdGroupByVisualization,
+  'pandas-merge-join-visualization'           : PdMergeJoinVisualization,
+  'pandas-pivot-table-visualization'          : PdPivotTableVisualization,
+  'pandas-export-visualization'               : PdExportVisualization,
+  'pandas-time-series-visualization'          : PdTimeSeriesVisualization,
 
-  // Python Basics for Analysts course
+  // Python Basics for Data Analysts course
+  'python-setup-visualization'                : PySetupVisualization,
   'python-variables-visualization'            : PyVariablesVisualization,
   'python-collections-visualization'          : PyCollectionsVisualization,
-  'python-loops-visualization'                : PyLoopVisualization,
+  'python-loops-visualization'                : PyLoopsVisualization,
   'python-functions-visualization'            : PyFunctionsVisualization,
+  'python-file-io-visualization'              : PyFileIOVisualization,
+  'python-venv-visualization'                 : PyVenvVisualization,
+  'python-jupyter-visualization'              : PyJupyterVisualization,
+  'python-read-csv-json-visualization'        : PyReadCsvJsonVisualization,
+  'python-str-manip-visualization'            : PyStrManipVisualization,
+  'python-error-handling-visualization'       : PyErrorHandlingVisualization,
   'python-comprehensions-visualization'       : PyComprehensionVisualization,
-  'python-error-handling-visualization'       : PyErrorVisualization,
-  'python-project-structure-visualization'    : PyProjectVisualization,
-  'python-regex-visualization'                : PyRegexVisualization,
+  'python-dates-visualization'                : PyDatesVisualization,
+  'python-pipeline-visualization'             : PyPipelineVisualization,
 
   // Vite / Webpack course
   'buildtools-why-visualization'              : BtWhyVisualization,
@@ -395,6 +686,253 @@ const visualizationRegistry = {
   'sql-indexes-performance-visualization'  : SqlIndexesPerformanceVisualization,
   'sql-transactions-visualization'         : SqlTransactionsVisualization,
   'sql-stored-procedures-visualization'    : SqlStoredProceduresVisualization,
+
+  // Data Visualisation — Matplotlib, Seaborn & Beyond course
+  'dv-why-visualization'                        : DvWhyVisualization,
+  'dv-linebar-visualization'                    : DvLineBarVisualization,
+  'dv-scatter-visualization'                    : DvScatterVisualization,
+  'dv-histogram-visualization'                  : DvHistogramVisualization,
+  'dv-customize-visualization'                  : DvCustomizeVisualization,
+  'dv-seaborn-intro-visualization'              : DvSeabornIntroVisualization,
+  'dv-distplot-visualization'                   : DvDistplotVisualization,
+  'dv-catplot-visualization'                    : DvCatplotVisualization,
+  'dv-heatmap-visualization'                    : DvHeatmapVisualization,
+  'dv-pairplot-visualization'                   : DvPairplotVisualization,
+  'dv-subplots-visualization'                   : DvSubplotsVisualization,
+  'dv-chartdecision-visualization'              : DvChartDecisionVisualization,
+  'dv-powerbi-visualization'                    : DvPowerBiVisualization,
+  'dv-plotly-visualization'                     : DvPlotlyVisualization,
+
+  // Spreadsheets — Excel & Google Sheets for Analysts course
+  'xl-why-visualization'                        : XlWhyVisualization,
+  'xl-grid-visualization'                       : XlGridVisualization,
+  'xl-formulas-visualization'                   : XlFormulasVisualization,
+  'xl-references-visualization'                 : XlReferencesVisualization,
+  'xl-textfn-visualization'                     : XlTextFnVisualization,
+  'xl-if-visualization'                         : XlIfVisualization,
+  'xl-vlookup-visualization'                    : XlVlookupVisualization,
+  'xl-indexmatch-visualization'                 : XlIndexMatchVisualization,
+  'xl-clean-visualization'                      : XlCleanVisualization,
+  'xl-cf-visualization'                         : XlCfVisualization,
+  'xl-pivot-visualization'                      : XlPivotVisualization,
+  'xl-pivotchart-visualization'                 : XlPivotChartVisualization,
+  'xl-charttype-visualization'                  : XlChartTypeVisualization,
+  'xl-validate-visualization'                   : XlValidateVisualization,
+
+  // SQL — From Zero to Data Queries course
+  'sqlfz-why-visualization'                     : SqlFzWhyVisualization,
+  'sqlfz-setup-visualization'                   : SqlFzSetupVisualization,
+  'sqlfz-select-visualization'                  : SqlFzSelectVisualization,
+  'sqlfz-where-visualization'                   : SqlFzWhereVisualization,
+  'sqlfz-order-by-visualization'                : SqlFzOrderByVisualization,
+  'sqlfz-null-visualization'                    : SqlFzNullVisualization,
+  'sqlfz-agg-visualization'                     : SqlFzAggVisualization,
+  'sqlfz-group-by-visualization'                : SqlFzGroupByVisualization,
+  'sqlfz-having-visualization'                  : SqlFzHavingVisualization,
+  'sqlfz-alias-visualization'                   : SqlFzAliasVisualization,
+  'sqlfz-relations-visualization'               : SqlFzRelationsVisualization,
+  'sqlfz-joins-visualization'                   : SqlFzJoinsVisualization,
+  'sqlfz-subqueries-visualization'              : SqlFzSubqueriesVisualization,
+  'sqlfz-window-visualization'                  : SqlFzWindowVisualization,
+  'sqlfz-cte-visualization'                     : SqlFzCteVisualization,
+
+  // Transformers & LLMs course
+  'tr-seq-visualization'                         : TrSeqVisualization,
+  'tr-rnn-visualization'                         : TrRnnVisualization,
+  'tr-attention-visualization'                   : TrAttentionVisualization,
+  'tr-multi-head-visualization'                  : TrMultiHeadVisualization,
+  'tr-arch-visualization'                        : TrArchVisualization,
+  'tr-pos-encoding-visualization'                : TrPosEncodingVisualization,
+  'tr-scratch-visualization'                     : TrScratchVisualization,
+  'tr-pretraining-visualization'                 : TrPretrainingVisualization,
+  'tr-finetune-visualization'                    : TrFinetuneVisualization,
+  'tr-tokenization-visualization'                : TrTokenizationVisualization,
+  'tr-prompting-visualization'                   : TrPromptingVisualization,
+  'tr-lora-visualization'                        : TrLoraVisualization,
+  'tr-rag-visualization'                         : TrRagVisualization,
+  'tr-eval-visualization'                        : TrEvalVisualization,
+  'tr-end-to-end-visualization'                  : TrEndToEndVisualization,
+
+  // Deployment & MLOps course
+  'mlops-api-visualization'                      : MlopsApiVisualization,
+  'mlops-latency-visualization'                  : MlopsLatencyVisualization,
+  'mlops-docker-visualization'                   : MlopsDockerVisualization,
+  'mlops-serve-llm-visualization'                : MlopsServeLlmVisualization,
+  'mlops-versioning-visualization'               : MlopsVersioningVisualization,
+  'mlops-experiment-visualization'               : MlopsExperimentVisualization,
+  'mlops-dvc-visualization'                      : MlopsDvcVisualization,
+  'mlops-cicd-visualization'                     : MlopsCicdVisualization,
+  'mlops-monitor-visualization'                  : MlopsMonitorVisualization,
+  'mlops-retrain-visualization'                  : MlopsRetrainVisualization,
+  'mlops-cloud-visualization'                    : MlopsCloudVisualization,
+  'mlops-managed-apis-visualization'             : MlopsManagedApisVisualization,
+  'mlops-serverless-visualization'               : MlopsServerlessVisualization,
+  'mlops-vector-db-visualization'                : MlopsVectorDbVisualization,
+  'mlops-end-to-end-visualization'               : MlopsEndToEndVisualization,
+
+  // Jupyter Notebooks course
+  'jnb-setup-visualization'                      : JnbSetupVisualization,
+  'jnb-cells-visualization'                      : JnbCellsVisualization,
+  'jnb-widgets-visualization'                    : JnbWidgetsVisualization,
+  'jnb-organise-visualization'                   : JnbOrganiseVisualization,
+  'jnb-debugging-visualization'                  : JnbDebuggingVisualization,
+  'jnb-production-visualization'                 : JnbProductionVisualization,
+  'jnb-export-visualization'                     : JnbExportVisualization,
+  'jnb-github-visualization'                     : JnbGithubVisualization,
+  'jnb-collab-visualization'                     : JnbCollabVisualization,
+
+  // Data Analytics Intro course
+  'dai-what-is-visualization'                    : DaiWhatIsVisualization,
+
+  // Supervised Learning course
+  'sv-what-is-visualization'                     : SvWhatIsVisualization,
+  'sv-rvc-visualization'                         : SvRvsCVisualization,
+  'sv-splits-visualization'                      : SvSplitsVisualization,
+  'sv-linear-regr-visualization'                 : SvLinearRegrVisualization,
+  'sv-regr-eval-visualization'                   : SvRegrEvalVisualization,
+  'sv-logistic-visualization'                    : SvLogisticVisualization,
+  'sv-decision-tree-visualization'               : SvDecisionTreeVisualization,
+  'sv-knn-visualization'                         : SvKnnVisualization,
+  'sv-class-eval-visualization'                  : SvClassEvalVisualization,
+  'sv-conf-matrix-visualization'                 : SvConfMatrixVisualization,
+  'sv-overfit-visualization'                     : SvOverfitVisualization,
+  'sv-cross-val-visualization'                   : SvCrossValVisualization,
+  'sv-scaling-visualization'                     : SvScalingVisualization,
+  'sv-random-forest-visualization'               : SvRandomForestVisualization,
+  'sv-end-to-end-visualization'                  : SvEndToEndVisualization,
+
+  // Unsupervised Learning course
+  'unsup-what-is-visualization'                  : UnsupWhatIsVisualization,
+  'unsup-kmeans-visualization'                   : UnsupKMeansVisualization,
+  'unsup-clusters-num-visualization'             : UnsupClustersNumVisualization,
+  'unsup-eval-visualization'                     : UnsupEvalVisualization,
+  'unsup-hierarch-visualization'                 : UnsupHierarchVisualization,
+  'unsup-curse-visualization'                    : UnsupCurseVisualization,
+  'unsup-pca-visualization'                      : UnsupPcaVisualization,
+  'unsup-pca-viz-visualization'                  : UnsupPcaVizVisualization,
+  'unsup-tsne-visualization'                     : UnsupTsneVisualization,
+  'unsup-dbscan-visualization'                   : UnsupDbscanVisualization,
+  'unsup-anomaly-visualization'                  : UnsupAnomalyVisualization,
+  'unsup-iso-forest-visualization'               : UnsupIsoForestVisualization,
+  'unsup-segment-visualization'                  : UnsupSegmentVisualization,
+  'unsup-clus-feat-visualization'                : UnsupClusFeatVisualization,
+  'unsup-end-to-end-visualization'               : UnsupEndToEndVisualization,
+
+  // Feature Engineering course
+  'fe-what-is-visualization'                     : FeWhatIsVisualization,
+  'fe-missing-visualization'                     : FeMissingVisualization,
+  'fe-encoding-visualization'                    : FeEncodingVisualization,
+  'fe-scaling-visualization'                     : FeScalingVisualization,
+  'fe-datetime-visualization'                    : FeDatetimeVisualization,
+  'fe-binning-visualization'                     : FeBinningVisualization,
+  'fe-interaction-visualization'                 : FeInteractionVisualization,
+  'fe-polynomial-visualization'                  : FePolynomialVisualization,
+  'fe-text-visualization'                        : FeTextVisualization,
+  'fe-aggregate-visualization'                   : FeAggregateVisualization,
+  'fe-selection-visualization'                   : FeSelectionVisualization,
+  'fe-correlation-visualization'                 : FeCorrelationVisualization,
+  'fe-leakage-visualization'                     : FeLeakageVisualization,
+  'fe-pipeline-visualization'                    : FePipelineVisualization,
+  'fe-end-to-end-visualization'                  : FeEndToEndVisualization,
+
+  // Neural Networks course
+  'nn-what-is-visualization'                     : NnWhatIsVisualization,
+  'nn-activation-visualization'                  : NnActivationVisualization,
+  'nn-forward-prop-visualization'                : NnForwardPropVisualization,
+  'nn-loss-visualization'                        : NnLossVisualization,
+  'nn-backprop-visualization'                    : NnBackpropVisualization,
+  'nn-scratch-visualization'                     : NnScratchVisualization,
+  'nn-gd-variants-visualization'                 : NnGdVariantsVisualization,
+  'nn-weight-init-visualization'                 : NnWeightInitVisualization,
+  'nn-overfit-visualization'                     : NnOverfitVisualization,
+  'nn-batch-norm-visualization'                  : NnBatchNormVisualization,
+  'nn-pytorch-intro-visualization'               : NnPytorchIntroVisualization,
+  'nn-nn-module-visualization'                   : NnNnModuleVisualization,
+  'nn-training-loops-visualization'              : NnTrainingLoopsVisualization,
+  'nn-debugging-visualization'                   : NnDebuggingVisualization,
+  'nn-end-to-end-visualization'                  : NnEndToEndVisualization,
+
+  // PyTorch course
+  'pt-dataloader-visualization'                  : PtDataLoaderVisualization,
+  'pt-custom-dataset-visualization'              : PtCustomDatasetVisualization,
+  'pt-transforms-visualization'                  : PtTransformsVisualization,
+  'pt-image-tensors-visualization'               : PtImageTensorsVisualization,
+  'pt-embeddings-visualization'                  : PtEmbeddingsVisualization,
+  'pt-tensor-ops-visualization'                  : PtTensorOpsVisualization,
+  'pt-gpu-visualization'                         : PtGpuVisualization,
+  'pt-custom-layers-visualization'               : PtCustomLayersVisualization,
+  'pt-checkpoint-visualization'                  : PtCheckpointVisualization,
+  'pt-mixed-precision-visualization'             : PtMixedPrecisionVisualization,
+  'pt-transfer-visualization'                    : PtTransferVisualization,
+  'pt-finetune-visualization'                    : PtFinetuneVisualization,
+  'pt-experiment-visualization'                  : PtExperimentVisualization,
+  'pt-pitfalls-visualization'                    : PtPitfallsVisualization,
+  'pt-end-to-end-visualization'                  : PtEndToEndVisualization,
+
+  // CNNs & Vision course
+  'cnn-why-conv-visualization'                   : CnnWhyConvVisualization,
+  'cnn-conv-layers-visualization'                : CnnConvLayersVisualization,
+  'cnn-pooling-visualization'                    : CnnPoolingVisualization,
+  'cnn-scratch-visualization'                    : CnnScratchVisualization,
+  'cnn-visualizing-visualization'                : CnnVisualizingVisualization,
+  'cnn-architectures-visualization'              : CnnArchitecturesVisualization,
+  'cnn-augment-visualization'                    : CnnAugmentVisualization,
+  'cnn-imbalanced-visualization'                 : CnnImbalancedVisualization,
+  'cnn-detection-visualization'                  : CnnDetectionVisualization,
+  'cnn-vit-visualization'                        : CnnVitVisualization,
+  'cnn-interpret-visualization'                  : CnnInterpretVisualization,
+  'cnn-debugging-visualization'                  : CnnDebuggingVisualization,
+  'cnn-export-visualization'                     : CnnExportVisualization,
+  'cnn-choose-arch-visualization'                : CnnChooseArchVisualization,
+  'cnn-end-to-end-visualization'                 : CnnEndToEndVisualization,
+
+  // Python (Programming & Math) course
+  'pymath-what-is-visualization'                 : PyMathWhatIsVisualization,
+  'pymath-setup-visualization'                   : PyMathSetupVisualization,
+  'pymath-vars-visualization'                    : PyMathVarsVisualization,
+  'pymath-strings-visualization'                 : PyMathStringsVisualization,
+  'pymath-conditionals-visualization'            : PyMathConditionalsVisualization,
+  'pymath-lists-visualization'                   : PyMathListsVisualization,
+  'pymath-dicts-visualization'                   : PyMathDictsVisualization,
+  'pymath-loops-visualization'                   : PyMathLoopsVisualization,
+  'pymath-functions-visualization'               : PyMathFunctionsVisualization,
+  'pymath-comprehension-visualization'           : PyMathComprehensionVisualization,
+  'pymath-file-visualization'                    : PyMathFileVisualization,
+  'pymath-error-visualization'                   : PyMathErrorVisualization,
+  'pymath-oop-visualization'                     : PyMathOopVisualization,
+  'pymath-libs-visualization'                    : PyMathLibsVisualization,
+  'pymath-jupyter-visualization'                 : PyMathJupyterVisualization,
+
+  // Math Foundations course
+  'mf-why-visualization'                         : MfWhyVisualization,
+  'mf-vectors-visualization'                     : MfVectorsVisualization,
+  'mf-matrices-visualization'                    : MfMatricesVisualization,
+  'mf-matrix-ops-visualization'                  : MfMatrixOpsVisualization,
+  'mf-dot-product-visualization'                 : MfDotProductVisualization,
+  'mf-derivative-visualization'                  : MfDerivativeVisualization,
+  'mf-gradients-visualization'                   : MfGradientsVisualization,
+  'mf-chain-rule-visualization'                  : MfChainRuleVisualization,
+  'mf-gradient-descent-visualization'            : MfGradientDescentVisualization,
+  'mf-viz-functions-visualization'               : MfVizFunctionsVisualization,
+  'mf-probability-visualization'                 : MfProbabilityVisualization,
+  'mf-descstats-visualization'                   : MfDescStatsVisualization,
+  'mf-distributions-visualization'               : MfDistributionsVisualization,
+  'mf-bayes-visualization'                       : MfBayesVisualization,
+  'mf-synthesis-visualization'                   : MfSynthesisVisualization,
+
+  // Capstone Project course
+  'cap-brief-visualization'                      : CapBriefVisualization,
+  'cap-question-visualization'                   : CapQuestionVisualization,
+  'cap-eda-visualization'                        : CapEdaVisualization,
+  'cap-clean-visualization'                      : CapCleanVisualization,
+  'cap-sql-analysis-visualization'               : CapSqlAnalysisVisualization,
+  'cap-pandas-visualization'                     : CapPandasVisualization,
+  'cap-stats-visualization'                      : CapStatsVisualization,
+  'cap-results-visualization'                    : CapResultsVisualization,
+  'cap-dashboard-visualization'                  : CapDashboardVisualization,
+  'cap-report-visualization'                     : CapReportVisualization,
+  'cap-story-visualization'                      : CapStoryVisualization,
+  'cap-github-visualization'                     : CapGithubVisualization,
 
   // Backend (Node.js / Express) course
   'bknd-node-intro-visualization'               : BkndNodeIntroVisualization,

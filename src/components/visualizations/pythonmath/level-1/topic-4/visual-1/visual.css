@@ -1,0 +1,13 @@
+.pymstr-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymstr-title { color: #a78bfa; margin: 0 0 12px; font-size: clamp(15px,3vw,18px); }
+.pymstr-source { color: #a3adbb; font-size: 13px; margin-bottom: 16px; }
+.pymstr-src-code { background: #0d1117; color: #56d364; padding: 2px 8px; border-radius: 4px; font-size: 13px; }
+.pymstr-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.pymstr-tab { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 6px 12px; color: #6b7785; font-size: 12px; font-family: monospace; cursor: pointer; transition: all 0.2s; }
+.pymstr-tab:hover { border-color: #a78bfa; color: #e6edf3; }
+.pymstr-tab--active { border-color: #a78bfa; color: #a78bfa; background: #1c2128; }
+.pymstr-panel { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 16px; }
+.pymstr-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.pymstr-code { color: #e6edf3; font-size: 13px; white-space: pre; overflow-x: auto; margin: 0 0 14px; background: #0a0e14; border: 1px solid #21262d; border-radius: 6px; padding: 10px 12px; }
+.pymstr-output { color: #56d364; font-family: monospace; font-size: 14px; background: #0a0e14; border: 1px solid #21262d; border-radius: 6px; padding: 10px 12px; margin-bottom: 12px; }
+.pymstr-note { color: #a3adbb; font-size: 13px; line-height: 1.6; margin: 0; }

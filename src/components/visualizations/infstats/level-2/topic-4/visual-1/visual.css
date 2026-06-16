@@ -1,0 +1,17 @@
+/* Inferential Stats: ANOVA — prefix: isanova- */
+.isanova-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.isanova-head { text-align:center; margin-bottom:14px; }
+.isanova-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.isanova-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.isanova-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.isanova-svg { display:block; background:#161b22; border-radius:8px; margin-bottom:12px; }
+.isanova-control { margin-bottom:12px; }
+.isanova-lbl { font-size:0.8rem; color:#a3adbb; display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+.isanova-slider { width:100%; accent-color:#a78bfa; }
+.isanova-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:12px; }
+.isanova-stat { background:#161b22; border-radius:8px; padding:8px; text-align:center; display:flex; flex-direction:column; gap:3px; }
+.isanova-stat span { font-size:0.58rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; line-height:1.3; }
+.isanova-stat strong { font-size:0.85rem; color:#a78bfa; font-family:'Consolas',monospace; }
+.isanova-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.isanova-note strong { color:#c9d1d9; }
+@media (max-width:420px) { .isanova-stats { grid-template-columns:1fr 1fr; } }

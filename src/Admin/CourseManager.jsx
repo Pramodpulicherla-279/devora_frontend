@@ -337,7 +337,7 @@ function CourseManager({ courseId, onBack }) {
   }
 
   return (
-    <div className="cm-layout" style={{ height: '100%' }}>
+    <div className={`cm-layout${selectedLesson ? ' lesson-open' : ''}`} style={{ height: '100%' }}>
       {/* Left panel */}
       <div className={`cm-left ${leftCollapsed ? 'cm-left-collapsed' : ''}`}>
         <div className="cm-header">

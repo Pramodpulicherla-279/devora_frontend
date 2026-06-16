@@ -1,0 +1,113 @@
+.feagg-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.feagg-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.feagg-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.feagg-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.feagg-step--on {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+.feagg-step-num {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #21262d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+.feagg-step--on .feagg-step-num {
+  background: #f97316;
+  color: #0d1117;
+}
+.feagg-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+.feagg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+.feagg-table th {
+  background: #0d1117;
+  color: #a3adbb;
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid #21262d;
+  white-space: nowrap;
+}
+.feagg-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #21262d;
+}
+.feagg-cid { color: #58a6ff; font-weight: 600; }
+.feagg-amt { color: #e6edf3; }
+.feagg-date { color: #a3adbb; font-size: 0.75rem; }
+.feagg-new { color: #56d364; font-weight: 600; }
+.feagg-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.feagg-group {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 140px;
+}
+.feagg-group-head {
+  color: #58a6ff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 5px;
+}
+.feagg-group-row {
+  font-size: 0.78rem;
+  color: #a3adbb;
+  padding: 2px 0;
+}
+.feagg-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

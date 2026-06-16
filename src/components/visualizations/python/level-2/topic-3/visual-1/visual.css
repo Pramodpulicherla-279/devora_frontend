@@ -1,0 +1,15 @@
+/* Python: Reading CSV & JSON — prefix: pyrcj- */
+.pyrcj-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.pyrcj-head { text-align:center; margin-bottom:14px; }
+.pyrcj-badge { background:#1c2a1c; color:#56d364; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #56d364; letter-spacing:1.5px; }
+.pyrcj-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#56d364; }
+.pyrcj-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pyrcj-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; justify-content:center; }
+.pyrcj-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 14px; font-size:0.78rem; color:#a3adbb; cursor:pointer; font-family:'Consolas',monospace; transition:all .15s; }
+.pyrcj-tab--on { border-color:#56d364; color:#56d364; background:#1c2a1c; }
+.pyrcj-tab--warn { border-color:rgba(248,81,73,0.4); color:#f85149; }
+.pyrcj-tab--warn.pyrcj-tab--on { background:rgba(248,81,73,0.08); }
+.pyrcj-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 10px; white-space:pre; line-height:1.55; }
+.pyrcj-warning { background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#c9d1d9; line-height:1.5; }
+.pyrcj-warning strong { color:#f85149; }
+.pyrcj-note { background:#161b22; border-left:3px solid #56d364; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

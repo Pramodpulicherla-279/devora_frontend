@@ -1,0 +1,18 @@
+.pymloops-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymloops-title { color: #a78bfa; margin: 0 0 14px; font-size: clamp(15px,3vw,18px); }
+.pymloops-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.pymloops-tab { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 6px 14px; color: #6b7785; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.pymloops-tab:hover { border-color: #a78bfa; color: #e6edf3; }
+.pymloops-tab--active { border-color: #a78bfa; color: #a78bfa; background: #1c2128; }
+.pymloops-items { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.pymloops-item { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 6px; transition: all 0.2s; position: relative; }
+.pymloops-item--active { border-color: #a78bfa; background: #1c2128; box-shadow: 0 0 8px #a78bfa44; }
+.pymloops-item-idx { color: #6b7785; font-size: 11px; }
+.pymloops-item-val { color: #56d364; font-family: monospace; font-size: 13px; }
+.pymloops-pointer { color: #a78bfa; font-size: 12px; margin-left: 2px; }
+.pymloops-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 12px; color: #e6edf3; font-size: 13px; white-space: pre; overflow-x: auto; margin: 0 0 14px; }
+.pymloops-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pymloops-btn { background: #21262d; border: 1px solid #30363d; color: #e6edf3; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+.pymloops-btn:hover { background: #30363d; }
+.pymloops-btn--run { background: #1a2d1a; border-color: #56d364; color: #56d364; }
+.pymloops-btn--stop { background: #2d1a1a; border-color: #f85149; color: #f85149; }

@@ -1,0 +1,14 @@
+.nnbn-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnbn-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnbn-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnbn-toggle-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
+.nnbn-toggle-btn { padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid #30363d; background: #161b22; color: #a3adbb; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; }
+.nnbn-toggle-btn.active { border-color: #a78bfa; color: #a78bfa; background: #a78bfa22; font-weight: 600; }
+.nnbn-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+@media (max-width: 480px) { .nnbn-panels { grid-template-columns: 1fr; } }
+.nnbn-panel { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; }
+.nnbn-panel-title { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center; }
+.nnbn-steps { display: flex; flex-direction: column; gap: 0.5rem; }
+.nnbn-step { background: #0d1117; border-radius: 6px; padding: 0.5rem 0.75rem; border-left: 3px solid; }
+.nnbn-step-op { font-size: 0.78rem; font-weight: 600; margin-bottom: 0.2rem; }
+.nnbn-step-eq { font-family: monospace; font-size: 0.75rem; color: #a3adbb; }

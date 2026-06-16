@@ -1,0 +1,132 @@
+.mlopsapi-container {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #c9d1d9;
+}
+
+.mlopsapi-title {
+  color: #56d364;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.mlopsapi-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mlopsapi-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  background: #161b22;
+  color: #8b949e;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.mlopsapi-step:hover {
+  border-color: #56d364;
+  color: #c9d1d9;
+}
+
+.mlopsapi-step--active {
+  border-color: #56d364;
+  background: #0d2016;
+  color: #56d364;
+}
+
+.mlopsapi-step--done {
+  border-color: #238636;
+  color: #3fb950;
+}
+
+.mlopsapi-step-num {
+  background: #56d364;
+  color: #0d1117;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mlopsapi-step--done .mlopsapi-step-num {
+  background: #238636;
+}
+
+.mlopsapi-step--active .mlopsapi-step-num {
+  background: #56d364;
+}
+
+.mlopsapi-panel {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.mlopsapi-code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #56d364;
+  white-space: pre-wrap;
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.mlopsapi-desc {
+  color: #8b949e;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mlopsapi-diagram {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.mlopsapi-box {
+  padding: 10px 18px;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  background: #161b22;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mlopsapi-box--accent {
+  border-color: #56d364;
+  color: #56d364;
+}
+
+.mlopsapi-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.7rem;
+  color: #56d364;
+}

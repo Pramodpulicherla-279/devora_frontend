@@ -1,0 +1,94 @@
+.mfderiv-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfderiv-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 16px;
+}
+
+.mfderiv-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.mfderiv-svg {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mfderiv-panel {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mfderiv-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mfderiv-label {
+  color: #6b7785;
+  font-size: 0.85rem;
+  min-width: 14px;
+}
+
+.mfderiv-slider {
+  flex: 1;
+  accent-color: #58a6ff;
+}
+
+.mfderiv-val {
+  color: #58a6ff;
+  font-family: monospace;
+  font-size: 0.9rem;
+  min-width: 28px;
+  text-align: right;
+}
+
+.mfderiv-stats {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mfderiv-stat {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mfderiv-stat span {
+  color: #6b7785;
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.mfderiv-stat b {
+  color: #56d364;
+  font-family: monospace;
+}
+
+.mfderiv-note {
+  color: #6b7785;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}

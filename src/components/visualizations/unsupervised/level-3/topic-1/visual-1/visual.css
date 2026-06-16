@@ -1,0 +1,85 @@
+.unsupanom-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.unsupanom-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.unsupanom-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #818cf8;
+  margin: 0;
+  flex: 1;
+}
+
+.unsupanom-method-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.unsupanom-mbtn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  transition: all 0.2s;
+}
+
+.unsupanom-mbtn:hover { border-color: #818cf8; color: #818cf8; }
+.unsupanom-mbtn--on { border-color: #818cf8; color: #818cf8; font-weight: 600; background: #13153a; }
+
+.unsupanom-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.unsupanom-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.unsupanom-stat {
+  flex: 1;
+  min-width: 120px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.unsupanom-stat-l {
+  font-size: 0.72rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.unsupanom-stat-v {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e6edf3;
+}

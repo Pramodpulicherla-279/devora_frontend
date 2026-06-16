@@ -1,0 +1,140 @@
+.cnnend-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.cnnend-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #56d364;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.cnnend-progress-bar {
+  height: 8px;
+  background: #21262d;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.cnnend-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #56d364, #58a6ff);
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+.cnnend-progress-label {
+  font-size: 0.76rem;
+  color: #6b7785;
+  margin-bottom: 18px;
+}
+
+.cnnend-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cnnend-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.cnnend-card--done {
+  border-color: #56d364;
+  opacity: 0.85;
+}
+
+.cnnend-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+}
+
+.cnnend-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #30363d;
+  background: none;
+  color: #56d364;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.cnnend-card--done .cnnend-check {
+  background: #0d2a1a;
+  border-color: #56d364;
+}
+
+.cnnend-step-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #21262d;
+  font-size: 0.7rem;
+  color: #6b7785;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cnnend-step-label {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.cnnend-expand {
+  background: none;
+  border: none;
+  color: #6b7785;
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.cnnend-card-body {
+  padding: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cnnend-tip {
+  font-size: 0.8rem;
+  color: #a3adbb;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cnnend-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.73rem;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 0;
+}

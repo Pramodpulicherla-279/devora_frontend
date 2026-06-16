@@ -1,0 +1,106 @@
+.mlopsdvc-container {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #c9d1d9;
+}
+
+.mlopsdvc-title {
+  color: #56d364;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.mlopsdvc-section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.mlopsdvc-dag {
+  width: 100%;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+.mlopsdvc-commits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mlopsdvc-commit {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mlopsdvc-commit:hover { border-color: #30363d; }
+.mlopsdvc-commit--active { border-color: #56d364; background: #0d2016; }
+
+.mlopsdvc-commit-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mlopsdvc-hash {
+  font-family: monospace;
+  font-size: 0.76rem;
+  color: #388bfd;
+  background: #1c2d4a;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.mlopsdvc-tag {
+  background: #1f3d2b;
+  color: #56d364;
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.mlopsdvc-commit-msg {
+  font-size: 0.84rem;
+  color: #c9d1d9;
+}
+
+.mlopsdvc-commit-detail {
+  border-top: 1px solid #21262d;
+  padding-top: 8px;
+  font-size: 0.78rem;
+  color: #8b949e;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mlopsdvc-commit-detail code {
+  background: #21262d;
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: #56d364;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.mlopsdvc-note {
+  margin-top: 4px;
+  color: #56d364;
+}

@@ -1,0 +1,90 @@
+.mlopsserve-container {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #c9d1d9;
+}
+
+.mlopsserve-title {
+  color: #56d364;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+.mlopsserve-sub {
+  font-size: 0.82rem;
+  color: #8b949e;
+  margin: 0 0 16px;
+}
+
+.mlopsserve-table-wrap {
+  overflow-x: auto;
+}
+
+.mlopsserve-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 480px;
+}
+
+.mlopsserve-table thead th {
+  background: #161b22;
+  border: 1px solid #21262d;
+  padding: 9px 12px;
+  text-align: left;
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.mlopsserve-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mlopsserve-row td {
+  border: 1px solid #21262d;
+  padding: 9px 12px;
+  vertical-align: top;
+}
+
+.mlopsserve-row:hover td { background: #161b22; }
+.mlopsserve-row--active td { background: #0d2016; border-color: #238636; }
+
+.mlopsserve-name { font-weight: 600; color: #c9d1d9; }
+
+.mlopsserve-badge {
+  background: #1f3d2b;
+  color: #56d364;
+  font-size: 0.68rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.mlopsserve-good { color: #56d364; }
+.mlopsserve-mid  { color: #e3b341; }
+.mlopsserve-low  { color: #f85149; }
+
+.mlopsserve-hw   { color: #8b949e; font-size: 0.78rem; }
+.mlopsserve-best { color: #8b949e; font-size: 0.78rem; }
+
+.mlopsserve-detail {
+  margin-top: 14px;
+  background: #0d2016;
+  border: 1px solid #238636;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.84rem;
+  color: #8b949e;
+  line-height: 1.5;
+}
+
+.mlopsserve-detail strong { color: #56d364; }

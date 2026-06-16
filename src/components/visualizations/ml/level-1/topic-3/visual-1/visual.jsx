@@ -1,60 +1,68 @@
-/* Lesson: Train-Test Split and Overfitting
+/* Lesson: Your First ML Pipeline — Train, Test, Evaluate
  * Visual type: INTERACTIVE
- * Reason: Overfitting is best seen by sliding model complexity and watching the
- * fitted curve go from underfit → good → memorizing noise, with train/test
- * error diverging. */
+ * Reason: The lesson's core warning is "a model that fits training data perfectly
+ * is worthless on new data." A train/test split slider that shows the training
+ * score staying high while the test score fluctuates teaches the principle
+ * through direct manipulation. */
 import React, { useState } from 'react';
 import './visual.css';
 
-// fixed noisy points around a gentle curve
-const PTS = [[10,40],[20,55],[30,52],[40,68],[50,62],[60,78],[70,72],[80,88],[90,82]];
+const MlFirstPipelineVisualization = () => {
+  const [split, setSplit] = useState(80);
+  const trainPct = split, testPct = 100 - split;
 
-const MlTrainTestSplitVisualization = () => {
-  const [complexity, setComplexity] = useState(2); // 1 underfit, 2 good, 5 overfit
-  const W = 300, H = 170, pad = 24;
-  const X = (x) => pad + (x / 100) * (W - 2 * pad);
-  const Y = (y) => H - pad - (y / 100) * (H - 2 * pad);
-  // build a wiggly path whose wiggle grows with complexity
-  const path = [];
-  for (let x = 0; x <= 100; x += 2) {
-    const base = 38 + x * 0.45;
-    const wiggle = complexity <= 1 ? 0 : Math.sin(x / (12 - complexity)) * (complexity - 1) * 4;
-    path.push(`${X(x)},${Y(base + wiggle)}`);
-  }
-  const state = complexity <= 1 ? { k: 'under', t: 'Underfitting', d: 'Too simple — misses the real pattern. High error everywhere.' }
-    : complexity <= 3 ? { k: 'good', t: 'Good fit', d: 'Captures the trend, ignores the noise. Generalizes well.' }
-    : { k: 'over', t: 'Overfitting', d: 'Memorizes noise. Great on train data, poor on new data.' };
+  const fakeTrainScore = 0.88 + (split - 70) * 0.002;
+  const fakeTestScore = 0.79 - (split - 70) * 0.003 + (split < 60 ? (60 - split) * 0.01 : 0);
+
+  const steps = [
+    { n: '01', label: 'Load data', code: "df = pd.read_csv('orders.csv')", done: true },
+    { n: '02', label: 'Select features + target', code: "X = df[features]; y = df['returned']", done: true },
+    { n: '03', label: 'Train / test split', code: `train_test_split(X, y, test_size=${testPct/100})`, done: true },
+    { n: '04', label: 'Train model', code: "clf.fit(X_train, y_train)", done: true },
+    { n: '05', label: 'Evaluate on test set', code: "clf.score(X_test, y_test)", done: false },
+  ];
 
   return (
-    <div className="mlsplit-wrap">
-      <header className="mlsplit-head">
-        <span className="mlsplit-badge">Machine Learning</span>
-        <h2>Train/Test Split &amp; Overfitting</h2>
-        <p>A model must generalize, not memorize</p>
+    <div className="mlpipe-wrap">
+      <header className="mlpipe-head">
+        <span className="mlpipe-badge">Machine Learning</span>
+        <h2>Your First ML Pipeline</h2>
+        <p>Train on past, evaluate on future — never peek at the test set</p>
       </header>
-      <div className="mlsplit-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="mlsplit-svg" preserveAspectRatio="xMidYMid meet">
-          <line x1={pad} y1={H - pad} x2={W - pad} y2={H - pad} className="mlsplit-axis" />
-          <line x1={pad} y1={pad} x2={pad} y2={H - pad} className="mlsplit-axis" />
-          <polyline className={`mlsplit-fit mlsplit-fit--${state.k}`} points={path.join(' ')} />
-          {PTS.map(([x, y], i) => <circle key={i} cx={X(x)} cy={Y(y)} r="4" className="mlsplit-pt" />)}
-        </svg>
+
+      <div className="mlpipe-steps">
+        {steps.map((s, i) => (
+          <div key={i} className={`mlpipe-step ${s.done ? 'mlpipe-step--done' : 'mlpipe-step--eval'}`}>
+            <span className="mlpipe-step-n">{s.n}</span>
+            <div className="mlpipe-step-body">
+              <span className="mlpipe-step-label">{s.label}</span>
+              <code className="mlpipe-step-code">{s.code}</code>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="mlsplit-control">
-        <label>Model complexity
-          <input type="range" min="1" max="5" value={complexity} onChange={(e) => setComplexity(Number(e.target.value))} className="mlsplit-slider" />
+
+      <div className="mlpipe-split">
+        <label className="mlpipe-lbl">Train/test split — {trainPct}% train · {testPct}% test
         </label>
-        <div className="mlsplit-scale"><span>simple</span><span>complex</span></div>
+        <input type="range" min={50} max={90} value={split} onChange={e => setSplit(+e.target.value)} className="mlpipe-slider" />
+        <div className="mlpipe-bar-row">
+          <div className="mlpipe-train-bar" style={{ width: `${trainPct}%` }}><span>Train</span></div>
+          <div className="mlpipe-test-bar" style={{ width: `${testPct}%` }}><span>Test</span></div>
+        </div>
       </div>
-      <div className={`mlsplit-verdict mlsplit-verdict--${state.k}`}>
-        <strong>{state.t}</strong> — {state.d}
+
+      <div className="mlpipe-scores">
+        <div className="mlpipe-score"><span>Train accuracy</span><strong style={{ color: '#a78bfa' }}>{(fakeTrainScore * 100).toFixed(1)}%</strong></div>
+        <div className="mlpipe-score"><span>Test accuracy</span><strong style={{ color: fakeTestScore > 0.78 ? '#56d364' : '#f0883e' }}>{(fakeTestScore * 100).toFixed(1)}%</strong></div>
+        <div className="mlpipe-score"><span>Gap (overfit?)</span><strong style={{ color: (fakeTrainScore - fakeTestScore) > 0.1 ? '#f85149' : '#56d364' }}>{((fakeTrainScore - fakeTestScore) * 100).toFixed(1)}pp</strong></div>
       </div>
-      <div className="mlsplit-split">
-        <div className="mlsplit-bar mlsplit-bar--train">Train 80%</div>
-        <div className="mlsplit-bar mlsplit-bar--test">Test 20%</div>
+
+      <div className="mlpipe-note">
+        Never tune your model by looking at the test set — that turns the "held-out" data into training data. Use a <strong>validation set</strong> or <strong>cross-validation</strong> for tuning; the test set is for one final honest evaluation only.
       </div>
-      <div className="mlsplit-note">Always hold out a <strong>test set</strong> the model never sees during training — it's the only honest measure of generalization.</div>
     </div>
   );
 };
-export default MlTrainTestSplitVisualization;
+
+export default MlFirstPipelineVisualization;

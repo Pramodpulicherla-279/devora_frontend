@@ -1,0 +1,301 @@
+.depatlas-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: 24px;
+  font-family: 'Inter', sans-serif;
+  color: #e6edf3;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.depatlas-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.depatlas-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4caf50;
+  letter-spacing: -0.3px;
+}
+
+.depatlas-subtitle {
+  font-size: 13px;
+  color: #8b949e;
+}
+
+.depatlas-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.depatlas-step-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  padding: 8px 4px;
+  z-index: 1;
+  position: relative;
+}
+
+.depatlas-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #161b22;
+  border: 2px solid #30363d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b949e;
+  transition: all 0.2s;
+}
+
+.depatlas-step-label {
+  font-size: 11px;
+  color: #8b949e;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.depatlas-step-active .depatlas-step-num {
+  background: #818cf8;
+  border-color: #818cf8;
+  color: #fff;
+}
+
+.depatlas-step-active .depatlas-step-label {
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.depatlas-step-done .depatlas-step-num {
+  background: #238636;
+  border-color: #238636;
+  color: #fff;
+}
+
+.depatlas-step-done .depatlas-step-label {
+  color: #3fb950;
+}
+
+.depatlas-step-line {
+  position: absolute;
+  top: 24px;
+  left: 16%;
+  right: 16%;
+  height: 2px;
+  background: #21262d;
+  z-index: 0;
+}
+
+.depatlas-panel {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+  min-height: 220px;
+}
+
+.depatlas-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.depatlas-panel-icon {
+  font-size: 22px;
+}
+
+.depatlas-panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.depatlas-panel-desc {
+  font-size: 13px;
+  color: #8b949e;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.depatlas-ui-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.depatlas-field-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #0d1117;
+  border-radius: 6px;
+  border: 1px solid #21262d;
+}
+
+.depatlas-field-label {
+  font-size: 12px;
+  color: #8b949e;
+  min-width: 90px;
+  font-weight: 500;
+}
+
+.depatlas-field-value {
+  font-size: 13px;
+  color: #e6edf3;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.depatlas-badge {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.depatlas-selected {
+  background: #1c2d3d;
+  border-color: #388bfd;
+  color: #58a6ff;
+}
+
+.depatlas-accent {
+  color: #818cf8;
+}
+
+.depatlas-masked {
+  letter-spacing: 2px;
+  color: #8b949e;
+}
+
+.depatlas-warn {
+  background: #2a1f0d;
+  border-color: #d29922;
+  color: #e3b341;
+}
+
+.depatlas-tip {
+  font-size: 11px;
+  color: #8b949e;
+  padding: 6px 10px;
+  background: #1c2026;
+  border-radius: 4px;
+  border-left: 3px solid #818cf8;
+}
+
+.depatlas-tip-warn {
+  border-left-color: #d29922;
+  color: #e3b341;
+}
+
+.depatlas-conn-string {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 12px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 12px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  word-break: break-all;
+}
+
+.depatlas-conn-scheme { color: #8b949e; }
+.depatlas-conn-user   { color: #79c0ff; }
+.depatlas-conn-sep    { color: #8b949e; }
+.depatlas-conn-pass   { color: #f85149; }
+.depatlas-conn-host   { color: #56d364; }
+.depatlas-conn-db     { color: #e3b341; }
+
+.depatlas-config-block {
+  margin-top: 14px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.depatlas-config-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #8b949e;
+  background: #21262d;
+  border-radius: 3px;
+  padding: 2px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.depatlas-config-code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 11px;
+  color: #a5d6ff;
+  word-break: break-all;
+}
+
+.depatlas-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.depatlas-nav-btn {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.depatlas-nav-btn:hover:not(:disabled) {
+  background: #30363d;
+}
+
+.depatlas-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.depatlas-nav-primary {
+  background: #818cf8;
+  border-color: #818cf8;
+  color: #fff;
+  font-weight: 600;
+}
+
+.depatlas-nav-primary:hover:not(:disabled) {
+  background: #6875f5;
+}
+
+.depatlas-progress {
+  font-size: 13px;
+  color: #8b949e;
+}

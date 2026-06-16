@@ -1,0 +1,11 @@
+.nnwhat-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnwhat-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.5rem; }
+.nnwhat-subtitle { font-size: 0.85rem; color: #a3adbb; margin-bottom: 1.25rem; }
+.nnwhat-svg-wrap { background: #161b22; border: 1px solid #21262d; border-radius: 8px; display: flex; justify-content: center; align-items: center; padding: 1rem; }
+.nnwhat-info { margin-top: 1rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; font-size: 0.85rem; }
+.nnwhat-info-title { color: #a78bfa; font-weight: 600; margin-bottom: 0.4rem; }
+.nnwhat-info-text { color: #a3adbb; line-height: 1.6; }
+.nnwhat-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+.nnwhat-legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: #a3adbb; }
+.nnwhat-legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+.nnwhat-hint { font-size: 0.75rem; color: #6b7785; margin-top: 0.75rem; text-align: center; }

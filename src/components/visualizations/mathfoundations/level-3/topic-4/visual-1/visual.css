@@ -1,0 +1,159 @@
+.mfbayes-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfbayes-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 16px;
+}
+
+.mfbayes-formula {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.mfbayes-term {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mfbayes-eq {
+  color: #6b7785;
+  font-size: 1rem;
+}
+
+.mfbayes-fraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.mfbayes-num, .mfbayes-den {
+  font-family: monospace;
+  font-size: 0.88rem;
+  color: #a3adbb;
+}
+
+.mfbayes-line {
+  display: block;
+  height: 1px;
+  background: #a3adbb;
+  width: 100%;
+}
+
+.mfbayes-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.mfbayes-ctrl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mfbayes-lbl {
+  color: #a3adbb;
+  font-size: 0.85rem;
+}
+
+.mfbayes-lbl b { font-family: monospace; }
+
+.mfbayes-slider {
+  width: 100%;
+  accent-color: #58a6ff;
+}
+
+.mfbayes-fixed {
+  color: #6b7785;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.mfbayes-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mfbayes-step {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.mfbayes-step-label {
+  color: #58a6ff;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.mfbayes-step-calc {
+  color: #6b7785;
+  font-family: monospace;
+  font-size: 0.82rem;
+  flex: 1;
+}
+
+.mfbayes-step-val {
+  color: #a3adbb;
+  font-family: monospace;
+  font-size: 0.88rem;
+}
+
+.mfbayes-result {
+  color: #56d364 !important;
+  font-weight: 700;
+}
+
+.mfbayes-bar-wrap {
+  position: relative;
+  background: #21262d;
+  border-radius: 6px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.mfbayes-bar-inner {
+  height: 100%;
+  background: linear-gradient(90deg, #58a6ff, #a78bfa);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.mfbayes-bar-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e6edf3;
+  font-size: 0.82rem;
+  font-weight: 600;
+}

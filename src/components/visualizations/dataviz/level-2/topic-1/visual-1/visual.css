@@ -1,0 +1,16 @@
+/* DataViz: Seaborn intro — prefix: dvsns- */
+.dvsns-wrap { font-family:system-ui,sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.dvsns-head { text-align:center; margin-bottom:14px; }
+.dvsns-badge { background:#0d1a2a; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.dvsns-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.dvsns-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.dvsns-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; justify-content:center; }
+.dvsns-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 16px; font-size:0.78rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.dvsns-tab--on { border-color:#58a6ff; color:#58a6ff; background:#0d1a2a; }
+.dvsns-compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.dvsns-cmp-col { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.dvsns-cmp-label { font-size:0.76rem; color:#a3adbb; font-weight:600; }
+.dvsns-cmp-svg { display:block; width:100%; max-width:160px; background:#161b22; border-radius:8px; border:1px solid #21262d; }
+.dvsns-cmp-lines { font-size:0.78rem; font-weight:700; }
+.dvsns-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; font-family:'Consolas',monospace; font-size:0.73rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; line-height:1.55; }
+.dvsns-note { background:#161b22; border-left:3px solid #58a6ff; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

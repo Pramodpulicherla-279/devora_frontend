@@ -1,23 +1,20 @@
-/* Pandas: GroupBy & Merge — prefix: pdgroup- */
-.pdgroup-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
-.pdgroup-head { text-align: center; margin-bottom: 16px; }
-.pdgroup-badge { background: #2e2606; color: #eab308; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #eab308; letter-spacing: 1.5px; }
-.pdgroup-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #eab308; }
-.pdgroup-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.pdgroup-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
-.pdgroup-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-family: monospace; min-height: 40px; transition: all 0.15s; }
-.pdgroup-tab--on { background: #2e2606; border-color: #eab308; color: #eab308; font-weight: 700; }
-.pdgroup-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #eab308; overflow-x: auto; margin: 0 0 12px; }
-.pdgroup-split { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
-.pdgroup-bucket { flex: 1; min-width: 100px; background: #161b22; border: 2px solid; border-radius: 9px; padding: 10px; text-align: center; }
-.pdgroup-bucket-head { font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; }
-.pdgroup-chips { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
-.pdgroup-chip { background: #0d1117; border-radius: 5px; padding: 2px 8px; font-size: 0.72rem; color: #c9d1d9; font-family: monospace; }
-.pdgroup-agg { font-size: 0.84rem; color: #eab308; font-family: monospace; border-top: 1px solid #21262d; padding-top: 6px; }
-.pdgroup-merge { display: flex; align-items: center; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
-.pdgroup-mt { background: #161b22; border-radius: 8px; padding: 10px 14px; text-align: center; }
-.pdgroup-mt-h { font-size: 0.74rem; color: #eab308; font-weight: 700; margin-bottom: 4px; }
-.pdgroup-mt div:last-child { font-size: 0.72rem; color: #a3adbb; font-family: monospace; }
-.pdgroup-join { font-size: 0.78rem; color: #eab308; font-family: monospace; }
-.pdgroup-note { background: #161b22; border-left: 3px solid #eab308; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
-.pdgroup-note strong { color: #eab308; } .pdgroup-note code { color: #eab308; }
+/* Pandas: Filtering & Sorting — prefix: pdfilt- */
+.pdfilt-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:680px; margin:0 auto; border:1px solid #21262d; }
+.pdfilt-head { text-align:center; margin-bottom:14px; }
+.pdfilt-badge { background:#132a3d; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.pdfilt-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.pdfilt-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pdfilt-controls { display:flex; flex-direction:column; gap:10px; background:#161b22; border-radius:10px; padding:14px; margin-bottom:12px; }
+.pdfilt-ctrl-group { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; }
+.pdfilt-label { font-size:0.72rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; min-width:110px; padding-top:4px; flex-shrink:0; }
+.pdfilt-chips { display:flex; gap:5px; flex-wrap:wrap; }
+.pdfilt-chip { background:#0d1117; border:1px solid #30363d; border-radius:20px; padding:3px 11px; font-size:0.74rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.pdfilt-chip--on { border-color:#58a6ff; color:#58a6ff; background:#132a3d; }
+.pdfilt-range { width:100%; accent-color:#58a6ff; }
+.pdfilt-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.75rem; color:#e6edf3; overflow-x:auto; margin:0 0 10px; white-space:pre; line-height:1.55; }
+.pdfilt-count { font-size:0.78rem; color:#56d364; margin-bottom:6px; }
+.pdfilt-table-wrap { overflow-x:auto; }
+.pdfilt-table { border-collapse:collapse; width:100%; font-size:0.78rem; }
+.pdfilt-table th { background:#21262d; color:#6b7785; padding:6px 12px; text-align:left; font-size:0.72rem; font-weight:700; border-bottom:1px solid #30363d; }
+.pdfilt-table td { padding:6px 12px; color:#c9d1d9; border-bottom:1px solid #161b22; }
+.pdfilt-empty { text-align:center; color:#6b7785; padding:20px !important; }

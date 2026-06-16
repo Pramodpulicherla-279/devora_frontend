@@ -1,63 +1,50 @@
-/* Lesson: Skewness and Kurtosis
+/* Lesson: Outlier Detection — IQR Method and Z-Scores
  * Visual type: INTERACTIVE
- * Reason: Skew (lean) and kurtosis (tailedness/peak) are shape concepts — a
- * slider that morphs the curve from left-skew to right-skew and flat to peaked
- * makes the vocabulary stick far better than two static pictures. */
+ * Reason: Outliers are defined by a rule, not a feeling — toggling between the IQR
+ * fence method and the z-score (±2σ) method and dragging a point past the boundary
+ * shows exactly when a value gets flagged, and how the two rules disagree. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const DescStatsSkewKurtosisVisualization = () => {
-  const [skew, setSkew] = useState(0);     // -1 .. 1
-  const [kurt, setKurt] = useState(0);     // -1 (flat) .. 1 (peaked)
-  const W = 320, H = 140, pad = 16, midY = H - 24;
+const BASE = [900, 1000, 1050, 1100, 1150, 1200, 1300, 1500, 1800, 2200];
+function quart(arr, p) { const s = [...arr].sort((a, b) => a - b); const i = p * (s.length - 1); const lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); }
 
-  // build an asymmetric bell using a skew-normal-ish shape
-  const s = 1 + kurt * 0.9;        // peak sharpness
-  const a = skew * 4;              // skew strength
-  const pts = [];
-  for (let i = 0; i <= 100; i++) {
-    const xN = (i / 100) * 6 - 3;             // -3..3
-    const base = Math.exp(-(xN * xN) / (2 / (s)));
-    const skewFactor = 1 + 0.5 * a * xN / Math.sqrt(1 + xN * xN);
-    const y = Math.max(0, base * skewFactor);
-    pts.push({ x: pad + (i / 100) * (W - 2 * pad), y, raw: y });
-  }
-  const maxY = Math.max(...pts.map((p) => p.raw), 0.01);
-  const poly = pts.map((p) => `${p.x.toFixed(1)},${(midY - (p.raw / maxY) * (H - 46)).toFixed(1)}`).join(' ');
-
-  const skewLabel = skew < -0.15 ? 'Left-skewed (negative)' : skew > 0.15 ? 'Right-skewed (positive)' : 'Symmetric';
-  const kurtLabel = kurt < -0.15 ? 'Platykurtic (flat)' : kurt > 0.15 ? 'Leptokurtic (peaked)' : 'Mesokurtic (normal)';
-
+const DescStatsOutliersVisualization = () => {
+  const [method, setMethod] = useState('iqr');
+  const [extreme, setExtreme] = useState(3000);
+  const data = [...BASE, extreme];
+  const q1 = quart(data, .25), q3 = quart(data, .75), iqr = q3 - q1;
+  const hiF = q3 + 1.5 * iqr, loF = q1 - 1.5 * iqr;
+  const mean = data.reduce((s, v) => s + v, 0) / data.length;
+  const sd = Math.sqrt(data.reduce((s, v) => s + (v - mean) ** 2, 0) / data.length);
+  const isOut = (v) => method === 'iqr' ? (v < loF || v > hiF) : Math.abs((v - mean) / sd) > 2;
+  const lo = 700, hi = 12000; const X = (v) => Math.min(100, Math.max(0, ((v - lo) / (hi - lo)) * 100));
+  const flagged = data.filter(isOut).length;
   return (
-    <div className="dssk-wrap">
-      <header className="dssk-head">
-        <span className="dssk-badge">Statistics</span>
-        <h2>Skewness &amp; Kurtosis</h2>
-        <p>The lean and the peak of a distribution</p>
+    <div className="dsod-wrap">
+      <header className="dsod-head">
+        <span className="dsod-badge">Statistics</span>
+        <h2>Outlier Detection</h2>
+        <p>IQR fences vs Z-scores</p>
       </header>
-
-      <div className="dssk-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="dssk-svg" preserveAspectRatio="xMidYMid meet">
-          <polyline className="dssk-curve" points={poly} />
-          <line x1={pad} y1={midY} x2={W - pad} y2={midY} className="dssk-axis" />
-        </svg>
+      <div className="dsod-toggle">
+        <button className={method === 'iqr' ? 'dsod-t dsod-t--on' : 'dsod-t'} onClick={() => setMethod('iqr')}>IQR (1.5×)</button>
+        <button className={method === 'z' ? 'dsod-t dsod-t--on' : 'dsod-t'} onClick={() => setMethod('z')}>Z-score (&gt;2σ)</button>
       </div>
-
-      <div className="dssk-controls">
-        <label>Skewness: <strong className="dssk-tag">{skewLabel}</strong>
-          <input type="range" min="-1" max="1" step="0.05" value={skew} onChange={(e) => setSkew(Number(e.target.value))} className="dssk-slider" />
-        </label>
-        <label>Kurtosis: <strong className="dssk-tag">{kurtLabel}</strong>
-          <input type="range" min="-1" max="1" step="0.05" value={kurt} onChange={(e) => setKurt(Number(e.target.value))} className="dssk-slider" />
+      <div className="dsod-track">
+        {method === 'iqr' && <span className="dsod-fence" style={{ left: `${X(hiF)}%` }} />}
+        {method === 'z' && <span className="dsod-fence" style={{ left: `${X(mean + 2 * sd)}%` }} />}
+        {data.map((v, i) => (<span key={i} className={`dsod-dot ${isOut(v) ? 'dsod-dot--out' : ''}`} style={{ left: `${X(v)}%` }} />))}
+      </div>
+      <div className="dsod-control">
+        <label>Suspicious order = ₹{extreme.toLocaleString('en-IN')}
+          <input type="range" min="2000" max="12000" step="100" value={extreme} onChange={e => setExtreme(Number(e.target.value))} className="dsod-slider" />
         </label>
       </div>
-
-      <div className="dssk-cards">
-        <div className="dssk-card"><strong>Skewness</strong><p>Direction &amp; amount of asymmetry. Right-skew → long right tail (mean &gt; median).</p></div>
-        <div className="dssk-card"><strong>Kurtosis</strong><p>Tailedness. High kurtosis → sharp peak &amp; fat tails (more outliers).</p></div>
-      </div>
+      <div className="dsod-readout">{flagged} point{flagged !== 1 ? 's' : ''} flagged · {method === 'iqr' ? `upper fence ₹${Math.round(hiF).toLocaleString('en-IN')}` : `mean+2σ ₹${Math.round(mean + 2 * sd).toLocaleString('en-IN')}`}</div>
+      <div className="dsod-note"><strong>IQR</strong> is robust — the fence barely moves when the outlier grows. <strong>Z-score</strong> uses mean &amp; SD, which the outlier itself inflates, so extreme points can mask themselves. Prefer IQR for skewed data.</div>
     </div>
   );
 };
 
-export default DescStatsSkewKurtosisVisualization;
+export default DescStatsOutliersVisualization;

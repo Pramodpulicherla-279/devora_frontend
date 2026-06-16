@@ -1,0 +1,73 @@
+.mfvizfn-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfvizfn-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 14px;
+}
+
+.mfvizfn-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.mfvizfn-tab {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  font-size: 0.85rem;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.mfvizfn-tab:hover { background: #30363d; color: #e6edf3; }
+
+.mfvizfn-tab-active { background: #0d1117; }
+
+.mfvizfn-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.mfvizfn-fn-label {
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.mfvizfn-svg {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  display: block;
+}
+
+.mfvizfn-code {
+  flex: 1;
+  min-width: 200px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  color: #a3adbb;
+  font-size: 0.78rem;
+  font-family: 'Consolas', 'Fira Code', monospace;
+  padding: 12px 14px;
+  margin: 0;
+  overflow-x: auto;
+  line-height: 1.55;
+  white-space: pre;
+}

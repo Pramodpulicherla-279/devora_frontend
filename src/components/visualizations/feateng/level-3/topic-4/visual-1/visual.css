@@ -1,0 +1,118 @@
+.fepipe-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.fepipe-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 4px;
+}
+
+.fepipe-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0 0 20px;
+}
+
+.fepipe-chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.fepipe-chain-row {
+  display: flex;
+  align-items: center;
+}
+
+.fepipe-block {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-top: 3px solid var(--bc, #f97316);
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  min-width: 100px;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.fepipe-block:hover { background: #1a1f28; border-color: var(--bc); }
+.fepipe-block--active { background: #1a1000; border-color: var(--bc); }
+
+.fepipe-block-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.fepipe-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.fepipe-detail {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-left-width: 3px;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  animation: fepipe-fade 0.15s ease;
+}
+
+@keyframes fepipe-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.fepipe-detail-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.fepipe-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: #f97316;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0 0 8px;
+}
+
+.fepipe-note {
+  font-size: 0.78rem;
+  color: #a3adbb;
+  line-height: 1.4;
+}
+
+.fepipe-leakage {
+  background: #1a1000;
+  border: 1px solid #f97316;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: #a3adbb;
+  line-height: 1.5;
+}
+
+.fepipe-leakage code {
+  background: #0d1117;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #f97316;
+  font-size: 0.78rem;
+}

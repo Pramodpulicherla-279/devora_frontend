@@ -1,48 +1,91 @@
-/* Lesson: Python Project Structure
+/* Lesson: Working with Dates and Times in Python
  * Visual type: ILLUSTRATION
- * Reason: Project layout is a file tree — a clickable tree mapping each file to
- * its role orients learners on how to organize a real analysis project. */
+ * Common date operations — parse, format, diff, extract — with before/after */
 import React, { useState } from 'react';
 import './visual.css';
 
-const TREE = [
-  { p: 'my_project/', d: 'Project root.', depth: 0 },
-  { p: 'data/', d: 'Raw & processed datasets (often git-ignored).', depth: 1 },
-  { p: 'notebooks/', d: 'Jupyter notebooks for exploration.', depth: 1 },
-  { p: 'src/', d: 'Reusable Python modules.', depth: 1 },
-  { p: 'src/clean.py', d: 'Data-cleaning functions.', depth: 2 },
-  { p: 'src/analyze.py', d: 'Analysis logic.', depth: 2 },
-  { p: 'requirements.txt', d: 'Pinned dependencies for reproducibility.', depth: 1 },
-  { p: 'README.md', d: 'How to set up & run the project.', depth: 1 },
-  { p: '.gitignore', d: 'Exclude data/, venv/, __pycache__/.', depth: 1 },
+const OPS = [
+  {
+    id: 'parse',
+    label: 'Parse string → date',
+    code: `from datetime import datetime
+
+raw = '2024-06-15'          # string from CSV
+date = datetime.strptime(raw, '%Y-%m-%d')
+# date → datetime(2024, 6, 15, 0, 0)
+
+# pandas shortcut:
+df['date'] = pd.to_datetime(df['date'])`,
+    note: 'Dates in CSVs arrive as strings. strptime() converts them. %Y=4-digit year, %m=month, %d=day.',
+  },
+  {
+    id: 'format',
+    label: 'Format → string',
+    code: `date = datetime(2024, 6, 15)
+date.strftime('%d %b %Y')   # '15 Jun 2024'
+date.strftime('%d/%m/%Y')   # '15/06/2024'
+date.strftime('%B %Y')      # 'June 2024'  (report header)`,
+    note: 'strftime() goes the other way — datetime to display string. Useful for report titles and filenames.',
+  },
+  {
+    id: 'extract',
+    label: 'Extract parts',
+    code: `date = datetime(2024, 6, 15)
+date.year     # 2024
+date.month    # 6
+date.day      # 15
+date.weekday()  # 5  (Saturday, 0=Monday)
+
+# In pandas:
+df['month'] = df['date'].dt.month
+df['year']  = df['date'].dt.year
+df['dow']   = df['date'].dt.day_name()`,
+    note: 'Extract parts to group by month or year. df.dt accessor brings datetime methods to pandas columns.',
+  },
+  {
+    id: 'diff',
+    label: 'Date arithmetic',
+    code: `from datetime import timedelta
+
+order_date = datetime(2024, 6, 1)
+ship_date  = datetime(2024, 6, 8)
+days_to_ship = (ship_date - order_date).days  # 7
+
+next_week = order_date + timedelta(weeks=1)
+deadline  = order_date + timedelta(days=30)`,
+    note: 'Subtracting two datetimes gives a timedelta. .days extracts the integer. timedelta lets you add/subtract intervals.',
+  },
 ];
 
-const PyProjectVisualization = () => {
-  const [sel, setSel] = useState('requirements.txt');
-  const cur = TREE.find((t) => t.p === sel);
+const PyDatesVisualization = () => {
+  const [sel, setSel] = useState('parse');
+  const op = OPS.find(o=>o.id===sel);
+
   return (
-    <div className="pyproj-wrap">
-      <header className="pyproj-head">
-        <span className="pyproj-badge">Python</span>
-        <h2>Project Structure</h2>
-        <p>Organize an analysis project like a pro</p>
+    <div className="pydt-wrap">
+      <header className="pydt-head">
+        <span className="pydt-badge">Python Basics</span>
+        <h2>Dates &amp; Times</h2>
+        <p>The four operations that cover 90% of date work</p>
       </header>
-      <div className="pyproj-grid">
-        <div className="pyproj-tree">
-          {TREE.map((t) => (
-            <button key={t.p} className={`pyproj-node ${sel === t.p ? 'pyproj-node--on' : ''}`} style={{ paddingLeft: `${10 + t.depth * 16}px` }} onClick={() => setSel(t.p)}>
-              <span className="pyproj-icon">{t.p.endsWith('/') ? '📁' : '📄'}</span>
-              {t.p.split('/').filter(Boolean).pop()}{t.p.endsWith('/') ? '/' : ''}
-            </button>
+
+      <div className="pydt-tabs">
+        {OPS.map(o=><button key={o.id} className={`pydt-tab ${sel===o.id?'pydt-tab--on':''}`} onClick={()=>setSel(o.id)}>{o.label}</button>)}
+      </div>
+
+      <pre className="pydt-code"><code>{op.code}</code></pre>
+      <div className="pydt-note">{op.note}</div>
+
+      <div className="pydt-cheatsheet">
+        <div className="pydt-cs-label">Format codes</div>
+        <div className="pydt-cs-grid">
+          {[['%Y','2024'],['%m','06'],['%d','15'],['%b','Jun'],['%B','June'],['%A','Saturday'],['%H:%M','14:30']].map(([code,ex])=>(
+            <div key={code} className="pydt-cs-item"><code>{code}</code><span>{ex}</span></div>
           ))}
         </div>
-        <div className="pyproj-detail">
-          <code className="pyproj-path">{sel}</code>
-          <p>{cur.d}</p>
-        </div>
       </div>
-      <div className="pyproj-note">Separate <strong>data</strong>, <strong>exploration</strong> (notebooks), and <strong>reusable code</strong> (src). Pin deps in requirements.txt so others can reproduce your environment.</div>
     </div>
   );
 };
-export default PyProjectVisualization;
+
+export default PyDatesVisualization;

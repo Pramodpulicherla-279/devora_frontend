@@ -1,0 +1,165 @@
+.svsplits-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svsplits-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 16px;
+}
+
+.svsplits-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.svsplits-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.svsplits-stat-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.svsplits-stat-lbl {
+  font-size: 0.78rem;
+  color: #6b7785;
+}
+
+.svsplits-divider {
+  color: #30363d;
+  font-size: 1.5rem;
+}
+
+.svsplits-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  transition: opacity 0.3s;
+}
+
+.svsplits-animate { opacity: 0.3; }
+
+.svsplits-section {
+  flex: 1;
+  min-width: 180px;
+}
+
+.svsplits-section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.svsplits-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.svsplits-cell {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: default;
+  transition: transform 0.2s;
+}
+
+.svsplits-cell:hover { transform: scale(1.15); }
+
+.svsplits-cell--train {
+  background: #0f2a1a;
+  border: 1px solid #56d364;
+  color: #56d364;
+}
+
+.svsplits-cell--test {
+  background: #2a1600;
+  border: 1px solid #f97316;
+  color: #f97316;
+}
+
+.svsplits-bar {
+  display: flex;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.svsplits-bar-train {
+  background: #0f2a1a;
+  border: 1px solid #56d364;
+  color: #56d364;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.svsplits-bar-test {
+  background: #2a1600;
+  border: 1px solid #f97316;
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+}
+
+.svsplits-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.svsplits-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 7px 16px;
+  transition: all 0.2s;
+}
+
+.svsplits-btn:hover { border-color: #56d364; color: #56d364; }
+.svsplits-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.svsplits-btn--primary {
+  background: #0f2a1a;
+  border-color: #56d364;
+  color: #56d364;
+  font-weight: 600;
+}
+
+.svsplits-hint {
+  font-size: 0.82rem;
+  color: #6b7785;
+  line-height: 1.5;
+  margin: 0;
+  border-left: 2px solid #30363d;
+  padding-left: 10px;
+}

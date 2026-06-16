@@ -1,0 +1,29 @@
+.trrag-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 740px;
+  margin: 0 auto;
+}
+.trrag-title { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 700; color: #818cf8; margin: 0 0 4px; }
+.trrag-sub { color: #a3adbb; font-size: 0.82rem; margin: 0 0 16px; }
+.trrag-pipeline { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 16px; }
+.trrag-step-wrap { display: flex; align-items: center; gap: 4px; }
+.trrag-step { background: #161b22; border: 1px solid #30363d; color: #a3adbb; border-radius: 8px; padding: 6px 10px; font-size: 0.75rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: all 0.2s; min-width: 70px; }
+.trrag-step:hover:not(.trrag-step-active) { background: #21262d; }
+.trrag-step-active { background: #818cf818; border-color: #818cf8; color: #818cf8; }
+.trrag-step-icon { font-size: 1.1rem; }
+.trrag-step-label { font-size: 0.68rem; text-align: center; line-height: 1.2; }
+.trrag-arrow { color: #6b7785; font-size: 0.85rem; }
+.trrag-detail { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.trrag-detail-header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; }
+.trrag-detail-icon { font-size: 1.3rem; }
+.trrag-io { display: flex; flex-direction: column; gap: 4px; }
+.trrag-io-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7785; }
+.trrag-code { font-family: 'Courier New', monospace; font-size: 0.8rem; color: #a3adbb; background: #0d1117; border-radius: 6px; padding: 8px 10px; white-space: pre-wrap; word-break: break-all; }
+.trrag-output { border-left: 3px solid #818cf8; }
+.trrag-badge { border: 1px solid; border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-family: monospace; width: fit-content; }
+.trrag-desc { font-size: 0.82rem; color: #a3adbb; line-height: 1.55; }

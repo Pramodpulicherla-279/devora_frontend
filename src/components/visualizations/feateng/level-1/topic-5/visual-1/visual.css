@@ -1,0 +1,109 @@
+.fedatetime-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.fedatetime-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.fedatetime-ts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+.fedatetime-ts-btn {
+  font-family: monospace;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #a3adbb;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fedatetime-ts-btn--on {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+.fedatetime-diagram {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+}
+.fedatetime-source {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  flex-shrink: 0;
+}
+.fedatetime-src-label {
+  font-size: 0.7rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.fedatetime-src-val {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #58a6ff;
+}
+.fedatetime-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  width: 60px;
+}
+.fedatetime-svg {
+  width: 60px;
+  height: 20px;
+}
+.fedatetime-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.fedatetime-feat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0d1117;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+.fedatetime-feat-name {
+  font-size: 0.75rem;
+  font-family: monospace;
+  min-width: 80px;
+}
+.fedatetime-feat-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #e6edf3;
+}
+.fedatetime-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}
+.fedatetime-note strong {
+  color: #f97316;
+}

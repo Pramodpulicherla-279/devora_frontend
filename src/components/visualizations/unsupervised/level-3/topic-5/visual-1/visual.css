@@ -1,0 +1,120 @@
+.unsupend-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 620px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.unsupend-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #818cf8;
+  margin: 0 0 4px;
+}
+
+.unsupend-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0 0 20px;
+}
+
+.unsupend-stepper { display: flex; flex-direction: column; }
+
+.unsupend-step-wrap { display: flex; flex-direction: column; }
+
+.unsupend-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.unsupend-step:hover { border-color: #818cf8; }
+.unsupend-step--open { border-color: #818cf8; background: #10123a; }
+
+.unsupend-num {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #21262d;
+  color: #818cf8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.unsupend-step--open .unsupend-num { background: #818cf8; color: #0d1117; }
+
+.unsupend-step-info { flex: 1; }
+
+.unsupend-step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 2px;
+}
+
+.unsupend-step-desc {
+  font-size: 0.78rem;
+  color: #a3adbb;
+  line-height: 1.4;
+}
+
+.unsupend-expanded { margin-top: 6px; }
+
+.unsupend-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: #818cf8;
+  margin: 6px 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.unsupend-output-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7785;
+  margin-bottom: 3px;
+}
+
+.unsupend-output {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  color: #56d364;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.unsupend-chevron {
+  font-size: 0.65rem;
+  color: #6b7785;
+  padding-top: 4px;
+}
+
+.unsupend-connector {
+  width: 2px;
+  height: 10px;
+  background: #30363d;
+  margin-left: 22px;
+}

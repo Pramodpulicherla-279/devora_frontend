@@ -1,0 +1,23 @@
+.pymsetup-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymsetup-title { color: #a78bfa; margin: 0 0 20px; font-size: clamp(15px,3vw,18px); }
+.pymsetup-stepper { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.pymsetup-step { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; color: #6b7785; font-size: 13px; transition: all 0.2s; }
+.pymsetup-step:hover { border-color: #a78bfa; color: #e6edf3; }
+.pymsetup-step--active { border-color: #a78bfa; color: #e6edf3; background: #1c2128; }
+.pymsetup-step--done { color: #56d364; border-color: #56d364; }
+.pymsetup-num { width: 20px; height: 20px; border-radius: 50%; background: #21262d; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.pymsetup-step--active .pymsetup-num { background: #a78bfa; color: #0d1117; }
+.pymsetup-step--done .pymsetup-num { background: #56d364; color: #0d1117; }
+.pymsetup-step-label { white-space: nowrap; }
+.pymsetup-panel { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 16px; }
+.pymsetup-cmd-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.pymsetup-code { background: #0a0e14; color: #a78bfa; border: 1px solid #21262d; border-radius: 6px; padding: 12px; font-size: 13px; overflow-x: auto; margin: 0 0 12px; white-space: pre; }
+.pymsetup-note { color: #a3adbb; font-size: 13px; margin: 0 0 12px; line-height: 1.6; }
+.pymsetup-check-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pymsetup-check-label { color: #6b7785; font-size: 12px; }
+.pymsetup-check-code { background: #21262d; color: #56d364; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+.pymsetup-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.pymsetup-btn { background: #21262d; border: 1px solid #30363d; color: #e6edf3; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: background 0.2s; }
+.pymsetup-btn:hover:not(:disabled) { background: #30363d; }
+.pymsetup-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.pymsetup-progress { color: #6b7785; font-size: 13px; }

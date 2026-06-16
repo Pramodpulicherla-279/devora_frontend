@@ -1,17 +1,17 @@
-/* Python: Project Structure — prefix: pyproj- */
-.pyproj-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 660px; margin: 0 auto; border: 1px solid #21262d; }
-.pyproj-head { text-align: center; margin-bottom: 16px; }
-.pyproj-badge { background: #0e2238; color: #5a9fd4; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #5a9fd4; letter-spacing: 1.5px; }
-.pyproj-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #5a9fd4; }
-.pyproj-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.pyproj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-@media (max-width: 560px) { .pyproj-grid { grid-template-columns: 1fr; } }
-.pyproj-tree { background: #010409; border: 1px solid #21262d; border-radius: 10px; padding: 8px; }
-.pyproj-node { width: 100%; display: flex; align-items: center; gap: 6px; background: none; border: 1px solid transparent; border-radius: 6px; padding: 6px 8px; cursor: pointer; font-size: 0.76rem; color: #c9d1d9; font-family: monospace; text-align: left; transition: all 0.15s; }
-.pyproj-node--on { border-color: #5a9fd4; background: #0e223833; color: #5a9fd4; }
-.pyproj-icon { font-size: 0.8rem; }
-.pyproj-detail { background: #161b22; border-left: 3px solid #5a9fd4; border-radius: 8px; padding: 12px 14px; }
-.pyproj-path { color: #5a9fd4; font-size: 0.8rem; }
-.pyproj-detail p { font-size: 0.8rem; color: #a3adbb; margin: 8px 0 0; line-height: 1.5; }
-.pyproj-note { background: #161b22; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
-.pyproj-note strong { color: #5a9fd4; }
+/* Python: Dates & Times — prefix: pydt- */
+.pydt-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.pydt-head { text-align:center; margin-bottom:14px; }
+.pydt-badge { background:#1c2a1c; color:#56d364; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #56d364; letter-spacing:1.5px; }
+.pydt-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#56d364; }
+.pydt-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pydt-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; justify-content:center; }
+.pydt-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 14px; font-size:0.76rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.pydt-tab--on { border-color:#56d364; color:#56d364; background:#1c2a1c; }
+.pydt-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 10px; white-space:pre; line-height:1.55; }
+.pydt-note { background:#161b22; border-left:3px solid #56d364; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; margin-bottom:12px; }
+.pydt-cheatsheet { background:#161b22; border-radius:10px; padding:12px 14px; }
+.pydt-cs-label { font-size:0.68rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.pydt-cs-grid { display:flex; flex-wrap:wrap; gap:6px; }
+.pydt-cs-item { display:flex; flex-direction:column; align-items:center; background:#0d1117; border-radius:6px; padding:5px 10px; min-width:55px; }
+.pydt-cs-item code { font-family:'Consolas',monospace; font-size:0.76rem; color:#a78bfa; }
+.pydt-cs-item span { font-size:0.7rem; color:#6b7785; }

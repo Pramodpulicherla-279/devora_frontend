@@ -1,0 +1,74 @@
+.mfds-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfds-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 10px;
+}
+
+.mfds-dataset {
+  color: #a3adbb;
+  font-family: monospace;
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+}
+
+.mfds-svg {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 16px;
+}
+
+.mfds-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.mfds-stat-card {
+  background: #0d1117;
+  border: 1.5px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.mfds-stat-card:hover {
+  border-color: var(--c);
+  background: #0d1117;
+}
+
+.mfds-stat-active {
+  border-color: var(--c) !important;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--c) 25%, transparent);
+}
+
+.mfds-stat-label {
+  color: #6b7785;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mfds-stat-desc {
+  font-family: monospace;
+  font-size: 0.88rem;
+}

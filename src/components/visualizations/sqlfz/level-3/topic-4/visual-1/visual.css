@@ -1,0 +1,18 @@
+/* SQL FZ: Window Functions — prefix: sqlfzwin- */
+.sqlfzwin-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.sqlfzwin-head { text-align:center; margin-bottom:14px; }
+.sqlfzwin-badge { background:#1a1a3e; color:#818cf8; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #818cf8; letter-spacing:1.5px; }
+.sqlfzwin-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#818cf8; }
+.sqlfzwin-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.sqlfzwin-tabs { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; justify-content:center; }
+.sqlfzwin-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 14px; font-size:0.78rem; color:#a3adbb; cursor:pointer; font-family:'Consolas',monospace; transition:all .15s; }
+.sqlfzwin-tab--on { border-color:#818cf8; color:#818cf8; background:#1a1a3e; }
+.sqlfzwin-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; line-height:1.5; }
+.sqlfzwin-table-wrap { overflow-x:auto; margin-bottom:12px; }
+.sqlfzwin-table { border-collapse:collapse; width:100%; font-size:0.78rem; }
+.sqlfzwin-table th { background:#21262d; color:#6b7785; padding:6px 11px; text-align:left; font-size:0.7rem; font-weight:700; border-bottom:1px solid #30363d; }
+.sqlfzwin-th-hi { background:#1a1a3e !important; color:#818cf8 !important; }
+.sqlfzwin-table td { padding:6px 11px; color:#c9d1d9; border-bottom:1px solid #161b22; }
+.sqlfzwin-td-hi { color:#a78bfa; font-family:'Consolas',monospace; font-weight:600; background:rgba(129,140,248,0.08); }
+.sqlfzwin-tr-sep td { border-top:2px solid #30363d; }
+.sqlfzwin-note { background:#161b22; border-left:3px solid #818cf8; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

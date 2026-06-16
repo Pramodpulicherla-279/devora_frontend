@@ -1,0 +1,20 @@
+.pymfile-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymfile-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymfile-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymfile-left { flex: 1.6; min-width: 240px; }
+.pymfile-right { flex: 1; min-width: 160px; }
+.pymfile-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.pymfile-tab { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 6px 14px; color: #6b7785; cursor: pointer; transition: all 0.15s; }
+.pymfile-tab:hover { border-color: var(--mc); color: #e6edf3; }
+.pymfile-tab--active { border-color: var(--mc); color: var(--mc); background: #1c2128; }
+.pymfile-tab code { font-size: 13px; }
+.pymfile-label { font-size: 14px; font-weight: 600; font-family: monospace; margin-bottom: 6px; }
+.pymfile-desc { color: #a3adbb; font-size: 13px; line-height: 1.5; margin: 0 0 12px; }
+.pymfile-code { background: #0d1117; border: 1px solid; border-radius: 6px; padding: 12px; color: #e6edf3; font-size: 12px; white-space: pre; overflow-x: auto; margin: 0; }
+.pymfile-fs-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.pymfile-fs { display: flex; flex-direction: column; gap: 6px; }
+.pymfile-file { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6b7785; transition: all 0.2s; }
+.pymfile-file--active { border-color: var(--mc); color: #e6edf3; background: #1c2128; }
+.pymfile-file-icon { font-size: 14px; }
+.pymfile-file-name { flex: 1; font-family: monospace; }
+.pymfile-action { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }

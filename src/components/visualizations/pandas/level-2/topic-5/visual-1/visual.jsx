@@ -1,42 +1,87 @@
-/* Lesson: String Cleaning and Text Operations
- * Visual type: ILLUSTRATION (interactive method picker)
- * Reason: The .str accessor vectorizes string ops over a column — a before/after
- * per method shows exactly what each does. */
+/* Lesson: Renaming, Reordering, and Dropping Columns
+ * Visual type: ILLUSTRATION
+ * Before/after table for each operation — rename, reorder, drop */
 import React, { useState } from 'react';
 import './visual.css';
 
-const OPS = {
-  lower: { call: ".str.lower()", before: 'ALICE', after: 'alice' },
-  strip: { call: ".str.strip()", before: '"  bob  "', after: '"bob"' },
-  replace: { call: ".str.replace('-', '')", before: '555-1234', after: '5551234' },
-  contains: { call: ".str.contains('@')", before: 'a@x.com', after: 'True' },
-  split: { call: ".str.split('@')", before: 'a@x.com', after: "['a', 'x.com']" },
-  title: { call: ".str.title()", before: 'john doe', after: 'John Doe' },
-};
+const ORIGINAL = ['order_amt_usd', 'cust_city', 'prod_cat', 'rep_name', 'order_dt', 'is_rtrn'];
 
-const PdStrVisualization = () => {
-  const [op, setOp] = useState('lower');
-  const o = OPS[op];
+const OPS = [
+  {
+    id: 'rename',
+    label: 'rename()',
+    code: `df.rename(columns={
+    'order_amt_usd': 'amount',
+    'cust_city': 'city',
+    'prod_cat': 'category',
+    'rep_name': 'rep',
+    'order_dt': 'date',
+    'is_rtrn': 'returned'
+}, inplace=True)`,
+    after: ['amount', 'city', 'category', 'rep', 'date', 'returned'],
+    note: 'rename() takes a dict of old → new. Only columns listed get renamed; others stay.',
+  },
+  {
+    id: 'reorder',
+    label: 'Reorder columns',
+    code: `cols = ['city', 'rep', 'date', 'category', 'amount', 'returned']
+df = df[cols]`,
+    after: ['city', 'rep', 'date', 'category', 'amount', 'returned'],
+    note: 'Select columns in the order you want. This creates a new DataFrame — assign it back.',
+  },
+  {
+    id: 'drop',
+    label: 'drop()',
+    code: `df.drop(columns=['returned', 'order_dt'],
+         inplace=True)`,
+    after: ['order_amt_usd', 'cust_city', 'prod_cat', 'rep_name'],
+    note: "Use columns= to drop by name. Add errors='ignore' if the column might not exist.",
+  },
+];
+
+const PdColManageVisualization = () => {
+  const [sel, setSel] = useState('rename');
+  const op = OPS.find(x => x.id === sel);
+
   return (
-    <div className="pdstr-wrap">
-      <header className="pdstr-head">
-        <span className="pdstr-badge">Pandas</span>
-        <h2>String Cleaning</h2>
-        <p>The <code>.str</code> accessor — vectorized text ops</p>
+    <div className="pdcol-wrap">
+      <header className="pdcol-head">
+        <span className="pdcol-badge">Pandas &amp; NumPy</span>
+        <h2>Column Management</h2>
+        <p>Rename, reorder, and drop columns cleanly</p>
       </header>
-      <div className="pdstr-tabs">
-        {Object.keys(OPS).map((k) => (
-          <button key={k} className={`pdstr-tab ${op === k ? 'pdstr-tab--on' : ''}`} onClick={() => setOp(k)}>{k}</button>
+
+      <div className="pdcol-tabs">
+        {OPS.map(o => (
+          <button key={o.id} className={`pdcol-tab ${sel===o.id?'pdcol-tab--on':''}`} onClick={()=>setSel(o.id)}>{o.label}</button>
         ))}
       </div>
-      <div className="pdstr-flow">
-        <div className="pdstr-box"><span className="pdstr-l">before</span><code>{o.before}</code></div>
-        <div className="pdstr-op">{o.call}</div>
-        <div className="pdstr-box pdstr-box--out"><span className="pdstr-l">after</span><code>{o.after}</code></div>
+
+      <div className="pdcol-compare">
+        <div className="pdcol-side">
+          <div className="pdcol-side-label">Before</div>
+          <div className="pdcol-cols">
+            {ORIGINAL.map(c => (
+              <div key={c} className={`pdcol-pill ${op.after.includes(c) ? '' : 'pdcol-pill--gone'}`}>{c}</div>
+            ))}
+          </div>
+        </div>
+        <div className="pdcol-arrow">→</div>
+        <div className="pdcol-side">
+          <div className="pdcol-side-label">After</div>
+          <div className="pdcol-cols">
+            {op.after.map(c => (
+              <div key={c} className="pdcol-pill pdcol-pill--new">{c}</div>
+            ))}
+          </div>
+        </div>
       </div>
-      <pre className="pdstr-code"><code>{`df['col']${o.call}`}</code></pre>
-      <div className="pdstr-note"><code>.str</code> applies the operation to every value in the column at once — no loop needed. Chain them: <code>df['email'].str.strip().str.lower()</code>.</div>
+
+      <pre className="pdcol-code"><code>{op.code}</code></pre>
+
+      <div className="pdcol-note">{op.note}</div>
     </div>
   );
 };
-export default PdStrVisualization;
+
+export default PdColManageVisualization;

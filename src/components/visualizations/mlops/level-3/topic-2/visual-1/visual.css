@@ -1,0 +1,27 @@
+﻿.mlopsapis-wrap { background: #0d1117; border-radius: 8px; padding: 20px; font-family: system-ui, sans-serif; color: #e6edf3; }
+.mlopsapis-provider-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.mlopsapis-ptab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all .2s; }
+.mlopsapis-ptab--active { background: #21262d; border-color: #58a6ff; color: #58a6ff; font-weight: 600; }
+.mlopsapis-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.mlopsapis-flow-item { display: flex; align-items: center; gap: 6px; }
+.mlopsapis-box { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 8px 14px; font-size: 13px; }
+.mlopsapis-box--provider { border-color: #58a6ff; color: #58a6ff; font-weight: 600; }
+.mlopsapis-arrow { color: #6b7785; font-size: 16px; }
+.mlopsapis-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.mlopsapis-badge { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 4px 10px; font-size: 11px; color: #a3adbb; }
+.mlopsapis-calc { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px; margin-bottom: 14px; }
+.mlopsapis-calc-title { font-size: 12px; color: #a3adbb; margin: 0 0 12px; font-weight: 600; }
+.mlopsapis-inputs { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.mlopsapis-input-label { font-size: 12px; color: #6b7785; display: flex; flex-direction: column; gap: 4px; }
+.mlopsapis-input { background: #0d1117; border: 1px solid #30363d; color: #e6edf3; border-radius: 5px; padding: 6px 10px; font-size: 13px; width: 120px; }
+.mlopsapis-cost-out { display: flex; flex-direction: column; gap: 2px; }
+.mlopsapis-cost-label { font-size: 11px; color: #6b7785; }
+.mlopsapis-cost-val { font-size: 22px; font-weight: 700; color: #56d364; }
+.mlopsapis-retry { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px; }
+.mlopsapis-retry-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.mlopsapis-retry-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mlopsapis-retry-status { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; }
+.mlopsapis-retry-status--429 { background: #3a1a1a; color: #f85149; }
+.mlopsapis-retry-status--200 { background: #1a3a1a; color: #56d364; }
+.mlopsapis-retry-label { font-size: 11px; color: #6b7785; }
+.mlopsapis-retry-delay { font-size: 11px; color: #f97316; background: #21262d; padding: 3px 8px; border-radius: 4px; margin-left: 4px; }

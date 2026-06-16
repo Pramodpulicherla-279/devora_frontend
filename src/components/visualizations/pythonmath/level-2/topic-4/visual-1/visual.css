@@ -1,0 +1,20 @@
+.pymfuncs-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymfuncs-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymfuncs-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymfuncs-stack-col { flex: 1; min-width: 200px; }
+.pymfuncs-stack-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.pymfuncs-stack { display: flex; flex-direction: column; gap: 6px; }
+.pymfuncs-frame { background: #0d1117; border: 1px solid; border-radius: 8px; padding: 10px 12px; }
+.pymfuncs-frame-name { font-size: 13px; font-weight: 600; font-family: monospace; display: block; margin-bottom: 6px; }
+.pymfuncs-vars { display: flex; flex-direction: column; gap: 4px; }
+.pymfuncs-var { display: flex; gap: 8px; font-family: monospace; font-size: 12px; }
+.pymfuncs-var-name { color: #58a6ff; }
+.pymfuncs-var-val { color: #56d364; }
+.pymfuncs-returned { color: #56d364; font-size: 12px; margin-top: 8px; font-family: monospace; }
+.pymfuncs-code-col { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 12px; }
+.pymfuncs-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 12px; color: #e6edf3; font-size: 12px; white-space: pre; overflow-x: auto; margin: 0; flex: 1; }
+.pymfuncs-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.pymfuncs-btn { background: #0d1117; border: 1px solid var(--fc, #30363d); color: var(--fc, #e6edf3); padding: 7px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-family: monospace; transition: all 0.15s; }
+.pymfuncs-btn:hover:not(:disabled) { background: #1c2128; }
+.pymfuncs-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.pymfuncs-btn--pop { --fc: #f85149; }

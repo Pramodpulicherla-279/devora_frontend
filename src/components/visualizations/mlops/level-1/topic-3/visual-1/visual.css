@@ -1,0 +1,144 @@
+.mlopsdocker-container {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #c9d1d9;
+}
+
+.mlopsdocker-title {
+  color: #56d364;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.mlopsdocker-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.mlopsdocker-tab {
+  padding: 7px 16px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #161b22;
+  color: #8b949e;
+  cursor: pointer;
+  font-size: 0.83rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.mlopsdocker-tab:hover { border-color: #56d364; color: #c9d1d9; }
+.mlopsdocker-tab--active { border-color: #56d364; color: #56d364; background: #0d2016; }
+
+.mlopsdocker-layers { display: flex; flex-direction: column; gap: 6px; }
+
+.mlopsdocker-layer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.83rem;
+}
+
+.mlopsdocker-layer:hover { border-color: #30363d; }
+.mlopsdocker-layer--active { border-color: #56d364; background: #0d2016; }
+
+.mlopsdocker-cmd {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  width: 52px;
+  flex-shrink: 0;
+}
+
+.mlopsdocker-val {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: #c9d1d9;
+}
+
+.mlopsdocker-desc {
+  background: #0d2016;
+  border: 1px solid #238636;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.83rem;
+  color: #8b949e;
+  margin-top: 4px;
+}
+
+.mlopsdocker-hint {
+  font-size: 0.8rem;
+  color: #484f58;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+.mlopsdocker-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mlopsdocker-flow-box {
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+.mlopsdocker-flow-box--blue { border-color: #388bfd; color: #388bfd; }
+.mlopsdocker-flow-box--green { border-color: #56d364; color: #56d364; }
+.mlopsdocker-flow-box--accent { border-color: #d2a8ff; color: #d2a8ff; }
+
+.mlopsdocker-flow-icon { font-size: 1.5rem; margin-bottom: 4px; }
+
+.mlopsdocker-flow-arrow {
+  text-align: center;
+}
+
+.mlopsdocker-flow-arrow code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  color: #56d364;
+}
+
+.mlopsdocker-tag {
+  display: inline-block;
+  background: #21262d;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #8b949e;
+  margin-top: 4px;
+}
+
+.mlopsdocker-note {
+  font-size: 0.82rem;
+  color: #8b949e;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.5;
+  margin: 4px 0 0;
+}

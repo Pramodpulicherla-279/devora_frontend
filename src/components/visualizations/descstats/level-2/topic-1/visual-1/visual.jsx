@@ -1,86 +1,58 @@
-/* Lesson: Probability Distributions
+/* Lesson: Covariance and Correlation
  * Visual type: INTERACTIVE
- * Reason: Discrete vs continuous distributions are best grasped by switching
- * between them and adjusting their defining parameter to see the shape change. */
+ * Reason: The correlation coefficient r is an abstract number until you slide it
+ * and watch a scatter plot tighten from a cloud (r≈0) to a line (r≈±1). */
 import React, { useState } from 'react';
 import './visual.css';
 
-const DISTS = {
-  binomial: { label: 'Binomial', param: 'p (success)', min: 5, max: 95, def: 50, kind: 'discrete' },
-  poisson: { label: 'Poisson', param: 'λ (rate)', min: 1, max: 10, def: 4, kind: 'discrete' },
-  normal: { label: 'Normal', param: 'σ (spread)', min: 6, max: 26, def: 14, kind: 'continuous' },
-};
-
-function pmf(dist, param, bins) {
-  const arr = new Array(bins).fill(0);
-  if (dist === 'binomial') {
-    const n = bins - 1, p = param / 100;
-    const choose = (a, b) => { let r = 1; for (let i = 0; i < b; i++) r = (r * (a - i)) / (i + 1); return r; };
-    for (let k = 0; k <= n; k++) arr[k] = choose(n, k) * p ** k * (1 - p) ** (n - k);
-  } else if (dist === 'poisson') {
-    const l = param; let fact = 1;
-    for (let k = 0; k < bins; k++) { if (k > 0) fact *= k; arr[k] = (l ** k * Math.exp(-l)) / fact; }
-  } else {
-    const mu = bins / 2, s = param / 2;
-    for (let k = 0; k < bins; k++) arr[k] = Math.exp(-((k - mu) ** 2) / (2 * s * s));
+function scatter(r, n = 40) {
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const x = Math.random();
+    const noise = Math.random() - 0.5;
+    const y = r * (x - 0.5) + (1 - Math.abs(r)) * noise + 0.5;
+    pts.push({ x, y: Math.max(0, Math.min(1, y)) });
   }
-  const sum = arr.reduce((a, b) => a + b, 0) || 1;
-  return arr.map((v) => v / sum);
+  return pts;
 }
 
-const DescStatsProbDistributionsVisualization = () => {
-  const [dist, setDist] = useState('normal');
-  const cfg = DISTS[dist];
-  const [param, setParam] = useState(cfg.def);
-  const bins = 16;
-  const data = pmf(dist, param, bins);
-  const max = Math.max(...data, 0.001);
-  const W = 320, H = 130, pad = 16;
-  const bw = (W - 2 * pad) / bins;
-
-  const change = (d) => { setDist(d); setParam(DISTS[d].def); };
-
+const DescStatsCorrelationVisualization = () => {
+  const [r, setR] = useState(0.7);
+  const [seed, setSeed] = useState(0);
+  const pts = React.useMemo(() => scatter(r, 40), [r, seed]);
+  const W = 260, H = 180, pad = 22;
+  const X = (x) => pad + x * (W - 2 * pad);
+  const Y = (y) => H - pad - y * (H - 2 * pad);
+  const strength = Math.abs(r) > 0.8 ? 'Strong' : Math.abs(r) > 0.4 ? 'Moderate' : Math.abs(r) > 0.1 ? 'Weak' : 'None';
+  const dir = r > 0.1 ? 'positive' : r < -0.1 ? 'negative' : 'no';
   return (
-    <div className="dspd-wrap">
-      <header className="dspd-head">
-        <span className="dspd-badge">Statistics</span>
-        <h2>Probability Distributions</h2>
-        <p>Each value's likelihood — discrete &amp; continuous</p>
+    <div className="dscc-wrap">
+      <header className="dscc-head">
+        <span className="dscc-badge">Statistics</span>
+        <h2>Covariance &amp; Correlation</h2>
+        <p>How tightly do two variables move together?</p>
       </header>
-
-      <div className="dspd-tabs">
-        {Object.entries(DISTS).map(([k, d]) => (
-          <button key={k} className={`dspd-tab ${dist === k ? 'dspd-tab--on' : ''}`} onClick={() => change(k)}>
-            {d.label}<span className="dspd-kind">{d.kind}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="dspd-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="dspd-svg" preserveAspectRatio="xMidYMid meet">
-          {dist === 'normal' ? (
-            <polyline className="dspd-curve"
-              points={data.map((v, i) => `${pad + i * bw + bw / 2},${H - 18 - (v / max) * (H - 30)}`).join(' ')} />
-          ) : data.map((v, i) => {
-            const h = (v / max) * (H - 30);
-            return <rect key={i} x={pad + i * bw + 1} y={H - 18 - h} width={bw - 2} height={h} className="dspd-bar" rx="1" />;
-          })}
-          <line x1={pad} y1={H - 18} x2={W - pad} y2={H - 18} className="dspd-axis" />
+      <div className="dscc-chart-wrap">
+        <svg viewBox={`0 0 ${W} ${H}`} className="dscc-svg" preserveAspectRatio="xMidYMid meet">
+          <line x1={pad} y1={H - pad} x2={W - pad} y2={H - pad} className="dscc-axis" />
+          <line x1={pad} y1={pad} x2={pad} y2={H - pad} className="dscc-axis" />
+          {Math.abs(r) > 0.1 && (<line x1={X(0)} y1={Y(0.5 + r * -0.5)} x2={X(1)} y2={Y(0.5 + r * 0.5)} className="dscc-trend" />)}
+          {pts.map((p, i) => <circle key={i} cx={X(p.x)} cy={Y(p.y)} r="3.5" className="dscc-pt" />)}
+          <text x={W / 2} y={H - 4} className="dscc-axis-label">ad spend →</text>
         </svg>
       </div>
-
-      <div className="dspd-control">
-        <label>{cfg.param}: {dist === 'binomial' ? `${param}%` : (param / (dist === 'normal' ? 2 : 1)).toFixed(0)}
-          <input type="range" min={cfg.min} max={cfg.max} value={param} onChange={(e) => setParam(Number(e.target.value))} className="dspd-slider" />
+      <div className="dscc-control">
+        <label>Correlation r = {r.toFixed(2)}
+          <input type="range" min="-1" max="1" step="0.05" value={r} onChange={e => setR(Number(e.target.value))} className="dscc-slider" />
         </label>
+        <button className="dscc-reroll" onClick={() => setSeed(s => s + 1)}>↻</button>
       </div>
-      <div className="dspd-note">
-        {dist === 'binomial' && 'Binomial: number of successes in n independent yes/no trials.'}
-        {dist === 'poisson' && 'Poisson: count of events in a fixed interval (λ = average rate).'}
-        {dist === 'normal' && 'Normal: the continuous bell curve — sums of many small effects.'}
+      <div className="dscc-readout" style={{ '--rc': r > 0.1 ? '#56d364' : r < -0.1 ? '#f0883e' : '#a3adbb' }}>
+        <strong>{strength}</strong> {dir} correlation
       </div>
+      <div className="dscc-note"><strong>r</strong> ranges −1…+1 (direction &amp; strength, unit-free). <strong>Covariance</strong> is the same idea in raw units, so it's hard to compare across datasets. ⚠️ Correlation ≠ causation.</div>
     </div>
   );
 };
 
-export default DescStatsProbDistributionsVisualization;
+export default DescStatsCorrelationVisualization;

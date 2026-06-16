@@ -1,0 +1,16 @@
+.jnbwidgets-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.jnbwidgets-title { font-size: 1.4rem; font-weight: 700; color: #f97316; margin: 0 0 20px; }
+
+.jnbwidgets-layout { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; }
+.jnbwidgets-controls { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 16px; min-width: 180px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
+.jnbwidgets-control-group { display: flex; flex-direction: column; gap: 6px; }
+.jnbwidgets-label { font-size: 0.82rem; color: #a3adbb; font-weight: 500; }
+.jnbwidgets-check-label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.jnbwidgets-slider { width: 100%; accent-color: #f97316; cursor: pointer; }
+.jnbwidgets-select { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #e6edf3; padding: 6px 10px; font-size: 0.85rem; cursor: pointer; }
+.jnbwidgets-checkbox { accent-color: #f97316; cursor: pointer; }
+
+.jnbwidgets-plot-box { flex: 1; background: #161b22; border: 1px solid #21262d; border-radius: 10px; overflow: hidden; min-width: 200px; }
+.jnbwidgets-svg { width: 100%; display: block; background: #0d1117; }
+
+.jnbwidgets-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #a3adbb; overflow-x: auto; white-space: pre; margin: 0; }

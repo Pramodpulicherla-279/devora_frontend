@@ -1,49 +1,79 @@
-/* Lesson: Adding and Transforming Columns
+/* Lesson: Handling Missing Data — dropna, fillna, and When to Use Each
  * Visual type: INTERACTIVE
- * Reason: Creating derived columns is best shown by toggling a transform and
- * watching a new column appear in the table, computed from existing ones. */
+ * Dataset with NaN values; toggle strategy (dropna / fillna mean / fillna forward / fillna 0) */
 import React, { useState } from 'react';
 import './visual.css';
 
-const BASE = [
-  { name: 'Alice', price: 100, qty: 2 },
-  { name: 'Bob', price: 80, qty: 5 },
-  { name: 'Carol', price: 60, qty: 1 },
+const RAW = [
+  { id:1, city:'Mumbai',    amount:4200,  rep:'Aisha'  },
+  { id:2, city:'Pune',      amount:null,  rep:'Ravi'   },
+  { id:3, city:'Delhi',     amount:6700,  rep:null     },
+  { id:4, city:'Bengaluru', amount:null,  rep:'Aisha'  },
+  { id:5, city:'Mumbai',    amount:12400, rep:'Ravi'   },
+  { id:6, city:null,        amount:2300,  rep:'Priya'  },
+  { id:7, city:'Pune',      amount:7800,  rep:null     },
 ];
 
-const PdColsVisualization = () => {
-  const [op, setOp] = useState('total');
-  const TRANSFORMS = {
-    total: { code: "df['total'] = df['price'] * df['qty']", col: 'total', fn: (r) => r.price * r.qty },
-    tax: { code: "df['with_tax'] = df['price'] * 1.18", col: 'with_tax', fn: (r) => Math.round(r.price * 1.18) },
-    tier: { code: "df['tier'] = df['qty'].apply(lambda q: 'bulk' if q >= 3 else 'single')", col: 'tier', fn: (r) => (r.qty >= 3 ? 'bulk' : 'single') },
-  };
-  const t = TRANSFORMS[op];
+const MEAN = Math.round(RAW.filter(r=>r.amount!==null).reduce((s,r)=>s+r.amount,0) / RAW.filter(r=>r.amount!==null).length);
+const LAST_REP = ['Aisha','Ravi',null,'Aisha','Ravi','Priya',null];
+const FFILL_REP = ['Aisha','Ravi','Ravi','Aisha','Ravi','Priya','Priya'];
+const FFILL_CITY = ['Mumbai','Pune','Delhi','Bengaluru','Mumbai','Mumbai','Pune'];
+
+const STRATEGIES = [
+  { id:'raw',    label:'Raw (NaN)',    code: `# df.isnull().sum()\namount    2\nrep       2\ncity      1`, desc:'3 rows have at least one NaN. You must decide what to do before any aggregation.', apply: r => r },
+  { id:'dropna', label:'dropna()',     code: `df.dropna()          # drop any row with NaN\n# df.dropna(subset=['amount'])  # only if amount is NaN`, desc:'Safest when missing rows are random & few. Here we lose 3/7 rows — too many.', apply: r => r.amount !== null && r.rep !== null && r.city !== null },
+  { id:'mean',   label:'fillna(mean)', code: `df['amount'].fillna(df['amount'].mean(), inplace=True)\n# mean = ₹${MEAN.toLocaleString()}`, desc:'Good for numeric columns with random gaps. Preserves row count without introducing bias.', apply: r => ({ ...r, amount: r.amount ?? MEAN }), keepAll: true },
+  { id:'ffill',  label:'ffill()',      code: `df['rep'].fillna(method='ffill', inplace=True)\ndf['city'].fillna(method='ffill', inplace=True)`, desc:'Forward fill copies the last valid value downward. Works for time-ordered data where the previous value is a reasonable substitute.', apply: r => ({ ...r, rep: FFILL_REP[r.id-1], city: FFILL_CITY[r.id-1] }), keepAll: true },
+];
+
+const PdMissingDataVisualization = () => {
+  const [sel, setSel] = useState('raw');
+  const strat = STRATEGIES.find(s => s.id === sel);
+
+  const rows = strat.keepAll
+    ? RAW.map(strat.apply)
+    : strat.id === 'raw'
+      ? RAW
+      : RAW.filter(strat.apply);
+
+  const fmt = v => v === null ? <span className="pdna-null">NaN</span> : typeof v === 'number' ? `₹${v.toLocaleString()}` : v;
+
   return (
-    <div className="pdcols-wrap">
-      <header className="pdcols-head">
-        <span className="pdcols-badge">Pandas</span>
-        <h2>Adding &amp; Transforming Columns</h2>
-        <p>Derive new columns from existing data</p>
+    <div className="pdna-wrap">
+      <header className="pdna-head">
+        <span className="pdna-badge">Pandas &amp; NumPy</span>
+        <h2>Handling Missing Data</h2>
+        <p>Pick a strategy and see how the DataFrame changes</p>
       </header>
-      <div className="pdcols-tabs">
-        {Object.keys(TRANSFORMS).map((k) => (
-          <button key={k} className={`pdcols-tab ${op === k ? 'pdcols-tab--on' : ''}`} onClick={() => setOp(k)}>{TRANSFORMS[k].col}</button>
+
+      <div className="pdna-tabs">
+        {STRATEGIES.map(s => (
+          <button key={s.id} className={`pdna-tab ${sel===s.id?'pdna-tab--on':''}`} onClick={()=>setSel(s.id)}>{s.label}</button>
         ))}
       </div>
-      <pre className="pdcols-code"><code>{t.code}</code></pre>
-      <div className="pdcols-table-wrap">
-        <table className="pdcols-table">
-          <thead><tr><th>name</th><th>price</th><th>qty</th><th className="pdcols-new">{t.col}</th></tr></thead>
+
+      <pre className="pdna-code"><code>{strat.code}</code></pre>
+
+      <div className="pdna-table-wrap">
+        <table className="pdna-table">
+          <thead><tr><th>id</th><th>city</th><th>amount</th><th>rep</th></tr></thead>
           <tbody>
-            {BASE.map((r) => (
-              <tr key={r.name}><td>{r.name}</td><td>{r.price}</td><td>{r.qty}</td><td className="pdcols-newcell">{t.fn(r)}</td></tr>
+            {rows.map(r => (
+              <tr key={r.id}>
+                <td>{r.id}</td>
+                <td>{fmt(r.city)}</td>
+                <td>{fmt(r.amount)}</td>
+                <td>{fmt(r.rep)}</td>
+              </tr>
             ))}
           </tbody>
         </table>
+        <div className="pdna-row-count">{rows.length} row{rows.length!==1?'s':''} remaining</div>
       </div>
-      <div className="pdcols-note">Vectorized math (<code>df['a'] * df['b']</code>) runs on whole columns at once — far faster than Python loops. Use <code>.apply()</code> for custom row logic.</div>
+
+      <div className="pdna-note">{strat.desc}</div>
     </div>
   );
 };
-export default PdColsVisualization;
+
+export default PdMissingDataVisualization;

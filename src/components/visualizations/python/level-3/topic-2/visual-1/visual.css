@@ -1,20 +1,23 @@
-/* Python: Error Handling — prefix: pyerr- */
-.pyerr-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 600px; margin: 0 auto; border: 1px solid #21262d; }
-.pyerr-head { text-align: center; margin-bottom: 16px; }
-.pyerr-badge { background: #0e2238; color: #5a9fd4; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #5a9fd4; letter-spacing: 1.5px; }
-.pyerr-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #5a9fd4; }
-.pyerr-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.pyerr-toggle { display: flex; align-items: center; gap: 8px; justify-content: center; font-size: 0.82rem; color: #c9d1d9; margin-bottom: 14px; cursor: pointer; }
-.pyerr-blocks { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.pyerr-block { display: flex; align-items: center; gap: 10px; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 10px 14px; opacity: 0.4; transition: all 0.25s; flex-wrap: wrap; }
-.pyerr-block--ran { opacity: 1; border-color: #5a9fd4; }
-.pyerr-block--skip { opacity: 0.3; }
-.pyerr-block--except.pyerr-block--ran { border-color: #f85149; }
-.pyerr-block--else.pyerr-block--ran { border-color: #34d399; }
-.pyerr-block--finally.pyerr-block--ran { border-color: #f0883e; }
-.pyerr-block code { font-family: monospace; font-size: 0.8rem; color: #5a9fd4; }
-.pyerr-desc { font-size: 0.74rem; color: #a3adbb; }
-.pyerr-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; }
-.pyerr-note { background: #161b22; border-left: 3px solid #5a9fd4; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
-.pyerr-note code { color: #5a9fd4; } .pyerr-note strong { color: #5a9fd4; }
-@media (max-width: 480px) { .pyerr-code { font-size: 0.68rem; } }
+/* Python: List Comprehensions — prefix: pycomp- */
+.pycomp-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:700px; margin:0 auto; border:1px solid #21262d; }
+.pycomp-head { text-align:center; margin-bottom:14px; }
+.pycomp-badge { background:#1c2a1c; color:#56d364; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #56d364; letter-spacing:1.5px; }
+.pycomp-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#56d364; }
+.pycomp-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pycomp-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; justify-content:center; }
+.pycomp-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 13px; font-size:0.76rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.pycomp-tab--on { border-color:#56d364; color:#56d364; background:#1c2a1c; }
+.pycomp-compare { display:flex; gap:10px; align-items:flex-start; margin-bottom:14px; flex-wrap:wrap; }
+.pycomp-side { flex:1; min-width:200px; }
+.pycomp-side-label { font-size:0.68rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+.pycomp-side:first-child .pycomp-side-label { color:#f85149; }
+.pycomp-side:last-child .pycomp-side-label { color:#56d364; }
+.pycomp-code { background:#010409; border-radius:8px; padding:10px 12px; font-family:'Consolas',monospace; font-size:0.75rem; color:#e6edf3; overflow-x:auto; margin:0; white-space:pre; line-height:1.55; min-height:70px; }
+.pycomp-code--loop { border:1px solid rgba(248,81,73,0.25); }
+.pycomp-code--comp { border:1px solid rgba(86,211,100,0.3); }
+.pycomp-arrow { font-size:1.4rem; color:#30363d; padding-top:30px; flex-shrink:0; }
+.pycomp-results { background:#161b22; border-radius:10px; padding:12px 14px; margin-bottom:12px; }
+.pycomp-results-label { font-size:0.68rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.pycomp-pills { display:flex; flex-wrap:wrap; gap:5px; }
+.pycomp-pill { background:#0d1117; border:1px solid #30363d; border-radius:6px; padding:3px 10px; font-family:'Consolas',monospace; font-size:0.76rem; color:#56d364; }
+.pycomp-note { background:#161b22; border-left:3px solid #56d364; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

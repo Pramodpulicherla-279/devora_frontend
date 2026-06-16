@@ -1,0 +1,71 @@
+.febin-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.febin-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.febin-control {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.febin-label {
+  font-size: 0.85rem;
+  color: #a3adbb;
+}
+.febin-slider {
+  flex: 1;
+  min-width: 120px;
+  accent-color: #f97316;
+  cursor: pointer;
+}
+.febin-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+.febin-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.febin-count-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.febin-chip-range {
+  font-size: 0.72rem;
+  color: #6b7785;
+  font-family: monospace;
+}
+.febin-chip-n {
+  font-size: 0.8rem;
+  color: #f97316;
+  font-weight: 700;
+}
+.febin-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

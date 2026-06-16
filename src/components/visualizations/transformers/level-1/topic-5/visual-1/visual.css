@@ -1,0 +1,164 @@
+.trarch-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.trarch-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #818cf8;
+  margin: 0 0 4px;
+}
+
+.trarch-sub {
+  color: #a3adbb;
+  font-size: 0.85rem;
+  margin: 0 0 20px;
+}
+
+.trarch-layout {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.trarch-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 0 0 auto;
+}
+
+.trarch-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 220px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.trarch-block:hover {
+  background: #1c2128;
+}
+
+.trarch-block-active {
+  background: #1c2128;
+}
+
+.trarch-block-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.trarch-block-label {
+  flex: 1;
+}
+
+.trarch-arrow {
+  width: 20px;
+  height: 12px;
+  display: block;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.trarch-info-panel {
+  flex: 1 1 220px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.trarch-info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.trarch-info-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  flex-shrink: 0;
+}
+
+.trarch-info-body {
+  font-size: 0.875rem;
+  color: #a3adbb;
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+.trarch-info-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: #6b7785;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.trarch-info-icon {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.trarch-dims {
+  border-top: 1px solid #21262d;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trarch-dim-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.trarch-dim-row span:first-child {
+  color: #6b7785;
+}
+
+.trarch-dim-row span:last-child {
+  color: #818cf8;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}

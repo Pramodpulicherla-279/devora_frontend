@@ -1,0 +1,123 @@
+.cnndebug-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cnndebug-title {
+  font-size: clamp(0.95rem, 2.3vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.cnndebug-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cnndebug-item {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.cnndebug-item--open {
+  border-color: #f97316;
+}
+
+.cnndebug-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cnndebug-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f97316;
+  color: #0d1117;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cnndebug-item-title {
+  flex: 1;
+  font-size: 0.88rem;
+  color: #e6edf3;
+  font-weight: 600;
+}
+
+.cnndebug-chevron {
+  font-size: 0.72rem;
+  color: #6b7785;
+}
+
+.cnndebug-body {
+  padding: 0 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cnndebug-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.cnndebug-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cnndebug-label--symptom {
+  background: #3a1800;
+  color: #f97316;
+}
+
+.cnndebug-label--diag {
+  background: #1d3a5c;
+  color: #58a6ff;
+}
+
+.cnndebug-text {
+  font-size: 0.8rem;
+  color: #a3adbb;
+  line-height: 1.5;
+}
+
+.cnndebug-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.73rem;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 4px 0 0;
+}

@@ -1,0 +1,144 @@
+.cnnwhy-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnwhy-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 20px;
+  font-weight: 700;
+}
+
+.cnnwhy-cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.cnnwhy-card {
+  flex: 1 1 220px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cnnwhy-card--fc { border-color: #f97316; }
+.cnnwhy-card--conv { border-color: #56d364; }
+
+.cnnwhy-card-label {
+  font-size: 0.75rem;
+  color: #a3adbb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.cnnwhy-stat {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  color: #58a6ff;
+  line-height: 1;
+}
+
+.cnnwhy-card--fc .cnnwhy-stat { color: #f97316; }
+
+.cnnwhy-stat-label {
+  font-size: 0.75rem;
+  color: #6b7785;
+  margin: 4px 0 10px;
+}
+
+.cnnwhy-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
+.cnnwhy-badge--warn { background: rgba(249,115,22,0.15); color: #f97316; }
+.cnnwhy-badge--good { background: rgba(86,211,100,0.15); color: #56d364; }
+
+.cnnwhy-detail {
+  font-size: 0.7rem;
+  color: #6b7785;
+  font-family: monospace;
+}
+
+.cnnwhy-section {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.cnnwhy-section-title {
+  font-size: 0.8rem;
+  color: #a3adbb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.cnnwhy-grid-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cnnwhy-svg { width: 160px; height: 160px; flex-shrink: 0; }
+
+.cnnwhy-slide-info { flex: 1; }
+
+.cnnwhy-pos {
+  font-size: 0.85rem;
+  color: #58a6ff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cnnwhy-hint {
+  font-size: 0.78rem;
+  color: #6b7785;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.cnnwhy-btn {
+  background: #1d3a5c;
+  color: #58a6ff;
+  border: 1px solid #58a6ff;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cnnwhy-btn:hover { background: #2d5a8c; }
+
+.cnnwhy-savings {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #a3adbb;
+  padding: 12px;
+  background: #161b22;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+}
+
+.cnnwhy-highlight {
+  color: #56d364;
+  font-weight: 700;
+  font-size: 1.05rem;
+}

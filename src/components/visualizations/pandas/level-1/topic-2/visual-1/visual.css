@@ -1,21 +1,18 @@
-/* Pandas: What is Pandas — prefix: pdwhat- */
-.pdwhat-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
-.pdwhat-head { text-align: center; margin-bottom: 16px; }
-.pdwhat-badge { background: #2e2606; color: #eab308; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #eab308; letter-spacing: 1.5px; }
-.pdwhat-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #eab308; }
-.pdwhat-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.pdwhat-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
-.pdwhat-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
-.pdwhat-tab--on { background: #2e2606; border-color: #eab308; color: #eab308; font-weight: 700; }
-.pdwhat-table { border-collapse: collapse; font-size: 0.82rem; margin: 0 auto 12px; }
-.pdwhat-table th, .pdwhat-table td { border: 1px solid #21262d; padding: 6px 14px; color: #c9d1d9; text-align: center; }
-.pdwhat-table th { color: #a3adbb; }
-.pdwhat-hl { color: #eab308 !important; }
-.pdwhat-hl2 { color: #60a5fa !important; }
-.pdwhat-hl3 { color: #34d399 !important; }
-.pdwhat-series, .pdwhat-df { text-align: center; }
-.pdwhat-desc { font-size: 0.82rem; color: #a3adbb; line-height: 1.5; margin-bottom: 12px; }
-.pdwhat-desc strong { color: #eab308; }
-.pdwhat-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px; font-family: 'Consolas',monospace; font-size: 0.76rem; color: #c9d1d9; overflow-x: auto; margin: 0 0 12px; }
-.pdwhat-note { background: #161b22; border-left: 3px solid #eab308; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
-@media (max-width: 480px) { .pdwhat-code { font-size: 0.68rem; } }
+/* Pandas: Loading DataFrames — prefix: pdload- */
+.pdload-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.pdload-head { text-align:center; margin-bottom:14px; }
+.pdload-badge { background:#132a3d; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.pdload-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.pdload-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pdload-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; justify-content:center; }
+.pdload-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 14px; font-size:0.78rem; color:#a3adbb; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all .15s; }
+.pdload-tab--on { border-color:#58a6ff; color:#58a6ff; background:#132a3d; }
+.pdload-body { background:#161b22; border-radius:10px; padding:14px; }
+.pdload-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 10px; white-space:pre; line-height:1.55; }
+.pdload-preview-label { font-size:0.68rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.pdload-table-wrap { overflow-x:auto; margin-bottom:10px; }
+.pdload-table { border-collapse:collapse; width:100%; font-size:0.78rem; }
+.pdload-table th { background:#21262d; color:#58a6ff; padding:6px 12px; text-align:left; font-weight:700; border-bottom:1px solid #30363d; }
+.pdload-table td { padding:5px 12px; color:#c9d1d9; border-bottom:1px solid #21262d; }
+.pdload-table tr:last-child td { border-bottom:none; }
+.pdload-tip { font-size:0.78rem; color:#a3adbb; background:#0d1117; border-radius:6px; padding:8px 12px; line-height:1.5; }

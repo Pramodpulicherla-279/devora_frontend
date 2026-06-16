@@ -1,0 +1,202 @@
+.envmod-container {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 24px;
+  border-radius: 10px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.envmod-toggle-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.envmod-toggle {
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.envmod-toggle:hover { color: #c9d1d9; }
+
+.envmod-toggle--bad {
+  background: #2d1217;
+  border-color: #f85149;
+  color: #f85149;
+}
+
+.envmod-toggle--good {
+  background: #1a2e1a;
+  border-color: #56d364;
+  color: #56d364;
+}
+
+.envmod-bad-header {
+  background: #2d1217;
+  border: 1px solid #f8514933;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #ffa198;
+  margin-bottom: 16px;
+}
+
+.envmod-files-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.envmod-file-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.envmod-file-card--bad {
+  border-color: #f8514933;
+}
+
+.envmod-file-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 12px;
+  background: #21262d;
+  border-bottom: 1px solid #30363d;
+}
+
+.envmod-file-name {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #79c0ff;
+  font-weight: 700;
+}
+
+.envmod-warn-dot {
+  background: #f85149;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+}
+
+.envmod-pre {
+  margin: 0;
+  padding: 10px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #8b949e;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.envmod-highlight-bad {
+  color: #ff7b72;
+  background: #2d121750;
+  display: block;
+  border-radius: 2px;
+}
+
+.envmod-problems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.envmod-problem {
+  background: #2d1217;
+  border: 1px solid #f8514933;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #ffa198;
+}
+
+/* Good view */
+.envmod-good-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.envmod-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #56d364;
+  margin-bottom: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+.envmod-code {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #e6edf3;
+  white-space: pre;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.envmod-usage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.envmod-usage-item {
+  background: #161b22;
+  border: 1px solid #238636;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.envmod-usage-line {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #a5d6ff;
+}
+
+.envmod-benefits {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.envmod-benefit {
+  font-size: 13px;
+  color: #56d364;
+  padding: 4px 0;
+}
+
+@media (max-width: 600px) {
+  .envmod-files-grid { grid-template-columns: 1fr; }
+  .envmod-good-layout { grid-template-columns: 1fr; }
+}

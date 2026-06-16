@@ -1,0 +1,89 @@
+.svknn-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svknn-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 16px;
+}
+
+.svknn-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.svknn-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #a3adbb;
+  margin-bottom: 16px;
+}
+
+.svknn-slider {
+  width: 100%;
+  accent-color: #58a6ff;
+}
+
+.svknn-votes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.svknn-vote {
+  flex: 1;
+  min-width: 90px;
+  background: #161b22;
+  border: 1.5px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.svknn-vote-count {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.svknn-vote-label {
+  font-size: 0.72rem;
+  color: #6b7785;
+}
+
+.svknn-winner {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: #56d364;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.svknn-result {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #a3adbb;
+  transition: border-color 0.3s;
+}

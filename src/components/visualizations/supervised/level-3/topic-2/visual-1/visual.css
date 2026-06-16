@@ -1,0 +1,153 @@
+.svcv-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svcv-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 6px;
+}
+
+.svcv-desc {
+  font-size: 0.85rem;
+  color: #a3adbb;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.svcv-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.svcv-fold-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.svcv-fold-row--active {
+  border-color: #56d364;
+  background: #0b1a10;
+}
+
+.svcv-fold-name {
+  font-size: 0.78rem;
+  color: #6b7785;
+  min-width: 50px;
+  font-weight: 600;
+}
+
+.svcv-blocks {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+}
+
+.svcv-block {
+  flex: 1;
+  height: 30px;
+  border-radius: 5px;
+  border: 1.5px solid #21262d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.svcv-score {
+  min-width: 36px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: right;
+  transition: color 0.3s;
+}
+
+.svcv-result {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.svcv-result-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.svcv-result-lbl {
+  font-size: 0.78rem;
+  color: #6b7785;
+  min-width: 130px;
+}
+
+.svcv-result-scores {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.svcv-score-badge {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  transition: color 0.3s;
+}
+
+.svcv-cv-score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.svcv-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.svcv-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 7px 16px;
+  transition: all 0.2s;
+}
+
+.svcv-btn:hover { border-color: #56d364; color: #56d364; }
+.svcv-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.svcv-btn--primary {
+  background: #0f2a1a;
+  border-color: #56d364;
+  color: #56d364;
+  font-weight: 600;
+}

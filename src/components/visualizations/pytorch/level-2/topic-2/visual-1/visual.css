@@ -1,0 +1,213 @@
+.ptgpu-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ptgpu-title {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.ptgpu-device-code {
+  margin-bottom: 20px;
+}
+
+.ptgpu-code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #56d364;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.ptgpu-chart-section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.ptgpu-chart-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.ptgpu-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ptgpu-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ptgpu-op-label {
+  font-size: 12px;
+  color: #a3adbb;
+  margin-bottom: 2px;
+}
+
+.ptgpu-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ptgpu-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ptgpu-bar-tag {
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 30px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptgpu-cpu-tag { color: #a3adbb; }
+.ptgpu-gpu-tag { color: #f97316; }
+
+.ptgpu-bar-track {
+  flex: 1;
+  height: 10px;
+  background: #21262d;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ptgpu-bar {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.4s;
+}
+
+.ptgpu-cpu-bar { background: #a3adbb; }
+.ptgpu-gpu-bar { background: #f97316; }
+
+.ptgpu-bar-val {
+  font-size: 11px;
+  color: #6b7785;
+  min-width: 70px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptgpu-speedup {
+  color: #f97316;
+}
+
+.ptgpu-x {
+  background: #f9731620;
+  border: 1px solid #f9731640;
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ptgpu-toggle {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: #58a6ff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.ptgpu-toggle:hover {
+  border-color: #58a6ff;
+  background: #58a6ff10;
+}
+
+.ptgpu-transfer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+}
+
+.ptgpu-mem-box {
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ptgpu-cpu-mem {
+  border-color: #a3adbb40;
+}
+
+.ptgpu-gpu-mem {
+  border-color: #f9731640;
+}
+
+.ptgpu-mem-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f97316;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ptgpu-cpu-mem .ptgpu-mem-label {
+  color: #a3adbb;
+}
+
+.ptgpu-mem-item {
+  font-size: 11px;
+  color: #6b7785;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptgpu-transfer-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ptgpu-transfer-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}

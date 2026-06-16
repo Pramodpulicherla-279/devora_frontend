@@ -1,0 +1,23 @@
+/* ML: Feature Engineering — prefix: mlfeat- */
+.mlfeat-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.mlfeat-head { text-align:center; margin-bottom:14px; }
+.mlfeat-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.mlfeat-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.mlfeat-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.mlfeat-tabs { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px; }
+.mlfeat-tab { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:7px 10px; border-radius:7px; cursor:pointer; font-size:0.75rem; min-height:36px; }
+.mlfeat-tab--on { border-color:#a78bfa; color:#a78bfa; background:#2a1f4d; }
+.mlfeat-panel { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:start; margin-bottom:10px; }
+.mlfeat-col { display:flex; flex-direction:column; gap:5px; }
+.mlfeat-col-hd { font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:#6b7785; margin-bottom:2px; }
+.mlfeat-row { display:flex; flex-direction:column; gap:1px; padding:7px 9px; border-radius:6px; border:1px solid; }
+.mlfeat-row--before { border-color:#30363d; background:#161b22; }
+.mlfeat-row--after { border-color:#56d364; background:rgba(86,211,100,0.08); }
+.mlfeat-key { font-family:'Consolas',monospace; font-size:0.72rem; color:#a78bfa; }
+.mlfeat-val { font-family:'Consolas',monospace; font-size:0.78rem; color:#e6edf3; }
+.mlfeat-type { font-size:0.62rem; color:#6b7785; }
+.mlfeat-arrow { color:#a78bfa; font-size:1.1rem; align-self:center; }
+.mlfeat-code { background:#010409; border:1px solid #21262d; border-radius:7px; padding:9px 12px; font-family:'Consolas',monospace; font-size:0.76rem; color:#a78bfa; margin-bottom:9px; overflow-x:auto; }
+.mlfeat-why { background:#161b22; border-radius:8px; padding:9px 12px; font-size:0.8rem; color:#c9d1d9; line-height:1.5; margin-bottom:10px; }
+.mlfeat-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+@media (max-width:420px) { .mlfeat-panel { grid-template-columns:1fr; } .mlfeat-arrow { text-align:center; transform:rotate(90deg); } }

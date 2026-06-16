@@ -1,0 +1,17 @@
+﻿.mlopscloud-wrap { background: #0d1117; border-radius: 8px; padding: 20px; font-family: system-ui, sans-serif; color: #e6edf3; }
+.mlopscloud-table-wrap { overflow-x: auto; }
+.mlopscloud-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.mlopscloud-th { background: #161b22; color: #a3adbb; padding: 10px 14px; text-align: left; border-bottom: 1px solid #30363d; font-weight: 600; white-space: nowrap; }
+.mlopscloud-tr { cursor: pointer; transition: background .15s; border-bottom: 1px solid #21262d; }
+.mlopscloud-tr:hover { background: #161b22; }
+.mlopscloud-tr--active { background: #1a2d1a !important; outline: 1px solid #56d364; }
+.mlopscloud-td { padding: 11px 14px; color: #e6edf3; }
+.mlopscloud-td--name { font-weight: 600; color: #58a6ff; white-space: nowrap; }
+.mlopscloud-cost { font-weight: 600; }
+.mlopscloud-cost--high { color: #f85149; }
+.mlopscloud-cost--medium { color: #f97316; }
+.mlopscloud-cost--variable { color: #a3adbb; }
+.mlopscloud-detail { margin-top: 16px; background: #161b22; border: 1px solid #56d364; border-radius: 8px; padding: 14px; display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.mlopscloud-detail-label { font-size: 12px; font-weight: 700; color: #56d364; white-space: nowrap; }
+.mlopscloud-detail-text { font-size: 13px; color: #e6edf3; line-height: 1.5; }
+.mlopscloud-hint { font-size: 12px; color: #6b7785; margin-top: 12px; }

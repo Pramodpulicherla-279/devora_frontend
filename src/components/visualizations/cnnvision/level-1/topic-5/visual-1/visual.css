@@ -1,0 +1,131 @@
+.cnnviz-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnviz-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.cnnviz-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.cnnviz-tab {
+  background: #161b22;
+  color: #a3adbb;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cnnviz-tab--active {
+  background: #1d3a5c;
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.cnnviz-sublabel {
+  font-size: 0.78rem;
+  color: #a78bfa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.cnnviz-desc {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.cnnviz-features {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cnnviz-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cnnviz-feature-map {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+}
+
+.cnnviz-feature-label {
+  font-size: 0.68rem;
+  color: #6b7785;
+  text-align: center;
+}
+
+.cnnviz-depth {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cnnviz-depth-bar {
+  position: relative;
+  height: 22px;
+  background: #0d1117;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #21262d;
+  display: flex;
+  align-items: center;
+}
+
+.cnnviz-depth-bar--active { border-color: #58a6ff; }
+
+.cnnviz-depth-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(to right, #1d3a5c, #2d5a8c);
+  transition: width 0.3s;
+}
+
+.cnnviz-depth-bar--active .cnnviz-depth-fill { background: linear-gradient(to right, #1d3a5c, #58a6ff); }
+
+.cnnviz-depth-name {
+  position: relative;
+  font-size: 0.7rem;
+  color: #a3adbb;
+  padding-left: 8px;
+  z-index: 1;
+}
+
+.cnnviz-depth-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #6b7785;
+  margin-top: 2px;
+}

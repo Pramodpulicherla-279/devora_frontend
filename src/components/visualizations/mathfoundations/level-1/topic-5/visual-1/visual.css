@@ -1,0 +1,105 @@
+.mfdot-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfdot-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 16px;
+}
+
+.mfdot-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.mfdot-left {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mfdot-vec-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mfdot-vec-label {
+  font-weight: 700;
+  font-size: 1rem;
+  width: 14px;
+}
+
+.mfdot-cell-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mfdot-cell-group button {
+  width: 26px;
+  height: 26px;
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+
+.mfdot-cell-group button:hover { background: #30363d; }
+
+.mfdot-val {
+  color: #e6edf3;
+  font-family: monospace;
+  font-size: 1rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.mfdot-steps {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 0.88rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mfdot-step { color: #a3adbb; }
+.mfdot-result { color: #56d364; }
+.mfdot-result b { font-size: 1rem; }
+
+.mfdot-geo {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.mfdot-geo-label {
+  color: #a78bfa;
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.mfdot-svg {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  flex-shrink: 0;
+}

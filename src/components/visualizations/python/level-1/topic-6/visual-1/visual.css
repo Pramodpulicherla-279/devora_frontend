@@ -1,0 +1,16 @@
+/* Python: File I/O — prefix: pyfio- */
+.pyfio-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:620px; margin:0 auto; border:1px solid #21262d; }
+.pyfio-head { text-align:center; margin-bottom:14px; }
+.pyfio-badge { background:#1c2a1c; color:#56d364; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #56d364; letter-spacing:1.5px; }
+.pyfio-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#56d364; }
+.pyfio-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pyfio-flow { display:flex; align-items:center; flex-wrap:wrap; gap:4px; margin-bottom:14px; }
+.pyfio-flow-item { display:flex; align-items:center; gap:4px; }
+.pyfio-flow-btn { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 12px; font-size:0.76rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.pyfio-flow-btn--on { border-color:#56d364; color:#56d364; background:#1c2a1c; }
+.pyfio-flow-arr { color:#30363d; font-size:0.85rem; }
+.pyfio-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:11px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 10px; white-space:pre; line-height:1.55; }
+.pyfio-note { background:#161b22; border-left:3px solid #56d364; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; margin-bottom:12px; }
+.pyfio-tip { background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.2); border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.pyfio-tip strong { color:#58a6ff; }
+.pyfio-tip code { font-family:'Consolas',monospace; color:#58a6ff; background:#010409; padding:1px 5px; border-radius:4px; }

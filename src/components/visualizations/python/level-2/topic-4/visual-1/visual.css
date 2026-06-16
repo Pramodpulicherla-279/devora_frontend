@@ -1,0 +1,19 @@
+/* Python: String Manipulation — prefix: pystrm- */
+.pystrm-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:620px; margin:0 auto; border:1px solid #21262d; }
+.pystrm-head { text-align:center; margin-bottom:14px; }
+.pystrm-badge { background:#1c2a1c; color:#56d364; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #56d364; letter-spacing:1.5px; }
+.pystrm-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#56d364; }
+.pystrm-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pystrm-methods { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; justify-content:center; }
+.pystrm-method { background:#161b22; border:1px solid #30363d; border-radius:7px; padding:5px 12px; font-size:0.74rem; color:#a3adbb; cursor:pointer; font-family:'Consolas',monospace; transition:all .15s; }
+.pystrm-method--on { border-color:#56d364; color:#56d364; background:#1c2a1c; }
+.pystrm-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; font-family:'Consolas',monospace; font-size:0.78rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; }
+.pystrm-table-wrap { overflow-x:auto; margin-bottom:12px; }
+.pystrm-table { border-collapse:collapse; width:100%; font-size:0.8rem; }
+.pystrm-table th { background:#21262d; color:#6b7785; padding:7px 14px; text-align:left; font-size:0.72rem; font-weight:700; border-bottom:1px solid #30363d; }
+.pystrm-raw { padding:6px 14px; font-family:'Consolas',monospace; color:#f85149; border-bottom:1px solid #161b22; }
+.pystrm-out  { padding:6px 14px; font-family:'Consolas',monospace; color:#56d364; font-weight:600; border-bottom:1px solid #161b22; }
+.pystrm-note { background:#161b22; border-left:3px solid #56d364; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; margin-bottom:12px; }
+.pystrm-chain { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; }
+.pystrm-chain-label { font-size:0.68rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.pystrm-chain-code { font-family:'Consolas',monospace; font-size:0.76rem; color:#a78bfa; }

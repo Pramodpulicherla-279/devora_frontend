@@ -1,0 +1,104 @@
+.nntrain-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.nntrain-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.nntrain-tab {
+  padding: 7px 18px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.nntrain-tab--active {
+  border-color: #a78bfa;
+  color: #a78bfa;
+  background: #1a1433;
+}
+
+.nntrain-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nntrain-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nntrain-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.nntrain-step:hover {
+  border-color: var(--sc);
+  background: #1c2128;
+}
+
+.nntrain-step--active {
+  border-color: var(--sc);
+  background: #1c2128;
+}
+
+.nntrain-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.nntrain-step-label {
+  color: #e6edf3;
+  font-size: 13px;
+}
+
+.nntrain-code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #e6edf3;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.nntrain-svg {
+  width: 100%;
+  height: auto;
+  background: #161b22;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+}

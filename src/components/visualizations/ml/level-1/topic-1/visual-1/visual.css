@@ -1,22 +1,25 @@
-/* ML: What is ML — prefix: mlwhat- */
-.mlwhat-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 700px; margin: 0 auto; border: 1px solid #21262d; }
-.mlwhat-head { text-align: center; margin-bottom: 18px; }
-.mlwhat-badge { background: #3a2708; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
-.mlwhat-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #f59e0b; }
-.mlwhat-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
-.mlwhat-paradigm { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-@media (max-width: 520px) { .mlwhat-paradigm { grid-template-columns: 1fr; } }
-.mlwhat-pcol { background: #161b22; border-radius: 10px; padding: 14px; border-top: 3px solid #30363d; }
-.mlwhat-pcol--ml { border-color: #f59e0b; }
-.mlwhat-ptitle { font-size: 0.78rem; color: #c9d1d9; font-weight: 700; margin-bottom: 10px; }
-.mlwhat-pflow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.76rem; color: #a3adbb; }
-.mlwhat-arrow { color: #f59e0b; }
-.mlwhat-out { color: #f59e0b; font-weight: 700; }
-.mlwhat-types-title { text-align: center; font-size: 0.78rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-.mlwhat-tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
-.mlwhat-tab { display: flex; align-items: center; gap: 6px; background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; min-height: 40px; transition: all 0.15s; }
-.mlwhat-tab--on { background: #3a2708; border-color: #f59e0b; color: #f59e0b; font-weight: 700; }
-.mlwhat-ticon { font-size: 1rem; }
-.mlwhat-detail { background: #161b22; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 12px 14px; }
-.mlwhat-detail p { font-size: 0.84rem; color: #a3adbb; line-height: 1.5; margin: 0 0 8px; }
-.mlwhat-ex { font-size: 0.78rem; color: #f59e0b; }
+/* ML: What Is Machine Learning — prefix: mlwhat- */
+.mlwhat-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.mlwhat-head { text-align:center; margin-bottom:14px; }
+.mlwhat-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.mlwhat-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.mlwhat-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.mlwhat-map { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.mlwhat-node { display:flex; flex-direction:column; gap:5px; align-items:center; background:#161b22; border:1px solid #30363d; border-radius:10px; padding:12px 8px; cursor:pointer; transition:all .15s; }
+.mlwhat-icon { font-size:1.4rem; }
+.mlwhat-node-label { font-size:0.72rem; color:#a3adbb; text-align:center; line-height:1.3; }
+.mlwhat-detail { background:#161b22; border-radius:10px; padding:12px 14px; margin-bottom:12px; }
+.mlwhat-desc { font-size:0.82rem; color:#c9d1d9; line-height:1.5; margin:0 0 10px; }
+.mlwhat-ex { font-size:0.78rem; color:#a3adbb; line-height:1.4; margin-bottom:10px; }
+.mlwhat-ex-hd { display:block; font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:#6b7785; margin-bottom:3px; }
+.mlwhat-tasks { display:flex; flex-direction:column; gap:5px; }
+.mlwhat-task { font-size:0.78rem; color:#a3adbb; padding:6px 10px; border-left:2px solid; border-radius:4px; background:#0d1117; }
+.mlwhat-spectrum { display:flex; align-items:center; gap:6px; margin-bottom:12px; flex-wrap:wrap; justify-content:center; }
+.mlwhat-spec-item { background:#161b22; border-radius:8px; padding:8px 10px; text-align:center; display:flex; flex-direction:column; gap:2px; }
+.mlwhat-spec-item--hl { border:1px solid #2a1f4d; }
+.mlwhat-spec-item span { font-size:0.7rem; color:#a3adbb; font-weight:600; }
+.mlwhat-spec-item em { font-size:0.67rem; color:#6b7785; font-style:normal; }
+.mlwhat-spec-item--hl span { color:#a78bfa; }
+.mlwhat-spec-arr { color:#30363d; font-size:0.9rem; }
+.mlwhat-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+@media (max-width:380px) { .mlwhat-map { grid-template-columns:1fr; } }

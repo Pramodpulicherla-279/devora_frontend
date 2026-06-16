@@ -1,23 +1,25 @@
-/* Desc Stats: Summary Statistics in Python — prefix: dssp- */
-.dssp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 720px; margin: 0 auto; border: 1px solid #21262d; }
-.dssp-head { text-align: center; margin-bottom: 16px; }
-.dssp-badge { background: #13313a; color: #2dd4bf; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #2dd4bf; letter-spacing: 1.5px; }
-.dssp-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #2dd4bf; }
-.dssp-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.dssp-head p code { color: #2dd4bf; }
-.dssp-code { background: #010409; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-family: 'Consolas',monospace; font-size: 0.78rem; color: #e6edf3; overflow-x: auto; margin: 0 0 14px; }
-.dssp-code--sm { font-size: 0.74rem; padding: 8px 10px; }
-.dssp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 560px) { .dssp-grid { grid-template-columns: 1fr; } }
-.dssp-output { background: #161b22; border-radius: 10px; padding: 10px; }
-.dssp-out-head { font-size: 0.7rem; color: #7d8590; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-.dssp-row { width: 100%; display: flex; justify-content: space-between; align-items: center; background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 7px 12px; cursor: pointer; margin-bottom: 4px; transition: all 0.15s; }
-.dssp-row--on { border-color: #2dd4bf; background: #0d2a2a; }
-.dssp-stat { font-family: monospace; font-size: 0.82rem; color: #2dd4bf; }
-.dssp-val { font-family: monospace; font-size: 0.82rem; color: #c9d1d9; }
-.dssp-detail { background: #161b22; border-radius: 10px; padding: 14px; }
-.dssp-detail-stat { font-family: monospace; font-size: 1.1rem; color: #2dd4bf; font-weight: 700; }
-.dssp-detail-desc { font-size: 0.82rem; color: #c9d1d9; margin: 6px 0 10px; }
-.dssp-hint { font-size: 0.8rem; color: #a3adbb; margin: 0 0 10px; }
-.dssp-tip { font-size: 0.76rem; color: #a3adbb; line-height: 1.5; border-top: 1px solid #21262d; padding-top: 10px; }
-.dssp-tip code { color: #2dd4bf; }
+/* Desc Stats: Weighted Averages — prefix: dswavg- */
+.dswavg-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.dswavg-head { text-align:center; margin-bottom:14px; }
+.dswavg-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.dswavg-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.dswavg-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.dswavg-reps { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.dswavg-rep { background:#161b22; border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:4px; }
+.dswavg-rep-name { font-size:0.75rem; font-weight:700; }
+.dswavg-rep-val { font-size:0.95rem; font-weight:700; color:#e6edf3; font-family:'Consolas',monospace; }
+.dswavg-rep-deals { display:flex; flex-wrap:wrap; gap:3px; min-height:16px; }
+.dswavg-dot { display:inline-block; width:6px; height:6px; border-radius:50%; opacity:0.8; }
+.dswavg-more { font-size:0.65rem; color:#6b7785; align-self:center; }
+.dswavg-rep-count { font-size:0.7rem; color:#6b7785; }
+.dswavg-toggle { display:flex; gap:8px; justify-content:center; margin-bottom:12px; }
+.dswavg-t { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:7px 14px; border-radius:7px; cursor:pointer; font-size:0.78rem; min-height:36px; }
+.dswavg-t--on { border-color:#a78bfa; color:#a78bfa; background:#2a1f4d; }
+.dswavg-svg { display:block; margin-bottom:10px; }
+.dswavg-result { padding:10px 14px; border-radius:8px; font-size:0.82rem; line-height:1.5; margin-bottom:10px; }
+.dswavg-result--wrong { background:rgba(248,81,73,0.1); border:1px solid rgba(248,81,73,0.25); color:#f85149; }
+.dswavg-result--right { background:rgba(86,211,100,0.1); border:1px solid rgba(86,211,100,0.25); color:#56d364; }
+.dswavg-result strong { display:block; margin-bottom:3px; }
+.dswavg-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.dswavg-note code { color:#a78bfa; font-size:0.78rem; }
+@media (max-width:400px) { .dswavg-reps { grid-template-columns:1fr; } }

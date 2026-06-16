@@ -1,46 +1,88 @@
-/* Lesson: Classification Metrics
- * Visual type: INTERACTIVE
- * Reason: Precision/recall/F1 are derived from the confusion matrix. Letting the
- * learner edit TP/FP/FN/TN and watch the metrics recompute makes the formulas
- * stop being abstract. */
+/* Lesson: Decision Trees — Rules That a Machine Learns
+ * Visual type: INTERACTIVE (stepped)
+ * Reason: A decision tree is literally a flowchart. Stepping through the tree's
+ * decision nodes (amount > ₹20k? → category?) for a sample order makes the
+ * "rules discovered automatically" claim concrete. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const MlClassMetricsVisualization = () => {
-  const [cm, setCm] = useState({ tp: 70, fp: 20, fn: 15, tn: 95 });
-  const { tp, fp, fn, tn } = cm;
-  const precision = tp / (tp + fp) || 0;
-  const recall = tp / (tp + fn) || 0;
-  const f1 = (2 * precision * recall) / (precision + recall) || 0;
-  const accuracy = (tp + tn) / (tp + fp + fn + tn) || 0;
-  const set = (k, v) => setCm((c) => ({ ...c, [k]: Math.max(0, Number(v) || 0) }));
+const TREE = {
+  q: 'Amount > ₹20,000?',
+  left: {
+    q: 'Category = Electronics?',
+    left: { result: 'Return risk: LOW', prob: '18%', color: '#56d364' },
+    right: { result: 'Return risk: LOW', prob: '12%', color: '#56d364' },
+  },
+  right: {
+    q: 'City = Mumbai?',
+    left: { result: 'Return risk: HIGH', prob: '71%', color: '#f85149' },
+    right: { result: 'Return risk: MEDIUM', prob: '44%', color: '#f0883e' },
+  },
+};
+
+const MlDecisionTreeVisualization = () => {
+  const [amount, setAmount] = useState(15000);
+  const [cat, setCat] = useState('Electronics');
+  const [city, setCity] = useState('Delhi');
+
+  const step1 = amount > 20000 ? 'right' : 'left';
+  const step2leaf = step1 === 'left'
+    ? (cat === 'Electronics' ? TREE.left.left : TREE.left.right)
+    : (city === 'Mumbai' ? TREE.right.left : TREE.right.right);
+
+  const step2node = TREE[step1];
 
   return (
-    <div className="mlcm-wrap">
-      <header className="mlcm-head">
-        <span className="mlcm-badge">Machine Learning</span>
-        <h2>Classification Metrics</h2>
-        <p>Confusion matrix → precision, recall &amp; F1</p>
+    <div className="mltree-wrap">
+      <header className="mltree-head">
+        <span className="mltree-badge">Machine Learning</span>
+        <h2>Decision Trees</h2>
+        <p>Follow the flowchart — the model learned these rules</p>
       </header>
-      <div className="mlcm-matrix">
-        <div className="mlcm-corner" />
-        <div className="mlcm-colh">Predicted +</div>
-        <div className="mlcm-colh">Predicted −</div>
-        <div className="mlcm-rowh">Actual +</div>
-        <div className="mlcm-cell mlcm-cell--tp"><input value={tp} onChange={(e) => set('tp', e.target.value)} /><span>TP</span></div>
-        <div className="mlcm-cell mlcm-cell--fn"><input value={fn} onChange={(e) => set('fn', e.target.value)} /><span>FN</span></div>
-        <div className="mlcm-rowh">Actual −</div>
-        <div className="mlcm-cell mlcm-cell--fp"><input value={fp} onChange={(e) => set('fp', e.target.value)} /><span>FP</span></div>
-        <div className="mlcm-cell mlcm-cell--tn"><input value={tn} onChange={(e) => set('tn', e.target.value)} /><span>TN</span></div>
+
+      <div className="mltree-inputs">
+        <label className="mltree-field"><span>Order amount</span>
+          <input type="range" min={5000} max={40000} step={1000} value={amount} onChange={e => setAmount(+e.target.value)} className="mltree-slider" />
+          <code>₹{amount.toLocaleString('en-IN')}</code>
+        </label>
+        <label className="mltree-field"><span>Category</span>
+          <select className="mltree-sel" value={cat} onChange={e => setCat(e.target.value)}>
+            <option>Electronics</option><option>Accessories</option><option>Furniture</option>
+          </select>
+        </label>
+        <label className="mltree-field"><span>City</span>
+          <select className="mltree-sel" value={city} onChange={e => setCity(e.target.value)}>
+            <option>Mumbai</option><option>Delhi</option><option>Bengaluru</option><option>Pune</option>
+          </select>
+        </label>
       </div>
-      <div className="mlcm-metrics">
-        <div className="mlcm-metric"><span>Precision</span><strong>{(precision * 100).toFixed(0)}%</strong><em>TP/(TP+FP)</em></div>
-        <div className="mlcm-metric"><span>Recall</span><strong>{(recall * 100).toFixed(0)}%</strong><em>TP/(TP+FN)</em></div>
-        <div className="mlcm-metric mlcm-metric--f1"><span>F1</span><strong>{(f1 * 100).toFixed(0)}%</strong><em>harmonic mean</em></div>
-        <div className="mlcm-metric"><span>Accuracy</span><strong>{(accuracy * 100).toFixed(0)}%</strong><em>all correct</em></div>
+
+      <div className="mltree-flow">
+        <div className="mltree-node mltree-node--root">
+          <span className="mltree-q">{TREE.q}</span>
+          <span className={`mltree-ans ${step1 === 'right' ? 'mltree-ans--yes' : 'mltree-ans--no'}`}>
+            {step1 === 'right' ? '✓ Yes' : '✗ No'}
+          </span>
+        </div>
+        <div className="mltree-arr">↓</div>
+        <div className="mltree-node mltree-node--mid">
+          <span className="mltree-q">{step2node.q}</span>
+          <span className={`mltree-ans ${(step1 === 'left' ? cat === 'Electronics' : city === 'Mumbai') ? 'mltree-ans--yes' : 'mltree-ans--no'}`}>
+            {(step1 === 'left' ? cat === 'Electronics' : city === 'Mumbai') ? '✓ Yes' : '✗ No'}
+          </span>
+        </div>
+        <div className="mltree-arr">↓</div>
+        <div className="mltree-leaf" style={{ borderColor: step2leaf.color, background: `${step2leaf.color}18` }}>
+          <strong style={{ color: step2leaf.color }}>{step2leaf.result}</strong>
+          <span>P(return) = {step2leaf.prob}</span>
+        </div>
       </div>
-      <div className="mlcm-note">⚠️ Accuracy lies on imbalanced data. Precision = "of predicted positives, how many were right". Recall = "of actual positives, how many did we catch".</div>
+
+      <div className="mltree-note">
+        The tree learned these thresholds from training data — not hard-coded by a human. <code>max_depth</code> controls how many levels deep it goes before stopping. Deeper = more overfit.
+      </div>
     </div>
   );
 };
-export default MlClassMetricsVisualization;
+
+export default MlDecisionTreeVisualization;

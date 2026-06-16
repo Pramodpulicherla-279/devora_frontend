@@ -1,0 +1,100 @@
+.nnpt-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.nnpt-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.nnpt-tab {
+  padding: 7px 18px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.nnpt-tab--active {
+  border-color: #a78bfa;
+  color: #a78bfa;
+  background: #1a1433;
+}
+
+.nnpt-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nnpt-tensor-label {
+  color: #a3adbb;
+  font-size: 12px;
+}
+
+.nnpt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  max-width: 240px;
+}
+
+.nnpt-cell {
+  padding: 10px 0;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.nnpt-axis-labels {
+  display: flex;
+  gap: 24px;
+  font-size: 11px;
+  color: #6b7785;
+}
+
+.nnpt-svg {
+  width: 100%;
+  height: auto;
+}
+
+.nnpt-code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #e6edf3;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.nnpt-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #a78bfa;
+  background: #1a1433;
+  color: #a78bfa;
+  cursor: pointer;
+  font-size: 13px;
+  align-self: flex-start;
+  transition: all 0.15s;
+}
+
+.nnpt-btn:hover {
+  background: #a78bfa;
+  color: #0d1117;
+}

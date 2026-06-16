@@ -1,0 +1,14 @@
+.nnscratch-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnscratch-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnscratch-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnscratch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 500px) { .nnscratch-grid { grid-template-columns: 1fr; } }
+.nnscratch-svg-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; }
+.nnscratch-layers { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.nnscratch-layer { border: 1px solid #30363d; border-radius: 6px; overflow: hidden; }
+.nnscratch-layer-header { padding: 0.45rem 0.75rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 0.82rem; background: #0d1117; }
+.nnscratch-layer-name { color: #a78bfa; font-weight: 600; }
+.nnscratch-layer-arrow { color: #6b7785; font-size: 0.7rem; transition: transform 0.2s; }
+.nnscratch-layer-arrow.open { transform: rotate(90deg); }
+.nnscratch-layer-body { background: #0d1117; padding: 0.5rem 0.75rem; font-size: 0.78rem; color: #a3adbb; font-family: monospace; border-top: 1px solid #21262d; }
+.nnscratch-epoch { font-size: 0.78rem; color: #6b7785; margin-top: 0.5rem; text-align: center; }

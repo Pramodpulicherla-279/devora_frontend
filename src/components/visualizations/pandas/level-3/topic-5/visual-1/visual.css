@@ -1,0 +1,14 @@
+/* Pandas: Time Series — prefix: pdts- */
+.pdts-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:680px; margin:0 auto; border:1px solid #21262d; }
+.pdts-head { text-align:center; margin-bottom:14px; }
+.pdts-badge { background:#132a3d; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.pdts-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.pdts-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.pdts-tabs { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; justify-content:center; }
+.pdts-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 12px; font-size:0.74rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.pdts-tab--on { border-color:#58a6ff; color:#58a6ff; background:#132a3d; }
+.pdts-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; }
+.pdts-chart-wrap { background:#161b22; border-radius:10px; padding:12px 8px; margin-bottom:12px; overflow-x:auto; }
+.pdts-note { background:#161b22; border-left:3px solid #58a6ff; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.pdts-note code { color:#58a6ff; font-family:'Consolas',monospace; background:#0d1117; padding:1px 5px; border-radius:4px; }
+.pdts-note strong { color:#e6edf3; }

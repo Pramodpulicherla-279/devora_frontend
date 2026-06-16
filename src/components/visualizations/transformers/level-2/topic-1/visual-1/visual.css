@@ -1,0 +1,137 @@
+.trpe-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.trpe-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #818cf8;
+  margin: 0 0 4px;
+}
+
+.trpe-sub {
+  color: #a3adbb;
+  font-size: 0.85rem;
+  margin: 0 0 16px;
+}
+
+.trpe-heatmap-box {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.trpe-axis-label {
+  font-size: 0.72rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  flex-shrink: 0;
+}
+
+.trpe-axis-x {
+  writing-mode: horizontal-tb;
+  transform: none;
+  text-align: center;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.trpe-heatmap-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.trpe-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.trpe-tooltip {
+  background: #1c2128;
+  border: 1px solid #818cf8;
+  color: #818cf8;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 12px;
+}
+
+.trpe-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.trpe-tab {
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #a3adbb;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.trpe-tab-active {
+  background: #818cf822;
+  border-color: #818cf8;
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.trpe-tab:hover:not(.trpe-tab-active) {
+  background: #21262d;
+}
+
+.trpe-info {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.875rem;
+  color: #a3adbb;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.trpe-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trpe-legend-bar {
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(to right, rgb(30, 38, 61), rgb(129, 140, 248));
+}
+
+.trpe-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6b7785;
+  font-family: 'Courier New', monospace;
+}

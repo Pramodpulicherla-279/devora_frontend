@@ -1,0 +1,104 @@
+.feend-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.feend-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 4px;
+}
+
+.feend-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0 0 18px;
+}
+
+.feend-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feend-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-left: 3px solid var(--sc, #f97316);
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.feend-card:hover { border-right-color: var(--sc); border-top-color: var(--sc); border-bottom-color: var(--sc); }
+.feend-card--open { background: #120e00; }
+
+.feend-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.feend-card-badge {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0d1117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feend-card-icon { font-size: 1.1rem; }
+
+.feend-card-label {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.feend-chevron {
+  font-size: 0.65rem;
+  color: #6b7785;
+}
+
+.feend-card-body {
+  padding: 0 14px 14px;
+}
+
+.feend-tasks {
+  margin: 0 0 10px;
+  padding-left: 18px;
+}
+
+.feend-tasks li {
+  font-size: 0.8rem;
+  color: #a3adbb;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.feend-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: #f97316;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0;
+}

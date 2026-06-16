@@ -1,0 +1,102 @@
+.svlogit-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svlogit-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 4px;
+}
+
+.svlogit-subtitle {
+  font-size: 0.85rem;
+  color: #a3adbb;
+  font-family: monospace;
+  margin-bottom: 16px;
+}
+
+.svlogit-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.svlogit-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #a3adbb;
+  margin-bottom: 16px;
+}
+
+.svlogit-slider {
+  width: 100%;
+  accent-color: #f97316;
+}
+
+.svlogit-classes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.svlogit-cls {
+  flex: 1;
+  min-width: 120px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.2s;
+}
+
+.svlogit-cls-val {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.svlogit-cls-lbl {
+  font-size: 0.78rem;
+  color: #6b7785;
+}
+
+.svlogit-code-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.svlogit-code-btn:hover { border-color: #56d364; color: #56d364; }
+
+.svlogit-code {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #56d364;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}

@@ -1,0 +1,13 @@
+.nnloss-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnloss-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 1rem; }
+.nnloss-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.nnloss-tab { padding: 0.4rem 0.9rem; border-radius: 6px; border: 1px solid #30363d; background: #161b22; color: #a3adbb; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; }
+.nnloss-tab.active { background: #a78bfa22; border-color: #a78bfa; color: #a78bfa; font-weight: 600; }
+.nnloss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 480px) { .nnloss-grid { grid-template-columns: 1fr; } }
+.nnloss-svg-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; }
+.nnloss-meta { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.nnloss-formula { font-family: monospace; font-size: 0.85rem; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 0.5rem 0.75rem; color: #a78bfa; }
+.nnloss-use-label { font-size: 0.75rem; color: #6b7785; }
+.nnloss-use { font-size: 0.82rem; color: #56d364; }
+.nnloss-note { font-size: 0.78rem; color: #a3adbb; line-height: 1.5; background: #0d1117; border-radius: 6px; padding: 0.5rem; }

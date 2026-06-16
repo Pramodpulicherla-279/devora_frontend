@@ -1,0 +1,164 @@
+.cnnarch-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnarch-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 20px;
+  font-weight: 700;
+}
+
+.cnnarch-timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.cnnarch-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  min-width: 70px;
+}
+
+.cnnarch-node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #30363d;
+  border: 2px solid #21262d;
+  margin-bottom: 6px;
+  transition: all 0.2s;
+}
+
+.cnnarch-node--active .cnnarch-node-dot {
+  background: var(--ac);
+  border-color: var(--ac);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ac) 20%, transparent);
+}
+
+.cnnarch-node-name {
+  font-size: 0.72rem;
+  color: #a3adbb;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cnnarch-node--active .cnnarch-node-name { color: var(--ac); }
+
+.cnnarch-node-year {
+  font-size: 0.62rem;
+  color: #6b7785;
+}
+
+.cnnarch-line {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #21262d;
+}
+
+.cnnarch-detail {
+  background: #161b22;
+  border: 1px solid var(--ac, #30363d);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cnnarch-detail-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cnnarch-detail-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ac);
+}
+
+.cnnarch-detail-year {
+  font-size: 0.78rem;
+  color: #6b7785;
+}
+
+.cnnarch-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.cnnarch-stat {
+  flex: 1;
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.cnnarch-stat-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ac);
+  margin-bottom: 2px;
+}
+
+.cnnarch-stat-key {
+  font-size: 0.65rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cnnarch-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ac) 30%, transparent);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
+.cnnarch-innovation {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.cnnarch-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.75rem;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 0;
+}

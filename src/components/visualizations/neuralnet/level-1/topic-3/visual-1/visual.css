@@ -1,0 +1,17 @@
+.nnfwd-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnfwd-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnfwd-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnfwd-svg-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; }
+.nnfwd-steps { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.nnfwd-step-dot { padding: 0.3rem 0.7rem; border-radius: 5px; font-size: 0.78rem; border: 1px solid #30363d; background: #161b22; color: #6b7785; transition: all 0.2s; }
+.nnfwd-step-dot.done { border-color: #56d364; color: #56d364; background: #56d36411; }
+.nnfwd-step-dot.current { border-color: #a78bfa; color: #a78bfa; background: #a78bfa22; font-weight: 600; }
+.nnfwd-info { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; font-size: 0.85rem; min-height: 70px; }
+.nnfwd-info-op { color: #a78bfa; font-weight: 700; margin-bottom: 0.4rem; }
+.nnfwd-info-eq { font-family: monospace; color: #58a6ff; font-size: 0.9rem; margin-bottom: 0.4rem; }
+.nnfwd-info-res { color: #56d364; font-size: 0.82rem; }
+.nnfwd-btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.nnfwd-btn { padding: 0.45rem 1.1rem; border-radius: 6px; border: 1px solid #a78bfa; background: #a78bfa22; color: #a78bfa; font-size: 0.85rem; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.nnfwd-btn:hover { background: #a78bfa44; }
+.nnfwd-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nnfwd-btn.reset { border-color: #30363d; background: transparent; color: #a3adbb; }

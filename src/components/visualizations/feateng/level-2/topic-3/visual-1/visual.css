@@ -1,0 +1,95 @@
+.fepoly-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.fepoly-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.fepoly-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.fepoly-label {
+  font-size: 0.85rem;
+  color: #a3adbb;
+  flex-shrink: 0;
+}
+.fepoly-slider {
+  flex: 1;
+  min-width: 100px;
+  accent-color: #f97316;
+  cursor: pointer;
+}
+.fepoly-degree-badges {
+  display: flex;
+  gap: 5px;
+}
+.fepoly-badge {
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  color: #6b7785;
+  cursor: pointer;
+}
+.fepoly-badge--on {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+}
+.fepoly-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #0d1117;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+  margin-bottom: 14px;
+}
+.fepoly-info {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.fepoly-info-item {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 130px;
+}
+.fepoly-info-label {
+  font-size: 0.7rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.fepoly-info-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+.fepoly-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

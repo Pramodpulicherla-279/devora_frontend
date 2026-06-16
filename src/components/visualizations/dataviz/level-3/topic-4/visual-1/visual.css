@@ -1,0 +1,16 @@
+/* DataViz: Plotly — prefix: dvply- */
+.dvply-wrap { font-family:system-ui,sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.dvply-head { text-align:center; margin-bottom:14px; }
+.dvply-badge { background:#0d1a2a; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.dvply-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.dvply-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.dvply-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; justify-content:center; }
+.dvply-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:5px 12px; font-size:0.74rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.dvply-tab--on { border-color:#58a6ff; color:#58a6ff; background:#0d1a2a; }
+.dvply-legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+.dvply-leg { display:flex; align-items:center; gap:5px; font-size:0.74rem; color:#a3adbb; cursor:pointer; border:1px solid transparent; border-radius:6px; padding:2px 8px; transition:all .15s; }
+.dvply-leg--off { opacity:0.3; text-decoration:line-through; }
+.dvply-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.dvply-svg { display:block; width:100%; background:#161b22; border-radius:10px; border:1px solid #21262d; margin-bottom:10px; }
+.dvply-hint { background:#161b22; border-left:3px solid #58a6ff; border-radius:8px; padding:8px 12px; font-size:0.76rem; color:#a3adbb; margin-bottom:10px; line-height:1.5; }
+.dvply-code { background:#010409; border:1px solid #21262d; border-radius:8px; padding:10px 13px; font-family:'Consolas',monospace; font-size:0.74rem; color:#e6edf3; overflow-x:auto; margin:0; white-space:pre; line-height:1.5; }

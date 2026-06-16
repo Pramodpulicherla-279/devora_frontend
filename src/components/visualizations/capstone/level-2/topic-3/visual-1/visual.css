@@ -1,0 +1,16 @@
+/* Capstone: Statistical Analysis — prefix: capstat- */
+.capstat-wrap { font-family:system-ui,sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.capstat-head { text-align:center; margin-bottom:14px; }
+.capstat-badge { background:#1a1000; color:#f97316; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #f97316; letter-spacing:1.5px; }
+.capstat-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#f97316; }
+.capstat-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.capstat-stepper { display:flex; align-items:center; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+.capstat-step-btn { background:#161b22; border:1px solid #30363d; border-radius:50%; width:32px; height:32px; font-size:0.76rem; color:#a3adbb; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .15s; }
+.capstat-step-btn--on { border-color:#f97316; color:#f97316; background:#1a1000; }
+.capstat-step-btn--done { border-color:#56d364; color:#56d364; background:rgba(86,211,100,0.08); }
+.capstat-step-label { font-size:0.8rem; font-weight:600; color:#e6edf3; margin-left:4px; }
+.capstat-content { background:#010409; border:1px solid #21262d; border-radius:8px; padding:12px 14px; font-family:'Consolas',monospace; font-size:0.76rem; color:#e6edf3; overflow-x:auto; margin:0 0 12px; white-space:pre; line-height:1.6; min-height:100px; }
+.capstat-nav { display:flex; gap:8px; margin-bottom:12px; }
+.capstat-btn { background:#21262d; border:1px solid #30363d; border-radius:6px; padding:5px 14px; font-size:0.76rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.capstat-btn--next { background:#1a1000; border-color:#f97316; color:#f97316; }
+.capstat-note { background:#161b22; border-left:3px solid #f97316; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }

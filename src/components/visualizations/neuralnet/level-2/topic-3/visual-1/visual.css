@@ -1,0 +1,15 @@
+.nnwinit-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnwinit-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnwinit-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnwinit-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+@media (max-width: 480px) { .nnwinit-cards { grid-template-columns: 1fr; } }
+.nnwinit-card { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer; transition: border-color 0.2s; }
+.nnwinit-card.selected { border-color: #a78bfa; }
+.nnwinit-card-name { font-size: 0.85rem; font-weight: 700; }
+.nnwinit-card-formula { font-family: monospace; font-size: 0.75rem; color: #a3adbb; }
+.nnwinit-card-svg { flex: 1; }
+.nnwinit-info { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; font-size: 0.82rem; }
+.nnwinit-info-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+.nnwinit-info-best { background: #56d36411; border: 1px solid #56d364; border-radius: 5px; padding: 0.25rem 0.6rem; font-size: 0.75rem; color: #56d364; }
+.nnwinit-warn { background: #f8514911; border: 1px solid #f85149; border-radius: 5px; padding: 0.25rem 0.6rem; font-size: 0.75rem; color: #f85149; }
+.nnwinit-desc { color: #a3adbb; line-height: 1.5; }

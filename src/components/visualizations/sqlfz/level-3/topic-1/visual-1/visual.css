@@ -1,0 +1,19 @@
+/* SQL FZ: Table Relations — prefix: sqlfzrel- */
+.sqlfzrel-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:720px; margin:0 auto; border:1px solid #21262d; }
+.sqlfzrel-head { text-align:center; margin-bottom:14px; }
+.sqlfzrel-badge { background:#1a1a3e; color:#818cf8; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #818cf8; letter-spacing:1.5px; }
+.sqlfzrel-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#818cf8; }
+.sqlfzrel-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.sqlfzrel-tables { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin-bottom:14px; }
+.sqlfzrel-table-wrap { flex:1; min-width:200px; }
+.sqlfzrel-table-label { font-size:0.68rem; color:#6b7785; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+.sqlfzrel-table { border-collapse:collapse; width:100%; font-size:0.76rem; }
+.sqlfzrel-table th { background:#21262d; color:#6b7785; padding:5px 9px; text-align:left; font-size:0.68rem; font-weight:700; border-bottom:1px solid #30363d; }
+.sqlfzrel-table td { padding:5px 9px; border-bottom:1px solid #161b22; color:#a3adbb; }
+.sqlfzrel-tr { cursor:pointer; }
+.sqlfzrel-tr:hover td { background:rgba(129,140,248,0.06); }
+.sqlfzrel-tr--on td { background:rgba(129,140,248,0.14); color:#e6edf3; }
+.sqlfzrel-arrow { font-size:0.9rem; color:#6b7785; padding-top:32px; flex-shrink:0; writing-mode:horizontal-tb; }
+.sqlfzrel-note { background:#161b22; border-left:3px solid #818cf8; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.sqlfzrel-note strong { color:#818cf8; }
+.sqlfzrel-note em { color:#e6edf3; }

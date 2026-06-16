@@ -1,0 +1,81 @@
+.trscratch-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.trscratch-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #818cf8;
+  margin: 0 0 4px;
+}
+.trscratch-sub {
+  color: #a3adbb;
+  font-size: 0.82rem;
+  margin: 0 0 16px;
+}
+.trscratch-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+  align-items: center;
+}
+.trscratch-pill {
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #a3adbb;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.trscratch-pill:hover:not(.trscratch-pill-active) { background: #21262d; }
+.trscratch-pill-arrow { color: #6b7785; }
+.trscratch-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-top: 3px solid #818cf8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.trscratch-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #21262d;
+  flex-wrap: wrap;
+}
+.trscratch-card-name { font-weight: 700; font-size: 0.95rem; }
+.trscratch-card-params { color: #6b7785; font-size: 0.78rem; }
+.trscratch-code { padding: 10px 14px; }
+.trscratch-line {
+  display: flex;
+  gap: 10px;
+  padding: 2px 6px;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+}
+.trscratch-line-hl { background: #818cf820; }
+.trscratch-lineno { color: #6b7785; font-size: 0.78rem; width: 16px; flex-shrink: 0; font-family: monospace; padding-top: 1px; }
+.trscratch-line code { font-family: 'Courier New', monospace; font-size: 0.82rem; color: #e6edf3; white-space: pre; }
+.trscratch-note {
+  margin: 0 14px 14px;
+  background: #0d1117;
+  border-left: 3px solid #818cf8;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: #a3adbb;
+  line-height: 1.5;
+}

@@ -1,0 +1,163 @@
+.svdtree-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svdtree-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 6px;
+}
+
+.svdtree-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0 0 20px;
+}
+
+.svdtree-container {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.svdtree-node-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.svdtree-node {
+  background: #161b22;
+  border: 1.5px solid #58a6ff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  text-align: center;
+  min-width: 140px;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.svdtree-node:hover { background: #1c2333; border-color: #a78bfa; }
+
+.svdtree-node-feature {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #58a6ff;
+  margin-bottom: 2px;
+}
+
+.svdtree-node-threshold {
+  font-size: 0.88rem;
+  color: #e6edf3;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.svdtree-node-gini {
+  font-size: 0.72rem;
+  color: #6b7785;
+}
+
+.svdtree-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7785;
+  font-size: 0.7rem;
+}
+
+.svdtree-children {
+  display: flex;
+  gap: 20px;
+  padding-top: 16px;
+  position: relative;
+}
+
+.svdtree-children::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 16px;
+  background: #30363d;
+}
+
+.svdtree-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.svdtree-branch::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  width: 1px;
+  height: 16px;
+  background: #30363d;
+}
+
+.svdtree-branch-label {
+  font-size: 0.7rem;
+  color: #6b7785;
+  background: #0d1117;
+  padding: 0 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.svdtree-leaf {
+  background: #161b22;
+  border: 1.5px solid #30363d;
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 100px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.svdtree-leaf-icon { font-size: 1rem; }
+
+.svdtree-leaf-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.svdtree-gini {
+  font-size: 0.68rem;
+  color: #6b7785;
+}
+
+.svdtree-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+  font-size: 0.78rem;
+  color: #a3adbb;
+}
+
+.svdtree-legend-item { display: flex; align-items: center; gap: 5px; }
+.svdtree-legend-gini { color: #6b7785; margin-left: auto; }

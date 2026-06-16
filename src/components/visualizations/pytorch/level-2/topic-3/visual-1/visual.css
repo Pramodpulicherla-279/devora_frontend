@@ -1,0 +1,132 @@
+.ptcustlay-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ptcustlay-title {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.ptcustlay-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ptcustlay-tab {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 8px 0;
+  color: #a3adbb;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ptcustlay-tab--active {
+  border-color: #f97316;
+  color: #f97316;
+  background: #f9731610;
+}
+
+.ptcustlay-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ptcustlay-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.ptcustlay-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ptcustlay-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ptcustlay-badge--orange { background: #f9731620; color: #f97316; border: 1px solid #f9731640; }
+.ptcustlay-badge--violet { background: #a78bfa20; color: #a78bfa; border: 1px solid #a78bfa40; }
+
+.ptcustlay-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptcustlay-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  color: #56d364;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0 0 10px;
+  line-height: 1.65;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.ptcustlay-note {
+  font-size: 11px;
+  color: #6b7785;
+  line-height: 1.5;
+  border-left: 2px solid #30363d;
+  padding-left: 8px;
+}
+
+.ptcustlay-rule {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #a3adbb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ptcustlay-rule-icon {
+  color: #56d364;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ptcustlay-rule code {
+  background: #21262d;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #f97316;
+  font-family: 'JetBrains Mono', monospace;
+}

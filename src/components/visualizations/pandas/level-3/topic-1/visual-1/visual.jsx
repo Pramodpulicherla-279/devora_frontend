@@ -1,47 +1,98 @@
-/* Lesson: Data Cleaning with Pandas
- * Visual type: ILLUSTRATION (animated messy → clean)
- * Reason: Cleaning is a sequence of fixes. Stepping a messy table through each
- * fix (dedupe, types, casing, NaN) to a clean result shows the whole workflow. */
-import React, { useState } from 'react';
+/* Lesson: GroupBy — The Pandas Equivalent of SQL's GROUP BY
+ * Visual type: INTERACTIVE
+ * Choose group-by column + aggregation — see result table update */
+import React, { useState, useMemo } from 'react';
 import './visual.css';
 
-const STEPS = [
-  { label: 'Raw (messy)', code: 'df  # the mess', rows: [['  ALICE ', '28', 'mumbai'], ['Bob', 'NaN', 'Delhi'], ['Bob', 'NaN', 'Delhi'], ['carol', '22', ' PUNE']] },
-  { label: 'Drop duplicates', code: 'df.drop_duplicates()', rows: [['  ALICE ', '28', 'mumbai'], ['Bob', 'NaN', 'Delhi'], ['carol', '22', ' PUNE']] },
-  { label: 'Strip + title case', code: "df['name'] = df['name'].str.strip().str.title()", rows: [['Alice', '28', 'mumbai'], ['Bob', 'NaN', 'Delhi'], ['Carol', '22', ' PUNE']] },
-  { label: 'Fill NaN', code: "df['age'] = df['age'].fillna(df['age'].median())", rows: [['Alice', '28', 'mumbai'], ['Bob', '25', 'Delhi'], ['Carol', '22', ' PUNE']] },
-  { label: 'Normalize city', code: "df['city'] = df['city'].str.strip().str.title()", rows: [['Alice', '28', 'Mumbai'], ['Bob', '25', 'Delhi'], ['Carol', '22', 'Pune']] },
+const DATA = [
+  { city:'Mumbai',    category:'Electronics', rep:'Aisha', amount:4200  },
+  { city:'Pune',      category:'Accessories', rep:'Ravi',  amount:1850  },
+  { city:'Delhi',     category:'Electronics', rep:'Priya', amount:6700  },
+  { city:'Bengaluru', category:'Accessories', rep:'Aisha', amount:980   },
+  { city:'Mumbai',    category:'Electronics', rep:'Ravi',  amount:12400 },
+  { city:'Hyderabad', category:'Electronics', rep:'Priya', amount:2300  },
+  { city:'Pune',      category:'Electronics', rep:'Aisha', amount:7800  },
+  { city:'Delhi',     category:'Accessories', rep:'Ravi',  amount:450   },
+  { city:'Mumbai',    category:'Accessories', rep:'Priya', amount:3100  },
 ];
 
-const PdCleanVisualization = () => {
-  const [step, setStep] = useState(0);
-  const s = STEPS[step];
+const GROUP_COLS = ['city', 'category', 'rep'];
+const AGG_FNS = [
+  { id:'sum',   label:'sum()',   fn: vals => vals.reduce((s,v)=>s+v,0)          },
+  { id:'mean',  label:'mean()',  fn: vals => Math.round(vals.reduce((s,v)=>s+v,0)/vals.length) },
+  { id:'count', label:'count()', fn: vals => vals.length                        },
+  { id:'max',   label:'max()',   fn: vals => Math.max(...vals)                  },
+];
+
+const PdGroupByVisualization = () => {
+  const [groupCol, setGroupCol] = useState('city');
+  const [aggFn, setAggFn]       = useState('sum');
+
+  const agg = AGG_FNS.find(a => a.id === aggFn);
+  const result = useMemo(() => {
+    const groups = {};
+    DATA.forEach(row => {
+      const key = row[groupCol];
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(row.amount);
+    });
+    return Object.entries(groups).map(([key, vals]) => ({ key, value: agg.fn(vals) })).sort((a,b)=>b.value-a.value);
+  }, [groupCol, aggFn, agg]);
+
+  const code = `df.groupby('${groupCol}')['amount'].${aggFn}()`;
+
   return (
-    <div className="pdclean-wrap">
-      <header className="pdclean-head">
-        <span className="pdclean-badge">Pandas</span>
-        <h2>Data Cleaning</h2>
-        <p>Messy real data → analysis-ready, one fix at a time</p>
+    <div className="pdgrp-wrap">
+      <header className="pdgrp-head">
+        <span className="pdgrp-badge">Pandas &amp; NumPy</span>
+        <h2>GroupBy</h2>
+        <p>Split → Apply → Combine on the Zephyr dataset</p>
       </header>
-      <div className="pdclean-track">
-        {STEPS.map((st, i) => (
-          <button key={i} className={`pdclean-dot ${step === i ? 'pdclean-dot--on' : ''} ${i < step ? 'pdclean-dot--done' : ''}`} onClick={() => setStep(i)}>{i}</button>
-        ))}
+
+      <div className="pdgrp-row">
+        <div className="pdgrp-ctrl-group">
+          <div className="pdgrp-ctrl-label">Group by</div>
+          <div className="pdgrp-chips">
+            {GROUP_COLS.map(c => <button key={c} className={`pdgrp-chip ${groupCol===c?'pdgrp-chip--on':''}`} onClick={()=>setGroupCol(c)}>{c}</button>)}
+          </div>
+        </div>
+        <div className="pdgrp-ctrl-group">
+          <div className="pdgrp-ctrl-label">Aggregation</div>
+          <div className="pdgrp-chips">
+            {AGG_FNS.map(a => <button key={a.id} className={`pdgrp-chip ${aggFn===a.id?'pdgrp-chip--on':''}`} onClick={()=>setAggFn(a.id)}>{a.label}</button>)}
+          </div>
+        </div>
       </div>
-      <div className="pdclean-label">{s.label}</div>
-      <pre className="pdclean-code"><code>{s.code}</code></pre>
-      <div className="pdclean-table-wrap">
-        <table className="pdclean-table">
-          <thead><tr><th>name</th><th>age</th><th>city</th></tr></thead>
-          <tbody>{s.rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={c.includes('NaN') ? 'pdclean-bad' : ''}>{c}</td>)}</tr>)}</tbody>
+
+      <pre className="pdgrp-code"><code>{code}</code></pre>
+
+      <div className="pdgrp-table-wrap">
+        <table className="pdgrp-table">
+          <thead><tr><th>{groupCol}</th><th>amount ({aggFn})</th></tr></thead>
+          <tbody>
+            {result.map(r => {
+              const pct = (r.value / result[0].value) * 100;
+              return (
+                <tr key={r.key}>
+                  <td>{r.key}</td>
+                  <td>
+                    <div className="pdgrp-bar-wrap">
+                      <div className="pdgrp-bar" style={{width:`${pct}%`}} />
+                      <span className="pdgrp-val">{aggFn==='count' ? r.value : `₹${r.value.toLocaleString()}`}</span>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
-      <div className="pdclean-nav">
-        <button className="pdclean-btn" disabled={step === 0} onClick={() => setStep((x) => x - 1)}>← Prev</button>
-        <button className="pdclean-btn pdclean-btn--next" disabled={step === STEPS.length - 1} onClick={() => setStep((x) => x + 1)}>Next fix →</button>
+
+      <div className="pdgrp-note">
+        GroupBy has three phases: <strong>Split</strong> (data into groups) → <strong>Apply</strong> (the aggregation function) → <strong>Combine</strong> (into a result Series). You can also group by multiple columns: <code>df.groupby(['city','category'])</code>.
       </div>
-      {step === STEPS.length - 1 && <div className="pdclean-done">✅ Clean: deduped, typed, consistent casing, no NaN.</div>}
     </div>
   );
 };
-export default PdCleanVisualization;
+
+export default PdGroupByVisualization;

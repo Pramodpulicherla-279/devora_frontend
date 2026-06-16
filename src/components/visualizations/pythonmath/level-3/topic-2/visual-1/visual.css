@@ -1,0 +1,15 @@
+.pymerror-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymerror-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymerror-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymerror-tree { flex: 1; min-width: 180px; background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 12px; }
+.pymerror-node { margin: 2px 0; }
+.pymerror-name { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 5px 8px; border-radius: 5px; color: var(--nc); font-family: monospace; font-size: 13px; transition: background 0.15s; border: 1px solid transparent; }
+.pymerror-name:hover { background: #161b22; }
+.pymerror-name--sel { background: #1c2128; border-color: var(--nc); }
+.pymerror-toggle, .pymerror-leaf { font-size: 10px; color: var(--nc); width: 12px; }
+.pymerror-children { margin-left: 16px; border-left: 1px solid #21262d; padding-left: 8px; }
+.pymerror-detail { flex: 1.2; min-width: 220px; }
+.pymerror-hint { color: #6b7785; font-size: 13px; padding: 20px 0; margin: 0; }
+.pymerror-sel-name { font-family: monospace; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.pymerror-tip { color: #a3adbb; font-size: 13px; line-height: 1.6; margin: 0 0 12px; }
+.pymerror-code { background: #0d1117; border: 1px solid; border-radius: 6px; padding: 12px; color: #e6edf3; font-size: 12px; white-space: pre; overflow-x: auto; margin: 0; }

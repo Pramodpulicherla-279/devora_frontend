@@ -1,0 +1,124 @@
+.svrf-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svrf-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 16px;
+}
+
+.svrf-trees {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.svrf-tree-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  overflow: hidden;
+}
+
+.svrf-tree-card:hover { border-color: #56d364; }
+.svrf-tree-card--open { border-color: #56d364; }
+
+.svrf-tree-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.svrf-tree-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.svrf-tree-vote {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.svrf-vote--yes { background: #0d2e1a; color: #56d364; }
+.svrf-vote--no  { background: #2a1010; color: #f97316; }
+
+.svrf-tree-toggle { font-size: 0.7rem; color: #6b7785; }
+
+.svrf-tree-body { padding: 0 10px 10px; }
+
+.svrf-tree-svg {
+  width: 100%;
+  max-width: 290px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.svrf-vote-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.svrf-vote-chip {
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+
+.svrf-chip--yes { background: #0d2e1a; border-color: #56d364; color: #56d364; }
+.svrf-chip--no  { background: #2a1010; border-color: #f97316; color: #f97316; }
+
+.svrf-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.svrf-result-label { font-size: 0.85rem; color: #a3adbb; }
+
+.svrf-result-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.svrf-final--yes { color: #56d364; }
+.svrf-final--no  { color: #f97316; }
+
+.svrf-result-sub { font-size: 0.78rem; color: #6b7785; }
+
+.svrf-note {
+  background: #0f1d28;
+  border-left: 3px solid #56d364;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: #a3adbb;
+  line-height: 1.5;
+}
+
+.svrf-note strong { color: #56d364; }

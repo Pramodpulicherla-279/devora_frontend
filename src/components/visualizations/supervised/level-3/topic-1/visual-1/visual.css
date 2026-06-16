@@ -1,0 +1,120 @@
+.svoverfit-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svoverfit-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 16px;
+}
+
+.svoverfit-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.svoverfit-tab {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  transition: all 0.2s;
+}
+
+.svoverfit-tab:hover { border-color: #56d364; color: #56d364; }
+.svoverfit-tab--active { font-weight: 600; }
+
+.svoverfit-plots {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.svoverfit-plot {
+  flex: 1;
+  min-width: 150px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.svoverfit-plot-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.svoverfit-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.svoverfit-acc-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #a3adbb;
+}
+
+.svoverfit-acc-item { display: flex; gap: 3px; }
+
+.svoverfit-desc {
+  font-size: 0.72rem;
+  color: #6b7785;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.svoverfit-complexity {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.svoverfit-complexity-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+}
+
+.svoverfit-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #21262d;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.svoverfit-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, #56d364, #a78bfa);
+  border-radius: 4px;
+}
+
+.svoverfit-sweet {
+  font-size: 0.75rem;
+  color: #56d364;
+  text-align: center;
+}

@@ -1,0 +1,26 @@
+.jnbdebug-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.jnbdebug-title { font-size: 1.4rem; font-weight: 700; color: #f97316; margin: 0 0 20px; }
+
+.jnbdebug-tabs { display: flex; gap: 4px; margin-bottom: 0; }
+.jnbdebug-tab { padding: 8px 20px; border-radius: 6px 6px 0 0; border: 1px solid #21262d; background: #161b22; color: #a3adbb; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.jnbdebug-tab--active { background: #f9731620; border-color: #f97316; border-bottom-color: #161b22; color: #f97316; font-weight: 600; }
+.jnbdebug-panel { background: #161b22; border: 1px solid #21262d; border-radius: 0 8px 8px 8px; padding: 16px; }
+
+.jnbdebug-bug-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.jnbdebug-bug-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #a3adbb; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
+.jnbdebug-bug-btn--active { background: #ff7b7220; border-color: #ff7b72; color: #ff7b72; }
+
+.jnbdebug-bug-detail { background: #0d1117; border-radius: 8px; padding: 14px; }
+.jnbdebug-code { font-family: monospace; font-size: 0.82rem; color: #a3adbb; white-space: pre; margin: 0 0 12px; }
+.jnbdebug-fix { font-size: 0.85rem; color: #7ee787; background: #7ee78710; border: 1px solid #7ee78730; border-radius: 6px; padding: 8px 12px; }
+.jnbdebug-fix-label { font-weight: 700; margin-right: 6px; }
+
+.jnbdebug-section-label { font-size: 0.8rem; font-family: monospace; color: #f97316; margin-bottom: 8px; }
+.jnbdebug-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.jnbdebug-table th { text-align: left; padding: 7px 10px; background: #0d1117; color: #6b7785; font-weight: 600; border-bottom: 1px solid #21262d; }
+.jnbdebug-table td { padding: 7px 10px; border-bottom: 1px solid #21262d; color: #a3adbb; }
+.jnbdebug-table tr:last-child td { border-bottom: none; }
+.jnbdebug-time { color: #f97316; font-family: monospace; }
+.jnbdebug-fn { color: #79c0ff; font-family: monospace; }
+.jnbdebug-note { font-size: 0.8rem; color: #6b7785; margin: 12px 0 0; }
+.jnbdebug-inline { background: #21262d; border-radius: 3px; padding: 1px 5px; font-size: 0.8rem; color: #f97316; font-family: monospace; }

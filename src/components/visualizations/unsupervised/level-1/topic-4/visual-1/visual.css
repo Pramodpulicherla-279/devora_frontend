@@ -1,0 +1,54 @@
+.unsupeval-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+.unsupeval-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.unsupeval-title {
+  color: #e6edf3;
+  font-size: clamp(14px, 2.5vw, 17px);
+  margin: 0;
+}
+.unsupeval-toggle { display: flex; gap: 6px; }
+.unsupeval-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.unsupeval-btn:hover { border-color: #818cf8; }
+.unsupeval-btn--on { border-color: #818cf8; background: #1c1f3a; color: #818cf8; }
+.unsupeval-metrics {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.unsupeval-metric {
+  flex: 1;
+  min-width: 90px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.unsupeval-metric-label { color: #6b7785; font-size: 11px; margin-bottom: 4px; }
+.unsupeval-metric-val { color: #e6edf3; font-size: 18px; font-weight: 700; }
+.unsupeval-chart-label { color: #a3adbb; font-size: 12px; margin-bottom: 8px; }
+.unsupeval-svg { width: 100%; height: auto; display: block; background: #161b22; border-radius: 8px; padding: 4px; }
+.unsupeval-note { color: #6b7785; font-size: 12px; margin-top: 8px; }

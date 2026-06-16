@@ -1,0 +1,197 @@
+/* FuHowUploadsVisualization — prefix: fuhow- */
+
+.fuhow-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  max-width: 780px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #e6edf3;
+  overflow: hidden;
+}
+
+.fuhow-header {
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+  padding: 14px 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fuhow-header-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f97316;
+}
+.fuhow-header-sub {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* Flow diagram */
+.fuhow-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 28px 20px 10px 20px;
+  overflow-x: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.fuhow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #161b22;
+  border: 2px solid #30363d;
+  border-radius: 10px;
+  padding: 14px 12px;
+  cursor: pointer;
+  min-width: 90px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+}
+.fuhow-step:hover {
+  border-color: #f97316;
+  background: #1a1208;
+}
+.fuhow-step--active {
+  border-color: #f97316;
+  background: #1f1208;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+.fuhow-step-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+.fuhow-step-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e6edf3;
+  white-space: nowrap;
+}
+.fuhow-step-sub {
+  font-size: 10px;
+  color: #8b949e;
+  white-space: nowrap;
+}
+
+.fuhow-arrow {
+  color: #30363d;
+  padding: 0 4px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.fuhow-arrow--done { color: #f97316; }
+.fuhow-arrow-svg {
+  width: 28px;
+  height: 12px;
+  display: block;
+}
+
+/* Step pips */
+.fuhow-stepper {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px 0 20px;
+}
+.fuhow-pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30363d;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+.fuhow-pip--done   { background: #7c3e05; }
+.fuhow-pip--active { background: #f97316; transform: scale(1.3); }
+
+/* Detail panel */
+.fuhow-detail {
+  margin: 16px 20px 0 20px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.fuhow-detail-title {
+  background: #1c2128;
+  border-bottom: 1px solid #21262d;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f97316;
+}
+.fuhow-detail-desc {
+  color: #c9d1d9;
+  font-size: 13px;
+  line-height: 1.65;
+  padding: 14px 16px 8px 16px;
+  margin: 0;
+}
+.fuhow-code-wrap {
+  margin: 8px 16px 16px 16px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.fuhow-code-label {
+  background: #1c2128;
+  border-bottom: 1px solid #21262d;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8b949e;
+  padding: 5px 12px;
+  font-family: sans-serif;
+}
+.fuhow-pre {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: 'Fira Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 12px;
+  color: #e6edf3;
+  white-space: pre;
+  overflow-x: auto;
+  line-height: 1.7;
+}
+
+/* Navigation */
+.fuhow-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 20px 20px;
+}
+.fuhow-nav-btn {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #e6edf3;
+  font-size: 13px;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.fuhow-nav-btn:hover:not(:disabled) {
+  border-color: #f97316;
+  background: #1a1208;
+  color: #f97316;
+}
+.fuhow-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.fuhow-nav-count {
+  font-size: 12px;
+  color: #8b949e;
+}

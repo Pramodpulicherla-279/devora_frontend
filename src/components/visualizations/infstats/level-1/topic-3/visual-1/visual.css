@@ -1,15 +1,20 @@
-/* InfStats: Sampling — prefix: issamp- */
-.issamp-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
-.issamp-head { text-align: center; margin-bottom: 16px; }
-.issamp-badge { background: #1e2150; color: #818cf8; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #818cf8; letter-spacing: 1.5px; }
-.issamp-head h2 { margin: 10px 0 4px; font-size: clamp(1.1rem,3vw,1.5rem); color: #818cf8; }
-.issamp-head p { color: #a3adbb; font-size: 0.84rem; margin: 0; }
-.issamp-tabs { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
-.issamp-tab { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 0.76rem; min-height: 36px; transition: all 0.15s; }
-.issamp-tab--on { background: #1e2150; border-color: #818cf8; color: #818cf8; font-weight: 700; }
-.issamp-grid-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 14px; }
-.issamp-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; width: 100%; max-width: 340px; }
-.issamp-cell { aspect-ratio: 1; background: #161b22; border: 1px solid #30363d; border-radius: 4px; transition: all 0.2s; }
-.issamp-cell--on { transform: scale(1.05); }
-.issamp-reroll { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-size: 0.78rem; min-height: 36px; }
-.issamp-desc { background: #161b22; border-left: 3px solid #818cf8; border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: #a3adbb; line-height: 1.5; }
+/* Inferential Stats: Central Limit Theorem — prefix: isclt- */
+.isclt-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.isclt-head { text-align:center; margin-bottom:14px; }
+.isclt-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.isclt-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.isclt-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.isclt-controls { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.isclt-label { font-size:0.8rem; color:#a3adbb; display:flex; align-items:center; gap:8px; }
+.isclt-sel { background:#161b22; border:1px solid #30363d; color:#e6edf3; border-radius:6px; padding:4px 8px; font-size:0.78rem; cursor:pointer; }
+.isclt-btns { display:flex; gap:6px; flex-wrap:wrap; }
+.isclt-btn { background:#161b22; border:1px solid #30363d; color:#a3adbb; padding:6px 12px; border-radius:7px; cursor:pointer; font-size:0.78rem; min-height:34px; }
+.isclt-btn:hover { border-color:#a78bfa; color:#a78bfa; }
+.isclt-btn--reset { color:#f85149; border-color:#f85149; background:rgba(248,81,73,0.08); }
+.isclt-svg { display:block; margin-bottom:10px; background:#161b22; border-radius:8px; }
+.isclt-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+.isclt-stat { background:#161b22; border-radius:8px; padding:8px; text-align:center; display:flex; flex-direction:column; gap:3px; }
+.isclt-stat span { font-size:0.65rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; }
+.isclt-stat strong { color:#a78bfa; font-size:0.88rem; font-family:'Consolas',monospace; }
+.isclt-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+@media (max-width:400px) { .isclt-stats { grid-template-columns:1fr 1fr; } }

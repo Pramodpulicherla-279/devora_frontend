@@ -1,0 +1,19 @@
+/* DataViz: Why visualization — prefix: dvwhy- */
+.dvwhy-wrap { font-family:system-ui,sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:640px; margin:0 auto; border:1px solid #21262d; }
+.dvwhy-head { text-align:center; margin-bottom:14px; }
+.dvwhy-badge { background:#0d1a2a; color:#58a6ff; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #58a6ff; letter-spacing:1.5px; }
+.dvwhy-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#58a6ff; }
+.dvwhy-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.dvwhy-tabs { display:flex; gap:6px; margin-bottom:12px; justify-content:center; flex-wrap:wrap; }
+.dvwhy-tab { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:6px 20px; font-size:0.78rem; color:#a3adbb; cursor:pointer; transition:all .15s; }
+.dvwhy-tab--on { border-color:#58a6ff; color:#58a6ff; background:#0d1a2a; }
+.dvwhy-table-wrap { overflow-x:auto; }
+.dvwhy-table { border-collapse:collapse; width:100%; font-size:0.78rem; margin-bottom:10px; }
+.dvwhy-table th { background:#21262d; color:#6b7785; padding:5px 9px; text-align:left; font-size:0.7rem; font-weight:700; border-bottom:1px solid #30363d; }
+.dvwhy-table td { padding:5px 9px; color:#c9d1d9; border-bottom:1px solid #161b22; }
+.dvwhy-pos { color:#56d364; }
+.dvwhy-neg { color:#f85149; }
+.dvwhy-svg { display:block; width:100%; background:#161b22; border-radius:10px; border:1px solid #21262d; margin-bottom:10px; }
+.dvwhy-chart-wrap { }
+.dvwhy-note { background:#161b22; border-left:3px solid #58a6ff; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; margin-top:10px; }
+.dvwhy-note em { color:#e6edf3; }

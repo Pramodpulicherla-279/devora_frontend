@@ -1,0 +1,73 @@
+.unsupkm-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+.unsupkm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.unsupkm-title {
+  color: #e6edf3;
+  font-size: clamp(14px, 2.5vw, 17px);
+  margin: 0;
+}
+.unsupkm-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.unsupkm-step-badge {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 20px;
+  color: #818cf8;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.unsupkm-btn {
+  background: #818cf8;
+  border: none;
+  border-radius: 6px;
+  color: #0d1117;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.unsupkm-btn:hover { opacity: 0.85; }
+.unsupkm-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.unsupkm-btn--reset {
+  background: #161b22;
+  color: #a3adbb;
+  border: 1px solid #30363d;
+}
+.unsupkm-converged {
+  background: #1a2e1a;
+  border: 1px solid #56d364;
+  border-radius: 6px;
+  color: #56d364;
+  padding: 8px 12px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.unsupkm-svg { width: 100%; height: auto; display: block; background: #161b22; border-radius: 8px; }
+.unsupkm-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.unsupkm-legend-item { display: flex; align-items: center; gap: 6px; }
+.unsupkm-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.unsupkm-legend-label { color: #a3adbb; font-size: 12px; }

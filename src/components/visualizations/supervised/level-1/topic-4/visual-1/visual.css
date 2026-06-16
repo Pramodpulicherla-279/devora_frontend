@@ -1,0 +1,96 @@
+.svlinregr-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svlinregr-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 8px;
+}
+
+.svlinregr-formula {
+  font-family: monospace;
+  font-size: 1rem;
+  color: #58a6ff;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 6px 14px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.svlinregr-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.svlinregr-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.svlinregr-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #a3adbb;
+}
+
+.svlinregr-slider {
+  width: 100%;
+  accent-color: #56d364;
+}
+
+.svlinregr-metrics {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.svlinregr-metric {
+  flex: 1;
+  min-width: 120px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.svlinregr-metric-lbl {
+  font-size: 0.72rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.svlinregr-metric-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.svlinregr-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0;
+  border-left: 2px solid #30363d;
+  padding-left: 10px;
+  line-height: 1.5;
+}

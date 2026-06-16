@@ -1,25 +1,27 @@
-/* ML: Classification Metrics — prefix: mlcm- */
-.mlcm-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 600px; margin: 0 auto; border: 1px solid #21262d; }
-.mlcm-head { text-align: center; margin-bottom: 16px; }
-.mlcm-badge { background: #3a2708; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
-.mlcm-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f59e0b; }
-.mlcm-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.mlcm-matrix { display: grid; grid-template-columns: auto 1fr 1fr; gap: 6px; margin-bottom: 16px; }
-.mlcm-corner { }
-.mlcm-colh, .mlcm-rowh { font-size: 0.72rem; color: #a3adbb; display: flex; align-items: center; justify-content: center; text-align: center; }
-.mlcm-cell { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.mlcm-cell input { width: 60px; background: #010409; border: 1px solid #30363d; color: #e6edf3; border-radius: 6px; padding: 6px; text-align: center; font-family: monospace; font-size: 1rem; }
-.mlcm-cell input:focus { outline: none; border-color: #f59e0b; }
-.mlcm-cell span { font-size: 0.66rem; color: #7d8590; }
-.mlcm-cell--tp { border-color: #1a4a2a; }
-.mlcm-cell--tn { border-color: #1a4a2a; }
-.mlcm-cell--fp { border-color: #4a1a1a; }
-.mlcm-cell--fn { border-color: #4a1a1a; }
-.mlcm-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 12px; }
-@media (max-width: 520px) { .mlcm-metrics { grid-template-columns: 1fr 1fr; } }
-.mlcm-metric { background: #161b22; border-radius: 9px; padding: 10px; display: flex; flex-direction: column; gap: 2px; text-align: center; }
-.mlcm-metric--f1 { border: 1px solid #f59e0b; }
-.mlcm-metric span { font-size: 0.7rem; color: #a3adbb; text-transform: uppercase; letter-spacing: 0.5px; }
-.mlcm-metric strong { font-size: 1.3rem; color: #f59e0b; font-family: monospace; }
-.mlcm-metric em { font-size: 0.62rem; color: #7d8590; font-style: normal; }
-.mlcm-note { background: #161b22; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: 0.78rem; color: #a3adbb; line-height: 1.5; }
+/* ML: Decision Trees — prefix: mltree- */
+.mltree-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.mltree-head { text-align:center; margin-bottom:14px; }
+.mltree-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.mltree-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.mltree-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.mltree-inputs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
+.mltree-field { display:flex; flex-direction:column; gap:4px; }
+.mltree-field span { font-size:0.62rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; }
+.mltree-slider { width:100%; accent-color:#a78bfa; }
+.mltree-sel { background:#161b22; border:1px solid #30363d; color:#e6edf3; border-radius:6px; padding:5px 8px; font-size:0.78rem; }
+.mltree-field code { font-family:'Consolas',monospace; font-size:0.78rem; color:#a78bfa; }
+.mltree-flow { display:flex; flex-direction:column; align-items:center; gap:4px; margin-bottom:14px; }
+.mltree-node { background:#161b22; border:1px solid #30363d; border-radius:10px; padding:11px 16px; width:100%; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.mltree-node--root { border-color:#a78bfa; }
+.mltree-node--mid { border-color:#56d364; }
+.mltree-q { font-size:0.82rem; color:#e6edf3; }
+.mltree-ans { font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:99px; white-space:nowrap; }
+.mltree-ans--yes { background:rgba(86,211,100,0.15); color:#56d364; }
+.mltree-ans--no { background:rgba(248,81,73,0.12); color:#f85149; }
+.mltree-arr { color:#a78bfa; font-size:1rem; }
+.mltree-leaf { padding:12px 18px; border-radius:10px; border:1px solid; text-align:center; display:flex; flex-direction:column; gap:4px; width:100%; }
+.mltree-leaf strong { font-size:0.9rem; }
+.mltree-leaf span { font-size:0.75rem; color:#a3adbb; }
+.mltree-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.mltree-note code { color:#a78bfa; font-size:0.78rem; }
+@media (max-width:400px) { .mltree-inputs { grid-template-columns:1fr; } }

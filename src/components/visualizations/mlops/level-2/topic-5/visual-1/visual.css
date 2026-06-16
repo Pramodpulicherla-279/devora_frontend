@@ -1,0 +1,12 @@
+﻿.mlopsretrain-wrap { background: #0d1117; border-radius: 8px; padding: 20px; font-family: system-ui, sans-serif; color: #e6edf3; }
+.mlopsretrain-top { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.mlopsretrain-svg { width: 280px; min-width: 240px; display: block; }
+.mlopsretrain-desc { flex: 1; min-width: 200px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px; margin-top: 8px; }
+.mlopsretrain-desc-title { font-size: 14px; font-weight: 700; color: #56d364; margin-bottom: 8px; display: block; }
+.mlopsretrain-desc-text { font-size: 13px; color: #a3adbb; line-height: 1.5; }
+.mlopsretrain-triggers { margin-top: 16px; }
+.mlopsretrain-hint { font-size: 12px; color: #6b7785; margin: 0 0 10px; }
+.mlopsretrain-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+.mlopsretrain-card { background: #161b22; border: 1px solid #30363d; color: #a3adbb; padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all .2s; }
+.mlopsretrain-card:hover { border-color: #56d364; color: #e6edf3; }
+.mlopsretrain-card--active { background: #1a3a1a; border-color: #56d364; color: #56d364; font-weight: 600; }

@@ -1,56 +1,81 @@
-/* Lesson: Model Evaluation and Cross Validation
- * Visual type: ANIMATION (stepped)
- * Reason: k-fold CV is a rotating process — each fold takes a turn as the
- * validation set. Stepping through the folds and accumulating scores shows
- * exactly how CV averages out luck. */
-import React, { useState, useEffect } from 'react';
+/* Lesson: Cross-Validation — Testing Models Honestly
+ * Visual type: ILLUSTRATION
+ * Reason: K-fold CV is a spatial operation — which rows go into which fold.
+ * An animated diagram showing 5 folds rotating through train/test roles
+ * makes the "every row is tested exactly once" guarantee visible. */
+import React, { useState } from 'react';
 import './visual.css';
 
 const K = 5;
+const ROWS = 20;
 
 const MlCrossValidationVisualization = () => {
-  const [fold, setFold] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const scores = [0.82, 0.79, 0.85, 0.81, 0.83];
+  const [activeFold, setActiveFold] = useState(0);
+  const [scores] = useState([0.82, 0.79, 0.84, 0.81, 0.83]);
 
-  useEffect(() => {
-    if (!playing) return;
-    if (fold >= K - 1) { setPlaying(false); return; }
-    const t = setTimeout(() => setFold((f) => f + 1), 900);
-    return () => clearTimeout(t);
-  }, [playing, fold]);
+  const foldSize = ROWS / K;
 
-  const avg = scores.slice(0, fold + 1).reduce((a, b) => a + b, 0) / (fold + 1);
+  const getRole = (rowIdx, fold) => {
+    const foldIdx = Math.floor(rowIdx / foldSize);
+    return foldIdx === fold ? 'test' : 'train';
+  };
+
+  const mean = (scores.reduce((a, b) => a + b, 0) / K).toFixed(3);
+  const std = Math.sqrt(scores.reduce((s, v) => s + (v - +mean) ** 2, 0) / K).toFixed(3);
 
   return (
     <div className="mlcv-wrap">
       <header className="mlcv-head">
         <span className="mlcv-badge">Machine Learning</span>
-        <h2>Cross Validation</h2>
-        <p>Every fold takes a turn as the validation set</p>
+        <h2>Cross-Validation</h2>
+        <p>Every row is tested exactly once</p>
       </header>
-      <div className="mlcv-folds">
-        {Array.from({ length: K }).map((_, row) => (
-          <div key={row} className={`mlcv-row ${row === fold ? 'mlcv-row--active' : ''}`}>
-            <span className="mlcv-row-label">Fold {row + 1}</span>
-            <div className="mlcv-blocks">
-              {Array.from({ length: K }).map((_, col) => (
-                <div key={col} className={`mlcv-block ${col === row ? 'mlcv-block--val' : 'mlcv-block--train'}`}>
-                  {col === row ? 'val' : 'train'}
-                </div>
-              ))}
-            </div>
-            <span className={`mlcv-score ${row <= fold ? 'mlcv-score--on' : ''}`}>{row <= fold ? scores[row].toFixed(2) : '—'}</span>
+
+      <div className="mlcv-grid-label">
+        <span>Fold →</span>
+        <div className="mlcv-fold-tabs">
+          {Array.from({ length: K }, (_, i) => (
+            <button key={i} className={`mlcv-fold-tab ${activeFold === i ? 'mlcv-fold-tab--on' : ''}`} onClick={() => setActiveFold(i)}>
+              Fold {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mlcv-grid">
+        {Array.from({ length: ROWS }, (_, rowIdx) => {
+          const role = getRole(rowIdx, activeFold);
+          return (
+            <div key={rowIdx} className={`mlcv-cell mlcv-cell--${role}`} title={`Row ${rowIdx + 1}: ${role}`} />
+          );
+        })}
+      </div>
+
+      <div className="mlcv-legend">
+        <span><span className="mlcv-swatch mlcv-swatch--train" />Training data</span>
+        <span><span className="mlcv-swatch mlcv-swatch--test" />Test data (this fold)</span>
+      </div>
+
+      <div className="mlcv-fold-scores">
+        {scores.map((s, i) => (
+          <div key={i} className={`mlcv-fold-score ${activeFold === i ? 'mlcv-fold-score--on' : ''}`} onClick={() => setActiveFold(i)}>
+            <span>Fold {i + 1}</span>
+            <strong>{(s * 100).toFixed(0)}%</strong>
           </div>
         ))}
       </div>
-      <div className="mlcv-controls">
-        <button className="mlcv-btn" onClick={() => { setFold(0); setPlaying(true); }} disabled={playing}>▶ Run {K}-fold CV</button>
-        <button className="mlcv-btn mlcv-btn--reset" onClick={() => { setFold(0); setPlaying(false); }}>Reset</button>
+
+      <div className="mlcv-summary">
+        <div className="mlcv-sum-stat"><span>Mean accuracy</span><strong style={{ color: '#56d364' }}>{(+mean * 100).toFixed(1)}%</strong></div>
+        <div className="mlcv-sum-stat"><span>Std deviation</span><strong style={{ color: '#a78bfa' }}>±{(+std * 100).toFixed(1)}%</strong></div>
+        <div className="mlcv-sum-stat"><span>Report as</span><strong>{(+mean * 100).toFixed(1)}% ± {(+std * 100).toFixed(1)}%</strong></div>
       </div>
-      <div className="mlcv-avg">Mean CV score: <strong>{avg.toFixed(3)}</strong> ({fold + 1}/{K} folds)</div>
-      <div className="mlcv-note">A single train/test split can get lucky. k-fold CV trains k times on different splits and averages — a far more reliable estimate.</div>
+
+      <div className="mlcv-note">
+        Always report the mean ± std. "84% accuracy on the test set" is a single lucky split. "82% ± 2% (5-fold CV)" is a reliable estimate. <code>cross_val_score(clf, X, y, cv=5)</code>
+      </div>
     </div>
   );
 };
+
 export default MlCrossValidationVisualization;

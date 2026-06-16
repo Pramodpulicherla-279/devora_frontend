@@ -1,0 +1,14 @@
+.nnoverfit-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnoverfit-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnoverfit-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnoverfit-svg-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; }
+.nnoverfit-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.nnoverfit-legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: #a3adbb; }
+.nnoverfit-legend-line { width: 18px; height: 3px; border-radius: 2px; }
+.nnoverfit-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.nnoverfit-tab { padding: 0.35rem 0.8rem; border-radius: 6px; border: 1px solid #30363d; background: #161b22; color: #a3adbb; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+.nnoverfit-tab.active { border-color: #a78bfa; color: #a78bfa; background: #a78bfa22; font-weight: 600; }
+.nnoverfit-fix { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; font-size: 0.82rem; }
+.nnoverfit-fix-title { color: #a78bfa; font-weight: 700; margin-bottom: 0.4rem; }
+.nnoverfit-fix-code { font-family: monospace; font-size: 0.78rem; background: #0d1117; border-radius: 5px; padding: 0.5rem; color: #58a6ff; margin-bottom: 0.4rem; }
+.nnoverfit-fix-desc { color: #a3adbb; line-height: 1.5; }

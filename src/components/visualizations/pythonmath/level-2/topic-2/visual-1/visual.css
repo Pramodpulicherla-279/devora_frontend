@@ -1,0 +1,20 @@
+.pymdicts-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymdicts-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymdicts-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymdicts-section { flex: 1; min-width: 220px; }
+.pymdicts-section-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.pymdicts-dict { display: flex; flex-direction: column; gap: 6px; }
+.pymdicts-kv { display: flex; align-items: center; gap: 8px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; cursor: pointer; transition: all 0.15s; }
+.pymdicts-kv:hover, .pymdicts-kv--active { border-color: #a78bfa; background: #1c2128; }
+.pymdicts-key { color: #f97316; font-family: monospace; font-size: 13px; }
+.pymdicts-colon { color: #6b7785; }
+.pymdicts-val { color: #56d364; font-family: monospace; font-size: 13px; }
+.pymdicts-result { margin-top: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; font-family: monospace; font-size: 13px; color: #a3adbb; }
+.pymdicts-result code { color: #a78bfa; }
+.pymdicts-sets-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.pymdicts-set-box { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; font-family: monospace; font-size: 12px; color: #58a6ff; flex: 1; min-width: 120px; }
+.pymdicts-ops { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.pymdicts-op-btn { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; color: #a3adbb; font-size: 13px; cursor: pointer; text-align: left; transition: all 0.15s; }
+.pymdicts-op-btn:hover { border-color: var(--oc); color: #e6edf3; }
+.pymdicts-op-btn--active { border-color: var(--oc); color: var(--oc); background: #1c2128; }
+.pymdicts-set-result { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 14px; }

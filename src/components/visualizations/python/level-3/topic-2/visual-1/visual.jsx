@@ -1,53 +1,110 @@
-/* Lesson: Error Handling
- * Visual type: ANIMATION (stepped try/except flow)
- * Reason: try/except/else/finally is control flow that depends on whether an
- * error fires. Toggling the error and watching which blocks run shows the branches. */
+/* Lesson: List Comprehensions — Writing Faster, Cleaner Python
+ * Visual type: INTERACTIVE
+ * Side-by-side: for-loop vs list comprehension — pick a transformation, see both */
 import React, { useState } from 'react';
 import './visual.css';
 
-const PyErrorVisualization = () => {
-  const [fails, setFails] = useState(false);
-  const ran = {
-    try: true,
-    except: fails,
-    else: !fails,
-    finally: true,
-  };
+const ORDERS = [4200, 1850, 6700, 980, 12400, 2300, 7800];
+
+const EXAMPLES = [
+  {
+    id: 'gst',
+    label: 'Add 18% GST',
+    loop: `results = []
+for amount in amounts:
+    results.append(amount * 1.18)`,
+    comp: `results = [amt * 1.18 for amt in amounts]`,
+    apply: a => Math.round(a * 1.18),
+    fmt: v => `₹${v.toLocaleString()}`,
+  },
+  {
+    id: 'filter',
+    label: 'Filter > ₹5,000',
+    loop: `results = []
+for amount in amounts:
+    if amount > 5000:
+        results.append(amount)`,
+    comp: `results = [amt for amt in amounts if amt > 5000]`,
+    apply: a => a > 5000 ? a : null,
+    fmt: v => v !== null ? `₹${v.toLocaleString()}` : '—',
+  },
+  {
+    id: 'tier',
+    label: 'Classify tier',
+    loop: `results = []
+for amount in amounts:
+    if amount >= 10000:
+        results.append('Premium')
+    elif amount >= 3000:
+        results.append('Standard')
+    else:
+        results.append('Budget')`,
+    comp: `results = [
+    'Premium' if amt >= 10000
+    else 'Standard' if amt >= 3000
+    else 'Budget'
+    for amt in amounts
+]`,
+    apply: a => a >= 10000 ? 'Premium' : a >= 3000 ? 'Standard' : 'Budget',
+    fmt: v => v,
+  },
+  {
+    id: 'dict',
+    label: 'Dict comprehension',
+    loop: `mapping = {}
+for amount in amounts:
+    key = f'₹{amount}'
+    mapping[key] = amount * 1.18`,
+    comp: `mapping = {
+    f'₹{amt}': amt * 1.18
+    for amt in amounts
+}`,
+    apply: a => `₹${Math.round(a * 1.18).toLocaleString()}`,
+    fmt: v => v,
+  },
+];
+
+const PyComprehensionVisualization = () => {
+  const [sel, setSel] = useState('gst');
+  const ex = EXAMPLES.find(e=>e.id===sel);
+  const results = ORDERS.map(ex.apply).filter(v=>v!==null);
+
   return (
-    <div className="pyerr-wrap">
-      <header className="pyerr-head">
-        <span className="pyerr-badge">Python</span>
-        <h2>Error Handling</h2>
-        <p>try / except / else / finally — graceful failure</p>
+    <div className="pycomp-wrap">
+      <header className="pycomp-head">
+        <span className="pycomp-badge">Python Basics</span>
+        <h2>List Comprehensions</h2>
+        <p>The same result — fewer lines, more Pythonic</p>
       </header>
-      <label className="pyerr-toggle">
-        <input type="checkbox" checked={fails} onChange={(e) => setFails(e.target.checked)} />
-        Make the risky code raise an error
-      </label>
-      <div className="pyerr-blocks">
-        <div className={`pyerr-block ${ran.try ? 'pyerr-block--ran' : ''}`}>
-          <code>try:</code><span className="pyerr-desc">run risky code {fails ? '→ 💥 raises!' : '→ ✓ ok'}</span>
+
+      <div className="pycomp-tabs">
+        {EXAMPLES.map(e=><button key={e.id} className={`pycomp-tab ${sel===e.id?'pycomp-tab--on':''}`} onClick={()=>setSel(e.id)}>{e.label}</button>)}
+      </div>
+
+      <div className="pycomp-compare">
+        <div className="pycomp-side">
+          <div className="pycomp-side-label">for loop (old way)</div>
+          <pre className="pycomp-code pycomp-code--loop"><code>{ex.loop}</code></pre>
         </div>
-        <div className={`pyerr-block pyerr-block--except ${ran.except ? 'pyerr-block--ran' : 'pyerr-block--skip'}`}>
-          <code>except ValueError as e:</code><span className="pyerr-desc">runs ONLY if an error fired</span>
-        </div>
-        <div className={`pyerr-block pyerr-block--else ${ran.else ? 'pyerr-block--ran' : 'pyerr-block--skip'}`}>
-          <code>else:</code><span className="pyerr-desc">runs ONLY if no error</span>
-        </div>
-        <div className={`pyerr-block pyerr-block--finally ${ran.finally ? 'pyerr-block--ran' : ''}`}>
-          <code>finally:</code><span className="pyerr-desc">ALWAYS runs (cleanup)</span>
+        <div className="pycomp-arrow">→</div>
+        <div className="pycomp-side">
+          <div className="pycomp-side-label">Comprehension</div>
+          <pre className="pycomp-code pycomp-code--comp"><code>{ex.comp}</code></pre>
         </div>
       </div>
-      <pre className="pyerr-code"><code>{`try:
-    value = int(user_input)
-except ValueError as e:
-    print("Not a number:", e)
-else:
-    print("Parsed:", value)
-finally:
-    print("Done")`}</code></pre>
-      <div className="pyerr-note">Catch <strong>specific</strong> exceptions (<code>ValueError</code>), not a bare <code>except:</code>. <code>finally</code> is for cleanup that must happen either way (closing files, releasing locks).</div>
+
+      <div className="pycomp-results">
+        <div className="pycomp-results-label">Output: results</div>
+        <div className="pycomp-pills">
+          {results.map((v,i)=><span key={i} className="pycomp-pill">{ex.fmt(v)}</span>)}
+        </div>
+      </div>
+
+      <div className="pycomp-note">
+        Comprehensions are not just shorter — they're faster. Python optimises list construction internally when you use comprehension syntax instead of .append() in a loop.
+      </div>
     </div>
   );
 };
-export default PyErrorVisualization;
+
+export default PyComprehensionVisualization;

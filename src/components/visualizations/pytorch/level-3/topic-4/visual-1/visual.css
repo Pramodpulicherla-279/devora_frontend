@@ -1,0 +1,130 @@
+.ptpit-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ptpit-title {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.ptpit-sub {
+  font-size: 12px;
+  color: #6b7785;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.ptpit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.ptpit-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.ptpit-card:hover { border-color: #f97316; }
+
+.ptpit-card--open {
+  border-color: #f97316;
+  grid-column: 1 / -1;
+}
+
+.ptpit-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.ptpit-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f97316;
+  font-family: 'JetBrains Mono', monospace;
+  background: #f9731618;
+  border: 1px solid #f9731430;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.ptpit-card-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.ptpit-chevron {
+  font-size: 10px;
+  color: #6b7785;
+}
+
+.ptpit-diff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px 14px;
+}
+
+@media (max-width: 560px) {
+  .ptpit-diff { grid-template-columns: 1fr; }
+}
+
+.ptpit-diff-block {
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  overflow: hidden;
+}
+
+.ptpit-diff-bad { border-color: #f8514930; }
+.ptpit-diff-good { border-color: #56d36430; }
+
+.ptpit-diff-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 5px 10px;
+}
+
+.ptpit-diff-label--bad {
+  background: #f8514915;
+  color: #f85149;
+}
+
+.ptpit-diff-label--good {
+  background: #56d36415;
+  color: #56d364;
+}
+
+.ptpit-code {
+  background: #0d1117;
+  padding: 10px 12px;
+  font-size: 10.5px;
+  color: #a3adbb;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  line-height: 1.65;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.ptpit-diff-good .ptpit-code { color: #56d364; }

@@ -1,0 +1,14 @@
+.daiwhat-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.daiwhat-title { font-size: 1.4rem; font-weight: 700; color: #58a6ff; margin: 0 0 6px; }
+.daiwhat-sub { font-size: 0.85rem; color: #6b7785; margin: 0 0 20px; }
+
+.daiwhat-layout { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+.daiwhat-wheel { width: 280px; flex-shrink: 0; display: block; }
+
+.daiwhat-info { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.daiwhat-phase-name { font-size: 1.1rem; font-weight: 700; }
+.daiwhat-info-section { display: flex; flex-direction: column; gap: 8px; }
+.daiwhat-info-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7785; font-weight: 600; }
+.daiwhat-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.daiwhat-tool { font-size: 0.78rem; padding: 3px 10px; border-radius: 12px; border: 1px solid; background: transparent; font-weight: 500; }
+.daiwhat-example { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 12px 14px; font-size: 0.85rem; color: #a3adbb; line-height: 1.6; font-style: italic; }

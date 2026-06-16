@@ -1,51 +1,104 @@
-/* Lesson: t-Tests and z-Tests
+/* Lesson: Chi-Square Test — Are These Categories Independent?
  * Visual type: INTERACTIVE
- * Reason: The t vs z distinction (sample size & fatter tails) is best shown by
- * overlaying the two curves and shrinking the sample size to watch t spread out. */
+ * Reason: χ² is fundamentally about comparing observed counts to expected counts.
+ * An interactive 3×2 contingency table that toggles between Observed / Expected /
+ * Contribution columns makes the "deviation from expectation" calculation tactile. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const InfStatsTZVisualization = () => {
-  const [n, setN] = useState(8);
-  const df = n - 1;
-  const W = 320, H = 140, pad = 16, midY = H - 24;
-  const xOf = (x) => W / 2 + (x / 4) * (W / 2 - pad);
-  // normal
-  const norm = (x) => Math.exp(-x * x / 2);
-  // crude t-density (fatter tails for small df)
-  const tdens = (x) => Math.pow(1 + (x * x) / df, -(df + 1) / 2);
-  const tMax = tdens(0) || 1;
-  const build = (fn, max) => { const p = []; for (let i = -40; i <= 40; i++) { const x = i / 10; p.push(`${xOf(x)},${(midY - (fn(x) / max) * (H - 44)).toFixed(1)}`); } return p.join(' '); };
+const CATS = ['Electronics', 'Accessories', 'Furniture'];
+const OUTCOMES = ['Returned', 'Kept'];
+
+const OBS = [
+  [45, 30, 25],
+  [155, 120, 125],
+];
+
+function computeExpected(obs) {
+  const rowTotals = obs.map(r => r.reduce((a, b) => a + b, 0));
+  const colTotals = CATS.map((_, j) => obs.reduce((s, r) => s + r[j], 0));
+  const grand = rowTotals.reduce((a, b) => a + b, 0);
+  return obs.map((r, i) => r.map((_, j) => (rowTotals[i] * colTotals[j]) / grand));
+}
+
+function computeContribs(obs, exp) {
+  return obs.map((r, i) => r.map((v, j) => ((v - exp[i][j]) ** 2) / exp[i][j]));
+}
+
+const EXP = computeExpected(OBS);
+const CONTRIB = computeContribs(OBS, EXP);
+const chiSq = CONTRIB.flat().reduce((a, b) => a + b, 0);
+const df = (OUTCOMES.length - 1) * (CATS.length - 1);
+
+const InfStatsChiSquareVisualization = () => {
+  const [view, setView] = useState('observed');
+
+  const data = view === 'observed' ? OBS : view === 'expected' ? EXP : CONTRIB;
+  const fmt = v => view === 'contribution' ? v.toFixed(2) : view === 'expected' ? v.toFixed(1) : v;
+  const maxContrib = Math.max(...CONTRIB.flat());
+
+  const cellStyle = (i, j) => {
+    if (view !== 'contribution') return {};
+    const intensity = CONTRIB[i][j] / maxContrib;
+    return { background: `rgba(248,81,73,${intensity * 0.5})`, borderColor: `rgba(248,81,73,${intensity * 0.6})` };
+  };
 
   return (
-    <div className="istz-wrap">
-      <header className="istz-head">
-        <span className="istz-badge">Inferential</span>
-        <h2>t-Tests &amp; z-Tests</h2>
-        <p>Small sample? Use t — its fatter tails are more cautious</p>
+    <div className="ischi-wrap">
+      <header className="ischi-head">
+        <span className="ischi-badge">Inferential</span>
+        <h2>Chi-Square Test</h2>
+        <p>Are return rates independent of product category?</p>
       </header>
-      <div className="istz-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="istz-svg" preserveAspectRatio="xMidYMid meet">
-          <polyline className="istz-norm" points={build(norm, 1)} />
-          <polyline className="istz-t" points={build(tdens, tMax)} />
-          <line x1={pad} y1={midY} x2={W - pad} y2={midY} className="istz-axis" />
-        </svg>
-        <div className="istz-legend">
-          <span className="istz-leg istz-leg--z">z (normal)</span>
-          <span className="istz-leg istz-leg--t">t (df = {df})</span>
-        </div>
+
+      <div className="ischi-toggle">
+        {['observed', 'expected', 'contribution'].map(v => (
+          <button key={v} className={`ischi-t ${view === v ? 'ischi-t--on' : ''}`} onClick={() => setView(v)}>
+            {v === 'observed' ? 'Observed' : v === 'expected' ? 'Expected (H₀)' : 'χ² contribution'}
+          </button>
+        ))}
       </div>
-      <div className="istz-control">
-        <label>Sample size n = {n}
-          <input type="range" min="2" max="40" value={n} onChange={(e) => setN(Number(e.target.value))} className="istz-slider" />
-        </label>
+
+      <div className="ischi-table-wrap">
+        <table className="ischi-table">
+          <thead>
+            <tr>
+              <th></th>
+              {CATS.map(c => <th key={c}>{c}</th>)}
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {OUTCOMES.map((out, i) => (
+              <tr key={out}>
+                <td className="ischi-row-hd">{out}</td>
+                {data[i].map((v, j) => (
+                  <td key={j} className="ischi-cell" style={cellStyle(i, j)}>{fmt(v)}</td>
+                ))}
+                <td className="ischi-total">{OBS[i].reduce((a, b) => a + b, 0)}</td>
+              </tr>
+            ))}
+            <tr>
+              <td className="ischi-row-hd">Total</td>
+              {CATS.map((_, j) => <td key={j} className="ischi-total">{OBS.reduce((s, r) => s + r[j], 0)}</td>)}
+              <td className="ischi-total">{OBS.flat().reduce((a, b) => a + b, 0)}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div className="istz-cards">
-        <div className="istz-card"><strong>z-test</strong><p>Population σ known, or large n (&gt;30). Standard normal.</p></div>
-        <div className="istz-card"><strong>t-test</strong><p>σ unknown &amp; small n. Fatter tails account for extra uncertainty.</p></div>
+
+      <div className="ischi-result">
+        <div className="ischi-stat"><span>χ² statistic</span><strong>{chiSq.toFixed(2)}</strong></div>
+        <div className="ischi-stat"><span>df</span><strong>{df}</strong></div>
+        <div className="ischi-stat"><span>Critical (α=0.05)</span><strong>5.99</strong></div>
+        <div className="ischi-stat"><span>Verdict</span><strong style={{ color: chiSq > 5.99 ? '#56d364' : '#f85149' }}>{chiSq > 5.99 ? 'Reject H₀' : 'Fail to reject'}</strong></div>
       </div>
-      <div className="istz-note">{n > 30 ? 'With n > 30 the t-curve nearly matches the normal — z is fine.' : 'Small n → the t-curve is noticeably wider (more conservative).'}</div>
+
+      <div className="ischi-note">
+        H₀: return rate is the same across all categories. The χ² contribution cells show <em>where</em> the data deviates most from that assumption — the biggest contributors drive the test statistic.
+      </div>
     </div>
   );
 };
-export default InfStatsTZVisualization;
+
+export default InfStatsChiSquareVisualization;

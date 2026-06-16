@@ -2755,3 +2755,376 @@
 .cm-part-edit-input:focus {
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
 }
+
+/* ═══════════════════════════════════════════
+   COURSE CARD EDIT BUTTON
+═══════════════════════════════════════════ */
+.cc-edit-btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.cc-edit-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE ADMIN (≤ 768 px)
+   Target: lesson editing, quiz/interview generation, SEO
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Global layout ───────────────────────────────── */
+  .admin-layout {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Sidebar: off-screen drawer; hamburger slides it in */
+  .admin-sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 300;
+    width: 240px !important;
+    min-width: 240px !important;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .admin-sidebar:not(.collapsed) {
+    transform: translateX(0);
+    box-shadow: 4px 0 32px rgba(0,0,0,0.6);
+  }
+  /* Collapsed on mobile = still hidden (no icons-only strip) */
+  .admin-sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+
+  /* Dim backdrop when sidebar is open — pseudo-element on admin-main */
+  .admin-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* ── Top bar ──────────────────────────────────────── */
+  .admin-topbar {
+    padding: 0 10px;
+    gap: 8px;
+    height: 50px;
+    min-height: 50px;
+  }
+  .search-wrap {
+    flex: 1;
+    max-width: unset;
+  }
+  .topbar-search {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .topbar-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  /* ── Course grid (Technology Courses view) ───────── */
+  .view-header {
+    padding: 14px 14px 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .course-grid {
+    grid-template-columns: 1fr;
+    padding: 0 14px 20px;
+    gap: 12px;
+  }
+  .course-card {
+    padding: 16px;
+  }
+
+  /* ── Tracks grid ──────────────────────────────────── */
+  .dt-grid {
+    grid-template-columns: 1fr;
+    padding: 0 14px 20px;
+  }
+
+  /* ── Course Manager — split panels ────────────────── */
+  .cm-layout {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto !important;
+    min-height: 100%;
+  }
+
+  /* Structure panel: normal height when no lesson open */
+  .cm-left {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    /* Don't constrain height — let it be natural so all parts show */
+    max-height: none;
+    overflow-y: visible;
+  }
+  .cm-left-collapsed {
+    display: none;
+  }
+
+  /* When a lesson is open, hide structure → editor takes full screen */
+  .cm-layout.lesson-open .cm-left {
+    display: none;
+  }
+  .cm-layout.lesson-open {
+    overflow: hidden;
+    height: 100% !important;
+  }
+  .cm-layout.lesson-open .cm-right {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* The "Show course structure" restore button — bigger touch target */
+  .cm-right > button:first-child {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 13px;
+    padding: 8px 14px;
+    z-index: 10;
+  }
+
+  .cm-header {
+    padding: 14px;
+  }
+  .cm-course-title {
+    font-size: 16px;
+  }
+  .cm-lesson-list {
+    padding-left: 20px;
+  }
+
+  /* ── Lesson Editor ────────────────────────────────── */
+  .le-page {
+    /* Full-screen editor when lesson open */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .le-header {
+    padding: 8px 12px;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-height: unset;
+  }
+
+  /* Hide breadcrumb — save horizontal space */
+  .le-breadcrumb {
+    display: none;
+  }
+
+  /* Save buttons: full row below back button */
+  .le-header-actions {
+    width: 100%;
+    gap: 6px;
+  }
+  .le-btn {
+    flex: 1;
+    justify-content: center;
+    font-size: 12px;
+    padding: 8px 8px;
+  }
+
+  /* Title input */
+  .le-page > div:nth-child(2) input {
+    font-size: 17px !important;
+  }
+
+  /* AI buttons: horizontal scroll strip */
+  .le-ai-row {
+    padding: 8px 12px;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* hide scrollbar on webkit */
+    scrollbar-width: none;
+  }
+  .le-ai-row::-webkit-scrollbar { display: none; }
+  .le-ai-btn {
+    font-size: 11px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  /* Keep the "Gemini AI Active" status inline after buttons */
+  .le-ai-row > span:last-child {
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  /* Tabs: already overflow-x: auto; tighten padding */
+  .le-tabs {
+    padding: 0 8px;
+  }
+  .le-tab {
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+
+  /* Theory split: editor only, hide live preview */
+  .le-theory-split {
+    flex-direction: column;
+  }
+  .le-editor-pane {
+    border-right: none;
+    flex: 1;
+  }
+  .le-preview-pane {
+    display: none;
+  }
+
+  /* Right sidebar panel (health, checklist) — hidden on mobile */
+  .le-sidebar-panel {
+    display: none;
+  }
+
+  /* Inline selectors (standalone Add Lesson mode) */
+  .le-inline-selectors {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .le-inline-sep { display: none; }
+  .le-inline-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    width: 100%;
+  }
+  .le-inline-select {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Quiz tab */
+  .quiz-area {
+    padding: 12px;
+  }
+  .quiz-toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .quiz-toolbar > div {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .quiz-add-btn {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  .quiz-card {
+    padding: 14px;
+  }
+  .quiz-options {
+    gap: 8px;
+  }
+
+  /* Interview questions tab */
+  .iq-area {
+    padding: 12px;
+  }
+  .iq-card {
+    padding: 12px;
+  }
+
+  /* SEO tab */
+  .seo-area {
+    padding: 12px;
+  }
+  .seo-section {
+    margin-bottom: 16px;
+  }
+
+  /* ── Modals: bottom sheet on mobile ───────────────── */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88vh;
+    border-radius: 20px 20px 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 20px 16px 32px;
+  }
+
+  /* Admin login */
+  .admin-login-box {
+    width: 90vw;
+    padding: 24px 20px;
+  }
+}
+
+/* ── Small phones (≤ 480 px) ────────────────────────── */
+@media (max-width: 480px) {
+
+  .admin-topbar {
+    padding: 0 8px;
+  }
+
+  .view-title {
+    font-size: 18px;
+  }
+
+  .le-tab {
+    padding: 9px 8px;
+    font-size: 11px;
+  }
+
+  .le-btn {
+    font-size: 11px;
+    padding: 7px 6px;
+  }
+
+  .le-ai-btn {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  .cm-part-header {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .cm-lesson-list {
+    padding-left: 14px;
+  }
+
+  .modal-box {
+    padding: 16px 14px 28px;
+  }
+
+  .modal-title {
+    font-size: 16px;
+  }
+
+  /* Course card tighter */
+  .course-card {
+    padding: 12px;
+  }
+  .course-card-title {
+    font-size: 14px;
+  }
+  .stat-value {
+    font-size: 16px;
+  }
+}

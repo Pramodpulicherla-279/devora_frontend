@@ -1,0 +1,31 @@
+.jnbcells-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.jnbcells-title { font-size: 1.4rem; font-weight: 700; color: #f97316; margin: 0 0 20px; }
+.jnbcells-subtitle { font-size: 1.05rem; font-weight: 600; margin: 24px 0 10px; }
+
+.jnbcells-tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+.jnbcells-tab { padding: 8px 18px; border-radius: 6px 6px 0 0; border: 1px solid #21262d; background: #161b22; color: #a3adbb; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.jnbcells-tab--active { background: #f9731620; border-color: #f97316; color: #f97316; font-weight: 600; }
+
+.jnbcells-panel { background: #161b22; border: 1px solid #21262d; border-radius: 0 8px 8px 8px; padding: 16px; min-height: 140px; }
+.jnbcells-cell-header { font-size: 0.75rem; color: #6b7785; font-family: monospace; margin-bottom: 6px; }
+.jnbcells-code { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #e6edf3; white-space: pre; overflow-x: auto; margin-bottom: 10px; }
+.jnbcells-raw { color: #a3adbb; }
+.jnbcells-kw { color: #ff7b72; }
+.jnbcells-fn { color: #79c0ff; }
+.jnbcells-output { background: #0d1117; border-left: 3px solid #f97316; padding: 8px 12px; font-family: monospace; font-size: 0.85rem; color: #a3adbb; margin-bottom: 10px; border-radius: 0 4px 4px 0; }
+.jnbcells-note { font-size: 0.8rem; color: #6b7785; margin: 8px 0 0; }
+.jnbcells-note kbd { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 1px 5px; font-size: 0.78rem; color: #e6edf3; }
+
+.jnbcells-toggle-row { display: flex; gap: 6px; margin-bottom: 12px; }
+.jnbcells-toggle { padding: 5px 14px; border-radius: 4px; border: 1px solid #30363d; background: #0d1117; color: #a3adbb; cursor: pointer; font-size: 0.8rem; }
+.jnbcells-toggle--on { background: #f9731620; border-color: #f97316; color: #f97316; }
+
+.jnbcells-rendered { padding: 4px 0; }
+.jnbcells-md-h { font-size: 1rem; color: #e6edf3; margin: 0 0 8px; }
+.jnbcells-md-list { margin: 6px 0 0 18px; color: #a3adbb; font-size: 0.88rem; }
+.jnbcells-inline-code { background: #21262d; border-radius: 3px; padding: 1px 5px; font-size: 0.82rem; color: #f97316; font-family: monospace; }
+
+.jnbcells-magic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.jnbcells-magic-card { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.jnbcells-magic-cmd { color: #f97316; font-family: monospace; font-size: 0.9rem; font-weight: 600; }
+.jnbcells-magic-desc { color: #a3adbb; font-size: 0.8rem; }

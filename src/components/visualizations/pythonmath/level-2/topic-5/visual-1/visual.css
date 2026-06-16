@@ -1,0 +1,18 @@
+.pymcomp-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymcomp-title { color: #a78bfa; margin: 0 0 14px; font-size: clamp(15px,3vw,18px); }
+.pymcomp-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.pymcomp-tab { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 6px 16px; color: #6b7785; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.pymcomp-tab:hover { border-color: #a78bfa; color: #e6edf3; }
+.pymcomp-tab--active { border-color: #a78bfa; color: #a78bfa; background: #1c2128; }
+.pymcomp-compare { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 14px; }
+.pymcomp-col { flex: 1; min-width: 200px; }
+.pymcomp-col-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.pymcomp-arrow { color: #a78bfa; font-size: 24px; align-self: center; padding: 0 4px; }
+.pymcomp-code { font-size: 12px; white-space: pre; overflow-x: auto; border-radius: 6px; padding: 12px; margin: 0; color: #e6edf3; }
+.pymcomp-code--loop { background: #12151a; border: 1px solid #30363d; }
+.pymcomp-code--comp { background: #1a1628; border: 1px solid #a78bfa55; }
+.pymcomp-result-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.pymcomp-result-label { color: #6b7785; font-size: 12px; }
+.pymcomp-result { display: flex; flex-wrap: wrap; gap: 6px; }
+.pymcomp-chip { background: #0d1117; border: 1px solid #30363d; color: #56d364; font-family: monospace; font-size: 13px; padding: 4px 10px; border-radius: 4px; }
+.pymcomp-note { color: #a3adbb; font-size: 13px; line-height: 1.6; margin: 0; }

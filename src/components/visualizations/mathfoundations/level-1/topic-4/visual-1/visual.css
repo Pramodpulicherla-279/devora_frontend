@@ -1,0 +1,128 @@
+.mfmatops-root {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+
+.mfmatops-title {
+  color: #e6edf3;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 14px;
+}
+
+.mfmatops-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.mfmatops-tab {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.mfmatops-tab:hover { background: #30363d; color: #e6edf3; }
+
+.mfmatops-tab-active {
+  background: #0d1f2d;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+
+.mfmatops-matrices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.mfmatops-mat-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.mfmatops-mat-label {
+  color: #6b7785;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.mfmatops-mat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 44px);
+  gap: 5px;
+}
+
+.mfmatops-cell {
+  width: 44px;
+  height: 44px;
+  background: #0d1117;
+  border: 1.5px solid #21262d;
+  border-radius: 6px;
+  color: #a3adbb;
+  font-size: 1rem;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mfmatops-cell-result {
+  cursor: pointer;
+  color: #56d364;
+  border-color: #1a3a24;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.mfmatops-cell-result:hover {
+  background: #0d1f14;
+  border-color: #56d364;
+}
+
+.mfmatops-hl {
+  border-color: #58a6ff !important;
+  background: #0d1f2d !important;
+  color: #58a6ff !important;
+}
+
+.mfmatops-op-sym {
+  font-size: 1.4rem;
+  color: #a78bfa;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+.mfmatops-step {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mfmatops-step-label {
+  color: #6b7785;
+  font-size: 0.78rem;
+}
+
+.mfmatops-step code {
+  color: #56d364;
+  font-size: 0.95rem;
+  font-family: monospace;
+}

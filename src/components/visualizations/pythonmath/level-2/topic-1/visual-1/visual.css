@@ -1,0 +1,19 @@
+.pymlists-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymlists-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymlists-cols { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymlists-panel { flex: 1; min-width: 220px; background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 14px; }
+.pymlists-panel-head { font-size: 13px; font-weight: 600; margin-bottom: 12px; font-family: monospace; }
+.pymlists-items { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.pymlists-cell { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 8px 10px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 44px; }
+.pymlists-cell--list:hover, .pymlists-cell--list.pymlists-cell--sel { border-color: #56d364; background: #0f2a1a; }
+.pymlists-cell--tuple:hover, .pymlists-cell--tuple.pymlists-cell--sel { border-color: #f97316; background: #2a1a0f; }
+.pymlists-idx { color: #6b7785; font-size: 10px; }
+.pymlists-val { color: #e6edf3; font-size: 13px; font-family: monospace; }
+.pymlists-info { color: #a3adbb; font-size: 12px; margin-bottom: 8px; }
+.pymlists-info code { color: #56d364; }
+.pymlists-error { color: #f85149; font-size: 11px; background: #2d1117; border: 1px solid #f85149; border-radius: 4px; padding: 4px 8px; margin-bottom: 8px; font-family: monospace; }
+.pymlists-hint { color: #6b7785; font-size: 11px; margin-bottom: 8px; }
+.pymlists-ops { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.pymlists-op-btn { background: #21262d; border: 1px solid #30363d; color: #56d364; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace; cursor: pointer; transition: background 0.15s; }
+.pymlists-op-btn:hover { background: #30363d; }
+.pymlists-op-note { background: #21262d; border: 1px solid #30363d; color: #a3adbb; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace; }

@@ -1,0 +1,15 @@
+.pymlibs-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymlibs-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymlibs-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymlibs-nodes { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 180px; }
+.pymlibs-node { background: #0d1117; border: 1px solid #30363d; border-left: 3px solid var(--lc); border-radius: 8px; padding: 10px 14px; cursor: pointer; text-align: left; transition: all 0.15s; display: flex; flex-direction: column; gap: 2px; }
+.pymlibs-node:hover { border-color: var(--lc); background: #1c2128; }
+.pymlibs-node--active { border-color: var(--lc); background: #1c2128; box-shadow: 0 0 0 1px var(--lc) inset; }
+.pymlibs-node-name { color: var(--lc); font-family: monospace; font-size: 14px; font-weight: 600; }
+.pymlibs-node-tag { color: #6b7785; font-size: 11px; }
+.pymlibs-detail { flex: 1.5; min-width: 220px; display: flex; flex-direction: column; gap: 10px; }
+.pymlibs-hint { color: #6b7785; font-size: 13px; margin: 0; padding: 16px 0; }
+.pymlibs-install { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 8px 12px; }
+.pymlibs-install code { color: #56d364; font-size: 13px; }
+.pymlibs-snippet { background: #0d1117; border: 1px solid; border-radius: 6px; padding: 12px; color: #e6edf3; font-size: 12px; white-space: pre; overflow-x: auto; margin: 0; }
+.pymlibs-use { color: #a3adbb; font-size: 13px; line-height: 1.6; margin: 0; }

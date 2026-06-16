@@ -1,0 +1,161 @@
+.svconf-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svconf-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 20px;
+}
+
+.svconf-layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.svconf-matrix-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.svconf-axis-label {
+  font-size: 0.72rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.svconf-axis-y {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.svconf-matrix-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.svconf-axis-x {
+  text-align: center;
+}
+
+.svconf-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.svconf-cell {
+  background: #161b22;
+  border: 1.5px solid #21262d;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.svconf-cell:hover { background: #1c2333; }
+.svconf-cell--selected { background: #1c2333; }
+
+.svconf-cell-key {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.svconf-cell-input {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #e6edf3;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  width: 60px;
+  padding: 2px;
+}
+
+.svconf-right {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.svconf-info-box {
+  background: #161b22;
+  border: 1.5px solid #30363d;
+  border-radius: 8px;
+  padding: 12px;
+  transition: border-color 0.2s;
+}
+
+.svconf-info-key {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.svconf-info-desc {
+  font-size: 0.78rem;
+  color: #a3adbb;
+}
+
+.svconf-derived {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.svconf-metric {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.svconf-metric-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.svconf-metric-formula {
+  font-size: 0.68rem;
+  color: #6b7785;
+  font-family: monospace;
+}
+
+.svconf-metric-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.svconf-hint {
+  font-size: 0.78rem;
+  color: #6b7785;
+  margin: 14px 0 0;
+  border-left: 2px solid #30363d;
+  padding-left: 10px;
+}

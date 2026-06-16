@@ -1,0 +1,27 @@
+.jnborg-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.jnborg-title { font-size: 1.4rem; font-weight: 700; color: #f97316; margin: 0 0 20px; }
+
+.jnborg-toggle-bar { display: flex; gap: 6px; margin-bottom: 16px; }
+.jnborg-mode-btn { padding: 8px 18px; border-radius: 6px; border: 1px solid #30363d; background: #161b22; color: #a3adbb; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.jnborg-mode-btn--active { background: #f9731620; border-color: #f97316; color: #f97316; font-weight: 600; }
+.jnborg-mode-btn--bad.jnborg-mode-btn--active { background: #ff7b7220; border-color: #ff7b72; color: #ff7b72; }
+
+.jnborg-cell-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.jnborg-cell { background: #161b22; border: 1px solid #21262d; border-left: 4px solid #21262d; border-radius: 6px; padding: 10px 14px; cursor: pointer; transition: background 0.15s; }
+.jnborg-cell--active { background: #1e242c; }
+.jnborg-cell-num { font-size: 0.72rem; font-family: monospace; border-radius: 4px; padding: 2px 7px; margin-right: 10px; }
+.jnborg-cell-label { font-size: 0.88rem; font-family: monospace; color: #e6edf3; }
+.jnborg-cell-detail { font-size: 0.8rem; color: #a3adbb; margin: 8px 0 0; border-top: 1px solid #21262d; padding-top: 8px; }
+
+.jnborg-messy-box { background: #161b22; border: 1px solid #ff7b7240; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
+.jnborg-messy-badge { background: #ff7b7220; color: #ff7b72; font-size: 0.8rem; padding: 6px 14px; border-bottom: 1px solid #ff7b7240; }
+.jnborg-messy-code { padding: 14px; font-family: monospace; font-size: 0.78rem; color: #a3adbb; white-space: pre; overflow-x: auto; margin: 0; }
+
+.jnborg-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.jnborg-check-col { background: #161b22; border: 1px solid #21262d; border-radius: 8px; overflow: hidden; }
+.jnborg-check-head { padding: 8px 14px; font-size: 0.85rem; font-weight: 700; }
+.jnborg-do { background: #7ee78720; color: #7ee787; }
+.jnborg-dont { background: #ff7b7220; color: #ff7b72; }
+.jnborg-check-item { padding: 7px 14px; font-size: 0.8rem; border-top: 1px solid #21262d; }
+.jnborg-do-item { color: #7ee787; }
+.jnborg-dont-item { color: #ff7b72; }

@@ -1,0 +1,17 @@
+.nnback-wrap { background: #0d1117; padding: 1.5rem; border-radius: 10px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; margin: 0 auto; }
+.nnback-title { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+.nnback-subtitle { font-size: 0.82rem; color: #a3adbb; margin-bottom: 1rem; }
+.nnback-svg-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; }
+.nnback-steps { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.nnback-step-dot { padding: 0.3rem 0.7rem; border-radius: 5px; font-size: 0.78rem; border: 1px solid #30363d; background: #161b22; color: #6b7785; transition: all 0.2s; }
+.nnback-step-dot.done { border-color: #f85149; color: #f85149; background: #f8514911; }
+.nnback-step-dot.current { border-color: #f97316; color: #f97316; background: #f9731622; font-weight: 600; }
+.nnback-info { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; font-size: 0.85rem; min-height: 70px; }
+.nnback-info-op { font-weight: 700; margin-bottom: 0.4rem; }
+.nnback-info-eq { font-family: monospace; color: #58a6ff; font-size: 0.88rem; margin-bottom: 0.4rem; }
+.nnback-info-res { color: #a3adbb; font-size: 0.8rem; }
+.nnback-btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.nnback-btn { padding: 0.45rem 1.1rem; border-radius: 6px; border: 1px solid #f85149; background: #f8514911; color: #f85149; font-size: 0.85rem; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.nnback-btn:hover { background: #f8514933; }
+.nnback-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nnback-btn.reset { border-color: #30363d; background: transparent; color: #a3adbb; }

@@ -1,0 +1,97 @@
+.fescale-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.fescale-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.fescale-formula {
+  font-family: monospace;
+  font-size: 0.88rem;
+  color: #a78bfa;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.fescale-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.fescale-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.fescale-btn--on {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+.fescale-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.fescale-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fescale-feat {
+  width: 84px;
+  font-size: 0.8rem;
+  color: #a3adbb;
+  flex-shrink: 0;
+}
+.fescale-track {
+  flex: 1;
+  height: 12px;
+  background: #21262d;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.fescale-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease, background 0.3s;
+  min-width: 2px;
+}
+.fescale-bar--neg {
+  margin-left: auto;
+}
+.fescale-val {
+  width: 56px;
+  text-align: right;
+  font-size: 0.82rem;
+  font-family: monospace;
+  transition: color 0.3s;
+}
+.fescale-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

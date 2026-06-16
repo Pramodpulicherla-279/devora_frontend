@@ -1,0 +1,95 @@
+.svend-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svend-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 4px;
+}
+
+.svend-hint {
+  font-size: 0.8rem;
+  color: #6b7785;
+  margin: 0 0 20px;
+}
+
+.svend-stepper { display: flex; flex-direction: column; }
+
+.svend-step-row { display: flex; flex-direction: column; align-items: flex-start; }
+
+.svend-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.svend-step:hover { border-color: #56d364; }
+.svend-step--active { border-color: #56d364; background: #0d1f12; }
+
+.svend-step-num {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #21262d;
+  color: #56d364;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.svend-step--active .svend-step-num { background: #56d364; color: #0d1117; }
+
+.svend-step-info { flex: 1; }
+
+.svend-step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.svend-step-desc {
+  font-size: 0.78rem;
+  color: #a3adbb;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.svend-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: #56d364;
+  margin: 8px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.svend-connector {
+  width: 2px;
+  height: 10px;
+  background: #30363d;
+  margin-left: 22px;
+}

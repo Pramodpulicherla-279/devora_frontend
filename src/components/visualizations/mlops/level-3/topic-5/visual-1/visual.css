@@ -1,0 +1,10 @@
+﻿.mlopsend-wrap { background: #0d1117; border-radius: 8px; padding: 20px; font-family: system-ui, sans-serif; color: #e6edf3; }
+.mlopsend-hint { font-size: 12px; color: #6b7785; margin: 0 0 12px; }
+.mlopsend-svg { width: 100%; display: block; background: #0d1117; border: 1px solid #21262d; border-radius: 8px; margin-bottom: 14px; }
+.mlopsend-detail { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px; }
+.mlopsend-detail-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.mlopsend-detail-item { display: flex; flex-direction: column; gap: 3px; }
+.mlopsend-dl { font-size: 11px; color: #6b7785; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.mlopsend-dv { font-size: 13px; color: #e6edf3; }
+.mlopsend-sla { color: #56d364; font-weight: 600; }
+.mlopsend-placeholder { background: #161b22; border: 1px dashed #30363d; border-radius: 8px; padding: 18px; text-align: center; font-size: 13px; color: #6b7785; }

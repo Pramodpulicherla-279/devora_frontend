@@ -1,0 +1,46 @@
+.unsupknum-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+.unsupknum-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.unsupknum-title {
+  color: #e6edf3;
+  font-size: clamp(14px, 2.5vw, 17px);
+  margin: 0;
+}
+.unsupknum-tabs { display: flex; gap: 6px; }
+.unsupknum-tab {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #a3adbb;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.unsupknum-tab:hover { border-color: #818cf8; color: #818cf8; }
+.unsupknum-tab--on { border-color: #818cf8; background: #1c1f3a; color: #818cf8; }
+.unsupknum-chart-wrap { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px; }
+.unsupknum-insight {
+  color: #818cf8;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: #1c1f3a;
+  border-radius: 5px;
+  border-left: 3px solid #818cf8;
+}
+.unsupknum-svg { width: 100%; height: auto; display: block; }

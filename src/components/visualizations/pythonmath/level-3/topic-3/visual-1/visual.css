@@ -1,0 +1,28 @@
+.pymoop-root { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: clamp(16px,4vw,28px); max-width: 680px; margin: 0 auto; font-family: inherit; }
+.pymoop-title { color: #a78bfa; margin: 0 0 16px; font-size: clamp(15px,3vw,18px); }
+.pymoop-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.pymoop-blueprint { flex: 1; min-width: 220px; background: #0d1117; border: 2px dashed #a78bfa55; border-radius: 10px; padding: 14px; }
+.pymoop-bp-head { font-family: monospace; font-size: 15px; margin-bottom: 12px; }
+.pymoop-kw { color: #a78bfa; }
+.pymoop-classname { color: #58a6ff; }
+.pymoop-section { margin-bottom: 12px; }
+.pymoop-section-label { color: #6b7785; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.pymoop-attr { display: flex; gap: 4px; font-family: monospace; font-size: 12px; padding: 2px 0; }
+.pymoop-attr-name { color: #56d364; }
+.pymoop-attr-type { color: #6b7785; }
+.pymoop-method { font-family: monospace; font-size: 12px; color: #f97316; padding: 2px 0; }
+.pymoop-create-btn { background: #a78bfa22; border: 1px solid #a78bfa; color: #a78bfa; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; width: 100%; margin-top: 4px; transition: background 0.2s; }
+.pymoop-create-btn:hover { background: #a78bfa33; }
+.pymoop-instances { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 8px; }
+.pymoop-inst-label { color: #6b7785; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.pymoop-hint { color: #6b7785; font-size: 13px; margin: 0; }
+.pymoop-instance { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 10px; }
+.pymoop-inst-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.pymoop-inst-type { color: #58a6ff; font-family: monospace; font-size: 13px; font-weight: 600; }
+.pymoop-inst-id { color: #6b7785; font-size: 11px; flex: 1; }
+.pymoop-del-btn { background: none; border: none; color: #6b7785; cursor: pointer; font-size: 12px; padding: 0 4px; }
+.pymoop-del-btn:hover { color: #f85149; }
+.pymoop-inst-attrs { display: flex; flex-direction: column; gap: 4px; }
+.pymoop-inst-attr { display: flex; gap: 8px; font-family: monospace; font-size: 12px; }
+.pymoop-inst-key { color: #a3adbb; min-width: 50px; }
+.pymoop-inst-val { color: #56d364; }

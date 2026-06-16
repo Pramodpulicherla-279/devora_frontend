@@ -1,45 +1,93 @@
-/* Lesson: Reading CSV, Excel, JSON and SQL
+/* Lesson: What is Pandas and Why Data Analysts Love It
  * Visual type: ILLUSTRATION
- * Reason: The key idea is "many sources → one DataFrame via read_*". A source
- * picker mapping each format to its read function + resulting table communicates it. */
+ * Shows the pain of pure-Python loops vs pandas one-liners for the same task */
 import React, { useState } from 'react';
 import './visual.css';
 
-const SOURCES = {
-  csv: { icon: '📄', fn: "pd.read_csv('data.csv')", note: 'Most common. Comma-separated text.' },
-  excel: { icon: '📊', fn: "pd.read_excel('book.xlsx', sheet_name='Sales')", note: 'Pick a sheet by name or index.' },
-  json: { icon: '🔗', fn: "pd.read_json('data.json')", note: 'Records or nested JSON.' },
-  sql: { icon: '🗄️', fn: "pd.read_sql('SELECT * FROM users', conn)", note: 'Query a database directly.' },
-};
+const TASKS = [
+  {
+    id: 'filter',
+    label: 'Filter rows',
+    python: `results = []
+for row in orders:
+    if row['city'] == 'Mumbai':
+        results.append(row)
+# 5 lines, O(n) manual loop`,
+    pandas: `df[df['city'] == 'Mumbai']
+# 1 line`,
+  },
+  {
+    id: 'total',
+    label: 'Sum a column',
+    python: `total = 0
+for row in orders:
+    total += row['amount']
+# accumulator pattern`,
+    pandas: `df['amount'].sum()
+# built-in vectorised`,
+  },
+  {
+    id: 'group',
+    label: 'Group by city',
+    python: `groups = {}
+for row in orders:
+    c = row['city']
+    groups.setdefault(c, 0)
+    groups[c] += row['amount']
+# defaultdict pattern`,
+    pandas: `df.groupby('city')['amount'].sum()
+# 1 line`,
+  },
+  {
+    id: 'sort',
+    label: 'Sort by amount',
+    python: `orders_sorted = sorted(
+    orders,
+    key=lambda r: r['amount'],
+    reverse=True
+)`,
+    pandas: `df.sort_values('amount',
+    ascending=False)`,
+  },
+];
 
-const PdReadVisualization = () => {
-  const [src, setSrc] = useState('csv');
+const PdWhatIsVisualization = () => {
+  const [sel, setSel] = useState('filter');
+  const t = TASKS.find(x => x.id === sel);
+
   return (
-    <div className="pdread-wrap">
-      <header className="pdread-head">
-        <span className="pdread-badge">Pandas</span>
-        <h2>Reading Data</h2>
-        <p>Any source → one DataFrame with <code>read_*</code></p>
+    <div className="pdwhat-wrap">
+      <header className="pdwhat-head">
+        <span className="pdwhat-badge">Pandas &amp; NumPy</span>
+        <h2>Pure Python vs Pandas</h2>
+        <p>Same task — completely different effort</p>
       </header>
-      <div className="pdread-sources">
-        {Object.entries(SOURCES).map(([k, s]) => (
-          <button key={k} className={`pdread-src ${src === k ? 'pdread-src--on' : ''}`} onClick={() => setSrc(k)}>
-            <span className="pdread-icon">{s.icon}</span>{k.toUpperCase()}
+
+      <div className="pdwhat-tabs">
+        {TASKS.map(t => (
+          <button key={t.id} className={`pdwhat-tab ${sel === t.id ? 'pdwhat-tab--on' : ''}`} onClick={() => setSel(t.id)}>
+            {t.label}
           </button>
         ))}
       </div>
-      <div className="pdread-flow">
-        <div className="pdread-file">{SOURCES[src].icon} {src} file</div>
-        <div className="pdread-arrow">→</div>
-        <div className="pdread-df">
-          <div className="pdread-df-label">DataFrame</div>
-          <table className="pdread-table"><thead><tr><th></th><th>name</th><th>age</th></tr></thead>
-            <tbody><tr><td>0</td><td>Alice</td><td>28</td></tr><tr><td>1</td><td>Bob</td><td>34</td></tr></tbody></table>
+
+      <div className="pdwhat-compare">
+        <div className="pdwhat-col pdwhat-col--py">
+          <div className="pdwhat-col-label">Pure Python</div>
+          <pre className="pdwhat-code pdwhat-code--py"><code>{t.python}</code></pre>
+        </div>
+        <div className="pdwhat-arrow">→</div>
+        <div className="pdwhat-col pdwhat-col--pd">
+          <div className="pdwhat-col-label">Pandas</div>
+          <pre className="pdwhat-code pdwhat-code--pd"><code>{t.pandas}</code></pre>
         </div>
       </div>
-      <pre className="pdread-code"><code>{`df = ${SOURCES[src].fn}`}</code></pre>
-      <div className="pdread-note">{SOURCES[src].note} Once loaded, every source behaves identically — the DataFrame is pandas' universal table.</div>
+
+      <div className="pdwhat-note">
+        Pandas wraps NumPy arrays with labelled columns, SQL-style operations, and broadcasting — so tasks that take 5 lines in Python take 1 in pandas, and run 10–100× faster on large data.
+      </div>
     </div>
   );
 };
-export default PdReadVisualization;
+
+export default PdWhatIsVisualization;

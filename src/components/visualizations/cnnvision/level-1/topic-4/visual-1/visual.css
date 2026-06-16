@@ -1,0 +1,138 @@
+.cnnscratch-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnscratch-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 20px;
+  font-weight: 700;
+}
+
+.cnnscratch-arch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cnnscratch-layer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #161b22;
+  border: 2px solid #21262d;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 72px;
+}
+
+.cnnscratch-layer--active {
+  border-color: var(--lc);
+  background: color-mix(in srgb, var(--lc) 10%, #161b22);
+}
+
+.cnnscratch-layer:hover { border-color: var(--lc); }
+
+.cnnscratch-layer-name {
+  font-size: 0.72rem;
+  color: #a3adbb;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cnnscratch-layer--active .cnnscratch-layer-name { color: var(--lc); }
+
+.cnnscratch-layer-shape {
+  font-size: 0.65rem;
+  color: #6b7785;
+  font-family: monospace;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.cnnscratch-arrow {
+  position: absolute;
+  right: -12px;
+  font-size: 0.9rem;
+  color: #30363d;
+  z-index: 1;
+}
+
+.cnnscratch-detail {
+  background: #161b22;
+  border: 1px solid var(--lc, #30363d);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cnnscratch-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cnnscratch-detail-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--lc);
+}
+
+.cnnscratch-detail-shape {
+  font-family: monospace;
+  font-size: 0.8rem;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #a3adbb;
+}
+
+.cnnscratch-detail-desc {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.cnnscratch-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 0.78rem;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+
+.cnnscratch-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.cnnscratch-nav-btn {
+  background: #0d1117;
+  color: #a3adbb;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cnnscratch-nav-btn:hover:not(:disabled) { border-color: #58a6ff; color: #58a6ff; }
+.cnnscratch-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }

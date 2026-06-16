@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../config';
 
-const ADMIN_PASSWORD = 'dev.el@2026';
+const ADMIN_PASSWORD = 'dev.el#2026';
 
 /* ─── Confirm dialog ─── */
 function ConfirmDialog({ message, onConfirm, onCancel }) {

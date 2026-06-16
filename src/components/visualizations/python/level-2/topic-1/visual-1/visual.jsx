@@ -1,52 +1,85 @@
-/* Lesson: Loops and Conditionals
- * Visual type: ANIMATION
- * Reason: A loop's flow (iterate, test condition, branch) is temporal — stepping
- * through iterations with the current item & branch highlighted shows control flow. */
-import React, { useState, useEffect } from 'react';
+/* Lesson: Virtual Environments and pip — Managing Your Python Projects
+ * Visual type: ILLUSTRATION
+ * Shows the problem (global dependency conflict) → solution (venv per project) */
+import React, { useState } from 'react';
 import './visual.css';
 
-const ITEMS = [4, 7, 2, 9, 6];
-
-const PyLoopVisualization = () => {
-  const [i, setI] = useState(-1);
-  const [playing, setPlaying] = useState(false);
-  useEffect(() => {
-    if (!playing) return;
-    if (i >= ITEMS.length - 1) { setPlaying(false); return; }
-    const t = setTimeout(() => setI((x) => x + 1), 800);
-    return () => clearTimeout(t);
-  }, [playing, i]);
-  const cur = ITEMS[i];
-  const branch = cur === undefined ? null : cur % 2 === 0 ? 'even' : 'odd';
-
-  return (
-    <div className="pyloop-wrap">
-      <header className="pyloop-head">
-        <span className="pyloop-badge">Python</span>
-        <h2>Loops &amp; Conditionals</h2>
-        <p>Iterate a sequence, branch on each item</p>
-      </header>
-      <pre className="pyloop-code"><code>{`for n in [4, 7, 2, 9, 6]:
-    if n % 2 == 0:
-        print(n, "even")
-    else:
-        print(n, "odd")`}</code></pre>
-      <div className="pyloop-items">
-        {ITEMS.map((n, idx) => (
-          <div key={idx} className={`pyloop-item ${i === idx ? 'pyloop-item--on' : ''} ${i > idx ? 'pyloop-item--done' : ''}`}>{n}</div>
+const TABS = [
+  {
+    id: 'problem',
+    label: 'The Problem',
+    content: (
+      <div className="pyvenv-problem">
+        <div className="pyvenv-global">
+          <div className="pyvenv-global-label">Global Python</div>
+          <div className="pyvenv-pkg pyvenv-pkg--conflict">pandas 1.5 (Project A needs this)</div>
+          <div className="pyvenv-pkg pyvenv-pkg--conflict">pandas 2.0 (Project B needs this)</div>
+          <div className="pyvenv-pkg">scikit-learn 1.2</div>
+        </div>
+        <div className="pyvenv-error">ImportError: pandas version conflict!</div>
+        <p className="pyvenv-p">Installing conflicting versions in the same Python breaks both projects.</p>
+      </div>
+    ),
+  },
+  {
+    id: 'solution',
+    label: 'The Solution',
+    content: (
+      <div className="pyvenv-solution">
+        <div className="pyvenv-venv">
+          <div className="pyvenv-venv-label">Project A / venv</div>
+          <div className="pyvenv-pkg pyvenv-pkg--ok">pandas 1.5.3</div>
+          <div className="pyvenv-pkg pyvenv-pkg--ok">numpy 1.24</div>
+        </div>
+        <div className="pyvenv-venv">
+          <div className="pyvenv-venv-label">Project B / venv</div>
+          <div className="pyvenv-pkg pyvenv-pkg--ok">pandas 2.1.0</div>
+          <div className="pyvenv-pkg pyvenv-pkg--ok">numpy 1.26</div>
+        </div>
+        <p className="pyvenv-p">Isolated environments — each project has exactly what it needs, nothing more.</p>
+      </div>
+    ),
+  },
+  {
+    id: 'commands',
+    label: 'Commands',
+    content: (
+      <div className="pyvenv-cmds">
+        {[
+          { cmd:'python -m venv venv',       note:'Create a virtual environment in a folder called "venv"' },
+          { cmd:'venv\\Scripts\\activate',   note:'Activate it (Windows). Mac/Linux: source venv/bin/activate' },
+          { cmd:'pip install pandas numpy',  note:'Installs into the venv, not globally' },
+          { cmd:'pip freeze > requirements.txt', note:'Saves your exact package list for teammates' },
+          { cmd:'pip install -r requirements.txt', note:'Teammates run this to get the same environment' },
+          { cmd:'deactivate',                note:'Return to global Python' },
+        ].map((c, i) => (
+          <div key={i} className="pyvenv-cmd-row">
+            <code className="pyvenv-cmd">{c.cmd}</code>
+            <span className="pyvenv-cmd-note">{c.note}</span>
+          </div>
         ))}
       </div>
-      <div className="pyloop-branches">
-        <div className={`pyloop-branch pyloop-branch--even ${branch === 'even' ? 'pyloop-branch--lit' : ''}`}>n % 2 == 0 → even</div>
-        <div className={`pyloop-branch pyloop-branch--odd ${branch === 'odd' ? 'pyloop-branch--lit' : ''}`}>else → odd</div>
+    ),
+  },
+];
+
+const PyVenvVisualization = () => {
+  const [tab, setTab] = useState('problem');
+  const t = TABS.find(x=>x.id===tab);
+
+  return (
+    <div className="pyvenv-wrap">
+      <header className="pyvenv-head">
+        <span className="pyvenv-badge">Python Basics</span>
+        <h2>Virtual Environments &amp; pip</h2>
+        <p>One environment per project — no dependency chaos</p>
+      </header>
+      <div className="pyvenv-tabs">
+        {TABS.map(tb=><button key={tb.id} className={`pyvenv-tab ${tab===tb.id?'pyvenv-tab--on':''}`} onClick={()=>setTab(tb.id)}>{tb.label}</button>)}
       </div>
-      <div className="pyloop-output">{i >= 0 && cur !== undefined ? `print(${cur}, "${branch}")` : 'output appears here…'}</div>
-      <div className="pyloop-controls">
-        <button className="pyloop-btn" onClick={() => { setI(0); setPlaying(true); }} disabled={playing}>▶ Run loop</button>
-        <button className="pyloop-btn pyloop-btn--reset" onClick={() => { setI(-1); setPlaying(false); }}>Reset</button>
-      </div>
-      <div className="pyloop-note">Python loops iterate items directly (<code>for n in items</code>), not indices. Indentation — not braces — defines the loop &amp; if/else blocks.</div>
+      <div className="pyvenv-body">{t.content}</div>
     </div>
   );
 };
-export default PyLoopVisualization;
+
+export default PyVenvVisualization;

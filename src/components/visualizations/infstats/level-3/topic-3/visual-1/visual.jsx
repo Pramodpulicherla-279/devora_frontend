@@ -1,56 +1,85 @@
-/* Lesson: Chi-Square Test
+/* Lesson: Statistical Power and Sample Size
  * Visual type: INTERACTIVE
- * Reason: χ² compares observed vs expected counts. An editable contingency table
- * that live-computes the χ² statistic and per-cell contribution shows exactly
- * where "observed deviates from expected". */
+ * Reason: Power is invisible until you see the two overlapping distributions (H₀
+ * and H₁) and the β shaded region shrink as you increase n. Sliding sample size
+ * makes the lesson's core claim — "underpowered tests waste everyone's time" —
+ * viscerally clear. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const InfStatsChiSquareVisualization = () => {
-  const [obs, setObs] = useState([[30, 10], [20, 40]]);
-  const rowT = obs.map((r) => r[0] + r[1]);
-  const colT = [obs[0][0] + obs[1][0], obs[0][1] + obs[1][1]];
-  const total = rowT[0] + rowT[1];
-  const exp = obs.map((r, i) => r.map((_, j) => (rowT[i] * colT[j]) / total));
-  let chi = 0; const contrib = obs.map((r, i) => r.map((o, j) => { const c = (o - exp[i][j]) ** 2 / exp[i][j]; chi += c; return c; }));
-  const significant = chi > 3.841; // df=1, α=0.05
-  const set = (i, j, v) => { const next = obs.map((r) => [...r]); next[i][j] = Math.max(0, Number(v) || 0); setObs(next); };
+const W = 320, H = 110, PAD = 20;
+
+function erf(x) {
+  const sign = x >= 0 ? 1 : -1;
+  x = Math.abs(x);
+  const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;
+  const t = 1.0 / (1.0 + p * x);
+  const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+
+function normalCdf(x, mu, sd) {
+  return 0.5 * (1 + erf((x - mu) / (sd * Math.sqrt(2))));
+}
+
+function bellPath(mu, sd) {
+  const cx = PAD + mu * (W - 2 * PAD);
+  const pts = [];
+  for (let i = 0; i <= 80; i++) {
+    const x = PAD + (i / 80) * (W - 2 * PAD);
+    const z = (x - cx) / (sd * (W - 2 * PAD) * 2);
+    const y = H - PAD - Math.exp(-0.5 * z * z) * (H - 2 * PAD) * 0.85;
+    pts.push(i === 0 ? `M${x},${y}` : `L${x},${y}`);
+  }
+  return pts.join(' ');
+}
+
+const InfStatsPowerVisualization = () => {
+  const [n, setN] = useState(30);
+  const effect = 0.3;
+  const sd = 1 / Math.sqrt(n);
+  const critZ = 1.645;
+  const critMu = 0.5 + critZ * sd;
+  const power = 1 - normalCdf(critMu, 0.5 + effect, sd);
+  const beta = 1 - power;
+
+  const critX = PAD + critMu * (W - 2 * PAD);
 
   return (
-    <div className="ischi-wrap">
-      <header className="ischi-head">
-        <span className="ischi-badge">Inferential</span>
-        <h2>Chi-Square Test</h2>
-        <p>Are two categorical variables related?</p>
+    <div className="ispwr-wrap">
+      <header className="ispwr-head">
+        <span className="ispwr-badge">Inferential</span>
+        <h2>Statistical Power &amp; Sample Size</h2>
+        <p>More data → less chance of missing a real effect</p>
       </header>
-      <div className="ischi-table-wrap">
-        <table className="ischi-table">
-          <thead><tr><th></th><th>Group X</th><th>Group Y</th></tr></thead>
-          <tbody>
-            {obs.map((r, i) => (
-              <tr key={i}>
-                <th>Row {i + 1}</th>
-                {r.map((o, j) => (
-                  <td key={j}>
-                    <input className="ischi-input" type="number" value={o} onChange={(e) => set(i, j, e.target.value)} />
-                    <span className="ischi-exp">exp {exp[i][j].toFixed(1)}</span>
-                    <span className="ischi-contrib" style={{ opacity: 0.4 + Math.min(0.6, contrib[i][j] / 10) }}>χ² +{contrib[i][j].toFixed(1)}</span>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="ispwr-svg">
+        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="#30363d" strokeWidth={1} />
+        <path d={bellPath(0.5, sd)} stroke="#a78bfa" strokeWidth={2} fill="none" />
+        <path d={bellPath(0.5 + effect, sd)} stroke="#56d364" strokeWidth={2} fill="none" />
+        <line x1={critX} y1={PAD / 2} x2={critX} y2={H - PAD} stroke="#f0883e" strokeWidth={1.5} strokeDasharray="4 3" />
+        <text x={PAD + 0.5 * (W - 2 * PAD)} y={H - PAD + 12} textAnchor="middle" fill="#a78bfa" fontSize={8}>H₀ (no effect)</text>
+        <text x={PAD + (0.5 + effect) * (W - 2 * PAD)} y={H - PAD + 12} textAnchor="middle" fill="#56d364" fontSize={8}>H₁ (real effect)</text>
+        <text x={critX + 4} y={14} fill="#f0883e" fontSize={8}>Critical value</text>
+        <text x={critX - 4} y={14} textAnchor="end" fill="#a78bfa" fontSize={8.5} fontWeight="700">β={beta < 0.01 ? '<0.01' : beta.toFixed(2)}</text>
+      </svg>
+
+      <div className="ispwr-control">
+        <label className="ispwr-lbl">Sample size n = <strong style={{ color: '#a78bfa' }}>{n}</strong></label>
+        <input type="range" min={10} max={200} step={5} value={n} onChange={e => setN(+e.target.value)} className="ispwr-slider" />
       </div>
-      <div className="ischi-stats">
-        <div className="ischi-stat"><span>χ² statistic</span><strong>{chi.toFixed(2)}</strong></div>
-        <div className="ischi-stat"><span>Critical (df=1)</span><strong>3.84</strong></div>
+
+      <div className="ispwr-stats">
+        <div className="ispwr-stat"><span>Power (1−β)</span><strong style={{ color: power > 0.8 ? '#56d364' : power > 0.6 ? '#f0883e' : '#f85149' }}>{(power * 100).toFixed(0)}%</strong></div>
+        <div className="ispwr-stat"><span>β (miss rate)</span><strong>{(beta * 100).toFixed(0)}%</strong></div>
+        <div className="ispwr-stat"><span>Status</span><strong style={{ color: power >= 0.8 ? '#56d364' : '#f85149' }}>{power >= 0.8 ? 'Adequate ≥80%' : 'Underpowered'}</strong></div>
       </div>
-      <div className={`ischi-verdict ${significant ? 'ischi-verdict--rej' : 'ischi-verdict--fail'}`}>
-        {significant ? '✓ χ² > 3.84 → variables ARE associated (reject H₀)' : 'χ² ≤ 3.84 → no evidence of association'}
+
+      <div className="ispwr-note">
+        Run your power analysis <em>before</em> collecting data. "n = 30 per group" is a guess, not a decision. At 80% power, you still have a 20% chance of missing a real effect — that's the industry minimum, not the gold standard.
       </div>
-      <div className="ischi-note">χ² sums <code>(observed − expected)² / expected</code> across cells. Bigger gaps between what you saw and what independence predicts → bigger χ².</div>
     </div>
   );
 };
-export default InfStatsChiSquareVisualization;
+
+export default InfStatsPowerVisualization;

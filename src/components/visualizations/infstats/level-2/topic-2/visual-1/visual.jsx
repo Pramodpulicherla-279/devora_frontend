@@ -1,60 +1,103 @@
-/* Lesson: p-Values and Significance
+/* Lesson: t-Tests — Comparing Two Groups
  * Visual type: INTERACTIVE
- * Reason: A p-value is the shaded tail area beyond your statistic. Sliding the
- * statistic and the α threshold and watching reject/fail-to-reject flip makes
- * the abstract "p < 0.05" rule tangible. */
+ * Reason: The lesson covers one-sample t (compare to ₹10,000 benchmark) and
+ * two-sample t (Electronics vs Furniture). Overlapping bell curves with a
+ * draggable difference slider show how the t-statistic grows as the gap widens
+ * and the distributions separate — making "significant" feel inevitable. */
 import React, { useState } from 'react';
 import './visual.css';
 
-function tailP(z) { // two-tailed approx p-value from |z|
-  const t = 1 / (1 + 0.2316419 * Math.abs(z));
-  const d = 0.3989423 * Math.exp(-z * z / 2);
-  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
-  return 2 * p;
+const W = 320, H = 100, PAD = 20;
+const SD = 22;
+
+function bellPath(cx, color, alpha = 1) {
+  const pts = [];
+  for (let i = 0; i <= 80; i++) {
+    const x = PAD + (i / 80) * (W - 2 * PAD);
+    const z = (x - cx) / SD;
+    const y = H - PAD - Math.exp(-0.5 * z * z) * (H - 2 * PAD) * 0.88;
+    pts.push(i === 0 ? `M${x},${y}` : `L${x},${y}`);
+  }
+  return pts.join(' ');
 }
 
-const InfStatsPValueVisualization = () => {
-  const [z, setZ] = useState(2.2);
-  const [alpha, setAlpha] = useState(0.05);
-  const p = Math.min(1, tailP(z));
-  const reject = p < alpha;
-  const W = 320, H = 140, pad = 16, midY = H - 26;
-  const xOf = (zz) => W / 2 + (zz / 4) * (W / 2 - pad);
-  const yOf = (zz) => midY - Math.exp(-zz * zz / 2) * (H - 52);
-  const curve = []; for (let i = -40; i <= 40; i++) curve.push(`${xOf(i / 10)},${yOf(i / 10)}`);
-  const tail = (sign) => { const pts = [`${xOf(sign * z)},${midY}`]; for (let i = sign * z * 10; Math.abs(i) <= 40; i += sign) pts.push(`${xOf(i / 10)},${yOf(i / 10)}`); pts.push(`${xOf(sign * 4)},${midY}`); return pts.join(' '); };
+const InfStatsTTestsVisualization = () => {
+  const [mode, setMode] = useState('two');
+  const [diff, setDiff] = useState(40);
+
+  const mu1 = W / 2 - diff / 2;
+  const mu2 = W / 2 + diff / 2;
+  const benchmark = W / 2 - 30;
+
+  const se = SD / Math.sqrt(30);
+  const t = (diff / 2) / se;
+  const sig = Math.abs(t) > 2.04;
 
   return (
-    <div className="ispval-wrap">
-      <header className="ispval-head">
-        <span className="ispval-badge">Inferential</span>
-        <h2>p-Values &amp; Significance</h2>
-        <p>How surprising is your result, if H₀ were true?</p>
+    <div className="isttest-wrap">
+      <header className="isttest-head">
+        <span className="isttest-badge">Inferential</span>
+        <h2>t-Tests</h2>
+        <p>Is this difference real or chance?</p>
       </header>
-      <div className="ispval-chart-wrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="ispval-svg" preserveAspectRatio="xMidYMid meet">
-          <polygon className="ispval-tail" points={tail(1)} />
-          <polygon className="ispval-tail" points={tail(-1)} />
-          <polyline className="ispval-curve" points={curve.join(' ')} />
-          <line x1={xOf(z)} y1="18" x2={xOf(z)} y2={midY} className="ispval-stat" />
-          <line x1={xOf(-z)} y1="18" x2={xOf(-z)} y2={midY} className="ispval-stat" />
-          <line x1={pad} y1={midY} x2={W - pad} y2={midY} className="ispval-axis" />
-          <text x={xOf(z)} y="14" className="ispval-stat-label">your stat</text>
-        </svg>
+
+      <div className="isttest-toggle">
+        <button className={`isttest-t ${mode === 'one' ? 'isttest-t--on' : ''}`} onClick={() => setMode('one')}>One-sample</button>
+        <button className={`isttest-t ${mode === 'two' ? 'isttest-t--on' : ''}`} onClick={() => setMode('two')}>Two-sample</button>
       </div>
-      <div className="ispval-controls">
-        <label>Test statistic |z| = {z.toFixed(1)}
-          <input type="range" min="0.2" max="3.5" step="0.1" value={z} onChange={(e) => setZ(Number(e.target.value))} className="ispval-slider" />
-        </label>
-        <label>Significance α = {alpha}
-          <input type="range" min="0.01" max="0.2" step="0.01" value={alpha} onChange={(e) => setAlpha(Number(e.target.value))} className="ispval-slider ispval-slider--a" />
-        </label>
+
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="isttest-svg">
+        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="#30363d" strokeWidth={1} />
+
+        {mode === 'two' ? (
+          <>
+            <path d={bellPath(mu1)} stroke="#a78bfa" strokeWidth={2} fill="none" />
+            <path d={bellPath(mu2)} stroke="#f0883e" strokeWidth={2} fill="none" />
+            <line x1={mu1} y1={PAD / 2} x2={mu1} y2={H - PAD} stroke="#a78bfa" strokeWidth={1} strokeDasharray="3 3" opacity={0.6} />
+            <line x1={mu2} y1={PAD / 2} x2={mu2} y2={H - PAD} stroke="#f0883e" strokeWidth={1} strokeDasharray="3 3" opacity={0.6} />
+            <text x={mu1} y={H - PAD + 12} textAnchor="middle" fill="#a78bfa" fontSize={8.5}>Electronics</text>
+            <text x={mu2} y={H - PAD + 12} textAnchor="middle" fill="#f0883e" fontSize={8.5}>Furniture</text>
+          </>
+        ) : (
+          <>
+            <path d={bellPath(W / 2)} stroke="#a78bfa" strokeWidth={2} fill="none" />
+            <line x1={W / 2} y1={PAD / 2} x2={W / 2} y2={H - PAD} stroke="#a78bfa" strokeWidth={1} strokeDasharray="3 3" />
+            <line x1={benchmark} y1={PAD / 2} x2={benchmark} y2={H - PAD} stroke="#f85149" strokeWidth={1.5} strokeDasharray="4 3" />
+            <text x={benchmark} y={H - PAD + 12} textAnchor="middle" fill="#f85149" fontSize={8.5}>₹10k benchmark</text>
+            <text x={W / 2} y={H - PAD + 12} textAnchor="middle" fill="#a78bfa" fontSize={8.5}>Sample mean</text>
+          </>
+        )}
+      </svg>
+
+      {mode === 'two' && (
+        <div className="isttest-control">
+          <label className="isttest-lbl">Group difference <span style={{ color: sig ? '#56d364' : '#f0883e' }}>{diff > 0 ? '+' : ''}{diff}px</span></label>
+          <input type="range" min={0} max={120} value={diff} onChange={e => setDiff(+e.target.value)} className="isttest-slider" />
+        </div>
+      )}
+
+      <div className="isttest-result">
+        <div className="isttest-stat">
+          <span>t-statistic</span>
+          <strong style={{ color: sig ? '#56d364' : '#a78bfa' }}>{t.toFixed(2)}</strong>
+        </div>
+        <div className="isttest-stat">
+          <span>Threshold (α=0.05)</span>
+          <strong>|t| &gt; 2.04</strong>
+        </div>
+        <div className="isttest-stat">
+          <span>Verdict</span>
+          <strong style={{ color: sig ? '#56d364' : '#f85149' }}>{sig ? 'Significant ✓' : 'Not significant'}</strong>
+        </div>
       </div>
-      <div className={`ispval-verdict ${reject ? 'ispval-verdict--rej' : 'ispval-verdict--fail'}`}>
-        p ≈ {p.toFixed(3)} {reject ? '<' : '≥'} α = {alpha} → {reject ? 'REJECT H₀ (significant)' : 'fail to reject H₀'}
+
+      {mode === 'two' && <p className="isttest-hint">Drag the slider — watch when the curves separate enough to reach significance.</p>}
+
+      <div className="isttest-note">
+        <strong>One-sample</strong>: compare your group's mean to a known number. <strong>Two-sample</strong>: compare two groups to each other. Both ask the same question — is this gap bigger than noise?
       </div>
-      <div className="ispval-note">A small p-value means: "if H₀ were true, data this extreme would be rare." It is <strong>not</strong> the probability that H₀ is true.</div>
     </div>
   );
 };
-export default InfStatsPValueVisualization;
+
+export default InfStatsTTestsVisualization;

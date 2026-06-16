@@ -1,20 +1,16 @@
-/* ML: Linear Regression — prefix: mllr- */
-.mllr-wrap { font-family: system-ui, sans-serif; background: #0d1117; border-radius: 14px; padding: clamp(14px,4vw,32px); color: #e6edf3; max-width: 640px; margin: 0 auto; border: 1px solid #21262d; }
-.mllr-head { text-align: center; margin-bottom: 16px; }
-.mllr-badge { background: #3a2708; color: #f59e0b; font-size: 0.65rem; font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1px solid #f59e0b; letter-spacing: 1.5px; }
-.mllr-head h2 { margin: 10px 0 4px; font-size: clamp(1.05rem,3vw,1.4rem); color: #f59e0b; }
-.mllr-head p { color: #a3adbb; font-size: 0.82rem; margin: 0; }
-.mllr-chart-wrap { background: #161b22; border-radius: 10px; padding: 10px; margin-bottom: 14px; display: flex; justify-content: center; }
-.mllr-svg { width: 100%; max-width: 340px; height: auto; display: block; }
-.mllr-axis { stroke: #30363d; stroke-width: 1.5; }
-.mllr-pt { fill: #61afef; }
-.mllr-line { stroke: #f59e0b; stroke-width: 2.5; }
-.mllr-residual { stroke: #f85149; stroke-width: 1.5; opacity: 0.6; }
-.mllr-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
-.mllr-controls label { font-size: 0.82rem; color: #a3adbb; display: flex; flex-direction: column; gap: 6px; }
-.mllr-slider { width: 100%; accent-color: #f59e0b; }
-.mllr-mse { text-align: center; font-size: 0.9rem; font-family: monospace; color: #a3adbb; margin-bottom: 8px; }
-.mllr-mse--good { color: #34d399; }
-.mllr-eq { text-align: center; font-family: monospace; font-size: 0.92rem; color: #f59e0b; margin-bottom: 12px; }
-.mllr-note { background: #161b22; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a3adbb; line-height: 1.5; }
-.mllr-note strong { color: #f59e0b; }
+/* ML: Linear Regression — prefix: mllreg- */
+.mllreg-wrap { font-family: system-ui, sans-serif; background:#0d1117; border-radius:14px; padding:clamp(14px,4vw,32px); color:#e6edf3; max-width:600px; margin:0 auto; border:1px solid #21262d; }
+.mllreg-head { text-align:center; margin-bottom:14px; }
+.mllreg-badge { background:#2a1f4d; color:#a78bfa; font-size:0.65rem; font-weight:800; padding:2px 10px; border-radius:99px; border:1px solid #a78bfa; letter-spacing:1.5px; }
+.mllreg-head h2 { margin:10px 0 4px; font-size:clamp(1.05rem,3vw,1.4rem); color:#a78bfa; }
+.mllreg-head p { color:#a3adbb; font-size:0.82rem; margin:0; }
+.mllreg-svg { display:block; background:#161b22; border-radius:8px; margin-bottom:12px; }
+.mllreg-controls { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.mllreg-lbl { font-size:0.78rem; color:#a3adbb; display:flex; flex-direction:column; gap:4px; }
+.mllreg-slider { width:100%; accent-color:#a78bfa; }
+.mllreg-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+.mllreg-stat { background:#161b22; border-radius:8px; padding:9px; text-align:center; display:flex; flex-direction:column; gap:3px; }
+.mllreg-stat span { font-size:0.62rem; color:#a3adbb; text-transform:uppercase; letter-spacing:0.8px; }
+.mllreg-stat strong { font-size:0.88rem; font-family:'Consolas',monospace; color:#a78bfa; }
+.mllreg-note { background:#161b22; border-left:3px solid #a78bfa; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#a3adbb; line-height:1.5; }
+.mllreg-note code { color:#a78bfa; font-size:0.78rem; }

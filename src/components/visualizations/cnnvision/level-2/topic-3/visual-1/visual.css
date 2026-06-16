@@ -1,0 +1,123 @@
+.cnnimbal-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnimbal-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.cnnimbal-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cnnimbal-tab {
+  background: #161b22;
+  color: #a3adbb;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cnnimbal-tab--active {
+  background: #1d3a5c;
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.cnnimbal-layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cnnimbal-chart {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cnnimbal-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cnnimbal-bar-label {
+  width: 36px;
+  font-size: 0.78rem;
+  color: #a3adbb;
+  flex-shrink: 0;
+}
+
+.cnnimbal-bar-track {
+  flex: 1;
+  height: 22px;
+  background: #0d1117;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cnnimbal-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  opacity: 0.85;
+}
+
+.cnnimbal-bar-val {
+  width: 36px;
+  font-size: 0.75rem;
+  color: #6b7785;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.cnnimbal-info {
+  flex: 1;
+  min-width: 180px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cnnimbal-desc {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.cnnimbal-code {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.74rem;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 0;
+}

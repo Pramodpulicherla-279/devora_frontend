@@ -6,7 +6,7 @@ import './admin.css';
 import { API_BASE_URL } from '../../config';
 import { useSEO } from '../hooks/useSEO';
 
-const ADMIN_PASSWORD = 'dev.el@2026';
+const ADMIN_PASSWORD = 'dev.el#2026';
 
 const NAV = [
   { id: 'courses', label: 'Technology Courses', icon: '📚', section: 'MAIN' },
@@ -71,6 +71,13 @@ const TRACK_EMOJIS = [
   '🧩','🔷','🎨','⚙️','🤖','🎭','📱','📊','🔥','🚀',
   '💡','🌐','🛤️','📚','🧠','⚡','🔧','🎯','🌟','💻',
   '🗄️','🔐','📡','🧪','🎮','🔬','📈','🏗️','🌊','🦾',
+];
+
+const COURSE_EMOJIS = [
+  '📘','🌐','🎨','⚡','💻','🗄️','🔐','🚀','🧪','🔧',
+  '🧩','⚙️','📊','🔬','🏗️','🐍','🐙','🟢','☁️','🎯',
+  '📱','🔌','🤖','🦾','📡','💡','🌟','🔥','🛠️','🗺️',
+  '🧬','🔭','👁️','📚',
 ];
 
 function CreateTrackModal({ onClose, onCreated }) {
@@ -147,10 +154,99 @@ function CreateTrackModal({ onClose, onCreated }) {
   );
 }
 
+function EditCourseModal({ course, onClose, onSaved }) {
+  const [title, setTitle] = useState(course.title || '');
+  const [description, setDescription] = useState(course.description || '');
+  const [icon, setIcon] = useState(course.icon || '📘');
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    if (!title.trim()) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/courses/${course._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: title.trim(), description: description.trim(), icon }),
+      });
+      const data = await res.json();
+      if (data.success) onSaved(data.data);
+      onClose();
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-title">Edit Course</div>
+        <div className="modal-sub">Update the title, description, and icon for this course.</div>
+
+        <label className="modal-label">Course Icon</label>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+          <div style={{
+            width: '48px', height: '48px', borderRadius: '12px',
+            background: 'var(--bg-input)', border: '2px solid var(--accent)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '24px', flexShrink: 0,
+          }}>
+            {icon}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            {COURSE_EMOJIS.map(e => (
+              <button
+                key={e}
+                onClick={() => setIcon(e)}
+                style={{
+                  width: '32px', height: '32px',
+                  border: icon === e ? '2px solid var(--accent)' : '1px solid var(--border)',
+                  borderRadius: '6px',
+                  background: icon === e ? 'rgba(99,102,241,0.15)' : 'var(--bg-input)',
+                  cursor: 'pointer', fontSize: '16px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                {e}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <label className="modal-label">Course Title</label>
+        <input
+          className="modal-input"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="e.g. MongoDB Fundamentals"
+          autoFocus
+        />
+
+        <label className="modal-label">Description</label>
+        <textarea
+          className="modal-textarea"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          placeholder="What will learners build or understand?"
+          rows={3}
+        />
+
+        <div className="modal-actions">
+          <button className="modal-cancel" onClick={onClose}>Cancel</button>
+          <button className="modal-confirm" onClick={handleSave} disabled={saving || !title.trim()}>
+            {saving ? 'Saving…' : 'Save Changes'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CoursesView({ onSelectCourse, onNewLesson }) {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingCourse, setEditingCourse] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -189,7 +285,10 @@ function CoursesView({ onSelectCourse, onNewLesson }) {
             return (
               <div key={course._id} className="course-card" onClick={() => onSelectCourse(course._id, course.slug)}>
                 <div className="course-card-header">
-                  <div className="course-card-title">{course.title}</div>
+                  {course.icon && (
+                    <span style={{ fontSize: '20px', flexShrink: 0 }}>{course.icon}</span>
+                  )}
+                  <div className="course-card-title" style={{ flex: 1, minWidth: 0 }}>{course.title}</div>
                   <span className={`status-badge ${course.status || 'draft'}`}>{course.status || 'draft'}</span>
                 </div>
                 <div className="course-card-desc">{course.description || 'No description provided.'}</div>
@@ -207,6 +306,15 @@ function CoursesView({ onSelectCourse, onNewLesson }) {
                     <div className="stat-label">Status</div>
                   </div>
                 </div>
+                <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'flex-end' }}>
+                  <button
+                    className="cc-edit-btn"
+                    onClick={e => { e.stopPropagation(); setEditingCourse(course); }}
+                    title="Edit course details"
+                  >
+                    ✏️ Edit
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -219,6 +327,17 @@ function CoursesView({ onSelectCourse, onNewLesson }) {
             <CreateCourseModalInner onClose={() => setShowCreateModal(false)} onCreated={load} />
           </div>
         </div>
+      )}
+
+      {editingCourse && (
+        <EditCourseModal
+          course={editingCourse}
+          onClose={() => setEditingCourse(null)}
+          onSaved={(updated) => {
+            setCourses(prev => prev.map(c => c._id === updated._id ? { ...c, ...updated } : c));
+            setEditingCourse(null);
+          }}
+        />
       )}
     </div>
   );

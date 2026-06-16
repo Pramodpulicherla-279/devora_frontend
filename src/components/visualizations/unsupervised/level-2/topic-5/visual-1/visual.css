@@ -1,0 +1,84 @@
+.unsupdbscan-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+}
+.unsupdbscan-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.unsupdbscan-title { color: #e6edf3; font-size: clamp(14px, 2.5vw, 17px); margin: 0; }
+.unsupdbscan-eps { display: flex; align-items: center; gap: 10px; }
+.unsupdbscan-eps-label { color: #818cf8; font-size: 12px; min-width: 80px; }
+.unsupdbscan-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 4px;
+  background: #30363d;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.unsupdbscan-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #818cf8;
+  border-radius: 50%;
+}
+.unsupdbscan-tip { color: #6b7785; font-size: 12px; margin: 0 0 10px; }
+.unsupdbscan-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #161b22;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+.unsupdbscan-panel {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.unsupdbscan-info {
+  flex: 1;
+  min-width: 160px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.unsupdbscan-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.unsupdbscan-info-row span:first-child { color: #6b7785; }
+.unsupdbscan-info-row span:last-child { color: #e6edf3; font-weight: 600; }
+.unsupdbscan-legend {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+.unsupdbscan-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a3adbb;
+  font-size: 12px;
+}
+.unsupdbscan-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }

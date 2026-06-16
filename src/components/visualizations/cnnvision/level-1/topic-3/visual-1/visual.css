@@ -1,0 +1,96 @@
+.cnnpool-wrap {
+  background: #0d1117;
+  color: #e6edf3;
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cnnpool-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #58a6ff;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.cnnpool-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.cnnpool-tab {
+  background: #161b22;
+  color: #a3adbb;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cnnpool-tab--active {
+  background: #1d3a5c;
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.cnnpool-layout {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cnnpool-panel {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cnnpool-panel-label {
+  font-size: 0.75rem;
+  color: #a3adbb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cnnpool-hint {
+  font-size: 0.7rem;
+  color: #6b7785;
+}
+
+.cnnpool-arrow {
+  font-size: 1.8rem;
+  color: #30363d;
+}
+
+.cnnpool-info {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cnnpool-info-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.82rem;
+}
+
+.cnnpool-info-key { color: #6b7785; }
+.cnnpool-info-val { color: #e6edf3; font-weight: 500; }

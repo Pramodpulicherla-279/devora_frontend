@@ -1,0 +1,124 @@
+.svwhat-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+}
+
+.svwhat-title {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #56d364;
+  margin: 0 0 16px;
+}
+
+.svwhat-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.svwhat-tab {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #a3adbb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  transition: all 0.2s;
+}
+
+.svwhat-tab:hover {
+  border-color: #56d364;
+  color: #56d364;
+}
+
+.svwhat-tab--active {
+  background: #0f2a1a;
+  border-color: #56d364;
+  color: #56d364;
+  font-weight: 600;
+}
+
+.svwhat-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.svwhat-flow-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.svwhat-node {
+  background: #161b22;
+  border: 2px solid #30363d;
+  border-radius: 10px;
+  padding: 10px 28px;
+  min-width: 180px;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.svwhat-node-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.svwhat-arrow {
+  color: #30363d;
+  font-size: 1.2rem;
+  margin: 2px 0;
+}
+
+.svwhat-desc {
+  color: #a3adbb;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.svwhat-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.svwhat-examples-title {
+  color: #6b7785;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.svwhat-badge {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 20px;
+  color: #a3adbb;
+  font-size: 0.78rem;
+  padding: 3px 10px;
+}
+
+.svwhat-detail {
+  margin-top: 12px;
+}
+
+.svwhat-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}

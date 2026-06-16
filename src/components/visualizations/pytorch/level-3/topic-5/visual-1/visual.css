@@ -1,0 +1,167 @@
+.ptend-root {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ptend-title {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.ptend-pipeline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.ptend-step-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ptend-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-width: 74px;
+}
+
+.ptend-step:hover { border-color: #f97316; }
+
+.ptend-step--active {
+  border-color: #f97316;
+  background: #f9731612;
+}
+
+.ptend-step--done {
+  border-color: #56d36440;
+  background: #56d36408;
+}
+
+.ptend-icon { font-size: 18px; }
+
+.ptend-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #a3adbb;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ptend-step--active .ptend-label { color: #f97316; }
+.ptend-step--done .ptend-label { color: #56d364; }
+
+.ptend-arrow {
+  font-size: 14px;
+  color: #30363d;
+}
+
+.ptend-detail {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.ptend-detail-header {
+  background: #21262d;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ptend-step-num {
+  font-size: 10px;
+  color: #6b7785;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptend-step-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f97316;
+}
+
+.ptend-code {
+  padding: 12px 16px;
+  font-size: 11px;
+  color: #56d364;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  line-height: 1.7;
+  overflow-x: auto;
+  white-space: pre;
+  border-bottom: 1px solid #21262d;
+}
+
+.ptend-output {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+}
+
+.ptend-output-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6b7785;
+}
+
+.ptend-output-val {
+  font-size: 11px;
+  color: #58a6ff;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ptend-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.ptend-nav-btn {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 8px;
+  color: #58a6ff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ptend-nav-btn:hover:not(:disabled) {
+  border-color: #58a6ff;
+  background: #58a6ff10;
+}
+
+.ptend-nav-btn:disabled {
+  color: #30363d;
+  cursor: default;
+}

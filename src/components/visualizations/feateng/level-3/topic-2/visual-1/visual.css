@@ -1,0 +1,115 @@
+.fecorr-wrap {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6edf3;
+  font-family: inherit;
+}
+.fecorr-title {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #f97316;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.fecorr-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.fecorr-label {
+  font-size: 0.84rem;
+  color: #a3adbb;
+}
+.fecorr-slider {
+  flex: 1;
+  min-width: 100px;
+  accent-color: #f85149;
+  cursor: pointer;
+}
+.fecorr-heatmap-wrap {
+  overflow-x: auto;
+  margin-bottom: 18px;
+}
+.fecorr-heatmap {
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+.fecorr-heatmap th {
+  padding: 5px 8px;
+  color: #a3adbb;
+  text-align: center;
+  font-family: monospace;
+  font-weight: 600;
+}
+.fecorr-feat-label {
+  font-family: monospace;
+  font-size: 0.74rem;
+  color: #a3adbb;
+  padding: 5px 8px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.fecorr-cell {
+  padding: 6px 8px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  transition: outline 0.25s;
+  font-weight: 600;
+}
+.fecorr-vif {
+  margin-bottom: 12px;
+}
+.fecorr-vif-title {
+  font-size: 0.78rem;
+  color: #6b7785;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.fecorr-vif-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.fecorr-vif-name {
+  width: 70px;
+  font-size: 0.78rem;
+  font-family: monospace;
+  color: #a3adbb;
+  flex-shrink: 0;
+}
+.fecorr-vif-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #21262d;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fecorr-vif-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s;
+}
+.fecorr-vif-val {
+  width: 28px;
+  text-align: right;
+  font-size: 0.78rem;
+  font-family: monospace;
+  font-weight: 700;
+}
+.fecorr-note {
+  font-size: 0.82rem;
+  color: #a3adbb;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}

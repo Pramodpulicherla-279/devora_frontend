@@ -1,0 +1,29 @@
+.trend-wrap {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  font-family: system-ui, sans-serif;
+  color: #e6edf3;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.trend-title { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 700; color: #818cf8; margin: 0 0 4px; }
+.trend-sub { color: #a3adbb; font-size: 0.82rem; margin: 0 0 16px; }
+.trend-stack { display: flex; flex-direction: column; align-items: center; gap: 0; margin-bottom: 16px; }
+.trend-layer-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.trend-layer { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 8px 20px; width: 100%; max-width: 380px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.2s; }
+.trend-layer:hover:not(.trend-layer-active) { background: #21262d; }
+.trend-icon { font-size: 1.1rem; }
+.trend-layer-label { font-size: 0.88rem; font-weight: 600; color: #a3adbb; transition: color 0.2s; }
+.trend-connector { color: #6b7785; font-size: 0.9rem; margin: 2px 0; }
+.trend-detail { background: #161b22; border: 1px solid #30363d; border-top: 3px solid #818cf8; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.trend-detail-header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.trend-detail-icon { font-size: 1.2rem; }
+.trend-detail-name { font-weight: 700; font-size: 1rem; }
+.trend-lib { background: #21262d; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; color: #a3adbb; font-family: monospace; }
+.trend-snippet { background: #0d1117; border-radius: 6px; padding: 10px 12px; font-family: 'Courier New', monospace; font-size: 0.78rem; color: #a3adbb; overflow-x: auto; white-space: pre; margin: 0; line-height: 1.5; }
+.trend-metrics { display: flex; gap: 20px; flex-wrap: wrap; }
+.trend-metric { display: flex; flex-direction: column; gap: 2px; }
+.trend-metric-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7785; }
+.trend-metric-val { font-family: monospace; font-size: 1rem; font-weight: 700; }

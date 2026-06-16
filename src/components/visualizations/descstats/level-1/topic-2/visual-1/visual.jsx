@@ -1,63 +1,49 @@
-/* Lesson: Spread and Variance
+/* Lesson: Mean, median, mode
  * Visual type: INTERACTIVE
- * Reason: Variance/std-dev are abstract until you can widen or tighten a
- * dataset's spread and watch the numbers (and the spread band) respond live. */
+ * Reason: The lesson's core point is that mean, median and mode answer "typical"
+ * differently — dragging one order value larger lets you watch the mean chase the
+ * outlier while the median holds steady, which no static figure conveys. */
 import React, { useState } from 'react';
 import './visual.css';
 
-const BASE = [-2, -1, -1, 0, 0, 0, 1, 1, 2];
+const BASE = [900, 950, 1000, 1050, 1075, 1100, 1200];
 
-const DescStatsSpreadVarianceVisualization = () => {
-  const [spread, setSpread] = useState(12);
-  const center = 50;
-  const data = BASE.map((z) => center + z * spread);
-  const mean = data.reduce((s, x) => s + x, 0) / data.length;
-  const variance = data.reduce((s, x) => s + (x - mean) ** 2, 0) / data.length;
-  const std = Math.sqrt(variance);
-  const range = Math.max(...data) - Math.min(...data);
+function median(a) { const s = [...a].sort((x, y) => x - y); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; }
+function mode(a) { const c = {}; let best = a[0], bc = 0; a.forEach(v => { c[v] = (c[v] || 0) + 1; if (c[v] > bc) { bc = c[v]; best = v; } }); return bc > 1 ? best : null; }
 
-  const W = 320, pad = 16;
-  const x = (v) => pad + (v / 100) * (W - 2 * pad);
-
+const DescStatsCentralTendencyVisualization = () => {
+  const [big, setBig] = useState(1300);
+  const data = [...BASE, big];
+  const mean = data.reduce((s, v) => s + v, 0) / data.length;
+  const med = median(data);
+  const mo = mode(data);
+  const lo = 800, hi = 20000;
+  const X = (v) => Math.min(100, Math.max(0, ((v - lo) / (hi - lo)) * 100));
   return (
-    <div className="dssv-wrap">
-      <header className="dssv-head">
-        <span className="dssv-badge">Statistics</span>
-        <h2>Spread &amp; Variance</h2>
-        <p>How far do values sit from the mean?</p>
+    <div className="dsct-wrap">
+      <header className="dsct-head">
+        <span className="dsct-badge">Statistics</span>
+        <h2>Mean, Median &amp; Mode</h2>
+        <p>Three valid answers to "what's typical?"</p>
       </header>
-
-      <div className="dssv-plot-wrap">
-        <svg viewBox={`0 0 ${W} 90`} className="dssv-svg" preserveAspectRatio="xMidYMid meet">
-          {/* ±1 std band */}
-          <rect x={x(mean - std)} y="30" width={Math.max(0, x(mean + std) - x(mean - std))} height="34" className="dssv-band" />
-          <line x1={pad} y1="64" x2={W - pad} y2="64" className="dssv-axis" />
-          {data.map((v, i) => (
-            <circle key={i} cx={x(Math.max(0, Math.min(100, v)))} cy="47" r="5" className="dssv-dot" />
-          ))}
-          <line x1={x(mean)} y1="22" x2={x(mean)} y2="64" className="dssv-mean" />
-          <text x={x(mean)} y="16" className="dssv-mean-label">mean</text>
-          <text x={x(mean)} y="80" className="dssv-band-label">±1 std dev</text>
-        </svg>
+      <div className="dsct-track">
+        {data.map((v, i) => (<span key={i} className="dsct-dot" style={{ left: `${X(v)}%` }} />))}
+        <span className="dsct-mark dsct-mark--mean" style={{ left: `${X(mean)}%` }}><span>x̄</span></span>
+        <span className="dsct-mark dsct-mark--med" style={{ left: `${X(med)}%` }}><span>M</span></span>
       </div>
-
-      <div className="dssv-control">
-        <label>Spread {spread <= 8 ? '(tight)' : spread >= 18 ? '(wide)' : '(medium)'}
-          <input type="range" min="3" max="24" value={spread} onChange={(e) => setSpread(Number(e.target.value))} className="dssv-slider" />
+      <div className="dsct-control">
+        <label>Largest order = ₹{big.toLocaleString('en-IN')}
+          <input type="range" min="1300" max="20000" step="100" value={big} onChange={e => setBig(Number(e.target.value))} className="dsct-slider" />
         </label>
       </div>
-
-      <div className="dssv-stats">
-        <div className="dssv-stat"><span>Range</span><strong>{range.toFixed(0)}</strong><em>max − min</em></div>
-        <div className="dssv-stat"><span>Variance</span><strong>{variance.toFixed(0)}</strong><em>avg squared distance</em></div>
-        <div className="dssv-stat dssv-stat--std"><span>Std Dev</span><strong>{std.toFixed(1)}</strong><em>√variance (same units)</em></div>
+      <div className="dsct-stats">
+        <div className="dsct-stat dsct-stat--mean"><span>Mean</span><strong>₹{Math.round(mean).toLocaleString('en-IN')}</strong></div>
+        <div className="dsct-stat dsct-stat--med"><span>Median</span><strong>₹{med.toLocaleString('en-IN')}</strong></div>
+        <div className="dsct-stat dsct-stat--mode"><span>Mode</span><strong>{mo ? `₹${mo.toLocaleString('en-IN')}` : '—'}</strong></div>
       </div>
-
-      <pre className="dssv-code"><code>{`variance = Σ(xᵢ − mean)² / n   = ${variance.toFixed(0)}
-std_dev  = √variance           = ${std.toFixed(1)}`}</code></pre>
-      <div className="dssv-note">Std dev is in the <strong>same units</strong> as your data, which is why it's the most-used measure of spread.</div>
+      <div className="dsct-note">Drag the largest order up. The <strong>mean</strong> chases the outlier; the <strong>median</strong> barely moves. For skewed money data, the median is usually the honest "typical".</div>
     </div>
   );
 };
 
-export default DescStatsSpreadVarianceVisualization;
+export default DescStatsCentralTendencyVisualization;
