@@ -1,0 +1,23 @@
+.tsnarrow-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tsnarrow-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsnarrow-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsnarrow-start { display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+.tsnarrow-start-label { font-size: .8rem; color: #8b949e; }
+.tsnarrow-union { font-family: monospace; font-size: .82rem; color: #fbbf24; background: #161b22; padding: .25rem .6rem; border-radius: 6px; border: 1px solid #21262d; }
+.tsnarrow-flow { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
+.tsnarrow-guard { display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .55rem .8rem; cursor: pointer; text-align: left; opacity: .55; }
+.tsnarrow-guard-applied { opacity: 1; }
+.tsnarrow-guard-current { border-color: #fbbf24; }
+.tsnarrow-guard-code { font-family: monospace; font-size: .8rem; color: #58a6ff; }
+.tsnarrow-guard-narrows { font-size: .76rem; color: #8b949e; }
+.tsnarrow-guard-narrows strong { color: #56d364; }
+.tsnarrow-typebox { display: flex; align-items: center; gap: .6rem; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .7rem .85rem; margin-bottom: 1rem; }
+.tsnarrow-typebox-label { font-size: .78rem; color: #8b949e; }
+.tsnarrow-typebox-val { font-family: monospace; font-size: .85rem; color: #56d364; }
+.tsnarrow-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.tsnarrow-ctrl { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; padding: .35rem .8rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.tsnarrow-ctrl:disabled { opacity: .4; cursor: not-allowed; }
+.tsnarrow-step { font-size: .78rem; color: #8b949e; }
+.tsnarrow-assert { font-size: .78rem; color: #8b949e; background: #f0883e10; border: 1px solid #f0883e44; border-radius: 8px; padding: .6rem .8rem; }
+.tsnarrow-assert-tag { display: block; color: #f0883e; font-weight: 700; font-size: .72rem; margin-bottom: .3rem; }
+.tsnarrow-assert code { background: #161b22; color: #fbbf24; padding: .05rem .3rem; border-radius: 3px; font-size: .76rem; }

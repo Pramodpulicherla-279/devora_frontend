@@ -1,0 +1,22 @@
+.bairou-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 740px; }
+.bairou-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.bairou-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.bairou-requests { display: flex; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.bairou-req { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .75rem; border-radius: 6px; cursor: pointer; font-size: .78rem; }
+.bairou-req-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.bairou-router { display: flex; align-items: center; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.bairou-in, .bairou-logic, .bairou-out { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem .7rem; font-size: .8rem; text-align: center; color: #c9d1d9; flex: 1; min-width: 90px; }
+.bairou-in-meta, .bairou-logic-rules { font-size: .66rem; color: #8b949e; margin-top: .25rem; }
+.bairou-logic { border-color: #fbbf2444; }
+.bairou-out { font-weight: 600; }
+.bairou-arrow { color: #8b949e; }
+.bairou-fallback { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; }
+.bairou-fb-head { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; color: #c9d1d9; margin-bottom: .75rem; }
+.bairou-fb-btn { background: #f0883e20; border: 1px solid #f0883e; color: #f0883e; padding: .2rem .7rem; border-radius: 6px; cursor: pointer; font-size: .72rem; }
+.bairou-chain { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.bairou-fb { font-size: .76rem; padding: .3rem .6rem; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #8b949e; }
+.bairou-fb-ok { border-color: #56d364; color: #56d364; }
+.bairou-fb-fail { border-color: #f85149; color: #f85149; }
+.bairou-fb-idle { opacity: .5; }
+.bairou-fb-note { font-size: .74rem; color: #56d364; margin-top: .6rem; }
+.bairou-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

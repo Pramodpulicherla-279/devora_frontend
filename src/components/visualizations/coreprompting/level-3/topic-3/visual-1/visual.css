@@ -1,0 +1,15 @@
+.cptmm-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptmm-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptmm-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptmm-tabs { display: flex; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.cptmm-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .4rem .85rem; border-radius: 6px; cursor: pointer; font-size: .82rem; }
+.cptmm-tab-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptmm-builder { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.cptmm-block { border-radius: 8px; padding: .7rem .85rem; font-size: .82rem; }
+.cptmm-block-text { background: #58a6ff15; border: 1px solid #58a6ff44; color: #c9d1d9; }
+.cptmm-block-media { background: #a78bfa15; border: 1px solid #a78bfa44; color: #c9d1d9; }
+.cptmm-json-label { font-size: .76rem; color: #8b949e; margin-bottom: .4rem; }
+.cptmm-json { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .76rem; color: #56d364; overflow-x: auto; margin: 0 0 1.25rem; white-space: pre; }
+.cptmm-models { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.cptmm-models-label { font-size: .78rem; color: #8b949e; }
+.cptmm-model { font-size: .72rem; color: #a78bfa; background: #a78bfa15; border: 1px solid #a78bfa44; padding: .15rem .5rem; border-radius: 12px; }

@@ -1,0 +1,13 @@
+.tsutil-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tsutil-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsutil-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsutil-base-h, .tsutil-result-h { font-size: .78rem; color: #8b949e; margin-bottom: .4rem; }
+.tsutil-result-h { color: #fbbf24; font-family: monospace; }
+.tsutil-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tsutil-code-result { color: #56d364; }
+.tsutil-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin-bottom: 1rem; }
+@media (max-width: 520px) { .tsutil-buttons { grid-template-columns: 1fr; } }
+.tsutil-btn { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .4rem .5rem; border-radius: 6px; cursor: pointer; font-size: .74rem; font-family: monospace; }
+.tsutil-btn:hover { border-color: #fbbf24; color: #c9d1d9; }
+.tsutil-btn-active { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tsutil-note { font-size: .82rem; color: #8b949e; background: #161b22; border-left: 3px solid #fbbf24; border-radius: 4px; padding: .6rem .8rem; }

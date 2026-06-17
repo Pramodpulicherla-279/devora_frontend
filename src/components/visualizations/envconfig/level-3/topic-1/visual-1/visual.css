@@ -1,0 +1,21 @@
+.envstart-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.envstart-title { color: #56d364; font-size: 1.2rem; margin: 0 0 .25rem; }
+.envstart-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.envstart-vars { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.25rem; }
+@media (max-width: 520px) { .envstart-vars { grid-template-columns: 1fr; } }
+.envstart-var { display: flex; align-items: center; gap: .5rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .5rem .7rem; cursor: pointer; }
+.envstart-var-ok { border-left: 3px solid #56d364; }
+.envstart-var-missing { border-left: 3px solid #f85149; background: #f8514910; }
+.envstart-var-status { font-weight: 700; }
+.envstart-var-ok .envstart-var-status { color: #56d364; }
+.envstart-var-missing .envstart-var-status { color: #f85149; }
+.envstart-var-key { font-family: monospace; font-size: .78rem; color: #c9d1d9; flex: 1; text-align: left; }
+.envstart-var-req { font-size: .62rem; color: #f0883e; background: #f0883e15; padding: .05rem .35rem; border-radius: 8px; }
+.envstart-console { border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; font-family: monospace; border: 1px solid #21262d; }
+.envstart-console-ok { background: #0d1117; border-color: #56d36444; }
+.envstart-console-fail { background: #0d1117; border-color: #f8514944; }
+.envstart-line { font-size: .76rem; color: #c9d1d9; padding: .15rem 0; }
+.envstart-line-ok { color: #56d364; }
+.envstart-line-err { color: #f85149; }
+.envstart-line-exit { color: #f0883e; font-weight: 700; }
+.envstart-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

@@ -1,0 +1,25 @@
+.baimon-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.baimon-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baimon-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baimon-tabs { display: flex; gap: .4rem; margin-bottom: 1.25rem; }
+.baimon-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .9rem; border-radius: 6px; cursor: pointer; font-size: .8rem; text-transform: capitalize; }
+.baimon-tab-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.baimon-logs { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1.25rem; }
+.baimon-log { display: grid; grid-template-columns: 0.6fr 1fr 0.8fr 0.7fr 1fr; gap: .4rem; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .4rem .6rem; font-size: .74rem; font-family: monospace; color: #c9d1d9; }
+.baimon-log-err { border-color: #f8514944; background: #f8514910; }
+.baimon-log-t { color: #8b949e; }
+.baimon-log-model { color: #a78bfa; }
+.baimon-log-status { color: #56d364; }
+.baimon-log-err .baimon-log-status { color: #f85149; }
+.baimon-metrics { margin-bottom: 1.25rem; }
+.baimon-chart-h { font-size: .78rem; color: #8b949e; margin-bottom: .5rem; }
+.baimon-chart { display: flex; align-items: flex-end; gap: .4rem; height: 90px; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem; margin-bottom: .75rem; }
+.baimon-bar { flex: 1; background: linear-gradient(180deg, #58a6ff, #1f6feb); border-radius: 3px 3px 0 0; min-height: 4px; }
+.baimon-metric-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .76rem; color: #8b949e; }
+.baimon-metric-row strong { color: #c9d1d9; }
+.baimon-err-rate { color: #f0883e !important; }
+.baimon-alerts { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.baimon-alert { display: flex; justify-content: space-between; align-items: center; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .55rem .8rem; font-size: .82rem; color: #c9d1d9; }
+.baimon-alert-tog { background: #0d1117; border: 1px solid #30363d; color: #8b949e; padding: .2rem .7rem; border-radius: 20px; cursor: pointer; font-size: .7rem; font-weight: 700; }
+.baimon-alert-on { background: #56d36420; border-color: #56d364; color: #56d364; }
+.baimon-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

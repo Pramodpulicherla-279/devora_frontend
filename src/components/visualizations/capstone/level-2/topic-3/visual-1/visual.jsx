@@ -1,56 +1,84 @@
-/* Lesson: Statistical Analysis
- * Visual: Hypothesis test walkthrough — 5 steps */
+/* Lesson: Statistical Analysis (Capstone) — turning observations into defensible evidence
+ * Visual: pick a claim → run the right test → impression vs statistically defensible finding */
 import React, { useState } from 'react';
 import './visual.css';
 
-const STEPS = [
+const CLAIMS = [
   {
-    id:1, title:'State hypotheses',
-    content:`H₀ (null): Q4 mean revenue = Q1-Q3 mean revenue\nH₁ (alternative): Q4 mean revenue > Q1-Q3 mean revenue\n\nThis is a one-tailed t-test (we believe Q4 is higher)`,
+    id: 'q4',
+    claim: 'Q4 revenue is higher than other quarters',
+    test: 'One-way ANOVA (revenue across 4 quarters)',
+    stat: 'F = 12.3', p: 'p < 0.001', ci: '95% CI: +$12,000 to +$18,000 vs mean',
+    impression: 'It looks like Q4 performs better.',
+    finding: 'Q4 revenue is significantly higher than other quarters (ANOVA F=12.3, p<0.001), 95% CI $12k–$18k above the quarterly mean.',
+    reject: true,
   },
   {
-    id:2, title:'Choose significance level',
-    content:`α = 0.05 (standard for business analysis)\n\nMeaning: we accept a 5% chance of a false positive\n(rejecting H₀ when it's actually true)`,
+    id: 'disc',
+    claim: 'High discounts reduce profit margin',
+    test: "Two-sample t-test (margin: discount ≤10% vs >30%)",
+    stat: 't = -8.7', p: 'p < 0.001', ci: '95% CI: -0.19 to -0.11 margin',
+    impression: 'High-discount orders seem less profitable.',
+    finding: 'Orders with >30% discount have significantly lower margin than low-discount orders (t=-8.7, p<0.001), by 0.11–0.19.',
+    reject: true,
   },
   {
-    id:3, title:'Run the test',
-    content:`from scipy import stats\n\nq4 = df[df['quarter']=='Q4']['revenue']\nrest = df[df['quarter']!='Q4']['revenue']\n\nt_stat, p_value = stats.ttest_ind(q4, rest,\n  alternative='greater')\nprint(f't={t_stat:.2f}, p={p_value:.4f}')`,
-  },
-  {
-    id:4, title:'Interpret results',
-    content:`t-statistic = 3.41\np-value = 0.0008\n\np < 0.05 → reject H₀\nQ4 revenue IS statistically significantly higher`,
-  },
-  {
-    id:5, title:'Business interpretation',
-    content:`Result: Q4 revenue is ~28% higher than other quarters\n(p=0.0008, 99.9% confidence)\n\nRecommendation: increase inventory and staff in Q3\nto prepare for Q4 demand surge.`,
+    id: 'region',
+    claim: 'Region affects profitability',
+    test: 'One-way ANOVA (profit across regions)',
+    stat: 'F = 1.4', p: 'p = 0.24', ci: '95% CI includes 0',
+    impression: 'The North region might do a bit better.',
+    finding: 'No statistically significant difference in profit across regions (ANOVA F=1.4, p=0.24) — likely noise, do not report as a finding.',
+    reject: false,
   },
 ];
 
-const CapStatsVisualization = () => {
-  const [step, setStep] = useState(1);
-  const s = STEPS.find(x=>x.id===step);
+export default function CapStatsVisualization() {
+  const [id, setId] = useState('q4');
+  const c = CLAIMS.find(x => x.id === id);
+
   return (
     <div className="capstat-wrap">
-      <header className="capstat-head">
-        <span className="capstat-badge">Capstone</span>
+      <div className="capstat-head">
+        <span className="capstat-badge">CAPSTONE · STEP 7</span>
         <h2>Statistical Analysis</h2>
-        <p>Hypothesis test walkthrough — 5 steps</p>
-      </header>
-      <div className="capstat-stepper">
-        {STEPS.map(st=>(
-          <button key={st.id} className={`capstat-step-btn ${step===st.id?'capstat-step-btn--on':''} ${st.id<step?'capstat-step-btn--done':''}`} onClick={()=>setStep(st.id)}>
-            <span className="capstat-step-n">{st.id<step?'✓':st.id}</span>
-          </button>
+        <p>Convert a pattern you can see into a finding you can defend</p>
+      </div>
+
+      <div className="capstat-claims">
+        {CLAIMS.map(x => (
+          <button key={x.id} className={`capstat-claim ${id === x.id ? 'capstat-claim--on' : ''}`} onClick={() => setId(x.id)}>{x.claim}</button>
         ))}
-        <div className="capstat-step-label">{s.title}</div>
       </div>
-      <pre className="capstat-content"><code>{s.content}</code></pre>
-      <div className="capstat-nav">
-        {step>1 && <button className="capstat-btn" onClick={()=>setStep(step-1)}>← Prev</button>}
-        {step<5 && <button className="capstat-btn capstat-btn--next" onClick={()=>setStep(step+1)}>Next →</button>}
+
+      <div className="capstat-test">
+        <span className="capstat-test-label">Test</span>
+        <span className="capstat-test-name">{c.test}</span>
       </div>
-      <div className="capstat-note">Statistical significance doesn't mean business importance. p=0.0008 tells you the effect is real; the 28% difference tells you it's large enough to act on.</div>
+
+      <div className="capstat-stats">
+        <div className="capstat-stat"><span>{c.stat}</span><small>statistic</small></div>
+        <div className={`capstat-stat ${c.reject ? 'capstat-sig' : 'capstat-ns'}`}><span>{c.p}</span><small>p-value</small></div>
+        <div className="capstat-stat"><span style={{ fontSize: '0.7rem' }}>{c.ci}</span><small>confidence</small></div>
+      </div>
+
+      <div className="capstat-compare">
+        <div className="capstat-side capstat-impression">
+          <div className="capstat-side-h">🗨️ Impression</div>
+          <p>"{c.impression}"</p>
+        </div>
+        <div className="capstat-arrow">→</div>
+        <div className={`capstat-side ${c.reject ? 'capstat-evidence' : 'capstat-nofind'}`}>
+          <div className="capstat-side-h">{c.reject ? '✅ Defensible finding' : '⚠️ Not significant'}</div>
+          <p>{c.finding}</p>
+        </div>
+      </div>
+
+      <div className="capstat-rule">
+        {c.reject
+          ? 'p < 0.05 → reject the null → the difference is unlikely to be chance.'
+          : 'p ≥ 0.05 → fail to reject the null → treat as noise, not a finding.'}
+      </div>
     </div>
   );
-};
-export default CapStatsVisualization;
+}

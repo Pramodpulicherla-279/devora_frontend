@@ -1,0 +1,17 @@
+.depgh-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 740px; }
+.depgh-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.depgh-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.depgh-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: 1.25rem; }
+.depgh-stage-wrap { display: flex; align-items: center; gap: .4rem; }
+.depgh-stage { display: flex; flex-direction: column; align-items: center; gap: .2rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .5rem .6rem; cursor: pointer; min-width: 84px; }
+.depgh-stage:hover { border-color: #818cf8; }
+.depgh-stage-active { background: #818cf820; border-color: #818cf8; }
+.depgh-stage-icon { font-size: 1.2rem; }
+.depgh-stage-label { font-size: .68rem; color: #c9d1d9; text-align: center; }
+.depgh-arrow { color: #8b949e; }
+.depgh-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1rem; }
+.depgh-detail-head { font-size: .92rem; font-weight: 600; color: #818cf8; margin-bottom: .3rem; }
+.depgh-detail-desc { font-size: .8rem; color: #8b949e; margin-bottom: .6rem; }
+.depgh-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: .75rem; font-size: .74rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }
+.depgh-note { font-size: .78rem; color: #8b949e; margin: 0; line-height: 1.5; }
+.depgh-note code { background: #161b22; color: #818cf8; padding: .05rem .3rem; border-radius: 3px; }

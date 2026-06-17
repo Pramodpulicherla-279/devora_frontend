@@ -1,0 +1,11 @@
+.tstauth-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tstauth-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstauth-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstauth-flow { display: flex; flex-direction: column; align-items: center; gap: .15rem; margin-bottom: 1.25rem; }
+.tstauth-step-wrap { display: flex; flex-direction: column; align-items: center; gap: .15rem; width: 100%; max-width: 320px; }
+.tstauth-step { width: 100%; display: flex; align-items: center; gap: .5rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .5rem .75rem; cursor: pointer; font-size: .8rem; color: #c9d1d9; }
+.tstauth-step-active { background: #58a6ff20; border-color: #58a6ff; }
+.tstauth-step-num { width: 20px; height: 20px; flex-shrink: 0; background: #58a6ff20; border: 1px solid #58a6ff; color: #58a6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; }
+.tstauth-arrow { color: #8b949e; }
+.tstauth-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tstauth-setup { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }

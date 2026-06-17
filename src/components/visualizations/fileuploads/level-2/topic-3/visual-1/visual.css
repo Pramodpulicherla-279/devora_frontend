@@ -1,0 +1,19 @@
+.fusec-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.fusec-title { color: #f97316; font-size: 1.2rem; margin: 0 0 .25rem; }
+.fusec-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.fusec-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; margin-bottom: 1.25rem; }
+@media (max-width: 560px) { .fusec-cards { grid-template-columns: 1fr 1fr; } }
+.fusec-card { display: flex; flex-direction: column; align-items: center; gap: .3rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .7rem .4rem; cursor: pointer; }
+.fusec-card:hover { border-color: #f85149; }
+.fusec-card-active { background: #f8514915; border-color: #f85149; }
+.fusec-card-icon { font-size: 1.4rem; }
+.fusec-card-name { font-size: .7rem; color: #c9d1d9; text-align: center; }
+.fusec-detail { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+.fusec-attack, .fusec-defence { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.fusec-attack { border-left: 3px solid #f85149; }
+.fusec-defence { border-left: 3px solid #56d364; }
+.fusec-block-h { font-size: .82rem; font-weight: 600; margin-bottom: .5rem; }
+.fusec-h-attack { color: #f85149; }
+.fusec-h-defence { color: #56d364; }
+.fusec-attack-text { font-size: .82rem; color: #c9d1d9; line-height: 1.5; }
+.fusec-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: .75rem; font-size: .73rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

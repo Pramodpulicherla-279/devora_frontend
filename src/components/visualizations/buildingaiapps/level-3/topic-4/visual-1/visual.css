@@ -1,0 +1,22 @@
+.baicache-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.baicache-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baicache-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baicache-reqs { display: flex; align-items: center; gap: .4rem; margin-bottom: 1.25rem; }
+.baicache-reqs-label { font-size: .8rem; color: #8b949e; }
+.baicache-req { width: 34px; height: 30px; background: #161b22; border: 1px solid #30363d; color: #8b949e; border-radius: 6px; cursor: pointer; font-size: .82rem; }
+.baicache-req-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.baicache-blocks { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.baicache-block { border-radius: 8px; padding: .75rem; border: 1px solid #21262d; }
+.baicache-sys.baicache-cached { background: #56d36410; border-color: #56d364; }
+.baicache-sys.baicache-fresh { background: #58a6ff10; border-color: #58a6ff44; }
+.baicache-user { background: #58a6ff10; border-color: #58a6ff44; }
+.baicache-block-h { font-size: .82rem; color: #c9d1d9; font-weight: 600; }
+.baicache-block-tokens { font-size: .74rem; color: #8b949e; margin: .2rem 0; }
+.baicache-block-tag { font-size: .72rem; }
+.baicache-cached .baicache-block-tag { color: #56d364; }
+.baicache-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 1.25rem; }
+.baicache-stat { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; text-align: center; }
+.baicache-stat-num { font-size: 1.2rem; font-weight: 700; color: #c9d1d9; }
+.baicache-saved { color: #56d364; }
+.baicache-stat-cap { font-size: .68rem; color: #8b949e; margin-top: .2rem; }
+.baicache-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

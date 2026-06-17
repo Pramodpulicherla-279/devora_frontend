@@ -1,0 +1,20 @@
+.fuopt-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.fuopt-title { color: #f97316; font-size: 1.2rem; margin: 0 0 .25rem; }
+.fuopt-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.fuopt-compare { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+.fuopt-card { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1rem 1.25rem; text-align: center; min-width: 130px; }
+.fuopt-card-tag { font-size: .65rem; font-weight: 700; letter-spacing: .08em; padding: .1rem .5rem; border-radius: 10px; display: inline-block; margin-bottom: .5rem; }
+.fuopt-before { background: #8b949e20; color: #8b949e; }
+.fuopt-after { background: #56d36420; color: #56d364; }
+.fuopt-stat { font-size: .9rem; color: #c9d1d9; font-weight: 600; }
+.fuopt-dim { font-size: .74rem; color: #8b949e; margin: .2rem 0; }
+.fuopt-size { font-size: 1.1rem; color: #f97316; font-weight: 700; }
+.fuopt-arrow { color: #8b949e; font-size: 1.2rem; }
+.fuopt-saved { text-align: center; font-size: .95rem; font-weight: 700; color: #56d364; margin-bottom: 1.25rem; }
+.fuopt-ops { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.25rem; }
+@media (max-width: 500px) { .fuopt-ops { grid-template-columns: 1fr; } }
+.fuopt-op { display: flex; align-items: center; gap: .5rem; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .55rem .75rem; border-radius: 8px; cursor: pointer; font-size: .82rem; text-align: left; }
+.fuopt-op:hover { border-color: #f97316; color: #c9d1d9; }
+.fuopt-op-on { background: #f9731620; border-color: #f97316; color: #f97316; }
+.fuopt-op-check { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid currentColor; border-radius: 4px; font-size: .7rem; }
+.fuopt-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

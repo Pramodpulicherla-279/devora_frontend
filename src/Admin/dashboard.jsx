@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import LessonEditor from './LessonEditor';
 import CourseManager from './CourseManager';
 import DeleteManager from './DeleteManager';
@@ -697,12 +697,14 @@ function AdminDashboard() {
   const [isAuthed, setIsAuthed] = useState(() => sessionStorage.getItem('admin_auth') === 'true');
   const [currentView, setCurrentView] = useState('courses');
   const [selectedCourseId, setSelectedCourseId] = useState(null);
+  const [courseTarget, setCourseTarget] = useState(null); // { lessonId?, partId? } deep-link
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   /* ── Search ── */
   const [searchQuery, setSearchQuery] = useState('');
   const [searchCourses, setSearchCourses] = useState([]);
   const [searchTracks, setSearchTracks] = useState([]);
+  const [searchIndex, setSearchIndex] = useState({ courses: [], parts: [], lessons: [] });
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef(null);
 
@@ -711,11 +713,25 @@ function AdminDashboard() {
     Promise.all([
       fetch(`${API_BASE_URL}/api/courses`).then(r => r.json()),
       fetch(`${API_BASE_URL}/api/tracks`).then(r => r.json()),
-    ]).then(([co, tr]) => {
+      fetch(`${API_BASE_URL}/api/courses/search-index`).then(r => r.json()),
+    ]).then(([co, tr, idx]) => {
       if (co.success) setSearchCourses(co.data);
       if (tr.success) setSearchTracks(tr.data);
+      if (idx.success) setSearchIndex(idx.data);
     });
   }, [isAuthed]);
+
+  // Lookup maps for resolving a part/lesson → its course context
+  const partMap = useMemo(() => {
+    const m = {};
+    (searchIndex.parts || []).forEach(p => { m[p._id] = p; });
+    return m;
+  }, [searchIndex]);
+  const courseMap = useMemo(() => {
+    const m = {};
+    (searchIndex.courses || []).forEach(c => { m[c._id] = c; });
+    return m;
+  }, [searchIndex]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -734,7 +750,39 @@ function AdminDashboard() {
   const filteredTracks = q.length >= 2
     ? searchTracks.filter(t => t.name.toLowerCase().includes(q)).slice(0, 3)
     : [];
-  const hasResults = filteredCourses.length > 0 || filteredTracks.length > 0;
+  const filteredParts = q.length >= 2
+    ? (searchIndex.parts || []).filter(p => p.title?.toLowerCase().includes(q)).slice(0, 4)
+    : [];
+  const filteredLessons = q.length >= 2
+    ? (searchIndex.lessons || []).filter(l => l.title?.toLowerCase().includes(q)).slice(0, 6)
+    : [];
+  const hasResults =
+    filteredCourses.length > 0 || filteredTracks.length > 0 ||
+    filteredParts.length > 0 || filteredLessons.length > 0;
+
+  const closeSearch = () => { setSearchOpen(false); setSearchQuery(''); };
+
+  // Context label helpers for the dropdown
+  const partContext = (part) => courseMap[part?.course]?.title || 'Course';
+  const lessonContext = (lesson) => {
+    const part = partMap[lesson?.part];
+    const course = courseMap[part?.course];
+    return [course?.title, part?.title].filter(Boolean).join(' › ') || 'Lesson';
+  };
+
+  // Navigate to a part (expand it) inside its course manager
+  const handleSelectPart = (part) => {
+    if (!part?.course) return;
+    handleSelectCourse(part.course, { partId: part._id });
+    closeSearch();
+  };
+  // Navigate straight into a lesson's editor
+  const handleSelectLesson = (lesson) => {
+    const part = partMap[lesson?.part];
+    if (!part?.course) return;
+    handleSelectCourse(part.course, { lessonId: lesson._id, partId: lesson.part });
+    closeSearch();
+  };
 
   const sections = [...new Set(NAV.map(n => n.section))];
 
@@ -745,11 +793,12 @@ function AdminDashboard() {
 
   const navigate = (viewId) => {
     setCurrentView(viewId);
-    if (viewId !== 'course-manager') setSelectedCourseId(null);
+    if (viewId !== 'course-manager') { setSelectedCourseId(null); setCourseTarget(null); }
   };
 
-  const handleSelectCourse = (courseId) => {
+  const handleSelectCourse = (courseId, target = null) => {
     setSelectedCourseId(courseId);
+    setCourseTarget(target);
     setCurrentView('course-manager');
   };
 
@@ -766,6 +815,7 @@ function AdminDashboard() {
         return (
           <CourseManager
             courseId={selectedCourseId}
+            target={courseTarget}
             onBack={() => navigate('courses')}
           />
         );
@@ -858,6 +908,14 @@ function AdminDashboard() {
         </div>
       </div>
 
+      {/* Mobile backdrop — closes sidebar when tapped */}
+      {!sidebarCollapsed && (
+        <div
+          className="admin-sidebar-backdrop"
+          onClick={() => setSidebarCollapsed(true)}
+        />
+      )}
+
       {/* Main content */}
       <div className="admin-main">
         <div className="admin-topbar">
@@ -869,7 +927,7 @@ function AdminDashboard() {
           <div className="search-wrap" ref={searchRef}>
             <input
               className="topbar-search"
-              placeholder="Search courses, tracks… (type 2+ chars)"
+              placeholder="Search courses, lessons, parts, tracks… (type 2+ chars)"
               autoComplete="off"
               value={searchQuery}
               onChange={e => { setSearchQuery(e.target.value); setSearchOpen(true); }}
@@ -877,7 +935,7 @@ function AdminDashboard() {
               onKeyDown={e => { if (e.key === 'Escape') { setSearchOpen(false); setSearchQuery(''); } }}
             />
             {searchOpen && searchQuery.length >= 2 && (
-              <div className="search-dropdown">
+              <div className="adm-search-dropdown">
                 {!hasResults ? (
                   <div className="search-empty">No results for "{searchQuery}"</div>
                 ) : (
@@ -895,9 +953,46 @@ function AdminDashboard() {
                               setSearchQuery('');
                             }}
                           >
-                            <span className="search-result-icon">📘</span>
+                            <span className="search-result-icon">{c.icon || '📘'}</span>
                             <span className="search-result-name">{c.title}</span>
                             <span className={`status-badge ${c.status || 'draft'}`}>{c.status || 'draft'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {filteredLessons.length > 0 && (
+                      <div className="search-group">
+                        <div className="search-group-label">Lessons</div>
+                        {filteredLessons.map(l => (
+                          <div
+                            key={l._id}
+                            className="search-result-item"
+                            onClick={() => handleSelectLesson(l)}
+                          >
+                            <span className="search-result-icon">📝</span>
+                            <span className="search-result-main">
+                              <span className="search-result-name">{l.title}</span>
+                              <span className="search-result-path">{lessonContext(l)}</span>
+                            </span>
+                            <span className={`status-badge ${l.status || 'draft'}`}>{l.status || 'draft'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {filteredParts.length > 0 && (
+                      <div className="search-group">
+                        <div className="search-group-label">Parts / Modules</div>
+                        {filteredParts.map(p => (
+                          <div
+                            key={p._id}
+                            className="search-result-item"
+                            onClick={() => handleSelectPart(p)}
+                          >
+                            <span className="search-result-icon">📂</span>
+                            <span className="search-result-main">
+                              <span className="search-result-name">{p.title}</span>
+                              <span className="search-result-path">{partContext(p)}</span>
+                            </span>
                           </div>
                         ))}
                       </div>

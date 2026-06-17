@@ -1,0 +1,18 @@
+.cptrole-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptrole-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptrole-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptrole-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.25rem; }
+@media (max-width: 520px) { .cptrole-cards { grid-template-columns: 1fr; } }
+.cptrole-card { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .55rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.cptrole-card:hover { border-color: #a78bfa; color: #c9d1d9; }
+.cptrole-card-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptrole-system, .cptrole-user, .cptrole-answer { border-radius: 8px; padding: .7rem .85rem; margin-bottom: .6rem; }
+.cptrole-system { background: #a78bfa15; border: 1px solid #a78bfa44; }
+.cptrole-user { background: #58a6ff15; border: 1px solid #58a6ff44; }
+.cptrole-answer { background: #161b22; border: 1px solid #21262d; }
+.cptrole-sys-tag, .cptrole-user-tag, .cptrole-ans-tag { display: inline-block; font-size: .62rem; font-weight: 700; letter-spacing: .08em; padding: .1rem .4rem; border-radius: 4px; margin-right: .5rem; }
+.cptrole-sys-tag { background: #a78bfa30; color: #a78bfa; }
+.cptrole-user-tag { background: #58a6ff30; color: #58a6ff; }
+.cptrole-ans-tag { background: #56d36430; color: #56d364; }
+.cptrole-sys-text, .cptrole-user-text { font-size: .8rem; color: #c9d1d9; }
+.cptrole-ans-text { font-size: .82rem; color: #c9d1d9; margin-top: .5rem; line-height: 1.55; }

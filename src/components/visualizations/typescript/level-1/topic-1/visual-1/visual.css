@@ -1,0 +1,20 @@
+.tswhy-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tswhy-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tswhy-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tswhy-toggle { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+.tswhy-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .5rem; border-radius: 8px; cursor: pointer; font-size: .85rem; }
+.tswhy-tog-js { background: #f7df1e20; border-color: #f7df1e; color: #f7df1e; }
+.tswhy-tog-ts { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tswhy-editor { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-family: monospace; font-size: .85rem; margin-bottom: 1rem; position: relative; }
+.tswhy-line { display: flex; align-items: center; gap: .75rem; padding: .15rem 0; color: #c9d1d9; }
+.tswhy-ln { color: #8b949e; min-width: 16px; }
+.tswhy-typo { color: #f85149; text-decoration: wavy underline #f85149; }
+.tswhy-squiggle { color: #f85149; letter-spacing: -1px; }
+.tswhy-tooltip { background: #2d1416; border: 1px solid #f85149; color: #f8a59f; border-radius: 6px; padding: .5rem .7rem; font-size: .74rem; margin-top: .5rem; font-family: system-ui, sans-serif; }
+.tswhy-result { border-radius: 8px; padding: .7rem .85rem; font-size: .82rem; margin-bottom: 1rem; }
+.tswhy-result-ts { background: #56d36415; border: 1px solid #56d36444; color: #56d364; }
+.tswhy-result-js { background: #f8514915; border: 1px solid #f8514944; color: #f85149; }
+.tswhy-result code { background: #0d1117; padding: .05rem .3rem; border-radius: 3px; }
+.tswhy-counter { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #8b949e; background: #161b22; border-radius: 8px; padding: .6rem .85rem; }
+.tswhy-counter-icon { font-size: 1.1rem; }
+.tswhy-counter strong { color: #c9d1d9; }

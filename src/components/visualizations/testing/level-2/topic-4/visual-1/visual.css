@@ -1,0 +1,21 @@
+.tstci-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.tstci-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstci-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstci-controls { display: flex; align-items: center; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.tstci-controls-label { font-size: .78rem; color: #8b949e; }
+.tstci-ctrl { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .25rem .65rem; border-radius: 6px; cursor: pointer; font-size: .76rem; }
+.tstci-ctrl-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.tstci-pipeline { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem; margin-bottom: 1rem; }
+.tstci-stage-wrap { display: flex; align-items: center; gap: .3rem; }
+.tstci-stage { display: flex; flex-direction: column; align-items: center; gap: .2rem; border: 1px solid #30363d; border-radius: 8px; padding: .5rem .55rem; min-width: 72px; background: #161b22; }
+.tstci-stage-icon { font-size: 1rem; font-weight: 700; }
+.tstci-stage-label { font-size: .66rem; color: #c9d1d9; text-align: center; }
+.tstci-pass { border-color: #56d364; }
+.tstci-pass .tstci-stage-icon { color: #56d364; }
+.tstci-fail { border-color: #f85149; background: #f8514915; }
+.tstci-fail .tstci-stage-icon { color: #f85149; }
+.tstci-skipped { opacity: .4; }
+.tstci-arrow { color: #8b949e; }
+.tstci-msg { font-size: .82rem; padding: .55rem .8rem; border-radius: 8px; margin-bottom: 1rem; background: #f8514915; border: 1px solid #f8514944; color: #f85149; }
+.tstci-msg-ok { background: #56d36415; border-color: #56d36444; color: #56d364; }
+.tstci-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }

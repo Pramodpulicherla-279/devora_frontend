@@ -1,0 +1,22 @@
+.envspec-container { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.envspec-env-tabs { display: flex; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.envspec-env-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .9rem; border-radius: 6px; cursor: pointer; font-size: .83rem; }
+.envspec-env-tab:hover { border-color: #56d364; color: #c9d1d9; }
+.envspec-env-tab--active { background: #56d36420; border-color: #56d364; color: #56d364; }
+.envspec-node-env-row { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #8b949e; margin-bottom: 1rem; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .5rem .75rem; }
+.envspec-node-env-val { color: #56d364; font-family: monospace; font-weight: 700; }
+.envspec-arrow { color: #8b949e; }
+.envspec-loads { color: #c9d1d9; }
+.envspec-table { border: 1px solid #21262d; border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+.envspec-table-header, .envspec-table-row { display: grid; grid-template-columns: 1fr 1.2fr 1.5fr; gap: .5rem; padding: .6rem .75rem; }
+.envspec-table-header { background: #161b22; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: #8b949e; }
+.envspec-table-row { border-top: 1px solid #21262d; font-size: .82rem; }
+.envspec-col-key, .envspec-var-key { color: #58a6ff; font-family: monospace; }
+.envspec-col-val, .envspec-var-val { color: #56d364; font-family: monospace; word-break: break-all; }
+.envspec-col-desc, .envspec-var-desc { color: #8b949e; }
+.envspec-eq { color: #8b949e; }
+.envspec-code-panel { background: #161b22; border: 1px solid #21262d; border-radius: 8px; overflow: hidden; }
+.envspec-code-header { background: #0d1117; padding: .5rem .75rem; border-bottom: 1px solid #21262d; font-size: .78rem; display: flex; gap: .5rem; align-items: center; }
+.envspec-filename { color: #56d364; font-family: monospace; }
+.envspec-label { color: #8b949e; }
+.envspec-code { padding: 1rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

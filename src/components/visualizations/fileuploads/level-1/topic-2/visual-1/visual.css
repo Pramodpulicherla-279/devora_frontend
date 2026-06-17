@@ -1,0 +1,28 @@
+.fuval-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 740px; }
+.fuval-title { color: #f97316; font-size: 1.2rem; margin: 0 0 .25rem; }
+.fuval-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.fuval-files { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.fuval-file { display: flex; flex-direction: column; align-items: flex-start; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .5rem .75rem; cursor: pointer; }
+.fuval-file:hover { border-color: #f97316; }
+.fuval-file-active { background: #f9731620; border-color: #f97316; }
+.fuval-file-name { font-size: .82rem; color: #c9d1d9; font-family: monospace; }
+.fuval-file-meta { font-size: .7rem; color: #8b949e; }
+.fuval-gates { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-bottom: 1.25rem; }
+@media (max-width: 580px) { .fuval-gates { grid-template-columns: 1fr; } }
+.fuval-gate { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; border-top: 3px solid #30363d; }
+.fuval-gate-pass { border-top-color: #56d364; }
+.fuval-gate-fail { border-top-color: #f85149; }
+.fuval-gate-off { border-top-color: #30363d; opacity: .6; }
+.fuval-gate-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .3rem; }
+.fuval-gate-label { font-size: .78rem; color: #c9d1d9; }
+.fuval-gate-toggle { background: #0d1117; border: 1px solid #30363d; color: #8b949e; padding: .1rem .5rem; border-radius: 12px; cursor: pointer; font-size: .65rem; font-weight: 700; }
+.fuval-gate-toggle.on { background: #f9731620; border-color: #f97316; color: #f97316; }
+.fuval-gate-rule { font-size: .68rem; color: #8b949e; font-family: monospace; margin-bottom: .5rem; }
+.fuval-gate-result { font-size: .78rem; }
+.fuval-pass { color: #56d364; }
+.fuval-fail { color: #f85149; }
+.fuval-skip { color: #8b949e; }
+.fuval-outcome { text-align: center; padding: .7rem; border-radius: 8px; font-size: .88rem; font-weight: 600; margin-bottom: 1rem; }
+.fuval-outcome-ok { background: #56d36420; border: 1px solid #56d364; color: #56d364; }
+.fuval-outcome-no { background: #f8514920; border: 1px solid #f85149; color: #f85149; }
+.fuval-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

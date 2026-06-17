@@ -1,0 +1,16 @@
+.depfb-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.depfb-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.depfb-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.depfb-steps { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.depfb-step { display: flex; align-items: center; gap: .6rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .5rem .7rem; cursor: pointer; }
+.depfb-step-sel { border-color: #818cf8; }
+.depfb-check { width: 20px; height: 20px; flex-shrink: 0; border: 1px solid #30363d; border-radius: 4px; background: #0d1117; color: #56d364; cursor: pointer; font-size: .75rem; display: flex; align-items: center; justify-content: center; }
+.depfb-check-on { background: #56d36420; border-color: #56d364; }
+.depfb-cmd { font-family: monospace; font-size: .8rem; color: #c9d1d9; }
+.depfb-detail { background: #161b22; border-left: 3px solid #818cf8; border-radius: 4px; padding: .6rem .8rem; font-size: .82rem; color: #8b949e; margin-bottom: 1rem; }
+.depfb-live { background: #56d36420; border: 1px solid #56d364; color: #56d364; border-radius: 8px; padding: .6rem .8rem; font-size: .85rem; margin-bottom: 1rem; }
+.depfb-live code { color: #56d364; }
+.depfb-config-label { font-size: .78rem; color: #8b949e; margin-bottom: .4rem; }
+.depfb-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0 0 .75rem; white-space: pre; }
+.depfb-note { font-size: .78rem; color: #8b949e; margin: 0; line-height: 1.5; }
+.depfb-note code { background: #161b22; color: #818cf8; padding: .05rem .3rem; border-radius: 3px; }

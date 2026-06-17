@@ -1,0 +1,20 @@
+.cptsys-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptsys-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptsys-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptsys-stack { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.cptsys-layer { display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; border-radius: 8px; padding: .6rem .85rem; cursor: pointer; border: 1px solid #30363d; background: #161b22; text-align: left; }
+.cptsys-layer-system { border-left: 3px solid #a78bfa; }
+.cptsys-layer-user { border-left: 3px solid #58a6ff; }
+.cptsys-layer-assistant { border-left: 3px solid #56d364; }
+.cptsys-layer-active { box-shadow: 0 0 0 1px currentColor inset; }
+.cptsys-layer-label { font-size: .8rem; font-weight: 700; color: #c9d1d9; }
+.cptsys-layer-ex { font-size: .76rem; color: #8b949e; }
+.cptsys-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; margin-bottom: 1.25rem; }
+.cptsys-detail-row { display: flex; gap: .75rem; padding: .25rem 0; font-size: .82rem; }
+.cptsys-k { color: #8b949e; min-width: 70px; }
+.cptsys-v { color: #c9d1d9; }
+.cptsys-leak { background: #f0883e10; border: 1px solid #f0883e44; border-radius: 8px; padding: .75rem; margin-bottom: 1.25rem; }
+.cptsys-leak-head { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; color: #f0883e; gap: .5rem; }
+.cptsys-leak-btn { background: #f0883e20; border: 1px solid #f0883e; color: #f0883e; padding: .2rem .7rem; border-radius: 6px; cursor: pointer; font-size: .72rem; }
+.cptsys-leak-body { font-size: .78rem; color: #c9d1d9; margin-top: .6rem; line-height: 1.55; }
+.cptsys-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .76rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }

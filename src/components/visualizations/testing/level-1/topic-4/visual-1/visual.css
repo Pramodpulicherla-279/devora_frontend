@@ -1,0 +1,12 @@
+.tstsup-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tstsup-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstsup-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstsup-builder { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+.tstsup-seg { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; padding: .45rem .7rem; border-radius: 6px; cursor: pointer; font-family: monospace; font-size: .78rem; text-align: left; }
+.tstsup-seg-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.tstsup-detail { background: #161b22; border-left: 3px solid #58a6ff; border-radius: 4px; padding: .55rem .8rem; font-size: .82rem; color: #8b949e; margin-bottom: 1.25rem; }
+.tstsup-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tstsup-run { width: 100%; background: #58a6ff20; border: 1px solid #58a6ff; color: #58a6ff; padding: .5rem; border-radius: 8px; cursor: pointer; font-size: .85rem; margin-bottom: 1rem; }
+.tstsup-result { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; font-family: monospace; font-size: .78rem; }
+.tstsup-line { color: #8b949e; padding: .15rem 0; }
+.tstsup-pass { color: #56d364; }

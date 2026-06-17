@@ -1,0 +1,17 @@
+.tsprac-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.tsprac-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsprac-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsprac-toggle { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.tsprac-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.tsprac-tog-js { background: #f7df1e20; border-color: #f7df1e; color: #f7df1e; }
+.tsprac-tog-ts { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tsprac-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tsprac-code-ts { border-left: 3px solid #fbbf24; }
+.tsprac-gains { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+.tsprac-gain { font-size: .74rem; color: #56d364; background: #56d36415; border: 1px solid #56d36444; padding: .15rem .5rem; border-radius: 12px; }
+.tsprac-nogain { font-size: .78rem; color: #f0883e; }
+.tsprac-migration { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.tsprac-migration-h { font-size: .82rem; color: #c9d1d9; font-weight: 600; margin-bottom: .6rem; }
+.tsprac-steps { display: flex; flex-direction: column; gap: .35rem; }
+.tsprac-step { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: #8b949e; }
+.tsprac-step-num { width: 20px; height: 20px; flex-shrink: 0; background: #fbbf2420; border: 1px solid #fbbf24; color: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; }

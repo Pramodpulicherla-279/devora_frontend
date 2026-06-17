@@ -1,0 +1,19 @@
+.tstype-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tstype-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstype-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstype-toggle { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.tstype-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .85rem; font-family: monospace; }
+.tstype-tog-active { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tstype-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tstype-props { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin-bottom: 1rem; }
+.tstype-prop { display: flex; justify-content: space-between; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-family: monospace; }
+.tstype-prop-active { border-color: #fbbf24; }
+.tstype-prop-name { font-size: .8rem; color: #58a6ff; }
+.tstype-prop-type { font-size: .78rem; color: #fbbf24; }
+.tstype-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .7rem; margin-bottom: 1rem; }
+.tstype-detail-row { display: flex; gap: .6rem; font-size: .8rem; font-family: monospace; padding: .2rem 0; }
+.tstype-detail-row span { min-width: 70px; }
+.tstype-ok span { color: #56d364; }
+.tstype-no span { color: #f85149; }
+.tstype-diff { font-size: .8rem; color: #8b949e; background: #161b22; border-left: 3px solid #fbbf24; border-radius: 4px; padding: .6rem .8rem; }
+.tstype-diff strong { color: #c9d1d9; }

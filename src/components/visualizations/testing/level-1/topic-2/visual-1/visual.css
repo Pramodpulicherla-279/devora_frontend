@@ -1,0 +1,15 @@
+.tstunit-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tstunit-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstunit-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstunit-diagram { margin-bottom: 1.25rem; }
+.tstunit-boundary { border: 2px dashed #58a6ff66; border-radius: 10px; padding: 1rem; background: #58a6ff08; position: relative; }
+.tstunit-boundary-label { position: absolute; top: -10px; left: 12px; background: #0d1117; padding: 0 .5rem; font-size: .68rem; color: #58a6ff; }
+.tstunit-fn { display: flex; align-items: center; justify-content: center; gap: .6rem; margin-bottom: .75rem; flex-wrap: wrap; }
+.tstunit-io { font-size: .76rem; color: #8b949e; }
+.tstunit-fn-box { background: #161b22; border: 1px solid #58a6ff; color: #58a6ff; padding: .4rem .8rem; border-radius: 8px; font-family: monospace; font-size: .85rem; }
+.tstunit-excluded { text-align: center; font-size: .72rem; color: #8b949e; }
+.tstunit-scenarios { display: flex; gap: .4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tstunit-sc { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .75rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.tstunit-sc-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.tstunit-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0 0 .75rem; white-space: pre; }
+.tstunit-result { font-size: .85rem; color: #56d364; font-family: monospace; }

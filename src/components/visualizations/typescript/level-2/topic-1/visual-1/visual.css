@@ -1,0 +1,18 @@
+.tsgen-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tsgen-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsgen-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsgen-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tsgen-picker { display: flex; align-items: center; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.tsgen-picker-label { font-size: .8rem; color: #8b949e; }
+.tsgen-type { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .3rem .7rem; border-radius: 6px; cursor: pointer; font-size: .78rem; font-family: monospace; }
+.tsgen-type-active { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tsgen-flow { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 1.25rem; }
+.tsgen-node { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem; text-align: center; flex: 1; }
+.tsgen-in { border-left: 3px solid #58a6ff; }
+.tsgen-out { border-left: 3px solid #56d364; }
+.tsgen-node-label { font-size: .68rem; color: #8b949e; }
+.tsgen-node code { font-size: .82rem; color: #c9d1d9; display: block; margin: .2rem 0; }
+.tsgen-node-type { font-size: .7rem; color: #fbbf24; font-family: monospace; }
+.tsgen-fn { background: #fbbf2415; border: 1px solid #fbbf24; color: #fbbf24; border-radius: 8px; padding: .6rem .5rem; font-family: monospace; font-size: .78rem; text-align: center; }
+.tsgen-t { color: #56d364; }
+.tsgen-second-h { font-size: .8rem; color: #8b949e; margin-bottom: .5rem; }

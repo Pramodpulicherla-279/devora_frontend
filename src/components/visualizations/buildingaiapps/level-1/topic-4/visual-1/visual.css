@@ -1,0 +1,16 @@
+.bailc-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.bailc-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.bailc-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.bailc-toggle { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+.bailc-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.bailc-tog-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.bailc-chain { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: 1.25rem; }
+.bailc-block-wrap { display: flex; align-items: center; gap: .4rem; }
+.bailc-block { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; padding: .5rem .75rem; border-radius: 8px; cursor: pointer; font-size: .78rem; }
+.bailc-block-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.bailc-arrow { color: #8b949e; }
+.bailc-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1rem; }
+.bailc-detail-name { font-size: .9rem; font-weight: 600; color: #58a6ff; margin-bottom: .3rem; }
+.bailc-detail-desc { font-size: .8rem; color: #8b949e; margin-bottom: .6rem; }
+.bailc-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: .7rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }
+.bailc-invoke { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .76rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }

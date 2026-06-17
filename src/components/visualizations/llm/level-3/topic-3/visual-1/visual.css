@@ -1,0 +1,27 @@
+.llmtrain-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 760px; }
+.llmtrain-title { color: #56d364; font-size: 1.2rem; margin: 0 0 .25rem; }
+.llmtrain-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.llmtrain-toggle { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+.llmtrain-tog-btn { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .5rem; border-radius: 8px; cursor: pointer; font-size: .88rem; }
+.llmtrain-tog-btn:hover { border-color: #56d364; color: #c9d1d9; }
+.llmtrain-tog-active { background: #56d36420; border-color: #56d364; color: #56d364; }
+.llmtrain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: 1rem; }
+.llmtrain-step-wrap { display: flex; align-items: center; gap: .4rem; }
+.llmtrain-step { display: flex; flex-direction: column; align-items: center; gap: .2rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .5rem .6rem; cursor: pointer; min-width: 78px; }
+.llmtrain-step:hover { border-color: #56d364; }
+.llmtrain-step-active { background: #56d36420; border-color: #56d364; }
+.llmtrain-step-icon { font-size: 1.2rem; }
+.llmtrain-step-label { font-size: .68rem; color: #c9d1d9; text-align: center; }
+.llmtrain-arrow { color: #8b949e; }
+.llmtrain-loop-badge { background: #f0883e20; border: 1px solid #f0883e; color: #f0883e; font-size: .68rem; padding: .2rem .5rem; border-radius: 12px; }
+.llmtrain-detail { display: flex; gap: .75rem; align-items: center; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem 1rem; margin-bottom: 1.25rem; }
+.llmtrain-detail-icon { font-size: 1.6rem; }
+.llmtrain-detail-name { color: #56d364; font-weight: 600; font-size: .92rem; }
+.llmtrain-detail-desc { color: #8b949e; font-size: .82rem; margin-top: .15rem; }
+.llmtrain-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+@media (max-width: 560px) { .llmtrain-compare { grid-template-columns: 1fr; } }
+.llmtrain-cmp-card { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.llmtrain-cmp-h { font-size: .88rem; font-weight: 600; color: #c9d1d9; margin-bottom: .5rem; }
+.llmtrain-cmp-list { margin: 0; padding-left: 1.1rem; font-size: .8rem; color: #8b949e; line-height: 1.7; }
+.llmtrain-cmp-list strong { color: #56d364; }
+.llmtrain-note { font-size: .8rem; color: #8b949e; background: #161b22; border-left: 3px solid #56d364; border-radius: 4px; padding: .6rem .8rem; margin: 0; }

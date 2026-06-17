@@ -1,0 +1,11 @@
+.baierr-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.baierr-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baierr-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baierr-codes { display: flex; gap: .5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.baierr-code-btn { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .5rem .9rem; border-radius: 8px; cursor: pointer; font-size: .85rem; font-family: monospace; font-weight: 700; }
+.baierr-code-active { background: #f8514920; border-color: #f85149; color: #f85149; }
+.baierr-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; }
+.baierr-detail-name { font-size: .95rem; font-weight: 600; color: #f85149; margin-bottom: .5rem; font-family: monospace; }
+.baierr-row { display: flex; gap: .75rem; padding: .3rem 0; font-size: .82rem; }
+.baierr-k { color: #8b949e; min-width: 50px; }
+.baierr-codeblock { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

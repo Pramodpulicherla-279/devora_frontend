@@ -1,0 +1,23 @@
+.depvite-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.depvite-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.depvite-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1rem; }
+.depvite-cmd { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .5rem .75rem; font-family: monospace; font-size: .8rem; color: #c9d1d9; margin-bottom: 1rem; }
+.depvite-cmd-prompt { color: #56d364; margin-right: .4rem; }
+.depvite-cmd-out { color: #8b949e; }
+.depvite-toggle { display: flex; align-items: center; justify-content: space-between; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .5rem .85rem; margin-bottom: 1rem; }
+.depvite-toggle-label { font-size: .82rem; color: #c9d1d9; }
+.depvite-tog { background: #0d1117; border: 1px solid #30363d; color: #8b949e; padding: .2rem .7rem; border-radius: 20px; cursor: pointer; font-size: .72rem; font-weight: 700; }
+.depvite-tog-on { background: #818cf820; border-color: #818cf8; color: #818cf8; }
+.depvite-body { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-bottom: 1rem; }
+.depvite-tree { display: flex; flex-direction: column; gap: .35rem; }
+.depvite-file { display: flex; justify-content: space-between; align-items: center; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-family: monospace; }
+.depvite-file-sel { border-color: #818cf8; }
+.depvite-file-name { font-size: .76rem; color: #c9d1d9; }
+.depvite-file-size { font-size: .72rem; color: #f0883e; }
+.depvite-html { border-left: 3px solid #f0883e; }
+.depvite-js { border-left: 3px solid #818cf8; }
+.depvite-css { border-left: 3px solid #58a6ff; }
+.depvite-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .7rem .85rem; }
+.depvite-detail-name { font-family: monospace; font-size: .8rem; color: #818cf8; }
+.depvite-detail-desc { font-size: .78rem; color: #8b949e; margin-top: .2rem; }
+.depvite-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }
