@@ -1,0 +1,21 @@
+.jsgame-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 780px; }
+.jsgame-title { color: #f97316; font-size: 1.2rem; margin: 0 0 .25rem; }
+.jsgame-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.jsgame-main { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 600px) { .jsgame-main { grid-template-columns: 1fr; } }
+.jsgame-board { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.jsgame-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.jsgame-btn { width: 90px; height: 90px; border-radius: 10px; cursor: pointer; font-size: .8rem; font-weight: 700; color: #fff; transition: all .15s; }
+.jsgame-btn:disabled { cursor: not-allowed; }
+.jsgame-status { text-align: center; }
+.jsgame-msg { font-size: .9rem; color: #c9d1d9; }
+.jsgame-start { background: #f97316; border: none; color: #fff; padding: .4rem 1rem; border-radius: 6px; cursor: pointer; font-size: .85rem; font-weight: 600; }
+.jsgame-fail { display: flex; flex-direction: column; align-items: center; gap: .5rem; color: #f85149; }
+.jsgame-score { font-size: .85rem; color: #8b949e; }
+.jsgame-code-panel { display: flex; flex-direction: column; gap: .5rem; }
+.jsgame-code-tabs { display: flex; gap: .4rem; }
+.jsgame-code-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .2rem .6rem; border-radius: 4px; cursor: pointer; font-size: .75rem; }
+.jsgame-code-tab.active { border-color: #f97316; color: #f97316; background: #f9731620; }
+.jsgame-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .75rem; font-size: .75rem; color: #a78bfa; overflow-x: auto; flex: 1; margin: 0; white-space: pre; }
+.jsgame-concepts { display: flex; flex-wrap: wrap; gap: .3rem; }
+.jsgame-concept { background: #f9731620; border: 1px solid #f97316; color: #f97316; padding: .15rem .5rem; border-radius: 20px; font-size: .7rem; }

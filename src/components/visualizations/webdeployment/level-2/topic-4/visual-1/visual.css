@@ -1,0 +1,21 @@
+.depsent-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.depsent-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.depsent-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.depsent-toggle { display: flex; gap: .5rem; margin-bottom: .75rem; }
+.depsent-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.depsent-tog-on { background: #818cf820; border-color: #818cf8; color: #818cf8; }
+.depsent-trigger { width: 100%; background: #f8514915; border: 1px solid #f85149; color: #f85149; padding: .5rem; border-radius: 8px; cursor: pointer; font-size: .85rem; font-weight: 600; margin-bottom: 1.25rem; }
+.depsent-trigger:hover { background: #f8514925; }
+.depsent-panels { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1.25rem; }
+@media (max-width: 560px) { .depsent-panels { grid-template-columns: 1fr; } }
+.depsent-panel { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; min-height: 120px; }
+.depsent-panel-h { font-size: .8rem; font-weight: 600; color: #c9d1d9; margin-bottom: .6rem; }
+.depsent-empty { font-size: .78rem; color: #8b949e; font-style: italic; }
+.depsent-blind { color: #f0883e; }
+.depsent-graceful { background: #f0883e15; border: 1px solid #f0883e44; color: #f0883e; border-radius: 6px; padding: .6rem; font-size: .78rem; }
+.depsent-whitescreen { background: #fff; color: #888; border-radius: 6px; padding: 1.2rem .6rem; font-size: .78rem; text-align: center; }
+.depsent-event { font-size: .72rem; }
+.depsent-ev-row { display: flex; gap: .5rem; padding: .2rem 0; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+.depsent-ev-row span { color: #8b949e; min-width: 80px; }
+.depsent-ev-tag { margin-top: .5rem; color: #56d364; font-size: .72rem; }
+.depsent-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

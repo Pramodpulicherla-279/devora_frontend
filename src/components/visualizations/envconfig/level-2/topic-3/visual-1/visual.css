@@ -1,0 +1,20 @@
+.envhelm-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.envhelm-title { color: #56d364; font-size: 1.2rem; margin: 0 0 .25rem; }
+.envhelm-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.envhelm-toggle-row { display: flex; align-items: center; justify-content: space-between; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem .85rem; margin-bottom: 1rem; }
+.envhelm-toggle-label { font-family: monospace; font-size: .85rem; color: #c9d1d9; }
+.envhelm-toggle { background: #0d1117; border: 1px solid #30363d; color: #8b949e; padding: .25rem .8rem; border-radius: 20px; cursor: pointer; font-size: .72rem; font-weight: 700; }
+.envhelm-toggle-on { background: #56d36420; border-color: #56d364; color: #56d364; }
+.envhelm-headers { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.envhelm-header { display: flex; justify-content: space-between; align-items: center; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .5rem .75rem; cursor: pointer; }
+.envhelm-header-sel { border-color: #56d364; }
+.envhelm-header-off { opacity: .5; }
+.envhelm-header-name { font-family: monospace; font-size: .78rem; color: #c9d1d9; }
+.envhelm-header-status { font-size: .72rem; }
+.envhelm-header-on .envhelm-header-status { color: #56d364; }
+.envhelm-header-off .envhelm-header-status { color: #f85149; }
+.envhelm-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1rem; }
+.envhelm-detail-name { font-family: monospace; font-size: .85rem; color: #56d364; margin-bottom: .3rem; }
+.envhelm-detail-desc { font-size: .82rem; color: #c9d1d9; }
+.envhelm-warn { font-size: .78rem; color: #f85149; margin-top: .5rem; }
+.envhelm-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

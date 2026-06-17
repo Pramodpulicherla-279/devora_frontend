@@ -1,0 +1,24 @@
+.envcors-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.envcors-title { color: #56d364; font-size: 1.2rem; margin: 0 0 .25rem; }
+.envcors-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1rem; }
+.envcors-allow { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .5rem .75rem; margin-bottom: 1rem; }
+.envcors-allow-label { font-size: .76rem; color: #8b949e; }
+.envcors-allow-item { font-size: .72rem; color: #56d364; background: #0d1117; padding: .1rem .4rem; border-radius: 4px; }
+.envcors-tabs { display: flex; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.envcors-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .8rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.envcors-tab:hover { border-color: #56d364; color: #c9d1d9; }
+.envcors-tab-active { background: #56d36420; border-color: #56d364; color: #56d364; }
+.envcors-flow { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: 1.25rem; }
+.envcors-node { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; font-size: .82rem; text-align: center; color: #c9d1d9; }
+.envcors-origin { font-size: .68rem; color: #8b949e; }
+.envcors-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+.envcors-preflight { font-size: .72rem; color: #8b949e; }
+.envcors-verdict { font-size: .82rem; font-weight: 600; padding: .2rem .6rem; border-radius: 12px; }
+.envcors-ok { background: #56d36420; color: #56d364; }
+.envcors-no { background: #f8514920; color: #f85149; }
+.envcors-header { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .6rem .75rem; font-family: monospace; font-size: .78rem; margin-bottom: .5rem; }
+.envcors-h-key { color: #8b949e; }
+.envcors-h-val { color: #56d364; margin-left: .4rem; }
+.envcors-h-none { color: #f85149; }
+.envcors-note { font-size: .8rem; color: #8b949e; margin-bottom: 1rem; }
+.envcors-code { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

@@ -1,0 +1,18 @@
+.baifw-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.baifw-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baifw-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baifw-matrix { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; }
+.baifw-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: .5rem; align-items: center; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .5rem .7rem; cursor: pointer; text-align: left; }
+.baifw-head { background: transparent; border: none; cursor: default; padding-bottom: 0; }
+.baifw-row-active { border-color: #58a6ff; background: #58a6ff15; }
+.baifw-cell-name { font-size: .82rem; color: #c9d1d9; font-weight: 600; }
+.baifw-head .baifw-cell { font-size: .68rem; color: #8b949e; }
+.baifw-cell { display: flex; gap: .2rem; }
+.baifw-dot { width: 8px; height: 8px; border-radius: 50%; background: #30363d; }
+.baifw-dot-on { background: #58a6ff; }
+.baifw-best { font-size: .82rem; color: #c9d1d9; background: #161b22; border-left: 3px solid #58a6ff; border-radius: 4px; padding: .6rem .8rem; margin-bottom: 1.25rem; }
+.baifw-best-name { color: #58a6ff; font-weight: 600; }
+.baifw-flow { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.baifw-flow-h { font-size: .8rem; color: #8b949e; margin-bottom: .5rem; }
+.baifw-flow-row { font-size: .8rem; color: #c9d1d9; padding: .25rem 0; }
+.baifw-flow-row strong { color: #56d364; }

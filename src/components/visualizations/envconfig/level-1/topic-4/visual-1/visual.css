@@ -1,0 +1,16 @@
+.envsec-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 720px; }
+.envsec-title { color: #56d364; font-size: 1.2rem; margin: 0 0 .25rem; }
+.envsec-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.envsec-ladder { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.envsec-tier { display: flex; align-items: center; gap: .75rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .6rem .85rem; cursor: pointer; }
+.envsec-tier:hover { border-color: #56d364; }
+.envsec-tier-active { background: #161b22; }
+.envsec-tier-icon { font-size: 1.3rem; }
+.envsec-tier-name { font-size: .88rem; color: #c9d1d9; flex: 1; text-align: left; }
+.envsec-tier-arrow { color: #8b949e; }
+.envsec-detail { background: #161b22; border: 1px solid #21262d; border-top: 3px solid #56d364; border-radius: 8px; padding: .85rem; margin-bottom: 1rem; }
+.envsec-detail-head { font-size: .95rem; font-weight: 600; color: #c9d1d9; margin-bottom: .6rem; }
+.envsec-row { display: flex; gap: .75rem; padding: .25rem 0; font-size: .82rem; }
+.envsec-k { color: #8b949e; min-width: 70px; }
+.envsec-v { color: #c9d1d9; }
+.envsec-note { font-size: .8rem; color: #8b949e; background: #161b22; border-left: 3px solid #56d364; border-radius: 4px; padding: .6rem .8rem; margin: 0; }

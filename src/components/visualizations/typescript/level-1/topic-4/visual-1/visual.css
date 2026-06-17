@@ -1,0 +1,17 @@
+.tsclass-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tsclass-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsclass-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsclass-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .76rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tsclass-mods { display: flex; gap: .4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tsclass-mod { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .8rem; border-radius: 6px; cursor: pointer; font-size: .8rem; font-family: monospace; }
+.tsclass-mod-active { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tsclass-access { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 1rem; }
+.tsclass-scope { display: flex; flex-direction: column; align-items: center; gap: .3rem; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .7rem; }
+.tsclass-scope-ok { border-color: #56d36444; }
+.tsclass-scope-no { border-color: #f8514944; opacity: .7; }
+.tsclass-scope-icon { font-size: 1.2rem; font-weight: 700; }
+.tsclass-scope-ok .tsclass-scope-icon { color: #56d364; }
+.tsclass-scope-no .tsclass-scope-icon { color: #f85149; }
+.tsclass-scope-label { font-size: .72rem; color: #8b949e; text-align: center; }
+.tsclass-desc { font-size: .82rem; color: #8b949e; background: #161b22; border-left: 3px solid #fbbf24; border-radius: 4px; padding: .6rem .8rem; }
+.tsclass-desc strong { color: #fbbf24; font-family: monospace; }

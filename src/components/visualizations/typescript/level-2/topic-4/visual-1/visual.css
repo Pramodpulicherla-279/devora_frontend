@@ -1,0 +1,13 @@
+.tscfg-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tscfg-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tscfg-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tscfg-json { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #8b949e; overflow-x: auto; margin: 0 0 1rem; white-space: pre; font-family: monospace; display: flex; flex-direction: column; }
+.tscfg-line { cursor: pointer; color: #c9d1d9; border-radius: 3px; }
+.tscfg-line:hover { background: #21262d; }
+.tscfg-line-sel { background: #fbbf2420; color: #fbbf24; }
+.tscfg-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem .85rem; display: flex; flex-direction: column; gap: .4rem; }
+.tscfg-detail-key { font-family: monospace; font-size: .85rem; color: #fbbf24; }
+.tscfg-detail-desc { font-size: .82rem; color: #c9d1d9; }
+.tscfg-strict-btn { align-self: flex-start; background: #fbbf2420; border: 1px solid #fbbf24; color: #fbbf24; padding: .25rem .7rem; border-radius: 6px; cursor: pointer; font-size: .74rem; }
+.tscfg-flags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+.tscfg-flag { font-size: .72rem; color: #56d364; background: #56d36415; border: 1px solid #56d36444; padding: .15rem .5rem; border-radius: 12px; font-family: monospace; }

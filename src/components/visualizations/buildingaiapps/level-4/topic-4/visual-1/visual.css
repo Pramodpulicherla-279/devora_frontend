@@ -1,0 +1,20 @@
+.baicnt-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 740px; }
+.baicnt-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baicnt-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baicnt-toggle { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+.baicnt-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.baicnt-tog-safe { background: #56d36420; border-color: #56d364; color: #56d364; }
+.baicnt-tog-flag { background: #f8514920; border-color: #f85149; color: #f85149; }
+.baicnt-pipeline { display: flex; align-items: stretch; gap: .3rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.baicnt-stage { flex: 1; min-width: 90px; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem .5rem; text-align: center; font-size: .78rem; color: #c9d1d9; }
+.baicnt-stage-val { font-size: .68rem; color: #8b949e; margin-top: .25rem; }
+.baicnt-gate.baicnt-blocked { border-color: #f85149; background: #f8514915; }
+.baicnt-gate.baicnt-passed { border-color: #56d364; background: #56d36410; }
+.baicnt-skipped { opacity: .4; }
+.baicnt-arrow { display: flex; align-items: center; color: #8b949e; }
+.baicnt-cats { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; }
+.baicnt-cats-h { font-size: .78rem; color: #8b949e; margin-bottom: .5rem; }
+.baicnt-cats-list { display: flex; gap: .4rem; flex-wrap: wrap; }
+.baicnt-cat { font-size: .72rem; color: #8b949e; background: #0d1117; border: 1px solid #30363d; padding: .15rem .55rem; border-radius: 12px; }
+.baicnt-cat-hit { background: #f8514920; border-color: #f85149; color: #f85149; }
+.baicnt-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

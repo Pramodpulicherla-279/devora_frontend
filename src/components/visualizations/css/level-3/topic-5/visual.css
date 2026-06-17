@@ -1,0 +1,16 @@
+.csskf-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.csskf-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.csskf-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1rem; }
+.csskf-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+.csskf-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .3rem .75rem; border-radius: 6px; font-size: .82rem; cursor: pointer; }
+.csskf-tab:hover { border-color: #818cf8; color: #c9d1d9; }
+.csskf-tab-active { background: #818cf820; border-color: #818cf8; color: #818cf8; }
+.csskf-stage { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 2.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.csskf-box { width: 60px; height: 60px; background: linear-gradient(135deg, #818cf8, #a78bfa); border-radius: 10px; }
+.csskf-play-btn { background: #161b22; border: 1px solid #818cf8; color: #818cf8; padding: .3rem .9rem; border-radius: 6px; cursor: pointer; font-size: .82rem; }
+.csskf-play-btn:hover { background: #818cf820; }
+.csskf-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 1rem; font-size: .78rem; color: #56d364; overflow-x: auto; margin: 0 0 1rem; }
+.csskf-props { display: flex; flex-direction: column; gap: .3rem; }
+.csskf-prop { font-size: .8rem; background: #161b22; border-radius: 4px; padding: .3rem .6rem; }
+.csskf-prop-k { color: #8b949e; }
+.csskf-prop-v { color: #a78bfa; margin-left: .3rem; }

@@ -1,0 +1,22 @@
+.cptsc-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptsc-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptsc-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptsc-control { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.cptsc-control-label { font-size: .82rem; color: #8b949e; }
+.cptsc-btns { display: flex; gap: .4rem; }
+.cptsc-btn { background: #161b22; border: 1px solid #30363d; color: #8b949e; width: 34px; height: 30px; border-radius: 6px; cursor: pointer; font-size: .82rem; }
+.cptsc-btn-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptsc-paths { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1.25rem; }
+.cptsc-path { display: flex; justify-content: space-between; align-items: center; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .45rem .7rem; font-size: .78rem; }
+.cptsc-path-win { border-left: 3px solid #56d364; }
+.cptsc-path-lose { border-left: 3px solid #8b949e; opacity: .65; }
+.cptsc-path-reason { color: #c9d1d9; }
+.cptsc-path-ans { color: #a78bfa; font-weight: 600; font-family: monospace; }
+.cptsc-tally { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1rem; }
+.cptsc-tally-h { font-size: .8rem; color: #8b949e; margin-bottom: .6rem; }
+.cptsc-vote { display: flex; align-items: center; gap: .6rem; margin-bottom: .4rem; }
+.cptsc-vote-ans { font-family: monospace; font-size: .82rem; color: #c9d1d9; min-width: 30px; }
+.cptsc-vote-bar { flex: 1; background: #0d1117; border-radius: 10px; height: 14px; overflow: hidden; }
+.cptsc-vote-fill { height: 100%; border-radius: 10px; transition: width .3s; }
+.cptsc-vote-count { font-size: .78rem; color: #8b949e; min-width: 16px; }
+.cptsc-result { font-size: .82rem; color: #56d364; background: #56d36415; border: 1px solid #56d36444; border-radius: 8px; padding: .6rem .8rem; }

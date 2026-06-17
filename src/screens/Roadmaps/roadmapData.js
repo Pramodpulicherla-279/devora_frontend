@@ -1,5 +1,5 @@
 /**
- * roadmapData.js — All 10 learning-path roadmaps for Dev.EL
+ * roadmapData.js — All learning-path roadmaps for Dev.EL
  *
  * Each roadmap has phases; each phase has steps.
  * Steps can link to a Dev.EL course via courseSlug.
@@ -309,7 +309,89 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     6. DATA ANALYTICS
+     6. DEVOPS
+  ═══════════════════════════════════════════════════════════════ */
+  {
+    slug: 'devops',
+    name: 'DevOps',
+    icon: '♾️',
+    color: '#0891b2',
+    description: 'Bridge development and operations — automate everything from Linux, containers and Kubernetes to IaC, CI/CD, cloud and observability.',
+    phases: [
+      {
+        id: 'devops-p1', title: 'DevOps Foundations',
+        steps: [
+          { id: 'devops-culture', title: 'DevOps Culture & Agile', icon: '🤝', type: 'required', description: 'Understand the DevOps mindset — collaboration, ownership and continuous improvement — and how it fits Agile/Scrum delivery.', topics: ['CALMS & the Three Ways', 'Dev + Ops collaboration', 'Agile & Scrum basics', 'Blameless postmortems', 'DORA metrics (lead time, MTTR)'] },
+          { id: 'devops-linux', title: 'Linux Fundamentals', icon: '🐧', type: 'required', description: 'Linux is the OS of servers and containers — master the filesystem, permissions, processes and services.', topics: ['Filesystem hierarchy', 'Users, groups & permissions', 'Processes & signals', 'systemd & services', 'Package managers (apt/dnf)'] },
+          { id: 'devops-shell', title: 'Shell Scripting & Bash', icon: '💻', type: 'required', courseSlug: 'terminal-command-line/terminal-basics-for-developers', description: 'Automate repetitive operational tasks with Bash scripting and the command line.', topics: ['Bash scripting', 'Variables & conditionals', 'Loops & functions', 'cron & scheduling', 'grep / sed / awk', 'Exit codes & piping'] },
+        ],
+      },
+      {
+        id: 'devops-p2', title: 'Version Control & Collaboration',
+        steps: [
+          { id: 'devops-git', title: 'Git & GitHub/GitLab', icon: '🐙', type: 'required', courseSlug: 'git-and-github/introduction-to-git-and-github-version-control-essentials', description: 'Version control is the backbone of DevOps automation and team collaboration.', topics: ['Commits & branching', 'Pull / Merge requests', 'Conventional commits', 'Git hooks', 'Tags & releases'] },
+          { id: 'devops-workflows', title: 'Branching Workflows', icon: '🌿', type: 'required', description: 'Choose the right branching and release strategy for your team.', topics: ['Trunk-based development', 'GitFlow', 'PR review culture', 'Semantic versioning', 'Monorepo vs polyrepo'] },
+        ],
+      },
+      {
+        id: 'devops-p3', title: 'Programming & Networking',
+        steps: [
+          { id: 'devops-python', title: 'Python for Automation', icon: '🐍', type: 'required', description: 'A scripting language for tooling, glue code, automation and cloud SDKs.', topics: ['Scripting basics', 'requests & REST APIs', 'os / subprocess modules', 'boto3 / cloud SDKs', 'venv & pip'] },
+          { id: 'devops-networking', title: 'Networking & Protocols', icon: '🌐', type: 'required', description: 'How traffic flows between clients, services and the internet.', topics: ['TCP/IP & ports', 'DNS', 'HTTP/HTTPS & TLS', 'SSH', 'Load balancing', 'Firewalls & NAT'] },
+          { id: 'devops-webservers', title: 'Web Servers & Proxies', icon: '🚦', type: 'optional', description: 'Serve, route and reverse-proxy traffic to your applications.', topics: ['Nginx', 'Reverse proxy', 'TLS termination', 'Caddy', 'Rate limiting'] },
+        ],
+      },
+      {
+        id: 'devops-p4', title: 'Containerization',
+        steps: [
+          { id: 'devops-docker', title: 'Docker', icon: '🐳', type: 'required', description: 'Package applications and their dependencies into portable, reproducible containers.', topics: ['Images & layers', 'Dockerfile', 'Multi-stage builds', 'Docker Compose', 'Volumes & networks', 'Distroless images'] },
+          { id: 'devops-registry', title: 'Registries & Image Security', icon: '📦', type: 'optional', description: 'Store, scan and harden container images for production.', topics: ['Docker Hub / GHCR / Harbor', 'Image tagging strategy', 'Vulnerability scanning (Trivy/Grype)', 'SBOM (Syft)', 'Image signing (cosign)'] },
+        ],
+      },
+      {
+        id: 'devops-p5', title: 'Container Orchestration',
+        steps: [
+          { id: 'devops-k8s', title: 'Kubernetes Core', icon: '☸️', type: 'required', description: 'Deploy, scale and self-heal containerized workloads in production with Kubernetes.', topics: ['Pods, ReplicaSets & Deployments', 'Services & Ingress', 'ConfigMaps & Secrets', 'Namespaces', 'kubectl', 'Liveness / readiness probes'] },
+          { id: 'devops-helm', title: 'Helm & Kustomize', icon: '⚓', type: 'required', description: 'Package, template and manage Kubernetes manifests at scale.', topics: ['Helm charts', 'Values & templating', 'Releases & rollbacks', 'Kustomize overlays', 'Chart repositories'] },
+          { id: 'devops-k8s-ops', title: 'K8s Operations', icon: '🛠️', type: 'advanced', description: 'Operate clusters reliably with scaling, access control and policy enforcement.', topics: ['HPA & autoscaling', 'RBAC', 'Network policies', 'Resource requests & limits', 'Operators & CRDs'] },
+        ],
+      },
+      {
+        id: 'devops-p6', title: 'Infrastructure as Code',
+        steps: [
+          { id: 'devops-terraform', title: 'Terraform / OpenTofu', icon: '🏗️', type: 'required', description: 'Provision cloud infrastructure declaratively, reproducibly and version-controlled.', topics: ['Providers & resources', 'State & remote backends', 'Modules', 'Variables & outputs', 'Workspaces', 'OpenTofu (OSS fork)'] },
+          { id: 'devops-ansible', title: 'Ansible', icon: '📜', type: 'required', description: 'Automate server configuration and application deployment idempotently.', topics: ['Playbooks & roles', 'Inventory', 'Modules & tasks', 'Idempotency', 'Ansible Vault'] },
+          { id: 'devops-pulumi', title: 'Pulumi', icon: '🧩', type: 'optional', description: 'Infrastructure as code using real programming languages instead of HCL.', topics: ['IaC in TS / Python / Go', 'Stacks', 'State management', 'Pulumi vs Terraform'] },
+        ],
+      },
+      {
+        id: 'devops-p7', title: 'CI/CD & GitOps',
+        steps: [
+          { id: 'devops-cicd', title: 'CI/CD Pipelines', icon: '⚡', type: 'required', description: 'Automate build, test and deploy with modern pipeline tooling.', topics: ['GitHub Actions', 'GitLab CI', 'Jenkins', 'Pipeline stages & artifacts', 'Caching & matrix builds', 'Pipeline secrets'] },
+          { id: 'devops-gitops', title: 'GitOps (Argo CD / Flux)', icon: '🔄', type: 'required', description: 'Make Git the single source of truth for declarative, auditable deployments.', topics: ['GitOps principles', 'Argo CD', 'Flux CD', 'Sync & drift detection', 'Declarative rollbacks'] },
+          { id: 'devops-progressive', title: 'Progressive Delivery', icon: '🐤', type: 'optional', description: 'Ship changes safely with gradual, automated, observable rollouts.', topics: ['Blue-green deployments', 'Canary releases', 'Argo Rollouts / Flagger', 'Feature flags', 'Automated rollback'] },
+        ],
+      },
+      {
+        id: 'devops-p8', title: 'Cloud Platforms',
+        steps: [
+          { id: 'devops-cloud', title: 'Cloud Fundamentals', icon: '☁️', type: 'required', description: 'Core building blocks shared across AWS, Azure and GCP.', topics: ['IAM & identity', 'Compute (EC2 / VMs)', 'Storage (S3 / blob)', 'VPC & networking', 'Managed databases', 'Billing & cost control'] },
+          { id: 'devops-managed', title: 'Managed & Serverless', icon: '🚀', type: 'optional', description: 'Reduce operational toil with managed Kubernetes and serverless.', topics: ['Managed K8s (EKS / GKE / AKS)', 'Serverless (Lambda / Cloud Run)', 'Managed queues & caches', 'Auto-scaling', 'Well-Architected basics'] },
+        ],
+      },
+      {
+        id: 'devops-p9', title: 'Observability, DevSecOps & SRE',
+        steps: [
+          { id: 'devops-observability', title: 'Observability Stack', icon: '📊', type: 'required', description: 'Know exactly what your systems are doing with metrics, logs and traces.', topics: ['Prometheus & Grafana', 'Logging (Loki / ELK)', 'Distributed tracing (Tempo / Jaeger)', 'OpenTelemetry', 'Alerting (Alertmanager)'] },
+          { id: 'devops-devsecops', title: 'DevSecOps', icon: '🛡️', type: 'required', description: 'Shift security left and bake it into every stage of the pipeline.', topics: ['SAST & DAST', 'Dependency / image scanning (Snyk / Trivy)', 'Secrets management (Vault)', 'Policy as Code (OPA / Kyverno)', 'Supply-chain security'] },
+          { id: 'devops-sre', title: 'SRE & Reliability', icon: '🧯', type: 'advanced', description: 'Engineer for reliability with SLOs, incident response and resilience practices.', topics: ['SLI / SLO / SLA', 'Error budgets', 'Incident management & on-call', 'Backups & disaster recovery', 'Chaos engineering', 'Platform engineering (Backstage)'] },
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════
+     7. DATA ANALYTICS
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'data-analytics',
@@ -357,7 +439,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     7. APPIUM AUTOMATION
+     8. APPIUM AUTOMATION
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'appium-automation',
@@ -406,7 +488,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     8. PLAYWRIGHT AUTOMATION
+     9. PLAYWRIGHT AUTOMATION
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'playwright-automation',
@@ -456,7 +538,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     9. PROMPT ENGINEERING
+     10. PROMPT ENGINEERING
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'prompt-engineering',
@@ -500,7 +582,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     10. AI ENGINEERING
+     11. AI ENGINEERING
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'ai-engineering',
@@ -552,7 +634,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     11. DSA WITH PYTHON
+     12. DSA WITH PYTHON
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'dsa-python',
@@ -624,7 +706,7 @@ export const ROADMAPS = [
   },
 
   /* ═══════════════════════════════════════════════════════════════
-     12. DSA WITH C++
+     13. DSA WITH C++
   ═══════════════════════════════════════════════════════════════ */
   {
     slug: 'dsa-cpp',

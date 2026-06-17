@@ -1,0 +1,12 @@
+.rctnest-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 780px; }
+.rctnest-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 1rem; }
+.rctnest-tabs { display: flex; gap: .4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.rctnest-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .8rem; border-radius: 6px; cursor: pointer; font-size: .83rem; }
+.rctnest-tab:hover { border-color: #58a6ff; color: #c9d1d9; }
+.rctnest-tab-active { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+.rctnest-body { display: grid; grid-template-columns: 220px 1fr; gap: 1rem; }
+@media (max-width: 600px) { .rctnest-body { grid-template-columns: 1fr; } }
+.rctnest-tree { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; display: flex; flex-direction: column; gap: .4rem; }
+.rctnest-node { font-size: .78rem; color: #8b949e; padding: .3rem .4rem; border-radius: 4px; }
+.rctnest-node-active { background: #58a6ff15; color: #58a6ff; border-left: 2px solid #58a6ff; }
+.rctnest-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1rem; font-size: .75rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; flex: 1; }

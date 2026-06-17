@@ -211,7 +211,7 @@ function AddPartModal({ courseId, onClose, onCreated }) {
   );
 }
 
-function CourseManager({ courseId, onBack }) {
+function CourseManager({ courseId, target, onBack }) {
   const [course, setCourse] = useState(null);
   const [allTracks, setAllTracks] = useState([]);
   const [activeTab, setActiveTab] = useState('structure');
@@ -224,6 +224,7 @@ function CourseManager({ courseId, onBack }) {
   const [iconPickerOpen, setIconPickerOpen] = useState(false);
   const [editingPart, setEditingPart] = useState(null); // { id, title }
   const partEditRef = useRef(null);
+  const appliedTargetRef = useRef(null); // ensures a deep-link target applies once
 
   const loadCourse = async () => {
     setLoading(true);
@@ -239,6 +240,28 @@ function CourseManager({ courseId, onBack }) {
   useEffect(() => {
     if (courseId) loadCourse();
   }, [courseId]);
+
+  // Apply a deep-link target (from global search) once the course is loaded.
+  // Runs once per distinct target object, so re-fetches after saving a lesson
+  // don't hijack the user's current selection.
+  useEffect(() => {
+    if (!course || !target || appliedTargetRef.current === target) return;
+    appliedTargetRef.current = target;
+
+    if (target.lessonId) {
+      const part = course.parts?.find(p =>
+        p.lessons?.some(l => l._id === target.lessonId)
+      );
+      const lesson = part?.lessons?.find(l => l._id === target.lessonId);
+      if (lesson) {
+        setExpandedParts(prev => ({ ...prev, [part._id]: true }));
+        setSelectedLesson({ ...lesson, partId: part._id, partTitle: part.title });
+      }
+    } else if (target.partId) {
+      setExpandedParts(prev => ({ ...prev, [target.partId]: true }));
+      setSelectedLesson(null);
+    }
+  }, [course, target]);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/tracks`)
@@ -580,6 +603,15 @@ function CourseManager({ courseId, onBack }) {
             }}
           >
             ☰ Course Structure
+          </button>
+        )}
+        {/* Mobile-only: back to structure when a lesson is open */}
+        {selectedLesson && (
+          <button
+            className="cm-mobile-back"
+            onClick={() => setSelectedLesson(null)}
+          >
+            ← Structure
           </button>
         )}
         {selectedLesson ? (

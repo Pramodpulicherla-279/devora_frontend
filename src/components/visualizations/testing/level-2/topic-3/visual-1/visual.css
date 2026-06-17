@@ -1,0 +1,15 @@
+.tstcov-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tstcov-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tstcov-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tstcov-gauges { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; margin-bottom: 1.25rem; }
+@media (max-width: 520px) { .tstcov-gauges { grid-template-columns: 1fr 1fr; } }
+.tstcov-gauge { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .6rem; text-align: center; }
+.tstcov-svg { width: 60px; height: 60px; }
+.tstcov-label { font-size: .68rem; color: #8b949e; text-transform: capitalize; margin: .2rem 0; }
+.tstcov-adjust { display: flex; gap: .3rem; justify-content: center; }
+.tstcov-adjust button { width: 24px; height: 24px; background: #0d1117; border: 1px solid #30363d; color: #c9d1d9; border-radius: 4px; cursor: pointer; font-size: .85rem; }
+.tstcov-adjust button:hover { border-color: #58a6ff; }
+.tstcov-status { text-align: center; padding: .6rem; border-radius: 8px; font-size: .85rem; font-weight: 600; margin-bottom: 1.25rem; }
+.tstcov-blocked { background: #f8514920; border: 1px solid #f85149; color: #f85149; }
+.tstcov-ok { background: #56d36420; border: 1px solid #56d364; color: #56d364; }
+.tstcov-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }

@@ -1,0 +1,20 @@
+.baili-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.baili-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.baili-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.baili-pipeline { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-bottom: 1.25rem; }
+.baili-stage-wrap { display: flex; align-items: center; gap: .5rem; }
+.baili-stage { display: flex; flex-direction: column; align-items: center; gap: .2rem; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: .6rem 1rem; cursor: pointer; }
+.baili-stage-active { background: #58a6ff20; border-color: #58a6ff; }
+.baili-stage-icon { font-size: 1.3rem; }
+.baili-stage-label { font-size: .78rem; color: #c9d1d9; }
+.baili-arrow { color: #8b949e; }
+.baili-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; }
+.baili-detail-head { font-size: .92rem; font-weight: 600; color: #58a6ff; margin-bottom: .3rem; }
+.baili-detail-desc { font-size: .8rem; color: #8b949e; margin-bottom: .6rem; }
+.baili-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: .7rem; font-size: .74rem; color: #a78bfa; overflow-x: auto; margin: 0; white-space: pre; }
+.baili-graph { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.baili-graph-h { font-size: .8rem; color: #c9d1d9; margin-bottom: .6rem; }
+.baili-nodes { display: flex; gap: .5rem; flex-wrap: wrap; }
+.baili-node { width: 36px; height: 36px; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #8b949e; }
+.baili-node-hit { background: #56d36420; border-color: #56d364; color: #56d364; }
+.baili-graph-note { font-size: .74rem; color: #56d364; margin-top: .5rem; }

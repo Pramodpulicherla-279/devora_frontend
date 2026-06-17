@@ -1,0 +1,22 @@
+.cptinj-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptinj-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptinj-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptinj-template { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .7rem .85rem; margin-bottom: 1.25rem; }
+.cptinj-tpl-label { font-size: .74rem; color: #8b949e; display: block; margin-bottom: .3rem; }
+.cptinj-tpl-code { font-family: monospace; font-size: .8rem; color: #c9d1d9; }
+.cptinj-slot { color: #f0883e; }
+.cptinj-tabs { display: flex; gap: .4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.cptinj-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .8rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.cptinj-tab-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptinj-attack { background: #f8514910; border: 1px solid #f8514944; border-radius: 8px; padding: .75rem; margin-bottom: 1rem; }
+.cptinj-attack-tag { font-size: .68rem; font-weight: 700; color: #f85149; }
+.cptinj-attack-text { font-family: monospace; font-size: .8rem; color: #c9d1d9; margin: .4rem 0; }
+.cptinj-attack-desc { font-size: .76rem; color: #8b949e; }
+.cptinj-toggle { display: flex; align-items: center; justify-content: space-between; background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .5rem .85rem; margin-bottom: 1rem; font-size: .82rem; color: #c9d1d9; }
+.cptinj-tog { background: #0d1117; border: 1px solid #30363d; color: #8b949e; padding: .2rem .7rem; border-radius: 20px; cursor: pointer; font-size: .72rem; font-weight: 700; }
+.cptinj-tog-on { background: #56d36420; border-color: #56d364; color: #56d364; }
+.cptinj-outcome { font-size: .82rem; border-radius: 8px; padding: .6rem .8rem; margin-bottom: 1rem; }
+.cptinj-out-safe { background: #56d36415; border: 1px solid #56d36444; color: #56d364; }
+.cptinj-out-pwned { background: #f8514915; border: 1px solid #f8514944; color: #f85149; }
+.cptinj-defences { display: flex; flex-direction: column; gap: .35rem; }
+.cptinj-def { font-size: .78rem; color: #8b949e; background: #161b22; border-radius: 6px; padding: .4rem .7rem; }

@@ -213,8 +213,11 @@
   color: var(--text-muted);
 }
 
-/* ── Search dropdown ── */
-.search-dropdown {
+/* ── Search dropdown ──
+   Namespaced as .adm-search-dropdown: the public Header (header.css)
+   also defines a `.search-dropdown` with `background:#fff !important`,
+   which bled into the dark admin dropdown and hid the light text. */
+.adm-search-dropdown {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
@@ -269,6 +272,28 @@
   flex: 1;
   font-size: 13px;
   color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Lesson/Part results: title + course context stacked */
+.search-result-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.search-result-main .search-result-name {
+  flex: none;
+}
+
+.search-result-path {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2774,6 +2799,16 @@
   color: var(--accent-hover);
 }
 
+/* Mobile sidebar backdrop */
+.admin-sidebar-backdrop {
+  display: none;
+}
+
+/* Mobile "← Structure" button in CourseManager — desktop: hidden */
+.cm-mobile-back {
+  display: none;
+}
+
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE — MOBILE ADMIN (≤ 768 px)
    Target: lesson editing, quiz/interview generation, SEO
@@ -2805,7 +2840,15 @@
     transform: translateX(-100%);
   }
 
-  /* Dim backdrop when sidebar is open — pseudo-element on admin-main */
+  /* Dim backdrop — shown only on mobile when sidebar is open */
+  .admin-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 299;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
   .admin-main {
     width: 100%;
     min-width: 0;
@@ -2889,13 +2932,22 @@
     overflow: hidden;
   }
 
-  /* The "Show course structure" restore button — bigger touch target */
-  .cm-right > button:first-child {
+  /* Mobile back-to-structure button */
+  .cm-mobile-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     position: absolute;
     top: 10px; left: 10px;
-    font-size: 13px;
+    z-index: 20;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 8px;
     padding: 8px 14px;
-    z-index: 10;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
   }
 
   .cm-header {

@@ -1,85 +1,103 @@
-/* Lesson: Feature Engineering and SQL Analysis
- * Visual: Tabs showing SQL queries and result preview */
+/* Lesson: Feature Engineering and SQL Analysis (Capstone — answering Q1 & Q2)
+ * Visual: Two-stage workflow — engineer features from raw columns, then run SQL aggregations */
 import React, { useState } from 'react';
 import './visual.css';
 
-const ANALYSES = [
+const RAW = [
+  { order: 1001, sales: 240, profit: 36, discount: 0.0, date: '2023-11-04' },
+  { order: 1002, sales: 90, profit: -12, discount: 0.4, date: '2023-07-21' },
+  { order: 1003, sales: 520, profit: 130, discount: 0.1, date: '2023-12-15' },
+];
+
+const FEATURES = [
+  { name: 'profit_margin', expr: 'profit / sales', why: 'Normalises profit so orders are comparable' },
+  { name: 'discount_band', expr: "cut(discount, [0,.1,.3,1])", why: 'Buckets discounts for group analysis' },
+  { name: 'order_quarter', expr: 'QUARTER(date)', why: 'Enables the Q1 "by time" question' },
+  { name: 'is_profitable', expr: 'profit > 0', why: 'Target label for the later ML model' },
+];
+
+const QUERIES = [
   {
-    id:'revenue',
-    label:'Q1: Revenue by category',
-    sql:`SELECT category,
-  SUM(amount) AS total_revenue,
-  ROUND(AVG(amount),0) AS avg_order,
-  COUNT(*) AS num_orders
-FROM orders
-WHERE STRFTIME('%Y', date) = '2024'
-GROUP BY category
-ORDER BY total_revenue DESC;`,
-    result:[
-      {category:'Electronics',total_revenue:'₹8,42,000',avg_order:'₹4,210',num_orders:200},
-      {category:'Furniture',  total_revenue:'₹5,31,000',avg_order:'₹2,950',num_orders:180},
-      {category:'Clothing',   total_revenue:'₹3,18,000',avg_order:'₹1,590',num_orders:200},
-    ],
-    insight:'Electronics generates 47% of revenue on 33% of orders — highest AOV. Focus marketing here.',
+    id: 'q1', label: 'Q1 · Profitability by category',
+    sql: `SELECT category,
+       ROUND(SUM(profit), 0)        AS total_profit,
+       ROUND(AVG(profit_margin), 3) AS avg_margin
+FROM   orders
+GROUP  BY category
+ORDER  BY total_profit DESC;`,
+    rows: [['Electronics', '+48,200', '0.182'], ['Furniture', '+9,400', '0.061'], ['Tables', '-3,100', '-0.042']],
+    cols: ['category', 'total_profit', 'avg_margin'],
+    finding: 'Tables lose money on average — a chronic loss-maker.',
   },
   {
-    id:'monthly',
-    label:'Q2: Monthly trend',
-    sql:`SELECT STRFTIME('%Y-%m', date) AS month,
-  SUM(amount) AS revenue,
-  COUNT(*) AS orders
-FROM orders
-GROUP BY month
-ORDER BY month;`,
-    result:[
-      {month:'2024-01',revenue:'₹1,42,000',orders:85},{month:'2024-02',revenue:'₹1,38,000',orders:81},
-      {month:'2024-03',revenue:'₹1,61,000',orders:92},{month:'2024-04',revenue:'₹1,79,000',orders:99},
-    ],
-    insight:'Revenue grows month-over-month in 2024. March spike aligns with end-of-quarter corporate orders.',
-  },
-  {
-    id:'feature',
-    label:'Feature: is_high_value',
-    sql:`ALTER TABLE orders ADD COLUMN is_high_value INTEGER;
-
-UPDATE orders
-SET is_high_value = CASE
-  WHEN amount > (SELECT AVG(amount)*1.5 FROM orders) THEN 1
-  ELSE 0
-END;
-
--- Feature: 1 if order > 1.5× mean amount`,
-    result:[
-      {id:1,amount:'₹6,200',is_high_value:1},{id:2,amount:'₹1,800',is_high_value:0},
-      {id:3,amount:'₹9,100',is_high_value:1},{id:4,amount:'₹2,400',is_high_value:0},
-    ],
-    insight:'is_high_value flags the top ~22% of orders. This becomes a target variable for the prediction model in Q5.',
+    id: 'q2', label: 'Q2 · Profitability by time',
+    sql: `SELECT order_quarter,
+       ROUND(SUM(sales), 0)  AS revenue,
+       ROUND(SUM(profit), 0) AS profit
+FROM   orders
+GROUP  BY order_quarter
+ORDER  BY order_quarter;`,
+    rows: [['Q1', '120,400', '14,900'], ['Q2', '131,800', '15,600'], ['Q3', '128,500', '9,200'], ['Q4', '188,300', '31,700']],
+    cols: ['quarter', 'revenue', 'profit'],
+    finding: 'Q4 revenue and profit spike well above the other quarters.',
   },
 ];
 
-const CapSqlAnalysisVisualization = () => {
-  const [sel, setSel] = useState('revenue');
-  const a = ANALYSES.find(x=>x.id===sel);
-  const cols = Object.keys(a.result[0]);
+export default function CapSqlAnalysisVisualization() {
+  const [stage, setStage] = useState('engineer');
+  const [q, setQ] = useState('q1');
+  const query = QUERIES.find(x => x.id === q);
+
   return (
     <div className="capsql-wrap">
-      <header className="capsql-head">
-        <span className="capsql-badge">Capstone</span>
-        <h2>Feature Engineering & SQL</h2>
-        <p>Queries that answer business questions + create model features</p>
-      </header>
-      <div className="capsql-tabs">
-        {ANALYSES.map(a=><button key={a.id} className={`capsql-tab ${sel===a.id?'capsql-tab--on':''}`} onClick={()=>setSel(a.id)}>{a.label}</button>)}
+      <div className="capsql-head">
+        <span className="capsql-badge">CAPSTONE · STEP 5</span>
+        <h2>Feature Engineering &amp; SQL Analysis</h2>
+        <p>Turn a raw transaction table into structured findings (Q1 &amp; Q2)</p>
       </div>
-      <pre className="capsql-code"><code>{a.sql}</code></pre>
-      <div className="capsql-table-wrap">
-        <table className="capsql-table">
-          <thead><tr>{cols.map(c=><th key={c}>{c}</th>)}</tr></thead>
-          <tbody>{a.result.map((r,i)=><tr key={i}>{cols.map(c=><td key={c}>{r[c]}</td>)}</tr>)}</tbody>
-        </table>
+
+      <div className="capsql-tabs" style={{ flexDirection: 'row' }}>
+        <button className={`capsql-tab ${stage === 'engineer' ? 'capsql-tab--on' : ''}`} onClick={() => setStage('engineer')}>1 · Engineer features</button>
+        <button className={`capsql-tab ${stage === 'sql' ? 'capsql-tab--on' : ''}`} onClick={() => setStage('sql')}>2 · SQL analysis</button>
       </div>
-      <div className="capsql-insight"><strong>Insight:</strong> {a.insight}</div>
+
+      {stage === 'engineer' ? (
+        <>
+          <div className="capsql-label">Raw transactions</div>
+          <div className="capsql-table">
+            <div className="capsql-row capsql-row--head"><span>order</span><span>sales</span><span>profit</span><span>discount</span><span>date</span></div>
+            {RAW.map(r => (
+              <div className="capsql-row" key={r.order}><span>{r.order}</span><span>{r.sales}</span><span>{r.profit}</span><span>{r.discount}</span><span>{r.date}</span></div>
+            ))}
+          </div>
+          <div className="capsql-arrow">↓ derive features</div>
+          <div className="capsql-features">
+            {FEATURES.map(f => (
+              <div className="capsql-feat" key={f.name}>
+                <code className="capsql-feat-name">{f.name}</code>
+                <code className="capsql-feat-expr">= {f.expr}</code>
+                <span className="capsql-feat-why">{f.why}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="capsql-tabs" style={{ flexDirection: 'row' }}>
+            {QUERIES.map(x => (
+              <button key={x.id} className={`capsql-tab ${q === x.id ? 'capsql-tab--on' : ''}`} onClick={() => setQ(x.id)}>{x.label}</button>
+            ))}
+          </div>
+          <pre className="capsql-code">{query.sql}</pre>
+          <div className="capsql-table">
+            <div className="capsql-row capsql-row--head">{query.cols.map(c => <span key={c}>{c}</span>)}</div>
+            {query.rows.map((r, i) => (
+              <div className="capsql-row" key={i}>{r.map((cell, j) => <span key={j}>{cell}</span>)}</div>
+            ))}
+          </div>
+          <div className="capsql-finding">📌 {query.finding}</div>
+        </>
+      )}
     </div>
   );
-};
-export default CapSqlAnalysisVisualization;
+}

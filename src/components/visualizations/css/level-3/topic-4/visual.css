@@ -1,0 +1,15 @@
+.cssanim-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cssanim-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cssanim-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cssanim-controls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+.cssanim-ctrl-group { display: flex; flex-direction: column; gap: .4rem; }
+.cssanim-label { font-size: .8rem; color: #8b949e; }
+.cssanim-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.cssanim-chip { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .25rem .6rem; border-radius: 20px; font-size: .78rem; cursor: pointer; }
+.cssanim-chip:hover { border-color: #818cf8; color: #c9d1d9; }
+.cssanim-chip-active { background: #818cf820; border-color: #818cf8; color: #818cf8; }
+.cssanim-slider { width: 100%; accent-color: #818cf8; }
+.cssanim-preview-area { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 2rem 1.5rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+.cssanim-box { height: 56px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 600; cursor: pointer; color: #fff; }
+.cssanim-hint { color: #8b949e; font-size: .75rem; margin: 0; }
+.cssanim-code { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 1rem; font-size: .8rem; color: #56d364; overflow-x: auto; margin: 0; }

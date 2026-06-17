@@ -1,0 +1,29 @@
+.deppenv-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 740px; }
+.deppenv-header { margin-bottom: 1rem; }
+.deppenv-title { color: #818cf8; font-size: 1.2rem; margin: 0 0 .25rem; }
+.deppenv-platform-tabs { display: flex; gap: .4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.deppenv-tab { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .85rem; border-radius: 6px; cursor: pointer; font-size: .82rem; }
+.deppenv-tab:hover { border-color: #818cf8; color: #c9d1d9; }
+.deppenv-tab-active { background: #818cf820; border-color: #818cf8; color: #818cf8; }
+.deppenv-platform-info { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .6rem .8rem; margin-bottom: 1rem; font-size: .8rem; }
+.deppenv-platform-where { color: #818cf8; font-weight: 600; }
+.deppenv-platform-note { color: #8b949e; margin-top: .25rem; }
+.deppenv-table { border: 1px solid #21262d; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; }
+.deppenv-table-head, .deppenv-table-row { display: grid; grid-template-columns: 1.3fr 1.5fr .8fr; gap: .5rem; padding: .6rem .75rem; align-items: center; }
+.deppenv-table-head { background: #161b22; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: #8b949e; }
+.deppenv-table-row { border-top: 1px solid #21262d; font-size: .82rem; }
+.deppenv-row-differs { background: #818cf80d; }
+.deppenv-row-missing { background: #f8514915; }
+.deppenv-var-name { color: #58a6ff; font-family: monospace; }
+.deppenv-var-val { color: #56d364; font-family: monospace; word-break: break-all; }
+.deppenv-masked { color: #8b949e; letter-spacing: 2px; }
+.deppenv-var-note { display: block; color: #f0883e; font-size: .7rem; margin-top: .2rem; }
+.deppenv-required { font-size: .72rem; color: #8b949e; text-align: center; }
+.deppenv-req-yes { color: #f85149; font-weight: 700; }
+.deppenv-differs-badge { background: #818cf820; border: 1px solid #818cf8; color: #818cf8; font-size: .65rem; padding: .1rem .4rem; border-radius: 10px; margin-left: .4rem; }
+.deppenv-missing-banner { display: flex; align-items: center; gap: .5rem; background: #f8514915; border: 1px solid #f85149; color: #f85149; border-radius: 6px; padding: .6rem .8rem; font-size: .82rem; margin-bottom: 1rem; }
+.deppenv-missing-icon { font-size: 1rem; }
+.deppenv-empty { color: #8b949e; }
+.deppenv-warn-btn { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .85rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.deppenv-warn-btn:hover { border-color: #f85149; color: #f85149; }
+.deppenv-warn-active { background: #f8514920; border-color: #f85149; color: #f85149; }

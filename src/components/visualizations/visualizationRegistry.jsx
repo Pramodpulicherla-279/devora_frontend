@@ -479,6 +479,103 @@ import CssEffectsVisualizer from './css/level-3/topic-1/visual';
 import FlexboxLauncher from './css/level-3/topic-2/launcher';
 import GridLauncher from './css/level-3/topic-3/launcher';
 import SqlQueryVisual from './sql/level-1/topic-1/visual';
+
+// === Newly added courses ===
+// CSS — additional lessons
+import CssTransitionsVisualization from './css/level-3/topic-4/visual';
+import CssKeyframesVisualization from './css/level-3/topic-5/visual';
+import CssTransformsVisualization from './css/level-3/topic-6/visual';
+// JavaScript — Simon Says
+import JsSimonSaysVisualization from './javascript/level-3/topic-5/visual-1/visual';
+// React — Nested/Protected/Lazy routes
+import RctNestedRoutesVisualization from './react/level-3/topic-3/visual-1/visual';
+// AI & LLM Basics — additional lessons
+import LlmTrainingInferenceVisualization from './llm/level-3/topic-3/visual-1/visual';
+import LlmContextWindowsVisualization from './llm/level-3/topic-4/visual-1/visual';
+// Advanced Techniques — Fine-Tuning Basics
+import RagFineTuneBasicsVisualization from './rag/level-3/topic-4/visual-1/visual';
+// Terminal / Command Line
+import TermBasicsVisualization from './terminal/level-1/topic-1/visual-1/visual';
+// File Uploads
+import FuHowUploadsVisualization from './fileuploads/level-1/topic-1/visual-1/visual';
+import FuValidationVisualization from './fileuploads/level-1/topic-2/visual-1/visual';
+import FuMemoryStorageVisualization from './fileuploads/level-1/topic-3/visual-1/visual';
+import FuCloudinaryVisualization from './fileuploads/level-1/topic-4/visual-1/visual';
+import FuAwsS3Visualization from './fileuploads/level-1/topic-5/visual-1/visual';
+import FuImageOptimizationVisualization from './fileuploads/level-2/topic-1/visual-1/visual';
+import FuMultipleFilesVisualization from './fileuploads/level-2/topic-2/visual-1/visual';
+import FuUploadSecurityVisualization from './fileuploads/level-2/topic-3/visual-1/visual';
+import FuBestPracticesVisualization from './fileuploads/level-2/topic-4/visual-1/visual';
+// Env & Config
+import EnvDotenvVisualization from './envconfig/level-1/topic-1/visual-1/visual';
+import EnvConfigModuleVisualization from './envconfig/level-1/topic-2/visual-1/visual';
+import EnvSpecificConfigVisualization from './envconfig/level-1/topic-3/visual-1/visual';
+import EnvSecretMgmtVisualization from './envconfig/level-1/topic-4/visual-1/visual';
+import EnvCorsVisualization from './envconfig/level-2/topic-1/visual-1/visual';
+import EnvRateLimitingVisualization from './envconfig/level-2/topic-2/visual-1/visual';
+import EnvHelmetVisualization from './envconfig/level-2/topic-3/visual-1/visual';
+import EnvErrorHandlingVisualization from './envconfig/level-2/topic-4/visual-1/visual';
+import EnvStartupValidationVisualization from './envconfig/level-3/topic-1/visual-1/visual';
+// Testing
+import TstWhyTestVisualization from './testing/level-1/topic-1/visual-1/visual';
+import TstUnitTestingVisualization from './testing/level-1/topic-2/visual-1/visual';
+import TstAaaPatternVisualization from './testing/level-1/topic-3/visual-1/visual';
+import TstSupertestVisualization from './testing/level-1/topic-4/visual-1/visual';
+import TstAuthTestingVisualization from './testing/level-2/topic-1/visual-1/visual';
+import TstMockingVisualization from './testing/level-2/topic-2/visual-1/visual';
+import TstCoverageVisualization from './testing/level-2/topic-3/visual-1/visual';
+import TstCiTestingVisualization from './testing/level-2/topic-4/visual-1/visual';
+import TstRtlVisualization from './testing/level-3/topic-1/visual-1/visual';
+// Deployment (web dev)
+import DepAtlasVisualization from './webdeployment/level-1/topic-1/visual-1/visual';
+import DepRenderVisualization from './webdeployment/level-1/topic-2/visual-1/visual';
+import DepProdEnvVisualization from './webdeployment/level-1/topic-3/visual-1/visual';
+import DepViteBuildVisualization from './webdeployment/level-1/topic-4/visual-1/visual';
+import DepVercelVisualization from './webdeployment/level-2/topic-1/visual-1/visual';
+import DepFirebaseVisualization from './webdeployment/level-2/topic-2/visual-1/visual';
+import DepGhActionsVisualization from './webdeployment/level-2/topic-3/visual-1/visual';
+import DepSentryVisualization from './webdeployment/level-2/topic-4/visual-1/visual';
+import DepProdChecklistVisualization from './webdeployment/level-3/topic-1/visual-1/visual';
+// TypeScript
+import TsWhyVisualization from './typescript/level-1/topic-1/visual-1/visual';
+import TsTypesInterfacesVisualization from './typescript/level-1/topic-2/visual-1/visual';
+import TsNarrowingVisualization from './typescript/level-1/topic-3/visual-1/visual';
+import TsClassesVisualization from './typescript/level-1/topic-4/visual-1/visual';
+import TsGenericsVisualization from './typescript/level-2/topic-1/visual-1/visual';
+import TsUtilityTypesVisualization from './typescript/level-2/topic-2/visual-1/visual';
+import TsDecoratorsVisualization from './typescript/level-2/topic-3/visual-1/visual';
+import TsConfigVisualization from './typescript/level-2/topic-4/visual-1/visual';
+import TsInPracticeVisualization from './typescript/level-3/topic-1/visual-1/visual';
+// Core Prompting Techniques
+import CptZeroShotVisualization from './coreprompting/level-1/topic-1/visual-1/visual';
+import CptFewShotVisualization from './coreprompting/level-1/topic-2/visual-1/visual';
+import CptExamplesVisualization from './coreprompting/level-1/topic-3/visual-1/visual';
+import CptChainOfThoughtVisualization from './coreprompting/level-1/topic-4/visual-1/visual';
+import CptStepByStepVisualization from './coreprompting/level-2/topic-1/visual-1/visual';
+import CptSelfConsistencyVisualization from './coreprompting/level-2/topic-2/visual-1/visual';
+import CptRolePersonaVisualization from './coreprompting/level-2/topic-3/visual-1/visual';
+import CptSystemUserVisualization from './coreprompting/level-2/topic-4/visual-1/visual';
+import CptTemplatesVisualization from './coreprompting/level-3/topic-1/visual-1/visual';
+import CptInjectionVisualization from './coreprompting/level-3/topic-2/visual-1/visual';
+import CptMultimodalVisualization from './coreprompting/level-3/topic-3/visual-1/visual';
+// Building AI Apps
+import BaiUsingApisVisualization from './buildingaiapps/level-1/topic-1/visual-1/visual';
+import BaiErrorResponsesVisualization from './buildingaiapps/level-1/topic-2/visual-1/visual';
+import BaiCostRateLimitsVisualization from './buildingaiapps/level-1/topic-3/visual-1/visual';
+import BaiLangchainVisualization from './buildingaiapps/level-1/topic-4/visual-1/visual';
+import BaiLlamaindexVisualization from './buildingaiapps/level-2/topic-1/visual-1/visual';
+import BaiFrameworkChoiceVisualization from './buildingaiapps/level-2/topic-2/visual-1/visual';
+import BaiPromptEvalVisualization from './buildingaiapps/level-2/topic-3/visual-1/visual';
+import BaiTestingAiVisualization from './buildingaiapps/level-2/topic-4/visual-1/visual';
+import BaiDeployAiVisualization from './buildingaiapps/level-3/topic-1/visual-1/visual';
+import BaiStreamingVisualization from './buildingaiapps/level-3/topic-2/visual-1/visual';
+import BaiStructuredOutputVisualization from './buildingaiapps/level-3/topic-3/visual-1/visual';
+import BaiPromptCachingVisualization from './buildingaiapps/level-3/topic-4/visual-1/visual';
+import BaiLangsmithVisualization from './buildingaiapps/level-4/topic-1/visual-1/visual';
+import BaiMonitoringVisualization from './buildingaiapps/level-4/topic-2/visual-1/visual';
+import BaiDebuggingAiVisualization from './buildingaiapps/level-4/topic-3/visual-1/visual';
+import BaiContentSafetyVisualization from './buildingaiapps/level-4/topic-4/visual-1/visual';
+import BaiRoutingVisualization from './buildingaiapps/level-5/topic-1/visual-1/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -969,6 +1066,112 @@ const visualizationRegistry = {
   'js-dom-manipulation-visualization'     : JsDomManipulationVisualization,
   'js-dom-events-visualization'           : JsDomEventsVisualization,
   'js-async-promises-visualization'       : JsAsyncPromisesVisualization,
+  'js-simon-says-visualization'           : JsSimonSaysVisualization,
+
+  // CSS course — additional lessons
+  'css-transitions-visualization'         : CssTransitionsVisualization,
+  'css-keyframes-visualization'           : CssKeyframesVisualization,
+  'css-transforms-visualization'          : CssTransformsVisualization,
+
+  // React course — additional lesson
+  'rct-nested-routes-visualization'       : RctNestedRoutesVisualization,
+
+  // AI & LLM Basics — additional lessons
+  'llm-training-inference-visualization'  : LlmTrainingInferenceVisualization,
+  'llm-context-windows-visualization'     : LlmContextWindowsVisualization,
+
+  // Advanced Techniques — Fine-Tuning Basics
+  'rag-fine-tune-basics-visualization'    : RagFineTuneBasicsVisualization,
+
+  // Terminal / Command Line course
+  'term-basics-visualization'             : TermBasicsVisualization,
+
+  // File Uploads course
+  'fu-how-uploads-visualization'          : FuHowUploadsVisualization,
+  'fu-validation-visualization'           : FuValidationVisualization,
+  'fu-memory-storage-visualization'       : FuMemoryStorageVisualization,
+  'fu-cloudinary-visualization'           : FuCloudinaryVisualization,
+  'fu-aws-s3-visualization'               : FuAwsS3Visualization,
+  'fu-image-optimization-visualization'   : FuImageOptimizationVisualization,
+  'fu-multiple-files-visualization'       : FuMultipleFilesVisualization,
+  'fu-upload-security-visualization'      : FuUploadSecurityVisualization,
+  'fu-best-practices-visualization'       : FuBestPracticesVisualization,
+
+  // Env & Config course
+  'env-dotenv-visualization'              : EnvDotenvVisualization,
+  'env-config-module-visualization'       : EnvConfigModuleVisualization,
+  'env-specific-config-visualization'     : EnvSpecificConfigVisualization,
+  'env-secret-mgmt-visualization'         : EnvSecretMgmtVisualization,
+  'env-cors-visualization'                : EnvCorsVisualization,
+  'env-rate-limiting-visualization'       : EnvRateLimitingVisualization,
+  'env-helmet-visualization'              : EnvHelmetVisualization,
+  'env-error-handling-visualization'      : EnvErrorHandlingVisualization,
+  'env-startup-validation-visualization'  : EnvStartupValidationVisualization,
+
+  // Testing course
+  'tst-why-test-visualization'            : TstWhyTestVisualization,
+  'tst-unit-testing-visualization'        : TstUnitTestingVisualization,
+  'tst-aaa-pattern-visualization'         : TstAaaPatternVisualization,
+  'tst-supertest-visualization'           : TstSupertestVisualization,
+  'tst-auth-testing-visualization'        : TstAuthTestingVisualization,
+  'tst-mocking-visualization'             : TstMockingVisualization,
+  'tst-coverage-visualization'            : TstCoverageVisualization,
+  'tst-ci-testing-visualization'          : TstCiTestingVisualization,
+  'tst-rtl-visualization'                 : TstRtlVisualization,
+
+  // Deployment (web dev) course
+  'dep-atlas-visualization'               : DepAtlasVisualization,
+  'dep-render-visualization'              : DepRenderVisualization,
+  'dep-prod-env-visualization'            : DepProdEnvVisualization,
+  'dep-vite-build-visualization'          : DepViteBuildVisualization,
+  'dep-vercel-visualization'              : DepVercelVisualization,
+  'dep-firebase-visualization'            : DepFirebaseVisualization,
+  'dep-gh-actions-visualization'          : DepGhActionsVisualization,
+  'dep-sentry-visualization'              : DepSentryVisualization,
+  'dep-prod-checklist-visualization'      : DepProdChecklistVisualization,
+
+  // TypeScript course
+  'ts-why-visualization'                  : TsWhyVisualization,
+  'ts-types-interfaces-visualization'     : TsTypesInterfacesVisualization,
+  'ts-narrowing-visualization'            : TsNarrowingVisualization,
+  'ts-classes-visualization'              : TsClassesVisualization,
+  'ts-generics-visualization'             : TsGenericsVisualization,
+  'ts-utility-types-visualization'        : TsUtilityTypesVisualization,
+  'ts-decorators-visualization'           : TsDecoratorsVisualization,
+  'ts-config-visualization'               : TsConfigVisualization,
+  'ts-in-practice-visualization'          : TsInPracticeVisualization,
+
+  // Core Prompting Techniques course
+  'cpt-zero-shot-visualization'           : CptZeroShotVisualization,
+  'cpt-few-shot-visualization'            : CptFewShotVisualization,
+  'cpt-examples-visualization'            : CptExamplesVisualization,
+  'cpt-chain-of-thought-visualization'    : CptChainOfThoughtVisualization,
+  'cpt-step-by-step-visualization'        : CptStepByStepVisualization,
+  'cpt-self-consistency-visualization'    : CptSelfConsistencyVisualization,
+  'cpt-role-persona-visualization'        : CptRolePersonaVisualization,
+  'cpt-system-user-visualization'         : CptSystemUserVisualization,
+  'cpt-templates-visualization'           : CptTemplatesVisualization,
+  'cpt-injection-visualization'           : CptInjectionVisualization,
+  'cpt-multimodal-visualization'          : CptMultimodalVisualization,
+
+  // Building AI Apps course
+  'bai-using-apis-visualization'          : BaiUsingApisVisualization,
+  'bai-error-responses-visualization'     : BaiErrorResponsesVisualization,
+  'bai-cost-rate-limits-visualization'    : BaiCostRateLimitsVisualization,
+  'bai-langchain-visualization'           : BaiLangchainVisualization,
+  'bai-llamaindex-visualization'          : BaiLlamaindexVisualization,
+  'bai-framework-choice-visualization'    : BaiFrameworkChoiceVisualization,
+  'bai-prompt-eval-visualization'         : BaiPromptEvalVisualization,
+  'bai-testing-ai-visualization'          : BaiTestingAiVisualization,
+  'bai-deploy-ai-visualization'           : BaiDeployAiVisualization,
+  'bai-streaming-visualization'           : BaiStreamingVisualization,
+  'bai-structured-output-visualization'   : BaiStructuredOutputVisualization,
+  'bai-prompt-caching-visualization'      : BaiPromptCachingVisualization,
+  'bai-langsmith-visualization'           : BaiLangsmithVisualization,
+  'bai-monitoring-visualization'          : BaiMonitoringVisualization,
+  'bai-debugging-ai-visualization'        : BaiDebuggingAiVisualization,
+  'bai-content-safety-visualization'      : BaiContentSafetyVisualization,
+  'bai-routing-visualization'             : BaiRoutingVisualization,
 
   // 'css-box-model': BoxModelViz,
 };

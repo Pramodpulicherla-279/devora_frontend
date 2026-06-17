@@ -1,0 +1,21 @@
+.cptcot-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptcot-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptcot-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptcot-problem { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem .85rem; font-size: .85rem; color: #c9d1d9; margin-bottom: 1.25rem; }
+.cptcot-q-label { color: #58a6ff; font-weight: 700; margin-right: .3rem; }
+.cptcot-toggle { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
+.cptcot-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.cptcot-tog-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptcot-trigger-text { font-size: .78rem; color: #8b949e; font-style: italic; margin-bottom: .75rem; }
+.cptcot-standard { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1rem; text-align: center; }
+.cptcot-answer { font-size: 1.6rem; font-weight: 700; margin: .5rem 0; }
+.cptcot-answer-wrong { color: #f85149; }
+.cptcot-answer-right { color: #56d364; text-align: center; }
+.cptcot-note { font-size: .78rem; color: #8b949e; }
+.cptcot-cot { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 1rem; }
+.cptcot-steps { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .75rem; }
+.cptcot-step { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #c9d1d9; background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: .5rem .7rem; transition: all .3s; }
+.cptcot-step-hidden { opacity: 0; transform: translateY(-6px); height: 0; padding: 0; border: none; overflow: hidden; }
+.cptcot-step-shown { opacity: 1; }
+.cptcot-step-num { width: 20px; height: 20px; flex-shrink: 0; background: #a78bfa20; border: 1px solid #a78bfa; color: #a78bfa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; }
+.cptcot-reveal { width: 100%; background: #a78bfa20; border: 1px solid #a78bfa; color: #a78bfa; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }

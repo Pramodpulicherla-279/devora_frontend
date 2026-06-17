@@ -1,0 +1,22 @@
+.cptex-root { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.cptex-title { color: #a78bfa; font-size: 1.2rem; margin: 0 0 .25rem; }
+.cptex-subtitle { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.cptex-dims { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .5rem; }
+.cptex-dim { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .3rem .75rem; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+.cptex-dim:hover { border-color: #a78bfa; color: #c9d1d9; }
+.cptex-dim-active { background: #a78bfa20; border-color: #a78bfa; color: #a78bfa; }
+.cptex-dim-desc { font-size: .8rem; color: #8b949e; background: #161b22; border-left: 3px solid #a78bfa; border-radius: 4px; padding: .5rem .75rem; margin-bottom: 1.25rem; }
+.cptex-toggle { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.cptex-tog { flex: 1; background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .45rem; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+.cptex-tog-bad { background: #f8514920; border-color: #f85149; color: #f85149; }
+.cptex-tog-good { background: #56d36420; border-color: #56d364; color: #56d364; }
+.cptex-examples { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.cptex-ex { display: flex; justify-content: space-between; align-items: center; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: .5rem .75rem; }
+.cptex-ex-text { font-size: .82rem; color: #c9d1d9; }
+.cptex-ex-label { font-size: .68rem; padding: .1rem .5rem; border-radius: 10px; }
+.cptex-label-positive { background: #56d36420; color: #56d364; }
+.cptex-label-negative { background: #f8514920; color: #f85149; }
+.cptex-label-neutral { background: #8b949e20; color: #8b949e; }
+.cptex-verdict { font-size: .8rem; border-radius: 8px; padding: .6rem .8rem; line-height: 1.5; }
+.cptex-verdict-good { background: #56d36415; border: 1px solid #56d36444; color: #56d364; }
+.cptex-verdict-bad { background: #f8514915; border: 1px solid #f8514944; color: #f85149; }

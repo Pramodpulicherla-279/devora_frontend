@@ -1,0 +1,17 @@
+.bailan-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 700px; }
+.bailan-title { color: #58a6ff; font-size: 1.2rem; margin: 0 0 .25rem; }
+.bailan-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.bailan-trace { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1.25rem; }
+.bailan-node { display: flex; align-items: center; gap: .5rem; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; }
+.bailan-node-active { border-color: #58a6ff; }
+.bailan-node-slow { border-left: 3px solid #f0883e; }
+.bailan-node-label { font-size: .8rem; color: #c9d1d9; flex: 1; text-align: left; font-family: monospace; }
+.bailan-node-lat { font-size: .74rem; color: #8b949e; }
+.bailan-node-flag { font-size: .8rem; }
+.bailan-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; margin-bottom: 1.25rem; }
+.bailan-detail-name { font-size: .9rem; font-weight: 600; color: #58a6ff; margin-bottom: .5rem; font-family: monospace; }
+.bailan-row { display: flex; justify-content: space-between; padding: .25rem 0; font-size: .8rem; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+.bailan-row span:first-child { color: #8b949e; }
+.bailan-slow-val { color: #f0883e; font-weight: 700; }
+.bailan-hint { font-size: .76rem; color: #f0883e; margin-top: .6rem; }
+.bailan-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .74rem; color: #56d364; overflow-x: auto; margin: 0; white-space: pre; }

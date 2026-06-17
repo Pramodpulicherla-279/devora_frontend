@@ -1,0 +1,19 @@
+.tsdec-wrap { background: #0d1117; padding: 1.5rem; border-radius: 12px; font-family: system-ui, sans-serif; color: #e6edf3; max-width: 680px; }
+.tsdec-title { color: #fbbf24; font-size: 1.2rem; margin: 0 0 .25rem; }
+.tsdec-sub { color: #8b949e; font-size: .85rem; margin: 0 0 1.25rem; }
+.tsdec-code { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; font-size: .78rem; color: #a78bfa; overflow-x: auto; margin: 0 0 1rem; white-space: pre; }
+.tsdec-types { display: flex; gap: .4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tsdec-type { background: #161b22; border: 1px solid #30363d; color: #8b949e; padding: .35rem .7rem; border-radius: 6px; cursor: pointer; font-size: .76rem; font-family: monospace; }
+.tsdec-type-active { background: #fbbf2420; border-color: #fbbf24; color: #fbbf24; }
+.tsdec-detail { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .75rem; margin-bottom: 1rem; }
+.tsdec-row { display: flex; gap: .75rem; padding: .25rem 0; font-size: .8rem; }
+.tsdec-k { color: #8b949e; min-width: 80px; }
+.tsdec-v { color: #c9d1d9; }
+code.tsdec-v { font-family: monospace; color: #58a6ff; }
+.tsdec-wrapviz { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: .85rem; }
+.tsdec-wrap-h { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; color: #c9d1d9; margin-bottom: .75rem; }
+.tsdec-wrap-btn { background: #fbbf2420; border: 1px solid #fbbf24; color: #fbbf24; padding: .25rem .7rem; border-radius: 6px; cursor: pointer; font-size: .72rem; }
+.tsdec-onion { display: flex; flex-direction: column; gap: 0; }
+.tsdec-layer { border-radius: 8px; padding: .7rem; text-align: center; font-size: .8rem; }
+.tsdec-layer-outer { background: #fbbf2415; border: 1px dashed #fbbf24; color: #fbbf24; margin-bottom: -4px; padding-bottom: 1.2rem; }
+.tsdec-layer-inner { background: #56d36415; border: 1px solid #56d36444; color: #56d364; }
