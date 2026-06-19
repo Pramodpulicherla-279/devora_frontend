@@ -1,0 +1,20 @@
+.fluidtype-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:680px; }
+.fluidtype-title { color:#2f81f7; font-size:1.2rem; margin:0 0 .25rem; }
+.fluidtype-sub { color:#8b949e; font-size:.85rem; margin:0 0 1rem; }
+.fluidtype-sub code { background:#161b22; color:#2f81f7; padding:.05rem .3rem; border-radius:3px; font-size:.72rem; }
+.fluidtype-code { background:#010409; border:1px solid #21262d; border-radius:6px; padding:.7rem; font-size:.82rem; color:#e6edf3; margin:0 0 1rem; white-space:pre-wrap; }
+.fluidtype-min { color:#f0883e; } .fluidtype-pref { color:#2f81f7; } .fluidtype-max { color:#56d364; }
+.fluidtype-label { font-size:.82rem; color:#8b949e; display:block; margin-bottom:.4rem; }
+.fluidtype-slider { width:100%; accent-color:#2f81f7; margin-bottom:1rem; }
+.fluidtype-preview { background:#161b22; border:1px solid #21262d; border-radius:8px; padding:1.5rem 1rem; text-align:center; margin-bottom:1rem; min-height:70px; display:flex; align-items:center; justify-content:center; }
+.fluidtype-preview span { font-weight:800; color:#e6edf3; line-height:1.1; }
+.fluidtype-readout { display:flex; gap:.75rem; margin-bottom:1rem; }
+.fluidtype-stat { flex:1; background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.6rem; text-align:center; }
+.fluidtype-stat span { display:block; font-size:1rem; font-weight:700; color:#e6edf3; }
+.fluidtype-stat small { font-size:.66rem; color:#8b949e; }
+.fluidtype-clamped span { color:#f0883e; }
+.fluidtype-fluidstate span { color:#56d364; }
+.fluidtype-track { display:flex; align-items:center; gap:.6rem; }
+.fluidtype-bound { font-size:.7rem; color:#8b949e; font-family:monospace; }
+.fluidtype-bar { flex:1; height:10px; background:#161b22; border:1px solid #21262d; border-radius:99px; overflow:hidden; }
+.fluidtype-fill { height:100%; background:linear-gradient(90deg,#f0883e,#2f81f7,#56d364); border-radius:99px; transition:width .12s; }

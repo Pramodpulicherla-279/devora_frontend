@@ -1,0 +1,22 @@
+.a11yaria-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:680px; }
+.a11yaria-title { color:#e34c26; font-size:1.2rem; margin:0 0 .25rem; }
+.a11yaria-sub { color:#8b949e; font-size:.85rem; margin:0 0 1.25rem; }
+.a11yaria-toggle { display:flex; justify-content:space-between; align-items:center; background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.5rem .85rem; margin-bottom:1rem; font-size:.82rem; color:#c9d1d9; }
+.a11yaria-tog { background:#0d1117; border:1px solid #30363d; color:#8b949e; padding:.2rem .7rem; border-radius:20px; cursor:pointer; font-size:.72rem; font-weight:700; }
+.a11yaria-tog-on { background:#e34c2620; border-color:#e34c26; color:#e34c26; }
+.a11yaria-page { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-bottom:1.25rem; }
+.a11yaria-region { border:1px solid #30363d; border-radius:8px; padding:.85rem; cursor:pointer; background:#161b22; display:flex; flex-direction:column; gap:.3rem; align-items:flex-start; transition:all .15s; }
+.a11yaria-region-on { border-color:#e34c26; background:#e34c2615; }
+.a11yaria-banner, .a11yaria-nav, .a11yaria-footer { grid-column:1 / -1; }
+.a11yaria-region-tag { font-family:monospace; font-size:.8rem; color:#e34c26; }
+.a11yaria-region-sr { font-size:.68rem; color:#56d364; }
+.a11yaria-page-sr .a11yaria-region { background:#0a0c10; border-style:dashed; }
+.a11yaria-detail { background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.85rem; margin-bottom:1rem; }
+.a11yaria-detail-head { display:flex; gap:.6rem; align-items:center; margin-bottom:.4rem; }
+.a11yaria-detail-tag { font-family:monospace; font-size:.82rem; color:#e34c26; }
+.a11yaria-detail-role { font-family:monospace; font-size:.78rem; color:#58a6ff; }
+.a11yaria-detail-desc { font-size:.82rem; color:#c9d1d9; margin:0 0 .4rem; }
+.a11yaria-detail-sr { font-size:.78rem; color:#8b949e; }
+.a11yaria-detail-sr strong { color:#56d364; }
+.a11yaria-note { font-size:.76rem; color:#8b949e; line-height:1.5; margin:0; }
+.a11yaria-note code { background:#161b22; color:#e34c26; padding:.05rem .3rem; border-radius:3px; font-size:.72rem; }

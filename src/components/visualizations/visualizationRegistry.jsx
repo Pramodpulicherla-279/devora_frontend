@@ -576,6 +576,20 @@ import BaiMonitoringVisualization from './buildingaiapps/level-4/topic-2/visual-
 import BaiDebuggingAiVisualization from './buildingaiapps/level-4/topic-3/visual-1/visual';
 import BaiContentSafetyVisualization from './buildingaiapps/level-4/topic-4/visual-1/visual';
 import BaiRoutingVisualization from './buildingaiapps/level-5/topic-1/visual-1/visual';
+// HTML — Accessibility lessons (gap fill)
+import HtmlAccessibilityAriaVisualization from './html/level-4/topic-1/visual';
+import HtmlAltTextVisualization from './html/level-4/topic-2/visual';
+import HtmlKeyboardNavVisualization from './html/level-4/topic-3/visual';
+import HtmlColorContrastVisualization from './html/level-4/topic-4/visual';
+// CSS — Responsive lessons (gap fill)
+import CssMobileFirstVisualization from './css/level-4/topic-1/visual';
+import CssMediaQueriesVisualization from './css/level-4/topic-2/visual';
+import CssFluidTypographyVisualization from './css/level-4/topic-3/visual';
+// AI & LLM Basics — gap fills for current curriculum
+import LlmWhatIsPromptVisualization from './llm/level-4/topic-1/visual-1/visual';
+import LlmChoosingModelVisualization from './llm/level-4/topic-2/visual-1/visual';
+import LlmCapabilitiesVisualization from './llm/level-4/topic-3/visual-1/visual';
+import LlmResponsibleAiVisualization from './llm/level-4/topic-4/visual-1/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -1172,6 +1186,23 @@ const visualizationRegistry = {
   'bai-debugging-ai-visualization'        : BaiDebuggingAiVisualization,
   'bai-content-safety-visualization'      : BaiContentSafetyVisualization,
   'bai-routing-visualization'             : BaiRoutingVisualization,
+
+  // HTML — Accessibility lessons (gap fill)
+  'html-accessibility-aria-visualization' : HtmlAccessibilityAriaVisualization,
+  'html-alt-text-visualization'           : HtmlAltTextVisualization,
+  'html-keyboard-nav-visualization'       : HtmlKeyboardNavVisualization,
+  'html-color-contrast-visualization'     : HtmlColorContrastVisualization,
+
+  // CSS — Responsive lessons (gap fill)
+  'css-mobile-first-visualization'        : CssMobileFirstVisualization,
+  'css-media-queries-visualization'       : CssMediaQueriesVisualization,
+  'css-fluid-typography-visualization'    : CssFluidTypographyVisualization,
+
+  // AI & LLM Basics — gap fills for current curriculum
+  'llm-what-is-prompt-visualization'      : LlmWhatIsPromptVisualization,
+  'llm-choosing-model-visualization'      : LlmChoosingModelVisualization,
+  'llm-capabilities-visualization'        : LlmCapabilitiesVisualization,
+  'llm-responsible-ai-visualization'      : LlmResponsibleAiVisualization,
 
   // 'css-box-model': BoxModelViz,
 };

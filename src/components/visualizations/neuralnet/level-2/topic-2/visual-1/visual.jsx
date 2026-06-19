@@ -69,9 +69,9 @@ export default function NnGdVariantsVisualization() {
             <line x1={PX} y1={PY} x2={PX} y2={H - PY} stroke="#30363d" strokeWidth={1} />
             <line x1={PX} y1={H - PY} x2={W - PX} y2={H - PY} stroke="#30363d" strokeWidth={1} />
             <polyline points={path} fill="none" stroke={cfg.color} strokeWidth={2} />
-            <text x={W / 2} y={H - 2} textAnchor="middle" fontSize={8} fill="#6b7785">Epochs →</text>
-            <text x={PX + 4} y={PY + 8} fontSize={8} fill="#6b7785">Loss ↑</text>
-            <text x={W / 2} y={10} textAnchor="middle" fontSize={9} fill={cfg.color} fontWeight="600">{tab} Path</text>
+            <text x={W / 2} y={H - 2} textAnchor="middle" fontSize={10} fill="#8b949e">Epochs →</text>
+            <text x={PX + 4} y={PY + 8} fontSize={10} fill="#8b949e">Loss ↑</text>
+            <text x={W / 2} y={10} textAnchor="middle" fontSize={11} fill={cfg.color} fontWeight="600">{tab} Path</text>
           </svg>
         </div>
         <div className="nngdv-meta">

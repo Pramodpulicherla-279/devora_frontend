@@ -223,8 +223,14 @@ export default function LandingPage() {
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [dbTracks, setDbTracks] = useState(STATIC_DB_TRACKS);
-  
-  
+
+  // ── Header lesson search ──
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+
+
   const handleOpenDonate = () => {
     setIsDonateModalOpen(true);
     setIsSidebarOpen(false);
@@ -233,6 +239,39 @@ export default function LandingPage() {
 
   const handleCloseDonate = () => {
     setIsDonateModalOpen(false);
+  };
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (searchRef.current && !searchRef.current.contains(e.target)) setSearchOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSearch = async (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    if (value.length < 2) { setSearchResults([]); setSearchOpen(false); return; }
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/lessons/lessons/search?q=${encodeURIComponent(value)}`);
+      const data = await res.json();
+      if (data.success) { setSearchResults(data.data); setSearchOpen(true); }
+    } catch { setSearchResults([]); setSearchOpen(false); }
+  };
+
+  const handleSelectLesson = async (lesson) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/lessons/slug/${lesson.slug}`);
+      const data = await res.json();
+      if (data.success && data.data?.part?.course) {
+        navigate(`/course/${data.data.part.course.slug}/${lesson.slug}`);
+      } else {
+        alert('Course not found for this lesson.');
+      }
+    } catch { alert('Error fetching lesson details.'); }
+    setSearchQuery(''); setSearchResults([]); setSearchOpen(false);
   };
 
   // Auto-scroll to expand panel when it opens
@@ -536,6 +575,27 @@ export default function LandingPage() {
             <img src={logo} alt="Dev.EL" />
             <span>Dev<span className="lp-dot">.</span>EL</span>
           </Link>
+
+          {/* ── Lesson search ── */}
+          <div className="lp-search-bar" ref={searchRef}>
+            <span className="lp-search-icon">🔍</span>
+            <input
+              type="text"
+              placeholder="Search lessons..."
+              value={searchQuery}
+              onChange={handleSearch}
+              onFocus={() => setSearchOpen(searchResults.length > 0)}
+            />
+            {searchOpen && searchResults.length > 0 && (
+              <ul className="lp-search-dropdown">
+                {searchResults.map(lesson => (
+                  <li key={lesson.slug} onClick={() => handleSelectLesson(lesson)}>
+                    {lesson.title}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           <nav className={`lp-nav ${mobileOpen ? 'open' : ''}`}>
             {/* Sidebar header */}

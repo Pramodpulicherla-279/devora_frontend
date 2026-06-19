@@ -59,8 +59,8 @@ export default function NnOverfitVisualization() {
           <polyline points={pts("val")} fill="none" stroke="#f85149" strokeWidth={2} />
           <line x1={PX + (bestEp / (EP - 1)) * (W - 2 * PX)} y1={PY} x2={PX + (bestEp / (EP - 1)) * (W - 2 * PX)} y2={H - PY}
             stroke="#a78bfa" strokeWidth={1.5} strokeDasharray="4 3" />
-          <text x={PX + (bestEp / (EP - 1)) * (W - 2 * PX) + 4} y={PY + 10} fontSize={8} fill="#a78bfa">Best model</text>
-          <text x={W / 2} y={H - 2} textAnchor="middle" fontSize={8} fill="#6b7785">Epochs →</text>
+          <text x={PX + (bestEp / (EP - 1)) * (W - 2 * PX) + 4} y={PY + 10} fontSize={13} fill="#a78bfa">Best model</text>
+          <text x={W / 2} y={H - 2} textAnchor="middle" fontSize={13} fill="#8b949e">Epochs →</text>
         </svg>
       </div>
 

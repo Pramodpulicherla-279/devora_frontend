@@ -50,13 +50,13 @@ export default function MlopsVectorDbVisualization() {
                   <circle cx={v.x} cy={v.y} r={isNear?8:6}
                     fill={isNear?'#56d364':'#30363d'}
                     stroke={isNear?'#56d364':'#21262d'} strokeWidth="1.5"/>
-                  <text x={v.x+10} y={v.y+4} fontSize="10" fill={isNear?'#56d364':'#6b7785'}>{v.label}</text>
+                  <text x={v.x+10} y={v.y+4} fontSize="12" fill={isNear?'#56d364':'#8b949e'}>{v.label}</text>
                 </g>
               );
             })}
             <StarShape cx={QUERY.x} cy={QUERY.y} r={10}/>
-            <text x={QUERY.x+14} y={QUERY.y+4} fontSize="10" fill="#f97316" fontWeight="700">Query</text>
-            <text x={8} y={215} fontSize="9" fill="#6b7785">Green = nearest 3 neighbours</text>
+            <text x={QUERY.x+14} y={QUERY.y+4} fontSize="12" fill="#f97316" fontWeight="700">Query</text>
+            <text x={8} y={215} fontSize="11" fill="#8b949e">Green = nearest 3 neighbours</text>
           </svg>
         </div>
 

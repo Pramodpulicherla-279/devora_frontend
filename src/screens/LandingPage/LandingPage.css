@@ -194,6 +194,68 @@ body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antial
 .lp-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.3); z-index: 999; }
 .lp-header-login-btn { } /* desktop inherits lp-btn-primary styles */
 
+/* ── Header lesson search ── */
+.lp-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 1 260px;
+  min-width: 120px;
+}
+.lp-search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 13px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.lp-search-bar input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13.5px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.lp-search-bar input::placeholder { color: var(--text2); opacity: .85; }
+.lp-search-bar input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--purple) 16%, transparent);
+}
+.lp-search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1200;
+}
+.lp-search-dropdown li {
+  padding: 9px 12px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background .15s, color .15s;
+}
+.lp-search-dropdown li:hover { background: #f5f3ff; color: var(--purple); }
+
+/* Search bar is visible on all screen sizes */
+
 /* ── SECTION BASE ────────────────────────────── */
 .lp-section { padding: 100px 0; position: relative; }
 .lp-section-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
@@ -1250,6 +1312,21 @@ body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antial
     text-align: center;
   }
   .lp-nav-coffee-btn:hover { background: #fef3c7; border-color: #d97706; }
+
+  /* Two-row header on mobile: logo+actions top, search bar below */
+  .lp-header-inner {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 16px 8px;
+    gap: 8px;
+  }
+  .lp-logo { flex: 1; }
+  .lp-search-bar {
+    order: 10;
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+  .lp-search-bar input { font-size: 14px; }
 
   /* Login button beside hamburger — compact on mobile */
   .lp-header-login-btn {

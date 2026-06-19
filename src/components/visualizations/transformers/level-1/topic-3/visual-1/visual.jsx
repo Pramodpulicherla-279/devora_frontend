@@ -50,6 +50,7 @@ export default function TrAttentionVisualization() {
                 stroke={wToColor(w)}
                 strokeWidth={Math.max(0.5, w * 7)}
                 opacity={0.8}
+                pointerEvents="none"
               />
             );
           })}
@@ -61,7 +62,8 @@ export default function TrAttentionVisualization() {
             if (i === selected) return null;
             return (
               <text key={i} x={mx} y={Y - 10}
-                textAnchor="middle" fill={wToColor(w)} fontSize="8" fontWeight="600">
+                textAnchor="middle" fill={wToColor(w)} fontSize="10" fontWeight="600"
+                pointerEvents="none">
                 {(w * 100).toFixed(0)}%
               </text>
             );
@@ -73,23 +75,27 @@ export default function TrAttentionVisualization() {
             const w = weights[i];
             return (
               <g key={i} onClick={() => setSelected(i)} style={{ cursor: 'pointer' }}>
-                <circle cx={XS[i]} cy={Y} r={isActive ? 20 : 16}
+                {/* transparent hit area — guarantees the whole token is clickable */}
+                <circle cx={XS[i]} cy={Y} r={26} fill="transparent" pointerEvents="all" />
+                <circle cx={XS[i]} cy={Y} r={isActive ? 20 : 18}
                   fill={isActive ? '#818cf8' : wToColor(w)}
-                  stroke={isActive ? '#a78bfa' : 'transparent'}
+                  stroke={isActive ? '#a78bfa' : '#30363d'}
                   strokeWidth={2}
-                  opacity={isActive ? 1 : 0.65 + w * 0.35}
+                  opacity={isActive ? 1 : 0.78 + w * 0.22}
+                  pointerEvents="none"
                 />
                 <text x={XS[i]} y={Y + 4} textAnchor="middle"
-                  fill="#fff" fontSize={isActive ? 9 : 8} fontWeight={isActive ? 700 : 500}>
+                  fill="#fff" fontSize={isActive ? 10 : 9} fontWeight={isActive ? 700 : 600}
+                  pointerEvents="none">
                   {tok}
                 </text>
-                <text x={XS[i]} y={Y + 26} textAnchor="middle"
-                  fill="#a3adbb" fontSize="8">pos {i}</text>
+                <text x={XS[i]} y={Y + 30} textAnchor="middle"
+                  fill="#c9d1d9" fontSize="10" pointerEvents="none">pos {i}</text>
               </g>
             );
           })}
 
-          <text x="160" y="148" textAnchor="middle" fill="#6b7785" fontSize="8">
+          <text x="160" y="148" textAnchor="middle" fill="#8b949e" fontSize="10">
             Attention weights sum to 1.0 (softmax)
           </text>
         </svg>

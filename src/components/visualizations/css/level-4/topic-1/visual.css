@@ -1,0 +1,16 @@
+.mobilefirst-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:680px; }
+.mobilefirst-title { color:#2f81f7; font-size:1.2rem; margin:0 0 .25rem; }
+.mobilefirst-sub { color:#8b949e; font-size:.85rem; margin:0 0 1.25rem; }
+.mobilefirst-sub code, .mobilefirst-note code { background:#161b22; color:#2f81f7; padding:.05rem .3rem; border-radius:3px; font-size:.72rem; }
+.mobilefirst-label { font-size:.82rem; color:#8b949e; display:block; margin-bottom:.4rem; }
+.mobilefirst-slider { width:100%; accent-color:#2f81f7; margin-bottom:1rem; }
+.mobilefirst-frame { margin:0 auto 1rem; border:2px solid #30363d; border-radius:10px; padding:.6rem; background:#161b22; transition:max-width .2s; }
+.mobilefirst-grid { display:grid; gap:.5rem; }
+.mobilefirst-card { height:34px; background:linear-gradient(135deg,#2f81f7,#1f6feb); border-radius:5px; }
+.mobilefirst-active { text-align:center; font-size:.8rem; color:#8b949e; margin-bottom:1rem; }
+.mobilefirst-active strong { color:#2f81f7; }
+.mobilefirst-layers { display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem; }
+.mobilefirst-css { font-size:.72rem; border-radius:6px; padding:.6rem .7rem; margin:0; white-space:pre; overflow-x:auto; border:1px solid #21262d; }
+.mobilefirst-on { background:#0d2818; border-color:#238636; color:#56d364; }
+.mobilefirst-off { background:#161b22; color:#6e7681; opacity:.6; }
+.mobilefirst-note { font-size:.76rem; color:#8b949e; line-height:1.5; margin:0; }

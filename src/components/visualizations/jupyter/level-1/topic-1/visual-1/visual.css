@@ -1,37 +1,36 @@
-.jnbsetup-root { background: #0d1117; color: #e6edf3; padding: 24px; border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
-.jnbsetup-title { font-size: 1.4rem; font-weight: 700; color: #f97316; margin: 0 0 20px; }
-.jnbsetup-subtitle { font-size: 1.1rem; font-weight: 600; margin: 24px 0 6px; color: #e6edf3; }
-.jnbsetup-hint { font-size: 0.8rem; color: #6b7785; margin: 0 0 10px; }
-
+.jnbsetup-root { background: #0d1117; color: #e6edf3; padding: clamp(14px, 4vw, 24px); border-radius: 12px; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; }
+.jnbsetup-title { font-size: clamp(1.15rem, 3.5vw, 1.4rem); font-weight: 700; color: #f97316; margin: 0 0 20px; }
+.jnbsetup-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.1rem); font-weight: 600; margin: 24px 0 6px; color: #e6edf3; }
+.jnbsetup-hint { font-size: 0.8rem; color: #8b949e; margin: 0 0 10px; }
 .jnbsetup-stepper { display: flex; gap: 0; margin-bottom: 20px; }
-.jnbsetup-step { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #161b22; border: 1px solid #21262d; cursor: pointer; color: #a3adbb; font-size: 0.85rem; flex: 1; transition: all 0.2s; }
+.jnbsetup-step { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #161b22; border: 1px solid #21262d; cursor: pointer; color: #c9d1d9; font-size: 0.85rem; flex: 1; min-width: 0; transition: all 0.2s; }
+.jnbsetup-step-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .jnbsetup-step:first-child { border-radius: 8px 0 0 8px; }
 .jnbsetup-step:last-child { border-radius: 0 8px 8px 0; }
 .jnbsetup-step--active { background: #f9731620; border-color: #f97316; color: #f97316; }
-.jnbsetup-step--done { background: #f9731610; color: #a3adbb; }
+.jnbsetup-step--done { background: #f9731610; color: #c9d1d9; }
 .jnbsetup-step-num { width: 22px; height: 22px; border-radius: 50%; background: #21262d; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
 .jnbsetup-step--active .jnbsetup-step-num { background: #f97316; color: #0d1117; }
 .jnbsetup-step--done .jnbsetup-step-num { background: #f9731640; color: #f97316; }
-
-.jnbsetup-detail { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; margin-bottom: 24px; text-align: center; }
+@media (max-width: 480px) { .jnbsetup-step { padding: 8px 7px; font-size: 0.72rem; gap: 5px; } .jnbsetup-step-num { width: 18px; height: 18px; font-size: 0.66rem; } }
+.jnbsetup-detail { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: clamp(14px, 4vw, 20px); margin-bottom: 24px; text-align: center; }
 .jnbsetup-icon { font-size: 2rem; display: block; margin-bottom: 10px; }
-.jnbsetup-cmd { display: block; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; font-size: 0.95rem; color: #f97316; margin-bottom: 12px; font-family: 'Courier New', monospace; }
-.jnbsetup-desc { color: #a3adbb; font-size: 0.9rem; margin: 0 0 16px; }
+.jnbsetup-cmd { display: block; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; font-size: 0.9rem; color: #f97316; margin-bottom: 12px; font-family: 'Courier New', monospace; overflow-x: auto; white-space: pre; }
+.jnbsetup-desc { color: #c9d1d9; font-size: 0.9rem; margin: 0 0 16px; line-height: 1.5; }
 .jnbsetup-nav { display: flex; gap: 10px; justify-content: center; }
 .jnbsetup-btn { padding: 8px 18px; border-radius: 6px; border: 1px solid #30363d; background: #21262d; color: #e6edf3; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; }
 .jnbsetup-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .jnbsetup-btn--primary { background: #f97316; border-color: #f97316; color: #0d1117; font-weight: 600; }
 .jnbsetup-btn--primary:hover:not(:disabled) { background: #ea6a05; }
-
 .jnbsetup-ui-diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; }
 .jnbsetup-ui-part { padding: 10px 16px; cursor: pointer; transition: background 0.15s; font-size: 0.85rem; border-bottom: 1px solid #21262d; }
 .jnbsetup-ui-part:last-child { border-bottom: none; }
 .jnbsetup-ui-part:hover { background: #1e242c; }
 .jnbsetup-ui-part--active { background: #f9731620; border-left: 3px solid #f97316; color: #f97316; }
-.jnbsetup-ui-menu { color: #a3adbb; font-size: 0.82rem; }
-.jnbsetup-ui-toolbar { color: #a3adbb; font-size: 0.82rem; }
+.jnbsetup-ui-menu { color: #c9d1d9; font-size: 0.82rem; }
+.jnbsetup-ui-toolbar { color: #c9d1d9; font-size: 0.82rem; }
 .jnbsetup-ui-cell { display: flex; gap: 12px; align-items: flex-start; }
-.jnbsetup-cell-prompt { color: #6b7785; font-family: monospace; font-size: 0.8rem; white-space: nowrap; }
-.jnbsetup-cell-body { color: #79c0ff; font-family: monospace; font-size: 0.85rem; }
-.jnbsetup-ui-kernel { color: #a3adbb; font-size: 0.82rem; text-align: right; }
-.jnbsetup-ui-info { background: #0d1117; border: 1px solid #f9731640; border-radius: 6px; padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #e6edf3; }
+.jnbsetup-cell-prompt { color: #8b949e; font-family: monospace; font-size: 0.8rem; white-space: nowrap; }
+.jnbsetup-cell-body { color: #79c0ff; font-family: monospace; font-size: 0.85rem; overflow-x: auto; }
+.jnbsetup-ui-kernel { color: #c9d1d9; font-size: 0.82rem; text-align: right; }
+.jnbsetup-ui-info { background: #0d1117; border: 1px solid #f9731640; border-radius: 6px; padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #e6edf3; line-height: 1.5; }
