@@ -41,7 +41,7 @@ const envVars = [
     name: 'CLIENT_URL',
     required: false,
     values: {
-      'Local (.env)': 'http://localhost:5173',
+      'Local (.env)': 'http://localhost:5180',
       'Render': 'https://devora.web.app',
       'Vercel': 'https://devora.web.app',
     },

@@ -59,9 +59,11 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
   const [messages, setMessages] = useState(initial.messages);
   const [input, setInput] = useState('');
   const [streaming, setStreaming] = useState(false);
+  const [waking, setWaking] = useState(false);
   const convIdRef = useRef(initial.conversationId);
   const bodyRef = useRef(null);
   const abortRef = useRef(null);
+  const wakingTimerRef = useRef(null);
 
   // When the user switches to a different lesson, swap in that lesson's thread.
   useEffect(() => {
@@ -69,7 +71,9 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
     prevKeyRef.current = storageKey;
 
     abortRef.current?.abort();
+    clearTimeout(wakingTimerRef.current);
     setStreaming(false);
+    setWaking(false);
     setInput('');
 
     const saved = loadSavedForKey(storageKey);
@@ -91,7 +95,7 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
     } catch { /* storage unavailable */ }
   }, [messages, storageKey]);
 
-  useEffect(() => () => abortRef.current?.abort(), []);
+  useEffect(() => () => { abortRef.current?.abort(); clearTimeout(wakingTimerRef.current); }, []);
 
   const send = async (text, mode = 'tutor') => {
     const msg = (text || '').trim();
@@ -103,6 +107,9 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
       { role: 'assistant', content: '', citations: [] },
     ]);
     setStreaming(true);
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
+    wakingTimerRef.current = setTimeout(() => setWaking(true), 15000);
     abortRef.current = new AbortController();
 
     try {
@@ -146,12 +153,16 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
         return next;
       });
     } finally {
+      clearTimeout(wakingTimerRef.current);
+      setWaking(false);
       setStreaming(false);
     }
   };
 
   const newChat = () => {
     abortRef.current?.abort();
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
     convIdRef.current = null;
     setMessages([]);
     setInput('');
@@ -196,7 +207,11 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
               {m.role === 'assistant'
                 ? <>
                     <Markdown text={m.content} />
-                    {streaming && idx === messages.length - 1 && !m.content && <span className="att-caret" />}
+                    {streaming && idx === messages.length - 1 && !m.content && (
+                      waking
+                        ? <p className="att-waking-notice">⏳ The AI server is waking up from sleep (Render free tier cold start). This usually takes 30–60 s — hang tight…</p>
+                        : <span className="att-caret" />
+                    )}
                     {m.citations?.length > 0 && (
                       <div className="att-cite">From: {m.citations.map((c) => c.lesson_slug || c.lesson_id).filter(Boolean).join(', ')}</div>
                     )}

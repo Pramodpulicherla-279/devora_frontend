@@ -26,13 +26,15 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
   const [hint, setHint] = useState('');
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [waking, setWaking] = useState(false);
   const abortRef = useRef(null);
+  const wakingTimerRef = useRef(null);
 
   const errors = logs.filter(l => l.method === 'error');
 
   // Abort any in-flight hint request if the guide unmounts (Disable, lesson
   // switch, closing the practice panel) so it doesn't update a dead component.
-  useEffect(() => () => abortRef.current?.abort(), []);
+  useEffect(() => () => { abortRef.current?.abort(); clearTimeout(wakingTimerRef.current); }, []);
 
   // Caps keep the payload under the backend's message limit and avoid sending a
   // huge prompt. Lesson sandbox files are small, so this rarely truncates.
@@ -66,6 +68,9 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
     setHint('');
     setOpen(true);
     setLoading(true);
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
+    wakingTimerRef.current = setTimeout(() => setWaking(true), 15000);
 
     const stringifyData = (d) =>
       (Array.isArray(d) ? d : [d])
@@ -101,12 +106,16 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
         setHint('_Couldn\'t reach the tutor service. Make sure the AI tutor backend is running._');
       }
     } finally {
+      clearTimeout(wakingTimerRef.current);
+      setWaking(false);
       setLoading(false);
     }
   };
 
   const closeModal = () => {
     abortRef.current?.abort();
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
     setOpen(false);
   };
 
@@ -152,7 +161,11 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
           </div>
           <div className="sg-modal-body">
             {hint && <Markdown text={hint} />}
-            {loading && !hint && <p className="sg-modal-loading">Thinking through your code…</p>}
+            {loading && !hint && (
+              waking
+                ? <p className="sg-waking-notice">⏳ The AI server is waking up from sleep (Render free tier cold start). This usually takes 30–60 s — hang tight…</p>
+                : <p className="sg-modal-loading">Thinking through your code…</p>
+            )}
             {loading && hint && <span className="sg-caret" />}
           </div>
         </div>,
