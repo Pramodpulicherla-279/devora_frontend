@@ -173,6 +173,14 @@ const INDEX_CODE_HTML = [
   ');',
 ].join('\n');
 
+// Snippet rendered inside the AI Code Guide hologram — the AI "points" at
+// the dependency array via the highlighted span.
+const GUIDE_CODE_HTML = [
+  '<span class="tok-fn">useEffect</span>(<span class="tok-fn">() =&gt;</span> {',
+  '  <span class="tok-name">fetchUser</span>(userId);',
+  '}, <span class="lp-ais-code-hl">[userId]</span>);',
+].join('\n');
+
 /* ─── HELPERS ─────────────────────────────── */
 function getTrackCourses(trackName) {
   const ids = TRACK_COURSE_IDS[trackName] || [];
@@ -223,8 +231,14 @@ export default function LandingPage() {
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [dbTracks, setDbTracks] = useState(STATIC_DB_TRACKS);
-  
-  
+
+  // ── Header lesson search ──
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+
+
   const handleOpenDonate = () => {
     setIsDonateModalOpen(true);
     setIsSidebarOpen(false);
@@ -233,6 +247,39 @@ export default function LandingPage() {
 
   const handleCloseDonate = () => {
     setIsDonateModalOpen(false);
+  };
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (searchRef.current && !searchRef.current.contains(e.target)) setSearchOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSearch = async (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    if (value.length < 2) { setSearchResults([]); setSearchOpen(false); return; }
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/lessons/lessons/search?q=${encodeURIComponent(value)}`);
+      const data = await res.json();
+      if (data.success) { setSearchResults(data.data); setSearchOpen(true); }
+    } catch { setSearchResults([]); setSearchOpen(false); }
+  };
+
+  const handleSelectLesson = async (lesson) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/lessons/slug/${lesson.slug}`);
+      const data = await res.json();
+      if (data.success && data.data?.part?.course) {
+        navigate(`/course/${data.data.part.course.slug}/${lesson.slug}`);
+      } else {
+        alert('Course not found for this lesson.');
+      }
+    } catch { alert('Error fetching lesson details.'); }
+    setSearchQuery(''); setSearchResults([]); setSearchOpen(false);
   };
 
   // Auto-scroll to expand panel when it opens
@@ -536,6 +583,27 @@ export default function LandingPage() {
             <img src={logo} alt="Dev.EL" />
             <span>Dev<span className="lp-dot">.</span>EL</span>
           </Link>
+
+          {/* ── Lesson search ── */}
+          <div className="lp-search-bar" ref={searchRef}>
+            <span className="lp-search-icon">🔍</span>
+            <input
+              type="text"
+              placeholder="Search lessons..."
+              value={searchQuery}
+              onChange={handleSearch}
+              onFocus={() => setSearchOpen(searchResults.length > 0)}
+            />
+            {searchOpen && searchResults.length > 0 && (
+              <ul className="lp-search-dropdown">
+                {searchResults.map(lesson => (
+                  <li key={lesson.slug} onClick={() => handleSelectLesson(lesson)}>
+                    {lesson.title}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           <nav className={`lp-nav ${mobileOpen ? 'open' : ''}`}>
             {/* Sidebar header */}
@@ -908,6 +976,104 @@ export default function LandingPage() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ── AI TUTOR & CODE GUIDE (holographic highlight) ── */}
+      <section className="lp-section lp-ai-section">
+        <div className="lp-ais-bg" aria-hidden="true">
+          <div className="lp-ais-orb lp-ais-orb-1" />
+          <div className="lp-ais-orb lp-ais-orb-2" />
+          <div className="lp-ais-gridlines" />
+        </div>
+        <div className="lp-section-inner">
+          <div className="lp-section-header">
+            <div className="lp-label-tag">Your AI Co-Pilot</div>
+            <h2 className="lp-section-h2">
+              Never get stuck — your <span className="lp-gradient-text">AI Tutor &amp; Code Guide</span> are always on
+            </h2>
+            <p className="lp-section-p">
+              Two AI companions are built into every lesson: one mentors you as you practice,
+              the other reads the exact code in front of you and guides you line by line.
+            </p>
+          </div>
+
+          <div className="lp-ais-grid">
+            {/* ── AI TUTOR ── */}
+            <article className="lp-ais-card">
+              <div className="lp-ais-holo lp-ais-float-a">
+                <span className="lp-ais-scan" aria-hidden="true" />
+                <span className="lp-ais-ring" aria-hidden="true" />
+                <div className="lp-ais-chat">
+                  <div className="lp-ais-chat-head">
+                    <span className="lp-ais-bot">🤖</span>
+                    <div>
+                      <p className="lp-ais-chat-title">AI Tutor</p>
+                      <p className="lp-ais-chat-status">
+                        <span className="lp-ais-live" /> Online · React · useEffect
+                      </p>
+                    </div>
+                  </div>
+                  <div className="lp-ais-msg user">Why does my <code>useEffect</code> run twice?</div>
+                  <div className="lp-ais-msg bot">
+                    In <code>StrictMode</code>, React double-invokes effects in dev to surface
+                    missing cleanup. Return a cleanup function 👇
+                    <span className="lp-ais-typing" aria-hidden="true"><i /><i /><i /></span>
+                  </div>
+                </div>
+              </div>
+              <div className="lp-ais-info">
+                <div className="lp-ais-ico lp-ais-ico-purple">🎓</div>
+                <h3 className="lp-ais-title">AI Tutor — while you practice</h3>
+                <p className="lp-ais-desc">
+                  Stuck on an error or a concept? Ask in plain English and get instant hints,
+                  analogies and working code — without ever leaving your lesson.
+                </p>
+                <ul className="lp-ais-feats">
+                  <li>Instant hints &amp; explanations</li>
+                  <li>Debugs your code with you</li>
+                  <li>Quizzes you to lock it in</li>
+                </ul>
+              </div>
+            </article>
+
+            {/* ── AI CODE GUIDE ── */}
+            <article className="lp-ais-card">
+              <div className="lp-ais-holo lp-ais-float-b">
+                <span className="lp-ais-scan" aria-hidden="true" />
+                <span className="lp-ais-ring lp-ais-ring-cyan" aria-hidden="true" />
+                <div className="lp-ais-code">
+                  <div className="lp-ais-code-bar">
+                    <span className="lp-win-btn red" />
+                    <span className="lp-win-btn yellow" />
+                    <span className="lp-win-btn green" />
+                    <span className="lp-ais-code-file">App.jsx</span>
+                  </div>
+                  <pre
+                    className="lp-ais-code-body"
+                    dangerouslySetInnerHTML={{ __html: `<code>${GUIDE_CODE_HTML}</code>` }}
+                  />
+                  <div className="lp-ais-annot">
+                    <span className="lp-ais-annot-dot" />
+                    The dependency array controls <b>when</b> this effect re-runs.
+                  </div>
+                </div>
+              </div>
+              <div className="lp-ais-info">
+                <div className="lp-ais-ico lp-ais-ico-cyan">🧭</div>
+                <h3 className="lp-ais-title">AI Code Guide — context-aware</h3>
+                <p className="lp-ais-desc">
+                  It already knows the lesson you're reading and the code on your screen, so it
+                  explains exactly what each line does and what to try next.
+                </p>
+                <ul className="lp-ais-feats">
+                  <li>Reads your lesson &amp; current code</li>
+                  <li>Line-by-line walkthroughs</li>
+                  <li>Suggests your next step</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

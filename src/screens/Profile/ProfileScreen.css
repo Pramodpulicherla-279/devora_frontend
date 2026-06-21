@@ -83,6 +83,40 @@
 .ps-user-info { display: flex; flex-direction: column; gap: 6px; }
 .ps-name { font-size: 28px; font-weight: 800; margin: 0; }
 .ps-email { font-size: 15px; color: #64748b; margin: 0; }
+
+/* ── Name edit ── */
+.ps-name-row { display: flex; align-items: center; gap: 8px; }
+.ps-name-edit-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 15px; padding: 2px 4px; opacity: 0.5;
+  transition: opacity .2s; line-height: 1;
+}
+.ps-name-edit-btn:hover { opacity: 1; }
+.ps-name-edit { display: flex; flex-direction: column; gap: 8px; }
+.ps-name-input {
+  font-size: 22px; font-weight: 800; font-family: inherit;
+  border: 2px solid #7c3aed; border-radius: 8px;
+  padding: 5px 12px; outline: none;
+  color: #0f172a; background: #fff;
+  max-width: 300px; width: 100%;
+  transition: box-shadow .2s;
+}
+.ps-name-input:focus { box-shadow: 0 0 0 3px rgba(124,58,237,0.16); }
+.ps-name-actions { display: flex; gap: 8px; }
+.ps-name-save {
+  padding: 6px 18px; border-radius: 8px; border: none;
+  background: #7c3aed; color: #fff; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: opacity .2s;
+}
+.ps-name-save:hover:not(:disabled) { opacity: .85; }
+.ps-name-save:disabled { opacity: .5; cursor: not-allowed; }
+.ps-name-cancel {
+  padding: 6px 14px; border-radius: 8px; border: 1px solid #e2e8f0;
+  background: #fff; color: #64748b; font-size: 13px; font-weight: 500;
+  cursor: pointer; font-family: inherit; transition: background .15s;
+}
+.ps-name-cancel:hover { background: #f1f5f9; }
+.ps-name-error { font-size: 12px; color: #ef4444; margin: 0; }
 .ps-role-badge {
   display: inline-flex;
   align-items: center;

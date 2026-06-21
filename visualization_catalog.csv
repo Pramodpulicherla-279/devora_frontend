@@ -1,0 +1,497 @@
+﻿Course,Lesson Name,Visual Type,data-type
+HTML,What Is Accessibility & ARIA Roles,Diagram,html-accessibility-aria-visualization
+HTML,Alt Text & Semantic Images,Diagram,html-alt-text-visualization
+HTML,"Boilerplate Code, Lists & Attributes in HTML",Interactive visualization,html-attributes-visualization
+HTML,"Boilerplate Code, Lists & Attributes in HTML",Interactive visualization,html-boilerplate
+HTML,Colour Contrast & Testing,Chart,html-color-contrast-visualization
+HTML,"Semantic in HTML, HTML Entities, Tables and It's Semantics",Interactive visualization,html-entities-emmet-visualization
+HTML,Forms in HTML,Interactive visualization,html-forms-visualization
+HTML,Keyboard Navigation,Diagram,html-keyboard-nav-visualization
+HTML,"Introduction to HTML, Elements & Tags",Interactive visualization,html-layers-1
+HTML,"HTML Links, Images & Block vs Inline Elements",Interactive visualization,html-links-images-basics-visualization
+HTML,"Boilerplate Code, Lists & Attributes in HTML",Interactive visualization,html-list-visualizer
+HTML,"Semantic in HTML, HTML Entities, Tables and It's Semantics",Table,html-tables-visualization
+HTML,"Introduction to HTML, Elements & Tags",Interactive visualization,html-tags
+HTML,"HTML Links, Images & Block vs Inline Elements",Interactive visualization,inline-block-elements-visualization
+HTML,"Semantic in HTML, HTML Entities, Tables and It's Semantics",Interactive visualization,semantic-markup-visualization
+HTML,"Introduction to HTML, Elements & Tags",Interactive visualization,web-stack
+CSS,"CSS Selectors, Pseudo Classes, Pseudo Elements, Cascade, Specificity, Inheritance, CSS Box Model & Units",Interactive visualization,css-advanced-visualizer
+CSS,"CSS Selectors, Pseudo Classes, Pseudo Elements, Cascade, Specificity, Inheritance, CSS Box Model & Units",Interactive visualization,css-box-model-visualizer
+CSS,Getting Started: Styles,Interactive visualization,css-colors-visualization
+CSS,CSS Effects & Advanced Properties,Interactive visualization,css-effects-visualizer
+CSS,Fluid Typography & Layouts,Chart,css-fluid-typography-visualization
+CSS,Getting Started: Styles,Interactive visualization,css-intro-visualization
+CSS,Keyframe Animations,Interactive visualization,css-keyframes-visualization
+CSS,CSS Grid,Interactive visualization,css-master-visualizer
+CSS,Media Queries,Diagram,css-media-queries-visualization
+CSS,Mobile-First & Viewport Units,Interactive visualization,css-mobile-first-visualization
+CSS,"CSS Selectors, Pseudo Classes, Pseudo Elements, Cascade, Specificity, Inheritance, CSS Box Model & Units",Diagram,css-selectors-visualizer
+CSS,Getting Started: Styles,Interactive visualization,css-text-visualizer
+CSS,Transforms & will-change,Interactive visualization,css-transforms-visualization
+CSS,CSS Transitions,Interactive visualization,css-transitions-visualization
+CSS,CSS Flexbox,Interactive visualization,flexbox-visualizer
+JavaScript,"Array Methods, Spread/Rest, Default Parameters & Destructuring",Interactive visualization,js-array-methods-spread-visualization
+JavaScript,"Asynchronous Concepts, Promises, and APIs",Interactive visualization,js-async-promises-visualization
+JavaScript,DOM Events,Interactive visualization,js-dom-events-visualization
+JavaScript,DOM Manipulation,Interactive visualization,js-dom-manipulation-visualization
+JavaScript,"JavaScript Functions: Definition, Arguments, Return, Scope, Hoisting, Methods & Closures",Interactive visualization,js-functions-visualization
+JavaScript,Loops in JavaScript,Interactive visualization,js-loops-visualization
+JavaScript,JavaScript Objects & Math Methods,Interactive visualization,js-objects-math-visualization
+JavaScript,"Operators, Conditions, Arrays & Array Methods, Strings & String Methods",Interactive visualization,js-operators-conditions-visualization
+JavaScript,Simon Says Game,Interactive visualization,js-simon-says-visualization
+JavaScript,"Understanding ‘this’, Arrow Functions, Error Handling & Asynchronous Timers",Interactive visualization,js-this-arrow-async-visualization
+JavaScript,"Variables, Data Types, let, const & Naming Conventions, Strings, Indices, Concatenation & Template Literals, Console Methods & Linking JS to HTML",Interactive visualization,js-variables-datatypes-visualization
+Terminal / Command Line,Terminal Basics for Developers,Interactive visualization,term-basics-visualization
+Git & GitHub,Advanced Commands,Interactive visualization,git-advanced-commands-visualization
+Git & GitHub,Branching and Merging,Interactive visualization,git-branching-merging-visualization
+Git & GitHub,Branching Strategies,Interactive visualization,git-branching-strategies-visualization
+Git & GitHub,Your First Repository,Interactive visualization,git-first-repo-visualization
+Git & GitHub,Hooks & Conventional Commits,Interactive visualization,git-hooks-conventional-commits-visualization
+Git & GitHub,Issues & Projects,Interactive visualization,git-issues-projects-visualization
+Git & GitHub,Pull Requests,Interactive visualization,git-pull-requests-visualization
+Git & GitHub,Remote Repos,Interactive visualization,git-remote-repos-visualization
+Git & GitHub,What is Git,Interactive visualization,git-what-is-git-visualization
+Backend (Node/Express),"Advanced EJS – Layouts, Partials & UI Patterns",Interactive visualization,bknd-advanced-ejs-visualization
+Backend (Node/Express),Introduction to EJS Templating & Rendering Views,Interactive visualization,bknd-ejs-templating-visualization
+Backend (Node/Express),Understanding Express.js — The Backbone of Node.js Web Applications,Interactive visualization,bknd-express-deepdive-visualization
+Backend (Node/Express),Express Middleware Deep Dive,Interactive visualization,bknd-express-deepdive-visualization
+Backend (Node/Express),Introduction to Express.js & Understanding the Foundations,Interactive visualization,bknd-express-intro-visualization
+Backend (Node/Express),"GET vs POST, Handling Form Data & Body Parsing in Express.js",Interactive visualization,bknd-get-post-form-visualization
+Backend (Node/Express),JS OOP - Summary Sheet,Interactive visualization,bknd-js-oop-visualization
+Backend (Node/Express),A Full Project Example Using EJS,Interactive visualization,bknd-mvc-project-visualization
+Backend (Node/Express),"Introduction to Node.js & Node REPL, Modules & module.exports, Exporting Files From a Folder (Directory Modules), NPM, Node Modules & ES Modules (import/export)",Interactive visualization,bknd-node-intro-visualization
+Backend (Node/Express),What is REST & CRUD Operations,Interactive visualization,bknd-rest-crud-visualization
+Backend (Node/Express),Creating RESTful APIs,Interactive visualization,bknd-restful-api-visualization
+SQL,Aggregations,Interactive visualization,sql-aggregations-visualization
+SQL,Every App Runs on a Database,Interactive visualization,sql-db-foundations-visualization
+SQL,Indexes & Performance,Interactive visualization,sql-indexes-performance-visualization
+SQL,SQL Joins,Interactive visualization,sql-joins-visualization
+SQL,Stored Procedures,Interactive visualization,sql-stored-procedures-visualization
+SQL,Subqueries,Interactive visualization,sql-subqueries-visualization
+SQL,Transactions,Interactive visualization,sql-transactions-visualization
+SQL,Window Functions,Interactive visualization,sql-window-functions-visualization
+SQL,Writing Data,Interactive visualization,sql-writing-data-visualization
+React,Stop Repeating Yourself — Meet React Components,Interactive visualization,rct-components-visualization
+React,"Custom Hooks: Extract Logic, Reuse Everywhere",Interactive visualization,rct-custom-hooks-visualization
+React,Events and Conditional Rendering,Interactive visualization,rct-events-conditional-visualization
+React,"Nested Routes, Protected Routes & Lazy Loading",Diagram,rct-nested-routes-visualization
+React,Props and State: React's Two Ways of Handling Data,Interactive visualization,rct-props-state-visualization
+React,React Router v6: Navigation That Actually Makes Sense,Diagram,rct-router-visualization
+React,State Management: Zustand & Redux Toolkit,Interactive visualization,rct-state-management-visualization
+React,useContext: Share State Without Prop Drilling,Interactive visualization,rct-usecontext-visualization
+React,"useRef, useMemo, and useCallback",Interactive visualization,rct-useref-memo-visualization
+React,useState and useEffect: The Two Hooks That Run Everything,Interactive visualization,rct-usestate-effect-visualization
+MongoDB,The Aggregation Pipeline,Interactive visualization,mongodb-aggregation-visualization
+MongoDB,Four Operations That Cover 90% of What Your App Does,Interactive visualization,mongodb-crud-visualization
+MongoDB,Forget Tables — MongoDB Thinks in Documents,Interactive visualization,mongodb-documents-visualization
+MongoDB,Indexes: The Difference Between ms and Minutes,Interactive visualization,mongodb-indexes-visualization
+MongoDB,Population and Lean Queries,Interactive visualization,mongodb-population-lean-visualization
+MongoDB,Query Operators: Filter Data Like a Pro,Interactive visualization,mongodb-query-operators-visualization
+MongoDB,Schema Design: The Decision That Defines Your App,Interactive visualization,mongodb-schema-design-visualization
+MongoDB,Schemas and Models,Interactive visualization,mongodb-schemas-models-visualization
+MongoDB,Validation and Middleware,Interactive visualization,mongodb-validation-middleware-visualization
+Authentication (JWT),bcrypt Password Hashing,Interactive visualization,auth-bcrypt-hashing-visualization
+Authentication (JWT),JWT Signing & Verification,Interactive visualization,auth-jwt-signing-visualization
+Authentication (JWT),Auth Middleware,Interactive visualization,auth-middleware-visualization
+Authentication (JWT),Password Reset,Interactive visualization,auth-password-reset-visualization
+Authentication (JWT),Protecting React Routes,Diagram,auth-protected-routes-visualization
+Authentication (JWT),Role-Based Access Control,Interactive visualization,auth-rbac-visualization
+Authentication (JWT),Refresh Tokens,Interactive visualization,auth-refresh-tokens-visualization
+Authentication (JWT),Security Best Practices,Interactive visualization,auth-security-best-practices-visualization
+Authentication (JWT),Sessions vs Tokens,Interactive visualization,auth-sessions-tokens-visualization
+File Uploads,AWS S3,Interactive visualization,fu-aws-s3-visualization
+File Uploads,Best Practices Checklist,Interactive visualization,fu-best-practices-visualization
+File Uploads,Cloudinary,Interactive visualization,fu-cloudinary-visualization
+File Uploads,How Uploads Work,Interactive visualization,fu-how-uploads-visualization
+File Uploads,Image Optimization,Interactive visualization,fu-image-optimization-visualization
+File Uploads,Memory Storage,Interactive visualization,fu-memory-storage-visualization
+File Uploads,Multiple Files,Interactive visualization,fu-multiple-files-visualization
+File Uploads,Upload Security,Interactive visualization,fu-upload-security-visualization
+File Uploads,File Validation,Interactive visualization,fu-validation-visualization
+Env & Config,Config Module Pattern,Interactive visualization,env-config-module-visualization
+Env & Config,CORS,Interactive visualization,env-cors-visualization
+Env & Config,dotenv,Interactive visualization,env-dotenv-visualization
+Env & Config,Global Error Handling,Interactive visualization,env-error-handling-visualization
+Env & Config,Helmet & Sanitization,Interactive visualization,env-helmet-visualization
+Env & Config,Proxies & Rate Limiting,Interactive visualization,env-rate-limiting-visualization
+Env & Config,Secret Management,Interactive visualization,env-secret-mgmt-visualization
+Env & Config,Env-Specific Config,Interactive visualization,env-specific-config-visualization
+Env & Config,Startup Validation,Interactive visualization,env-startup-validation-visualization
+Testing,Test Structure (AAA),Interactive visualization,tst-aaa-pattern-visualization
+Testing,Testing Auth,Interactive visualization,tst-auth-testing-visualization
+Testing,CI Testing,Interactive visualization,tst-ci-testing-visualization
+Testing,Coverage Thresholds,Chart,tst-coverage-visualization
+Testing,Mocking External Services,Interactive visualization,tst-mocking-visualization
+Testing,React Testing Library,Interactive visualization,tst-rtl-visualization
+Testing,Supertest,Interactive visualization,tst-supertest-visualization
+Testing,Unit Testing,Interactive visualization,tst-unit-testing-visualization
+Testing,Why Test,Interactive visualization,tst-why-test-visualization
+Deployment (Web),MongoDB Atlas,Interactive visualization,dep-atlas-visualization
+Deployment (Web),Firebase Hosting,Interactive visualization,dep-firebase-visualization
+Deployment (Web),GitHub Actions Pipeline,Interactive visualization,dep-gh-actions-visualization
+Deployment (Web),Production Checklist,Table,dep-prod-checklist-visualization
+Deployment (Web),Prod Env Vars,Interactive visualization,dep-prod-env-visualization
+Deployment (Web),Render Backend,Interactive visualization,dep-render-visualization
+Deployment (Web),Monitoring (Sentry),Interactive visualization,dep-sentry-visualization
+Deployment (Web),Vercel,Chart,dep-vercel-visualization
+Deployment (Web),Vite Build,Interactive visualization,dep-vite-build-visualization
+Angular,Angular CLI & Project Structure,Interactive visualization,angular-cli-structure-visualization
+Angular,Components & Templates,Interactive visualization,angular-components-visualization
+Angular,Data Binding & Directives,Interactive visualization,angular-data-binding-visualization
+Angular,Services & Dependency Injection,Interactive visualization,angular-dependency-injection-visualization
+Angular,Route Guards & Lazy Loading,Interactive visualization,angular-guards-lazy-loading-visualization
+Angular,HttpClient,Interactive visualization,angular-httpclient-visualization
+Angular,Pipes,Interactive visualization,angular-pipes-visualization
+Angular,Reactive Forms,Interactive visualization,angular-reactive-forms-visualization
+Angular,Angular Router,Diagram,angular-router-visualization
+Angular,Observables & RxJS,Interactive visualization,angular-rxjs-visualization
+TypeScript,Classes in TypeScript,Interactive visualization,ts-classes-visualization
+TypeScript,tsconfig.json,Interactive visualization,ts-config-visualization
+TypeScript,Decorators,Interactive visualization,ts-decorators-visualization
+TypeScript,Generics,Interactive visualization,ts-generics-visualization
+TypeScript,TypeScript in Practice,Interactive visualization,ts-in-practice-visualization
+TypeScript,Type Narrowing & Assertions,Interactive visualization,ts-narrowing-visualization
+TypeScript,Types & Interfaces,Interactive visualization,ts-types-interfaces-visualization
+TypeScript,Utility Types Deep Dive,Interactive visualization,ts-utility-types-visualization
+TypeScript,Why TypeScript,Interactive visualization,ts-why-visualization
+Jupyter Notebooks,"Cells, Markdown, and Magic",Interactive visualization,jnb-cells-visualization
+Jupyter Notebooks,Collaborative Notebooks,Interactive visualization,jnb-collab-visualization
+Jupyter Notebooks,Debugging and Profiling,Interactive visualization,jnb-debugging-visualization
+Jupyter Notebooks,Exporting Notebooks,Interactive visualization,jnb-export-visualization
+Jupyter Notebooks,Jupyter on GitHub,Interactive visualization,jnb-github-visualization
+Jupyter Notebooks,Organising Analysis Notebooks,Interactive visualization,jnb-organise-visualization
+Jupyter Notebooks,Notebook to Production,Interactive visualization,jnb-production-visualization
+Jupyter Notebooks,Setting Up Jupyter,Interactive visualization,jnb-setup-visualization
+Jupyter Notebooks,Interactive Widgets,Interactive visualization,jnb-widgets-visualization
+Data Analytics Intro,What Does a Data Analyst Do,Chart,dai-what-is-visualization
+Vite / Webpack,Build & preview,Interactive visualization,buildtools-build-preview-visualization
+Vite / Webpack,Code splitting & lazy loading,Interactive visualization,buildtools-code-splitting-visualization
+Vite / Webpack,Dev server & environments,Interactive visualization,buildtools-dev-server-visualization
+Vite / Webpack,Environment variables & modes,Interactive visualization,buildtools-env-modes-visualization
+Vite / Webpack,Optimizing the bundle,Interactive visualization,buildtools-optimize-bundle-visualization
+Vite / Webpack,vite.config.js,Interactive visualization,buildtools-vite-config-visualization
+Vite / Webpack,Getting started with Vite,Interactive visualization,buildtools-vite-start-visualization
+Vite / Webpack,Core concepts (entry/output/loaders/plugins),Interactive visualization,buildtools-webpack-core-visualization
+Vite / Webpack,Why build tools exist,Interactive visualization,buildtools-why-visualization
+SQL — From Zero,"COUNT, SUM, AVG, MIN, MAX",Interactive visualization,sqlfz-agg-visualization
+SQL — From Zero,Aliases + Calculated Columns,Interactive visualization,sqlfz-alias-visualization
+SQL — From Zero,CTEs,Interactive visualization,sqlfz-cte-visualization
+SQL — From Zero,GROUP BY,Interactive visualization,sqlfz-group-by-visualization
+SQL — From Zero,HAVING vs WHERE,Interactive visualization,sqlfz-having-visualization
+SQL — From Zero,JOINs,Interactive visualization,sqlfz-joins-visualization
+SQL — From Zero,NULL Values — The Invisible Trap in Your Data,Interactive visualization,sqlfz-null-visualization
+SQL — From Zero,Sorting and Limiting Results with ORDER BY and LIMIT,Interactive visualization,sqlfz-order-by-visualization
+SQL — From Zero,Table relationships,Interactive visualization,sqlfz-relations-visualization
+SQL — From Zero,Your First SELECT — Reading Data Like a Pro,Interactive visualization,sqlfz-select-visualization
+SQL — From Zero,Setting Up Your SQL Environment (SQLite + DB Browser),Interactive visualization,sqlfz-setup-visualization
+SQL — From Zero,Subqueries in SQL,Interactive visualization,sqlfz-subqueries-visualization
+SQL — From Zero,Filtering Rows with WHERE — Asking Better Questions,Interactive visualization,sqlfz-where-visualization
+SQL — From Zero,Every App Runs on a Database — Why SQL Still Rules,Interactive visualization,sqlfz-why-visualization
+SQL — From Zero,Window functions in SQL,Interactive visualization,sqlfz-window-visualization
+Spreadsheets,Conditional Formatting,Table,xl-cf-visualization
+Spreadsheets,chart types,Chart,xl-charttype-visualization
+Spreadsheets,Data Cleaning,Table,xl-clean-visualization
+Spreadsheets,"SUM, AVERAGE, COUNT, MIN, MAX",Interactive visualization,xl-formulas-visualization
+Spreadsheets,"Rows, columns, cells, ranges",Interactive visualization,xl-grid-visualization
+Spreadsheets,"IF, AND, OR, IFS",Diagram,xl-if-visualization
+Spreadsheets,"INDEX-MATCH, XLOOKUP",Table,xl-indexmatch-visualization
+Spreadsheets,Pivot tables,Interactive visualization,xl-pivot-visualization
+Spreadsheets,pivot charts,Chart,xl-pivotchart-visualization
+Spreadsheets,Relative vs absolute references,Interactive visualization,xl-references-visualization
+Spreadsheets,Text functions,Interactive visualization,xl-textfn-visualization
+Spreadsheets,data validation & sheet protection,Chart,xl-validate-visualization
+Spreadsheets,VLOOKUP,Table,xl-vlookup-visualization
+Spreadsheets,Why spreadsheets still matter,Table,xl-why-visualization
+Python Basics (Analysts),"Lists, dicts, sets",Interactive visualization,python-collections-visualization
+Python Basics (Analysts),List Comprehensions,Interactive visualization,python-comprehensions-visualization
+Python Basics (Analysts),Dates & Times,Interactive visualization,python-dates-visualization
+Python Basics (Analysts),Error handling,Interactive visualization,python-error-handling-visualization
+Python Basics (Analysts),File I/O,Interactive visualization,python-file-io-visualization
+Python Basics (Analysts),Functions,Interactive visualization,python-functions-visualization
+Python Basics (Analysts),Jupyter Notebooks,Interactive visualization,python-jupyter-visualization
+Python Basics (Analysts),Loops & conditionals,Interactive visualization,python-loops-visualization
+Python Basics (Analysts),Complete Data Pipeline,Diagram,python-pipeline-visualization
+Python Basics (Analysts),Reading CSV & JSON,Interactive visualization,python-read-csv-json-visualization
+Python Basics (Analysts),Why Python + setup,Interactive visualization,python-setup-visualization
+Python Basics (Analysts),String manipulation,Interactive visualization,python-str-manip-visualization
+Python Basics (Analysts),Variables & data types,Interactive visualization,python-variables-visualization
+Python Basics (Analysts),Virtual environments & pip,Interactive visualization,python-venv-visualization
+Pandas & NumPy,"Applying Functions with apply, map, and Vectorized Operations",Diagram,pandas-apply-map-visualization
+Pandas & NumPy,"Renaming, Reordering, and Dropping Columns",Interactive visualization,pandas-col-manage-visualization
+Pandas & NumPy,"Exploring Your Data — shape, head, info, describe",Interactive visualization,pandas-explore-data-visualization
+Pandas & NumPy,"Exporting Cleaned Data — to_csv, to_excel, and Sharing Results",Interactive visualization,pandas-export-visualization
+Pandas & NumPy,Filtering and Sorting DataFrames,Interactive visualization,pandas-filter-sort-visualization
+Pandas & NumPy,GroupBy — The Pandas Equivalent of SQL's GROUP BY,Interactive visualization,pandas-groupby-visualization
+Pandas & NumPy,"Creating and Loading DataFrames — From CSV, Excel, and Dicts",Interactive visualization,pandas-loading-visualization
+Pandas & NumPy,Merging and Joining DataFrames — The Pandas JOIN,Interactive visualization,pandas-merge-join-visualization
+Pandas & NumPy,"Handling Missing Data — dropna, fillna, and When to Use Each",Interactive visualization,pandas-missing-data-visualization
+Pandas & NumPy,NumPy Arrays — The Engine Under Pandas,Interactive visualization,pandas-numpy-arrays-visualization
+Pandas & NumPy,Pivot Tables in Pandas,Table,pandas-pivot-table-visualization
+Pandas & NumPy,"Selecting Rows and Columns — loc, iloc, and Boolean Indexing",Interactive visualization,pandas-select-loc-visualization
+Pandas & NumPy,String Operations in Pandas — the .str Accessor,Interactive visualization,pandas-str-accessor-visualization
+Pandas & NumPy,Time Series Basics — Resampling and Rolling Windows,Chart,pandas-time-series-visualization
+Pandas & NumPy,What is Pandas and Why Data Analysts Love It,Interactive visualization,pandas-what-is-visualization
+Data Visualisation,categorical plots,Chart,dv-catplot-visualization
+Data Visualisation,chart type decisions,Chart,dv-chartdecision-visualization
+Data Visualisation,Customisation,Chart,dv-customize-visualization
+Data Visualisation,distribution plots,Chart,dv-distplot-visualization
+Data Visualisation,heatmaps,Table,dv-heatmap-visualization
+Data Visualisation,Histograms,Chart,dv-histogram-visualization
+Data Visualisation,Line and bar charts,Chart,dv-linebar-visualization
+Data Visualisation,pair plots,Table,dv-pairplot-visualization
+Data Visualisation,Plotly interactive,Chart,dv-plotly-visualization
+Data Visualisation,Power BI intro,Chart,dv-powerbi-visualization
+Data Visualisation,Scatter plots,Chart,dv-scatter-visualization
+Data Visualisation,Seaborn intro,Table,dv-seaborn-intro-visualization
+Data Visualisation,Subplots/dashboards,Chart,dv-subplots-visualization
+Data Visualisation,Why visualization matters,Table,dv-why-visualization
+Descriptive Statistics,"Mean, median, mode",Interactive visualization,descstats-central-tendency-visualization
+Descriptive Statistics,Choosing the right statistic,Interactive visualization,descstats-choosing-statistic-visualization
+Descriptive Statistics,Contingency Tables and Frequency Distributions,Table,descstats-contingency-tables-visualization
+Descriptive Statistics,Covariance and Correlation,Interactive visualization,descstats-correlation-visualization
+Descriptive Statistics,Outlier Detection — IQR Method and Z-Scores,Interactive visualization,descstats-outliers-visualization
+Descriptive Statistics,Percentiles & quartiles,Interactive visualization,descstats-percentiles-quartiles-visualization
+Descriptive Statistics,Descriptive Stats in Python,Interactive visualization,descstats-python-describe-visualization
+Descriptive Statistics,Building a Statistical Summary Report,Table,descstats-report-visualization
+Descriptive Statistics,Simpson's Paradox,Chart,descstats-simpsons-paradox-visualization
+Descriptive Statistics,Skewness & kurtosis,Interactive visualization,descstats-skewness-kurtosis-visualization
+Descriptive Statistics,"Spread: std, IQR, CV",Interactive visualization,descstats-spread-variance-visualization
+Descriptive Statistics,weighted averages,Chart,descstats-weighted-averages-visualization
+Descriptive Statistics,What is statistics,Interactive visualization,descstats-what-is-visualization
+Inferential Statistics,A/B Testing for Analysts,Interactive visualization,infstats-ab-test-visualization
+Inferential Statistics,ANOVA,Chart,infstats-anova-visualization
+Inferential Statistics,Chi-Square Test,Interactive visualization,infstats-chi-square-visualization
+Inferential Statistics,The Central Limit Theorem,Chart,infstats-clt-visualization
+Inferential Statistics,Confidence Intervals,Chart,infstats-confidence-intervals-visualization
+Inferential Statistics,Probability Distributions,Chart,infstats-distributions-visualization
+Inferential Statistics,Type I and Type II Errors,Interactive visualization,infstats-error-types-visualization
+Inferential Statistics,Hypothesis Testing,Interactive visualization,infstats-hypothesis-visualization
+Inferential Statistics,Statistical Power and Sample Size,Chart,infstats-power-visualization
+Inferential Statistics,What Is Probability and Why It Matters for Analysts,Interactive visualization,infstats-probability-intro-visualization
+Inferential Statistics,Sampling Methods,Interactive visualization,infstats-sampling-visualization
+Inferential Statistics,t-Tests,Chart,infstats-t-tests-visualization
+Machine Learning Intro,The Bias-Variance Tradeoff,Chart,ml-bias-variance-visualization
+Machine Learning Intro,Cross-Validation,Interactive visualization,ml-cross-validation-visualization
+Machine Learning Intro,Decision Trees,Diagram,ml-decision-trees-visualization
+Machine Learning Intro,Your First End-to-End ML Project in scikit-learn,Interactive visualization,ml-end-to-end-visualization
+Machine Learning Intro,Feature Engineering,Interactive visualization,ml-feature-engineering-visualization
+Machine Learning Intro,Your First ML Pipeline,Diagram,ml-first-pipeline-visualization
+Machine Learning Intro,K-Means Clustering,Chart,ml-k-means-visualization
+Machine Learning Intro,Linear Regression,Chart,ml-linear-regression-visualization
+Machine Learning Intro,Logistic Regression,Chart,ml-logistic-regression-visualization
+Machine Learning Intro,Model Evaluation,Interactive visualization,ml-model-evaluation-visualization
+Machine Learning Intro,Overfitting and Regularisation,Chart,ml-overfitting-visualization
+Machine Learning Intro,Random Forest,Interactive visualization,ml-random-forest-visualization
+Machine Learning Intro,Saving and Loading Models with joblib,Interactive visualization,ml-save-load-visualization
+Machine Learning Intro,Supervised vs Unsupervised Learning,Interactive visualization,ml-supervised-unsupervised-visualization
+Machine Learning Intro,What Is Machine Learning and Where Does It Fit in Data Analysis,Interactive visualization,ml-what-is-visualization
+Data Analytics Capstone,The Capstone Brief,Illustration,cap-brief-visualization
+Data Analytics Capstone,Data Cleaning and Validation,Diagram,cap-clean-visualization
+Data Analytics Capstone,Building the Dashboard,Chart,cap-dashboard-visualization
+Data Analytics Capstone,Exploratory Data Analysis — The Full Process,Table,cap-eda-visualization
+Data Analytics Capstone,Publishing to GitHub,Illustration,cap-github-visualization
+Data Analytics Capstone,Python + Pandas Analysis,Table,cap-pandas-visualization
+Data Analytics Capstone,Defining the Business Question Before Touching the Data,Interactive visualization,cap-question-visualization
+Data Analytics Capstone,Writing the Stakeholder Report,Table,cap-report-visualization
+Data Analytics Capstone,Interpreting Results,Chart,cap-results-visualization
+Data Analytics Capstone,Feature Engineering and SQL Analysis,Diagram,cap-sql-analysis-visualization
+Data Analytics Capstone,Statistical Analysis,Interactive visualization,cap-stats-visualization
+Data Analytics Capstone,Structuring the Data Story,Diagram,cap-story-visualization
+Python (Programming & Math),List Comprehensions (heavily used in ML data prep),Interactive visualization,pymath-comprehension-visualization
+Python (Programming & Math),"Conditionals: if, elif, else",Chart,pymath-conditionals-visualization
+Python (Programming & Math),Dictionaries and Sets,Interactive visualization,pymath-dicts-visualization
+Python (Programming & Math),Error Handling with try/except,Interactive visualization,pymath-error-visualization
+Python (Programming & Math),File Handling,Interactive visualization,pymath-file-visualization
+Python (Programming & Math),Functions and Scope,Interactive visualization,pymath-functions-visualization
+Python (Programming & Math),Intro to Jupyter Notebooks,Interactive visualization,pymath-jupyter-visualization
+Python (Programming & Math),Working with Libraries,Interactive visualization,pymath-libs-visualization
+Python (Programming & Math),Lists and Tuples,Interactive visualization,pymath-lists-visualization
+Python (Programming & Math),"Loops: for, while, and Iteration",Interactive visualization,pymath-loops-visualization
+Python (Programming & Math),Object-Oriented Programming Basics,Interactive visualization,pymath-oop-visualization
+Python (Programming & Math),Setting Up Your Python Environment,Interactive visualization,pymath-setup-visualization
+Python (Programming & Math),Strings and String Manipulation,Interactive visualization,pymath-strings-visualization
+Python (Programming & Math),"Variables, Data Types, and Operators",Interactive visualization,pymath-vars-visualization
+Python (Programming & Math),What Python Is and Why It's the AI Engineer's First Tool,Interactive visualization,pymath-what-is-visualization
+Math Foundations,Bayes' Theorem,Interactive visualization,mf-bayes-visualization
+Math Foundations,The Chain Rule,Diagram,mf-chain-rule-visualization
+Math Foundations,What Is a Derivative,Chart,mf-derivative-visualization
+Math Foundations,Descriptive Statistics,Chart,mf-descstats-visualization
+Math Foundations,The Probability Distributions,Chart,mf-distributions-visualization
+Math Foundations,The Dot Product,Interactive visualization,mf-dot-product-visualization
+Math Foundations,Gradient Descent,Chart,mf-gradient-descent-visualization
+Math Foundations,Gradients,Chart,mf-gradients-visualization
+Math Foundations,Matrices,Interactive visualization,mf-matrices-visualization
+Math Foundations,Matrix Operations,Table,mf-matrix-ops-visualization
+Math Foundations,Probability Basics,Interactive visualization,mf-probability-visualization
+Math Foundations,Putting It All Together,Interactive visualization,mf-synthesis-visualization
+Math Foundations,Vectors,Interactive visualization,mf-vectors-visualization
+Math Foundations,Visualizing Functions and Gradients with Code,Interactive visualization,mf-viz-functions-visualization
+Math Foundations,Why Math Matters for AI,Interactive visualization,mf-why-visualization
+Supervised Learning,Evaluating Classifiers,Interactive visualization,sv-class-eval-visualization
+Supervised Learning,Confusion Matrices,Table,sv-conf-matrix-visualization
+Supervised Learning,The Cross-Validation,Interactive visualization,sv-cross-val-visualization
+Supervised Learning,The Decision Trees,Diagram,sv-decision-tree-visualization
+Supervised Learning,Putting It Together,Interactive visualization,sv-end-to-end-visualization
+Supervised Learning,k-Nearest Neighbors (k-NN),Chart,sv-knn-visualization
+Supervised Learning,The Linear Regression,Chart,sv-linear-regr-visualization
+Supervised Learning,Logistic Regression with scikit-learn,Chart,sv-logistic-visualization
+Supervised Learning,Overfitting and Underfitting,Interactive visualization,sv-overfit-visualization
+Supervised Learning,Random Forests,Chart,sv-random-forest-visualization
+Supervised Learning,Evaluating Regression Models,Chart,sv-regr-eval-visualization
+Supervised Learning,Regression vs. Classification,Chart,sv-rvc-visualization
+Supervised Learning,Feature Scaling and Preprocessing for ML,Interactive visualization,sv-scaling-visualization
+Supervised Learning,Train/Test Splits,Interactive visualization,sv-splits-visualization
+Supervised Learning,What Is Supervised Learning,Chart,sv-what-is-visualization
+Unsupervised Learning,Anomaly Detection,Chart,unsup-anomaly-visualization
+Unsupervised Learning,Using Clustering as Features for Supervised Models,Interactive visualization,unsup-clus-feat-visualization
+Unsupervised Learning,Choosing the Right Number of Clusters,Chart,unsup-clusters-num-visualization
+Unsupervised Learning,The Curse of Dimensionality,Chart,unsup-curse-visualization
+Unsupervised Learning,DBSCAN,Chart,unsup-dbscan-visualization
+Unsupervised Learning,An End-to-End Unsupervised Learning Project,Interactive visualization,unsup-end-to-end-visualization
+Unsupervised Learning,Evaluating Clusters,Chart,unsup-eval-visualization
+Unsupervised Learning,Hierarchical Clustering,Chart,unsup-hierarch-visualization
+Unsupervised Learning,Isolation Forest,Chart,unsup-iso-forest-visualization
+Unsupervised Learning,The K-Means Clustering,Chart,unsup-kmeans-visualization
+Unsupervised Learning,Principal Component Analysis (PCA),Chart,unsup-pca-visualization
+Unsupervised Learning,Visualizing High-Dimensional Data with PCA,Chart,unsup-pca-viz-visualization
+Unsupervised Learning,Customer Segmentation,Interactive visualization,unsup-segment-visualization
+Unsupervised Learning,t-SNE,Chart,unsup-tsne-visualization
+Unsupervised Learning,What Is Unsupervised Learning?,Chart,unsup-what-is-visualization
+Feature Engineering,Feature Engineering for Aggregated/Grouped Data,Interactive visualization,fe-aggregate-visualization
+Feature Engineering,Binning and Discretization,Chart,fe-binning-visualization
+Feature Engineering,Correlation and Multicollinearity,Interactive visualization,fe-correlation-visualization
+Feature Engineering,Creating Features from Dates and Times,Interactive visualization,fe-datetime-visualization
+Feature Engineering,Encoding Categorical Variables,Interactive visualization,fe-encoding-visualization
+Feature Engineering,A Complete Feature Engineering Project,Interactive visualization,fe-end-to-end-visualization
+Feature Engineering,Interaction Features,Interactive visualization,fe-interaction-visualization
+Feature Engineering,Target Leakage,Interactive visualization,fe-leakage-visualization
+Feature Engineering,Handling Missing Data: Imputation Strategies,Interactive visualization,fe-missing-visualization
+Feature Engineering,Building Production-Ready Feature Pipelines,Diagram,fe-pipeline-visualization
+Feature Engineering,Polynomial Features,Interactive visualization,fe-polynomial-visualization
+Feature Engineering,Feature Scaling Revisited,Interactive visualization,fe-scaling-visualization
+Feature Engineering,Feature Selection,Interactive visualization,fe-selection-visualization
+Feature Engineering,Text Feature Extraction,Interactive visualization,fe-text-visualization
+Feature Engineering,What Is Feature Engineering?,Interactive visualization,fe-what-is-visualization
+Neural Networks,Activation Functions,Interactive visualization,nn-activation-visualization
+Neural Networks,Backpropagation,Chart,nn-backprop-visualization
+Neural Networks,Batch Normalization and Training Stability,Chart,nn-batch-norm-visualization
+Neural Networks,Debugging Neural Networks,Interactive visualization,nn-debugging-visualization
+Neural Networks,A Complete Neural Network Project with PyTorch,Interactive visualization,nn-end-to-end-visualization
+Neural Networks,Forward Propagation,Interactive visualization,nn-forward-prop-visualization
+Neural Networks,Gradient Descent Variants,Interactive visualization,nn-gd-variants-visualization
+Neural Networks,Loss Functions for Neural Networks,Interactive visualization,nn-loss-visualization
+Neural Networks,Building Neural Networks with PyTorch's nn.Module,Interactive visualization,nn-nn-module-visualization
+Neural Networks,Overfitting in Neural Networks,Chart,nn-overfit-visualization
+Neural Networks,Introduction to PyTorch,Chart,nn-pytorch-intro-visualization
+Neural Networks,Building a Neural Network from Scratch with NumPy,Interactive visualization,nn-scratch-visualization
+Neural Networks,"Training Loops, Hyperparameters, and Learning Rate Schedules",Interactive visualization,nn-training-loops-visualization
+Neural Networks,Weight Initialization,Chart,nn-weight-init-visualization
+Neural Networks,What Is a Neural Network?,Chart,nn-what-is-visualization
+PyTorch,Model Checkpointing,Chart,pt-checkpoint-visualization
+PyTorch,Building Custom Datasets,Chart,pt-custom-dataset-visualization
+PyTorch,Custom Loss Functions and Custom Layers,Interactive visualization,pt-custom-layers-visualization
+PyTorch,Dataset and DataLoader,Chart,pt-dataloader-visualization
+PyTorch,Embedding Layers,Interactive visualization,pt-embeddings-visualization
+PyTorch,A Complete Image Classification Project with Transfer Learning,Interactive visualization,pt-end-to-end-visualization
+PyTorch,Experiment Tracking and Reproducibility,Interactive visualization,pt-experiment-visualization
+PyTorch,Freezing and Fine-Tuning Layers,Interactive visualization,pt-finetune-visualization
+PyTorch,GPU Acceleration,Interactive visualization,pt-gpu-visualization
+PyTorch,Working with Image Data as Tensors,Chart,pt-image-tensors-visualization
+PyTorch,Mixed Precision Training and Performance Profiling,Interactive visualization,pt-mixed-precision-visualization
+PyTorch,Common PyTorch Pitfalls,Interactive visualization,pt-pitfalls-visualization
+PyTorch,Tensor Operations Deep Dive,Interactive visualization,pt-tensor-ops-visualization
+PyTorch,Transfer Learning,Interactive visualization,pt-transfer-visualization
+PyTorch,Data Transforms and Augmentation,Chart,pt-transforms-visualization
+CNNs & Vision,Classic CNN Architectures,Diagram,cnn-architectures-visualization
+CNNs & Vision,Data Augmentation for Vision,Chart,cnn-augment-visualization
+CNNs & Vision,Choosing and Adapting Architectures,Interactive visualization,cnn-choose-arch-visualization
+CNNs & Vision,Convolutional Layers,Chart,cnn-conv-layers-visualization
+CNNs & Vision,Common CNN Pitfalls and Debugging Vision Models,Interactive visualization,cnn-debugging-visualization
+CNNs & Vision,Object Detection and Segmentation,Chart,cnn-detection-visualization
+CNNs & Vision,A Complete Computer Vision Project,Interactive visualization,cnn-end-to-end-visualization
+CNNs & Vision,"Exporting and Optimizing Models for Deployment (ONNX, Quantization)",Interactive visualization,cnn-export-visualization
+CNNs & Vision,Handling Imbalanced Image Datasets,Interactive visualization,cnn-imbalanced-visualization
+CNNs & Vision,Model Interpretability,Chart,cnn-interpret-visualization
+CNNs & Vision,Pooling Layers,Chart,cnn-pooling-visualization
+CNNs & Vision,Building a CNN from Scratch with PyTorch,Interactive visualization,cnn-scratch-visualization
+CNNs & Vision,Visualizing What CNNs Learn,Interactive visualization,cnn-visualizing-visualization
+CNNs & Vision,Vision Transformers,Chart,cnn-vit-visualization
+CNNs & Vision,Why Convolutions?,Chart,cnn-why-conv-visualization
+Transformers & LLMs,The Transformer Architecture,Interactive visualization,tr-arch-visualization
+Transformers & LLMs,The Attention Mechanism,Chart,tr-attention-visualization
+Transformers & LLMs,Building an End-to-End LLM Application,Interactive visualization,tr-end-to-end-visualization
+Transformers & LLMs,Evaluating and Debugging LLM Outputs,Interactive visualization,tr-eval-visualization
+Transformers & LLMs,Fine-Tuning Pretrained Language Models,Interactive visualization,tr-finetune-visualization
+Transformers & LLMs,Parameter-Efficient Fine-Tuning: LoRA and Adapters,Chart,tr-lora-visualization
+Transformers & LLMs,Self-Attention and Multi-Head Attention,Chart,tr-multi-head-visualization
+Transformers & LLMs,Positional Encoding,Chart,tr-pos-encoding-visualization
+Transformers & LLMs,Pretraining Objectives: Masked LM vs. Causal LM,Chart,tr-pretraining-visualization
+Transformers & LLMs,Prompting and In-Context Learning,Interactive visualization,tr-prompting-visualization
+Transformers & LLMs,Retrieval-Augmented Generation (RAG),Interactive visualization,tr-rag-visualization
+Transformers & LLMs,Recurrent Neural Networks,Chart,tr-rnn-visualization
+Transformers & LLMs,Building a Mini Transformer from Scratch with PyTorch,Interactive visualization,tr-scratch-visualization
+Transformers & LLMs,From Images to Sequences,Chart,tr-seq-visualization
+Transformers & LLMs,Tokenization Deep Dive,Interactive visualization,tr-tokenization-visualization
+Deployment & MLOps,From Notebook to API,Interactive visualization,mlops-api-visualization
+Deployment & MLOps,CI/CD Pipelines for Machine Learning,Interactive visualization,mlops-cicd-visualization
+Deployment & MLOps,Cloud ML Platforms Overview,Interactive visualization,mlops-cloud-visualization
+Deployment & MLOps,Containerizing Models with Docker,Interactive visualization,mlops-docker-visualization
+Deployment & MLOps,Data and Model Versioning (DVC-style Workflows),Chart,mlops-dvc-visualization
+Deployment & MLOps,Deploying an End-to-End AI Application,Chart,mlops-end-to-end-visualization
+Deployment & MLOps,Experiment Tracking and Reproducibility at Scale,Interactive visualization,mlops-experiment-visualization
+Deployment & MLOps,"Batching, Latency, and Throughput Tradeoffs",Chart,mlops-latency-visualization
+Deployment & MLOps,Managed LLM APIs,Interactive visualization,mlops-managed-apis-visualization
+Deployment & MLOps,Monitoring Models in Production: Drift and Degradation,Chart,mlops-monitor-visualization
+Deployment & MLOps,Automated Retraining Pipelines,Chart,mlops-retrain-visualization
+Deployment & MLOps,Serving LLMs,Interactive visualization,mlops-serve-llm-visualization
+Deployment & MLOps,Serverless and Autoscaling Inference,Chart,mlops-serverless-visualization
+Deployment & MLOps,Managed Vector Databases for RAG at Scale,Chart,mlops-vector-db-visualization
+Deployment & MLOps,"Model Versioning, A/B Testing, and Canary Deployments",Chart,mlops-versioning-visualization
+AI & LLM Basics,What LLMs Can/Can't Do,Interactive visualization,llm-capabilities-visualization
+AI & LLM Basics,Choosing the Right Model for Your Task,Diagram,llm-choosing-model-visualization
+AI & LLM Basics,Major AI Models,Interactive visualization,llm-claude-gemini-visualization
+AI & LLM Basics,Context Windows & Tokens,Interactive visualization,llm-context-windows-visualization
+AI & LLM Basics,Why AI Hallucinates,Interactive visualization,llm-hallucinations-bias-visualization
+AI & LLM Basics,Open Source vs Proprietary Models,Interactive visualization,llm-open-source-visualization
+AI & LLM Basics,Building Responsible AI Features,Table,llm-responsible-ai-visualization
+AI & LLM Basics,Training vs Inference,Interactive visualization,llm-training-inference-visualization
+AI & LLM Basics,What Is a Prompt Really?,Illustration,llm-what-is-prompt-visualization
+AI & LLM Basics,How LLMs Work,Interactive visualization,llm-what-is-visualization
+Core Prompting Techniques,Chain-of-Thought Prompting,Diagram,cpt-chain-of-thought-visualization
+Core Prompting Techniques,Crafting Effective Examples,Interactive visualization,cpt-examples-visualization
+Core Prompting Techniques,Few-Shot Prompting,Interactive visualization,cpt-few-shot-visualization
+Core Prompting Techniques,Prompt Injection & Jailbreaks,Interactive visualization,cpt-injection-visualization
+Core Prompting Techniques,Multimodal Prompting,Interactive visualization,cpt-multimodal-visualization
+Core Prompting Techniques,Role & Persona Prompting,Interactive visualization,cpt-role-persona-visualization
+Core Prompting Techniques,Self-Consistency,Interactive visualization,cpt-self-consistency-visualization
+Core Prompting Techniques,Step-by-Step Reasoning Prompts,Diagram,cpt-step-by-step-visualization
+Core Prompting Techniques,System vs User Prompts,Interactive visualization,cpt-system-user-visualization
+Core Prompting Techniques,Prompt Templates & Formatting,Interactive visualization,cpt-templates-visualization
+Core Prompting Techniques,Zero-Shot Prompting,Chart,cpt-zero-shot-visualization
+Advanced Techniques,What Are AI Agents?,Interactive visualization,rag-agents-visualization
+Advanced Techniques,Preparing Datasets,Interactive visualization,rag-dataset-prep-visualization
+Advanced Techniques,Vector Databases & Embeddings,Chart,rag-embeddings-visualization
+Advanced Techniques,Embeddings Beyond RAG,Interactive visualization,rag-eval-fine-tuned-visualization
+Advanced Techniques,Fine-Tuning Basics,Interactive visualization,rag-fine-tune-basics-visualization
+Advanced Techniques,Fine-Tune vs Prompt Engineer,Interactive visualization,rag-fine-tune-vs-prompt-visualization
+Advanced Techniques,Function Calling & Tool Integration,Interactive visualization,rag-function-calling-visualization
+Advanced Techniques,What Is RAG,Interactive visualization,rag-intro-visualization
+Advanced Techniques,Multi-Step Agent Workflows,Diagram,rag-multi-step-planning-visualization
+Advanced Techniques,Building a Simple RAG Pipeline,Interactive visualization,rag-retrieval-visualization
+Building AI Apps,Content Moderation & Output Safety,Interactive visualization,bai-content-safety-visualization
+Building AI Apps,Managing Costs & Rate Limits,Interactive visualization,bai-cost-rate-limits-visualization
+Building AI Apps,Debugging Bad AI Outputs,Interactive visualization,bai-debugging-ai-visualization
+Building AI Apps,Deploying Your First AI App,Interactive visualization,bai-deploy-ai-visualization
+Building AI Apps,Handling Errors & Responses,Interactive visualization,bai-error-responses-visualization
+Building AI Apps,Choosing Between Frameworks,Interactive visualization,bai-framework-choice-visualization
+Building AI Apps,Intro to LangChain,Diagram,bai-langchain-visualization
+Building AI Apps,Tracing & Debugging with LangSmith,Interactive visualization,bai-langsmith-visualization
+Building AI Apps,Intro to LlamaIndex,Interactive visualization,bai-llamaindex-visualization
+Building AI Apps,"Logging, Monitoring & Alerting",Interactive visualization,bai-monitoring-visualization
+Building AI Apps,Prompt Caching,Interactive visualization,bai-prompt-caching-visualization
+Building AI Apps,Prompt Evaluation,Interactive visualization,bai-prompt-eval-visualization
+Building AI Apps,Model Routing & Fallbacks,Interactive visualization,bai-routing-visualization
+Building AI Apps,Streaming Responses,Interactive visualization,bai-streaming-visualization
+Building AI Apps,Structured Outputs & JSON Mode,Interactive visualization,bai-structured-output-visualization
+Building AI Apps,Testing AI Outputs,Interactive visualization,bai-testing-ai-visualization
+Building AI Apps,Using AI APIs,Interactive visualization,bai-using-apis-visualization

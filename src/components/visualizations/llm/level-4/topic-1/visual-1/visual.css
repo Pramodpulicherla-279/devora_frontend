@@ -1,0 +1,16 @@
+.llmprompt-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:700px; }
+.llmprompt-title { color:#56d364; font-size:1.2rem; margin:0 0 .25rem; }
+.llmprompt-sub { color:#8b949e; font-size:.85rem; margin:0 0 1.25rem; }
+.llmprompt-toggles { display:flex; gap:.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+.llmprompt-tog { background:#161b22; border:1px solid #30363d; color:#8b949e; padding:.4rem .85rem; border-radius:6px; cursor:pointer; font-size:.82rem; }
+.llmprompt-tog-on { background:#161b22; }
+.llmprompt-assembled { background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.85rem; margin-bottom:1.25rem; display:flex; flex-direction:column; gap:.5rem; min-height:60px; }
+.llmprompt-empty { color:#8b949e; font-style:italic; font-size:.82rem; }
+.llmprompt-seg { border-left:3px solid #30363d; padding:.3rem .6rem; font-size:.82rem; color:#c9d1d9; }
+.llmprompt-seg-label { font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:.15rem; }
+.llmprompt-flow { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem; margin-bottom:1.25rem; }
+.llmprompt-node { background:#161b22; border:1px solid #30363d; border-radius:6px; padding:.4rem .6rem; font-size:.76rem; color:#c9d1d9; }
+.llmprompt-model { border-color:#a78bfa; color:#a78bfa; }
+.llmprompt-out { border-color:#56d364; color:#56d364; }
+.llmprompt-arrow { color:#8b949e; }
+.llmprompt-note { font-size:.78rem; color:#8b949e; background:#161b22; border-left:3px solid #56d364; border-radius:4px; padding:.6rem .8rem; margin:0; line-height:1.5; }

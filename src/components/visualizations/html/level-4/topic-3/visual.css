@@ -1,0 +1,16 @@
+.kbdnav-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:680px; }
+.kbdnav-title { color:#e34c26; font-size:1.2rem; margin:0 0 .25rem; }
+.kbdnav-sub { color:#8b949e; font-size:.85rem; margin:0 0 1.25rem; }
+.kbdnav-sub kbd, .kbdnav-tip code { background:#161b22; border:1px solid #30363d; border-radius:4px; padding:.05rem .35rem; font-size:.72rem; color:#e34c26; }
+.kbdnav-bar { display:flex; flex-wrap:wrap; gap:.5rem; background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.85rem; margin-bottom:1rem; }
+.kbdnav-el { position:relative; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:.45rem .8rem; border-radius:6px; cursor:pointer; font-size:.8rem; }
+.kbdnav-el-focus { border-color:#e34c26; color:#fff; }
+.kbdnav-ring { position:absolute; inset:-4px; border:2px solid #58a6ff; border-radius:8px; pointer-events:none; }
+.kbdnav-controls { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+.kbdnav-key { background:#161b22; border:1px solid #30363d; color:#c9d1d9; padding:.35rem .8rem; border-radius:6px; cursor:pointer; font-size:.78rem; font-family:monospace; }
+.kbdnav-key:hover { border-color:#e34c26; }
+.kbdnav-pos { font-size:.76rem; color:#8b949e; }
+.kbdnav-detail { display:flex; gap:.6rem; align-items:center; background:#161b22; border:1px solid #21262d; border-radius:8px; padding:.7rem .85rem; margin-bottom:1rem; }
+.kbdnav-detail-tag { font-family:monospace; font-size:.8rem; color:#e34c26; }
+.kbdnav-detail-note { font-size:.8rem; color:#c9d1d9; }
+.kbdnav-tip { font-size:.76rem; color:#8b949e; line-height:1.5; margin:0; }

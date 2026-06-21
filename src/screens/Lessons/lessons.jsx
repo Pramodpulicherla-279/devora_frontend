@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo, memo, useCallback } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
-import { Sandpack } from '@codesandbox/sandpack-react';
+import {
+    SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackPreview, SandpackConsole,
+} from '@codesandbox/sandpack-react';
 import Header from '../../components/Header/header';
 import { useSEO } from '../../hooks/useSEO';
 import { htmlToPlain, slugToTitle } from '../../utils/seoHelpers';
@@ -12,6 +14,9 @@ import { updateStreak, recordQuizResult } from '../../utils/userStats';
 import Split from 'react-split';
 import { TbBorderRadius, TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { parseLessonContent } from '../../components/visualizations/utils/lessonParser';
+import AiTutorChat from '../../components/AiTutorChat/AiTutorChat';
+import SandboxGuide from '../../components/SandboxGuide/SandboxGuide';
+import FillBlanksSection from '../../components/FillBlanks/FillBlanks';
 
 /* ── Dynamic Sandpack config by course ── */
 function getSandpackConfig(courseSlug) {
@@ -59,16 +64,26 @@ function getSandpackConfig(courseSlug) {
     };
 }
 
-const DynamicSandbox = memo(function DynamicSandbox({ courseSlug }) {
+const DynamicSandbox = memo(function DynamicSandbox({ courseSlug, aiEnabled, lesson, onDisable }) {
     const config = useMemo(() => getSandpackConfig(courseSlug), [courseSlug]);
-    const options = useMemo(() => ({
-        showLineNumbers: true,
-        showTabs: true,
-        showConsole: true,
-        showConsoleButton: true,
-        editorHeight: '76vh',
-    }), []);
-    return <Sandpack template={config.template} files={config.files} options={options} theme="dark" />;
+    // 'node' template runs on the server (no DOM preview) — show a console instead.
+    const isServerSide = config.template === 'node';
+    return (
+        <SandpackProvider template={config.template} files={config.files} theme="dark">
+            {/* Code Guide bar sits above the editor; its hint output is a floating
+                modal (rendered via portal), so it never pushes the editor height. */}
+            {aiEnabled && <SandboxGuide lesson={lesson} onDisable={onDisable} />}
+            <SandpackLayout style={{ height: aiEnabled ? '64vh' : '70vh', borderRadius: 0 }}>
+                <SandpackCodeEditor showLineNumbers showTabs style={{ height: '100%' }} />
+                {isServerSide
+                    ? <SandpackConsole style={{ height: '100%' }} />
+                    : <SandpackPreview showOpenInCodeSandbox showRefreshButton style={{ height: '100%' }} />}
+            </SandpackLayout>
+            {!isServerSide && (
+                <SandpackConsole showHeader resetOnPreviewRestart style={{ height: '16vh' }} />
+            )}
+        </SandpackProvider>
+    );
 });
 
 /* ── Quiz Section with performance insights + retry ── */
@@ -281,8 +296,20 @@ function CourseScreen() {
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
-    const [showAiTutorPopup, setShowAiTutorPopup] = useState(false);
     const [showAiChatPopup, setShowAiChatPopup] = useState(false);
+    const [aiSandboxEnabled, setAiSandboxEnabled] = useState(false);
+
+    // Shared lesson context — passed to both the sandbox Code Guide and the chat popup
+    // so the AI always knows which lesson/course the learner is working in.
+    const lessonCtx = useMemo(() => ({
+        course_id: course?._id || courseSlug,
+        course_slug: courseSlug,
+        module_id: activeTopic?.partId || activeTopic?.part || null,
+        lesson_id: activeTopic?._id || activeTopic?.lessonId || null,
+        lesson_title: activeTopic?.title || 'this lesson',
+        lesson_slug: activeTopic?.slug || lessonSlug || '',
+        topic: activeTopic?.title || course?.title || '',
+    }), [course, courseSlug, activeTopic, lessonSlug]);
 
     // Track slug for progress scoping — read once at mount from localStorage (set by TrackScreen).
     // Falls back to 'global' when a lesson is opened directly without a track context.
@@ -788,6 +815,19 @@ function CourseScreen() {
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (progressPercentage / 100) * circumference;
 
+    // Shared lesson body — rendered identically whether or not the
+    // "Try Yourself" sandbox is open. Kept as an element (not a nested
+    // component) so it isn't remounted on every parent re-render, which
+    // would otherwise wipe quiz / fill-blank input state on scroll.
+    const lessonBody = activeTopic && (
+        <>
+            {parseLessonContent(activeTopic.content)}
+            <FillBlanksSection blanks={activeTopic.fillBlanks} />
+            <QuizSection quiz={activeTopic.quiz} />
+            <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
+        </>
+    );
+
     return (
         <div className="screen-container">
             <Header backToTrack={true} />
@@ -889,18 +929,8 @@ function CourseScreen() {
                                     </button>
                                     <p className='topic-title'>Topic: {activeTopic.title}</p>
                                     <div className="ls-header-actions">
-                                        {/* AI Tutor toggle */}
-                                        <button
-                                            className="ls-ai-tutor-toggle"
-                                            onClick={() => setShowAiTutorPopup(true)}
-                                            title="AI Tutor — coming soon"
-                                        >
-                                            <span className="ls-ai-dot" />
-                                            🤖 AI Tutor
-                                            <span className="ls-toggle-pill">OFF</span>
-                                        </button>
                                         <button className="practice-toggle-btn" onClick={togglePractice}>
-                                            {isPracticeOpen ? '✕ Close Practice' : '⌨️ Practice'}
+                                            {isPracticeOpen ? '✕ Close' : '✨ Try Yourself'}
                                         </button>
                                     </div>
                                 </div>
@@ -923,35 +953,40 @@ function CourseScreen() {
                                             cursor="col-resize"
                                         >
                                             <div className="lesson-view" ref={contentAreaRef}>
-                                                {parseLessonContent(activeTopic.content)}
-                                                <QuizSection quiz={activeTopic.quiz} />
-                                                <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
+                                                {lessonBody}
                                             </div>
                                             <div className="practice-view">
-                                                {/* AI Tutor panel inside sandbox */}
-                                                <div className="ls-ai-tutor-bar">
-                                                    <span className="ls-ai-tutor-bar-icon">🤖</span>
-                                                    <div className="ls-ai-tutor-bar-text">
-                                                        <strong>AI Tutor</strong>
-                                                        <span>Real-time hints and debugging help while you code</span>
+                                                {/* When the Code Guide is off, show an Enable CTA bar.
+                                                    When on, its own toolbar (with hint/fix actions and a
+                                                    Disable button) renders inside the sandbox. */}
+                                                {!aiSandboxEnabled && (
+                                                    <div className="ls-ai-tutor-bar">
+                                                        <span className="ls-ai-tutor-bar-icon">🤖</span>
+                                                        <div className="ls-ai-tutor-bar-text">
+                                                            <strong>Code Guide</strong>
+                                                            <span>Real-time hints and debugging help while you code</span>
+                                                        </div>
+                                                        <button
+                                                            className="ls-ai-tutor-bar-btn"
+                                                            onClick={() => setAiSandboxEnabled(true)}
+                                                        >
+                                                            Enable →
+                                                        </button>
                                                     </div>
-                                                    <button
-                                                        className="ls-ai-tutor-bar-btn"
-                                                        onClick={() => setShowAiTutorPopup(true)}
-                                                    >
-                                                        Enable →
-                                                    </button>
-                                                </div>
+                                                )}
                                                 <div className="ls-sandbox-inner">
-                                                    <DynamicSandbox courseSlug={courseSlug} />
+                                                    <DynamicSandbox
+                                                        courseSlug={courseSlug}
+                                                        aiEnabled={aiSandboxEnabled}
+                                                        lesson={lessonCtx}
+                                                        onDisable={() => setAiSandboxEnabled(false)}
+                                                    />
                                                 </div>
                                             </div>
                                         </Split>
                                     ) : (
                                         <div className="lesson-view" ref={contentAreaRef}>
-                                            {parseLessonContent(activeTopic.content)}
-                                            <QuizSection quiz={activeTopic.quiz} />
-                                            <InterviewSection interviewQuestions={activeTopic.interviewQuestions} />
+                                            {lessonBody}
                                         </div>
 
                                     )}
@@ -996,59 +1031,25 @@ function CourseScreen() {
             {/* <Footer /> */}
 
             {/* ── Floating AI Chat widget (desktop + mobile) ── */}
-            <div className="ls-ai-chat-fab-wrap">
-                <button
-                    className="ls-ai-chat-fab"
-                    onClick={() => setShowAiChatPopup(true)}
-                    title="AI Chat — context-based assistant"
-                >
-                    <span className="ls-ai-chat-fab-icon">💬</span>
-                    <span className="ls-ai-chat-fab-label">AI Chat</span>
-                    <span className="ls-ai-chat-coming">Soon</span>
-                </button>
-            </div>
-
-            {/* ── AI Tutor popup ── */}
-            {showAiTutorPopup && (
-                <div className="ls-ai-popup-overlay" onClick={() => setShowAiTutorPopup(false)}>
-                    <div className="ls-ai-popup" onClick={e => e.stopPropagation()}>
-                        <button className="ls-ai-popup-close" onClick={() => setShowAiTutorPopup(false)}>✕</button>
-                        <div className="ls-ai-popup-icon">🤖</div>
-                        <h3>AI Tutor</h3>
-                        <p>
-                            Your personal debugging companion — guides you through errors,
-                            gives contextual hints and explains concepts while you code in the sandbox.
-                        </p>
-                        <div className="ls-ai-popup-badge">🚧 Under Development</div>
-                        <p className="ls-ai-popup-sub">
-                            The AI Tutor feature is coming soon. Enable it from the toggle
-                            once it's live and get smarter as you practice!
-                        </p>
-                        <button className="ls-ai-popup-btn" onClick={() => setShowAiTutorPopup(false)}>Got it!</button>
-                    </div>
+            {!showAiChatPopup && (
+                <div className="ls-ai-chat-fab-wrap">
+                    <button
+                        className="ls-ai-chat-fab"
+                        onClick={() => setShowAiChatPopup(true)}
+                        title="AI Chat — your context-aware tutor"
+                    >
+                        <span className="ls-ai-chat-fab-icon">💬</span>
+                        <span className="ls-ai-chat-fab-label">AI Chat</span>
+                    </button>
                 </div>
             )}
 
-            {/* ── AI Chat popup ── */}
+            {/* ── AI Chat popup (context-aware tutor) ── */}
             {showAiChatPopup && (
-                <div className="ls-ai-popup-overlay" onClick={() => setShowAiChatPopup(false)}>
-                    <div className="ls-ai-popup" onClick={e => e.stopPropagation()}>
-                        <button className="ls-ai-popup-close" onClick={() => setShowAiChatPopup(false)}>✕</button>
-                        <div className="ls-ai-popup-icon">💬</div>
-                        <h3>Context-Based AI Chat</h3>
-                        <p>
-                            Ask any question about the current lesson and your AI assistant
-                            — already aware of exactly what you're reading — will respond with
-                            pinpoint accurate answers.
-                        </p>
-                        <div className="ls-ai-popup-badge">🚧 Under Development</div>
-                        <p className="ls-ai-popup-sub">
-                            We're building this feature to make your learning conversations
-                            smarter and lesson-aware. Coming soon!
-                        </p>
-                        <button className="ls-ai-popup-btn" onClick={() => setShowAiChatPopup(false)}>Got it!</button>
-                    </div>
-                </div>
+                <AiTutorChat
+                    onClose={() => setShowAiChatPopup(false)}
+                    lesson={lessonCtx}
+                />
             )}
         </div>
     );

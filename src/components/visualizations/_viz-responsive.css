@@ -101,6 +101,16 @@
 .dvz-embed ul,
 .dvz-embed ol { list-style: revert; }
 
+/* leaked heading chrome (the lesson h2 divider + prose padding) → a
+   visualization's own title styles stand on their own. A viz that sets
+   its own heading border/padding still wins (its component CSS loads
+   after this file), so only the leaked prose decoration is stripped. */
+.dvz-embed :is(h1, h2, h3, h4, h5, h6) {
+  border: none;
+  padding: 0;
+}
+.dvz-embed hr { border: none; }
+
 /* leaked light table striping / hover → let the card's own rows show */
 .dvz-embed tr td { background: transparent; }
 .dvz-embed table { display: table; box-shadow: none; }

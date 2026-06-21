@@ -1,0 +1,15 @@
+.llmresp-wrap { background:#0d1117; padding:1.5rem; border-radius:12px; font-family:system-ui,sans-serif; color:#e6edf3; max-width:680px; }
+.llmresp-title { color:#56d364; font-size:1.2rem; margin:0 0 .25rem; }
+.llmresp-sub { color:#8b949e; font-size:.85rem; margin:0 0 1.25rem; }
+.llmresp-score { margin-bottom:1.25rem; }
+.llmresp-score-bar { background:#161b22; border:1px solid #21262d; border-radius:20px; height:14px; overflow:hidden; margin-bottom:.4rem; }
+.llmresp-score-fill { height:100%; border-radius:20px; transition:width .3s, background .3s; }
+.llmresp-score-num { font-size:.8rem; color:#8b949e; }
+.llmresp-list { display:flex; flex-direction:column; gap:.4rem; }
+.llmresp-item { display:flex; align-items:flex-start; gap:.6rem; background:#161b22; border:1px solid #30363d; border-radius:8px; padding:.6rem .75rem; cursor:pointer; text-align:left; }
+.llmresp-item-on { background:#56d36410; border-color:#56d36455; }
+.llmresp-box { width:20px; height:20px; flex-shrink:0; border:1px solid #30363d; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:.75rem; color:#56d364; }
+.llmresp-item-on .llmresp-box { background:#56d36420; border-color:#56d364; }
+.llmresp-item-body { display:flex; flex-direction:column; gap:.15rem; }
+.llmresp-item-label { font-size:.84rem; color:#c9d1d9; }
+.llmresp-item-why { font-size:.74rem; color:#8b949e; }

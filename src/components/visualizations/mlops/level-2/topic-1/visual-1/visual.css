@@ -1,114 +1,24 @@
-.mlopsexp-container {
-  background: #0d1117;
-  border: 1px solid #21262d;
-  border-radius: 12px;
-  padding: clamp(16px, 4vw, 28px);
-  max-width: 700px;
-  margin: 0 auto;
-  font-family: system-ui, sans-serif;
-  color: #c9d1d9;
-}
-
-.mlopsexp-title {
-  color: #56d364;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  margin: 0 0 16px;
-  font-weight: 600;
-}
-
-.mlopsexp-table-wrap { overflow-x: auto; }
-
-.mlopsexp-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-  min-width: 500px;
-}
-
-.mlopsexp-th {
-  background: #161b22;
-  border: 1px solid #21262d;
-  padding: 8px 10px;
-  text-align: left;
-  color: #8b949e;
-  font-size: 0.75rem;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-}
-
-.mlopsexp-th:hover { color: #c9d1d9; }
+.mlopsexp-container { background: #0d1117; border: 1px solid #21262d; border-radius: 12px; padding: clamp(14px, 4vw, 28px); max-width: 700px; margin: 0 auto; font-family: system-ui, sans-serif; color: #c9d1d9; }
+.mlopsexp-title { color: #56d364; font-size: clamp(1.05rem, 3vw, 1.2rem); margin: 0 0 16px; font-weight: 600; }
+.mlopsexp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.mlopsexp-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 500px; }
+.mlopsexp-th { background: #161b22; border: 1px solid #21262d; padding: 8px 10px; text-align: left; color: #c9d1d9; font-size: 0.75rem; cursor: pointer; user-select: none; white-space: nowrap; }
+.mlopsexp-th:hover { color: #fff; }
 .mlopsexp-th--active { color: #56d364; }
-
-.mlopsexp-row td {
-  border: 1px solid #21262d;
-  padding: 8px 10px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
+.mlopsexp-row td { border: 1px solid #21262d; padding: 8px 10px; cursor: pointer; transition: background 0.15s; color: #c9d1d9; }
 .mlopsexp-row:hover td { background: #161b22; }
 .mlopsexp-row--sel td { background: #0d2016; }
 .mlopsexp-row--best td { border-color: #1f4228; }
 .mlopsexp-row--best:hover td { background: #0f2d1e; }
-
 .mlopsexp-id { font-family: monospace; font-size: 0.75rem; white-space: nowrap; }
-
-.mlopsexp-best-badge {
-  background: #56d364;
-  color: #0d1117;
-  font-size: 0.65rem;
-  padding: 1px 5px;
-  border-radius: 4px;
-  margin-left: 6px;
-  font-weight: 700;
-}
-
+.mlopsexp-best-badge { background: #56d364; color: #0d1117; font-size: 0.65rem; padding: 1px 5px; border-radius: 4px; margin-left: 6px; font-weight: 700; }
 .mlopsexp-metric { color: #56d364; font-weight: 600; }
 .mlopsexp-metric--loss { color: #f85149; }
-
-.mlopsexp-hint {
-  font-size: 0.76rem;
-  color: #484f58;
-  margin: 8px 0 14px;
-}
-
-.mlopsexp-artifacts {
-  background: #161b22;
-  border: 1px solid #238636;
-  border-radius: 8px;
-  padding: 14px;
-}
-
-.mlopsexp-artifacts-title {
-  font-size: 0.82rem;
-  color: #56d364;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.mlopsexp-artifacts-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.mlopsexp-artifact {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #21262d;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 0.78rem;
-}
-
+.mlopsexp-hint { font-size: 0.76rem; color: #8b949e; margin: 8px 0 14px; }
+.mlopsexp-artifacts { background: #161b22; border: 1px solid #238636; border-radius: 8px; padding: 14px; }
+.mlopsexp-artifacts-title { font-size: 0.82rem; color: #56d364; font-weight: 600; margin-bottom: 12px; }
+.mlopsexp-artifacts-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.mlopsexp-artifact { display: flex; align-items: center; gap: 6px; background: #21262d; border-radius: 6px; padding: 6px 12px; font-size: 0.78rem; }
 .mlopsexp-artifact-icon { font-size: 1rem; }
 .mlopsexp-artifact-name { color: #c9d1d9; }
-
-.mlopsexp-artifacts-note {
-  font-size: 0.78rem;
-  color: #8b949e;
-  margin: 0;
-}
+.mlopsexp-artifacts-note { font-size: 0.78rem; color: #8b949e; margin: 0; }
