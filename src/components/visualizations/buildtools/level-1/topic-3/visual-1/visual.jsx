@@ -26,7 +26,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   `}<span className={`btconfig-k ${hl==='plugins'?'btconfig-k--on':''}`} onClick={()=>setHl('plugins')}>plugins: [react()]</span>{`,
-  `}<span className={`btconfig-k ${hl==='server'?'btconfig-k--on':''}`} onClick={()=>setHl('server')}>{"server: { port: 5173, open: true }"}</span>{`,
+  `}<span className={`btconfig-k ${hl==='server'?'btconfig-k--on':''}`} onClick={()=>setHl('server')}>{"server: { port: 5180, open: true }"}</span>{`,
   `}<span className={`btconfig-k ${hl==='resolve'?'btconfig-k--on':''}`} onClick={()=>setHl('resolve')}>{"resolve: { alias: { '@': '/src' } }"}</span>{`,
   `}<span className={`btconfig-k ${hl==='build'?'btconfig-k--on':''}`} onClick={()=>setHl('build')}>{"build: { outDir: 'dist', sourcemap: true }"}</span>{`
 })`}</code></pre>
