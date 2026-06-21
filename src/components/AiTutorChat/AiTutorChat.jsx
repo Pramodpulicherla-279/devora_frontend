@@ -10,7 +10,7 @@
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Bot, X, Send, Code2, Lightbulb, HelpCircle, FileText, GraduationCap, RotateCcw,
+  Bot, X, Send, Square, Code2, Lightbulb, HelpCircle, FileText, GraduationCap, RotateCcw,
 } from 'lucide-react';
 import Markdown from './Markdown';
 import { streamChat } from './tutorClient';
@@ -169,10 +169,17 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
     try { localStorage.removeItem(storageKey); } catch { /* ignore */ }
   };
 
+  const stopStreaming = () => {
+    abortRef.current?.abort();
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
+    setStreaming(false);
+  };
+
   const onKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      send(input);
+      if (!streaming) send(input);
     }
   };
 
@@ -239,14 +246,14 @@ export default function AiTutorChat({ lesson = {}, onClose }) {
       <div className="att-composer">
         <input
           value={input}
-          disabled={streaming}
-          placeholder="Ask anything about your course..."
+          placeholder={streaming ? 'Responding… press Stop to cancel' : 'Ask anything about your course...'}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
         />
-        <button className="att-send" disabled={streaming || !input.trim()} onClick={() => send(input)} aria-label="Send">
-          <Send size={16} />
-        </button>
+        {streaming
+          ? <button className="att-stop" onClick={stopStreaming} aria-label="Stop generating" title="Stop generating"><Square size={14} /></button>
+          : <button className="att-send" disabled={!input.trim()} onClick={() => send(input)} aria-label="Send"><Send size={16} /></button>
+        }
       </div>
 
       <footer className="att-footer">AI Tutor may make mistakes. Please verify important information.</footer>

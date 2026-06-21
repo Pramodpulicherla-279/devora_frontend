@@ -136,6 +136,14 @@
 .att-send:hover:not(:disabled) { background: #4f46e5; }
 .att-send:disabled { opacity: .45; cursor: default; }
 
+.att-stop {
+  display: grid; place-items: center;
+  width: 42px; padding: 0; border: none; border-radius: 12px;
+  background: #fee2e2; color: #dc2626; cursor: pointer; flex: 0 0 auto;
+  transition: background 0.15s;
+}
+.att-stop:hover { background: #fecaca; }
+
 .att-footer { padding: 8px 12px 12px; text-align: center; font-size: 11px; color: #9095a8; background: #fff; }
 
 .att-waking-notice {
