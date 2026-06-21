@@ -4,5 +4,5 @@ const API_BASE_URL = "https://devora-backend.onrender.com";
 
 // AI Tutor (FastAPI) service
 // const TUTOR_API_BASE_URL = "http://localhost:8000";
-const TUTOR_API_BASE_URL = "https://devel-ai-tutor.onrender.com";
+const TUTOR_API_BASE_URL = "https://ai-tutor-s7sw.onrender.com";
 export { API_BASE_URL, TUTOR_API_BASE_URL };
