@@ -1,0 +1,137 @@
+/* ──────────────────────────────────────────────
+   Code Guide bar (sits above the editor, "enabled" state)
+   Mirrors the green .ls-ai-tutor-bar.is-on look for continuity.
+─────────────────────────────────────────────── */
+.sg-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 16px;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+  border-bottom: 1px solid #a7f3d0;
+  font-family: inherit;
+}
+.sg-bar-icon { font-size: 19px; flex-shrink: 0; }
+.sg-bar-text { flex: 1; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.sg-bar-text strong { font-size: 13px; color: #059669; }
+.sg-bar-text span {
+  font-size: 11px; color: #64748b;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.sg-bar-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+.sg-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 13px; border: none; border-radius: 7px;
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s; white-space: nowrap;
+}
+.sg-btn:disabled { opacity: 0.5; cursor: default; }
+.sg-btn-hint { background: #6366f1; color: #fff; }
+.sg-btn-hint:hover:not(:disabled) { opacity: 0.85; }
+.sg-btn-error { background: #dc2626; color: #fff; }
+.sg-btn-error:hover:not(:disabled) { opacity: 0.85; }
+
+.sg-bar-disable {
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid #d1fae5;
+  border-radius: 7px;
+  color: #059669;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+.sg-bar-disable:hover { background: #f0fdf4; border-color: #6ee7b7; }
+
+.sg-spinner {
+  display: inline-block; width: 10px; height: 10px;
+  border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff;
+  border-radius: 50%; animation: sg-spin 0.65s linear infinite;
+}
+@keyframes sg-spin { to { transform: rotate(360deg); } }
+
+/* ──────────────────────────────────────────────
+   Floating hint modal (right side, via portal → document.body)
+   position:fixed so it overlays without affecting the IDE layout.
+─────────────────────────────────────────────── */
+.sg-modal {
+  position: fixed;
+  top: 88px;
+  right: 24px;
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 180px);
+  background: #ffffff;
+  border: 1px solid #e6e6f0;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(17, 17, 40, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 3600;
+  font-family: inherit;
+  animation: sg-modal-in 0.18s ease;
+}
+@keyframes sg-modal-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sg-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px solid #ececf3;
+  background: linear-gradient(135deg, #ecfdf5, #f7f7fb);
+}
+.sg-modal-title { font-size: 13px; font-weight: 700; color: #059669; }
+.sg-modal-close {
+  border: none; background: none; cursor: pointer;
+  color: #6b7280; font-size: 15px; line-height: 1;
+  width: 26px; height: 26px; border-radius: 6px;
+  display: grid; place-items: center;
+  transition: background 0.12s, color 0.12s;
+}
+.sg-modal-close:hover { background: #f3f4f6; color: #111; }
+
+.sg-modal-body {
+  padding: 12px 15px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #20223a;
+}
+.sg-modal-loading { color: #6b7280; font-style: italic; margin: 2px 0; }
+
+/* Markdown (classes from Markdown.jsx) inside the light modal */
+.sg-modal-body .att-md-p { margin: 6px 0; }
+.sg-modal-body .att-md-h { color: #1f2240; font-size: 14px; margin: 9px 0 4px; font-weight: 600; }
+.sg-modal-body .att-md-ul,
+.sg-modal-body .att-md-ol { margin: 6px 0; padding-left: 20px; }
+.sg-modal-body .att-md-ul li,
+.sg-modal-body .att-md-ol li { margin: 3px 0; }
+.sg-modal-body .att-md-code {
+  background: #f1f1f8; border: 1px solid #e6e6f0; border-radius: 5px;
+  padding: 1px 5px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
+}
+.sg-modal-body .att-md-pre {
+  background: #0f1021; color: #e6e6f0; border-radius: 9px;
+  padding: 11px; overflow-x: auto; margin: 8px 0;
+}
+.sg-modal-body .att-md-pre code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+.sg-modal-body .att-md-table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 12.5px; }
+.sg-modal-body .att-md-table th,
+.sg-modal-body .att-md-table td { border: 1px solid #e6e6f0; padding: 6px 9px; text-align: left; }
+.sg-modal-body .att-md-table th { background: #f3f3fb; font-weight: 600; }
+
+.sg-caret {
+  display: inline-block; width: 6px; height: 14px;
+  background: #10b981; border-radius: 1px;
+  animation: sg-blink 1s steps(2, start) infinite; vertical-align: text-bottom; margin-left: 2px;
+}
+@keyframes sg-blink { to { visibility: hidden; } }
+
+@media (max-width: 640px) {
+  .sg-modal { top: auto; bottom: 16px; right: 16px; left: 16px; width: auto; max-height: 60vh; }
+}

@@ -173,6 +173,14 @@ const INDEX_CODE_HTML = [
   ');',
 ].join('\n');
 
+// Snippet rendered inside the AI Code Guide hologram — the AI "points" at
+// the dependency array via the highlighted span.
+const GUIDE_CODE_HTML = [
+  '<span class="tok-fn">useEffect</span>(<span class="tok-fn">() =&gt;</span> {',
+  '  <span class="tok-name">fetchUser</span>(userId);',
+  '}, <span class="lp-ais-code-hl">[userId]</span>);',
+].join('\n');
+
 /* ─── HELPERS ─────────────────────────────── */
 function getTrackCourses(trackName) {
   const ids = TRACK_COURSE_IDS[trackName] || [];
@@ -968,6 +976,104 @@ export default function LandingPage() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ── AI TUTOR & CODE GUIDE (holographic highlight) ── */}
+      <section className="lp-section lp-ai-section">
+        <div className="lp-ais-bg" aria-hidden="true">
+          <div className="lp-ais-orb lp-ais-orb-1" />
+          <div className="lp-ais-orb lp-ais-orb-2" />
+          <div className="lp-ais-gridlines" />
+        </div>
+        <div className="lp-section-inner">
+          <div className="lp-section-header">
+            <div className="lp-label-tag">Your AI Co-Pilot</div>
+            <h2 className="lp-section-h2">
+              Never get stuck — your <span className="lp-gradient-text">AI Tutor &amp; Code Guide</span> are always on
+            </h2>
+            <p className="lp-section-p">
+              Two AI companions are built into every lesson: one mentors you as you practice,
+              the other reads the exact code in front of you and guides you line by line.
+            </p>
+          </div>
+
+          <div className="lp-ais-grid">
+            {/* ── AI TUTOR ── */}
+            <article className="lp-ais-card">
+              <div className="lp-ais-holo lp-ais-float-a">
+                <span className="lp-ais-scan" aria-hidden="true" />
+                <span className="lp-ais-ring" aria-hidden="true" />
+                <div className="lp-ais-chat">
+                  <div className="lp-ais-chat-head">
+                    <span className="lp-ais-bot">🤖</span>
+                    <div>
+                      <p className="lp-ais-chat-title">AI Tutor</p>
+                      <p className="lp-ais-chat-status">
+                        <span className="lp-ais-live" /> Online · React · useEffect
+                      </p>
+                    </div>
+                  </div>
+                  <div className="lp-ais-msg user">Why does my <code>useEffect</code> run twice?</div>
+                  <div className="lp-ais-msg bot">
+                    In <code>StrictMode</code>, React double-invokes effects in dev to surface
+                    missing cleanup. Return a cleanup function 👇
+                    <span className="lp-ais-typing" aria-hidden="true"><i /><i /><i /></span>
+                  </div>
+                </div>
+              </div>
+              <div className="lp-ais-info">
+                <div className="lp-ais-ico lp-ais-ico-purple">🎓</div>
+                <h3 className="lp-ais-title">AI Tutor — while you practice</h3>
+                <p className="lp-ais-desc">
+                  Stuck on an error or a concept? Ask in plain English and get instant hints,
+                  analogies and working code — without ever leaving your lesson.
+                </p>
+                <ul className="lp-ais-feats">
+                  <li>Instant hints &amp; explanations</li>
+                  <li>Debugs your code with you</li>
+                  <li>Quizzes you to lock it in</li>
+                </ul>
+              </div>
+            </article>
+
+            {/* ── AI CODE GUIDE ── */}
+            <article className="lp-ais-card">
+              <div className="lp-ais-holo lp-ais-float-b">
+                <span className="lp-ais-scan" aria-hidden="true" />
+                <span className="lp-ais-ring lp-ais-ring-cyan" aria-hidden="true" />
+                <div className="lp-ais-code">
+                  <div className="lp-ais-code-bar">
+                    <span className="lp-win-btn red" />
+                    <span className="lp-win-btn yellow" />
+                    <span className="lp-win-btn green" />
+                    <span className="lp-ais-code-file">App.jsx</span>
+                  </div>
+                  <pre
+                    className="lp-ais-code-body"
+                    dangerouslySetInnerHTML={{ __html: `<code>${GUIDE_CODE_HTML}</code>` }}
+                  />
+                  <div className="lp-ais-annot">
+                    <span className="lp-ais-annot-dot" />
+                    The dependency array controls <b>when</b> this effect re-runs.
+                  </div>
+                </div>
+              </div>
+              <div className="lp-ais-info">
+                <div className="lp-ais-ico lp-ais-ico-cyan">🧭</div>
+                <h3 className="lp-ais-title">AI Code Guide — context-aware</h3>
+                <p className="lp-ais-desc">
+                  It already knows the lesson you're reading and the code on your screen, so it
+                  explains exactly what each line does and what to try next.
+                </p>
+                <ul className="lp-ais-feats">
+                  <li>Reads your lesson &amp; current code</li>
+                  <li>Line-by-line walkthroughs</li>
+                  <li>Suggests your next step</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

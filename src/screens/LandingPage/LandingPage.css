@@ -1632,3 +1632,248 @@ body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antial
     width: 100%;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   AI TUTOR & CODE GUIDE — holographic highlight section
+   All selectors are scoped under .lp-ai-section / .lp-ais-* and all
+   keyframes are prefixed lpais- so nothing leaks into other styles.
+   ═══════════════════════════════════════════════════════════════ */
+.lp-ai-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6ff 55%, #eef1ff 100%);
+}
+.lp-ai-section .lp-section-inner { position: relative; z-index: 1; }
+
+/* Ambient background — orbs + faint grid (mirrors the hero) */
+.lp-ais-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.lp-ais-orb { position: absolute; border-radius: 50%; filter: blur(90px); }
+.lp-ais-orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(124,58,237,.16), transparent 70%); top: -160px; left: -120px; }
+.lp-ais-orb-2 { width: 460px; height: 460px; background: radial-gradient(circle, rgba(8,145,178,.14), transparent 70%); bottom: -160px; right: -100px; }
+.lp-ais-gridlines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(124,58,237,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+/* Two-up layout */
+.lp-ais-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.lp-ais-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(124,58,237,0.14);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.lp-ais-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad);
+  opacity: .85;
+}
+.lp-ais-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,58,237,0.28);
+  box-shadow: 0 26px 70px rgba(124,58,237,0.16);
+}
+
+/* ── Holographic stage ── */
+.lp-ais-holo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 248px;
+  padding: 26px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(124,58,237,.07), rgba(8,145,178,.07));
+  border: 1px solid rgba(124,58,237,0.12);
+  overflow: hidden;
+}
+/* Pulsing radial glow behind the mockup */
+.lp-ais-ring {
+  position: absolute;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.22), transparent 68%);
+  filter: blur(14px);
+  animation: lpais-pulse 4.5s ease-in-out infinite;
+  z-index: 0;
+}
+.lp-ais-ring-cyan { background: radial-gradient(circle, rgba(8,145,178,0.22), transparent 68%); }
+/* Sweeping scan line */
+.lp-ais-scan {
+  position: absolute; left: 0; right: 0; height: 46%;
+  background: linear-gradient(180deg, transparent, rgba(124,58,237,0.10), transparent);
+  animation: lpais-scan 5s linear infinite;
+  z-index: 1;
+}
+.lp-ais-float-a { animation: lpais-floatA 6s ease-in-out infinite; }
+.lp-ais-float-b { animation: lpais-floatB 7s ease-in-out infinite; }
+
+/* ── AI Tutor chat mockup ── */
+.lp-ais-chat {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.97);
+  border: 1px solid rgba(124,58,237,0.18);
+  box-shadow: 0 18px 44px rgba(124,58,237,0.18);
+}
+.lp-ais-chat-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.lp-ais-bot {
+  width: 34px; height: 34px; flex-shrink: 0;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  font-size: 17px;
+  background: linear-gradient(135deg, #ede9fe, #e0f2fe);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12), 0 4px 14px rgba(124,58,237,0.22);
+}
+.lp-ais-chat-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.lp-ais-chat-status { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--text3); margin-top: 1px; }
+.lp-ais-live {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34,197,94,.6);
+  animation: lpais-live 1.8s ease-out infinite;
+  flex-shrink: 0;
+}
+.lp-ais-msg {
+  font-size: 12.5px; line-height: 1.5; border-radius: 12px;
+  padding: 9px 12px; margin-top: 8px; max-width: 90%;
+}
+.lp-ais-msg code {
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: .86em; padding: 1px 5px; border-radius: 5px;
+  background: rgba(124,58,237,0.10); color: #6d28d9;
+}
+.lp-ais-msg.user {
+  margin-left: auto; color: #fff;
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  border-bottom-right-radius: 4px;
+}
+.lp-ais-msg.user code { background: rgba(255,255,255,0.22); color: #fff; }
+.lp-ais-msg.bot {
+  color: #20223a; background: #f4f4fb;
+  border: 1px solid #ececf3; border-bottom-left-radius: 4px;
+}
+.lp-ais-typing { display: inline-flex; gap: 4px; margin-left: 6px; vertical-align: middle; }
+.lp-ais-typing i { width: 5px; height: 5px; border-radius: 50%; background: #8b5cf6; display: inline-block; animation: lpais-typing 1.2s infinite ease-in-out; }
+.lp-ais-typing i:nth-child(2) { animation-delay: .18s; }
+.lp-ais-typing i:nth-child(3) { animation-delay: .36s; }
+
+/* ── AI Code Guide mockup ── */
+.lp-ais-code {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 14px;
+  background: #14142a;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 18px 44px rgba(8,145,178,0.20);
+}
+.lp-ais-code-bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.lp-ais-code-file { font-size: 11px; color: var(--text3); margin-left: 6px; }
+.lp-ais-code-body { padding: 14px 16px 22px; overflow: hidden; }
+.lp-ais-code-body code {
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 12px; line-height: 1.75; color: #c9d1d9; white-space: pre;
+}
+.lp-ais-code-hl {
+  border-radius: 4px; padding: 1px 4px; color: #8be9fd;
+  background: rgba(8,145,178,0.28);
+  box-shadow: 0 0 0 1px rgba(8,145,178,0.55), 0 0 14px rgba(8,145,178,0.45);
+  animation: lpais-hl 2.4s ease-in-out infinite;
+}
+.lp-ais-annot {
+  position: absolute; left: 16px; bottom: -16px;
+  display: flex; align-items: center; gap: 7px;
+  max-width: 250px;
+  padding: 8px 12px;
+  font-size: 11.5px; line-height: 1.4; color: #fff;
+  background: linear-gradient(135deg, #0891b2, #3b82f6);
+  border-radius: 11px;
+  box-shadow: 0 10px 28px rgba(8,145,178,0.42);
+}
+.lp-ais-annot b { font-weight: 700; }
+.lp-ais-annot-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+  animation: lpais-live 1.8s ease-out infinite;
+}
+
+/* ── Info block ── */
+.lp-ais-ico {
+  width: 50px; height: 50px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+.lp-ais-ico-purple { background: linear-gradient(135deg, rgba(124,58,237,0.16), rgba(139,92,246,0.16)); box-shadow: 0 6px 18px rgba(124,58,237,0.22); }
+.lp-ais-ico-cyan { background: linear-gradient(135deg, rgba(8,145,178,0.16), rgba(59,130,246,0.16)); box-shadow: 0 6px 18px rgba(8,145,178,0.22); }
+.lp-ais-title { font-size: 20px; font-weight: 800; letter-spacing: -.3px; color: var(--text); margin-bottom: 8px; }
+.lp-ais-desc { font-size: 14.5px; line-height: 1.65; color: var(--text2); margin-bottom: 16px; }
+.lp-ais-feats { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.lp-ais-feats li { position: relative; padding-left: 26px; font-size: 13.5px; color: var(--text); font-weight: 500; }
+.lp-ais-feats li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 10px; font-weight: 800; color: #fff;
+  background: var(--grad);
+}
+
+/* ── Keyframes ── */
+@keyframes lpais-floatA { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes lpais-floatB { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(8px); } }
+@keyframes lpais-pulse { 0%,100% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.06); } }
+@keyframes lpais-scan { 0% { transform: translateY(-120%); } 100% { transform: translateY(260%); } }
+@keyframes lpais-typing { 0%,60%,100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes lpais-live { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); } 70%,100% { box-shadow: 0 0 0 7px rgba(34,197,94,0); } }
+@keyframes lpais-hl { 0%,100% { box-shadow: 0 0 0 1px rgba(8,145,178,0.55), 0 0 10px rgba(8,145,178,0.35); } 50% { box-shadow: 0 0 0 1px rgba(8,145,178,0.75), 0 0 20px rgba(8,145,178,0.6); } }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .lp-ais-grid { grid-template-columns: 1fr; gap: 22px; }
+}
+@media (max-width: 480px) {
+  .lp-ais-card { padding: 18px; gap: 18px; }
+  .lp-ais-holo { min-height: 220px; padding: 22px 14px; }
+  .lp-ais-title { font-size: 18px; }
+  .lp-ais-annot { max-width: 210px; font-size: 11px; }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .lp-ais-float-a, .lp-ais-float-b, .lp-ais-ring, .lp-ais-scan,
+  .lp-ais-live, .lp-ais-typing i, .lp-ais-code-hl, .lp-ais-annot-dot {
+    animation: none !important;
+  }
+}

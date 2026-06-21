@@ -1,0 +1,206 @@
+/* ── Fill-in-the-blanks practice block ──────────────────────────────
+   Visual language mirrors the lesson quiz section (.lqs-*): light cards,
+   purple accent, green/red correctness states. */
+
+.fib-section {
+    margin: 32px 0;
+    padding: 24px;
+    background: #faf9ff;
+    border: 1px solid #ede9fe;
+    border-radius: 14px;
+}
+
+.fib-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.fib-icon { font-size: 22px; }
+
+.fib-sub {
+    margin: 4px 0 18px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* ── Exercise card ── */
+.fib-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 16px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fib-card.solved {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.fib-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.fib-ex-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #7c3aed;
+}
+
+.fib-lang {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6366f1;
+    background: #eef2ff;
+    padding: 3px 9px;
+    border-radius: 99px;
+}
+
+.fib-prompt {
+    margin: 0 0 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #334155;
+}
+
+/* ── Code template with inline inputs ── */
+.fib-template {
+    margin: 0;
+    padding: 16px;
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 10px;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 2;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+}
+
+.fib-input {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 2px 8px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #0f172a;
+    background: #fef9c3;
+    border: 2px solid #facc15;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.fib-input:focus {
+    border-color: #7c3aed;
+    background: #fff;
+}
+
+.fib-input.correct {
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #166534;
+}
+
+.fib-input.wrong {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.fib-input:disabled { opacity: 1; cursor: default; }
+
+/* ── Hints ── */
+.fib-hints {
+    margin: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fib-hint-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.fib-hint-btn {
+    background: none;
+    border: 1px dashed #c4b5fd;
+    color: #7c3aed;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    cursor: pointer;
+}
+
+.fib-hint-btn:hover { background: #f5f3ff; }
+
+.fib-hint-text { font-size: 13px; color: #475569; }
+
+/* ── Actions ── */
+.fib-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.fib-check-btn,
+.fib-reveal-btn,
+.fib-reset-btn {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.fib-check-btn { background: #7c3aed; color: #fff; }
+.fib-check-btn:hover { opacity: 0.88; }
+
+.fib-reveal-btn { background: #eef2ff; color: #4338ca; }
+.fib-reveal-btn:hover { background: #e0e7ff; }
+
+.fib-reset-btn { background: transparent; color: #64748b; border: 1px solid #e2e8f0; }
+.fib-reset-btn:hover { background: #f8fafc; }
+
+.fib-score {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fib-score.ok { color: #22c55e; }
+.fib-score.partial { color: #f59e0b; }
+
+/* ── Explanation ── */
+.fib-explanation {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #f0fdf4;
+    border-left: 3px solid #22c55e;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #166534;
+}
+
+.fib-exp-icon { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+    .fib-section { padding: 16px; }
+    .fib-score { margin-left: 0; width: 100%; }
+}

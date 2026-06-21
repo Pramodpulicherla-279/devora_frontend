@@ -516,6 +516,14 @@
    area, and reflows automatically into the left pane when Practice opens. */
 .lesson-view > * { max-width: 100%; }
 
+/* All prose styles — headings AND body — live in a cascade layer so embedded
+   visualizations (.dvz-embed → unlayered component CSS) always win, and this
+   light-theme prose (including the h2 divider) never bleeds into the
+   visualization cards, e.g. onto a viz's own title. Headings used to sit
+   outside the layer, which leaked the h2 border-bottom onto viz titles.
+   Layer order is declared in index.css. */
+@layer dvz-lesson-prose {
+
 /* ── Headings ── */
 .lesson-view h1,
 .lesson-view h2,
@@ -557,11 +565,6 @@
   margin: 1.5rem 0 0.55rem;
   color: #2d2d42;
 }
-
-/* Prose element styles live in a cascade layer so embedded visualizations
-   (.dvz-embed → unlayered component CSS) always win, and this light-theme
-   prose never bleeds into the dark visualization cards. */
-@layer dvz-lesson-prose {
 
 /* ── Body text ── */
 .lesson-view p {
@@ -1133,45 +1136,8 @@
   flex-shrink: 0;
 }
 
-/* ── AI Tutor toggle button ── */
-.ls-ai-tutor-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: #f5f3ff;
-  border: 1px solid #c4b5fd;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #7c3aed;
-  cursor: pointer;
-  transition: all 0.18s;
-  white-space: nowrap;
-}
-.ls-ai-tutor-toggle:hover { background: #ede9fe; }
-.ls-ai-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: #94a3b8;
-  animation: ls-ai-pulse 2s ease infinite;
-}
-@keyframes ls-ai-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.ls-toggle-pill {
-  background: #e2e8f0;
-  color: #64748b;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
-  letter-spacing: 0.04em;
-}
-
 /* ══════════════════════════════════════════════
-   AI TUTOR BAR (inside sandbox panel)
+   CODE GUIDE "ENABLE" BAR (inside sandbox panel, shown when off)
 ══════════════════════════════════════════════ */
 .ls-ai-tutor-bar {
   display: flex;

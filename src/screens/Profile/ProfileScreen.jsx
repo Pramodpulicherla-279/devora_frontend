@@ -64,10 +64,15 @@ export default function ProfileScreen() {
   const navigate = useNavigate();
 
   // Read user synchronously — no async flash, no useEffect needed for auth check.
-  const [user] = useState(() => {
+  const [user, setUser] = useState(() => {
     const raw = localStorage.getItem('userInfo');
     return raw ? JSON.parse(raw) : null;
   });
+
+  const [editingName, setEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState('');
+  const [nameSaving, setNameSaving] = useState(false);
+  const [nameError, setNameError] = useState('');
 
   const [progress, setProgress] = useState({});            // { courseId: percent } — global / legacy
   const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: percent } }
@@ -203,6 +208,39 @@ export default function ProfileScreen() {
       : Math.round(started.reduce((s, c) => s + getCoursePct(c.id), 0) / started.length);
   })();
 
+  const startEditName = () => { setNameInput(user.name); setNameError(''); setEditingName(true); };
+  const cancelEditName = () => { setEditingName(false); setNameError(''); };
+
+  const handleSaveName = async () => {
+    const trimmed = nameInput.trim();
+    if (!trimmed) { setNameError('Name cannot be empty'); return; }
+    if (trimmed === user.name) { setEditingName(false); return; }
+    setNameSaving(true);
+    setNameError('');
+    try {
+      const res = await authFetch(`${API_BASE_URL}/api/users/profile`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: trimmed }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        const stored = JSON.parse(localStorage.getItem('userInfo'));
+        stored.name = data.name;
+        stored.token = data.token;
+        localStorage.setItem('userInfo', JSON.stringify(stored));
+        setUser(stored);
+        setEditingName(false);
+      } else {
+        setNameError(data.error || 'Failed to update name');
+      }
+    } catch {
+      setNameError('Network error. Try again.');
+    } finally {
+      setNameSaving(false);
+    }
+  };
+
   return (
     <div className="ps-screen">
       {/* ── Header ── */}
@@ -232,7 +270,33 @@ export default function ProfileScreen() {
           <div className="ps-avatar">{user.name.charAt(0).toUpperCase()}</div>
         </div>
         <div className="ps-user-info">
-          <h1 className="ps-name">{user.name}</h1>
+          {editingName ? (
+            <div className="ps-name-edit">
+              <input
+                className="ps-name-input"
+                value={nameInput}
+                onChange={e => setNameInput(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') handleSaveName();
+                  if (e.key === 'Escape') cancelEditName();
+                }}
+                autoFocus
+                maxLength={50}
+              />
+              <div className="ps-name-actions">
+                <button className="ps-name-save" onClick={handleSaveName} disabled={nameSaving}>
+                  {nameSaving ? 'Saving…' : 'Save'}
+                </button>
+                <button className="ps-name-cancel" onClick={cancelEditName}>Cancel</button>
+              </div>
+              {nameError && <span className="ps-name-error">{nameError}</span>}
+            </div>
+          ) : (
+            <div className="ps-name-row">
+              <h1 className="ps-name">{user.name}</h1>
+              <button className="ps-name-edit-btn" onClick={startEditName} title="Edit name">✏️</button>
+            </div>
+          )}
           <p className="ps-email">{user.email}</p>
           <span className={`ps-role-badge ${user.role === 'admin' ? 'admin' : ''}`}>
             {user.role === 'admin' ? '⚡ Admin' : '🎓 Learner'}
