@@ -1,32 +1,14 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { reactRouter } from '@react-router/dev/vite';
 
-// https://vite.dev/config/
+// React Router's framework plugin handles React (Fast Refresh, JSX) itself,
+// so we no longer add @vitejs/plugin-react-swc separately. Code-splitting and
+// SSR/prerender bundling are managed by the plugin too — hence no manualChunks.
+// https://reactrouter.com/start/framework/installation
 export default defineConfig({
-  plugins: [react()],
-
+  plugins: [reactRouter()],
   server: {
     port: 5180,
     strictPort: false,
-  },
-
-  build: {
-    // Split heavy vendor deps into separate async chunks.
-    // The landing page ships only ~vendor-react; Three.js / Sandpack / TipTap
-    // are downloaded only when the route that needs them is first visited.
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react':     ['react', 'react-dom', 'react-router-dom'],
-          'vendor-three':     ['three', '@react-three/fiber', '@react-three/drei'],
-          'vendor-tiptap':    ['@tiptap/react', '@tiptap/starter-kit'],
-          'vendor-sandpack':  ['@codesandbox/sandpack-react'],
-          'vendor-highlight': ['highlight.js', 'lowlight'],
-        },
-      },
-    },
-    // Three.js is legitimately large; raise the warning threshold to avoid
-    // noise in CI/CD logs without hiding real bloat in our own code.
-    chunkSizeWarningLimit: 900,
   },
 });

@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo, memo, useCallback } from 'react';
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
+import { useParams, useSearchParams, useNavigate, useLoaderData } from 'react-router-dom'
 import {
     SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackPreview, SandpackConsole,
 } from '@codesandbox/sandpack-react';
 import Header from '../../components/Header/header';
-import { useSEO } from '../../hooks/useSEO';
-import { htmlToPlain, slugToTitle } from '../../utils/seoHelpers';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
 import { API_BASE_URL } from '../../../config';
@@ -284,10 +282,26 @@ function CourseScreen() {
     const { courseSlug, lessonSlug } = useParams();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const [course, setCourse] = useState(null);
-    const [expandedPart, setExpandedPart] = useState(null);
-    const [activeTopic, setActiveTopic] = useState(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);;
+
+    // Course data comes from the route loader (src/routes/course.jsx) so the page
+    // prerenders with real lesson content. Seed state from it; the effect below
+    // still refetches on the client for fresh + user-specific data.
+    const loaderData = useLoaderData();
+    const initialCourse = loaderData?.course ?? null;
+    const seededTopic = (() => {
+        if (!initialCourse?.parts) return null;
+        for (const part of initialCourse.parts) {
+            const l = part.lessons?.find((x) => x.slug === lessonSlug);
+            if (l) return { lesson: l, partId: part._id };
+        }
+        const fp = initialCourse.parts[0];
+        return fp?.lessons?.[0] ? { lesson: fp.lessons[0], partId: fp._id } : null;
+    })();
+
+    const [course, setCourse] = useState(initialCourse);
+    const [expandedPart, setExpandedPart] = useState(seededTopic?.partId ?? null);
+    const [activeTopic, setActiveTopic] = useState(seededTopic?.lesson ?? null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isPracticeOpen, setIsPracticeOpen] = useState(false);
     const contentAreaRef = useRef(null);
     const savedScrollRef = useRef(0);  // persists lesson scroll pos across practice toggle
@@ -295,7 +309,7 @@ function CourseScreen() {
     const [progressPercentage, setProgressPercentage] = useState(0);
     const [completedLessonIds, setCompletedLessonIds] = useState([]); // <-- add this
     const [scrollProgress, setScrollProgress] = useState(0);
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    const [isDesktop, setIsDesktop] = useState(true);
     const [showAiChatPopup, setShowAiChatPopup] = useState(false);
     const [aiSandboxEnabled, setAiSandboxEnabled] = useState(false);
 
@@ -313,86 +327,10 @@ function CourseScreen() {
 
     // Track slug for progress scoping — read once at mount from localStorage (set by TrackScreen).
     // Falls back to 'global' when a lesson is opened directly without a track context.
-    const trackSlugRef = useRef(localStorage.getItem('currentTrackSlug') || 'global');
+    const trackSlugRef = useRef(typeof localStorage !== 'undefined' ? (localStorage.getItem('currentTrackSlug') || 'global') : 'global');
 
-    // ── SEO: dynamic meta + structured data per lesson ──────────────────────
-    const seoJsonLd = useMemo(() => {
-        if (!activeTopic) return null;
-
-        const courseTitle = course?.title || slugToTitle(courseSlug);
-        const lessonUrl   = `https://dev-el.co/course/${courseSlug}/${activeTopic.slug}`;
-        const courseUrl   = `https://dev-el.co/course/${courseSlug}`;
-        const description = htmlToPlain(activeTopic.content, 158);
-
-        const schemas = [
-            // 1. LearningResource — unlocks e-learning rich results in Google
-            {
-                '@type':              'LearningResource',
-                '@id':                lessonUrl,
-                name:                 activeTopic.title,
-                description,
-                url:                  lessonUrl,
-                learningResourceType: 'Tutorial',
-                teaches:              activeTopic.title,
-                educationalLevel:     activeTopic.difficulty || 'beginner',
-                inLanguage:           'en',
-                isPartOf: {
-                    '@type': 'Course',
-                    '@id':   courseUrl,
-                    name:    courseTitle,
-                    url:     courseUrl,
-                },
-                provider: {
-                    '@type': 'EducationalOrganization',
-                    name:    'Dev.EL',
-                    url:     'https://dev-el.co',
-                },
-                ...(activeTopic.estimatedTime && {
-                    timeRequired: `PT${activeTopic.estimatedTime}M`,
-                }),
-            },
-            // 2. BreadcrumbList — enables sitelink breadcrumbs in SERP
-            {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home',          item: 'https://dev-el.co/'  },
-                    { '@type': 'ListItem', position: 2, name: courseTitle,      item: courseUrl                 },
-                    { '@type': 'ListItem', position: 3, name: activeTopic.title, item: lessonUrl               },
-                ],
-            },
-        ];
-
-        // 3. FAQPage from quiz — targets "People Also Ask" rich results.
-        //    Each lesson already has 5 MCQs with explanations, which map
-        //    perfectly to FAQ entries with zero extra content effort.
-        if (activeTopic.quiz?.length > 0) {
-            schemas.push({
-                '@type': 'FAQPage',
-                mainEntity: activeTopic.quiz.map(q => ({
-                    '@type': 'Question',
-                    name:    q.question,
-                    acceptedAnswer: {
-                        '@type': 'Answer',
-                        text:    q.explanation || q.options?.[q.correctIndex] || '',
-                    },
-                })),
-            });
-        }
-
-        return schemas;
-    }, [activeTopic, course, courseSlug]);
-
-    useSEO({
-        title:       activeTopic && course
-                        ? `${activeTopic.title} — ${course.title}`
-                        : course
-                            ? `${course.title} Course`
-                            : null,
-        description: activeTopic ? htmlToPlain(activeTopic.content, 158) : null,
-        canonical:   `/course/${courseSlug}${lessonSlug ? `/${lessonSlug}` : ''}`,
-        jsonLd:      seoJsonLd,
-    });
-    // ────────────────────────────────────────────────────────────────────────
+    // SEO meta + JSON-LD for this route is provided by the route module's
+    // `meta` export (src/routes/course.jsx), so it lands in the prerendered HTML.
 
     // const currentCourseId = currentCourse?._id;
 
@@ -419,10 +357,11 @@ function CourseScreen() {
     // }, []);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsDesktop(window.innerWidth >= 768);
-        };
-
+        const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+        // Sync the real viewport on mount — SSR seeds desktop defaults to keep
+        // the server and first client render identical (no hydration mismatch).
+        setIsDesktop(window.innerWidth >= 768);
+        setIsSidebarOpen(window.innerWidth > 768);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);

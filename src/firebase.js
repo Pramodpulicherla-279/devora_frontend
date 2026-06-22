@@ -18,7 +18,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-const analytics = getAnalytics(app);
+
+// getAnalytics() touches `window` and throws in a Node environment.
+// During the SSG build there is no browser, so only initialise it client-side.
+let analytics = null;
+if (typeof window !== 'undefined') {
+  try {
+    analytics = getAnalytics(app);
+  } catch {
+    /* analytics is optional — ignore init failures (e.g. blocked, unsupported) */
+  }
+}
 
 export { storage, analytics };
 export default app;
