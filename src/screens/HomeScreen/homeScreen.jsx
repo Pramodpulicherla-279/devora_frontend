@@ -305,7 +305,7 @@ function HomeScreen() {
                     name="description"
                     content="Dev.EL offers simple, step-by-step text courses on MERN stack, JavaScript, and web development. Learn anytime at your own pace."
                 />
-                <link rel="canonical" href="https://www.dev-el.co" />
+                <link rel="canonical" href="https://dev-el.co" />
             </Helmet>
 
             <Header onAboutClick={handleAboutClick} onContactClick={handleContactClick} />
