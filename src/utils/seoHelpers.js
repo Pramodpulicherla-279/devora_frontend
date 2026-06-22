@@ -24,58 +24,6 @@ export function htmlToPlain(html = '', maxLen = 160) {
   return text.length <= maxLen ? text : text.slice(0, maxLen - 1) + '…';
 }
 
-const SITE = 'Dev.EL';
-const BASE = 'https://dev-el.co';
-
-/**
- * Builds a React Router v7 `meta` descriptor array for a page.
- * Centralises title/description/canonical/OG/Twitter + optional JSON-LD so every
- * route emits a complete, consistent set of tags into the prerendered HTML.
- *
- * @param {object}        o
- * @param {string}        [o.title]       Page title (site name appended)
- * @param {string}        [o.description] Meta description (~155 chars)
- * @param {string}        [o.canonical]   Path only, e.g. "/course/html/intro"
- * @param {string}        [o.image]       Absolute OG image URL
- * @param {boolean}       [o.noindex]     true → noindex,nofollow
- * @param {Array|object}  [o.jsonLd]      Page-specific schema.org graph
- * @returns {Array} React Router meta descriptors
- */
-export function buildMeta({ title, description, canonical, image, noindex = false, jsonLd = null } = {}) {
-  const fullTitle = title
-    ? `${title} | ${SITE}`
-    : `${SITE} — Go from Beginner to Advanced Developer | Free Coding Courses`;
-  const url = canonical ? `${BASE}${canonical}` : BASE;
-  const img = image || `${BASE}/dev-el-logo-v2.png`;
-
-  const tags = [
-    { title: fullTitle },
-    { name: 'description', content: description || '' },
-    { name: 'robots', content: noindex ? 'noindex,nofollow' : 'index,follow,max-snippet:-1,max-image-preview:large' },
-    { tagName: 'link', rel: 'canonical', href: url },
-    { property: 'og:title', content: fullTitle },
-    { property: 'og:description', content: description || '' },
-    { property: 'og:url', content: url },
-    { property: 'og:image', content: img },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:site_name', content: SITE },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: fullTitle },
-    { name: 'twitter:description', content: description || '' },
-    { name: 'twitter:image', content: img },
-  ];
-
-  if (jsonLd) {
-    tags.push({
-      'script:ld+json': Array.isArray(jsonLd)
-        ? { '@context': 'https://schema.org', '@graph': jsonLd }
-        : jsonLd,
-    });
-  }
-
-  return tags;
-}
-
 /**
  * Converts a URL slug to a human-readable title.
  * Handles multi-word slugs including common abbreviations.

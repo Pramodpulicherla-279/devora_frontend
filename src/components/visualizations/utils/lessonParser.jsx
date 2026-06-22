@@ -1,7 +1,6 @@
 import React from 'react';
 import parse, { domToReact } from 'html-react-parser';
 import visualizationRegistry from '../visualizationRegistry';
-import ClientOnly from '../../ClientOnly';
 
 /**
  * Custom options for html-react-parser
@@ -23,14 +22,9 @@ const parserOptions = {
       // @layer dvz-lesson-prose cascade layer) never bleed into the
       // dark-themed visualization.
       if (Component) {
-        // Visualizations are interactive (many use Three.js / WebGL) and are
-        // not SEO content, so render them client-only. The lesson prose around
-        // them still prerenders into the static HTML for indexing.
         return (
           <div className="dvz-embed">
-            <ClientOnly fallback={<div className="dvz-embed-loading" aria-hidden="true" />}>
-              <Component />
-            </ClientOnly>
+            <Component />
           </div>
         );
       }
