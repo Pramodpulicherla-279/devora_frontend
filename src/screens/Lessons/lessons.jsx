@@ -320,8 +320,8 @@ function CourseScreen() {
         if (!activeTopic) return null;
 
         const courseTitle = course?.title || slugToTitle(courseSlug);
-        const lessonUrl   = `https://www.dev-el.co/course/${courseSlug}/${activeTopic.slug}`;
-        const courseUrl   = `https://www.dev-el.co/course/${courseSlug}`;
+        const lessonUrl   = `https://dev-el.co/course/${courseSlug}/${activeTopic.slug}`;
+        const courseUrl   = `https://dev-el.co/course/${courseSlug}`;
         const description = htmlToPlain(activeTopic.content, 158);
 
         const schemas = [
@@ -345,7 +345,7 @@ function CourseScreen() {
                 provider: {
                     '@type': 'EducationalOrganization',
                     name:    'Dev.EL',
-                    url:     'https://www.dev-el.co',
+                    url:     'https://dev-el.co',
                 },
                 ...(activeTopic.estimatedTime && {
                     timeRequired: `PT${activeTopic.estimatedTime}M`,
@@ -355,7 +355,7 @@ function CourseScreen() {
             {
                 '@type': 'BreadcrumbList',
                 itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home',          item: 'https://www.dev-el.co/'  },
+                    { '@type': 'ListItem', position: 1, name: 'Home',          item: 'https://dev-el.co/'  },
                     { '@type': 'ListItem', position: 2, name: courseTitle,      item: courseUrl                 },
                     { '@type': 'ListItem', position: 3, name: activeTopic.title, item: lessonUrl               },
                 ],
