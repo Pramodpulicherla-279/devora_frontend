@@ -485,25 +485,25 @@ export default function LandingPage() {
     jsonLd: [
       {
         '@type': 'WebSite',
-        '@id':   'https://www.dev-el.co/#website',
-        url:     'https://www.dev-el.co',
+        '@id':   'https://dev-el.co/#website',
+        url:     'https://dev-el.co',
         name:    'Dev.EL',
         description: 'Go from beginner to advanced developer with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more.',
         potentialAction: {
           '@type':       'SearchAction',
           target: {
             '@type':      'EntryPoint',
-            urlTemplate:  'https://www.dev-el.co/?q={search_term_string}',
+            urlTemplate:  'https://dev-el.co/?q={search_term_string}',
           },
           'query-input': 'required name=search_term_string',
         },
       },
       {
         '@type':       'EducationalOrganization',
-        '@id':         'https://www.dev-el.co/#org',
+        '@id':         'https://dev-el.co/#org',
         name:          'Dev.EL',
-        url:           'https://www.dev-el.co',
-        logo:          'https://www.dev-el.co/dev-el-logo-v2.png',
+        url:           'https://dev-el.co',
+        logo:          'https://dev-el.co/dev-el-logo-v2.png',
         description:   'Dev.EL transforms beginners into advanced developers — free courses covering web development, backend, databases, automation testing, prompt engineering, AI engineering, and more.',
         offers: {
           '@type':        'Offer',
@@ -516,7 +516,7 @@ export default function LandingPage() {
       // as sitelinks below the main search result for branded queries like "dev.el"
       {
         '@type': 'ItemList',
-        '@id':   'https://www.dev-el.co/#site-navigation',
+        '@id':   'https://dev-el.co/#site-navigation',
         name:    'Dev.EL — Free Coding Courses',
         itemListElement: [
           {
@@ -524,49 +524,49 @@ export default function LandingPage() {
             position:   1,
             name:       'HTML Course — Free',
             description:'Learn HTML from scratch — structure, tags, semantic markup, and forms.',
-            url:        'https://www.dev-el.co/course/html/introduction-to-html',
+            url:        'https://dev-el.co/course/html/introduction-to-html',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   2,
             name:       'CSS Course — Free',
             description:'Master CSS — selectors, flexbox, grid, animations, and responsive design.',
-            url:        'https://www.dev-el.co/course/css/css-get-started',
+            url:        'https://dev-el.co/course/css/css-get-started',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   3,
             name:       'JavaScript Course — Free',
             description:'Learn JavaScript from variables to async — the language of the web.',
-            url:        'https://www.dev-el.co/course/javascript/variables-data-types',
+            url:        'https://dev-el.co/course/javascript/variables-data-types',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   4,
             name:       'Node.js & Express Course — Free',
             description:'Build REST APIs and backend servers with Node.js and Express.',
-            url:        'https://www.dev-el.co/course/backend-nodejs-express/introduction-to-nodejs-and-node-repl',
+            url:        'https://dev-el.co/course/backend-nodejs-express/introduction-to-nodejs-and-node-repl',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   5,
             name:       'SQL Course — Free',
             description:'Master SQL — queries, joins, aggregations, and database design.',
-            url:        'https://www.dev-el.co/course/sql/every-app-runs-on-a-database',
+            url:        'https://dev-el.co/course/sql/every-app-runs-on-a-database',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   6,
             name:       'Git & GitHub Course — Free',
             description:'Learn version control, branching, and collaboration with Git and GitHub.',
-            url:        'https://www.dev-el.co/course/git-and-github/introduction-to-git-and-github-version-control-essentials',
+            url:        'https://dev-el.co/course/git-and-github/introduction-to-git-and-github-version-control-essentials',
           },
           {
             '@type':    'SiteNavigationElement',
             position:   7,
             name:       'Developer Roadmaps',
             description:'Step-by-step learning roadmaps — from beginner to job-ready developer.',
-            url:        'https://www.dev-el.co/roadmaps',
+            url:        'https://dev-el.co/roadmaps',
           },
         ],
       },

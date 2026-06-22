@@ -189,9 +189,9 @@ export default function RoadmapsScreen() {
           {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://www.dev-el.co/'        },
-              { '@type': 'ListItem', position: 2, name: 'Roadmaps', item: 'https://www.dev-el.co/roadmaps' },
-              { '@type': 'ListItem', position: 3, name: roadmap.name, item: `https://www.dev-el.co/roadmaps/${urlSlug}` },
+              { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://dev-el.co/'        },
+              { '@type': 'ListItem', position: 2, name: 'Roadmaps', item: 'https://dev-el.co/roadmaps' },
+              { '@type': 'ListItem', position: 3, name: roadmap.name, item: `https://dev-el.co/roadmaps/${urlSlug}` },
             ],
           },
         ]

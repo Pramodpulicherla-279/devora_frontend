@@ -414,8 +414,8 @@ export default function TrackScreen() {
       ? [{
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://www.dev-el.co/' },
-            { '@type': 'ListItem', position: 2, name: track.name, item: `https://www.dev-el.co/track/${slug}` },
+            { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://dev-el.co/' },
+            { '@type': 'ListItem', position: 2, name: track.name, item: `https://dev-el.co/track/${slug}` },
           ],
         }]
       : null,

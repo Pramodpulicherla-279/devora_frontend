@@ -5,7 +5,7 @@
 import { useEffect } from 'react';
 
 const SITE   = 'Dev.EL';
-const BASE   = 'https://www.dev-el.co';
+const BASE   = 'https://dev-el.co';
 const OG_IMG = `${BASE}/dev-el-logo-v2.png`;
 
 /**
