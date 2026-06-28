@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage,  ref, uploadBytes } from 'firebase/storage';
-import { getAnalytics } from 'firebase/analytics'; 
+// NOTE: Analytics (GA4) is initialised in src/analytics.js, not here. Calling
+// getAnalytics() at module top-level can throw in unsupported environments and
+// would crash any module that imports firebase.js — so it's kept separate.
 
 // console.log('import.meta.env =', import.meta.env); 
 
@@ -18,7 +20,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-const analytics = getAnalytics(app);
 
-export { storage, analytics };
+export { storage };
 export default app;
