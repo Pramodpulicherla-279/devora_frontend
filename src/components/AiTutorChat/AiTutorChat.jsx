@@ -33,7 +33,12 @@ function loadSavedForKey(key) {
   try {
     const data = JSON.parse(localStorage.getItem(key) || 'null');
     if (!data) return { messages: [], conversationId: null };
-    return { messages: data.messages || [], conversationId: data.conversationId || null };
+    // Drop any trailing empty assistant messages left by interrupted streams.
+    let msgs = data.messages || [];
+    while (msgs.length > 0 && msgs[msgs.length - 1].role === 'assistant' && !msgs[msgs.length - 1].content?.trim()) {
+      msgs = msgs.slice(0, -1);
+    }
+    return { messages: msgs, conversationId: data.conversationId || null };
   } catch {
     return { messages: [], conversationId: null };
   }
