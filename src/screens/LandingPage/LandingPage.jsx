@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthPopup from '../../components/AuthPopup/AuthPopup';
 import DonateModal from '../../components/DonateModal/donateModal';
-import { getAnalytics, logEvent } from 'firebase/analytics';
+import { trackEvent } from '../../analytics';
 import emailjs from '@emailjs/browser';
 import { useSEO } from '../../hooks/useSEO';
 import logo from '../../assets/logo.png';
@@ -437,7 +437,7 @@ export default function LandingPage() {
 
   const handleCourseClick = (course) => {
     if (!course.slug) return;
-    try { logEvent(getAnalytics(), 'course_click', { course: course.name }); } catch { }
+    trackEvent('course_click', { course: course.name });
     navigate(`/course/${course.slug}`);
   };
 
@@ -700,7 +700,7 @@ export default function LandingPage() {
             </p>
             <div className="lp-hero-ctas">
               <button className="lp-btn-primary lp-btn-lg"
-                onClick={() => { scrollTo(tracksRef); try { logEvent(getAnalytics(), 'start_learning_click'); } catch { } }}>
+                onClick={() => { scrollTo(tracksRef); trackEvent('start_learning_click'); }}>
                 Start Learning <span className="lp-cta-arrow">→</span>
               </button>
               <button className="lp-btn-outline lp-btn-lg" onClick={() => scrollTo(tracksRef)}>
@@ -910,7 +910,7 @@ export default function LandingPage() {
                   style={{ '--tc': track.color }}
                   onClick={() => {
                     if (!hasCourses) return;
-                    try { logEvent(getAnalytics(), 'track_click', { track: track.name }); } catch { }
+                    trackEvent('track_click', { track: track.name });
                     navigate(`/track/${trackIdentifier}`);
                   }}
                 >
@@ -1366,7 +1366,7 @@ console.log(reverseString('Dev.EL'));
                     className="lp-ct-card"
                     style={{ '--cc': color, cursor: 'pointer' }}
                     onClick={() => {
-                      try { logEvent(getAnalytics(), 'track_click', { track: track.name }); } catch { }
+                      trackEvent('track_click', { track: track.name });
                       navigate(`/track/${trackIdentifier}`);
                     }}
                   >
@@ -1494,7 +1494,7 @@ console.log(reverseString('Dev.EL'));
           <h2 className="lp-cta-h2">Build Real Skills.<br /><span className="lp-gradient-text">Learn Visually. Grow Faster.</span></h2>
           <p className="lp-cta-p">Join Dev.EL today and accelerate your developer journey with visual, hands-on interactive learning.</p>
           <div className="lp-cta-btns">
-            <button className="lp-btn-primary lp-btn-lg" onClick={() => { scrollTo(tracksRef); try { logEvent(getAnalytics(), 'start_learning_click'); } catch { } }}>Start Learning Now</button>
+            <button className="lp-btn-primary lp-btn-lg" onClick={() => { scrollTo(tracksRef); trackEvent('start_learning_click'); }}>Start Learning Now</button>
             <button className="lp-btn-outline lp-btn-lg" onClick={() => scrollTo(tracksRef)}>Explore Courses</button>
           </div>
         </div>

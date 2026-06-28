@@ -10,9 +10,10 @@
 //   Lazy:   RoadmapsScreen, AdminDashboard, TermsScreen, PrivacyPolicyScreen,
 //           ResetPasswordScreen
 
-import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './components/DevLoader/DevLoader.css';
+import { trackPageView } from './analytics';
 
 // ── Eager ────────────────────────────────────────────────────────────────────
 import LandingPage    from './screens/LandingPage/LandingPage.jsx';
@@ -47,25 +48,38 @@ function PageLoader() {
   );
 }
 
+/** Logs a GA4 page_view on every route change (SPA navigations aren't tracked
+ *  automatically). */
+function RouteTracker() {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+  return null;
+}
+
 export default function App() {
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
-        {/* ── Eager routes — zero Suspense flash ── */}
-        <Route path="/"                               element={<LandingPage />} />
-        <Route path="/track/:slug"                    element={<TrackScreen />} />
-        <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
-        <Route path="/course/:courseSlug"             element={<CourseScreen />} />
-        <Route path="/profile"                        element={<ProfileScreen />} />
+    <>
+      <RouteTracker />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* ── Eager routes — zero Suspense flash ── */}
+          <Route path="/"                               element={<LandingPage />} />
+          <Route path="/track/:slug"                    element={<TrackScreen />} />
+          <Route path="/course/:courseSlug/:lessonSlug" element={<CourseScreen />} />
+          <Route path="/course/:courseSlug"             element={<CourseScreen />} />
+          <Route path="/profile"                        element={<ProfileScreen />} />
 
-        {/* ── Lazy routes — brief loader on first visit is fine ── */}
-        <Route path="/roadmaps"              element={<RoadmapsScreen />} />
-        <Route path="/roadmaps/:slug"        element={<RoadmapsScreen />} />
-        <Route path="/admin-dashboard"       element={<AdminDashboard />} />
-        <Route path="/terms"                 element={<TermsScreen />} />
-        <Route path="/privacy-policy"        element={<PrivacyPolicyScreen />} />
-        <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
-      </Routes>
-    </Suspense>
+          {/* ── Lazy routes — brief loader on first visit is fine ── */}
+          <Route path="/roadmaps"              element={<RoadmapsScreen />} />
+          <Route path="/roadmaps/:slug"        element={<RoadmapsScreen />} />
+          <Route path="/admin-dashboard"       element={<AdminDashboard />} />
+          <Route path="/terms"                 element={<TermsScreen />} />
+          <Route path="/privacy-policy"        element={<PrivacyPolicyScreen />} />
+          <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
