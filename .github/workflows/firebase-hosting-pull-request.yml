@@ -22,13 +22,12 @@ jobs:
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID:              ${{ secrets.VITE_FIREBASE_APP_ID }}
           VITE_FIREBASE_MEASUREMENT_ID:      ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
-      # continue-on-error: firebase-tools v15 exits 1 when the preview channel
-      # already has this exact build (400 "current active version"). The preview
-      # is already up-to-date in that case — no action needed.
+      # No repoToken — without it the action cannot post its own failing GitHub Check
+      # to the PR (which was the red badge). The step may still exit 1 when the preview
+      # already has this exact build (400 "current active version"), so
+      # continue-on-error keeps the workflow job green in that case.
       - uses: FirebaseExtended/action-hosting-deploy@v0
         continue-on-error: true
         with:
-          repoToken:              ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVEL_350 }}
           projectId:              devel-350
-          firebaseToolsVersion:   "13.29.1"
