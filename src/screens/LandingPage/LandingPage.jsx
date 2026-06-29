@@ -29,7 +29,8 @@ const TRACK_COURSE_IDS = {
   'Frontend Development': ['6919f6286409cc0505808ac5', '6919f63e6409cc0505808ac7', '6919f6516409cc0505808ac9'],
   'Backend Development': ['693c1db01270c2a321fa0356', '693afba9252afa6fafc011af', '693afe6f252afa6fafc011ba'],
   'Data Analytics': ['6a0ecfdc690db01f804cb1d5'],
-  'DevOps': ['693afba9252afa6fafc011af', '693afe6f252afa6fafc011ba'],
+  'Prompt Engineering': [],
+  'AI Engineering': [],
 };
 
 /* ─── STATIC DB TRACKS — instant seed, no cold-start wait ───────── */
@@ -51,7 +52,7 @@ const STATIC_DB_TRACKS = [
     ],
   },
   {
-    _id: null, name: 'MEAN Stack', slug: 'mean-stack', type: 'Full Stack',
+    _id: '6a171491c47492caef8418ad', name: 'MEAN Stack', slug: 'mean-stack', type: 'Full Stack',
     description: 'Enterprise-grade full-stack development with MongoDB, Express, Angular and Node.js.',
     courses: [
       _c('6919f6286409cc0505808ac5', 'HTML',                    'html'),
@@ -63,7 +64,7 @@ const STATIC_DB_TRACKS = [
     ],
   },
   {
-    _id: null, name: 'Frontend Development', slug: 'frontend-development', type: 'Frontend',
+    _id: '6a1714acc47492caef8418b2', name: 'Frontend Development', slug: 'frontend-development', type: 'Frontend',
     description: 'Craft beautiful, accessible and responsive user interfaces from scratch.',
     courses: [
       _c('6919f6286409cc0505808ac5', 'HTML',       'html'),
@@ -72,7 +73,7 @@ const STATIC_DB_TRACKS = [
     ],
   },
   {
-    _id: null, name: 'Backend Development', slug: 'backend-development', type: 'Backend',
+    _id: '6a17f5066c39a21acffcadf6', name: 'Backend Development', slug: 'backend-development', type: 'Backend',
     description: 'Build robust servers, REST APIs and data layers that power modern apps.',
     courses: [
       _c('693c1db01270c2a321fa0356', 'Backend (Node / Express)','backend-nodejs-express'),
@@ -81,10 +82,30 @@ const STATIC_DB_TRACKS = [
     ],
   },
   {
-    _id: null, name: 'Data Analytics', slug: 'data-analytics', type: 'Data',
+    _id: '6a20d6caedab7a4539a07610', name: 'Data Analytics', slug: 'data-analytics', type: 'Data',
     description: 'Turn raw data into insights with SQL, Python and Power BI.',
     courses: [
       _c('6a0ecfdc690db01f804cb1d5', 'SQL', 'sql'),
+    ],
+  },
+  {
+    _id: '6a2be58948ecbbda5fe0a841', name: 'Prompt Engineering', slug: 'prompt-engineering', type: 'Data',
+    description: 'Master the art of communicating with AI using effective prompts, reasoning techniques, and real-world LLM applications..',
+    courses: [
+      _c('6a302b5906a1b55796c42de7', 'AI & LLM Basics', 'ai-and-llm-basics'),
+      _c('6a302f4106a1b55796c42ee8', 'Core Prompting Techniques', 'core-prompting-techniques'),
+      _c('6a3030f506a1b55796c42fe5', 'Advanced Techniques', 'advanced-techniques'),
+      _c('6a3032b306a1b55796c430e0', 'Building AI Apps', 'building-ai-apps'),
+    ],
+  },
+  {
+    _id: '6a2bef2748ecbbda5fe0ab96', name: 'AI Engineering', slug: 'ai-engineering', type: 'Data',
+    description: 'Build production-ready AI applications using LLMs, RAG, agents, vector databases, APIs, and modern AI engineering practices..',
+    courses: [
+      _c('6a302b5906a1b55796c42de7', 'AI & LLM Basics', 'ai-and-llm-basics'),
+      _c('6a302f4106a1b55796c42ee8', 'Core Prompting Techniques', 'core-prompting-techniques'),
+      _c('6a3030f506a1b55796c42fe5', 'Advanced Techniques', 'advanced-techniques'),
+      _c('6a3032b306a1b55796c430e0', 'Building AI Apps', 'building-ai-apps'),
     ],
   },
 ];
@@ -100,6 +121,8 @@ const LEARNING_TRACKS = [
   { name: 'Appium Automation', icon: '📱', techs: ['Appium', 'Java', 'Android', 'iOS'], lessons: 28, level: 'Intermediate', hours: '22+', color: '#bf360c' },
   { name: 'Data Analytics', icon: '📊', techs: ['Python', 'SQL', 'Power BI', 'Pandas'], lessons: 22, level: 'Beginner → Advanced', hours: '24+', color: '#0277bd' },
   { name: 'AI Engineering', icon: '🧠', techs: ['Python', 'PyTorch', 'LLMs', 'APIs'], lessons: 30, level: 'Intermediate → Adv.', hours: '26+', color: '#e65100' },
+  { name: 'DSA with C++', icon: '🧩©️', techs: ['C++', 'STL', 'Data structure', 'Graphs', 'Trees', 'Dynamic Programming', 'Linked Lists', 'Arrays'], lessons: 30, level: 'Beginner → Interview Ready.', hours: '26+', color: '#3a00e6' },
+  { name: 'DSA with Python', icon: '🧩🐍', techs: ['Python', 'Lists', 'Hash Maps', 'Trees', 'Graphs', 'Dynamic Programming'], lessons: 30, level: 'Beginner → Interview Ready.', hours: '26+', color: '#2c6e1d' },
 ];
 
 /* ─── OTHER DATA ──────────────────────────── */
