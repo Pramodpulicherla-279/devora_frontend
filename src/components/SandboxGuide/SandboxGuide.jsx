@@ -24,6 +24,7 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
   const { sandpack } = useSandpack();
   const { logs } = useSandpackConsole({ resetOnPreviewRestart: true, showSyntaxError: true });
   const [hint, setHint] = useState('');
+  const [score, setScore] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [waking, setWaking] = useState(false);
@@ -32,9 +33,15 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
 
   const errors = logs.filter(l => l.method === 'error');
 
-  // Abort any in-flight hint request if the guide unmounts (Disable, lesson
-  // switch, closing the practice panel) so it doesn't update a dead component.
+  // Abort any in-flight hint request if the guide unmounts.
   useEffect(() => () => { abortRef.current?.abort(); clearTimeout(wakingTimerRef.current); }, []);
+
+  // Extract score from streamed review text as tokens arrive.
+  useEffect(() => {
+    if (!hint) return;
+    const m = hint.match(/\*{0,2}Score:\s*(\d+)\/10\*{0,2}/i);
+    if (m) setScore(parseInt(m[1], 10));
+  }, [hint]);
 
   // Caps keep the payload under the backend's message limit and avoid sending a
   // huge prompt. Lesson sandbox files are small, so this rarely truncates.
@@ -51,65 +58,95 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
       : full;
   }
 
-  const requestHint = async (isError = false) => {
-    const code = buildCodeBlock();
+  const scoreColor = (n) => {
+    if (n >= 8) return '#10b981';
+    if (n >= 6) return '#3b82f6';
+    if (n >= 4) return '#f59e0b';
+    return '#ef4444';
+  };
+  const scoreLabel = (n) => {
+    if (n >= 8) return 'Great';
+    if (n >= 6) return 'Good';
+    if (n >= 4) return 'Fair';
+    return 'Needs work';
+  };
 
-    // Nothing meaningful to analyse — don't call the model, just prompt them.
-    if (!code.trim()) {
-      abortRef.current?.abort();
-      setOpen(true);
-      setLoading(false);
-      setHint("Write some code in the editor first, then I'll give you a hint about it. 🙂");
-      return;
-    }
+  const lessonPayload = {
+    course_id: lesson.course_id || lesson.course_slug || 'demo-course',
+    lesson_id: lesson.lesson_id || null,
+    lesson_title: lesson.lesson_title || 'this lesson',
+    lesson_slug: lesson.lesson_slug || '',
+    topic: lesson.topic || '',
+    learner_name: getLearnerName() || undefined,
+  };
 
+  const startRequest = () => {
     abortRef.current?.abort();
     abortRef.current = new AbortController();
     setHint('');
+    setScore(null);
     setOpen(true);
     setLoading(true);
     clearTimeout(wakingTimerRef.current);
     setWaking(false);
     wakingTimerRef.current = setTimeout(() => setWaking(true), 15000);
+  };
 
-    const stringifyData = (d) =>
-      (Array.isArray(d) ? d : [d])
-        .map(part => (typeof part === 'string' ? part : JSON.stringify(part)))
-        .join(' ');
-    const errorText = isError
-      ? errors.map(e => stringifyData(e.data)).filter(Boolean).join('\n').slice(0, MAX_ERR)
-      : '';
+  const finishRequest = () => {
+    clearTimeout(wakingTimerRef.current);
+    setWaking(false);
+    setLoading(false);
+  };
 
-    const message = isError && errorText
-      ? `My editor files:\n\`\`\`\n${code}\n\`\`\`\n\nThe sandbox console shows this error:\n${errorText}\n\nUsing only the code above, explain the likely cause and the smallest next step to fix it. Don't give the full corrected file.`
-      : `My editor files:\n\`\`\`\n${code}\n\`\`\`\n\nUsing only the code above for this lesson, give me one small, specific hint on what to try or improve next. Don't give the full solution.`;
-
+  const requestReview = async () => {
+    const code = buildCodeBlock();
+    if (!code.trim()) {
+      abortRef.current?.abort();
+      setScore(null);
+      setOpen(true);
+      setLoading(false);
+      setHint("Write some code in the editor first, then I can review it. 🙂");
+      return;
+    }
+    startRequest();
+    const message = `My editor files:\n\`\`\`\n${code}\n\`\`\`\n\nPlease review this code and score it out of 10.`;
     try {
       await streamChat(
-        {
-          course_id: lesson.course_id || lesson.course_slug || 'demo-course',
-          lesson_id: lesson.lesson_id || null,
-          lesson_title: lesson.lesson_title || 'this lesson',
-          lesson_slug: lesson.lesson_slug || '',
-          topic: lesson.topic || '',
-          learner_name: getLearnerName() || undefined,
-          mode: 'sandbox',
-          message,
-        },
-        (evt) => {
-          if (evt.type === 'token') setHint(h => h + (evt.delta || ''));
-        },
+        { ...lessonPayload, mode: 'code_review', message },
+        (evt) => { if (evt.type === 'token') setHint(h => h + (evt.delta || '')); },
         abortRef.current.signal,
       );
     } catch (err) {
-      if (err.name !== 'AbortError') {
+      if (err.name !== 'AbortError')
         setHint('_Couldn\'t reach the tutor service. Make sure the AI tutor backend is running._');
-      }
-    } finally {
-      clearTimeout(wakingTimerRef.current);
-      setWaking(false);
+    } finally { finishRequest(); }
+  };
+
+  const fixError = async () => {
+    const code = buildCodeBlock();
+    if (!code.trim()) {
+      abortRef.current?.abort();
+      setScore(null);
+      setOpen(true);
       setLoading(false);
+      setHint("Write some code in the editor first. 🙂");
+      return;
     }
+    startRequest();
+    const stringifyData = (d) =>
+      (Array.isArray(d) ? d : [d]).map(p => (typeof p === 'string' ? p : JSON.stringify(p))).join(' ');
+    const errorText = errors.map(e => stringifyData(e.data)).filter(Boolean).join('\n').slice(0, MAX_ERR);
+    const message = `My editor files:\n\`\`\`\n${code}\n\`\`\`\n\nThe sandbox console shows this error:\n${errorText}\n\nUsing only the code above, explain the likely cause and the smallest next step to fix it. Don't give the full corrected file.`;
+    try {
+      await streamChat(
+        { ...lessonPayload, mode: 'sandbox', message },
+        (evt) => { if (evt.type === 'token') setHint(h => h + (evt.delta || '')); },
+        abortRef.current.signal,
+      );
+    } catch (err) {
+      if (err.name !== 'AbortError')
+        setHint('_Couldn\'t reach the tutor service. Make sure the AI tutor backend is running._');
+    } finally { finishRequest(); }
   };
 
   const closeModal = () => {
@@ -131,7 +168,7 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
           {errors.length > 0 && (
             <button
               className="sg-btn sg-btn-error"
-              onClick={() => requestHint(true)}
+              onClick={fixError}
               disabled={loading}
               title="Let the AI explain the console error"
             >
@@ -140,10 +177,10 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
           )}
           <button
             className="sg-btn sg-btn-hint"
-            onClick={() => requestHint(false)}
+            onClick={requestReview}
             disabled={loading}
           >
-            {loading ? <span className="sg-spinner" /> : '💡'} Get Hint
+            {loading ? <span className="sg-spinner" /> : '📋'} Code Review
           </button>
           {onDisable && (
             <button className="sg-bar-disable" onClick={onDisable} title="Turn off Code Guide">
@@ -157,6 +194,13 @@ export default function SandboxGuide({ lesson = {}, onDisable }) {
         <div className="sg-modal" role="dialog" aria-label="Code Guide hint">
           <div className="sg-modal-header">
             <span className="sg-modal-title">🤖 Code Guide</span>
+            {score !== null && (
+              <div className="sg-score-badge" style={{ background: scoreColor(score) }}>
+                <span className="sg-score-num">{score}</span>
+                <span className="sg-score-denom">/10</span>
+                <span className="sg-score-label">{scoreLabel(score)}</span>
+              </div>
+            )}
             <button className="sg-modal-close" onClick={closeModal} aria-label="Close hint">✕</button>
           </div>
           <div className="sg-modal-body">

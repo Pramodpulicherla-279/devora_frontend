@@ -103,6 +103,19 @@
   color: #20223a;
 }
 .sg-modal-loading { color: #6b7280; font-style: italic; margin: 2px 0; }
+
+.sg-score-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 3px 10px 3px 8px;
+  border-radius: 20px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.sg-score-num { font-size: 18px; font-weight: 700; line-height: 1; }
+.sg-score-denom { font-size: 11px; font-weight: 600; opacity: 0.85; margin-right: 4px; }
+.sg-score-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.9; }
 .sg-waking-notice {
   margin: 4px 0;
   padding: 8px 10px;
