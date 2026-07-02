@@ -166,7 +166,10 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
                             <ul className="search-dropdown">
                                 {results.map(lesson => (
                                     <li key={lesson.slug} onClick={() => handleSelect(lesson)}>
-                                        {lesson.title}
+                                        <span className="search-lesson-title">{lesson.title}</span>
+                                        {lesson.part?.course?.title && (
+                                            <span className="search-course-name">{lesson.part.course.title}</span>
+                                        )}
                                     </li>
                                 ))}
                             </ul>

@@ -1,9 +1,9 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSEO } from '../../hooks/useSEO';
 import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
-import { getStreak, getQuizAccuracy } from '../../utils/userStats';
+import { getStreak, getQuizStats } from '../../utils/userStats';
 import logo from '../../assets/logo.png';
 import DevLoader from '../../components/DevLoader/DevLoader';
 import './ProfileScreen.css';
@@ -48,6 +48,155 @@ function ProgressRing({ pct, color, size = 52 }) {
   );
 }
 
+/* ─── Card 3D tilt hook ─── */
+function useCardTilt(maxDeg = 20) {
+  const ref = useRef(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, mx: 0.5, my: 0.5, on: false });
+
+  const onMove = useCallback((e) => {
+    const el = ref.current;
+    if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    const mx = Math.min(1, Math.max(0, (e.clientX - left) / width));
+    const my = Math.min(1, Math.max(0, (e.clientY - top) / height));
+    setTilt({ rx: (my - 0.5) * maxDeg, ry: (mx - 0.5) * -maxDeg, mx, my, on: true });
+  }, [maxDeg]);
+
+  const onLeave = useCallback(() => {
+    setTilt({ rx: 0, ry: 0, mx: 0.5, my: 0.5, on: false });
+  }, []);
+
+  return { ref, tilt, onMove, onLeave };
+}
+
+/* ─── Quiz Pie Chart ─── */
+function QuizPieChart({ correct, incorrect, attempted, tilt = {} }) {
+  const { rx = 0, ry = 0, mx = 0.5, my = 0.5, on = false } = tilt;
+  const SIZE = 196, STROKE = 22, EXTRUDE = 5;
+  const r    = (SIZE - STROKE) / 2 - 8;
+  const cx   = SIZE / 2, cy = SIZE / 2;
+  const circ = 2 * Math.PI * r;
+  const correctArc   = (correct   / attempted) * circ;
+  const incorrectArc = (incorrect / attempted) * circ;
+  const accuracy     = Math.round((correct / attempted) * 100);
+  const rating = accuracy >= 90 ? { label: 'Excellent!', arrow: '↑', color: '#16a34a', bg: '#dcfce7' }
+               : accuracy >= 75 ? { label: 'Great!',     arrow: '↑', color: '#16a34a', bg: '#dcfce7' }
+               : accuracy >= 50 ? { label: 'Good',       arrow: '→', color: '#d97706', bg: '#fef3c7' }
+               :                  { label: 'Keep Trying', arrow: '↓', color: '#dc2626', bg: '#fee2e2' };
+
+  const spring = on
+    ? 'transform 0.08s ease'
+    : 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
+  const dx = (mx - 0.5), dy = (my - 0.5);
+
+  return (
+    <div className="ps-qpc">
+      {/* ── 3D Donut ── */}
+      <div style={{ transform: `translate(${dx * -32}px, ${dy * -32}px)`, transition: spring }}>
+        <div className="ps-qpc-chart-wrap" style={{
+          width: SIZE, height: SIZE,
+          transform: `perspective(520px) rotateX(${14 + rx * 0.35}deg) rotateY(${ry * 0.45}deg)`,
+          transition: on ? 'transform 0.1s ease' : 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)',
+        }}>
+          <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}
+            style={{ filter: 'drop-shadow(0 16px 28px rgba(0,0,0,0.24)) drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
+            <defs>
+              <linearGradient id="qpc-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#16a34a" />
+                <stop offset="100%" stopColor="#4ade80" />
+              </linearGradient>
+            </defs>
+            {/* 3D extrusion — green shadow stack */}
+            {Array.from({ length: EXTRUDE }, (_, i) => (
+              <circle key={`eg${i}`} cx={cx} cy={cy + (EXTRUDE - i)} r={r} fill="none"
+                stroke={`rgba(12, 100, 35, ${0.13 - i * 0.022})`}
+                strokeWidth={STROKE}
+                strokeDasharray={`${correctArc} ${circ - correctArc}`}
+                strokeDashoffset={circ / 4}
+              />
+            ))}
+            {/* 3D extrusion — red shadow stack */}
+            {incorrect > 0 && Array.from({ length: EXTRUDE }, (_, i) => (
+              <circle key={`er${i}`} cx={cx} cy={cy + (EXTRUDE - i)} r={r} fill="none"
+                stroke={`rgba(160, 20, 20, ${0.13 - i * 0.022})`}
+                strokeWidth={STROKE}
+                strokeDasharray={`${incorrectArc} ${circ - incorrectArc}`}
+                strokeDashoffset={circ / 4 - correctArc}
+              />
+            ))}
+            {/* Track */}
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke="#e2e8f0" strokeWidth={STROKE} />
+            {/* Correct — green gradient */}
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke="url(#qpc-green)" strokeWidth={STROKE}
+              strokeDasharray={`${correctArc} ${circ - correctArc}`}
+              strokeDashoffset={circ / 4}
+              strokeLinecap="round"
+              style={{ transition: 'stroke-dasharray 0.9s ease' }}
+            />
+            {/* Incorrect — red */}
+            {incorrect > 0 && (
+              <circle cx={cx} cy={cy} r={r} fill="none" stroke="#ef4444" strokeWidth={STROKE}
+                strokeDasharray={`${incorrectArc} ${circ - incorrectArc}`}
+                strokeDashoffset={circ / 4 - correctArc}
+                strokeLinecap="round"
+                style={{ transition: 'stroke-dasharray 0.9s ease' }}
+              />
+            )}
+            {/* Inner specular highlight */}
+            <circle cx={cx} cy={cy - 1} r={r} fill="none"
+              stroke="rgba(255,255,255,0.18)" strokeWidth={STROKE - 8} />
+          </svg>
+          {/* Center overlay */}
+          <div className="ps-qpc-center">
+            <span className="ps-qpc-pct">{accuracy}%</span>
+            <span className="ps-qpc-acc-lbl">Accuracy</span>
+            <span className="ps-qpc-badge" style={{ color: rating.color, background: rating.bg }}>
+              {rating.arrow} {rating.label}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Stat cards ── */}
+      <div className="ps-qpc-stats"
+        style={{ transform: `translate(${dx * -16}px, ${dy * -16}px)`, transition: spring }}>
+        {[
+          { icon: 'clipboard', label: 'Attempted', sub: 'Questions', val: attempted, cls: 'blue' },
+          { icon: 'check',     label: 'Correct',   sub: 'Answers',   val: correct,   cls: 'green' },
+          { icon: 'x',         label: 'Incorrect', sub: 'Answers',   val: incorrect, cls: 'red' },
+        ].map(({ icon, label, sub, val, cls }) => (
+          <div key={cls} className="ps-qpc-stat-card">
+            <div className={`ps-qpc-stat-icon ps-qpc-icon-${cls}`}>
+              {icon === 'clipboard' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="8" y="2" width="8" height="4" rx="1"/>
+                  <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+                  <line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/>
+                </svg>
+              )}
+              {icon === 'check' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              )}
+              {icon === 'x' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              )}
+            </div>
+            <div className="ps-qpc-stat-body">
+              <span className="ps-qpc-stat-title">{label}</span>
+              <span className="ps-qpc-stat-sub">{sub}</span>
+            </div>
+            <span className={`ps-qpc-stat-num ps-qpc-num-${cls}`}>{val}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Mini progress bar ─── */
 function MiniBar({ pct, color }) {
   return (
@@ -82,6 +231,8 @@ export default function ProfileScreen() {
   // enrollLoading gates the full-page DevLoader — stays true until the
   // enrolled-tracks API call resolves (the first meaningful async wait).
   const [enrollLoading, setEnrollLoading] = useState(!!user);
+
+  const { ref: quizCardRef, tilt: quizTilt, onMove: quizMove, onLeave: quizLeave } = useCardTilt(20);
 
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -168,8 +319,8 @@ export default function ProfileScreen() {
   if (!user || enrollLoading || loading) return <DevLoader />;
 
   /* ── Activity stats (localStorage) ── */
-  const streak      = getStreak();
-  const quizAccPct  = getQuizAccuracy(); // null if no quizzes taken yet
+  const streak    = getStreak();
+  const quizStats = getQuizStats(); // null if no quizzes taken yet
 
   /* ── Helpers ── */
   // Aggregate best progress for a course across global + all enrolled tracks
@@ -327,7 +478,7 @@ export default function ProfileScreen() {
         </div>
       </section>
 
-      {/* ── Activity row: streak + quiz accuracy ── */}
+      {/* ── Streak ── */}
       <section className="ps-activity-bar">
         <div className="ps-activity-card ps-streak-card">
           <span className="ps-activity-icon">🔥</span>
@@ -343,26 +494,52 @@ export default function ProfileScreen() {
               : `${streak} days in a row!`}
           </div>
         </div>
+      </section>
 
-        <div className="ps-activity-card ps-quiz-card">
-          <span className="ps-activity-icon">🧠</span>
-          <div className="ps-activity-body">
-            <span className="ps-activity-num">
-              {quizAccPct !== null ? `${quizAccPct}%` : '—'}
-            </span>
-            <span className="ps-activity-label">Quiz Accuracy</span>
+      {/* ── Quiz Performance ── */}
+      <section className="ps-quiz-section">
+        <div
+          ref={quizCardRef}
+          className="ps-quiz-perf-card"
+          onMouseMove={quizMove}
+          onMouseLeave={quizLeave}
+          style={{
+            transform: `perspective(1000px) rotateX(${quizTilt.rx}deg) rotateY(${quizTilt.ry}deg) scale3d(${quizTilt.on ? 1.015 : 1}, ${quizTilt.on ? 1.015 : 1}, 1)`,
+            boxShadow: quizTilt.on
+              ? `${quizTilt.ry * -0.8}px ${quizTilt.rx * 0.8}px 56px rgba(0,0,0,0.18), 0 8px 32px rgba(0,0,0,0.1)`
+              : '0 4px 24px rgba(0,0,0,0.06)',
+            transition: quizTilt.on
+              ? 'transform 0.08s ease, box-shadow 0.08s ease'
+              : 'transform 0.7s cubic-bezier(0.23,1,0.32,1), box-shadow 0.7s ease',
+          }}
+        >
+          {/* Glare overlay */}
+          <div className="ps-quiz-glare" style={{
+            background: `radial-gradient(circle at ${quizTilt.mx * 100}% ${quizTilt.my * 100}%, rgba(255,255,255,0.28) 0%, transparent 60%)`,
+            opacity: quizTilt.on ? 1 : 0,
+          }} />
+
+          {/* Header with parallax */}
+          <div className="ps-quiz-perf-header" style={{
+            transform: `translate(${(quizTilt.mx - 0.5) * -14}px, ${(quizTilt.my - 0.5) * -14}px)`,
+            transition: quizTilt.on ? 'transform 0.08s ease' : 'transform 0.7s cubic-bezier(0.23,1,0.32,1)',
+          }}>
+            <div className="ps-quiz-brain-icon">🧠</div>
+            <div className="ps-quiz-perf-title-wrap">
+              <h2 className="ps-quiz-perf-title">Quiz Performance</h2>
+              <p className="ps-quiz-perf-sub">Track your progress and keep improving!</p>
+            </div>
           </div>
-          <div className="ps-activity-sub">
-            {quizAccPct === null
-              ? 'Take a quiz to see your score'
-              : quizAccPct === 100
-              ? 'Perfect score! 🎉'
-              : quizAccPct >= 75
-              ? 'Great work!'
-              : quizAccPct >= 50
-              ? 'Keep practising'
-              : 'Review the lessons'}
-          </div>
+
+          {quizStats
+            ? <QuizPieChart {...quizStats} tilt={quizTilt} />
+            : (
+              <div className="ps-quiz-perf-empty">
+                <span className="ps-quiz-perf-empty-icon">📝</span>
+                <p>No quiz attempts yet — complete a lesson quiz to see your stats here.</p>
+              </div>
+            )
+          }
         </div>
       </section>
 

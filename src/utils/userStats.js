@@ -73,6 +73,16 @@ export function getQuizAccuracy() {
     } catch { return null; }
 }
 
+export function getQuizStats() {
+    try {
+        const raw = localStorage.getItem(QUIZ_KEY);
+        if (!raw) return null;
+        const { correct, total } = JSON.parse(raw);
+        if (!total) return null;
+        return { attempted: total, correct, incorrect: total - correct };
+    } catch { return null; }
+}
+
 /** Call once per quiz session when all answers are revealed. */
 export function recordQuizResult(correct, total) {
     try {

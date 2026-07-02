@@ -107,11 +107,25 @@
     padding: 9px 16px;
     cursor: pointer;
     font-size: 13px;
-    color: #94a3b8;
+    color: #1e293b;
     font-weight: 400;
     transition: background 0.15s, color 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
-.search-dropdown li:hover { background: #f5f3ff; color: #7c3aed; }
+.search-dropdown li:hover { background: #f5f3ff; }
+.search-dropdown li:hover .search-lesson-title { color: #7c3aed; }
+.search-lesson-title {
+    font-size: 13px;
+    color: inherit;
+    transition: color 0.15s;
+}
+.search-course-name {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 400;
+}
 
 /* ── Right (desktop): nav + profile ───────── */
 .hdr-right {

@@ -54,6 +54,86 @@ function getSandpackConfig(courseSlug) {
             '/index.js': { code: `// ── SQL Practice (JS simulation) 🗄️ ──\n// Real SQL runs on a server. Here we simulate queries with JS arrays.\n\nconst users = [\n  { id: 1, name: 'Alice', age: 30, city: 'NYC' },\n  { id: 2, name: 'Bob',   age: 25, city: 'LA'  },\n  { id: 3, name: 'Charlie', age: 35, city: 'NYC' },\n];\n\n// SELECT * FROM users WHERE city = 'NYC'\nconst nycUsers = users.filter(u => u.city === 'NYC');\nconsole.log('NYC users:', nycUsers);\n\n// SELECT name, age ORDER BY age ASC\nconst sorted = [...users].sort((a,b)=>a.age-b.age).map(({name,age})=>({name,age}));\nconsole.log('By age:', sorted);`, active: true },
         },
     };
+    const PYTHON_SLUGS = [
+        'python', 'pandas', 'numpy', 'pytorch', 'jupyter',
+        'machine-learning', 'neural-network', 'supervised', 'unsupervised',
+        'cnns', 'transformers', 'llm', 'data-analytics', 'data-visuali',
+        'feature-engineering', 'deployment-and-mlops', 'math-foundations',
+        'descriptive-statistics', 'inferential-statistics', 'building-ai-apps',
+        'ai-and-llm',
+    ];
+    if (PYTHON_SLUGS.some(k => s.includes(k))) return {
+        template: 'static',
+        isPython: true,
+        files: {
+            '/index.html': {
+                hidden: true,
+                code: `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#1e1e2e;color:#cdd6f4;font-family:'Courier New',monospace;font-size:13px}
+    #toolbar{
+      display:flex;align-items:center;gap:10px;padding:7px 12px;
+      background:#181825;border-bottom:1px solid #313244;position:sticky;top:0;z-index:10
+    }
+    #run-btn{
+      background:#a6e3a1;color:#1e1e2e;border:none;
+      padding:4px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:12px
+    }
+    #run-btn:disabled{opacity:.5;cursor:default}
+    #status{font-size:11px;color:#a6adc8}
+    #output{padding:14px;white-space:pre-wrap;line-height:1.65;min-height:60px}
+    .err{color:#f38ba8}
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button id="run-btn" disabled>▶ Run</button>
+    <span id="status">Loading Python 3…</span>
+  </div>
+  <pre id="output"></pre>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+  <script>
+    const btn=document.getElementById('run-btn');
+    const status=document.getElementById('status');
+    const out=document.getElementById('output');
+    let py=null;
+    async function init(){
+      try{
+        py=await loadPyodide();
+        py.setStdout({batched:s=>{out.textContent+=s+'\\n'}});
+        py.setStderr({batched:s=>{out.innerHTML+='<span class="err">'+s+'\\n</span>'}});
+        status.textContent='Python 3 ready ✓';
+        btn.disabled=false;
+        run();
+      }catch(e){status.textContent='Failed to load: '+e.message}
+    }
+    async function run(){
+      if(!py)return;
+      out.textContent='';btn.disabled=true;status.textContent='Running…';
+      try{
+        const resp=await fetch('./main.py');
+        const code=await resp.text();
+        await py.runPythonAsync(code);
+        if(!out.textContent.trim())out.textContent='(no output)';
+      }catch(e){out.innerHTML+='<span class="err">\\u274c '+e.message+'</span>'}
+      btn.disabled=false;status.textContent='Done ✓';
+    }
+    btn.addEventListener('click',run);
+    init();
+  </script>
+</body>
+</html>`,
+            },
+            '/main.py': {
+                active: true,
+                code: `# Python Practice 🐍\n\nprint("Hello, Python!")\n\n# Variables and f-strings\nname = "Dev.EL"\nversion = 3.12\nprint(f"Welcome to {name} — Python {version}")\n\n# Lists and loops\nfruits = ["apple", "banana", "cherry"]\nfor i, fruit in enumerate(fruits, 1):\n    print(f"  {i}. {fruit}")\n\n# Function\ndef greet(person):\n    return f"Hello, {person}! 👋"\n\nprint(greet("World"))`,
+            },
+        },
+    };
     // terminal / git / default
     return {
         template: 'static',
@@ -68,18 +148,20 @@ const DynamicSandbox = memo(function DynamicSandbox({ courseSlug, aiEnabled, les
     const config = useMemo(() => getSandpackConfig(courseSlug), [courseSlug]);
     // 'node' template runs on the server (no DOM preview) — show a console instead.
     const isServerSide = config.template === 'node';
+    // Python output goes to the Pyodide preview pane — no Sandpack console needed.
+    const isPython = !!config.isPython;
     return (
         <SandpackProvider template={config.template} files={config.files} theme="dark">
             {/* Code Guide bar sits above the editor; its hint output is a floating
                 modal (rendered via portal), so it never pushes the editor height. */}
             {aiEnabled && <SandboxGuide lesson={lesson} onDisable={onDisable} />}
-            <SandpackLayout style={{ height: aiEnabled ? '64vh' : '70vh', borderRadius: 0 }}>
+            <SandpackLayout style={{ height: aiEnabled ? '64vh' : isPython ? '86vh' : '70vh', borderRadius: 0 }}>
                 <SandpackCodeEditor showLineNumbers showTabs style={{ height: '100%' }} />
                 {isServerSide
                     ? <SandpackConsole style={{ height: '100%' }} />
                     : <SandpackPreview showOpenInCodeSandbox showRefreshButton style={{ height: '100%' }} />}
             </SandpackLayout>
-            {!isServerSide && (
+            {!isServerSide && !isPython && (
                 <SandpackConsole showHeader resetOnPreviewRestart style={{ height: '16vh' }} />
             )}
         </SandpackProvider>
