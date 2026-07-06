@@ -15,7 +15,7 @@ function isTokenExpired(token) {
     }
 }
 
-function Header({ onAboutClick, onContactClick, backToTrack = false }) {
+function Header({ onAboutClick, onContactClick, backToTrack = false, rightExtra = null, navItems = null }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [user, setUser] = useState(null);
     const location = useLocation();
@@ -88,13 +88,17 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
     const closePopup = () => {
         setIsPopupOpen(false);
         const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) setUser(JSON.parse(userInfo));
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+            window.dispatchEvent(new CustomEvent('devora-auth-change'));
+        }
     };
 
     const handleLogout = () => {
         localStorage.removeItem('userInfo');
         setUser(null);
         setIsSidebarOpen(false);
+        window.dispatchEvent(new CustomEvent('devora-auth-change'));
         window.location.reload();
     };
 
@@ -180,20 +184,34 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
                 {/* ── RIGHT (desktop): Nav links + profile ── */}
                 <div className="hdr-right">
                     <nav className="hdr-nav-links">
-                        {location.pathname === '/' ? (
-                            <>
-                                <a href="/about"   className="hdr-nav-link" onClick={handleAboutClick}>About</a>
-                                <a href="/contact" className="hdr-nav-link" onClick={handleContactClick}>Contact</a>
-                            </>
+                        {navItems ? (
+                            navItems.map(item =>
+                                item.to ? (
+                                    <Link key={item.label} to={item.to} className="hdr-nav-link">{item.label}</Link>
+                                ) : (
+                                    <a key={item.label} href="#" className="hdr-nav-link"
+                                        onClick={e => { e.preventDefault(); item.onClick?.(); }}>{item.label}</a>
+                                )
+                            )
                         ) : (
-                            <Link to="/" className="hdr-nav-link">Home</Link>
+                            <>
+                                {location.pathname === '/' ? (
+                                    <>
+                                        <a href="/about"   className="hdr-nav-link" onClick={handleAboutClick}>About</a>
+                                        <a href="/contact" className="hdr-nav-link" onClick={handleContactClick}>Contact</a>
+                                    </>
+                                ) : (
+                                    <Link to="/" className="hdr-nav-link">Home</Link>
+                                )}
+                                <Link to="/privacy-policy" className="hdr-nav-link">Privacy Policy</Link>
+                                <Link to="/terms"           className="hdr-nav-link">Terms</Link>
+                            </>
                         )}
-                        <Link to="/privacy-policy" className="hdr-nav-link">Privacy Policy</Link>
-                        <Link to="/terms"           className="hdr-nav-link">Terms</Link>
                     </nav>
 
                     <div className="hdr-profile">
                         <button className="donate-button" onClick={openDonate}>☕ Buy Me a Coffee</button>
+                        {rightExtra}
                         {user ? (
                             <div className="hdr-user">
                                 <Link to="/profile" className="hdr-avatar" title="My Profile">{user.name.charAt(0).toUpperCase()}</Link>
@@ -235,16 +253,29 @@ function Header({ onAboutClick, onContactClick, backToTrack = false }) {
 
                     {/* Nav links */}
                     <div className="hdr-sb-links">
-                        {location.pathname === '/' ? (
-                            <>
-                                <a href="/about"   className="hdr-sb-link" onClick={handleAboutClick}>About</a>
-                                <a href="/contact" className="hdr-sb-link" onClick={handleContactClick}>Contact</a>
-                            </>
+                        {navItems ? (
+                            navItems.map(item =>
+                                item.to ? (
+                                    <Link key={item.label} to={item.to} className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>{item.label}</Link>
+                                ) : (
+                                    <a key={item.label} href="#" className="hdr-sb-link"
+                                        onClick={e => { e.preventDefault(); item.onClick?.(); setIsSidebarOpen(false); }}>{item.label}</a>
+                                )
+                            )
                         ) : (
-                            <Link to="/" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Home</Link>
+                            <>
+                                {location.pathname === '/' ? (
+                                    <>
+                                        <a href="/about"   className="hdr-sb-link" onClick={handleAboutClick}>About</a>
+                                        <a href="/contact" className="hdr-sb-link" onClick={handleContactClick}>Contact</a>
+                                    </>
+                                ) : (
+                                    <Link to="/" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Home</Link>
+                                )}
+                                <Link to="/privacy-policy" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Privacy Policy</Link>
+                                <Link to="/terms"           className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Terms & Conditions</Link>
+                            </>
                         )}
-                        <Link to="/privacy-policy" className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Privacy Policy</Link>
-                        <Link to="/terms"           className="hdr-sb-link" onClick={() => setIsSidebarOpen(false)}>Terms & Conditions</Link>
                     </div>
 
                     {/* Bottom: user section + coffee */}

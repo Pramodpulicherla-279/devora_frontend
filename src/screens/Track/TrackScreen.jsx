@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useSEO } from '../../hooks/useSEO';
 import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
-import logo from '../../assets/logo.png';
+import Header from '../../components/Header/header.jsx';
 import TrackScene3D from './TrackScene3D';
 import DevLoader from '../../components/DevLoader/DevLoader';
 import './TrackScreen.css';
@@ -454,28 +454,9 @@ export default function TrackScreen() {
   };
 
   return (
-    <div className="ts-screen" style={{ '--tc': meta.color, '--ta': meta.accent }}>
-      {/* Header */}
-      <header className="ts-header">
-        <button className="ts-back" onClick={() => navigate('/')}>
-          <span className="ts-back-arrow">←</span> Back
-        </button>
-        <Link to="/" className="ts-logo">
-          <img src={logo} alt="Dev.EL" />
-          <span>Dev<span style={{ color: meta.color }}>.</span>EL</span>
-        </Link>
-        <div className="ts-header-right">
-          {user ? (
-            <div className="ts-user" style={{ cursor: 'pointer' }} onClick={() => navigate('/profile')}>
-              <div className="ts-avatar" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.accent})` }}>{user.name.charAt(0).toUpperCase()}</div>
-              <span>{user.name}</span>
-            </div>
-          ) : (
-            <button className="ts-btn-primary" onClick={() => navigate('/')}>Login</button>
-          )}
-        </div>
-      </header>
-
+    <>
+      <Header />
+      <div className="ts-screen" style={{ '--tc': meta.color, '--ta': meta.accent, paddingTop: '60px' }}>
       {/* HERO with full-bleed interactive 3D background */}
       <section className="ts-hero">
         {/* 3D scene as background — fills entire hero */}
@@ -735,6 +716,7 @@ export default function TrackScreen() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }

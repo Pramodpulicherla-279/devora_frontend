@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSEO } from '../../hooks/useSEO';
-import logo from '../../assets/logo.png';
+import Header from '../../components/Header/header.jsx';
 import { ROADMAPS } from './roadmapData';
 import './RoadmapsScreen.css';
 
@@ -200,22 +200,13 @@ export default function RoadmapsScreen() {
   // ────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="rm-screen">
-      {/* ── HEADER ── */}
-      <header className="rm-header">
-        <button className="rm-back" onClick={() => navigate('/')}>← Home</button>
-        <Link to="/" className="rm-logo">
-          <img src={logo} alt="Dev.EL" />
-          <span>Dev<span className="rm-dot">.</span>EL</span>
-        </Link>
-        <button
-          className="rm-menu-btn"
-          onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-          aria-label="Toggle roadmap list"
-        >
-          ☰ Roadmaps
-        </button>
-      </header>
+    <>
+      <Header />
+      <div className="rm-screen" style={{ paddingTop: '60px' }}>
+      {/* Mobile-only roadmaps toggle */}
+      <div className="rm-mobile-topbar">
+        <button className="rm-menu-btn" onClick={() => setMobileSidebarOpen(v => !v)}>☰ Roadmaps</button>
+      </div>
 
       <div className="rm-body">
         {/* ── SIDEBAR ── */}
@@ -366,6 +357,7 @@ export default function RoadmapsScreen() {
           onClose={() => setSelectedStep(null)}
         />
       )}
-    </div>
+      </div>
+    </>
   );
 }

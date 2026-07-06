@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../../config';
-import logo from '../../assets/logo.png';
+import Header from '../../components/Header/header.jsx';
 
 export default function ResetPasswordScreen() {
   const { token } = useParams();
@@ -39,20 +39,14 @@ export default function ResetPasswordScreen() {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh', display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center',
-      background: 'linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%)',
-      padding: '24px', fontFamily: 'Inter, -apple-system, sans-serif',
-    }}>
-      {/* Logo */}
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '32px', textDecoration: 'none' }}>
-        <img src={logo} alt="Dev.EL" style={{ height: '28px' }} />
-        <span style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>
-          Dev<span style={{ color: '#7c3aed' }}>.</span>EL
-        </span>
-      </Link>
-
+    <>
+      <Header />
+      <div style={{
+        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        background: 'linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%)',
+        padding: '80px 24px 24px', fontFamily: 'Inter, -apple-system, sans-serif',
+      }}>
       <div style={{
         background: '#fff', borderRadius: '20px', padding: '40px 36px',
         width: '100%', maxWidth: '420px',
@@ -198,6 +192,7 @@ export default function ResetPasswordScreen() {
       </div>
 
       <style>{`@keyframes rp-spin { to { transform: rotate(360deg); } }`}</style>
-    </div>
+      </div>
+    </>
   );
 }

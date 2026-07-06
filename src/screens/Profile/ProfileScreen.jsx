@@ -1,10 +1,10 @@
 import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSEO } from '../../hooks/useSEO';
 import { API_BASE_URL } from '../../../config';
 import { authFetch } from '../../utils/authFetch';
 import { getStreak, getQuizStats } from '../../utils/userStats';
-import logo from '../../assets/logo.png';
+import Header from '../../components/Header/header.jsx';
 import DevLoader from '../../components/DevLoader/DevLoader';
 import './ProfileScreen.css';
 
@@ -393,17 +393,9 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="ps-screen">
-      {/* ── Header ── */}
-      <header className="ps-header">
-        <button className="ps-back" onClick={() => navigate(-1)}>← Back</button>
-        <Link to="/" className="ps-logo">
-          <img src={logo} alt="Dev.EL" />
-          <span>Dev<span className="ps-dot">.</span>EL</span>
-        </Link>
-        <div className="ps-header-right" />
-      </header>
-
+    <>
+      <Header />
+      <div className="ps-screen" style={{ paddingTop: '60px' }}>
       {/* ── Hero / user card ── */}
       <section className="ps-hero">
         <div className="ps-avatar-wrap">
@@ -612,6 +604,7 @@ export default function ProfileScreen() {
           <button className="ps-start-btn" onClick={() => navigate('/')}>Explore Tracks →</button>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
