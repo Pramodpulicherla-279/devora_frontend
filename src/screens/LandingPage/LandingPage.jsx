@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AuthPopup from '../../components/AuthPopup/AuthPopup';
-import DonateModal from '../../components/DonateModal/donateModal';
+import Header from '../../components/Header/header.jsx';
 import { trackEvent } from '../../analytics';
 import emailjs from '@emailjs/browser';
 import { useSEO } from '../../hooks/useSEO';
@@ -235,14 +234,12 @@ export default function LandingPage() {
   const expandPanelRef = useRef(null);
 
   const [user, setUser] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [courseProgress, setCourseProgress] = useState({});
   const [trackProgress, setTrackProgress] = useState({}); // { [trackSlug]: { [courseId]: pct } }
   const [enrolledSlugs, setEnrolledSlugs] = useState([]);
   const [enrollLoading, setEnrollLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('mcq');
   const [editorTab, setEditorTab] = useState('app');
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState('');
   const [counters, setCounters] = useState({ learners: 0, lessons: 0, tracks: 0 });
@@ -251,59 +248,8 @@ export default function LandingPage() {
   const [selectedCourseTrack, setSelectedCourseTrack] = useState(null); // for Courses section
   const [expandedLearningTrack, setExpandedLearningTrack] = useState(null); // for Learning Tracks section
 
-  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [dbTracks, setDbTracks] = useState(STATIC_DB_TRACKS);
 
-  // ── Header lesson search ──
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const searchRef = useRef(null);
-
-
-  const handleOpenDonate = () => {
-    setIsDonateModalOpen(true);
-    setIsSidebarOpen(false);
-    setMobileOpen(false);
-  };
-
-  const handleCloseDonate = () => {
-    setIsDonateModalOpen(false);
-  };
-
-  // Close search dropdown on outside click
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (searchRef.current && !searchRef.current.contains(e.target)) setSearchOpen(false);
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleSearch = async (e) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-    if (value.length < 2) { setSearchResults([]); setSearchOpen(false); return; }
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/lessons/lessons/search?q=${encodeURIComponent(value)}`);
-      const data = await res.json();
-      if (data.success) { setSearchResults(data.data); setSearchOpen(true); }
-    } catch { setSearchResults([]); setSearchOpen(false); }
-  };
-
-  const handleSelectLesson = async (lesson) => {
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/lessons/slug/${lesson.slug}`);
-      const data = await res.json();
-      if (data.success && data.data?.part?.course) {
-        navigate(`/course/${data.data.part.course.slug}/${lesson.slug}`);
-      } else {
-        alert('Course not found for this lesson.');
-      }
-    } catch { alert('Error fetching lesson details.'); }
-    setSearchQuery(''); setSearchResults([]); setSearchOpen(false);
-  };
 
   // Auto-scroll to expand panel when it opens
   useEffect(() => {
@@ -317,6 +263,12 @@ export default function LandingPage() {
   useEffect(() => {
     const info = localStorage.getItem('userInfo');
     if (info) setUser(JSON.parse(info));
+    const onAuthChange = () => {
+      const r = localStorage.getItem('userInfo');
+      setUser(r ? JSON.parse(r) : null);
+    };
+    window.addEventListener('devora-auth-change', onAuthChange);
+    return () => window.removeEventListener('devora-auth-change', onAuthChange);
   }, []);
 
   useEffect(() => {
@@ -472,11 +424,6 @@ export default function LandingPage() {
       .catch(() => setFormStatus('Failed. Please try again.'));
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
-    const u = localStorage.getItem('userInfo');
-    if (u) setUser(JSON.parse(u));
-  };
 
   // "Our Learning Tracks" section — built from DB tracks (admin-created), not hardcoded
   const selectedTrackDbObj = dbTracks.find(t => t.name === selectedCourseTrack);
@@ -600,98 +547,15 @@ export default function LandingPage() {
   return (
     <>
       {/* ── HEADER ── */}
-      <header className="lp-header">
-        <div className="lp-header-inner">
-          <Link to="/" className="lp-logo">
-            <img src={logo} alt="Dev.EL" />
-            <span>Dev<span className="lp-dot">.</span>EL</span>
-          </Link>
-
-          {/* ── Lesson search ── */}
-          <div className="lp-search-bar" ref={searchRef}>
-            <span className="lp-search-icon">🔍</span>
-            <input
-              type="text"
-              placeholder="Search lessons..."
-              value={searchQuery}
-              onChange={handleSearch}
-              onFocus={() => setSearchOpen(searchResults.length > 0)}
-            />
-            {searchOpen && searchResults.length > 0 && (
-              <ul className="lp-search-dropdown">
-                {searchResults.map(lesson => (
-                  <li key={lesson.slug} onClick={() => handleSelectLesson(lesson)}>
-                    {lesson.title}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <nav className={`lp-nav ${mobileOpen ? 'open' : ''}`}>
-            {/* Sidebar header */}
-            <div className="lp-nav-header">
-              <span className="lp-nav-brand">Dev<span className="lp-dot">.</span>EL</span>
-              <button className="lp-nav-close" onClick={() => setMobileOpen(false)}>✕</button>
-            </div>
-
-            {/* Nav links */}
-            <div className="lp-nav-links">
-              <a href="#tracks" onClick={e => { e.preventDefault(); scrollTo(tracksRef); setMobileOpen(false); }}>Tracks</a>
-              <Link to="/roadmaps" onClick={() => setMobileOpen(false)}>Roadmaps</Link>
-              <a href="#features" onClick={e => { e.preventDefault(); scrollTo(featuresRef); setMobileOpen(false); }}>Features</a>
-              <Link to="/privacy-policy" onClick={() => setMobileOpen(false)}>Privacy</Link>
-              <Link to="/terms" onClick={() => setMobileOpen(false)}>Terms</Link>
-            </div>
-
-            {/* User section at bottom (mobile only) */}
-            <div className="lp-nav-bottom">
-              <div className="lp-nav-sep" />
-              {user ? (
-                <>
-                  <div className="lp-nav-user">
-                    <div className="lp-avatar-small">{user.name.charAt(0).toUpperCase()}</div>
-                    <div className="lp-nav-user-info">
-                      <span className="lp-nav-uname">{user.name}</span>
-                      <span className="lp-nav-uemail">Logged in</span>
-                    </div>
-                  </div>
-                  <button
-                    className="lp-nav-logout-btn"
-                    onClick={() => { localStorage.removeItem('userInfo'); window.location.reload(); }}
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : null}
-              <button className="lp-nav-coffee-btn" onClick={handleOpenDonate}>
-                ☕ Buy Me a Coffee
-              </button>
-            </div>
-          </nav>
-
-          <div className="lp-header-actions">
-            {/* Buy Me a Coffee — desktop only */}
-            <button className="lp-coffee-btn lp-desktop-only" onClick={handleOpenDonate}>
-              ☕ <span>Buy me a coffee</span>
-            </button>
-
-            {user ? (
-              <>
-                <div className="lp-user-info" style={{ cursor: 'pointer' }} onClick={() => navigate('/profile')}>
-                  <div className="lp-avatar-small">{user.name.charAt(0).toUpperCase()}</div>
-                  <span className="lp-user-name">{user.name}</span>
-                </div>
-                <button className="lp-btn-ghost lp-desktop-only" onClick={() => { localStorage.removeItem('userInfo'); window.location.reload(); }}>Logout</button>
-              </>
-            ) : (
-              <button className="lp-btn-primary lp-header-login-btn" onClick={() => setIsPopupOpen(true)}>Login & Start Learning</button>
-            )}
-            <button className="lp-hamburger" onClick={() => setMobileOpen(true)}>☰</button>
-          </div>
-        </div>
-        {mobileOpen && <div className="lp-overlay" onClick={() => setMobileOpen(false)} />}
-      </header>
+      <Header
+        navItems={[
+          { label: 'Tracks',   onClick: () => scrollTo(tracksRef) },
+          { label: 'Roadmaps', to: '/roadmaps' },
+          { label: 'Features', onClick: () => scrollTo(featuresRef) },
+          { label: 'Privacy',  to: '/privacy-policy' },
+          { label: 'Terms',    to: '/terms' },
+        ]}
+      />
 
       {/* ── HERO ── */}
       <section className="lp-hero">
@@ -1580,9 +1444,6 @@ console.log(reverseString('Dev.EL'));
           <p>© {new Date().getFullYear()} Dev.EL — All rights reserved.</p>
         </div>
       </footer>
-
-      {isPopupOpen && <AuthPopup onClose={closePopup} />}
-      {isDonateModalOpen && <DonateModal onClose={handleCloseDonate} />}
 
     </>
   );
