@@ -231,6 +231,7 @@ export default function ProfileScreen() {
   // enrollLoading gates the full-page DevLoader — stays true until the
   // enrolled-tracks API call resolves (the first meaningful async wait).
   const [enrollLoading, setEnrollLoading] = useState(!!user);
+  const [dbQuizStats, setDbQuizStats] = useState(null); // fetched from DB
 
   const { ref: quizCardRef, tilt: quizTilt, onMove: quizMove, onLeave: quizLeave } = useCardTilt(20);
 
@@ -287,6 +288,22 @@ export default function ProfileScreen() {
       .catch(() => { setEnrollLoading(false); });
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Fetch quiz stats from DB
+  useEffect(() => {
+    if (!user) return;
+    authFetch(`${API_BASE_URL}/api/users/quiz-stats`)
+      .then(r => {
+        if (r.status === 401) { handleAuthError(); return null; }
+        return r.json();
+      })
+      .then(d => {
+        if (d?.success && d.quizStats?.total > 0) {
+          setDbQuizStats({ attempted: d.quizStats.total, correct: d.quizStats.correct, incorrect: d.quizStats.total - d.quizStats.correct });
+        }
+      })
+      .catch(() => {});
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Fetch track-scoped progress for each enrolled track
   useEffect(() => {
     if (!user || enrolledSlugs.length === 0 || dbTracks.length === 0) return;
@@ -318,9 +335,9 @@ export default function ProfileScreen() {
   // Together they ensure the profile renders fully populated on first paint.
   if (!user || enrollLoading || loading) return <DevLoader />;
 
-  /* ── Activity stats (localStorage) ── */
+  /* ── Activity stats (DB preferred, localStorage fallback) ── */
   const streak    = getStreak();
-  const quizStats = getQuizStats(); // null if no quizzes taken yet
+  const quizStats = dbQuizStats ?? getQuizStats(); // DB is source of truth; localStorage is fallback
 
   /* ── Helpers ── */
   // Aggregate best progress for a course across global + all enrolled tracks

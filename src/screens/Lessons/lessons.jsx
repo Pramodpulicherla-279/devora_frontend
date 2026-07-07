@@ -191,7 +191,16 @@ function QuizSection({ quiz }) {
     React.useEffect(() => {
         if (allRevealed && !recordedRef.current) {
             recordedRef.current = true;
-            recordQuizResult(score, hasQuiz ? quiz.length : 0);
+            const total = hasQuiz ? quiz.length : 0;
+            recordQuizResult(score, total);
+            // Also persist to DB for cross-device profile stats
+            if (localStorage.getItem('userInfo')) {
+                authFetch(`${API_BASE_URL}/api/users/quiz-stats`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ correct: score, total }),
+                }).catch(() => {});
+            }
         }
     }, [allRevealed, score, hasQuiz, quiz?.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
