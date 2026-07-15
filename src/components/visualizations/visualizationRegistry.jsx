@@ -801,6 +801,18 @@ import GraphComponentsVisualization from './non-linear-data-structures/level-4/t
 import GraphTopoSortVisualization from './non-linear-data-structures/level-4/topic-10/visual-1/visual';
 import GraphBipartiteVisualization from './non-linear-data-structures/level-4/topic-11/visual-1/visual';
 import GraphInterviewProblemsVisualization from './non-linear-data-structures/level-4/topic-12/visual-1/visual';
+// Trie interview per-problem visuals
+import TrieImplementVisualization from './non-linear-data-structures/level-3/topic-12/visual-2/visual';
+import TrieWordSearchIIVisualization from './non-linear-data-structures/level-3/topic-12/visual-3/visual';
+import TrieWildcardSearchVisualization from './non-linear-data-structures/level-3/topic-12/visual-4/visual';
+import TrieLongestPrefixVisualization from './non-linear-data-structures/level-3/topic-12/visual-5/visual';
+import TrieWordBreakVisualization from './non-linear-data-structures/level-3/topic-12/visual-6/visual';
+// Graph interview per-problem visuals
+import GraphNumIslandsVisualization from './non-linear-data-structures/level-4/topic-12/visual-2/visual';
+import GraphCloneVisualization from './non-linear-data-structures/level-4/topic-12/visual-3/visual';
+import GraphCourseScheduleVisualization from './non-linear-data-structures/level-4/topic-12/visual-4/visual';
+import GraphWordLadderVisualization from './non-linear-data-structures/level-4/topic-12/visual-5/visual';
+import GraphRottingOrangesVisualization from './non-linear-data-structures/level-4/topic-12/visual-6/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -1638,6 +1650,20 @@ const visualizationRegistry = {
   'graph-topo-sort-visualization'         : GraphTopoSortVisualization,
   'graph-bipartite-visualization'         : GraphBipartiteVisualization,
   'graph-interview-problems-visualization': GraphInterviewProblemsVisualization,
+
+  // Trie interview per-problem visuals
+  'trie-implement-visualization'          : TrieImplementVisualization,
+  'trie-word-search-ii-visualization'     : TrieWordSearchIIVisualization,
+  'trie-wildcard-search-visualization'    : TrieWildcardSearchVisualization,
+  'trie-longest-prefix-visualization'     : TrieLongestPrefixVisualization,
+  'trie-word-break-visualization'         : TrieWordBreakVisualization,
+
+  // Graph interview per-problem visuals
+  'graph-num-islands-visualization'       : GraphNumIslandsVisualization,
+  'graph-clone-visualization'             : GraphCloneVisualization,
+  'graph-course-schedule-visualization'   : GraphCourseScheduleVisualization,
+  'graph-word-ladder-visualization'       : GraphWordLadderVisualization,
+  'graph-rotting-oranges-visualization'   : GraphRottingOrangesVisualization,
 
   // 'css-box-model': BoxModelViz,
 };
