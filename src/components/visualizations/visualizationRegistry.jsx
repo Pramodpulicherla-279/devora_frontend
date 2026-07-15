@@ -585,11 +585,222 @@ import HtmlColorContrastVisualization from './html/level-4/topic-4/visual';
 import CssMobileFirstVisualization from './css/level-4/topic-1/visual';
 import CssMediaQueriesVisualization from './css/level-4/topic-2/visual';
 import CssFluidTypographyVisualization from './css/level-4/topic-3/visual';
+// Python Foundations (DSA with Python) — interactive 3D
+import PfWhatIsPythonVisualization from './pythonfoundations/level-1/topic-1/visual-1/visual';
+import PfVariablesTypesVisualization from './pythonfoundations/level-1/topic-2/visual-1/visual';
+import PfOperatorsVisualization from './pythonfoundations/level-1/topic-3/visual-1/visual';
+import PfConditionalsVisualization from './pythonfoundations/level-1/topic-4/visual-1/visual';
+import PfLoopsVisualization from './pythonfoundations/level-1/topic-5/visual-1/visual';
+import PfLoopControlVisualization from './pythonfoundations/level-1/topic-6/visual-1/visual';
+import PfCleanCodeVisualization from './pythonfoundations/level-1/topic-7/visual-1/visual';
+import PfFunctionsVisualization from './pythonfoundations/level-1/topic-8/visual-1/visual';
+import PfScopeVisualization from './pythonfoundations/level-1/topic-9/visual-1/visual';
+import PfTryExceptVisualization from './pythonfoundations/level-1/topic-10/visual-1/visual';
+import PfDebuggingVisualization from './pythonfoundations/level-1/topic-11/visual-1/visual';
+import PfInputOutputVisualization from './pythonfoundations/level-1/topic-12/visual-1/visual';
+import PfListsVisualization from './pythonfoundations/level-2/topic-1/visual-1/visual';
+import PfListMethodsVisualization from './pythonfoundations/level-2/topic-2/visual-1/visual';
+import PfTuplesVisualization from './pythonfoundations/level-2/topic-3/visual-1/visual';
+import PfSlicingVisualization from './pythonfoundations/level-2/topic-4/visual-1/visual';
+import PfDictionariesVisualization from './pythonfoundations/level-2/topic-5/visual-1/visual';
+import PfDictMethodsVisualization from './pythonfoundations/level-2/topic-6/visual-1/visual';
+import PfSetsVisualization from './pythonfoundations/level-2/topic-7/visual-1/visual';
+import PfChoosingTypeVisualization from './pythonfoundations/level-2/topic-8/visual-1/visual';
+import PfStringsSequencesVisualization from './pythonfoundations/level-2/topic-9/visual-1/visual';
+import PfStringMethodsVisualization from './pythonfoundations/level-2/topic-10/visual-1/visual';
+import PfTypeConversionVisualization from './pythonfoundations/level-2/topic-11/visual-1/visual';
+import PfMutableImmutableVisualization from './pythonfoundations/level-2/topic-12/visual-1/visual';
+import PfWhatIsOopVisualization from './pythonfoundations/level-3/topic-1/visual-1/visual';
+import PfFirstClassVisualization from './pythonfoundations/level-3/topic-2/visual-1/visual';
+import PfMethodsVisualization from './pythonfoundations/level-3/topic-3/visual-1/visual';
+import PfSelfKeywordVisualization from './pythonfoundations/level-3/topic-4/visual-1/visual';
+import PfInstanceClassVarsVisualization from './pythonfoundations/level-3/topic-5/visual-1/visual';
+import PfEncapsulationVisualization from './pythonfoundations/level-3/topic-6/visual-1/visual';
+import PfNodeClassVisualization from './pythonfoundations/level-3/topic-7/visual-1/visual';
+import PfDunderMethodsVisualization from './pythonfoundations/level-3/topic-8/visual-1/visual';
+import PfInheritanceVisualization from './pythonfoundations/level-3/topic-9/visual-1/visual';
+import PfPolymorphismVisualization from './pythonfoundations/level-3/topic-10/visual-1/visual';
+import PfCompositionVisualization from './pythonfoundations/level-3/topic-11/visual-1/visual';
+import PfDesignClassVisualization from './pythonfoundations/level-3/topic-12/visual-1/visual';
 // AI & LLM Basics — gap fills for current curriculum
 import LlmWhatIsPromptVisualization from './llm/level-4/topic-1/visual-1/visual';
 import LlmChoosingModelVisualization from './llm/level-4/topic-2/visual-1/visual';
 import LlmCapabilitiesVisualization from './llm/level-4/topic-3/visual-1/visual';
 import LlmResponsibleAiVisualization from './llm/level-4/topic-4/visual-1/visual';
+// Complexity Analysis (DSA) — 2D animated
+import CaIntroComplexityVisualization from './complexity-analysis/level-1/topic-1/visual-1/visual';
+import CaBigONotationVisualization from './complexity-analysis/level-1/topic-2/visual-1/visual';
+import CaCasesVisualization from './complexity-analysis/level-1/topic-3/visual-1/visual';
+import CaConstantTimeVisualization from './complexity-analysis/level-1/topic-4/visual-1/visual';
+import CaLinearTimeVisualization from './complexity-analysis/level-1/topic-5/visual-1/visual';
+import CaLogTimeVisualization from './complexity-analysis/level-1/topic-6/visual-1/visual';
+import CaQuadraticTimeVisualization from './complexity-analysis/level-1/topic-7/visual-1/visual';
+import CaGrowthRatesVisualization from './complexity-analysis/level-1/topic-8/visual-1/visual';
+import CaSpaceComplexityVisualization from './complexity-analysis/level-1/topic-9/visual-1/visual';
+import CaCommonMistakesVisualization from './complexity-analysis/level-1/topic-10/visual-1/visual';
+import CaAnalyzingFunctionsVisualization from './complexity-analysis/level-1/topic-11/visual-1/visual';
+import CaBigOInterviewsVisualization from './complexity-analysis/level-1/topic-12/visual-1/visual';
+// Complexity Analysis › Recursion (level-2) — 2D animated
+import CrIntroRecursionVisualization from './complexity-analysis/level-2/topic-1/visual-1/visual';
+import CrBaseCaseVisualization from './complexity-analysis/level-2/topic-2/visual-1/visual';
+import CrCallStackVisualization from './complexity-analysis/level-2/topic-3/visual-1/visual';
+import CrRecursionVsIterationVisualization from './complexity-analysis/level-2/topic-4/visual-1/visual';
+import CrFactorialVisualization from './complexity-analysis/level-2/topic-5/visual-1/visual';
+import CrFibonacciVisualization from './complexity-analysis/level-2/topic-6/visual-1/visual';
+import CrMemoizationVisualization from './complexity-analysis/level-2/topic-7/visual-1/visual';
+import CrRecursiveListVisualization from './complexity-analysis/level-2/topic-8/visual-1/visual';
+import CrStackOverflowVisualization from './complexity-analysis/level-2/topic-9/visual-1/visual';
+import CrTailRecursionVisualization from './complexity-analysis/level-2/topic-10/visual-1/visual';
+import CrRecursiveToIterativeVisualization from './complexity-analysis/level-2/topic-11/visual-1/visual';
+import CrWhenRecursionVisualization from './complexity-analysis/level-2/topic-12/visual-1/visual';
+// Linear Data Structures › Arrays & Lists (level-1) — 2D animated
+import ArrMemoryVisualization from './linear-data-structures/level-1/topic-1/visual-1/visual';
+import ArrDynamicGrowthVisualization from './linear-data-structures/level-1/topic-2/visual-1/visual';
+import ArrOperationsVisualization from './linear-data-structures/level-1/topic-3/visual-1/visual';
+import ArrAmortizedVisualization from './linear-data-structures/level-1/topic-4/visual-1/visual';
+import ArrLinearSearchVisualization from './linear-data-structures/level-1/topic-5/visual-1/visual';
+import ArrReverseInPlaceVisualization from './linear-data-structures/level-1/topic-6/visual-1/visual';
+import ArrTwoPointerVisualization from './linear-data-structures/level-1/topic-7/visual-1/visual';
+import ArrRotateVisualization from './linear-data-structures/level-1/topic-8/visual-1/visual';
+import ArrMatrixVisualization from './linear-data-structures/level-1/topic-9/visual-1/visual';
+import ArrPrefixSumVisualization from './linear-data-structures/level-1/topic-10/visual-1/visual';
+import ArrSlidingWindowVisualization from './linear-data-structures/level-1/topic-11/visual-1/visual';
+import ArrInterviewProblemsVisualization from './linear-data-structures/level-1/topic-12/visual-1/visual';
+// Linear Data Structures › Strings (level-2) — 2D animated
+import StrIntroVisualization from './linear-data-structures/level-2/topic-1/visual-1/visual';
+import StrImmutabilityVisualization from './linear-data-structures/level-2/topic-2/visual-1/visual';
+import StrCompareVisualization from './linear-data-structures/level-2/topic-3/visual-1/visual';
+import StrReverseVisualization from './linear-data-structures/level-2/topic-4/visual-1/visual';
+import StrPalindromeVisualization from './linear-data-structures/level-2/topic-5/visual-1/visual';
+import StrAnagramVisualization from './linear-data-structures/level-2/topic-6/visual-1/visual';
+import StrTwoPointerVisualization from './linear-data-structures/level-2/topic-7/visual-1/visual';
+import StrSubstringSubseqVisualization from './linear-data-structures/level-2/topic-8/visual-1/visual';
+import StrNaiveMatchVisualization from './linear-data-structures/level-2/topic-9/visual-1/visual';
+import StrEfficientMatchVisualization from './linear-data-structures/level-2/topic-10/visual-1/visual';
+import StrSlidingWindowVisualization from './linear-data-structures/level-2/topic-11/visual-1/visual';
+import StrInterviewProblemsVisualization from './linear-data-structures/level-2/topic-12/visual-1/visual';
+// Linear Data Structures › Linked Lists (level-3) — 2D animated
+import LlIntroVisualization from './linear-data-structures/level-3/topic-1/visual-1/visual';
+import LlNodeClassVisualization from './linear-data-structures/level-3/topic-2/visual-1/visual';
+import LlTraversalVisualization from './linear-data-structures/level-3/topic-3/visual-1/visual';
+import LlInsertionVisualization from './linear-data-structures/level-3/topic-4/visual-1/visual';
+import LlDeletionVisualization from './linear-data-structures/level-3/topic-5/visual-1/visual';
+import LlSearchVisualization from './linear-data-structures/level-3/topic-6/visual-1/visual';
+import LlReverseVisualization from './linear-data-structures/level-3/topic-7/visual-1/visual';
+import LlDoublyVisualization from './linear-data-structures/level-3/topic-8/visual-1/visual';
+import LlCycleVisualization from './linear-data-structures/level-3/topic-9/visual-1/visual';
+import LlMiddleVisualization from './linear-data-structures/level-3/topic-10/visual-1/visual';
+import LlCircularVisualization from './linear-data-structures/level-3/topic-11/visual-1/visual';
+import LlVsArrayVisualization from './linear-data-structures/level-3/topic-12/visual-1/visual';
+// Linear Data Structures › Stacks & Queues (level-4) — 2D animated
+import SqStackIntroVisualization from './linear-data-structures/level-4/topic-1/visual-1/visual';
+import SqStackListVisualization from './linear-data-structures/level-4/topic-2/visual-1/visual';
+import SqStackLinkedVisualization from './linear-data-structures/level-4/topic-3/visual-1/visual';
+import SqBalancedParensVisualization from './linear-data-structures/level-4/topic-4/visual-1/visual';
+import SqQueueIntroVisualization from './linear-data-structures/level-4/topic-5/visual-1/visual';
+import SqQueueListProblemVisualization from './linear-data-structures/level-4/topic-6/visual-1/visual';
+import SqDequeVisualization from './linear-data-structures/level-4/topic-7/visual-1/visual';
+import SqCircularQueueVisualization from './linear-data-structures/level-4/topic-8/visual-1/visual';
+import SqPriorityQueueVisualization from './linear-data-structures/level-4/topic-9/visual-1/visual';
+import SqDequeUsesVisualization from './linear-data-structures/level-4/topic-10/visual-1/visual';
+import SqExpressionEvalVisualization from './linear-data-structures/level-4/topic-11/visual-1/visual';
+import SqRealWorldVisualization from './linear-data-structures/level-4/topic-12/visual-1/visual';
+// Linear Data Structures › Hash Tables (level-5) — 2D animated
+import HtIntroVisualization from './linear-data-structures/level-5/topic-1/visual-1/visual';
+import HtHashFunctionVisualization from './linear-data-structures/level-5/topic-2/visual-1/visual';
+import HtCollisionVisualization from './linear-data-structures/level-5/topic-3/visual-1/visual';
+import HtCollisionResolutionVisualization from './linear-data-structures/level-5/topic-4/visual-1/visual';
+import HtPythonDictVisualization from './linear-data-structures/level-5/topic-5/visual-1/visual';
+import HtComplexityVisualization from './linear-data-structures/level-5/topic-6/visual-1/visual';
+import HtLoadFactorVisualization from './linear-data-structures/level-5/topic-7/visual-1/visual';
+import HtGoodKeysVisualization from './linear-data-structures/level-5/topic-8/visual-1/visual';
+import HtFrequencyVisualization from './linear-data-structures/level-5/topic-9/visual-1/visual';
+import HtDuplicatesVisualization from './linear-data-structures/level-5/topic-10/visual-1/visual';
+import HtTwoSumVisualization from './linear-data-structures/level-5/topic-11/visual-1/visual';
+import HtInterviewProblemsVisualization from './linear-data-structures/level-5/topic-12/visual-1/visual';
+// Non-Linear Data Structures › Trees (level-1) — 2D animated
+import TreeIntroVisualization from './non-linear-data-structures/level-1/topic-1/visual-1/visual';
+import TreeBinaryVisualization from './non-linear-data-structures/level-1/topic-2/visual-1/visual';
+import TreeBuildVisualization from './non-linear-data-structures/level-1/topic-3/visual-1/visual';
+import TreeTraversalVisualization from './non-linear-data-structures/level-1/topic-4/visual-1/visual';
+import TreeBstPropertyVisualization from './non-linear-data-structures/level-1/topic-5/visual-1/visual';
+import TreeBstInsertVisualization from './non-linear-data-structures/level-1/topic-6/visual-1/visual';
+import TreeBstDeleteVisualization from './non-linear-data-structures/level-1/topic-7/visual-1/visual';
+import TreeBalanceVisualization from './non-linear-data-structures/level-1/topic-8/visual-1/visual';
+import TreeBfsVisualization from './non-linear-data-structures/level-1/topic-9/visual-1/visual';
+import TreeDfsVisualization from './non-linear-data-structures/level-1/topic-10/visual-1/visual';
+import TreeAvlVisualization from './non-linear-data-structures/level-1/topic-11/visual-1/visual';
+import TreeInterviewProblemsVisualization from './non-linear-data-structures/level-1/topic-12/visual-1/visual';
+// Non-Linear Data Structures › Heaps & Priority Queues (level-2) — 2D animated
+import HeapIntroVisualization from './non-linear-data-structures/level-2/topic-1/visual-1/visual';
+import HeapMinMaxVisualization from './non-linear-data-structures/level-2/topic-2/visual-1/visual';
+import HeapArrayVisualization from './non-linear-data-structures/level-2/topic-3/visual-1/visual';
+import HeapHeapifyVisualization from './non-linear-data-structures/level-2/topic-4/visual-1/visual';
+import HeapInsertVisualization from './non-linear-data-structures/level-2/topic-5/visual-1/visual';
+import HeapExtractVisualization from './non-linear-data-structures/level-2/topic-6/visual-1/visual';
+import HeapBuildVisualization from './non-linear-data-structures/level-2/topic-7/visual-1/visual';
+import HeapHeapqVisualization from './non-linear-data-structures/level-2/topic-8/visual-1/visual';
+import HeapPriorityQueueVisualization from './non-linear-data-structures/level-2/topic-9/visual-1/visual';
+import HeapKLargestVisualization from './non-linear-data-structures/level-2/topic-10/visual-1/visual';
+import HeapRealWorldVisualization from './non-linear-data-structures/level-2/topic-11/visual-1/visual';
+import HeapInterviewProblemsVisualization from './non-linear-data-structures/level-2/topic-12/visual-1/visual';
+// ===== Per-problem visuals inside the "Common ... Interview Problems" lessons =====
+// Array problems (LDS Arrays › topic-12)
+import ArrMaxProductVisualization from './linear-data-structures/level-1/topic-12/visual-2/visual';
+import ArrMoveZerosVisualization from './linear-data-structures/level-1/topic-12/visual-3/visual';
+import ArrMissingNumbersVisualization from './linear-data-structures/level-1/topic-12/visual-4/visual';
+import ArrContainerWaterVisualization from './linear-data-structures/level-1/topic-12/visual-5/visual';
+import ArrBuySellStockVisualization from './linear-data-structures/level-1/topic-12/visual-6/visual';
+// String problems (LDS Strings › topic-12)
+import StrValidAnagramVisualization from './linear-data-structures/level-2/topic-12/visual-2/visual';
+import StrLongestPrefixVisualization from './linear-data-structures/level-2/topic-12/visual-3/visual';
+import StrRomanIntegerVisualization from './linear-data-structures/level-2/topic-12/visual-4/visual';
+import StrDecodeStringVisualization from './linear-data-structures/level-2/topic-12/visual-5/visual';
+import StrCountSayVisualization from './linear-data-structures/level-2/topic-12/visual-6/visual';
+// Hash Table problems (LDS Hash Tables › topic-12)
+import HtGroupAnagramsVisualization from './linear-data-structures/level-5/topic-12/visual-2/visual';
+import HtLruCacheVisualization from './linear-data-structures/level-5/topic-12/visual-3/visual';
+import HtLongestConsecutiveVisualization from './linear-data-structures/level-5/topic-12/visual-4/visual';
+import HtSubarraySumVisualization from './linear-data-structures/level-5/topic-12/visual-5/visual';
+import HtFirstUniqueVisualization from './linear-data-structures/level-5/topic-12/visual-6/visual';
+// Tree problems (NLDS Trees › topic-12)
+import TreeMaxDepthVisualization from './non-linear-data-structures/level-1/topic-12/visual-2/visual';
+import TreeInvertVisualization from './non-linear-data-structures/level-1/topic-12/visual-3/visual';
+import TreeLcaVisualization from './non-linear-data-structures/level-1/topic-12/visual-4/visual';
+import TreeDiameterVisualization from './non-linear-data-structures/level-1/topic-12/visual-5/visual';
+import TreeValidateBstVisualization from './non-linear-data-structures/level-1/topic-12/visual-6/visual';
+// Heap problems (NLDS Heaps › topic-12)
+import HeapKthLargestVisualization from './non-linear-data-structures/level-2/topic-12/visual-2/visual';
+import HeapMergeKVisualization from './non-linear-data-structures/level-2/topic-12/visual-3/visual';
+import HeapTopKFrequentVisualization from './non-linear-data-structures/level-2/topic-12/visual-4/visual';
+import HeapMedianStreamVisualization from './non-linear-data-structures/level-2/topic-12/visual-5/visual';
+import HeapTaskSchedulerVisualization from './non-linear-data-structures/level-2/topic-12/visual-6/visual';
+// Tries (Non-Linear DS) — 2D animated
+import TrieIntroVisualization from './non-linear-data-structures/level-3/topic-1/visual-1/visual';
+import TrieNodeVisualization from './non-linear-data-structures/level-3/topic-2/visual-1/visual';
+import TrieInsertVisualization from './non-linear-data-structures/level-3/topic-3/visual-1/visual';
+import TrieSearchVisualization from './non-linear-data-structures/level-3/topic-4/visual-1/visual';
+import TrieDeleteVisualization from './non-linear-data-structures/level-3/topic-5/visual-1/visual';
+import TrieCountPrefixVisualization from './non-linear-data-structures/level-3/topic-6/visual-1/visual';
+import TrieSpaceVisualization from './non-linear-data-structures/level-3/topic-7/visual-1/visual';
+import TrieVsHashVisualization from './non-linear-data-structures/level-3/topic-8/visual-1/visual';
+import TrieAutocompleteVisualization from './non-linear-data-structures/level-3/topic-9/visual-1/visual';
+import TrieSpellcheckVisualization from './non-linear-data-structures/level-3/topic-10/visual-1/visual';
+import TrieIpRoutingVisualization from './non-linear-data-structures/level-3/topic-11/visual-1/visual';
+import TrieInterviewProblemsVisualization from './non-linear-data-structures/level-3/topic-12/visual-1/visual';
+// Graphs (Non-Linear DS) — 2D animated
+import GraphIntroVisualization from './non-linear-data-structures/level-4/topic-1/visual-1/visual';
+import GraphDirectedVisualization from './non-linear-data-structures/level-4/topic-2/visual-1/visual';
+import GraphRepresentationVisualization from './non-linear-data-structures/level-4/topic-3/visual-1/visual';
+import GraphWeightedVisualization from './non-linear-data-structures/level-4/topic-4/visual-1/visual';
+import GraphBfsVisualization from './non-linear-data-structures/level-4/topic-5/visual-1/visual';
+import GraphDfsVisualization from './non-linear-data-structures/level-4/topic-6/visual-1/visual';
+import GraphBfsVsDfsVisualization from './non-linear-data-structures/level-4/topic-7/visual-1/visual';
+import GraphCycleVisualization from './non-linear-data-structures/level-4/topic-8/visual-1/visual';
+import GraphComponentsVisualization from './non-linear-data-structures/level-4/topic-9/visual-1/visual';
+import GraphTopoSortVisualization from './non-linear-data-structures/level-4/topic-10/visual-1/visual';
+import GraphBipartiteVisualization from './non-linear-data-structures/level-4/topic-11/visual-1/visual';
+import GraphInterviewProblemsVisualization from './non-linear-data-structures/level-4/topic-12/visual-1/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -1198,11 +1409,235 @@ const visualizationRegistry = {
   'css-media-queries-visualization'       : CssMediaQueriesVisualization,
   'css-fluid-typography-visualization'    : CssFluidTypographyVisualization,
 
+  // Python Foundations (DSA with Python) — interactive 3D
+  'pf-what-is-python-visualization'       : PfWhatIsPythonVisualization,
+  'pf-variables-types-visualization'      : PfVariablesTypesVisualization,
+  'pf-operators-visualization'            : PfOperatorsVisualization,
+  'pf-conditionals-visualization'         : PfConditionalsVisualization,
+  'pf-loops-visualization'                : PfLoopsVisualization,
+  'pf-loop-control-visualization'         : PfLoopControlVisualization,
+  'pf-clean-code-visualization'           : PfCleanCodeVisualization,
+  'pf-functions-visualization'            : PfFunctionsVisualization,
+  'pf-scope-visualization'                : PfScopeVisualization,
+  'pf-try-except-visualization'           : PfTryExceptVisualization,
+  'pf-debugging-visualization'            : PfDebuggingVisualization,
+  'pf-input-output-visualization'         : PfInputOutputVisualization,
+  'pf-lists-visualization'                : PfListsVisualization,
+  'pf-list-methods-visualization'         : PfListMethodsVisualization,
+  'pf-tuples-visualization'               : PfTuplesVisualization,
+  'pf-slicing-visualization'              : PfSlicingVisualization,
+  'pf-dictionaries-visualization'         : PfDictionariesVisualization,
+  'pf-dict-methods-visualization'         : PfDictMethodsVisualization,
+  'pf-sets-visualization'                 : PfSetsVisualization,
+  'pf-choosing-type-visualization'        : PfChoosingTypeVisualization,
+  'pf-strings-sequences-visualization'    : PfStringsSequencesVisualization,
+  'pf-string-methods-visualization'       : PfStringMethodsVisualization,
+  'pf-type-conversion-visualization'      : PfTypeConversionVisualization,
+  'pf-mutable-immutable-visualization'    : PfMutableImmutableVisualization,
+  'pf-what-is-oop-visualization'          : PfWhatIsOopVisualization,
+  'pf-first-class-visualization'          : PfFirstClassVisualization,
+  'pf-methods-visualization'              : PfMethodsVisualization,
+  'pf-self-keyword-visualization'         : PfSelfKeywordVisualization,
+  'pf-instance-class-vars-visualization'  : PfInstanceClassVarsVisualization,
+  'pf-encapsulation-visualization'        : PfEncapsulationVisualization,
+  'pf-node-class-visualization'           : PfNodeClassVisualization,
+  'pf-dunder-methods-visualization'       : PfDunderMethodsVisualization,
+  'pf-inheritance-visualization'          : PfInheritanceVisualization,
+  'pf-polymorphism-visualization'         : PfPolymorphismVisualization,
+  'pf-composition-visualization'          : PfCompositionVisualization,
+  'pf-design-class-visualization'         : PfDesignClassVisualization,
+
   // AI & LLM Basics — gap fills for current curriculum
   'llm-what-is-prompt-visualization'      : LlmWhatIsPromptVisualization,
   'llm-choosing-model-visualization'      : LlmChoosingModelVisualization,
   'llm-capabilities-visualization'        : LlmCapabilitiesVisualization,
   'llm-responsible-ai-visualization'      : LlmResponsibleAiVisualization,
+
+  // Complexity Analysis (DSA) — 2D animated
+  'ca-intro-complexity-visualization'     : CaIntroComplexityVisualization,
+  'ca-big-o-notation-visualization'       : CaBigONotationVisualization,
+  'ca-cases-visualization'                : CaCasesVisualization,
+  'ca-constant-time-visualization'        : CaConstantTimeVisualization,
+  'ca-linear-time-visualization'          : CaLinearTimeVisualization,
+  'ca-log-time-visualization'             : CaLogTimeVisualization,
+  'ca-quadratic-time-visualization'       : CaQuadraticTimeVisualization,
+  'ca-growth-rates-visualization'         : CaGrowthRatesVisualization,
+  'ca-space-complexity-visualization'     : CaSpaceComplexityVisualization,
+  'ca-common-mistakes-visualization'      : CaCommonMistakesVisualization,
+  'ca-analyzing-functions-visualization'  : CaAnalyzingFunctionsVisualization,
+  'ca-big-o-interviews-visualization'     : CaBigOInterviewsVisualization,
+
+  // Complexity Analysis › Recursion (level-2) — 2D animated
+  'cr-intro-recursion-visualization'      : CrIntroRecursionVisualization,
+  'cr-base-case-visualization'            : CrBaseCaseVisualization,
+  'cr-call-stack-visualization'           : CrCallStackVisualization,
+  'cr-recursion-vs-iteration-visualization': CrRecursionVsIterationVisualization,
+  'cr-factorial-visualization'            : CrFactorialVisualization,
+  'cr-fibonacci-visualization'            : CrFibonacciVisualization,
+  'cr-memoization-visualization'          : CrMemoizationVisualization,
+  'cr-recursive-list-visualization'       : CrRecursiveListVisualization,
+  'cr-stack-overflow-visualization'       : CrStackOverflowVisualization,
+  'cr-tail-recursion-visualization'       : CrTailRecursionVisualization,
+  'cr-recursive-to-iterative-visualization': CrRecursiveToIterativeVisualization,
+  'cr-when-recursion-visualization'       : CrWhenRecursionVisualization,
+
+  // Linear Data Structures › Arrays & Lists (level-1) — 2D animated
+  'arr-memory-visualization'              : ArrMemoryVisualization,
+  'arr-dynamic-growth-visualization'      : ArrDynamicGrowthVisualization,
+  'arr-operations-visualization'          : ArrOperationsVisualization,
+  'arr-amortized-visualization'           : ArrAmortizedVisualization,
+  'arr-linear-search-visualization'       : ArrLinearSearchVisualization,
+  'arr-reverse-in-place-visualization'    : ArrReverseInPlaceVisualization,
+  'arr-two-pointer-visualization'         : ArrTwoPointerVisualization,
+  'arr-rotate-visualization'              : ArrRotateVisualization,
+  'arr-matrix-visualization'              : ArrMatrixVisualization,
+  'arr-prefix-sum-visualization'          : ArrPrefixSumVisualization,
+  'arr-sliding-window-visualization'      : ArrSlidingWindowVisualization,
+  'arr-interview-problems-visualization'  : ArrInterviewProblemsVisualization,
+
+  // Linear Data Structures › Strings (level-2) — 2D animated
+  'str-intro-visualization'               : StrIntroVisualization,
+  'str-immutability-visualization'        : StrImmutabilityVisualization,
+  'str-compare-visualization'             : StrCompareVisualization,
+  'str-reverse-visualization'             : StrReverseVisualization,
+  'str-palindrome-visualization'          : StrPalindromeVisualization,
+  'str-anagram-visualization'             : StrAnagramVisualization,
+  'str-two-pointer-visualization'         : StrTwoPointerVisualization,
+  'str-substring-subseq-visualization'    : StrSubstringSubseqVisualization,
+  'str-naive-match-visualization'         : StrNaiveMatchVisualization,
+  'str-efficient-match-visualization'     : StrEfficientMatchVisualization,
+  'str-sliding-window-visualization'      : StrSlidingWindowVisualization,
+  'str-interview-problems-visualization'  : StrInterviewProblemsVisualization,
+
+  // Linear Data Structures › Linked Lists (level-3) — 2D animated
+  'll-intro-visualization'                : LlIntroVisualization,
+  'll-node-class-visualization'           : LlNodeClassVisualization,
+  'll-traversal-visualization'            : LlTraversalVisualization,
+  'll-insertion-visualization'            : LlInsertionVisualization,
+  'll-deletion-visualization'             : LlDeletionVisualization,
+  'll-search-visualization'               : LlSearchVisualization,
+  'll-reverse-visualization'              : LlReverseVisualization,
+  'll-doubly-visualization'               : LlDoublyVisualization,
+  'll-cycle-visualization'                : LlCycleVisualization,
+  'll-middle-visualization'               : LlMiddleVisualization,
+  'll-circular-visualization'             : LlCircularVisualization,
+  'll-vs-array-visualization'             : LlVsArrayVisualization,
+
+  // Linear Data Structures › Stacks & Queues (level-4) — 2D animated
+  'sq-stack-intro-visualization'          : SqStackIntroVisualization,
+  'sq-stack-list-visualization'           : SqStackListVisualization,
+  'sq-stack-linked-visualization'         : SqStackLinkedVisualization,
+  'sq-balanced-parens-visualization'      : SqBalancedParensVisualization,
+  'sq-queue-intro-visualization'          : SqQueueIntroVisualization,
+  'sq-queue-list-problem-visualization'   : SqQueueListProblemVisualization,
+  'sq-deque-visualization'                : SqDequeVisualization,
+  'sq-circular-queue-visualization'       : SqCircularQueueVisualization,
+  'sq-priority-queue-visualization'       : SqPriorityQueueVisualization,
+  'sq-deque-uses-visualization'           : SqDequeUsesVisualization,
+  'sq-expression-eval-visualization'      : SqExpressionEvalVisualization,
+  'sq-real-world-visualization'           : SqRealWorldVisualization,
+
+  // Linear Data Structures › Hash Tables (level-5) — 2D animated
+  'ht-intro-visualization'                : HtIntroVisualization,
+  'ht-hash-function-visualization'        : HtHashFunctionVisualization,
+  'ht-collision-visualization'            : HtCollisionVisualization,
+  'ht-collision-resolution-visualization' : HtCollisionResolutionVisualization,
+  'ht-python-dict-visualization'          : HtPythonDictVisualization,
+  'ht-complexity-visualization'           : HtComplexityVisualization,
+  'ht-load-factor-visualization'          : HtLoadFactorVisualization,
+  'ht-good-keys-visualization'            : HtGoodKeysVisualization,
+  'ht-frequency-visualization'            : HtFrequencyVisualization,
+  'ht-duplicates-visualization'           : HtDuplicatesVisualization,
+  'ht-two-sum-visualization'              : HtTwoSumVisualization,
+  'ht-interview-problems-visualization'   : HtInterviewProblemsVisualization,
+
+  // Non-Linear Data Structures › Trees (level-1) — 2D animated
+  'tree-intro-visualization'              : TreeIntroVisualization,
+  'tree-binary-visualization'             : TreeBinaryVisualization,
+  'tree-build-visualization'              : TreeBuildVisualization,
+  'tree-traversal-visualization'          : TreeTraversalVisualization,
+  'tree-bst-property-visualization'       : TreeBstPropertyVisualization,
+  'tree-bst-insert-visualization'         : TreeBstInsertVisualization,
+  'tree-bst-delete-visualization'         : TreeBstDeleteVisualization,
+  'tree-balance-visualization'            : TreeBalanceVisualization,
+  'tree-bfs-visualization'                : TreeBfsVisualization,
+  'tree-dfs-visualization'                : TreeDfsVisualization,
+  'tree-avl-visualization'                : TreeAvlVisualization,
+  'tree-interview-problems-visualization' : TreeInterviewProblemsVisualization,
+
+  // Non-Linear Data Structures › Heaps & Priority Queues (level-2) — 2D animated
+  'heap-intro-visualization'              : HeapIntroVisualization,
+  'heap-min-max-visualization'            : HeapMinMaxVisualization,
+  'heap-array-visualization'              : HeapArrayVisualization,
+  'heap-heapify-visualization'            : HeapHeapifyVisualization,
+  'heap-insert-visualization'             : HeapInsertVisualization,
+  'heap-extract-visualization'            : HeapExtractVisualization,
+  'heap-build-visualization'              : HeapBuildVisualization,
+  'heap-heapq-visualization'              : HeapHeapqVisualization,
+  'heap-priority-queue-visualization'     : HeapPriorityQueueVisualization,
+  'heap-k-largest-visualization'          : HeapKLargestVisualization,
+  'heap-real-world-visualization'         : HeapRealWorldVisualization,
+  'heap-interview-problems-visualization' : HeapInterviewProblemsVisualization,
+
+  // ===== Per-problem visuals inside the "Common ... Interview Problems" lessons =====
+  // Array problems
+  'arr-max-product-visualization'         : ArrMaxProductVisualization,
+  'arr-move-zeros-visualization'          : ArrMoveZerosVisualization,
+  'arr-missing-numbers-visualization'     : ArrMissingNumbersVisualization,
+  'arr-container-water-visualization'     : ArrContainerWaterVisualization,
+  'arr-buy-sell-stock-visualization'      : ArrBuySellStockVisualization,
+  // String problems
+  'str-valid-anagram-visualization'       : StrValidAnagramVisualization,
+  'str-longest-prefix-visualization'      : StrLongestPrefixVisualization,
+  'str-roman-integer-visualization'       : StrRomanIntegerVisualization,
+  'str-decode-string-visualization'       : StrDecodeStringVisualization,
+  'str-count-say-visualization'           : StrCountSayVisualization,
+  // Hash Table problems
+  'ht-group-anagrams-visualization'       : HtGroupAnagramsVisualization,
+  'ht-lru-cache-visualization'            : HtLruCacheVisualization,
+  'ht-longest-consecutive-visualization'  : HtLongestConsecutiveVisualization,
+  'ht-subarray-sum-visualization'         : HtSubarraySumVisualization,
+  'ht-first-unique-visualization'         : HtFirstUniqueVisualization,
+  // Tree problems
+  'tree-max-depth-visualization'          : TreeMaxDepthVisualization,
+  'tree-invert-visualization'             : TreeInvertVisualization,
+  'tree-lca-visualization'                : TreeLcaVisualization,
+  'tree-diameter-visualization'           : TreeDiameterVisualization,
+  'tree-validate-bst-visualization'       : TreeValidateBstVisualization,
+  // Heap problems
+  'heap-kth-largest-visualization'        : HeapKthLargestVisualization,
+  'heap-merge-k-visualization'            : HeapMergeKVisualization,
+  'heap-top-k-frequent-visualization'     : HeapTopKFrequentVisualization,
+  'heap-median-stream-visualization'      : HeapMedianStreamVisualization,
+  'heap-task-scheduler-visualization'     : HeapTaskSchedulerVisualization,
+
+  // Tries (Non-Linear DS) — 2D animated
+  'trie-intro-visualization'              : TrieIntroVisualization,
+  'trie-node-visualization'               : TrieNodeVisualization,
+  'trie-insert-visualization'             : TrieInsertVisualization,
+  'trie-search-visualization'             : TrieSearchVisualization,
+  'trie-delete-visualization'             : TrieDeleteVisualization,
+  'trie-count-prefix-visualization'       : TrieCountPrefixVisualization,
+  'trie-space-visualization'              : TrieSpaceVisualization,
+  'trie-vs-hash-visualization'            : TrieVsHashVisualization,
+  'trie-autocomplete-visualization'       : TrieAutocompleteVisualization,
+  'trie-spellcheck-visualization'         : TrieSpellcheckVisualization,
+  'trie-ip-routing-visualization'         : TrieIpRoutingVisualization,
+  'trie-interview-problems-visualization' : TrieInterviewProblemsVisualization,
+
+  // Graphs (Non-Linear DS) — 2D animated
+  'graph-intro-visualization'             : GraphIntroVisualization,
+  'graph-directed-visualization'          : GraphDirectedVisualization,
+  'graph-representation-visualization'    : GraphRepresentationVisualization,
+  'graph-weighted-visualization'          : GraphWeightedVisualization,
+  'graph-bfs-visualization'               : GraphBfsVisualization,
+  'graph-dfs-visualization'               : GraphDfsVisualization,
+  'graph-bfs-vs-dfs-visualization'        : GraphBfsVsDfsVisualization,
+  'graph-cycle-visualization'             : GraphCycleVisualization,
+  'graph-components-visualization'        : GraphComponentsVisualization,
+  'graph-topo-sort-visualization'         : GraphTopoSortVisualization,
+  'graph-bipartite-visualization'         : GraphBipartiteVisualization,
+  'graph-interview-problems-visualization': GraphInterviewProblemsVisualization,
 
   // 'css-box-model': BoxModelViz,
 };
