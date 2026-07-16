@@ -39,7 +39,7 @@ export default function CaIntroComplexityVisualization() {
       <text x="24" y="132" fill="#8b949e" fontSize="13" fontFamily="system-ui">work done:</text>
       <rect x="140" y="120" width="440" height="26" rx="6" fill="#161b22" />
       <rect x="140" y="120" width="440" height="26" rx="6" fill="#ffd43b" style={{ transform: `scaleX(${n / 10})`, transformBox: 'fill-box', transformOrigin: 'left', transition: 'transform .45s' }} />
-      <text x={150 + (n / 10) * 440} y="139" fill="#0d1117" fontSize="13" fontWeight="700" fontFamily="Consolas">{ops} ops</text>
+      <text x={150 + (n / 10) * 440} y="139" fill="#afb5bf" fontSize="13" fontWeight="700" fontFamily="Consolas">{ops} ops</text>
       {/* growth dot */}
       <text x="24" y="196" fill="#8b949e" fontSize="12" fontFamily="system-ui">growth:</text>
       <polyline points={Array.from({ length: 10 }).map((_, k) => `${140 + k * 48},${230 - k * 15}`).join(' ')} fill="none" stroke="#30363d" strokeWidth="1.5" />

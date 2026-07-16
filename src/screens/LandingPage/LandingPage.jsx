@@ -685,6 +685,52 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── PRICING BANNER ── */}
+      <div className="lp-pb-wrap">
+        <div className="lp-pb-card">
+          <div className="lp-pb-offer-label">
+            {/* <span className="lp-pb-clock">⏰</span> */}
+            LIMITED-TIME OFFER!
+          </div>
+
+          <div className="lp-pb-plans">
+            <div className="lp-pb-plan">
+              <div className="lp-pb-plan-name">MONTHLY PLAN</div>
+              <div className="lp-pb-price-row">
+                <span className="lp-pb-rupee">₹</span>
+                <span className="lp-pb-old">499</span>
+                <span className="lp-pb-amount">299</span>
+                <span className="lp-pb-period">/month</span>
+              </div>
+            </div>
+
+            <div className="lp-pb-sep" />
+
+            <div className="lp-pb-plan">
+              <div className="lp-pb-plan-name">YEARLY PLAN</div>
+              <div className="lp-pb-price-row">
+                <span className="lp-pb-rupee">₹</span>
+                <span className="lp-pb-amount">2999</span>
+                <span className="lp-pb-period">/year</span>
+              </div>
+              <div className="lp-pb-save">(Save ₹598)</div>
+            </div>
+          </div>
+
+          <span className="lp-pb-btn">
+            FREEMIUM
+          </span>
+
+          <p className="lp-pb-tagline">Learn for Free.</p>
+
+          <div className="lp-pb-features">
+            <span><span className="lp-pb-check">✓</span> All Features Included</span>
+            <span><span className="lp-pb-check">✓</span> Priority Support</span>
+            <span><span className="lp-pb-check">✓</span> Cancel Anytime</span>
+          </div>
+        </div>
+      </div>
+
       {/* ── PROFILE CARD (logged-in users, below hero) ── */}
       {user && (
         <div className="lp-profile-card-wrap">

@@ -813,6 +813,126 @@ import GraphCloneVisualization from './non-linear-data-structures/level-4/topic-
 import GraphCourseScheduleVisualization from './non-linear-data-structures/level-4/topic-12/visual-4/visual';
 import GraphWordLadderVisualization from './non-linear-data-structures/level-4/topic-12/visual-5/visual';
 import GraphRottingOrangesVisualization from './non-linear-data-structures/level-4/topic-12/visual-6/visual';
+// Core Algorithms — Searching (AlgoStage)
+import SrchLinearVisualization from './core-algorithms/level-1/topic-1/visual-1/visual';
+import SrchBinaryVisualization from './core-algorithms/level-1/topic-2/visual-1/visual';
+// Core Algorithms — Recursion & Backtracking (AlgoStage)
+import BtSubsetsVisualization from './core-algorithms/level-3/topic-3/visual-1/visual';
+import BtPermutationsVisualization from './core-algorithms/level-3/topic-4/visual-1/visual';
+import BtNQueensVisualization from './core-algorithms/level-3/topic-5/visual-1/visual';
+// Core Algorithms — Sorting (AlgoStage)
+import SortBubbleVisualization from './core-algorithms/level-2/topic-2/visual-1/visual';
+import SortSelectionVisualization from './core-algorithms/level-2/topic-3/visual-1/visual';
+import SortInsertionVisualization from './core-algorithms/level-2/topic-4/visual-1/visual';
+import SortMergeVisualization from './core-algorithms/level-2/topic-5/visual-1/visual';
+import SortQuickVisualization from './core-algorithms/level-2/topic-6/visual-1/visual';
+// Core Algorithms — Searching (rest)
+import SrchBinaryImplVisualization from './core-algorithms/level-1/topic-3/visual-1/visual';
+import SrchBinaryAnswersVisualization from './core-algorithms/level-1/topic-4/visual-1/visual';
+import SrchFirstLastVisualization from './core-algorithms/level-1/topic-5/visual-1/visual';
+import SrchRotatedVisualization from './core-algorithms/level-1/topic-6/visual-1/visual';
+import SrchTernaryVisualization from './core-algorithms/level-1/topic-7/visual-1/visual';
+import SrchMatrixVisualization from './core-algorithms/level-1/topic-8/visual-1/visual';
+import SrchWhenLinearVisualization from './core-algorithms/level-1/topic-9/visual-1/visual';
+import SrchInterpolationVisualization from './core-algorithms/level-1/topic-10/visual-1/visual';
+import SrchSortFirstVisualization from './core-algorithms/level-1/topic-11/visual-1/visual';
+import SrchInterviewVisualization from './core-algorithms/level-1/topic-12/visual-1/visual';
+// Core Algorithms — Sorting (rest)
+import SortWhyVisualization from './core-algorithms/level-2/topic-1/visual-1/visual';
+import SortPivotVisualization from './core-algorithms/level-2/topic-7/visual-1/visual';
+import SortCompareVisualization from './core-algorithms/level-2/topic-8/visual-1/visual';
+import SortCountingVisualization from './core-algorithms/level-2/topic-9/visual-1/visual';
+import SortBucketRadixVisualization from './core-algorithms/level-2/topic-10/visual-1/visual';
+import SortTimsortVisualization from './core-algorithms/level-2/topic-11/visual-1/visual';
+import SortInterviewVisualization from './core-algorithms/level-2/topic-12/visual-1/visual';
+// Core Algorithms — Backtracking (rest)
+import BtIntroVisualization from './core-algorithms/level-3/topic-1/visual-1/visual';
+import BtAnatomyVisualization from './core-algorithms/level-3/topic-2/visual-1/visual';
+import BtSudokuVisualization from './core-algorithms/level-3/topic-6/visual-1/visual';
+import BtCombinationSumVisualization from './core-algorithms/level-3/topic-7/visual-1/visual';
+import BtPruningVisualization from './core-algorithms/level-3/topic-8/visual-1/visual';
+import BtMazeVisualization from './core-algorithms/level-3/topic-9/visual-1/visual';
+import BtWordSearchVisualization from './core-algorithms/level-3/topic-10/visual-1/visual';
+import BtVsDpVisualization from './core-algorithms/level-3/topic-11/visual-1/visual';
+import BtInterviewVisualization from './core-algorithms/level-3/topic-12/visual-1/visual';
+// Advanced Techniques in DSA — Greedy Algorithms
+import GreedyIntroVisualization from './advanced-techniques-in-dsa/level-1/topic-1/visual-1/visual';
+import GreedyWhenFailsVisualization from './advanced-techniques-in-dsa/level-1/topic-2/visual-1/visual';
+import GreedyCoinChangeVisualization from './advanced-techniques-in-dsa/level-1/topic-3/visual-1/visual';
+import GreedyProvingVisualization from './advanced-techniques-in-dsa/level-1/topic-4/visual-1/visual';
+import GreedyActivitySelectionVisualization from './advanced-techniques-in-dsa/level-1/topic-5/visual-1/visual';
+import GreedyFractionalKnapsackVisualization from './advanced-techniques-in-dsa/level-1/topic-6/visual-1/visual';
+import GreedyHuffmanVisualization from './advanced-techniques-in-dsa/level-1/topic-7/visual-1/visual';
+import GreedyJobSequencingVisualization from './advanced-techniques-in-dsa/level-1/topic-8/visual-1/visual';
+import GreedyMstIntroVisualization from './advanced-techniques-in-dsa/level-1/topic-9/visual-1/visual';
+import GreedyDijkstraVisualization from './advanced-techniques-in-dsa/level-1/topic-10/visual-1/visual';
+import GreedyVsDpVisualization from './advanced-techniques-in-dsa/level-1/topic-11/visual-1/visual';
+import GreedyInterviewVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-1/visual';
+// Advanced Techniques in DSA — Dynamic Programming
+import DpIntroVisualization from './advanced-techniques-in-dsa/level-2/topic-1/visual-1/visual';
+import DpMemoizationVisualization from './advanced-techniques-in-dsa/level-2/topic-2/visual-1/visual';
+import DpTabulationVisualization from './advanced-techniques-in-dsa/level-2/topic-3/visual-1/visual';
+import DpMemoVsTabVisualization from './advanced-techniques-in-dsa/level-2/topic-4/visual-1/visual';
+import DpFibonacciVisualization from './advanced-techniques-in-dsa/level-2/topic-5/visual-1/visual';
+import DpClimbingStairsVisualization from './advanced-techniques-in-dsa/level-2/topic-6/visual-1/visual';
+import DpKnapsackVisualization from './advanced-techniques-in-dsa/level-2/topic-7/visual-1/visual';
+import DpLcsVisualization from './advanced-techniques-in-dsa/level-2/topic-8/visual-1/visual';
+import DpLisVisualization from './advanced-techniques-in-dsa/level-2/topic-9/visual-1/visual';
+import DpCoinChangeVisualization from './advanced-techniques-in-dsa/level-2/topic-10/visual-1/visual';
+import DpRecognizeVisualization from './advanced-techniques-in-dsa/level-2/topic-11/visual-1/visual';
+import DpInterviewVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-1/visual';
+// Advanced Techniques in DSA — Advanced Graph Algorithms
+import AgraphDijkstraVisualization from './advanced-techniques-in-dsa/level-3/topic-1/visual-1/visual';
+import AgraphNegativeWeightsVisualization from './advanced-techniques-in-dsa/level-3/topic-2/visual-1/visual';
+import AgraphBellmanFordVisualization from './advanced-techniques-in-dsa/level-3/topic-3/visual-1/visual';
+import AgraphFloydWarshallVisualization from './advanced-techniques-in-dsa/level-3/topic-4/visual-1/visual';
+import AgraphKruskalVisualization from './advanced-techniques-in-dsa/level-3/topic-5/visual-1/visual';
+import AgraphUnionFindVisualization from './advanced-techniques-in-dsa/level-3/topic-6/visual-1/visual';
+import AgraphPrimVisualization from './advanced-techniques-in-dsa/level-3/topic-7/visual-1/visual';
+import AgraphKruskalVsPrimVisualization from './advanced-techniques-in-dsa/level-3/topic-8/visual-1/visual';
+import AgraphSccVisualization from './advanced-techniques-in-dsa/level-3/topic-9/visual-1/visual';
+import AgraphMaxFlowVisualization from './advanced-techniques-in-dsa/level-3/topic-10/visual-1/visual';
+import AgraphNegativeCycleVisualization from './advanced-techniques-in-dsa/level-3/topic-11/visual-1/visual';
+import AgraphInterviewVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-1/visual';
+// Advanced Techniques in DSA — Bit Manipulation
+import BitBinaryVisualization from './advanced-techniques-in-dsa/level-4/topic-1/visual-1/visual';
+import BitOperatorsVisualization from './advanced-techniques-in-dsa/level-4/topic-2/visual-1/visual';
+import BitShiftsVisualization from './advanced-techniques-in-dsa/level-4/topic-3/visual-1/visual';
+import BitCheckSetClearVisualization from './advanced-techniques-in-dsa/level-4/topic-4/visual-1/visual';
+import BitCountSetVisualization from './advanced-techniques-in-dsa/level-4/topic-5/visual-1/visual';
+import BitPowerOfTwoVisualization from './advanced-techniques-in-dsa/level-4/topic-6/visual-1/visual';
+import BitXorUniqueVisualization from './advanced-techniques-in-dsa/level-4/topic-7/visual-1/visual';
+import BitBitmaskSubsetsVisualization from './advanced-techniques-in-dsa/level-4/topic-8/visual-1/visual';
+import BitSwapXorVisualization from './advanced-techniques-in-dsa/level-4/topic-9/visual-1/visual';
+import BitFlagsVisualization from './advanced-techniques-in-dsa/level-4/topic-10/visual-1/visual';
+import BitWhenVisualization from './advanced-techniques-in-dsa/level-4/topic-11/visual-1/visual';
+import BitInterviewVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-1/visual';
+// Interview Preparation — Problem Patterns
+import PatRecognizingVisualization from './interview-preparation/level-1/topic-1/visual-1/visual';
+import PatSlidingWindowVisualization from './interview-preparation/level-1/topic-2/visual-1/visual';
+import PatTwoPointerVisualization from './interview-preparation/level-1/topic-3/visual-1/visual';
+import PatFastSlowVisualization from './interview-preparation/level-1/topic-4/visual-1/visual';
+import PatMergeIntervalsVisualization from './interview-preparation/level-1/topic-5/visual-1/visual';
+import PatTopKVisualization from './interview-preparation/level-1/topic-6/visual-1/visual';
+import PatMonotonicStackVisualization from './interview-preparation/level-1/topic-7/visual-1/visual';
+import PatTraversalVisualization from './interview-preparation/level-1/topic-8/visual-1/visual';
+import PatBacktrackingVisualization from './interview-preparation/level-1/topic-9/visual-1/visual';
+import PatDpVisualization from './interview-preparation/level-1/topic-10/visual-1/visual';
+import PatIdentifyVisualization from './interview-preparation/level-1/topic-11/visual-1/visual';
+import PatCheatsheetVisualization from './interview-preparation/level-1/topic-12/visual-1/visual';
+// Interview Preparation — System Design Basics
+import SysdIntroVisualization from './interview-preparation/level-3/topic-1/visual-1/visual';
+import SysdScalabilityVisualization from './interview-preparation/level-3/topic-2/visual-1/visual';
+import SysdLatencyThroughputVisualization from './interview-preparation/level-3/topic-3/visual-1/visual';
+import SysdScalingVisualization from './interview-preparation/level-3/topic-4/visual-1/visual';
+import SysdLoadBalancerVisualization from './interview-preparation/level-3/topic-5/visual-1/visual';
+import SysdCachingVisualization from './interview-preparation/level-3/topic-6/visual-1/visual';
+import SysdSqlNosqlVisualization from './interview-preparation/level-3/topic-7/visual-1/visual';
+import SysdDsInSystemsVisualization from './interview-preparation/level-3/topic-8/visual-1/visual';
+import SysdFrameworkVisualization from './interview-preparation/level-3/topic-9/visual-1/visual';
+import SysdUrlShortenerVisualization from './interview-preparation/level-3/topic-10/visual-1/visual';
+import SysdRateLimiterVisualization from './interview-preparation/level-3/topic-11/visual-1/visual';
+import SysdInterviewerVisualization from './interview-preparation/level-3/topic-12/visual-1/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -1664,6 +1784,138 @@ const visualizationRegistry = {
   'graph-course-schedule-visualization'   : GraphCourseScheduleVisualization,
   'graph-word-ladder-visualization'       : GraphWordLadderVisualization,
   'graph-rotting-oranges-visualization'   : GraphRottingOrangesVisualization,
+
+  // Core Algorithms — Searching
+  'srch-linear-visualization'             : SrchLinearVisualization,
+  'srch-binary-visualization'             : SrchBinaryVisualization,
+
+  // Core Algorithms — Recursion & Backtracking
+  'bt-subsets-visualization'              : BtSubsetsVisualization,
+  'bt-permutations-visualization'         : BtPermutationsVisualization,
+  'bt-nqueens-visualization'              : BtNQueensVisualization,
+
+  // Core Algorithms — Sorting
+  'sort-bubble-visualization'             : SortBubbleVisualization,
+  'sort-selection-visualization'          : SortSelectionVisualization,
+  'sort-insertion-visualization'          : SortInsertionVisualization,
+  'sort-merge-visualization'              : SortMergeVisualization,
+  'sort-quick-visualization'              : SortQuickVisualization,
+
+  // Core Algorithms — Searching (rest)
+  'srch-binary-impl-visualization'        : SrchBinaryImplVisualization,
+  'srch-binary-answers-visualization'     : SrchBinaryAnswersVisualization,
+  'srch-first-last-visualization'         : SrchFirstLastVisualization,
+  'srch-rotated-visualization'            : SrchRotatedVisualization,
+  'srch-ternary-visualization'            : SrchTernaryVisualization,
+  'srch-matrix-visualization'             : SrchMatrixVisualization,
+  'srch-when-linear-visualization'        : SrchWhenLinearVisualization,
+  'srch-interpolation-visualization'      : SrchInterpolationVisualization,
+  'srch-sort-first-visualization'         : SrchSortFirstVisualization,
+  'srch-interview-visualization'          : SrchInterviewVisualization,
+
+  // Core Algorithms — Sorting (rest)
+  'sort-why-visualization'                : SortWhyVisualization,
+  'sort-pivot-visualization'              : SortPivotVisualization,
+  'sort-compare-visualization'            : SortCompareVisualization,
+  'sort-counting-visualization'           : SortCountingVisualization,
+  'sort-bucket-radix-visualization'       : SortBucketRadixVisualization,
+  'sort-timsort-visualization'            : SortTimsortVisualization,
+  'sort-interview-visualization'          : SortInterviewVisualization,
+
+  // Core Algorithms — Backtracking (rest)
+  'bt-intro-visualization'                : BtIntroVisualization,
+  'bt-anatomy-visualization'              : BtAnatomyVisualization,
+  'bt-sudoku-visualization'               : BtSudokuVisualization,
+  'bt-combination-sum-visualization'      : BtCombinationSumVisualization,
+  'bt-pruning-visualization'              : BtPruningVisualization,
+  'bt-maze-visualization'                 : BtMazeVisualization,
+  'bt-word-search-visualization'          : BtWordSearchVisualization,
+  'bt-vs-dp-visualization'                : BtVsDpVisualization,
+  'bt-interview-visualization'            : BtInterviewVisualization,
+
+  // Advanced Techniques in DSA — Greedy Algorithms
+  'greedy-intro-visualization'            : GreedyIntroVisualization,
+  'greedy-when-fails-visualization'       : GreedyWhenFailsVisualization,
+  'greedy-coin-change-visualization'      : GreedyCoinChangeVisualization,
+  'greedy-proving-visualization'          : GreedyProvingVisualization,
+  'greedy-activity-selection-visualization': GreedyActivitySelectionVisualization,
+  'greedy-fractional-knapsack-visualization': GreedyFractionalKnapsackVisualization,
+  'greedy-huffman-visualization'          : GreedyHuffmanVisualization,
+  'greedy-job-sequencing-visualization'   : GreedyJobSequencingVisualization,
+  'greedy-mst-intro-visualization'        : GreedyMstIntroVisualization,
+  'greedy-dijkstra-visualization'         : GreedyDijkstraVisualization,
+  'greedy-vs-dp-visualization'            : GreedyVsDpVisualization,
+  'greedy-interview-visualization'        : GreedyInterviewVisualization,
+
+  // Advanced Techniques in DSA — Dynamic Programming
+  'dp-intro-visualization'                : DpIntroVisualization,
+  'dp-memoization-visualization'          : DpMemoizationVisualization,
+  'dp-tabulation-visualization'           : DpTabulationVisualization,
+  'dp-memo-vs-tab-visualization'          : DpMemoVsTabVisualization,
+  'dp-fibonacci-visualization'            : DpFibonacciVisualization,
+  'dp-climbing-stairs-visualization'      : DpClimbingStairsVisualization,
+  'dp-knapsack-visualization'             : DpKnapsackVisualization,
+  'dp-lcs-visualization'                  : DpLcsVisualization,
+  'dp-lis-visualization'                  : DpLisVisualization,
+  'dp-coin-change-visualization'          : DpCoinChangeVisualization,
+  'dp-recognize-visualization'            : DpRecognizeVisualization,
+  'dp-interview-visualization'            : DpInterviewVisualization,
+
+  // Advanced Techniques in DSA — Advanced Graph Algorithms
+  'agraph-dijkstra-visualization'         : AgraphDijkstraVisualization,
+  'agraph-negative-weights-visualization' : AgraphNegativeWeightsVisualization,
+  'agraph-bellman-ford-visualization'     : AgraphBellmanFordVisualization,
+  'agraph-floyd-warshall-visualization'   : AgraphFloydWarshallVisualization,
+  'agraph-kruskal-visualization'          : AgraphKruskalVisualization,
+  'agraph-union-find-visualization'       : AgraphUnionFindVisualization,
+  'agraph-prim-visualization'             : AgraphPrimVisualization,
+  'agraph-kruskal-vs-prim-visualization'  : AgraphKruskalVsPrimVisualization,
+  'agraph-scc-visualization'              : AgraphSccVisualization,
+  'agraph-max-flow-visualization'         : AgraphMaxFlowVisualization,
+  'agraph-negative-cycle-visualization'   : AgraphNegativeCycleVisualization,
+  'agraph-interview-visualization'        : AgraphInterviewVisualization,
+
+  // Advanced Techniques in DSA — Bit Manipulation
+  'bit-binary-visualization'              : BitBinaryVisualization,
+  'bit-operators-visualization'           : BitOperatorsVisualization,
+  'bit-shifts-visualization'              : BitShiftsVisualization,
+  'bit-check-set-clear-visualization'     : BitCheckSetClearVisualization,
+  'bit-count-set-visualization'           : BitCountSetVisualization,
+  'bit-power-of-two-visualization'        : BitPowerOfTwoVisualization,
+  'bit-xor-unique-visualization'          : BitXorUniqueVisualization,
+  'bit-bitmask-subsets-visualization'     : BitBitmaskSubsetsVisualization,
+  'bit-swap-xor-visualization'            : BitSwapXorVisualization,
+  'bit-flags-visualization'               : BitFlagsVisualization,
+  'bit-when-visualization'                : BitWhenVisualization,
+  'bit-interview-visualization'           : BitInterviewVisualization,
+
+  // Interview Preparation — Problem Patterns
+  'pat-recognizing-visualization'         : PatRecognizingVisualization,
+  'pat-sliding-window-visualization'      : PatSlidingWindowVisualization,
+  'pat-two-pointer-visualization'         : PatTwoPointerVisualization,
+  'pat-fast-slow-visualization'           : PatFastSlowVisualization,
+  'pat-merge-intervals-visualization'     : PatMergeIntervalsVisualization,
+  'pat-top-k-visualization'               : PatTopKVisualization,
+  'pat-monotonic-stack-visualization'     : PatMonotonicStackVisualization,
+  'pat-traversal-visualization'           : PatTraversalVisualization,
+  'pat-backtracking-visualization'        : PatBacktrackingVisualization,
+  'pat-dp-visualization'                  : PatDpVisualization,
+  'pat-identify-visualization'            : PatIdentifyVisualization,
+  'pat-cheatsheet-visualization'          : PatCheatsheetVisualization,
+
+  // Interview Preparation — System Design Basics
+  'sysd-intro-visualization'              : SysdIntroVisualization,
+  'sysd-scalability-visualization'        : SysdScalabilityVisualization,
+  'sysd-latency-throughput-visualization' : SysdLatencyThroughputVisualization,
+  'sysd-scaling-visualization'            : SysdScalingVisualization,
+  'sysd-load-balancer-visualization'      : SysdLoadBalancerVisualization,
+  'sysd-caching-visualization'            : SysdCachingVisualization,
+  'sysd-sql-nosql-visualization'          : SysdSqlNosqlVisualization,
+  'sysd-ds-in-systems-visualization'      : SysdDsInSystemsVisualization,
+  'sysd-framework-visualization'          : SysdFrameworkVisualization,
+  'sysd-url-shortener-visualization'      : SysdUrlShortenerVisualization,
+  'sysd-rate-limiter-visualization'       : SysdRateLimiterVisualization,
+  'sysd-interviewer-visualization'        : SysdInterviewerVisualization,
 
   // 'css-box-model': BoxModelViz,
 };
