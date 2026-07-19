@@ -1,0 +1,55 @@
+.dsa2d-root { background: #0d1117; border: 1px solid #21262d; border-radius: 12px; padding: clamp(0.9rem, 3vw, 1.4rem); font-family: system-ui, sans-serif; color: #e6edf3; max-width: 760px; margin: 0 auto; }
+.dsa2d-head { margin-bottom: 0.8rem; }
+.dsa2d-title { font-size: clamp(1.05rem, 3vw, 1.3rem); font-weight: 700; color: var(--dsa-accent, #58a6ff); margin: 0 0 0.2rem; }
+.dsa2d-sub { font-size: 0.85rem; color: #c9d1d9; margin: 0; line-height: 1.5; }
+.dsa2d-stage { width: 100%; background: #0b0f15; border: 1px solid #21262d; border-radius: 10px; overflow: hidden; }
+.dsa2d-svg { display: block; width: 100%; height: auto; }
+.dsa2d-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.85rem; }
+.dsa2d-legend { margin-top: 0.75rem; font-size: 0.8rem; color: #c9d1d9; background: #161b22; border: 1px solid #21262d; border-left: 3px solid var(--dsa-accent, #58a6ff); border-radius: 6px; padding: 0.6rem 0.8rem; line-height: 1.55; }
+.dsa2d-legend code { background: #0d1117; color: var(--dsa-accent, #58a6ff); padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.78rem; font-family: 'Consolas', monospace; }
+.dsa2d-legend strong { color: #e6edf3; }
+
+.dsa2d-btn { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.82rem; transition: all 0.15s; }
+.dsa2d-btn:hover { border-color: var(--dsa-accent, #58a6ff); color: #fff; }
+.dsa2d-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dsa2d-btn--on { background: color-mix(in srgb, var(--dsa-accent, #58a6ff) 18%, transparent); border-color: var(--dsa-accent, #58a6ff); color: var(--dsa-accent, #58a6ff); font-weight: 600; }
+.dsa2d-btn--primary { background: var(--dsa-accent, #58a6ff); border-color: var(--dsa-accent, #58a6ff); color: #0d1117; font-weight: 700; }
+.dsa2d-btn--primary:hover { color: #0d1117; filter: brightness(1.1); }
+.dsa2d-group { display: flex; gap: 0.35rem; flex-wrap: wrap; align-items: center; }
+.dsa2d-label { font-size: 0.76rem; color: #8b949e; }
+.dsa2d-slider { accent-color: var(--dsa-accent, #58a6ff); width: 130px; max-width: 40vw; }
+.dsa2d-readout { font-family: 'Consolas', monospace; font-size: 0.8rem; color: #ffd43b; background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: 0.35rem 0.6rem; }
+.dsa2d-input { background: #161b22; border: 1px solid #30363d; color: #e6edf3; border-radius: 6px; padding: 0.35rem 0.6rem; width: 120px; font-family: 'Consolas', monospace; }
+
+/* --- mobile ---------------------------------------------------------
+   The whole visual fits the screen — the SVG scales down to the card
+   width so the entire diagram is visible at once with NO horizontal
+   scroll and nothing cropped. On phones we also trim the card padding
+   so the SVG claims the maximum possible width (and therefore the
+   largest possible scale / font size for a fit-to-width layout). */
+.dsa2d-root { max-width: min(760px, 100%); }
+.dsa2d-readout { max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.45; }
+@media (max-width: 680px) {
+  /* full-bleed edge-to-edge so the SVG claims the whole device width
+     (breaks out of the lesson's side padding) → the largest possible
+     fit-to-width scale. Centred breakout works regardless of the
+     parent's padding. */
+  .dsa2d-root {
+    width: 100vw !important; max-width: 100vw !important;
+    margin-left: 50%; transform: translateX(-50%);
+    padding: 0.75rem; border-radius: 0; border-left: 0; border-right: 0;
+  }
+  .dsa2d-stage { overflow: hidden; }
+  .dsa2d-svg { width: 100%; min-width: 0; }
+}
+
+.dsa2d-move { transition: transform 0.45s cubic-bezier(.4,1.2,.5,1); }
+.dsa2d-fade { transition: opacity 0.35s, fill 0.35s; }
+.dsa2d-pulse { animation: dsa2d-pulse 1.4s ease-in-out infinite; }
+.dsa2d-flow { stroke-dasharray: 7 6; animation: dsa2d-flow 0.8s linear infinite; }
+.dsa2d-pop { animation: dsa2d-pop 0.4s cubic-bezier(.3,1.5,.5,1) both; }
+.dsa2d-blink { animation: dsa2d-blink 1s step-end infinite; }
+@keyframes dsa2d-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes dsa2d-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes dsa2d-flow { to { stroke-dashoffset: -26; } }
+@keyframes dsa2d-pop { from { transform: scale(0.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }

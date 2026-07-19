@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
@@ -198,6 +198,25 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
   const [showMdModal, setShowMdModal] = useState(false);
   const [mdInput, setMdInput] = useState('');
   const [mdImportMode, setMdImportMode] = useState('replace'); // 'replace' | 'append'
+
+  // Scroll-to-top button — tracks whichever tab's scroll container is active
+  const scrollTargetRef = useRef(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // scroll events don't bubble, but onScrollCapture catches them on descendants
+  const handleAreaScroll = (e) => {
+    const el = e.target;
+    scrollTargetRef.current = el;
+    setShowScrollTop(el.scrollTop > 300);
+  };
+
+  const scrollToTop = () => {
+    scrollTargetRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    setShowScrollTop(false);
+  };
+
+  // Reset visibility when switching tabs (new container starts at top)
+  useEffect(() => { setShowScrollTop(false); }, [activeTab]);
 
   const editor = useEditor({
     extensions: [
@@ -669,7 +688,7 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
 
       {/* Body */}
       <div className="le-body">
-        <div className="le-editor-area">
+        <div className="le-editor-area" onScrollCapture={handleAreaScroll}>
           {/* Theory Tab */}
           {activeTab === 'theory' && (
             <div className="le-theory-split">
@@ -1067,6 +1086,18 @@ function LessonEditor({ lessonId, partId, courseTitle, partTitle, onBack, onSave
                 </div>
               </div>
             </div>
+          )}
+
+          {/* Scroll to top */}
+          {showScrollTop && (
+            <button
+              className="le-scroll-top"
+              onClick={scrollToTop}
+              title="Scroll to top"
+              aria-label="Scroll to top"
+            >
+              ↑
+            </button>
           )}
         </div>
 

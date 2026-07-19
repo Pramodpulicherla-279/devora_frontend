@@ -77,7 +77,7 @@ const COURSE_EMOJIS = [
   '📘','🌐','🎨','⚡','💻','🗄️','🔐','🚀','🧪','🔧',
   '🧩','⚙️','📊','🔬','🏗️','🐍','🐙','🟢','☁️','🎯',
   '📱','🔌','🤖','🦾','📡','💡','🌟','🔥','🛠️','🗺️',
-  '🧬','🔭','👁️','📚',
+  '🧬','🔭','👁️','📚','🔁',
 ];
 
 function CreateTrackModal({ onClose, onCreated }) {
@@ -244,16 +244,24 @@ function EditCourseModal({ course, onClose, onSaved }) {
 
 function CoursesView({ onSelectCourse, onNewLesson }) {
   const [courses, setCourses] = useState([]);
+  const [trackMap, setTrackMap] = useState({});
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingCourse, setEditingCourse] = useState(null);
 
   const load = () => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/courses`)
-      .then(r => r.json())
-      .then(d => { if (d.success) setCourses(d.data); })
-      .finally(() => setLoading(false));
+    Promise.all([
+      fetch(`${API_BASE_URL}/api/courses`).then(r => r.json()),
+      fetch(`${API_BASE_URL}/api/tracks`).then(r => r.json()),
+    ]).then(([coursesData, tracksData]) => {
+      if (coursesData.success) setCourses(coursesData.data);
+      if (tracksData.success) {
+        const map = {};
+        tracksData.data.forEach(t => { map[t._id] = { name: t.name, icon: t.icon || '🛤️' }; });
+        setTrackMap(map);
+      }
+    }).finally(() => setLoading(false));
   };
 
   useEffect(load, []);
@@ -282,6 +290,9 @@ function CoursesView({ onSelectCourse, onNewLesson }) {
         <div className="course-grid">
           {courses.map(course => {
             const totalParts = course.parts?.length || 0;
+            const assignedTracks = (course.tracks || [])
+              .map(t => trackMap[t._id ?? t])
+              .filter(Boolean);
             return (
               <div key={course._id} className="course-card" onClick={() => onSelectCourse(course._id, course.slug)}>
                 <div className="course-card-header">
@@ -292,19 +303,30 @@ function CoursesView({ onSelectCourse, onNewLesson }) {
                   <span className={`status-badge ${course.status || 'draft'}`}>{course.status || 'draft'}</span>
                 </div>
                 <div className="course-card-desc">{course.description || 'No description provided.'}</div>
+
+                {assignedTracks.length > 0 && (
+                  <div className="course-card-tracks">
+                    {assignedTracks.map(t => (
+                      <span key={t.name} className="course-track-pill">
+                        {t.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
                 <div className="course-stats">
                   <div className="stat-item">
                     <div className="stat-value">{totalParts}</div>
                     <div className="stat-label">Parts</div>
                   </div>
                   <div className="stat-item">
-                    <div className="stat-value">{(course.domains?.length || 0) + (course.tracks?.length || 0)}</div>
-                    <div className="stat-label">Assigned</div>
+                    <div className="stat-value">{assignedTracks.length}</div>
+                    <div className="stat-label">Tracks</div>
                   </div>
-                  <div className="stat-item">
+                  {/* <div className="stat-item">
                     <div className="stat-value">{course.status === 'published' ? '●' : '○'}</div>
                     <div className="stat-label">Status</div>
-                  </div>
+                  </div> */}
                 </div>
                 <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'flex-end' }}>
                   <button
