@@ -52,7 +52,7 @@ export default function CrMemoizationVisualization() {
         return (
           <g key={nd.id} style={{ opacity: cached ? 0.25 : 1, transition: 'opacity .4s' }}>
             <circle cx={nd.x} cy={nd.y} r="17" fill={cached ? '#161b22' : isBase ? 'rgba(255,212,59,.16)' : 'rgba(86,211,100,.14)'} stroke={cached ? '#30363d' : isBase ? '#ffd43b' : '#56d364'} strokeWidth="2" />
-            <text x={nd.x} y={nd.y + 5} fill={cached ? '#6b7785' : isBase ? '#ffd43b' : '#7ee787'} fontSize="13" textAnchor="middle" fontFamily="Consolas">{nd.n}</text>
+            <text x={nd.x} y={nd.y + 5} fill={cached ? '#8b949e' : isBase ? '#ffd43b' : '#7ee787'} fontSize="13" textAnchor="middle" fontFamily="Consolas">{nd.n}</text>
           </g>
         );
       })}

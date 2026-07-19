@@ -34,7 +34,7 @@ export default function AgraphMaxFlowVisualization() {
         const full = fl === cap;
         return (
           <g key={k}>
-            <line x1={x1 + ux * 26} y1={y1 + uy * 26} x2={x2 - ux * 28} y2={y2 - uy * 28} stroke={onPath ? '#58a6ff' : full ? '#f0883e' : '#484f58'} strokeWidth={2 + (fl / cap) * 5} markerEnd="url(#amf-arr)" className={onPath ? 'dsa2d-pulse' : ''} style={{ transition: 'stroke .3s, stroke-width .3s' }} />
+            <line x1={x1 + ux * 26} y1={y1 + uy * 26} x2={x2 - ux * 28} y2={y2 - uy * 28} stroke={onPath ? '#58a6ff' : full ? '#f0883e' : '#6e7681'} strokeWidth={2 + (fl / cap) * 5} markerEnd="url(#amf-arr)" className={onPath ? 'dsa2d-pulse' : ''} style={{ transition: 'stroke .3s, stroke-width .3s' }} />
             <rect x={(x1 + x2) / 2 - 26} y={(y1 + y2) / 2 - 12} width="52" height="22" rx="6" fill="#0d1117" stroke={onPath ? '#58a6ff' : '#30363d'} />
             <text x={(x1 + x2) / 2} y={(y1 + y2) / 2 + 4} fill={full ? '#f8c088' : '#c9d1d9'} fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{fl}/{cap}</text>
           </g>

@@ -31,8 +31,8 @@ export default function AgraphNegativeCycleVisualization() {
         const inCyc = cyc.includes(a) && cyc.includes(b);
         return (
           <g key={k}>
-            <line x1={x1 + ux * 24} y1={y1 + uy * 24} x2={x2 - ux * 26} y2={y2 - uy * 26} stroke={inCyc ? (i > 0 ? '#f85149' : '#f0883e') : '#484f58'} strokeWidth={inCyc ? 3.5 : 2.5} markerEnd="url(#anc-arr)" className={inCyc && i > 0 ? 'dsa2d-pulse' : ''} style={{ transition: 'stroke .3s' }} />
-            <circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="12" fill="#0d1117" stroke={w < 0 ? '#f85149' : '#484f58'} strokeWidth="1.5" />
+            <line x1={x1 + ux * 24} y1={y1 + uy * 24} x2={x2 - ux * 26} y2={y2 - uy * 26} stroke={inCyc ? (i > 0 ? '#f85149' : '#f0883e') : '#6e7681'} strokeWidth={inCyc ? 3.5 : 2.5} markerEnd="url(#anc-arr)" className={inCyc && i > 0 ? 'dsa2d-pulse' : ''} style={{ transition: 'stroke .3s' }} />
+            <circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="12" fill="#0d1117" stroke={w < 0 ? '#f85149' : '#6e7681'} strokeWidth="1.5" />
             <text x={(x1 + x2) / 2} y={(y1 + y2) / 2 + 4} fill={w < 0 ? '#ff9d95' : '#c9d1d9'} fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{w}</text>
           </g>
         );

@@ -35,7 +35,7 @@ export default function StrIntroVisualization() {
             <rect x={startX + k * (CW + gap)} y="70" width={CW} height="58" rx="8" fill={on ? 'rgba(88,166,255,.22)' : '#161b22'} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth="2" className={on ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="108" fill="#e6edf3" fontSize="24" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{ch}</text>
             <text x={startX + k * (CW + gap) + CW / 2} y="62" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="146" fill={on ? '#79c0ff' : '#6b7785'} fontSize="11" textAnchor="middle" fontFamily="Consolas">{ch.charCodeAt(0)}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="146" fill={on ? '#79c0ff' : '#8b949e'} fontSize="11" textAnchor="middle" fontFamily="Consolas">{ch.charCodeAt(0)}</text>
           </g>
         );
       })}

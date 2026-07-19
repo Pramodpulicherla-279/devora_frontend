@@ -31,7 +31,7 @@ export default function TrieNodeVisualization() {
       <rect x="60" y="60" width="250" height="170" rx="14" fill="#0b0f15" stroke="#a78bfa" strokeWidth="2" />
       <text x="185" y="90" fill="#c9bdf5" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">TrieNode {node.ch === '•' ? '(root)' : `'${node.ch}'`}</text>
       <text x="80" y="122" fill="#8b949e" fontSize="13" fontFamily="Consolas">children = {'{'}</text>
-      {kids.length ? kids.map((k, idx) => <text key={k.id} x="100" y={146 + idx * 22} fill="#7ee787" fontSize="14" fontFamily="Consolas">'{k.ch}': ●{idx < kids.length - 1 ? ',' : ''}</text>) : <text x="100" y="146" fill="#6b7785" fontSize="14" fontFamily="Consolas">(empty)</text>}
+      {kids.length ? kids.map((k, idx) => <text key={k.id} x="100" y={146 + idx * 22} fill="#7ee787" fontSize="14" fontFamily="Consolas">'{k.ch}': ●{idx < kids.length - 1 ? ',' : ''}</text>) : <text x="100" y="146" fill="#8b949e" fontSize="14" fontFamily="Consolas">(empty)</text>}
       <text x="80" y={146 + Math.max(kids.length, 1) * 22} fill="#8b949e" fontSize="13" fontFamily="Consolas">{'}'}</text>
       <text x="80" y="212" fill="#8b949e" fontSize="13" fontFamily="Consolas">is_end = <tspan fill={node.end ? '#56d364' : '#f0883e'} fontWeight="700">{node.end ? 'True' : 'False'}</tspan></text>
 

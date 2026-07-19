@@ -2,7 +2,7 @@
  * Defaults match the Dev.EL dark platform for visual consistency with the other visuals. */
 .algo {
   --a-ground:#0d1117; --a-surface:#161b22; --a-surface-2:#1b2230;
-  --a-ink:#e6edf3; --a-muted:#93a0b2; --a-faint:#66717f; --a-border:#26303f;
+  --a-ink:#e6edf3; --a-muted:#93a0b2; --a-faint:#7d8895; --a-border:#26303f;
   --a-current:#f0c264; --a-current-soft:#38301a;
   --a-visited:#4fce78; --a-visited-soft:#153020;
   --a-code:#0f141c;
@@ -94,6 +94,26 @@
 .algo.reduce .algo-pulse { animation:none; }
 @keyframes algoPulse { 0%,100%{opacity:1;} 50%{opacity:.5;} }
 
+/* --- mobile --------------------------------------------------------- */
+.algo { max-width:min(820px, 100%); }
+/* the variable inspector can outgrow narrow cards — scroll inside it */
+.algo-card:has(> .algo-vtable) { overflow-x:auto; }
+.algo-vtable { min-width:max-content; }
+
 @media (max-width:720px) {
   .algo-grid { grid-template-columns:1fr; }
+}
+@media (max-width:680px) {
+  /* fit the canvas to the screen — the whole diagram is visible at once,
+     no horizontal scroll, nothing cropped. Full-bleed edge-to-edge so
+     the SVG claims the whole device width (largest possible scale). */
+  .algo {
+    width:100vw !important; max-width:100vw !important;
+    margin-left:50%; transform:translateX(-50%);
+    padding:0.8rem; border-radius:0; border-left:0; border-right:0;
+  }
+  .algo-canvas { overflow:hidden; }
+  .algo-svg { width:100%; min-width:0; }
+  .algo-transport { gap:.5rem; padding:.55rem .6rem; }
+  .algo-scrub { min-width:120px; }
 }

@@ -36,7 +36,7 @@ export default function ArrMemoryVisualization() {
             <rect x={startX + k * (CW + gap)} y="70" width={CW} height="56" rx="8" fill={on ? 'rgba(88,166,255,.2)' : '#161b22'} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth="2" className={on ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="105" fill="#e6edf3" fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
             <text x={startX + k * (CW + gap) + CW / 2} y="62" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="144" fill={on ? '#79c0ff' : '#6b7785'} fontSize="10" textAnchor="middle" fontFamily="Consolas">{BASE + k * SIZE}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="144" fill={on ? '#79c0ff' : '#8b949e'} fontSize="11" textAnchor="middle" fontFamily="Consolas">{BASE + k * SIZE}</text>
           </g>
         );
       })}

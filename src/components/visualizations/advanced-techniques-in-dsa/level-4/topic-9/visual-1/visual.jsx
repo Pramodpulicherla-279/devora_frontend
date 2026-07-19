@@ -22,7 +22,7 @@ export default function BitSwapXorVisualization() {
       <rect x={x} y="60" width="150" height="84" rx="12" fill={hot ? 'rgba(240,163,94,.22)' : '#161b22'} stroke={hot ? '#f0a35e' : '#30363d'} strokeWidth={hot ? 3 : 2} className={hot ? 'dsa2d-pulse' : ''} style={{ transition: 'fill .3s' }} />
       <text x={x + 75} y="88" fill="#8b949e" fontSize="13" textAnchor="middle" fontFamily="Consolas">{label}</text>
       <text x={x + 75} y="120" fill="#e6edf3" fontSize="26" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-      <text x={x + 75} y="138" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{v.toString(2).padStart(4, '0')}</text>
+      <text x={x + 75} y="138" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{v.toString(2).padStart(4, '0')}</text>
     </g>
   );
   return (

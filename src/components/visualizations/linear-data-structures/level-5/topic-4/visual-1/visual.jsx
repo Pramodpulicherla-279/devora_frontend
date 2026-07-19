@@ -43,7 +43,7 @@ export default function HtCollisionResolutionVisualization() {
             <rect x={startX + k * (CW + gap)} y="60" width={CW} height="52" rx="8"
               fill={openOccupant ? (probed ? 'rgba(240,136,62,.16)' : 'rgba(167,139,250,.2)') : '#0d1117'}
               stroke={probed ? '#f0883e' : openOccupant || isCollisionBucket ? '#a78bfa' : '#30363d'} strokeWidth="2" />
-            <text x={startX + k * (CW + gap) + CW / 2} y="52" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="52" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
             {openOccupant && <text x={startX + k * (CW + gap) + CW / 2} y="92" fill="#e6edf3" fontSize="17" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{openOccupant}</text>}
           </g>
         );

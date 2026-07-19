@@ -47,7 +47,7 @@ export default function SqStackLinkedVisualization() {
             {isHead && <text x={x + NW / 2} y="78" fill="#a78bfa" fontSize="11" textAnchor="middle" fontFamily="Consolas">top</text>}
             {k < s.length - 1
               ? <line x1={x + NW} y1="112" x2={x + NW + gap} y2="112" stroke="#7c6bb0" strokeWidth="2" markerEnd="url(#as3)" />
-              : <text x={x + NW + gap - 6} y="117" fill="#6b7785" fontSize="13" fontFamily="Consolas">None</text>}
+              : <text x={x + NW + gap - 6} y="117" fill="#8b949e" fontSize="13" fontFamily="Consolas">None</text>}
           </g>
         );
       })}

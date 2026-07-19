@@ -42,7 +42,7 @@ export default function PatFastSlowVisualization() {
         const isS = st.s === k, isF = st.f === k, meet = st.meet && isS;
         return (
           <g key={k}>
-            <circle cx={x} cy={y} r="24" fill={meet ? 'rgba(86,211,100,.3)' : isS && isF ? 'rgba(240,163,94,.28)' : isS ? 'rgba(88,166,255,.25)' : isF ? 'rgba(240,163,94,.22)' : '#161b22'} stroke={meet ? '#56d364' : isS ? '#58a6ff' : isF ? '#f0a35e' : '#484f58'} strokeWidth={isS || isF ? 3 : 2} className={meet ? 'dsa2d-pulse' : ''} style={{ transition: 'fill .3s, stroke .3s' }} />
+            <circle cx={x} cy={y} r="24" fill={meet ? 'rgba(86,211,100,.3)' : isS && isF ? 'rgba(240,163,94,.28)' : isS ? 'rgba(88,166,255,.25)' : isF ? 'rgba(240,163,94,.22)' : '#161b22'} stroke={meet ? '#56d364' : isS ? '#58a6ff' : isF ? '#f0a35e' : '#6e7681'} strokeWidth={isS || isF ? 3 : 2} className={meet ? 'dsa2d-pulse' : ''} style={{ transition: 'fill .3s, stroke .3s' }} />
             <text x={x} y={y + 5} fill="#e6edf3" fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
             {isS && <text x={x} y={y - 32} fill="#58a6ff" fontSize="11" textAnchor="middle" fontWeight="700" fontFamily="Consolas">🐢</text>}
             {isF && <text x={x + (isS ? 18 : 0)} y={y - 32} fill="#f0a35e" fontSize="11" textAnchor="middle" fontWeight="700" fontFamily="Consolas">🐇</text>}

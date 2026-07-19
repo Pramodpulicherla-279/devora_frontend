@@ -49,7 +49,7 @@ export default function PfChoosingTypeVisualization() {
           <g key={name} className="pf2d-fade">
             <rect x={ty.x} y="150" width="120" height="72" rx="12" fill={on ? ty.c : '#161b22'} stroke={ty.c} strokeWidth="2" className={on ? 'pf2d-pulse' : ''} />
             <text x={ty.x + 60} y="184" fill={on ? '#0d1117' : ty.c} fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{name}</text>
-            <text x={ty.x + 60} y="206" fill={on ? '#0d1117' : '#8b949e'} fontSize="10" textAnchor="middle" fontFamily="system-ui">{ty.t}</text>
+            <text x={ty.x + 60} y="206" fill={on ? '#0d1117' : '#8b949e'} fontSize="11" textAnchor="middle" fontFamily="system-ui">{ty.t}</text>
           </g>
         );
       })}

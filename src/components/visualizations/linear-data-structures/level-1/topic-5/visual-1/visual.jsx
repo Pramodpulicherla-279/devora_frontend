@@ -40,10 +40,10 @@ export default function ArrLinearSearchVisualization() {
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="70" width={CW} height="56" rx="8"
               fill={hit ? 'rgba(86,211,100,.25)' : cur ? 'rgba(88,166,255,.22)' : checked ? '#161b22' : '#0d1117'}
-              stroke={hit ? '#56d364' : cur ? '#58a6ff' : checked ? '#484f58' : '#30363d'} strokeWidth="2"
+              stroke={hit ? '#56d364' : cur ? '#58a6ff' : checked ? '#6e7681' : '#30363d'} strokeWidth="2"
               className={cur || hit ? 'dsa2d-pulse' : ''} />
-            <text x={startX + k * (CW + gap) + CW / 2} y="104" fill={checked && !hit ? '#6b7785' : '#e6edf3'} fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="62" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="104" fill={checked && !hit ? '#8b949e' : '#e6edf3'} fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="62" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
           </g>
         );
       })}

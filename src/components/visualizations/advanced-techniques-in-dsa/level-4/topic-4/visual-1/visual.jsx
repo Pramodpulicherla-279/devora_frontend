@@ -27,7 +27,7 @@ export default function BitCheckSetClearVisualization() {
         return (
           <g key={i}>
             <rect x={startX + i * (CW + gap)} y={y} width={CW} height={28} rx="6" fill={isK ? 'rgba(167,139,250,.28)' : b ? 'rgba(88,166,255,.15)' : '#161b22'} stroke={isK ? '#a78bfa' : b ? '#58a6ff' : '#30363d'} strokeWidth={isK ? 2.5 : 1.5} style={{ transition: 'fill .25s' }} />
-            <text x={startX + i * (CW + gap) + CW / 2} y={y + 20} fill={b ? '#e6edf3' : '#484f58'} fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
+            <text x={startX + i * (CW + gap) + CW / 2} y={y + 20} fill={b ? '#e6edf3' : '#6e7681'} fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
           </g>
         );
       })}

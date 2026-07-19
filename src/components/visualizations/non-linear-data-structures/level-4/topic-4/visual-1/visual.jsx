@@ -48,7 +48,7 @@ export default function GraphWeightedVisualization() {
         return (
           <g key={i}>
             <line x1={na.x} y1={na.y} x2={nb.x} y2={nb.y} stroke={lit ? path.c : '#30363d'} strokeWidth={lit ? 4 : 2} style={{ transition: 'stroke .3s' }} />
-            <circle cx={(na.x + nb.x) / 2} cy={(na.y + nb.y) / 2} r="12" fill="#0d1117" stroke={lit ? path.c : '#484f58'} />
+            <circle cx={(na.x + nb.x) / 2} cy={(na.y + nb.y) / 2} r="12" fill="#0d1117" stroke={lit ? path.c : '#6e7681'} />
             <text x={(na.x + nb.x) / 2} y={(na.y + nb.y) / 2 + 4} fill={lit ? path.c : '#8b949e'} fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{w}</text>
           </g>
         );

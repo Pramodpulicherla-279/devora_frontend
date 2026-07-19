@@ -41,7 +41,7 @@ export default function TreeBuildVisualization() {
         <g key={nd.id} className="dsa2d-fade">
           <circle cx={nd.x} cy={nd.y} r="22" fill="#161b22" stroke="#a78bfa" strokeWidth="2" className={k === n - 1 ? 'dsa2d-pop' : ''} style={{ transformBox: 'fill-box', transformOrigin: 'center' }} />
           <text x={nd.x} y={nd.y + 6} fill="#e6edf3" fontSize="17" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{nd.v}</text>
-          {nd.side && <text x={(nd.x + NODES[nd.p].x) / 2 + (nd.side === 'left' ? -14 : 14)} y={(nd.y + NODES[nd.p].y) / 2} fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{nd.side}</text>}
+          {nd.side && <text x={(nd.x + NODES[nd.p].x) / 2 + (nd.side === 'left' ? -14 : 14)} y={(nd.y + NODES[nd.p].y) / 2} fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{nd.side}</text>}
         </g>
       ))}
       <text x="320" y="252" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="system-ui">each attachment is one pointer assignment: parent.left / parent.right</text>

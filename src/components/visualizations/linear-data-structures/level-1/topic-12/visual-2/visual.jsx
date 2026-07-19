@@ -40,7 +40,7 @@ export default function ArrMaxProductVisualization() {
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="60" width={CW} height="54" rx="8"
               fill={isTop ? 'rgba(86,211,100,.28)' : cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'}
-              stroke={isTop ? '#56d364' : cur ? '#58a6ff' : scanned ? '#484f58' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
+              stroke={isTop ? '#56d364' : cur ? '#58a6ff' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="93" fill="#e6edf3" fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>
         );

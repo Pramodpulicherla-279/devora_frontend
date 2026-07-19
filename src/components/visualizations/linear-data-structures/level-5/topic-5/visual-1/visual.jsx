@@ -42,8 +42,8 @@ export default function HtPythonDictVisualization() {
         return (
           <g key={s}>
             <rect x={60 + s * 62} y="60" width="54" height="40" rx="6" fill={filled ? 'rgba(88,166,255,.2)' : '#0d1117'} stroke={filled ? '#58a6ff' : '#30363d'} strokeWidth="2" />
-            <text x={87 + s * 62} y="85" fill={filled ? '#79c0ff' : '#484f58'} fontSize="14" textAnchor="middle" fontFamily="Consolas">{filled ? ei : '·'}</text>
-            <text x={87 + s * 62} y="52" fill="#6b7785" fontSize="9" textAnchor="middle" fontFamily="Consolas">{s}</text>
+            <text x={87 + s * 62} y="85" fill={filled ? '#79c0ff' : '#6e7681'} fontSize="14" textAnchor="middle" fontFamily="Consolas">{filled ? ei : '·'}</text>
+            <text x={87 + s * 62} y="52" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{s}</text>
           </g>
         );
       })}
@@ -53,7 +53,7 @@ export default function HtPythonDictVisualization() {
         <g key={e.k} className="dsa2d-fade">
           <rect x={60 + i * 180} y="160" width="168" height="52" rx="8" fill="#161b22" stroke="#56d364" strokeWidth="2" className={i === n - 1 ? 'dsa2d-pop' : ''} style={{ transformBox: 'fill-box', transformOrigin: 'center' }} />
           <text x={144 + i * 180} y="182" fill="#7ee787" fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{e.k}: {e.v}</text>
-          <text x={144 + i * 180} y="202" fill="#6b7785" fontSize="11" textAnchor="middle" fontFamily="Consolas">entry #{i} · slot {e.slot}</text>
+          <text x={144 + i * 180} y="202" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">entry #{i} · slot {e.slot}</text>
         </g>
       ))}
       <text x="320" y="248" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="system-ui">index array points into the ordered entries table</text>

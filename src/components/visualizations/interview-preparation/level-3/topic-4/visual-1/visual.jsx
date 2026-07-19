@@ -25,7 +25,7 @@ export default function SysdScalingVisualization() {
               <line x1="320" y1="78" x2={110 + k * 105} y2="120" stroke="#3d5b8c" strokeWidth="2" />
               <rect x={70 + k * 105} y="120" width="80" height="70" rx="10" fill="rgba(88,166,255,.12)" stroke="#58a6ff" strokeWidth="2" />
               <text x={110 + k * 105} y="152" fill="#e6edf3" fontSize="18" textAnchor="middle">🖥</text>
-              <text x={110 + k * 105} y="176" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">server {k + 1}</text>
+              <text x={110 + k * 105} y="176" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">server {k + 1}</text>
             </g>
           ))}
           <text x="320" y="232" fill="#79c0ff" fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">5 × commodity boxes · lose one, lose 20%</text>

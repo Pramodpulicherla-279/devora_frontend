@@ -33,8 +33,8 @@ export default function AgraphNegativeWeightsVisualization() {
         const neg = w.includes('−');
         return (
           <g key={k}>
-            <line x1={x1 + ux * 24} y1={y1 + uy * 24} x2={x2 - ux * 26} y2={y2 - uy * 26} stroke={hot ? (s.wrong ? '#f85149' : '#58a6ff') : neg ? '#f0883e' : '#484f58'} strokeWidth={hot ? 4 : 2.5} markerEnd="url(#anw-arr)" className={hot ? 'dsa2d-pulse' : ''} />
-            <circle cx={(x1 + x2) / 2 + (neg ? 16 : 0)} cy={(y1 + y2) / 2} r="13" fill="#0d1117" stroke={neg ? '#f0883e' : '#484f58'} strokeWidth="2" />
+            <line x1={x1 + ux * 24} y1={y1 + uy * 24} x2={x2 - ux * 26} y2={y2 - uy * 26} stroke={hot ? (s.wrong ? '#f85149' : '#58a6ff') : neg ? '#f0883e' : '#6e7681'} strokeWidth={hot ? 4 : 2.5} markerEnd="url(#anw-arr)" className={hot ? 'dsa2d-pulse' : ''} />
+            <circle cx={(x1 + x2) / 2 + (neg ? 16 : 0)} cy={(y1 + y2) / 2} r="13" fill="#0d1117" stroke={neg ? '#f0883e' : '#6e7681'} strokeWidth="2" />
             <text x={(x1 + x2) / 2 + (neg ? 16 : 0)} y={(y1 + y2) / 2 + 4} fill={neg ? '#f8c088' : '#c9d1d9'} fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{w}</text>
           </g>
         );

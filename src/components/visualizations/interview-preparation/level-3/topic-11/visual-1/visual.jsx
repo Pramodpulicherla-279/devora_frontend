@@ -33,9 +33,9 @@ export default function SysdRateLimiterVisualization() {
       {/* request + verdict */}
       <text x="120" y="115" fill="#e6edf3" fontSize="13" textAnchor="middle" fontWeight="700">📱 requests</text>
       <line x1="160" y1="125" x2="245" y2="125" stroke={ok ? '#56d364' : '#f0a35e'} strokeWidth="3" className="dsa2d-pulse" />
-      <rect x="440" y="95" width="140" height="56" rx="11" fill={last === '—' ? '#161b22' : ok ? 'rgba(86,211,100,.15)' : 'rgba(240,136,62,.14)'} stroke={last === '—' ? '#484f58' : ok ? '#56d364' : '#f0a35e'} strokeWidth="2.5" style={{ transition: 'fill .3s' }} />
+      <rect x="440" y="95" width="140" height="56" rx="11" fill={last === '—' ? '#161b22' : ok ? 'rgba(86,211,100,.15)' : 'rgba(240,136,62,.14)'} stroke={last === '—' ? '#6e7681' : ok ? '#56d364' : '#f0a35e'} strokeWidth="2.5" style={{ transition: 'fill .3s' }} />
       <text x="510" y="120" fill="#e6edf3" fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{last === '—' ? 'awaiting…' : last}</text>
-      <text x="510" y="140" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">{ok ? 'token spent → allow' : last === '—' ? '' : 'bucket empty → reject'}</text>
+      <text x="510" y="140" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{ok ? 'token spent → allow' : last === '—' ? '' : 'bucket empty → reject'}</text>
       <line x1="392" y1="125" x2="438" y2="125" stroke={ok ? '#56d364' : '#f0a35e'} strokeWidth="2.5" />
     </Stage2D>
   );

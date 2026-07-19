@@ -40,14 +40,14 @@ export default function HeapHeapqVisualization() {
     >
       <text x="320" y="60" fill="#7ee787" fontSize="16" textAnchor="middle" fontFamily="Consolas">{code}</text>
       <text x="60" y="112" fill="#8b949e" fontSize="12" fontFamily="Consolas">heap:</text>
-      {v.length === 0 && <text x="320" y="118" fill="#6b7785" fontSize="15" textAnchor="middle" fontFamily="Consolas">[ ]</text>}
+      {v.length === 0 && <text x="320" y="118" fill="#8b949e" fontSize="15" textAnchor="middle" fontFamily="Consolas">[ ]</text>}
       {v.map((val, k) => {
         const isMin = k === 0;
         return (
           <g key={k} className="dsa2d-fade">
             <rect x={startX + k * (CW + gap)} y="90" width={CW} height="50" rx="8" fill={isMin ? 'rgba(86,211,100,.25)' : '#161b22'} stroke={isMin ? '#56d364' : '#30363d'} strokeWidth="2" className={isMin ? 'dsa2d-pop' : ''} style={{ transformBox: 'fill-box', transformOrigin: 'center' }} />
             <text x={startX + k * (CW + gap) + CW / 2} y="121" fill="#e6edf3" fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{val}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="82" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{k}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="82" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{k}</text>
             {isMin && <text x={startX + k * (CW + gap) + CW / 2} y="160" fill="#56d364" fontSize="11" textAnchor="middle" fontFamily="Consolas">heap[0] = min</text>}
           </g>
         );

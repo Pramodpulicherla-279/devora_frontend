@@ -38,7 +38,7 @@ export default function HtComplexityVisualization() {
         return (
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="56" width={CW} height="46" rx="8" fill={occupants.length ? '#161b22' : '#0d1117'} stroke={occupants.length && bad ? '#f85149' : occupants.length ? '#56d364' : '#30363d'} strokeWidth="2" />
-            <text x={startX + k * (CW + gap) + CW / 2} y="48" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="48" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
             {!bad && occupants[0] && <text x={startX + k * (CW + gap) + CW / 2} y="85" fill="#7ee787" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{occupants[0]}</text>}
             {/* bad: chain hanging from bucket 1 */}
             {bad && k === 1 && occupants.map((o, oi) => (

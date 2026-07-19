@@ -28,11 +28,11 @@ export default function SrchSortFirstVisualization() {
       controls={<><div className="dsa2d-group"><span className="dsa2d-label">queries q = {q}</span><input className="dsa2d-slider" type="range" min="1" max={QMAX} value={q} onChange={e => setQ(+e.target.value)} /></div><AutoButton playing={auto} onToggle={() => setAuto(a => !a)} /><span className="dsa2d-readout">winner: {winner}</span></>}
       legend={<>One or a few lookups → just <strong>scan</strong> (sorting's upfront O(n log n) isn't worth it). Many lookups → <strong>sort once</strong>, then each search is O(log n). Break-even here is about <strong>{breakeven} queries</strong>. Same logic favours building a hash set when you'll do many membership checks.</>}>
       <line x1={ox} y1={oy} x2={ox} y2={oy + H} stroke="#30363d" /><line x1={ox} y1={oy + H} x2={ox + W} y2={oy + H} stroke="#30363d" />
-      <text x={ox - 6} y={oy + 8} fill="#8b949e" fontSize="10" textAnchor="end" fontFamily="system-ui">ops</text>
-      <text x={ox + W} y={oy + H + 16} fill="#8b949e" fontSize="10" textAnchor="end" fontFamily="system-ui">queries →</text>
+      <text x={ox - 6} y={oy + 8} fill="#8b949e" fontSize="11" textAnchor="end" fontFamily="system-ui">ops</text>
+      <text x={ox + W} y={oy + H + 16} fill="#8b949e" fontSize="11" textAnchor="end" fontFamily="system-ui">queries →</text>
       {/* break-even marker */}
       <line x1={px(breakeven)} y1={oy} x2={px(breakeven)} y2={oy + H} stroke="#ffd43b" strokeWidth="1.5" strokeDasharray="4 3" />
-      <text x={px(breakeven)} y={oy - 4} fill="#ffd43b" fontSize="10" textAnchor="middle" fontFamily="Consolas">break-even ≈ {breakeven}</text>
+      <text x={px(breakeven)} y={oy - 4} fill="#ffd43b" fontSize="11" textAnchor="middle" fontFamily="Consolas">break-even ≈ {breakeven}</text>
       <polyline points={linPts} fill="none" stroke="#f0883e" strokeWidth="2.5" />
       <polyline points={sfPts} fill="none" stroke="#58a6ff" strokeWidth="2.5" />
       <circle cx={px(q)} cy={py(linear(q))} r="4" fill="#f0883e" className="dsa2d-pulse" />

@@ -34,7 +34,7 @@ export default function PfCompositionVisualization() {
               {i > 0 && <line x1="320" y1={b.y - 22} x2="320" y2={b.y} stroke="#8b949e" strokeWidth="2" />}
               <rect x="200" y={b.y} width="240" height="50" rx="10" fill={b.c} />
               <text x="320" y={b.y + 31} fill="#0d1117" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b.n}</text>
-              {i > 0 && <text x="340" y={b.y - 6} fill="#8b949e" fontSize="10" fontFamily="system-ui">is-a</text>}
+              {i > 0 && <text x="340" y={b.y - 6} fill="#8b949e" fontSize="11" fontFamily="system-ui">is-a</text>}
             </g>
           ))}
         </g>

@@ -42,7 +42,7 @@ export default function HtDuplicatesVisualization() {
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="50" width={CW} height="52" rx="8"
               fill={dup ? 'rgba(248,81,73,.25)' : cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'}
-              stroke={dup ? '#f85149' : cur ? '#58a6ff' : scanned ? '#484f58' : '#30363d'} strokeWidth="2"
+              stroke={dup ? '#f85149' : cur ? '#58a6ff' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2"
               className={cur || dup ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="83" fill="#e6edf3" fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>

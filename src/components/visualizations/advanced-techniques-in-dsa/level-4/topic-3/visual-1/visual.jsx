@@ -23,8 +23,8 @@ export default function BitShiftsVisualization() {
       {bits.map((b, i) => (
         <g key={i}>
           <rect x={startX + i * (CW + gap)} y="66" width={CW} height="56" rx="8" fill={b ? 'rgba(240,163,94,.3)' : '#161b22'} stroke={b ? '#f0a35e' : '#30363d'} strokeWidth={b ? 3 : 2} style={{ transition: 'fill .3s, stroke .3s' }} />
-          <text x={startX + i * (CW + gap) + CW / 2} y="102" fill={b ? '#f8c088' : '#484f58'} fontSize="24" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
-          <text x={startX + i * (CW + gap) + CW / 2} y="140" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{128 >> i}</text>
+          <text x={startX + i * (CW + gap) + CW / 2} y="102" fill={b ? '#f8c088' : '#6e7681'} fontSize="24" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
+          <text x={startX + i * (CW + gap) + CW / 2} y="140" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{128 >> i}</text>
         </g>
       ))}
       <text x="320" y="176" fill="#8b949e" fontSize="13" textAnchor="middle" fontFamily="Consolas">{sh > 0 ? '← bits slide left, zeros enter from the right' : sh < 0 ? 'bits slide right →, low bits fall off' : 'original: 22 = 00010110'}</text>

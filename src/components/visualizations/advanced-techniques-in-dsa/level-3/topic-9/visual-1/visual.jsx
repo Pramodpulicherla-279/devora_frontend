@@ -37,7 +37,7 @@ export default function AgraphSccVisualization() {
         const lit = showAll || (active && active.ids.includes(id));
         return (
           <g key={id}>
-            <circle cx={x} cy={y} r="20" fill={lit ? `color-mix(in srgb, ${s.c} 26%, transparent)` : '#161b22'} stroke={lit ? s.c : '#484f58'} strokeWidth={lit ? 3 : 2} className={!showAll && active && active.ids.includes(id) ? 'dsa2d-pulse' : ''} style={{ transition: 'fill .3s, stroke .3s' }} />
+            <circle cx={x} cy={y} r="20" fill={lit ? `color-mix(in srgb, ${s.c} 26%, transparent)` : '#161b22'} stroke={lit ? s.c : '#6e7681'} strokeWidth={lit ? 3 : 2} className={!showAll && active && active.ids.includes(id) ? 'dsa2d-pulse' : ''} style={{ transition: 'fill .3s, stroke .3s' }} />
             <text x={x} y={y + 5} fill="#e6edf3" fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{id}</text>
           </g>
         );

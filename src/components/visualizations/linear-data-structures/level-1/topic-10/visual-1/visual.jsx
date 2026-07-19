@@ -55,7 +55,7 @@ export default function ArrPrefixSumVisualization() {
               fill={isEndpoint ? 'rgba(86,211,100,.25)' : '#0b0f15'} stroke={isEndpoint ? '#56d364' : built ? '#3fb950' : '#21262d'} strokeWidth="2"
               className={built && i === k - 1 ? 'dsa2d-pop' : ''} style={{ transformBox: 'fill-box', transformOrigin: 'center' }} />
             <text x={px + i * (CW + gap) + CW / 2} y="187" fill={isEndpoint ? '#7ee787' : '#c9d1d9'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            <text x={px + i * (CW + gap) + CW / 2} y="150" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">P{i}</text>
+            <text x={px + i * (CW + gap) + CW / 2} y="150" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">P{i}</text>
           </g>
         );
       })}

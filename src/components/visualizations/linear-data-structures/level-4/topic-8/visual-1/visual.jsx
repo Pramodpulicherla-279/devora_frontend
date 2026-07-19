@@ -50,8 +50,8 @@ export default function SqCircularQueueVisualization() {
           <g key={i}>
             <rect x={p.x - 26} y={p.y - 20} width="52" height="40" rx="7"
               fill={filled ? 'rgba(167,139,250,.22)' : '#0d1117'} stroke={isFront ? '#58a6ff' : isRear ? '#56d364' : filled ? '#a78bfa' : '#30363d'} strokeWidth={isFront || isRear ? 3 : 2} />
-            <text x={p.x} y={p.y + 5} fill={filled ? '#e6edf3' : '#484f58'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v ?? '·'}</text>
-            <text x={p.x} y={p.y - 26} fill="#6b7785" fontSize="9" textAnchor="middle" fontFamily="Consolas">{i}</text>
+            <text x={p.x} y={p.y + 5} fill={filled ? '#e6edf3' : '#6e7681'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v ?? '·'}</text>
+            <text x={p.x} y={p.y - 26} fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{i}</text>
           </g>
         );
       })}

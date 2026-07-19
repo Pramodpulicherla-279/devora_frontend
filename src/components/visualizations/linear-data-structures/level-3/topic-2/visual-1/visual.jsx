@@ -42,8 +42,8 @@ export default function LlNodeClassVisualization() {
             <text x={x + NW * 0.81} y="116" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="Consolas">next</text>
             {!isLast
               ? <line x1={x + NW} y1="112" x2={x + NW + gap} y2="112" stroke="#a78bfa" strokeWidth="2" markerEnd="url(#a2)" />
-              : <text x={x + NW + gap} y="117" fill="#6b7785" fontSize="14" fontFamily="Consolas">None</text>}
-            <text x={x + NW * 0.31} y="74" fill="#6b7785" fontSize="11" textAnchor="middle" fontFamily="Consolas">data</text>
+              : <text x={x + NW + gap} y="117" fill="#8b949e" fontSize="14" fontFamily="Consolas">None</text>}
+            <text x={x + NW * 0.31} y="74" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">data</text>
           </g>
         );
       })}

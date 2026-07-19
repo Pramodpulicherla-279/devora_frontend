@@ -40,10 +40,10 @@ export default function HeapTaskSchedulerVisualization() {
           <g key={k} style={{ opacity: run || done ? 1 : 0.25, transition: 'opacity .3s' }}>
             <rect x={startX + k * (CW + gap)} y="70" width={CW} height="58" rx="9"
               fill={idle ? 'rgba(139,148,158,.12)' : task === 'A' ? 'rgba(240,136,62,.25)' : 'rgba(88,166,255,.22)'}
-              stroke={idle ? '#484f58' : task === 'A' ? '#f0883e' : '#58a6ff'} strokeWidth="2"
+              stroke={idle ? '#6e7681' : task === 'A' ? '#f0883e' : '#58a6ff'} strokeWidth="2"
               strokeDasharray={idle ? '4 3' : '0'} className={run && k === t - 1 ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="106" fill={idle ? '#8b949e' : '#e6edf3'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{idle ? 'idle' : task}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="146" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{k}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="146" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{k}</text>
           </g>
         );
       })}

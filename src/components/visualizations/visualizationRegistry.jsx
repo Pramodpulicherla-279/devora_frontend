@@ -665,7 +665,6 @@ import ArrRotateVisualization from './linear-data-structures/level-1/topic-8/vis
 import ArrMatrixVisualization from './linear-data-structures/level-1/topic-9/visual-1/visual';
 import ArrPrefixSumVisualization from './linear-data-structures/level-1/topic-10/visual-1/visual';
 import ArrSlidingWindowVisualization from './linear-data-structures/level-1/topic-11/visual-1/visual';
-import ArrInterviewProblemsVisualization from './linear-data-structures/level-1/topic-12/visual-1/visual';
 // Linear Data Structures › Strings (level-2) — 2D animated
 import StrIntroVisualization from './linear-data-structures/level-2/topic-1/visual-1/visual';
 import StrImmutabilityVisualization from './linear-data-structures/level-2/topic-2/visual-1/visual';
@@ -678,7 +677,6 @@ import StrSubstringSubseqVisualization from './linear-data-structures/level-2/to
 import StrNaiveMatchVisualization from './linear-data-structures/level-2/topic-9/visual-1/visual';
 import StrEfficientMatchVisualization from './linear-data-structures/level-2/topic-10/visual-1/visual';
 import StrSlidingWindowVisualization from './linear-data-structures/level-2/topic-11/visual-1/visual';
-import StrInterviewProblemsVisualization from './linear-data-structures/level-2/topic-12/visual-1/visual';
 // Linear Data Structures › Linked Lists (level-3) — 2D animated
 import LlIntroVisualization from './linear-data-structures/level-3/topic-1/visual-1/visual';
 import LlNodeClassVisualization from './linear-data-structures/level-3/topic-2/visual-1/visual';
@@ -717,7 +715,6 @@ import HtGoodKeysVisualization from './linear-data-structures/level-5/topic-8/vi
 import HtFrequencyVisualization from './linear-data-structures/level-5/topic-9/visual-1/visual';
 import HtDuplicatesVisualization from './linear-data-structures/level-5/topic-10/visual-1/visual';
 import HtTwoSumVisualization from './linear-data-structures/level-5/topic-11/visual-1/visual';
-import HtInterviewProblemsVisualization from './linear-data-structures/level-5/topic-12/visual-1/visual';
 // Non-Linear Data Structures › Trees (level-1) — 2D animated
 import TreeIntroVisualization from './non-linear-data-structures/level-1/topic-1/visual-1/visual';
 import TreeBinaryVisualization from './non-linear-data-structures/level-1/topic-2/visual-1/visual';
@@ -730,7 +727,6 @@ import TreeBalanceVisualization from './non-linear-data-structures/level-1/topic
 import TreeBfsVisualization from './non-linear-data-structures/level-1/topic-9/visual-1/visual';
 import TreeDfsVisualization from './non-linear-data-structures/level-1/topic-10/visual-1/visual';
 import TreeAvlVisualization from './non-linear-data-structures/level-1/topic-11/visual-1/visual';
-import TreeInterviewProblemsVisualization from './non-linear-data-structures/level-1/topic-12/visual-1/visual';
 // Non-Linear Data Structures › Heaps & Priority Queues (level-2) — 2D animated
 import HeapIntroVisualization from './non-linear-data-structures/level-2/topic-1/visual-1/visual';
 import HeapMinMaxVisualization from './non-linear-data-structures/level-2/topic-2/visual-1/visual';
@@ -743,7 +739,6 @@ import HeapHeapqVisualization from './non-linear-data-structures/level-2/topic-8
 import HeapPriorityQueueVisualization from './non-linear-data-structures/level-2/topic-9/visual-1/visual';
 import HeapKLargestVisualization from './non-linear-data-structures/level-2/topic-10/visual-1/visual';
 import HeapRealWorldVisualization from './non-linear-data-structures/level-2/topic-11/visual-1/visual';
-import HeapInterviewProblemsVisualization from './non-linear-data-structures/level-2/topic-12/visual-1/visual';
 // ===== Per-problem visuals inside the "Common ... Interview Problems" lessons =====
 // Array problems (LDS Arrays › topic-12)
 import ArrMaxProductVisualization from './linear-data-structures/level-1/topic-12/visual-2/visual';
@@ -787,7 +782,6 @@ import TrieVsHashVisualization from './non-linear-data-structures/level-3/topic-
 import TrieAutocompleteVisualization from './non-linear-data-structures/level-3/topic-9/visual-1/visual';
 import TrieSpellcheckVisualization from './non-linear-data-structures/level-3/topic-10/visual-1/visual';
 import TrieIpRoutingVisualization from './non-linear-data-structures/level-3/topic-11/visual-1/visual';
-import TrieInterviewProblemsVisualization from './non-linear-data-structures/level-3/topic-12/visual-1/visual';
 // Graphs (Non-Linear DS) — 2D animated
 import GraphIntroVisualization from './non-linear-data-structures/level-4/topic-1/visual-1/visual';
 import GraphDirectedVisualization from './non-linear-data-structures/level-4/topic-2/visual-1/visual';
@@ -800,7 +794,6 @@ import GraphCycleVisualization from './non-linear-data-structures/level-4/topic-
 import GraphComponentsVisualization from './non-linear-data-structures/level-4/topic-9/visual-1/visual';
 import GraphTopoSortVisualization from './non-linear-data-structures/level-4/topic-10/visual-1/visual';
 import GraphBipartiteVisualization from './non-linear-data-structures/level-4/topic-11/visual-1/visual';
-import GraphInterviewProblemsVisualization from './non-linear-data-structures/level-4/topic-12/visual-1/visual';
 // Trie interview per-problem visuals
 import TrieImplementVisualization from './non-linear-data-structures/level-3/topic-12/visual-2/visual';
 import TrieWordSearchIIVisualization from './non-linear-data-structures/level-3/topic-12/visual-3/visual';
@@ -836,7 +829,6 @@ import SrchMatrixVisualization from './core-algorithms/level-1/topic-8/visual-1/
 import SrchWhenLinearVisualization from './core-algorithms/level-1/topic-9/visual-1/visual';
 import SrchInterpolationVisualization from './core-algorithms/level-1/topic-10/visual-1/visual';
 import SrchSortFirstVisualization from './core-algorithms/level-1/topic-11/visual-1/visual';
-import SrchInterviewVisualization from './core-algorithms/level-1/topic-12/visual-1/visual';
 // Core Algorithms — Sorting (rest)
 import SortWhyVisualization from './core-algorithms/level-2/topic-1/visual-1/visual';
 import SortPivotVisualization from './core-algorithms/level-2/topic-7/visual-1/visual';
@@ -844,7 +836,6 @@ import SortCompareVisualization from './core-algorithms/level-2/topic-8/visual-1
 import SortCountingVisualization from './core-algorithms/level-2/topic-9/visual-1/visual';
 import SortBucketRadixVisualization from './core-algorithms/level-2/topic-10/visual-1/visual';
 import SortTimsortVisualization from './core-algorithms/level-2/topic-11/visual-1/visual';
-import SortInterviewVisualization from './core-algorithms/level-2/topic-12/visual-1/visual';
 // Core Algorithms — Backtracking (rest)
 import BtIntroVisualization from './core-algorithms/level-3/topic-1/visual-1/visual';
 import BtAnatomyVisualization from './core-algorithms/level-3/topic-2/visual-1/visual';
@@ -854,7 +845,6 @@ import BtPruningVisualization from './core-algorithms/level-3/topic-8/visual-1/v
 import BtMazeVisualization from './core-algorithms/level-3/topic-9/visual-1/visual';
 import BtWordSearchVisualization from './core-algorithms/level-3/topic-10/visual-1/visual';
 import BtVsDpVisualization from './core-algorithms/level-3/topic-11/visual-1/visual';
-import BtInterviewVisualization from './core-algorithms/level-3/topic-12/visual-1/visual';
 // Advanced Techniques in DSA — Greedy Algorithms
 import GreedyIntroVisualization from './advanced-techniques-in-dsa/level-1/topic-1/visual-1/visual';
 import GreedyWhenFailsVisualization from './advanced-techniques-in-dsa/level-1/topic-2/visual-1/visual';
@@ -867,7 +857,6 @@ import GreedyJobSequencingVisualization from './advanced-techniques-in-dsa/level
 import GreedyMstIntroVisualization from './advanced-techniques-in-dsa/level-1/topic-9/visual-1/visual';
 import GreedyDijkstraVisualization from './advanced-techniques-in-dsa/level-1/topic-10/visual-1/visual';
 import GreedyVsDpVisualization from './advanced-techniques-in-dsa/level-1/topic-11/visual-1/visual';
-import GreedyInterviewVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-1/visual';
 // Advanced Techniques in DSA — Dynamic Programming
 import DpIntroVisualization from './advanced-techniques-in-dsa/level-2/topic-1/visual-1/visual';
 import DpMemoizationVisualization from './advanced-techniques-in-dsa/level-2/topic-2/visual-1/visual';
@@ -880,7 +869,6 @@ import DpLcsVisualization from './advanced-techniques-in-dsa/level-2/topic-8/vis
 import DpLisVisualization from './advanced-techniques-in-dsa/level-2/topic-9/visual-1/visual';
 import DpCoinChangeVisualization from './advanced-techniques-in-dsa/level-2/topic-10/visual-1/visual';
 import DpRecognizeVisualization from './advanced-techniques-in-dsa/level-2/topic-11/visual-1/visual';
-import DpInterviewVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-1/visual';
 // Advanced Techniques in DSA — Advanced Graph Algorithms
 import AgraphDijkstraVisualization from './advanced-techniques-in-dsa/level-3/topic-1/visual-1/visual';
 import AgraphNegativeWeightsVisualization from './advanced-techniques-in-dsa/level-3/topic-2/visual-1/visual';
@@ -893,7 +881,6 @@ import AgraphKruskalVsPrimVisualization from './advanced-techniques-in-dsa/level
 import AgraphSccVisualization from './advanced-techniques-in-dsa/level-3/topic-9/visual-1/visual';
 import AgraphMaxFlowVisualization from './advanced-techniques-in-dsa/level-3/topic-10/visual-1/visual';
 import AgraphNegativeCycleVisualization from './advanced-techniques-in-dsa/level-3/topic-11/visual-1/visual';
-import AgraphInterviewVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-1/visual';
 // Advanced Techniques in DSA — Bit Manipulation
 import BitBinaryVisualization from './advanced-techniques-in-dsa/level-4/topic-1/visual-1/visual';
 import BitOperatorsVisualization from './advanced-techniques-in-dsa/level-4/topic-2/visual-1/visual';
@@ -906,7 +893,6 @@ import BitBitmaskSubsetsVisualization from './advanced-techniques-in-dsa/level-4
 import BitSwapXorVisualization from './advanced-techniques-in-dsa/level-4/topic-9/visual-1/visual';
 import BitFlagsVisualization from './advanced-techniques-in-dsa/level-4/topic-10/visual-1/visual';
 import BitWhenVisualization from './advanced-techniques-in-dsa/level-4/topic-11/visual-1/visual';
-import BitInterviewVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-1/visual';
 // Interview Preparation — Problem Patterns
 import PatRecognizingVisualization from './interview-preparation/level-1/topic-1/visual-1/visual';
 import PatSlidingWindowVisualization from './interview-preparation/level-1/topic-2/visual-1/visual';
@@ -933,6 +919,43 @@ import SysdFrameworkVisualization from './interview-preparation/level-3/topic-9/
 import SysdUrlShortenerVisualization from './interview-preparation/level-3/topic-10/visual-1/visual';
 import SysdRateLimiterVisualization from './interview-preparation/level-3/topic-11/visual-1/visual';
 import SysdInterviewerVisualization from './interview-preparation/level-3/topic-12/visual-1/visual';
+// Per-problem visuals — Core Algorithms interview lessons
+import SrchInsertPositionVisualization from './core-algorithms/level-1/topic-12/visual-2/visual';
+import SrchPeakElementVisualization from './core-algorithms/level-1/topic-12/visual-3/visual';
+import SrchSqrtVisualization from './core-algorithms/level-1/topic-12/visual-4/visual';
+import SrchKokoVisualization from './core-algorithms/level-1/topic-12/visual-5/visual';
+import SrchMedianArraysVisualization from './core-algorithms/level-1/topic-12/visual-6/visual';
+import SortDutchFlagVisualization from './core-algorithms/level-2/topic-12/visual-2/visual';
+import SortMergeIntervalsVisualization from './core-algorithms/level-2/topic-12/visual-3/visual';
+import SortQuickselectVisualization from './core-algorithms/level-2/topic-12/visual-4/visual';
+import SortFreqCharsVisualization from './core-algorithms/level-2/topic-12/visual-5/visual';
+import SortLargestNumberVisualization from './core-algorithms/level-2/topic-12/visual-6/visual';
+import BtPhoneCombosVisualization from './core-algorithms/level-3/topic-12/visual-2/visual';
+import BtGenParensVisualization from './core-algorithms/level-3/topic-12/visual-3/visual';
+import BtPalindromePartitionVisualization from './core-algorithms/level-3/topic-12/visual-4/visual';
+import BtRestoreIpVisualization from './core-algorithms/level-3/topic-12/visual-5/visual';
+import BtWordBreakIiVisualization from './core-algorithms/level-3/topic-12/visual-6/visual';
+// Per-problem visuals — Advanced Techniques interview lessons
+import GreedyJumpGameVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-2/visual';
+import GreedyGasStationVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-3/visual';
+import GreedyAssignCookiesVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-4/visual';
+import GreedyNonOverlapVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-5/visual';
+import GreedyMergeIntervalsVisualization from './advanced-techniques-in-dsa/level-1/topic-12/visual-6/visual';
+import DpHouseRobberVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-2/visual';
+import DpEditDistanceVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-3/visual';
+import DpKadaneVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-4/visual';
+import DpUniquePathsVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-5/visual';
+import DpWordBreakVisualization from './advanced-techniques-in-dsa/level-2/topic-12/visual-6/visual';
+import AgraphNetworkDelayVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-2/visual';
+import AgraphCheapestFlightsVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-3/visual';
+import AgraphCourseScheduleVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-4/visual';
+import AgraphMinCostConnectVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-5/visual';
+import AgraphCriticalConnectionsVisualization from './advanced-techniques-in-dsa/level-3/topic-12/visual-6/visual';
+import BitSingleNumberIiVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-2/visual';
+import BitCountingBitsVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-3/visual';
+import BitReverseBitsVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-4/visual';
+import BitMissingNumberVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-5/visual';
+import BitBitmaskEnumVisualization from './advanced-techniques-in-dsa/level-4/topic-12/visual-6/visual';
 // import BoxModelViz from '../components/Visualizations/BoxModelViz'; // Example for future
 
 // 2. Create a mapping object
@@ -1625,7 +1648,6 @@ const visualizationRegistry = {
   'arr-matrix-visualization'              : ArrMatrixVisualization,
   'arr-prefix-sum-visualization'          : ArrPrefixSumVisualization,
   'arr-sliding-window-visualization'      : ArrSlidingWindowVisualization,
-  'arr-interview-problems-visualization'  : ArrInterviewProblemsVisualization,
 
   // Linear Data Structures › Strings (level-2) — 2D animated
   'str-intro-visualization'               : StrIntroVisualization,
@@ -1639,7 +1661,6 @@ const visualizationRegistry = {
   'str-naive-match-visualization'         : StrNaiveMatchVisualization,
   'str-efficient-match-visualization'     : StrEfficientMatchVisualization,
   'str-sliding-window-visualization'      : StrSlidingWindowVisualization,
-  'str-interview-problems-visualization'  : StrInterviewProblemsVisualization,
 
   // Linear Data Structures › Linked Lists (level-3) — 2D animated
   'll-intro-visualization'                : LlIntroVisualization,
@@ -1681,7 +1702,6 @@ const visualizationRegistry = {
   'ht-frequency-visualization'            : HtFrequencyVisualization,
   'ht-duplicates-visualization'           : HtDuplicatesVisualization,
   'ht-two-sum-visualization'              : HtTwoSumVisualization,
-  'ht-interview-problems-visualization'   : HtInterviewProblemsVisualization,
 
   // Non-Linear Data Structures › Trees (level-1) — 2D animated
   'tree-intro-visualization'              : TreeIntroVisualization,
@@ -1695,7 +1715,6 @@ const visualizationRegistry = {
   'tree-bfs-visualization'                : TreeBfsVisualization,
   'tree-dfs-visualization'                : TreeDfsVisualization,
   'tree-avl-visualization'                : TreeAvlVisualization,
-  'tree-interview-problems-visualization' : TreeInterviewProblemsVisualization,
 
   // Non-Linear Data Structures › Heaps & Priority Queues (level-2) — 2D animated
   'heap-intro-visualization'              : HeapIntroVisualization,
@@ -1709,7 +1728,6 @@ const visualizationRegistry = {
   'heap-priority-queue-visualization'     : HeapPriorityQueueVisualization,
   'heap-k-largest-visualization'          : HeapKLargestVisualization,
   'heap-real-world-visualization'         : HeapRealWorldVisualization,
-  'heap-interview-problems-visualization' : HeapInterviewProblemsVisualization,
 
   // ===== Per-problem visuals inside the "Common ... Interview Problems" lessons =====
   // Array problems
@@ -1755,7 +1773,6 @@ const visualizationRegistry = {
   'trie-autocomplete-visualization'       : TrieAutocompleteVisualization,
   'trie-spellcheck-visualization'         : TrieSpellcheckVisualization,
   'trie-ip-routing-visualization'         : TrieIpRoutingVisualization,
-  'trie-interview-problems-visualization' : TrieInterviewProblemsVisualization,
 
   // Graphs (Non-Linear DS) — 2D animated
   'graph-intro-visualization'             : GraphIntroVisualization,
@@ -1769,7 +1786,6 @@ const visualizationRegistry = {
   'graph-components-visualization'        : GraphComponentsVisualization,
   'graph-topo-sort-visualization'         : GraphTopoSortVisualization,
   'graph-bipartite-visualization'         : GraphBipartiteVisualization,
-  'graph-interview-problems-visualization': GraphInterviewProblemsVisualization,
 
   // Trie interview per-problem visuals
   'trie-implement-visualization'          : TrieImplementVisualization,
@@ -1811,7 +1827,6 @@ const visualizationRegistry = {
   'srch-when-linear-visualization'        : SrchWhenLinearVisualization,
   'srch-interpolation-visualization'      : SrchInterpolationVisualization,
   'srch-sort-first-visualization'         : SrchSortFirstVisualization,
-  'srch-interview-visualization'          : SrchInterviewVisualization,
 
   // Core Algorithms — Sorting (rest)
   'sort-why-visualization'                : SortWhyVisualization,
@@ -1820,7 +1835,6 @@ const visualizationRegistry = {
   'sort-counting-visualization'           : SortCountingVisualization,
   'sort-bucket-radix-visualization'       : SortBucketRadixVisualization,
   'sort-timsort-visualization'            : SortTimsortVisualization,
-  'sort-interview-visualization'          : SortInterviewVisualization,
 
   // Core Algorithms — Backtracking (rest)
   'bt-intro-visualization'                : BtIntroVisualization,
@@ -1831,7 +1845,6 @@ const visualizationRegistry = {
   'bt-maze-visualization'                 : BtMazeVisualization,
   'bt-word-search-visualization'          : BtWordSearchVisualization,
   'bt-vs-dp-visualization'                : BtVsDpVisualization,
-  'bt-interview-visualization'            : BtInterviewVisualization,
 
   // Advanced Techniques in DSA — Greedy Algorithms
   'greedy-intro-visualization'            : GreedyIntroVisualization,
@@ -1845,7 +1858,6 @@ const visualizationRegistry = {
   'greedy-mst-intro-visualization'        : GreedyMstIntroVisualization,
   'greedy-dijkstra-visualization'         : GreedyDijkstraVisualization,
   'greedy-vs-dp-visualization'            : GreedyVsDpVisualization,
-  'greedy-interview-visualization'        : GreedyInterviewVisualization,
 
   // Advanced Techniques in DSA — Dynamic Programming
   'dp-intro-visualization'                : DpIntroVisualization,
@@ -1859,7 +1871,6 @@ const visualizationRegistry = {
   'dp-lis-visualization'                  : DpLisVisualization,
   'dp-coin-change-visualization'          : DpCoinChangeVisualization,
   'dp-recognize-visualization'            : DpRecognizeVisualization,
-  'dp-interview-visualization'            : DpInterviewVisualization,
 
   // Advanced Techniques in DSA — Advanced Graph Algorithms
   'agraph-dijkstra-visualization'         : AgraphDijkstraVisualization,
@@ -1873,7 +1884,6 @@ const visualizationRegistry = {
   'agraph-scc-visualization'              : AgraphSccVisualization,
   'agraph-max-flow-visualization'         : AgraphMaxFlowVisualization,
   'agraph-negative-cycle-visualization'   : AgraphNegativeCycleVisualization,
-  'agraph-interview-visualization'        : AgraphInterviewVisualization,
 
   // Advanced Techniques in DSA — Bit Manipulation
   'bit-binary-visualization'              : BitBinaryVisualization,
@@ -1887,7 +1897,6 @@ const visualizationRegistry = {
   'bit-swap-xor-visualization'            : BitSwapXorVisualization,
   'bit-flags-visualization'               : BitFlagsVisualization,
   'bit-when-visualization'                : BitWhenVisualization,
-  'bit-interview-visualization'           : BitInterviewVisualization,
 
   // Interview Preparation — Problem Patterns
   'pat-recognizing-visualization'         : PatRecognizingVisualization,
@@ -1916,6 +1925,45 @@ const visualizationRegistry = {
   'sysd-url-shortener-visualization'      : SysdUrlShortenerVisualization,
   'sysd-rate-limiter-visualization'       : SysdRateLimiterVisualization,
   'sysd-interviewer-visualization'        : SysdInterviewerVisualization,
+
+  // Per-problem visuals — Core Algorithms interview lessons
+  'srch-insert-position-visualization'    : SrchInsertPositionVisualization,
+  'srch-peak-element-visualization'       : SrchPeakElementVisualization,
+  'srch-sqrt-visualization'               : SrchSqrtVisualization,
+  'srch-koko-visualization'               : SrchKokoVisualization,
+  'srch-median-arrays-visualization'      : SrchMedianArraysVisualization,
+  'sort-dutch-flag-visualization'         : SortDutchFlagVisualization,
+  'sort-merge-intervals-visualization'    : SortMergeIntervalsVisualization,
+  'sort-quickselect-visualization'        : SortQuickselectVisualization,
+  'sort-freq-chars-visualization'         : SortFreqCharsVisualization,
+  'sort-largest-number-visualization'     : SortLargestNumberVisualization,
+  'bt-phone-combos-visualization'         : BtPhoneCombosVisualization,
+  'bt-gen-parens-visualization'           : BtGenParensVisualization,
+  'bt-palindrome-partition-visualization' : BtPalindromePartitionVisualization,
+  'bt-restore-ip-visualization'           : BtRestoreIpVisualization,
+  'bt-word-break-ii-visualization'        : BtWordBreakIiVisualization,
+
+  // Per-problem visuals — Advanced Techniques interview lessons
+  'greedy-jump-game-visualization'        : GreedyJumpGameVisualization,
+  'greedy-gas-station-visualization'      : GreedyGasStationVisualization,
+  'greedy-assign-cookies-visualization'   : GreedyAssignCookiesVisualization,
+  'greedy-non-overlap-visualization'      : GreedyNonOverlapVisualization,
+  'greedy-merge-intervals-visualization'  : GreedyMergeIntervalsVisualization,
+  'dp-house-robber-visualization'         : DpHouseRobberVisualization,
+  'dp-edit-distance-visualization'        : DpEditDistanceVisualization,
+  'dp-kadane-visualization'               : DpKadaneVisualization,
+  'dp-unique-paths-visualization'         : DpUniquePathsVisualization,
+  'dp-word-break-visualization'           : DpWordBreakVisualization,
+  'agraph-network-delay-visualization'    : AgraphNetworkDelayVisualization,
+  'agraph-cheapest-flights-visualization' : AgraphCheapestFlightsVisualization,
+  'agraph-course-schedule-visualization'  : AgraphCourseScheduleVisualization,
+  'agraph-min-cost-connect-visualization' : AgraphMinCostConnectVisualization,
+  'agraph-critical-connections-visualization' : AgraphCriticalConnectionsVisualization,
+  'bit-single-number-ii-visualization'    : BitSingleNumberIiVisualization,
+  'bit-counting-bits-visualization'       : BitCountingBitsVisualization,
+  'bit-reverse-bits-visualization'        : BitReverseBitsVisualization,
+  'bit-missing-number-visualization'      : BitMissingNumberVisualization,
+  'bit-bitmask-enum-visualization'        : BitBitmaskEnumVisualization,
 
   // 'css-box-model': BoxModelViz,
 };

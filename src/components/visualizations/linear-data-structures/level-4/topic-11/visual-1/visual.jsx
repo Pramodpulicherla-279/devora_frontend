@@ -48,8 +48,8 @@ export default function SqExpressionEvalVisualization() {
         const op = '+-*/'.includes(t);
         return (
           <g key={k}>
-            <rect x={startX + k * (CW + gap)} y="44" width={CW} height="46" rx="7" fill={isCur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={isCur ? '#58a6ff' : op ? '#f0883e' : scanned ? '#484f58' : '#30363d'} strokeWidth="2" className={isCur ? 'dsa2d-pulse' : ''} />
-            <text x={startX + k * (CW + gap) + CW / 2} y="75" fill={op ? '#f0883e' : scanned && !isCur ? '#6b7785' : '#e6edf3'} fontSize="21" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{t}</text>
+            <rect x={startX + k * (CW + gap)} y="44" width={CW} height="46" rx="7" fill={isCur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={isCur ? '#58a6ff' : op ? '#f0883e' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2" className={isCur ? 'dsa2d-pulse' : ''} />
+            <text x={startX + k * (CW + gap) + CW / 2} y="75" fill={op ? '#f0883e' : scanned && !isCur ? '#8b949e' : '#e6edf3'} fontSize="21" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{t}</text>
           </g>
         );
       })}

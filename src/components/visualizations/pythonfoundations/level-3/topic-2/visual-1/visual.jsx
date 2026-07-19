@@ -45,11 +45,11 @@ export default function PfFirstClassVisualization() {
       <text x="465" y="78" fill={done ? '#56d364' : '#8b949e'} fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{step === 0 ? '(allocating…)' : done ? 'rex — Dog object' : 'self → new object'}</text>
       <g className="pf2d-fade">
         <rect x="352" y="96" width="226" height="46" rx="8" fill={hasName ? '#58a6ff' : '#0d1117'} stroke={hasName ? '#58a6ff' : '#30363d'} />
-        <text x="465" y="124" fill={hasName ? '#0d1117' : '#484f58'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{hasName ? 'name = "Rex"' : 'name: (empty)'}</text>
+        <text x="465" y="124" fill={hasName ? '#0d1117' : '#6e7681'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{hasName ? 'name = "Rex"' : 'name: (empty)'}</text>
       </g>
       <g className="pf2d-fade">
         <rect x="352" y="156" width="226" height="46" rx="8" fill={hasAge ? '#f97316' : '#0d1117'} stroke={hasAge ? '#f97316' : '#30363d'} />
-        <text x="465" y="184" fill={hasAge ? '#0d1117' : '#484f58'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{hasAge ? 'age = 3' : 'age: (empty)'}</text>
+        <text x="465" y="184" fill={hasAge ? '#0d1117' : '#6e7681'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{hasAge ? 'age = 3' : 'age: (empty)'}</text>
       </g>
       {step >= 1 && !done && <line x1="220" y1="125" x2="330" y2="125" stroke="#56d364" strokeWidth="2.5" className="pf2d-flow" />}
     </Stage2D>

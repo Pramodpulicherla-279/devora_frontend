@@ -46,8 +46,8 @@ export default function LlDeletionVisualization() {
             {k < VALS.length - 1 && !(k === DEL - 1 && phase >= 1) && !(isDel) &&
               <line x1={x + NW} y1="106" x2={x + NW + gap} y2="106" stroke="#a78bfa" strokeWidth="2" markerEnd="url(#a5)" />}
             {isDel && !removed && k < VALS.length - 1 &&
-              <line x1={x + NW} y1="106" x2={x + NW + gap} y2="106" stroke={phase >= 1 ? '#484f58' : '#a78bfa'} strokeWidth="2" markerEnd="url(#a5)" />}
-            {k === VALS.length - 1 && <text x={x + NW + gap - 6} y="111" fill="#6b7785" fontSize="13" fontFamily="Consolas">None</text>}
+              <line x1={x + NW} y1="106" x2={x + NW + gap} y2="106" stroke={phase >= 1 ? '#6e7681' : '#a78bfa'} strokeWidth="2" markerEnd="url(#a5)" />}
+            {k === VALS.length - 1 && <text x={x + NW + gap - 6} y="111" fill="#8b949e" fontSize="13" fontFamily="Consolas">None</text>}
           </g>
         );
       })}

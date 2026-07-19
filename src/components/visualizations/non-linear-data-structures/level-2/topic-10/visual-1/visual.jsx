@@ -42,7 +42,7 @@ export default function HeapKLargestVisualization() {
         const inKept = scanned && kept.includes(v) && ARR.slice(0, i).lastIndexOf(v) === k;
         return (
           <g key={k}>
-            <rect x={startX + k * (CW + gap)} y="52" width={CW} height="50" rx="8" fill={cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#58a6ff' : scanned ? '#484f58' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
+            <rect x={startX + k * (CW + gap)} y="52" width={CW} height="50" rx="8" fill={cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#58a6ff' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="83" fill="#e6edf3" fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>
         );
@@ -58,7 +58,7 @@ export default function HeapKLargestVisualization() {
           </g>
         );
       })}
-      {kept.length > 0 && <text x={266} y="214" fill="#f0883e" fontSize="10" textAnchor="middle" fontFamily="Consolas">root = min</text>}
+      {kept.length > 0 && <text x={266} y="214" fill="#f0883e" fontSize="11" textAnchor="middle" fontFamily="Consolas">root = min</text>}
     </Stage2D>
   );
 }

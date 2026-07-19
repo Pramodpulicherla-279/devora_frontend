@@ -39,7 +39,7 @@ export default function TreeBstDeleteVisualization() {
       {Object.entries(P).map(([val, [x, y]]) => {
         const v = +val;
         if (v === 40 && removed40) return (
-          <g key={val} style={{ opacity: 0.2 }}><circle cx={x} cy={y} r="22" fill="#161b22" stroke="#484f58" strokeWidth="2" strokeDasharray="3 3" /><text x={x} y={y + 5} fill="#484f58" fontSize="14" textAnchor="middle" fontFamily="Consolas">40</text></g>
+          <g key={val} style={{ opacity: 0.2 }}><circle cx={x} cy={y} r="22" fill="#161b22" stroke="#6e7681" strokeWidth="2" strokeDasharray="3 3" /><text x={x} y={y + 5} fill="#6e7681" fontSize="14" textAnchor="middle" fontFamily="Consolas">40</text></g>
         );
         const isTarget = v === 30;
         const isSucc = v === 40 && ph === 1;

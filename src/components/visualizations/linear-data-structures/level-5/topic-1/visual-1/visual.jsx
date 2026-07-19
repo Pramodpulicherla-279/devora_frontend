@@ -38,8 +38,8 @@ export default function HtIntroVisualization() {
         return (
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="90" width={CW} height="56" rx="8" fill={on ? 'rgba(86,211,100,.25)' : '#161b22'} stroke={on ? '#56d364' : '#30363d'} strokeWidth="2" className={on ? 'dsa2d-pulse' : ''} />
-            <text x={startX + k * (CW + gap) + CW / 2} y="124" fill={buckets[k] ? '#e6edf3' : '#484f58'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{buckets[k] || '·'}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="82" fill="#6b7785" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="124" fill={buckets[k] ? '#e6edf3' : '#6e7681'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{buckets[k] || '·'}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="82" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
           </g>
         );
       })}

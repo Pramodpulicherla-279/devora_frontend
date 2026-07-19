@@ -48,7 +48,7 @@ export default function HtLongestConsecutiveVisualization() {
               fill={inBest && done ? 'rgba(86,211,100,.28)' : isCur ? 'rgba(88,166,255,.22)' : '#161b22'}
               stroke={inBest && done ? '#56d364' : isCur ? '#58a6ff' : start ? '#a78bfa' : '#30363d'} strokeWidth="2" className={isCur ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="99" fill="#e6edf3" fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            {start && !done && <text x={startX + k * (CW + gap) + CW / 2} y="58" fill="#a78bfa" fontSize="10" textAnchor="middle" fontFamily="Consolas">start</text>}
+            {start && !done && <text x={startX + k * (CW + gap) + CW / 2} y="58" fill="#a78bfa" fontSize="11" textAnchor="middle" fontFamily="Consolas">start</text>}
           </g>
         );
       })}

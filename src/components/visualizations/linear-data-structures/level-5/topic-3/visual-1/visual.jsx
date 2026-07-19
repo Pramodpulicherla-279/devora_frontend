@@ -45,7 +45,7 @@ export default function HtCollisionVisualization() {
               fill={hot && step >= 1 ? 'rgba(248,81,73,.2)' : occupants.length ? '#161b22' : '#0d1117'}
               stroke={hot && step >= 1 ? '#f85149' : occupants.length ? '#30363d' : '#30363d'} strokeWidth="2"
               className={hot && step >= 1 ? 'dsa2d-pulse' : ''} />
-            <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#6b7785" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
             {occupants.map((o, oi) => (
               <text key={o} x={startX + k * (CW + gap) + CW / 2} y={106 + oi * 22} fill={oi === 1 ? '#ff9d95' : '#e6edf3'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{o}</text>
             ))}

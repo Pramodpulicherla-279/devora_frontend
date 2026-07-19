@@ -46,7 +46,7 @@ export default function HeapMergeKVisualization() {
                 <rect x={110 + k * (CW + gap)} y={34 + l * 48} width={CW} height="38" rx="6"
                   fill={isHead ? 'rgba(86,211,100,.22)' : consumed ? '#0d1117' : '#161b22'}
                   stroke={isHead ? '#56d364' : consumed ? '#21262d' : '#30363d'} strokeWidth="2" style={{ opacity: consumed ? 0.35 : 1 }} />
-                <text x={110 + k * (CW + gap) + CW / 2} y={59 + l * 48} fill={consumed ? '#6b7785' : '#e6edf3'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
+                <text x={110 + k * (CW + gap) + CW / 2} y={59 + l * 48} fill={consumed ? '#8b949e' : '#e6edf3'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
               </g>
             );
           })}

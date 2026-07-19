@@ -54,7 +54,7 @@ export default function HeapArrayVisualization() {
           <g key={'a' + k}>
             <rect x={startX + k * (CW + gap)} y="196" width={CW} height="44" rx="7" fill={isI ? 'rgba(167,139,250,.3)' : isFam ? 'rgba(88,166,255,.14)' : '#161b22'} stroke={isI ? '#a78bfa' : isFam ? '#58a6ff' : '#30363d'} strokeWidth="2" />
             <text x={startX + k * (CW + gap) + CW / 2} y="224" fill="#e6edf3" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="190" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{k}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="190" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{k}</text>
           </g>
         );
       })}

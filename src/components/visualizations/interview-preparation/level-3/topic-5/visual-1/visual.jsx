@@ -29,9 +29,9 @@ export default function SysdLoadBalancerVisualization() {
         return (
           <g key={s} onClick={() => setDead(d => d === s ? null : s)} style={{ cursor: 'pointer' }}>
             <line x1="362" y1="133" x2="450" y2={y + 24} stroke={isDead ? '#30363d' : isTarget ? '#56d364' : '#3d5b8c'} strokeWidth={isTarget ? 3.5 : 2} strokeDasharray={isDead ? '4 5' : 'none'} className={isTarget ? 'dsa2d-pulse' : ''} style={{ transition: 'stroke .25s' }} />
-            <rect x="452" y={y} width="120" height="50" rx="10" fill={isDead ? 'rgba(248,81,73,.1)' : isTarget ? 'rgba(86,211,100,.16)' : '#161b22'} stroke={isDead ? '#f85149' : isTarget ? '#56d364' : '#484f58'} strokeWidth={isTarget ? 3 : 2} style={{ transition: 'fill .25s' }} />
+            <rect x="452" y={y} width="120" height="50" rx="10" fill={isDead ? 'rgba(248,81,73,.1)' : isTarget ? 'rgba(86,211,100,.16)' : '#161b22'} stroke={isDead ? '#f85149' : isTarget ? '#56d364' : '#6e7681'} strokeWidth={isTarget ? 3 : 2} style={{ transition: 'fill .25s' }} />
             <text x="512" y={y + 22} fill={isDead ? '#f85149' : '#e6edf3'} fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{isDead ? '💀 S' + (s + 1) : '🖥 S' + (s + 1)}</text>
-            <text x="512" y={y + 40} fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">{isDead ? 'out of rotation' : `${counts[s]} recent reqs`}</text>
+            <text x="512" y={y + 40} fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{isDead ? 'out of rotation' : `${counts[s]} recent reqs`}</text>
           </g>
         );
       })}

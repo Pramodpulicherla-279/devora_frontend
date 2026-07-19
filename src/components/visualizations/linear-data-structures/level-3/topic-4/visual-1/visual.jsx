@@ -44,7 +44,7 @@ export default function LlInsertionVisualization() {
             {isNew && <text x={x + NW / 2} y="72" fill="#56d364" fontSize="12" textAnchor="middle" fontFamily="Consolas">new</text>}
             {k < list.length - 1
               ? <line x1={x + NW} y1="106" x2={x + NW + gap} y2="106" stroke={isNew || k + 1 === newIdx ? '#56d364' : '#a78bfa'} strokeWidth="2" markerEnd="url(#a4)" />
-              : <text x={x + NW + gap - 6} y="111" fill="#6b7785" fontSize="13" fontFamily="Consolas">None</text>}
+              : <text x={x + NW + gap - 6} y="111" fill="#8b949e" fontSize="13" fontFamily="Consolas">None</text>}
           </g>
         );
       })}

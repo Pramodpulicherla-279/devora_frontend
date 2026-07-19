@@ -41,7 +41,7 @@ export default function ArrAmortizedVisualization() {
             <rect x={startX + k * (BW + gap)} y={180 - h} width={BW} height={h} rx="4"
               fill={spike ? '#f0883e' : '#a78bfa'} className={shown && k === n - 1 ? 'dsa2d-pop' : ''}
               style={{ transformBox: 'fill-box', transformOrigin: 'bottom' }} />
-            <text x={startX + k * (BW + gap) + BW / 2} y="196" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">{k + 1}</text>
+            <text x={startX + k * (BW + gap) + BW / 2} y="196" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{k + 1}</text>
             {spike && shown && <text x={startX + k * (BW + gap) + BW / 2} y={175 - h} fill="#f0883e" fontSize="11" textAnchor="middle" fontFamily="Consolas">copy!</text>}
           </g>
         );

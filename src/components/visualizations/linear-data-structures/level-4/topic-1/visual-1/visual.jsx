@@ -49,7 +49,7 @@ export default function SqStackIntroVisualization() {
           </g>
         );
       })}
-      {s.length === 0 && <text x={cx} y={baseY + 20} fill="#6b7785" fontSize="14" textAnchor="middle" fontFamily="Consolas">(empty)</text>}
+      {s.length === 0 && <text x={cx} y={baseY + 20} fill="#8b949e" fontSize="14" textAnchor="middle" fontFamily="Consolas">(empty)</text>}
       <text x={cx} y="34" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="system-ui">push/pop happen only at the top</text>
     </Stage2D>
   );

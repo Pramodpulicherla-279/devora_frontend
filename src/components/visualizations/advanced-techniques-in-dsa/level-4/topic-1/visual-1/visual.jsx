@@ -21,8 +21,8 @@ export default function BitBinaryVisualization() {
         return (
           <g key={i}>
             <rect x={startX + i * (CW + gap)} y="60" width={CW} height="60" rx="9" fill={b ? 'rgba(88,166,255,.3)' : '#161b22'} stroke={b ? '#58a6ff' : '#30363d'} strokeWidth={b ? 3 : 2} className={b ? 'dsa2d-fade' : ''} style={{ transition: 'fill .25s, stroke .25s' }} />
-            <text x={startX + i * (CW + gap) + CW / 2} y="98" fill={b ? '#79c0ff' : '#484f58'} fontSize="26" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
-            <text x={startX + i * (CW + gap) + CW / 2} y="140" fill={b ? '#c9d1d9' : '#484f58'} fontSize="12" textAnchor="middle" fontFamily="Consolas">{pv}</text>
+            <text x={startX + i * (CW + gap) + CW / 2} y="98" fill={b ? '#79c0ff' : '#6e7681'} fontSize="26" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
+            <text x={startX + i * (CW + gap) + CW / 2} y="140" fill={b ? '#c9d1d9' : '#6e7681'} fontSize="12" textAnchor="middle" fontFamily="Consolas">{pv}</text>
           </g>
         );
       })}

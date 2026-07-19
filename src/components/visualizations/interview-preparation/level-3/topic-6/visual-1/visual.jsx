@@ -24,9 +24,9 @@ export default function SysdCachingVisualization() {
       <text x="322" y="118" fill="#e6edf3" fontSize="13" textAnchor="middle" fontWeight="700">⚡ cache (hash map)</text>
       <text x="322" y="140" fill={hit ? '#7ee787' : '#f8c088'} fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{hit ? 'HIT — return now' : 'MISS — go deeper'}</text>
       <line x1="392" y1="125" x2="470" y2="125" stroke={hit ? '#30363d' : '#f0a35e'} strokeWidth={hit ? 2 : 3} strokeDasharray={hit ? '4 5' : 'none'} style={{ transition: 'stroke .3s' }} />
-      <rect x="472" y="98" width="110" height="54" rx="10" fill="#161b22" stroke={hit ? '#484f58' : '#f0a35e'} strokeWidth="2" style={{ transition: 'stroke .3s' }} />
+      <rect x="472" y="98" width="110" height="54" rx="10" fill="#161b22" stroke={hit ? '#6e7681' : '#f0a35e'} strokeWidth="2" style={{ transition: 'stroke .3s' }} />
       <text x="527" y="122" fill="#e6edf3" fontSize="13" textAnchor="middle" fontWeight="700">🗄 database</text>
-      <text x="527" y="142" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">~100ms + load</text>
+      <text x="527" y="142" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">~100ms + load</text>
       {/* cached keys */}
       <text x="100" y="205" fill="#8b949e" fontSize="12" fontFamily="system-ui">cached keys:</text>
       {[...cache].map((k, idx) => <g key={k}><rect x={190 + idx * 96} y="190" width="86" height="26" rx="7" fill="rgba(86,211,100,.12)" stroke="#56d364" /><text x={233 + idx * 96} y="208" fill="#7ee787" fontSize="12" textAnchor="middle" fontFamily="Consolas">{k}</text></g>)}

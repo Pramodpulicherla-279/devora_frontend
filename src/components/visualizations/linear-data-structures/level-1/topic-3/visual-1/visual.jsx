@@ -47,7 +47,7 @@ export default function ArrOperationsVisualization() {
             <rect x={startX + k * (CW + gap)} y="80" width={CW} height="52" rx="8"
               fill={highlight ? active.c + '33' : '#161b22'} stroke={highlight ? active.c : '#30363d'} strokeWidth="2" />
             <text x={startX + k * (CW + gap) + CW / 2} y="113" fill="#e6edf3" fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{k}]</text>
           </g>
         );
       })}

@@ -22,7 +22,7 @@ export default function BitBitmaskSubsetsVisualization() {
         return (
           <g key={bit}>
             <rect x={200 + col * 90} y="52" width="70" height="56" rx="9" fill={on ? 'rgba(88,166,255,.28)' : '#161b22'} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth={on ? 3 : 2} style={{ transition: 'fill .25s' }} />
-            <text x={235 + col * 90} y="88" fill={on ? '#79c0ff' : '#484f58'} fontSize="24" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{on ? 1 : 0}</text>
+            <text x={235 + col * 90} y="88" fill={on ? '#79c0ff' : '#6e7681'} fontSize="24" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{on ? 1 : 0}</text>
             <text x={235 + col * 90} y="126" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">bit {bit} = '{ITEMS[bit]}'</text>
           </g>
         );
@@ -34,7 +34,7 @@ export default function BitBitmaskSubsetsVisualization() {
         return (
           <g key={it}>
             <circle cx={250 + i * 70} cy="198" r="22" fill={on ? 'rgba(86,211,100,.24)' : '#161b22'} stroke={on ? '#56d364' : '#30363d'} strokeWidth={on ? 3 : 2} className={on ? 'dsa2d-fade' : ''} style={{ transition: 'fill .25s, stroke .25s' }} />
-            <text x={250 + i * 70} y="204" fill={on ? '#7ee787' : '#484f58'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{it}</text>
+            <text x={250 + i * 70} y="204" fill={on ? '#7ee787' : '#6e7681'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{it}</text>
           </g>
         );
       })}

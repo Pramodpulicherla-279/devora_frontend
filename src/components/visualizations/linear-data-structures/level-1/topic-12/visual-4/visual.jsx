@@ -50,7 +50,7 @@ export default function ArrMissingNumbersVisualization() {
               fill={isMissing ? 'rgba(240,136,62,.3)' : present ? 'rgba(86,211,100,.18)' : '#161b22'}
               stroke={isMissing ? '#f0883e' : present ? '#3fb950' : '#30363d'} strokeWidth="2" className={isMissing ? 'dsa2d-pulse' : ''} />
             <text x={startX + idx * (CW + gap) + CW / 2} y="102" fill="#e6edf3" fontSize="17" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{num}</text>
-            <text x={startX + idx * (CW + gap) + CW / 2} y="140" fill={present ? '#56d364' : isMissing ? '#f0883e' : '#6b7785'} fontSize="12" textAnchor="middle" fontFamily="Consolas">{present ? '✓' : isMissing ? 'missing' : '·'}</text>
+            <text x={startX + idx * (CW + gap) + CW / 2} y="140" fill={present ? '#56d364' : isMissing ? '#f0883e' : '#8b949e'} fontSize="12" textAnchor="middle" fontFamily="Consolas">{present ? '✓' : isMissing ? 'missing' : '·'}</text>
           </g>
         );
       })}

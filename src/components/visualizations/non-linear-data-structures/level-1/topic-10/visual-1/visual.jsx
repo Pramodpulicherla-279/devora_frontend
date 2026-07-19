@@ -56,7 +56,7 @@ export default function TreeDfsVisualization() {
           <text x={141 + k * 50} y="216" fill="#ffd43b" fontSize="14" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
         </g>
       ))}
-      {stack.length > 0 && <text x={120 + (stack.length - 1) * 50 + 21} y="190" fill="#ffd43b" fontSize="10" textAnchor="middle" fontFamily="Consolas">top</text>}
+      {stack.length > 0 && <text x={120 + (stack.length - 1) * 50 + 21} y="190" fill="#ffd43b" fontSize="11" textAnchor="middle" fontFamily="Consolas">top</text>}
     </Stage2D>
   );
 }

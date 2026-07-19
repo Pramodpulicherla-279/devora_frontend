@@ -11,9 +11,9 @@ export default function SysdUrlShortenerVisualization() {
   useAutoPlay(() => setWrite(w => !w), 2.8, auto);
   const B = (x, y, w, h, label, hot, sub) => (
     <g key={label}>
-      <rect x={x} y={y} width={w} height={h} rx="11" fill={hot ? 'rgba(88,166,255,.16)' : '#161b22'} stroke={hot ? '#58a6ff' : '#484f58'} strokeWidth={hot ? 2.5 : 2} style={{ transition: 'fill .3s, stroke .3s' }} />
+      <rect x={x} y={y} width={w} height={h} rx="11" fill={hot ? 'rgba(88,166,255,.16)' : '#161b22'} stroke={hot ? '#58a6ff' : '#6e7681'} strokeWidth={hot ? 2.5 : 2} style={{ transition: 'fill .3s, stroke .3s' }} />
       <text x={x + w / 2} y={y + (sub ? h / 2 - 4 : h / 2 + 5)} fill="#e6edf3" fontSize="12.5" textAnchor="middle" fontWeight="700" fontFamily="system-ui">{label}</text>
-      {sub && <text x={x + w / 2} y={y + h / 2 + 15} fill="#8b949e" fontSize="9.5" textAnchor="middle" fontFamily="Consolas">{sub}</text>}
+      {sub && <text x={x + w / 2} y={y + h / 2 + 15} fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{sub}</text>}
     </g>
   );
   return (
@@ -33,7 +33,7 @@ export default function SysdUrlShortenerVisualization() {
       <line x1="280" y1="152" x2="318" y2="204" stroke={write ? '#58a6ff' : '#8b949e'} strokeWidth={write ? 2.5 : 2} strokeDasharray={write ? 'none' : '5 4'} />
       <rect x="500" y="112" width="110" height="66" rx="11" fill="#0b0f15" stroke="#4fce78" strokeWidth="1.5" />
       <text x="555" y="138" fill="#7ee787" fontSize="12" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{write ? 'devl.ink/aZ3xK9q' : '301 → long URL'}</text>
-      <text x="555" y="158" fill="#8b949e" fontSize="9.5" textAnchor="middle" fontFamily="Consolas">{write ? 'returned to user' : '~1ms from cache'}</text>
+      <text x="555" y="158" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{write ? 'returned to user' : '~1ms from cache'}</text>
       <line x1="452" y1={write ? 82 : 82} x2="498" y2="130" stroke="#4fce78" strokeWidth="2.5" />
       <text x="320" y="278" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="system-ui">{write ? 'write flow: API → ID generator → DB → short code back' : 'read flow: API → cache (hit!) → redirect · DB only on miss'}</text>
     </Stage2D>

@@ -39,10 +39,10 @@ export default function LlTraversalVisualization() {
             <rect x={x} y="86" width={NW} height="52" rx="8"
               fill={on ? 'rgba(88,166,255,.25)' : visited ? 'rgba(88,166,255,.08)' : '#161b22'}
               stroke={on ? '#58a6ff' : visited ? '#3d5a80' : '#30363d'} strokeWidth="2" className={on ? 'dsa2d-pulse' : ''} />
-            <text x={x + NW / 2} y="119" fill={visited && !on ? '#6b7785' : '#e6edf3'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
+            <text x={x + NW / 2} y="119" fill={visited && !on ? '#8b949e' : '#e6edf3'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
             {k < VALS.length - 1
               ? <line x1={x + NW} y1="112" x2={x + NW + gap} y2="112" stroke="#58a6ff" strokeWidth="2" markerEnd="url(#a3)" />
-              : <text x={x + NW + gap - 6} y="117" fill="#6b7785" fontSize="13" fontFamily="Consolas">None</text>}
+              : <text x={x + NW + gap - 6} y="117" fill="#8b949e" fontSize="13" fontFamily="Consolas">None</text>}
           </g>
         );
       })}

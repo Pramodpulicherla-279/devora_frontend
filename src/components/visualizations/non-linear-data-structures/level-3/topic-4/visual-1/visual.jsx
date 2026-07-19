@@ -35,7 +35,7 @@ export default function TrieSearchVisualization() {
       }
       legend={<><code>search("car")</code> ends on a node with <code>is_end=True</code> → it's a word. <code>startsWith("ca")</code> reaches a node but <code>is_end=False</code> → a valid prefix, not a stored word. <code>search("cab")</code> can't find child <code>'b'</code> → absent. All are <code>O(L)</code>.</>}
     >
-      {q.split('').map((c, k) => <text key={k} x={280 + k * 30} y="28" fill={k < step ? (res.path.length > k + 1 ? '#79c0ff' : '#f85149') : '#484f58'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>)}
+      {q.split('').map((c, k) => <text key={k} x={280 + k * 30} y="28" fill={k < step ? (res.path.length > k + 1 ? '#79c0ff' : '#f85149') : '#6e7681'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>)}
       {TRIE.filter(n => n.parent !== null).map(n => {
         const idx = litPath.indexOf(n.id);
         const on = idx !== -1 && litPath.includes(n.parent);

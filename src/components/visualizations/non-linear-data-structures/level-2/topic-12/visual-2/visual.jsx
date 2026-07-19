@@ -37,7 +37,7 @@ export default function HeapKthLargestVisualization() {
         const scanned = k < i, cur = k === i && !done;
         return (
           <g key={k}>
-            <rect x={startX + k * (CW + gap)} y="50" width={CW} height="44" rx="7" fill={cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#58a6ff' : scanned ? '#484f58' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
+            <rect x={startX + k * (CW + gap)} y="50" width={CW} height="44" rx="7" fill={cur ? 'rgba(88,166,255,.22)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#58a6ff' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="78" fill="#e6edf3" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>
         );

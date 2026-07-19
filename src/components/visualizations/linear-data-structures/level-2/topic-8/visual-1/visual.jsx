@@ -43,7 +43,7 @@ export default function StrSubstringSubseqVisualization() {
               fill={on ? 'rgba(240,136,62,.25)' : '#161b22'} stroke={on ? '#f0883e' : '#30363d'} strokeWidth="2"
               className={on ? 'dsa2d-pop' : ''} style={{ transformBox: 'fill-box', transformOrigin: 'center' }} />
             <text x={startX + k * (CW + gap) + CW / 2} y="112" fill={on ? '#f8c088' : '#8b949e'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{ch}</text>
-            <text x={startX + k * (CW + gap) + CW / 2} y="68" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">{k}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="68" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">{k}</text>
           </g>
         );
       })}

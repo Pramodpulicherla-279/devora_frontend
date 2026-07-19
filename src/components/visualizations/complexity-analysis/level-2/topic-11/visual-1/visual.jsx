@@ -51,7 +51,7 @@ export default function CrRecursiveToIterativeVisualization() {
           {[1, 2, 3, 4].map(i => (
             <g key={i}>
               <rect x={210 + (i - 1) * 60} y="200" width="44" height="30" rx="6" fill={i <= step ? 'rgba(88,166,255,.18)' : '#161b22'} stroke={i <= step ? '#58a6ff' : '#30363d'} />
-              <text x={232 + (i - 1) * 60} y="220" fill={i <= step ? '#79c0ff' : '#6b7785'} fontSize="14" textAnchor="middle" fontFamily="Consolas">{i}</text>
+              <text x={232 + (i - 1) * 60} y="220" fill={i <= step ? '#79c0ff' : '#8b949e'} fontSize="14" textAnchor="middle" fontFamily="Consolas">{i}</text>
             </g>
           ))}
           <text x="320" y="272" fill="#56d364" fontSize="12" textAnchor="middle" fontFamily="Consolas">O(1) space — no stack</text>

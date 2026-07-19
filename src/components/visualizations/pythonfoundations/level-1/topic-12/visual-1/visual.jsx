@@ -47,7 +47,7 @@ export default function PfInputOutputVisualization() {
         <g key={s.label} className="pf2d-fade">
           <rect x={s.x} y="96" width="90" height="48" rx="10" fill={i === stage ? s.c : '#161b22'} stroke={s.c} strokeWidth="2" className={i === stage ? 'pf2d-pulse' : ''} />
           <text x={s.x + 45} y="125" fill={i === stage ? '#0d1117' : s.c} fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{s.label}</text>
-          <text x={s.x + 45} y="168" fill="#8b949e" fontSize="10" textAnchor="middle" fontFamily="system-ui">{s.desc}</text>
+          <text x={s.x + 45} y="168" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="system-ui">{s.desc}</text>
         </g>
       ))}
       {/* packet */}

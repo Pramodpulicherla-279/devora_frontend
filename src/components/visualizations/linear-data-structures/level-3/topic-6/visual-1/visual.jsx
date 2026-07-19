@@ -41,12 +41,12 @@ export default function LlSearchVisualization() {
           <g key={k}>
             <rect x={x} y="80" width={NW} height="52" rx="8"
               fill={hit ? 'rgba(86,211,100,.25)' : on ? 'rgba(88,166,255,.22)' : checked ? '#161b22' : '#161b22'}
-              stroke={hit ? '#56d364' : on ? '#58a6ff' : checked ? '#484f58' : '#a78bfa'} strokeWidth="2"
+              stroke={hit ? '#56d364' : on ? '#58a6ff' : checked ? '#6e7681' : '#a78bfa'} strokeWidth="2"
               className={on || hit ? 'dsa2d-pulse' : ''} />
-            <text x={x + NW / 2} y="112" fill={checked && !hit ? '#6b7785' : '#e6edf3'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
+            <text x={x + NW / 2} y="112" fill={checked && !hit ? '#8b949e' : '#e6edf3'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
             {k < VALS.length - 1
               ? <line x1={x + NW} y1="106" x2={x + NW + gap} y2="106" stroke="#a78bfa" strokeWidth="2" markerEnd="url(#a6)" />
-              : <text x={x + NW + gap - 6} y="111" fill="#6b7785" fontSize="13" fontFamily="Consolas">None</text>}
+              : <text x={x + NW + gap - 6} y="111" fill="#8b949e" fontSize="13" fontFamily="Consolas">None</text>}
           </g>
         );
       })}

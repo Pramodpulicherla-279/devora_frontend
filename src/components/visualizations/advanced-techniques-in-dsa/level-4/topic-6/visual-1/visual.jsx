@@ -19,7 +19,7 @@ export default function BitPowerOfTwoVisualization() {
       {Array.from({ length: 8 }, (_, k) => (v >> (7 - k)) & 1).map((b, k) => (
         <g key={k}>
           <rect x={startX + k * (CW + gap)} y={y} width={CW} height={26} rx="5" fill={b ? 'rgba(88,166,255,.2)' : '#161b22'} stroke={b ? '#58a6ff' : '#30363d'} strokeWidth={b ? 2 : 1.5} style={{ transition: 'fill .25s' }} />
-          <text x={startX + k * (CW + gap) + CW / 2} y={y + 19} fill={b ? '#e6edf3' : '#484f58'} fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
+          <text x={startX + k * (CW + gap) + CW / 2} y={y + 19} fill={b ? '#e6edf3' : '#6e7681'} fontSize="13" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
         </g>
       ))}
     </g>

@@ -48,7 +48,7 @@ export default function GraphRepresentationVisualization() {
       {LBL.map((_, r) => LBL.map((__, c) => {
         const one = ADJ[r]?.includes(c);
         const hot = (r === ea && c === eb) || (r === eb && c === ea);
-        return <g key={r + '-' + c}><rect x={330 + c * 30 - 13} y={80 + r * 30 - 13} width="26" height="26" rx="4" fill={hot ? 'rgba(86,211,100,.35)' : one ? 'rgba(86,211,100,.12)' : '#0d1117'} stroke={hot ? '#56d364' : '#21262d'} /><text x={330 + c * 30} y={80 + r * 30 + 5} fill={one ? '#7ee787' : '#484f58'} fontSize="13" textAnchor="middle" fontFamily="Consolas">{one ? 1 : 0}</text></g>;
+        return <g key={r + '-' + c}><rect x={330 + c * 30 - 13} y={80 + r * 30 - 13} width="26" height="26" rx="4" fill={hot ? 'rgba(86,211,100,.35)' : one ? 'rgba(86,211,100,.12)' : '#0d1117'} stroke={hot ? '#56d364' : '#21262d'} /><text x={330 + c * 30} y={80 + r * 30 + 5} fill={one ? '#7ee787' : '#6e7681'} fontSize="13" textAnchor="middle" fontFamily="Consolas">{one ? 1 : 0}</text></g>;
       }))}
 
       {/* list */}

@@ -45,7 +45,7 @@ export default function TrieInsertVisualization() {
       legend={<>Because "car" already exists, inserting "care" only adds <strong>one</strong> node (<code>e</code>) — the shared prefix costs nothing. Insertion is <code>O(L)</code> for a word of length L, regardless of how many words the trie already holds.</>}
     >
       {/* progress spelling */}
-      {WORD.split('').map((c, k) => <text key={k} x={250 + k * 32} y="28" fill={k < litCount ? '#7ee787' : '#484f58'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>)}
+      {WORD.split('').map((c, k) => <text key={k} x={250 + k * 32} y="28" fill={k < litCount ? '#7ee787' : '#6e7681'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>)}
 
       {nodes.filter(n => n.parent !== null).map(n => {
         const idx = PATH.indexOf(n.id), pidx = PATH.indexOf(n.parent);

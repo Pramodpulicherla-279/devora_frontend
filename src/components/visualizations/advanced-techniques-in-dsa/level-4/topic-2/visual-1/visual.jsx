@@ -25,7 +25,7 @@ export default function BitOperatorsVisualization() {
         {Array.from({ length: 8 }, (_, i) => (n >> (7 - i)) & 1).map((b, i) => (
           <g key={i}>
             <rect x={startX + i * (CW + gap)} y={y} width={CW} height={30} rx="6" fill={b ? (hi ? 'rgba(86,211,100,.28)' : 'rgba(88,166,255,.18)') : '#161b22'} stroke={b ? (hi ? '#56d364' : '#58a6ff') : '#30363d'} strokeWidth={b ? 2.5 : 1.5} style={{ transition: 'fill .25s' }} />
-            <text x={startX + i * (CW + gap) + CW / 2} y={y + 21} fill={b ? '#e6edf3' : '#484f58'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
+            <text x={startX + i * (CW + gap) + CW / 2} y={y + 21} fill={b ? '#e6edf3' : '#6e7681'} fontSize="15" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{b}</text>
           </g>
         ))}
         <text x={startX + 8 * (CW + gap) + 8} y={y + 21} style={{ fontSize: 13, fontWeight: 700, fill: hi ? '#7ee787' : '#8b949e', fontFamily: 'Consolas' }}>= {n}</text>

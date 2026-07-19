@@ -43,12 +43,12 @@ export default function PfWhatIsPythonVisualization() {
       <g fontFamily="Consolas, monospace">
         <rect x="24" y="24" width="150" height="46" rx="8" fill="#161b22" stroke="#30363d" />
         <text x="99" y="46" fill="#ffd43b" fontSize="13" textAnchor="middle">source.py</text>
-        <text x="99" y="62" fill="#8b949e" fontSize="10" textAnchor="middle">{t.code}</text>
+        <text x="99" y="62" fill="#8b949e" fontSize="11" textAnchor="middle">{t.code}</text>
         <line x1="176" y1="47" x2="242" y2="47" stroke="#ffd43b" strokeWidth="2" className="pf2d-flow" />
         <polygon points="242,42 252,47 242,52" fill="#ffd43b" />
         <rect x="256" y="22" width="128" height="50" rx="10" fill="#1a1000" stroke="#ffd43b" />
         <text x="320" y="44" fill="#ffd43b" fontSize="12" textAnchor="middle">Python</text>
-        <text x="320" y="60" fill="#c9d1d9" fontSize="10" textAnchor="middle">interpreter</text>
+        <text x="320" y="60" fill="#c9d1d9" fontSize="11" textAnchor="middle">interpreter</text>
         <line x1="386" y1="47" x2="452" y2="47" stroke="#56d364" strokeWidth="2" className="pf2d-flow" />
         <polygon points="452,42 462,47 452,52" fill="#56d364" />
         <rect x="466" y="24" width="150" height="46" rx="8" fill="#0d2818" stroke="#238636" />

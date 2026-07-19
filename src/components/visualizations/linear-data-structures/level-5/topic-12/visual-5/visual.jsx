@@ -41,7 +41,7 @@ export default function HtSubarraySumVisualization() {
         const scanned = k < i, cur = k === i - 1;
         return (
           <g key={k}>
-            <rect x={startX + k * (CW + gap)} y="48" width={CW} height="48" rx="8" fill={cur ? 'rgba(167,139,250,.25)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#a78bfa' : scanned ? '#484f58' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
+            <rect x={startX + k * (CW + gap)} y="48" width={CW} height="48" rx="8" fill={cur ? 'rgba(167,139,250,.25)' : scanned ? '#161b22' : '#0d1117'} stroke={cur ? '#a78bfa' : scanned ? '#6e7681' : '#30363d'} strokeWidth="2" className={cur ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="78" fill="#e6edf3" fontSize="18" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>
         );

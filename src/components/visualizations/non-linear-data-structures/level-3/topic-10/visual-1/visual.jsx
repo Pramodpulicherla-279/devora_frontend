@@ -42,7 +42,7 @@ export default function TrieSpellcheckVisualization() {
       {q.w.split('').map((c, k) => {
         const matched = k < res.path.length - 1 || (res.matched && k < q.w.length);
         const isFail = !res.matched && k === failAt - 1 + 0 && k === res.path.length - 1;
-        return <text key={k} x={270 + k * 30} y="30" fill={k < step ? (k < res.path.length - 1 || res.matched ? '#79c0ff' : '#f85149') : '#484f58'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>;
+        return <text key={k} x={270 + k * 30} y="30" fill={k < step ? (k < res.path.length - 1 || res.matched ? '#79c0ff' : '#f85149') : '#6e7681'} fontSize="20" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{c}</text>;
       })}
       {TRIE.filter(n => n.parent !== null).map(n => {
         const on = litPath.includes(n.id) && litPath.includes(n.parent);

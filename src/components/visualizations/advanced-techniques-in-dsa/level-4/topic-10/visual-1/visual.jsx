@@ -21,7 +21,7 @@ export default function BitFlagsVisualization() {
         return (
           <g key={f.n} onClick={() => setMask(m => m ^ f.bit)} style={{ cursor: 'pointer' }}>
             <rect x={120 + i * 140} y="52" width="120" height="76" rx="12" fill={on ? 'rgba(86,211,100,.22)' : '#161b22'} stroke={on ? '#56d364' : '#30363d'} strokeWidth={on ? 3 : 2} style={{ transition: 'fill .25s' }} />
-            <text x={180 + i * 140} y="82" fill={on ? '#7ee787' : '#484f58'} fontSize="22" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{on ? f.ch : '-'}</text>
+            <text x={180 + i * 140} y="82" fill={on ? '#7ee787' : '#6e7681'} fontSize="22" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{on ? f.ch : '-'}</text>
             <text x={180 + i * 140} y="108" fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="Consolas">{f.n} = {f.bit}</text>
           </g>
         );

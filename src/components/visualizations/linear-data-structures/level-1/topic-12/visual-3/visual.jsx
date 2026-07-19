@@ -44,7 +44,7 @@ export default function ArrMoveZerosVisualization() {
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="66" width={CW} height="54" rx="8"
               fill={isWrite ? 'rgba(88,166,255,.2)' : zero ? 'rgba(139,148,158,.1)' : 'rgba(86,211,100,.14)'}
-              stroke={isWrite ? '#58a6ff' : zero ? '#484f58' : '#3fb950'} strokeWidth="2" className={isWrite ? 'dsa2d-pulse' : ''} />
+              stroke={isWrite ? '#58a6ff' : zero ? '#6e7681' : '#3fb950'} strokeWidth="2" className={isWrite ? 'dsa2d-pulse' : ''} />
             <text x={startX + k * (CW + gap) + CW / 2} y="99" fill={zero ? '#8b949e' : '#e6edf3'} fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
           </g>
         );

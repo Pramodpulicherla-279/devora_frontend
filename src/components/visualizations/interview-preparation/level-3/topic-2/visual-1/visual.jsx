@@ -32,7 +32,7 @@ export default function SysdScalabilityVisualization() {
       <polyline points={Array.from({ length: 30 }, (_, k) => { const l = 10 + k * 10; const lat = l <= 80 ? 50 + l : l <= 100 ? 130 + (l - 80) * 15 : 430 + (l - 100) * 20; return `${290 + (l / 300) * 310},${190 - Math.min(lat, 4400) / 4400 * 125}`; }).join(' ')} fill="none" stroke="#58a6ff" strokeWidth="2.5" />
       <circle cx={290 + (load / 300) * 310} cy={190 - Math.min(latency, 4400) / 4400 * 125} r="6" fill={failing ? '#f85149' : '#56d364'} className="dsa2d-pulse" />
       <line x1={290 + (100 / 300) * 310} y1="60" x2={290 + (100 / 300) * 310} y2="190" stroke="#f85149" strokeWidth="1.5" strokeDasharray="4 4" />
-      <text x={290 + (100 / 300) * 310} y="208" fill="#f85149" fontSize="10" textAnchor="middle" fontFamily="Consolas">capacity</text>
+      <text x={290 + (100 / 300) * 310} y="208" fill="#f85149" fontSize="11" textAnchor="middle" fontFamily="Consolas">capacity</text>
     </Stage2D>
   );
 }

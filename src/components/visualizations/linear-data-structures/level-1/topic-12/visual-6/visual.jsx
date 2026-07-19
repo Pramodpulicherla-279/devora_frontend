@@ -48,8 +48,8 @@ export default function ArrBuySellStockVisualization() {
               fill={isSell ? 'rgba(86,211,100,.4)' : isBuy ? 'rgba(240,136,62,.35)' : '#161b22'}
               stroke={isSell ? '#56d364' : isBuy ? '#f0883e' : k === day ? '#58a6ff' : '#30363d'} strokeWidth="2" />
             <text x={startX + k * (CW + gap) + CW / 2} y={baseY + 16} fill="#8b949e" fontSize="12" textAnchor="middle" fontFamily="Consolas">{p}</text>
-            {isBuy && day >= sellDay && <text x={startX + k * (CW + gap) + CW / 2} y={baseY - p * unit - 6} fill="#f0883e" fontSize="10" textAnchor="middle" fontFamily="Consolas">buy</text>}
-            {isSell && <text x={startX + k * (CW + gap) + CW / 2} y={baseY - p * unit - 6} fill="#56d364" fontSize="10" textAnchor="middle" fontFamily="Consolas">sell</text>}
+            {isBuy && day >= sellDay && <text x={startX + k * (CW + gap) + CW / 2} y={baseY - p * unit - 6} fill="#f0883e" fontSize="11" textAnchor="middle" fontFamily="Consolas">buy</text>}
+            {isSell && <text x={startX + k * (CW + gap) + CW / 2} y={baseY - p * unit - 6} fill="#56d364" fontSize="11" textAnchor="middle" fontFamily="Consolas">sell</text>}
           </g>
         );
       })}

@@ -27,7 +27,7 @@ export default function GreedyDijkstraVisualization() {
       {EDGES.map(([a, b, w], k) => {
         const [x1, y1] = N[a], [x2, y2] = N[b];
         const on = round.settled.includes(a) && round.settled.includes(b);
-        return <g key={k}><line x1={x1} y1={y1} x2={x2} y2={y2} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth={on ? 3.5 : 2} style={{ transition: 'stroke .3s' }} /><circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="10" fill="#0d1117" stroke="#484f58" /><text x={(x1 + x2) / 2} y={(y1 + y2) / 2 + 4} fill="#c9d1d9" fontSize="11" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{w}</text></g>;
+        return <g key={k}><line x1={x1} y1={y1} x2={x2} y2={y2} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth={on ? 3.5 : 2} style={{ transition: 'stroke .3s' }} /><circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="10" fill="#0d1117" stroke="#6e7681" /><text x={(x1 + x2) / 2} y={(y1 + y2) / 2 + 4} fill="#c9d1d9" fontSize="11" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{w}</text></g>;
       })}
       {Object.entries(N).map(([id, [x, y]]) => {
         const settled = round.settled.includes(id), isPick = round.pick === id;

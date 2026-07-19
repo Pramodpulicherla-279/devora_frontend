@@ -19,14 +19,16 @@
 /* 1. The card itself never exceeds the available width, and any
       stray horizontal overflow is clipped. overflow-x:clip leaves
       the vertical axis visible, so tooltips / badges still show. */
-:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] {
+:where(.content-body, .le-theory-full, .le-editor-pane)
+  :is([class$="-wrap"], .dsa2d-root, .pf2d-root, .algo) {
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: clip;
 }
 
 /* 2. Predictable box model for everything inside a card. */
-:where(.content-body, .le-theory-full, .le-editor-pane) [class$="-wrap"] * {
+:where(.content-body, .le-theory-full, .le-editor-pane)
+  :is([class$="-wrap"], .dsa2d-root, .pf2d-root, .algo) * {
   box-sizing: border-box;
 }
 

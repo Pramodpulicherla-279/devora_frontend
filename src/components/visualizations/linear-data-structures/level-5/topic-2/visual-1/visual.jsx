@@ -50,7 +50,7 @@ export default function HtHashFunctionVisualization() {
         return (
           <g key={k}>
             <rect x={startX + k * (CW + gap)} y="130" width={CW} height="52" rx="8" fill={on ? 'rgba(88,166,255,.25)' : '#161b22'} stroke={on ? '#58a6ff' : '#30363d'} strokeWidth="2" className={on ? 'dsa2d-pulse' : ''} />
-            <text x={startX + k * (CW + gap) + CW / 2} y="162" fill={on ? '#79c0ff' : '#6b7785'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{k}</text>
+            <text x={startX + k * (CW + gap) + CW / 2} y="162" fill={on ? '#79c0ff' : '#8b949e'} fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{k}</text>
           </g>
         );
       })}

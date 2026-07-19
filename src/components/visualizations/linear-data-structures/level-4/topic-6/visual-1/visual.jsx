@@ -37,7 +37,7 @@ export default function SqQueueListProblemVisualization() {
               fill={removed ? 'rgba(248,81,73,.2)' : k >= 1 && phase >= 1 ? 'rgba(240,136,62,.14)' : '#161b22'}
               stroke={removed ? '#f85149' : k >= 1 && phase >= 1 ? '#f0883e' : '#30363d'} strokeWidth="2" />
             <text x={startX + k * (CW + gap) + CW / 2} y="112" fill="#e6edf3" fontSize="19" textAnchor="middle" fontWeight="700" fontFamily="Consolas">{v}</text>
-            {!removed && <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#6b7785" fontSize="10" textAnchor="middle" fontFamily="Consolas">[{phase >= 2 ? k - 1 : k}]</text>}
+            {!removed && <text x={startX + k * (CW + gap) + CW / 2} y="72" fill="#8b949e" fontSize="11" textAnchor="middle" fontFamily="Consolas">[{phase >= 2 ? k - 1 : k}]</text>}
             {removed && <text x={startX + CW / 2} y="72" fill="#f85149" fontSize="11" textAnchor="middle" fontFamily="Consolas">out</text>}
           </g>
         );
