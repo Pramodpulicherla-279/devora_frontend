@@ -1881,6 +1881,91 @@ body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antial
 /* ═══════════════════════════════════════════
    PRICING BANNER
 ═══════════════════════════════════════════ */
+/* ── AI login CTA card (below hero, guests only) ── */
+.lp-ail-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 8px;
+}
+.lp-ail-card {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 36px 40px;
+  border-radius: var(--radius-lg, 24px);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--purple, #7c3aed) 8%, #fff),
+    color-mix(in srgb, var(--cyan, #0891b2) 8%, #fff));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  box-shadow: var(--shadow-md, 0 8px 30px rgba(0, 0, 0, 0.1));
+}
+.lp-ail-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--purple, #7c3aed);
+  background: color-mix(in srgb, var(--purple, #7c3aed) 12%, transparent);
+  padding: 5px 13px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.lp-ail-title {
+  font-size: 26px;
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text, #0f172a);
+  margin: 0 0 10px;
+}
+.lp-ail-sub {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text2, #475569);
+  margin: 0 0 22px;
+  max-width: 460px;
+}
+.lp-ail-btn { margin: 0; }
+
+.lp-ail-features { display: flex; flex-direction: column; gap: 14px; }
+.lp-ail-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  border-radius: 14px;
+  transition: transform 0.16s, box-shadow 0.16s;
+}
+.lp-ail-feat:hover { transform: translateY(-3px); box-shadow: var(--shadow, 0 2px 12px rgba(0, 0, 0, 0.08)); }
+.lp-ail-feat-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--purple, #7c3aed) 10%, transparent);
+}
+.lp-ail-feat-title { font-size: 15px; font-weight: 700; color: var(--text, #0f172a); margin: 0 0 3px; }
+.lp-ail-feat-desc { font-size: 13px; line-height: 1.5; color: var(--text2, #475569); margin: 0; }
+
+@media (max-width: 860px) {
+  .lp-ail-card { grid-template-columns: 1fr; gap: 26px; padding: 30px 26px; }
+  .lp-ail-title { font-size: 23px; }
+  .lp-ail-sub { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .lp-ail-card { padding: 26px 20px; }
+  .lp-ail-btn { width: 100%; justify-content: center; }
+}
+
 .lp-pb-wrap {
   display: flex;
   justify-content: center;
