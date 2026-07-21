@@ -777,4 +777,99 @@ export const ROADMAPS = [
       },
     ],
   },
+
+  /* ═══════════════════════════════════════════════════════════════
+     13. ANDROID AUTOMATION — APPIUM + PYTHON (INDUSTRY HYBRID FRAMEWORK)
+  ═══════════════════════════════════════════════════════════════ */
+  {
+    slug: 'appium-python-framework',
+    name: 'Android Automation Framework',
+    icon: '🧪',
+    color: '#c2185b',
+    description: 'Build a real industry-grade Android automation framework with Appium, Python, Pytest, POM, JSON-driven data, Allure reporting and CI/CD — from environment setup to report deployment.',
+    phases: [
+      {
+        id: 'apf-p1', title: 'Environment Setup',
+        steps: [
+          { id: 'apf-python', title: 'Python & IDE Setup', icon: '🐍', type: 'required', description: 'Install Python, set up a virtual environment and configure PyCharm / VS Code for the project.', topics: ['Python 3 install', 'pip & venv', 'PyCharm / VS Code', 'Project interpreter', 'requirements.txt'] },
+          { id: 'apf-jdk-sdk', title: 'Java JDK & Android SDK', icon: '☕', type: 'required', description: 'Install the JDK, Android Studio and SDK tools, and set the environment variables Appium needs.', topics: ['JDK install', 'Android Studio', 'SDK Manager', 'ANDROID_HOME & PATH', 'Platform tools'] },
+          { id: 'apf-appium', title: 'Appium 2 & Drivers', icon: '⚙️', type: 'required', description: 'Install Node, the Appium 2 server, the UiAutomator2 driver and Appium Inspector.', topics: ['Node.js & npm', 'Appium 2 server', 'UiAutomator2 driver', 'appium-doctor', 'Appium Inspector'] },
+          { id: 'apf-adb-devices', title: 'ADB & Device Setup', icon: '🔌', type: 'required', description: 'Set up an Android emulator and a real device over USB, and drive them with ADB.', topics: ['AVD Manager & emulator', 'Real device (USB debugging)', 'Core ADB commands', 'Device UDID', 'Wireless ADB'] },
+        ],
+      },
+      {
+        id: 'apf-p2', title: 'Android & Appium Fundamentals',
+        steps: [
+          { id: 'apf-app-internals', title: 'Android App Internals', icon: '🤖', type: 'required', description: 'Understand APK structure and how to find the package and activity of the app under test.', topics: ['APK structure', 'appPackage & appActivity', 'Activities & intents', 'Extracting package/activity', 'App permissions'] },
+          { id: 'apf-capabilities', title: 'Appium Capabilities', icon: '🧾', type: 'required', description: 'Configure the Appium session with desired capabilities and UiAutomator2 options.', topics: ['Desired capabilities', 'UiAutomator2Options', 'Platform & device caps', 'app vs appPackage', 'noReset / fullReset'] },
+          { id: 'apf-first-script', title: 'First Appium Script', icon: '📝', type: 'required', description: 'Connect the Appium-Python client, launch the app and perform a basic interaction.', topics: ['Appium-Python-Client', 'webdriver.Remote', 'Session lifecycle', 'Launch & quit', 'Basic tap & type'] },
+        ],
+      },
+      {
+        id: 'apf-p3', title: 'Locators & Interactions',
+        steps: [
+          { id: 'apf-locators', title: 'Locator Strategies', icon: '🔍', type: 'required', description: 'Find elements reliably using accessibility id, resource id, XPath and UiAutomator.', topics: ['Accessibility ID', 'Resource ID', 'XPath', 'Android UIAutomator', 'Class name'] },
+          { id: 'apf-inspector', title: 'Appium Inspector', icon: '🕵️', type: 'required', description: 'Inspect the element tree and build stable, maintainable locators.', topics: ['Launch Inspector', 'Element tree', 'Attributes', 'Recorder', 'Locator strategy selection'] },
+          { id: 'apf-gestures', title: 'Gestures & Touch Actions', icon: '👆', type: 'required', description: 'Simulate taps, swipes, scrolls, long press and complex W3C gestures.', topics: ['Tap & click', 'Swipe & scroll', 'Long press', 'Drag & drop', 'W3C Actions API'] },
+          { id: 'apf-waits', title: 'Waits & Synchronization', icon: '⏱️', type: 'required', description: 'Handle timing and flakiness with implicit, explicit and fluent waits.', topics: ['Implicit wait', 'WebDriverWait', 'expected_conditions', 'Fluent wait', 'Handling flakiness'] },
+        ],
+      },
+      {
+        id: 'apf-p4', title: 'Pytest Foundation',
+        steps: [
+          { id: 'apf-pytest-basics', title: 'Pytest Basics', icon: '🧪', type: 'required', description: 'Test discovery, structure, running options and assertions with Pytest.', topics: ['Test discovery', 'Writing test functions', 'Running & options', 'Assertions', 'pytest.ini'] },
+          { id: 'apf-fixtures', title: 'Fixtures & conftest.py', icon: '🔧', type: 'required', description: 'Manage setup/teardown and share the driver via fixtures and conftest.', topics: ['Fixtures', 'Scopes (function/class/session)', 'conftest.py', 'Setup / teardown', 'Fixture injection'] },
+          { id: 'apf-markers', title: 'Markers & Parametrization', icon: '🏷️', type: 'required', description: 'Group tests with markers and run data-driven cases with parametrize.', topics: ['Custom markers (smoke/regression)', '@pytest.mark.parametrize', 'Skip / xfail', 'Grouping tests', 'Selecting by marker'] },
+        ],
+      },
+      {
+        id: 'apf-p5', title: 'Framework Architecture',
+        steps: [
+          { id: 'apf-structure', title: 'Framework Structure', icon: '🏗️', type: 'required', description: 'Design the folder layout for a scalable hybrid framework.', topics: ['Project layout', 'pages / tests / utils / config', 'resources & data', 'requirements.txt', 'Naming conventions'] },
+          { id: 'apf-driver-factory', title: 'Driver Factory', icon: '🏭', type: 'required', description: 'Centralise driver creation and teardown for emulator and real devices.', topics: ['Driver manager', 'Capability builder', 'Emulator vs real device', 'Thread-safe driver', 'Session cleanup'] },
+          { id: 'apf-config', title: 'Config Management', icon: '⚙️', type: 'required', description: 'Externalise environment and runtime settings from code.', topics: ['config.json / .ini', 'Environment switching', 'CLI parameters', 'Secrets handling', 'Global settings'] },
+        ],
+      },
+      {
+        id: 'apf-p6', title: 'Page Object Model',
+        steps: [
+          { id: 'apf-base-page', title: 'Base Page', icon: '📄', type: 'required', description: 'Build reusable element wrappers and helpers on a shared base page.', topics: ['BasePage class', 'Element wrappers', 'find / click / type helpers', 'Explicit-wait wrappers', 'Screenshot helper'] },
+          { id: 'apf-page-classes', title: 'Page Classes (POM)', icon: '🧩', type: 'required', description: 'Model each screen as a class exposing actions as methods.', topics: ['One class per screen', 'Action methods', 'Return page objects', 'Encapsulation', 'Base test class'] },
+          { id: 'apf-json-locators', title: 'JSON Locators', icon: '🗺️', type: 'required', description: 'Externalise locators into JSON files and load them dynamically.', topics: ['locators.json', 'Locator loader utility', 'Screen-wise mapping', 'By-strategy parsing', 'Maintainability'] },
+        ],
+      },
+      {
+        id: 'apf-p7', title: 'Data-Driven & Hybrid Layer',
+        steps: [
+          { id: 'apf-json-data', title: 'JSON Test Data', icon: '🗃️', type: 'required', description: 'Drive tests from external JSON data sets instead of hard-coded values.', topics: ['testdata.json', 'Data reader utility', 'Parametrize from JSON', 'Multiple data sets', 'Env-specific data'] },
+          { id: 'apf-hybrid', title: 'Hybrid Framework Assembly', icon: '🧬', type: 'required', description: 'Combine POM, data-driven and utility layers into one hybrid framework.', topics: ['POM + data-driven', 'Reusable utility layer', 'Keyword-style helpers', 'Separation of concerns', 'End-to-end test flow'] },
+          { id: 'apf-utils', title: 'Utilities & Wrappers', icon: '🧰', type: 'optional', description: 'Common helpers for gestures, files, ADB and assertions.', topics: ['Gesture utils', 'ADB utils', 'File / JSON utils', 'Assertion helpers', 'Wait utils'] },
+        ],
+      },
+      {
+        id: 'apf-p8', title: 'Reporting & Logging',
+        steps: [
+          { id: 'apf-allure', title: 'Allure Reporting', icon: '📊', type: 'required', description: 'Produce rich Allure reports with steps, attachments and categories.', topics: ['allure-pytest', 'allure.step', 'Attachments (screenshots)', 'Severity & categories', 'Generating the report'] },
+          { id: 'apf-logging', title: 'Logging', icon: '🪵', type: 'required', description: 'Add structured logging with the Python logging module and per-run log files.', topics: ['logging module', 'Log levels', 'Formatter & handlers', 'Log file per run', 'Contextual logs'] },
+          { id: 'apf-screenshots', title: 'Screenshots on Failure', icon: '📸', type: 'required', description: 'Capture and attach screenshots automatically when a test fails.', topics: ['pytest_runtest_makereport hook', 'Capture on failure', 'Attach to Allure', 'Screenshot folder', 'Naming by test'] },
+        ],
+      },
+      {
+        id: 'apf-p9', title: 'Version Control',
+        steps: [
+          { id: 'apf-git', title: 'Git Basics', icon: '🐙', type: 'required', description: 'Version the framework with clean commits, branches and a proper .gitignore.', topics: ['git init & commit', '.gitignore', 'Branching', 'Merge & rebase', 'Commit conventions'] },
+          { id: 'apf-github', title: 'GitHub', icon: '🌐', type: 'required', description: 'Host the framework on GitHub with pull requests, secrets and documentation.', topics: ['Remote repo', 'Push & pull', 'Pull requests', 'GitHub secrets', 'README & docs'] },
+        ],
+      },
+      {
+        id: 'apf-p10', title: 'CI/CD & Report Deployment',
+        steps: [
+          { id: 'apf-jenkins', title: 'Jenkins Pipeline', icon: '🔧', type: 'required', description: 'Run the suite automatically with a Jenkins pipeline and emulator on the agent.', topics: ['Jenkins setup', 'Jenkinsfile (pipeline)', 'Build parameters', 'Emulator on agent', 'Post-build Allure'] },
+          { id: 'apf-gh-actions', title: 'GitHub Actions', icon: '⚡', type: 'required', description: 'Automate test runs on every push with a GitHub Actions workflow.', topics: ['Workflow YAML', 'android-emulator-runner', 'Caching deps', 'Run pytest', 'Artifacts upload'] },
+          { id: 'apf-report-deploy', title: 'Allure Report Deployment', icon: '🚀', type: 'required', description: 'Publish the Allure report to GitHub Pages with history and a shareable URL.', topics: ['allure generate', 'GitHub Pages deploy', 'gh-pages branch', 'History & trends', 'Shareable report URL'] },
+          { id: 'apf-scale', title: 'Parallel & Cloud Scaling', icon: '🌍', type: 'advanced', description: 'Scale the framework with parallel execution and cloud device farms.', topics: ['pytest-xdist', 'Parallel devices', 'BrowserStack / Sauce Labs', 'Selenium Grid', 'Retry flaky tests'] },
+        ],
+      },
+    ],
+  },
 ];

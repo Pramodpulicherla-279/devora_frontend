@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../components/Header/header.jsx';
+import AuthPopup from '../../components/AuthPopup/AuthPopup.jsx';
 import { trackEvent } from '../../analytics';
 import emailjs from '@emailjs/browser';
 import { useSEO } from '../../hooks/useSEO';
@@ -30,6 +31,7 @@ const TRACK_COURSE_IDS = {
   'Data Analytics': ['6a0ecfdc690db01f804cb1d5'],
   'Prompt Engineering': [],
   'AI Engineering': [],
+  'DSA with Python': [],
 };
 
 /* ─── STATIC DB TRACKS — instant seed, no cold-start wait ───────── */
@@ -100,6 +102,16 @@ const STATIC_DB_TRACKS = [
   {
     _id: '6a2bef2748ecbbda5fe0ab96', name: 'AI Engineering', slug: 'ai-engineering', type: 'Data',
     description: 'Build production-ready AI applications using LLMs, RAG, agents, vector databases, APIs, and modern AI engineering practices..',
+    courses: [
+      _c('6a302b5906a1b55796c42de7', 'AI & LLM Basics', 'ai-and-llm-basics'),
+      _c('6a302f4106a1b55796c42ee8', 'Core Prompting Techniques', 'core-prompting-techniques'),
+      _c('6a3030f506a1b55796c42fe5', 'Advanced Techniques', 'advanced-techniques'),
+      _c('6a3032b306a1b55796c430e0', 'Building AI Apps', 'building-ai-apps'),
+    ],
+  },
+  {
+    _id: '6a2bef2748ecbbda5fe0ab96', name: 'DSA with Python', slug: 'dsa-with-python', type: 'Data',
+    description: 'Master data structures and algorithms using Python.',
     courses: [
       _c('6a302b5906a1b55796c42de7', 'AI & LLM Basics', 'ai-and-llm-basics'),
       _c('6a302f4106a1b55796c42ee8', 'Core Prompting Techniques', 'core-prompting-techniques'),
@@ -247,6 +259,7 @@ export default function LandingPage() {
   // Track drill-down states
   const [selectedCourseTrack, setSelectedCourseTrack] = useState(null); // for Courses section
   const [expandedLearningTrack, setExpandedLearningTrack] = useState(null); // for Learning Tracks section
+  const [showAuth, setShowAuth] = useState(false);
 
   const [dbTracks, setDbTracks] = useState(STATIC_DB_TRACKS);
 
@@ -684,6 +697,46 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ── AI LOGIN CTA (guests only) ── */}
+      {!user && (
+        <div className="lp-ail-wrap">
+          <div className="lp-ail-card">
+            <div className="lp-ail-info">
+              <span className="lp-ail-badge">✦ AI-POWERED</span>
+              <h2 className="lp-ail-title">
+                Log in to use the <span className="lp-gradient-text">AI Tutor</span> &amp; <span className="lp-gradient-text">AI Code Guide</span>
+              </h2>
+              <p className="lp-ail-sub">
+                Sign in to unlock instant hints, explanations and debugging help — your AI assistant
+                already knows the lesson and code you're working on.
+              </p>
+              <button
+                className="lp-btn-primary lp-btn-lg lp-ail-btn"
+                onClick={() => { setShowAuth(true); trackEvent('ai_login_cta_click'); }}
+              >
+                Log in to Start <span className="lp-cta-arrow">→</span>
+              </button>
+            </div>
+            <div className="lp-ail-features">
+              <div className="lp-ail-feat">
+                <span className="lp-ail-feat-icon">🤖</span>
+                <div>
+                  <p className="lp-ail-feat-title">AI Tutor</p>
+                  <p className="lp-ail-feat-desc">Ask anything about the current lesson — it already knows what you're reading.</p>
+                </div>
+              </div>
+              <div className="lp-ail-feat">
+                <span className="lp-ail-feat-icon">🧠</span>
+                <div>
+                  <p className="lp-ail-feat-title">AI Code Guide</p>
+                  <p className="lp-ail-feat-desc">Line-by-line explanations, debugging and optimized solutions while you code.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── PRICING BANNER ── */}
       <div className="lp-pb-wrap">
@@ -1490,6 +1543,8 @@ console.log(reverseString('Dev.EL'));
           <p>© {new Date().getFullYear()} Dev.EL — All rights reserved.</p>
         </div>
       </footer>
+
+      {showAuth && <AuthPopup onClose={() => setShowAuth(false)} />}
 
     </>
   );

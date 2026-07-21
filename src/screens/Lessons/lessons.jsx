@@ -17,6 +17,7 @@ import { parseLessonContent } from '../../components/visualizations/utils/lesson
 import AiTutorChat from '../../components/AiTutorChat/AiTutorChat';
 import SandboxGuide from '../../components/SandboxGuide/SandboxGuide';
 import FillBlanksSection from '../../components/FillBlanks/FillBlanks';
+import AuthPopup from '../../components/AuthPopup/AuthPopup';
 
 /* ── Dynamic Sandpack config by course ── */
 function getSandpackConfig(courseSlug) {
@@ -389,6 +390,7 @@ function CourseScreen() {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
     const [showAiChatPopup, setShowAiChatPopup] = useState(false);
     const [aiSandboxEnabled, setAiSandboxEnabled] = useState(false);
+    const [showAuthModal, setShowAuthModal] = useState(false);
 
     // Shared lesson context — passed to both the sandbox Code Guide and the chat popup
     // so the AI always knows which lesson/course the learner is working in.
@@ -1059,7 +1061,7 @@ function CourseScreen() {
                                                         </div>
                                                         <button
                                                             className="ls-ai-tutor-bar-btn"
-                                                            onClick={() => setAiSandboxEnabled(true)}
+                                                            onClick={() => user ? setAiSandboxEnabled(true) : setShowAuthModal(true)}
                                                         >
                                                             Enable →
                                                         </button>
@@ -1126,7 +1128,7 @@ function CourseScreen() {
                 <div className="ls-ai-chat-fab-wrap">
                     <button
                         className="ls-ai-chat-fab"
-                        onClick={() => setShowAiChatPopup(true)}
+                        onClick={() => user ? setShowAiChatPopup(true) : setShowAuthModal(true)}
                         title="AI Chat — your context-aware tutor"
                     >
                         <span className="ls-ai-chat-fab-icon">💬</span>
@@ -1142,6 +1144,9 @@ function CourseScreen() {
                     lesson={lessonCtx}
                 />
             )}
+
+            {/* ── Login gate for AI tools ── */}
+            {showAuthModal && <AuthPopup onClose={() => setShowAuthModal(false)} />}
         </div>
     );
 }
