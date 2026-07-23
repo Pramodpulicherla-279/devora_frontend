@@ -915,3 +915,65 @@
   .ts-stat-num { font-size: 24px; }
   .ts-hero-3d { height: 320px; }
 }
+
+/* ─── Download-track-as-PDF control ─── */
+.ts-dl-wrap {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.ts-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--tc, #6366f1), var(--ta, #a78bfa));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px -8px var(--tc, #6366f1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.ts-dl-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px var(--tc, #6366f1);
+}
+.ts-dl-btn:disabled { opacity: 0.75; cursor: progress; }
+.ts-dl-spin {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ts-dl-spin 0.7s linear infinite;
+}
+@keyframes ts-dl-spin { to { transform: rotate(360deg); } }
+.ts-dl-bar {
+  width: min(340px, 90%);
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.25);
+  overflow: hidden;
+}
+.ts-dl-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--tc, #6366f1), var(--ta, #a78bfa));
+  transition: width 0.25s ease;
+}
+.ts-dl-label { font-size: 12.5px; color: #6b7280; }
+.ts-dl-hint { font-size: 12.5px; color: #9ca3af; }
+.ts-dl-error {
+  font-size: 13px;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 6px 12px;
+  border-radius: 8px;
+}

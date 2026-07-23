@@ -320,6 +320,9 @@ export default function TrackScreen() {
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [enrollLoading, setEnrollLoading] = useState(false);
   const [showLeaveConfirm, setShowLeaveConfirm] = useState(false);
+  // PDF/ZIP export state. Kept minimal; the heavy jsPDF/jszip code is loaded
+  // lazily on first click so it never bloats the eager TrackScreen bundle.
+  const [dl, setDl] = useState({ active: false, pct: 0, label: '', error: '' });
 
   // Reset scroll before first paint — no visible jump
   useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
@@ -450,6 +453,26 @@ export default function TrackScreen() {
     if (goSlug) {
       localStorage.setItem('lastTrackSlug', staticSeed?.slug || slug);
       navigate(`/course/${goSlug}`);
+    }
+  };
+
+  // Download the whole track: one PDF (cover + TOC + every lesson) plus a
+  // per-course "Interview Questions" PDF, packed into a single ZIP.
+  const handleDownload = async () => {
+    if (dl.active) return;
+    setDl({ active: true, pct: 0, label: 'Starting…', error: '' });
+    try {
+      const { downloadTrackAsZip } = await import('../../utils/trackExport/buildTrackPdf.js');
+      await downloadTrackAsZip(track, {
+        accent: meta.color,
+        author: 'Devora',
+        version: '1.0',
+        onProgress: ({ pct, label }) => setDl((d) => ({ ...d, pct, label })),
+      });
+      setDl({ active: false, pct: 100, label: '', error: '' });
+    } catch (e) {
+      setDl({ active: false, pct: 0, label: '', error: e?.message || 'Export failed. Please try again.' });
+      setTimeout(() => setDl((d) => ({ ...d, error: '' })), 6000);
     }
   };
 
@@ -601,6 +624,37 @@ export default function TrackScreen() {
             </div>
             <h2>Your <span className="ts-grad-text">Learning Path</span></h2>
             <p>Follow the courses in order — each one builds on the last.</p>
+
+            {track.courses?.length > 0 && (
+              <div className="ts-dl-wrap">
+                <button
+                  className="ts-dl-btn"
+                  onClick={handleDownload}
+                  disabled={dl.active}
+                  style={{ '--tc': meta.color, '--ta': meta.accent }}
+                >
+                  {dl.active ? (
+                    <>
+                      <span className="ts-dl-spin" /> Preparing… {dl.pct}%
+                    </>
+                  ) : (
+                    <>⬇  Download Track as PDF</>
+                  )}
+                </button>
+                {dl.active && (
+                  <>
+                    <div className="ts-dl-bar">
+                      <div className="ts-dl-bar-fill" style={{ width: `${dl.pct}%` }} />
+                    </div>
+                    <div className="ts-dl-label">{dl.label}</div>
+                  </>
+                )}
+                {!dl.active && !dl.error && (
+                  <div className="ts-dl-hint">Full lessons, quizzes &amp; interview questions in one ZIP</div>
+                )}
+                {dl.error && <div className="ts-dl-error">⚠ {dl.error}</div>}
+              </div>
+            )}
           </div>
 
           {track.courses?.length === 0 ? (

@@ -27,6 +27,8 @@
     "firebase": "^12.6.0",
     "highlight.js": "^11.11.1",
     "html-react-parser": "^5.2.11",
+    "jspdf": "^4.2.1",
+    "jszip": "^3.10.1",
     "lowlight": "^3.3.0",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
