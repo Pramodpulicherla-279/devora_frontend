@@ -4,22 +4,38 @@
     <meta charset="UTF-8" />
 
     <!-- ── Favicons ──────────────────────────────────────────────────── -->
-    <link rel="icon"             href="/favicon.ico" />
-    <link rel="icon"             type="image/png"              href="/favicon.png" />
-    <link rel="icon"             type="image/png" sizes="192x192" href="/dev-el-logo-v2.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/dev-el-logo-v2.png"
+    />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
     <!-- ── Viewport ──────────────────────────────────────────────────── -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="application-name" content="Dev.EL" />
-    <meta name="author"           content="Dev.EL" />
-    <meta name="theme-color"      content="#7c3aed" />
+    <meta name="author" content="Dev.EL" />
+    <meta name="theme-color" content="#7c3aed" />
 
     <!-- ── Static fallback SEO (overridden per-page by useSEO hook) ──── -->
-    <title>Dev.EL — Go from Beginner to Advanced Developer | Free Coding Courses</title>
-    <meta name="description" content="Dev.EL transforms beginners into advanced developers with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding, AI tutoring, quizzes, and roadmaps." />
-    <meta name="keywords"    content="learn coding for beginners, beginner to advanced developer, free coding courses, web development courses, HTML CSS JavaScript, React course, Node.js course, SQL tutorial, Git tutorial, programming roadmap, become a developer, learn programming online, interactive coding, developer roadmaps, full stack developer" />
-    <meta name="robots"      content="index,follow,max-snippet:-1,max-image-preview:large" />
+    <title>
+      Dev.EL — Go from Beginner to Advanced Developer | Free Coding Courses
+    </title>
+    <meta
+      name="description"
+      content="Dev.EL transforms beginners into advanced developers with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding, AI tutoring, quizzes, and roadmaps."
+    />
+    <meta
+      name="keywords"
+      content="learn coding for beginners, beginner to advanced developer, free coding courses, web development courses, HTML CSS JavaScript, React course, Node.js course, SQL tutorial, Git tutorial, programming roadmap, become a developer, learn programming online, interactive coding, developer roadmaps, full stack developer"
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-snippet:-1,max-image-preview:large"
+    />
 
     <!-- ── Canonical ─────────────────────────────────────────────────── -->
     <!-- DO NOT add a static canonical here. This is an SPA: index.html is -->
@@ -29,18 +45,30 @@
     <!-- per-route canonical at runtime instead.                            -->
 
     <!-- ── Open Graph ────────────────────────────────────────────────── -->
-    <meta property="og:site_name"   content="Dev.EL" />
-    <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="Dev.EL — Go from Beginner to Advanced Developer for Free" />
-    <meta property="og:description" content="Transform your coding journey from zero to advanced developer. Free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding and AI tutoring." />
-    <meta property="og:image"       content="https://dev-el.co/dev-el-logo-v2.png" />
-    <meta property="og:url"         content="https://dev-el.co" />
+    <meta property="og:site_name" content="Dev.EL" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Dev.EL — Go from Beginner to Advanced Developer for Free"
+    />
+    <meta
+      property="og:description"
+      content="Transform your coding journey from zero to advanced developer. Free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding and AI tutoring."
+    />
+    <meta property="og:image" content="https://dev-el.co/dev-el-logo-v2.png" />
+    <meta property="og:url" content="https://dev-el.co" />
 
     <!-- ── Twitter / X Card ──────────────────────────────────────────── -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="Dev.EL — Go from Beginner to Advanced Developer for Free" />
-    <meta name="twitter:description" content="Transform from beginner to advanced developer with free courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more. Live coding + AI tutor included." />
-    <meta name="twitter:image"       content="https://dev-el.co/dev-el-logo-v2.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Dev.EL — Go from Beginner to Advanced Developer for Free"
+    />
+    <meta
+      name="twitter:description"
+      content="Transform from beginner to advanced developer with free courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more. Live coding + AI tutor included."
+    />
+    <meta name="twitter:image" content="https://dev-el.co/dev-el-logo-v2.png" />
 
     <!-- ── Google Search Console verification ────────────────────────── -->
     <!-- Replace YOUR_GSC_CODE with the value from GSC → HTML tag method -->
@@ -49,102 +77,105 @@
     <!-- ── Google Fonts (preconnect for speed, then load) ────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- ── Static JSON-LD: EducationalOrganization (site-wide fallback) ─ -->
     <!-- Per-page schemas (LearningResource, FAQPage, Course, etc.) are   -->
     <!-- injected dynamically by the useSEO hook at runtime.              -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "EducationalOrganization",
-          "@id":   "https://dev-el.co/#org",
-          "name":  "Dev.EL",
-          "url":   "https://dev-el.co",
-          "logo": {
-            "@type":  "ImageObject",
-            "url":    "https://dev-el.co/dev-el-logo-v2.png",
-            "width":  192,
-            "height": 192
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://dev-el.co/#org",
+            "name": "Dev.EL",
+            "url": "https://dev-el.co",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dev-el.co/dev-el-logo-v2.png",
+              "width": 192,
+              "height": 192
+            },
+            "description": "Dev.EL transforms beginners into advanced developers with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding, AI tutoring, quizzes, and roadmaps.",
+            "sameAs": ["https://dev-el.co"]
           },
-          "description": "Dev.EL transforms beginners into advanced developers with free interactive courses in HTML, CSS, JavaScript, React, Node.js, SQL, Git, and more — with live coding, AI tutoring, quizzes, and roadmaps.",
-          "sameAs": ["https://dev-el.co"]
-        },
-        {
-          "@type": "WebSite",
-          "@id":   "https://dev-el.co/#website",
-          "url":   "https://dev-el.co",
-          "name":  "Dev.EL",
-          "publisher": { "@id": "https://dev-el.co/#org" },
-          "potentialAction": {
-            "@type":       "SearchAction",
-            "target": {
-              "@type":      "EntryPoint",
-              "urlTemplate":"https://dev-el.co/?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "ItemList",
-          "@id":   "https://dev-el.co/#site-navigation",
-          "name":  "Dev.EL — Free Coding Courses",
-          "itemListElement": [
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 1,
-              "name":     "HTML Course — Free",
-              "description": "Learn HTML from scratch — structure, tags, semantic markup, and forms.",
-              "url":      "https://dev-el.co/course/html/introduction-to-html"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 2,
-              "name":     "CSS Course — Free",
-              "description": "Master CSS — selectors, flexbox, grid, animations, and responsive design.",
-              "url":      "https://dev-el.co/course/css/css-get-started"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 3,
-              "name":     "JavaScript Course — Free",
-              "description": "Learn JavaScript from variables to async — the language of the web.",
-              "url":      "https://dev-el.co/course/javascript/variables-data-types"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 4,
-              "name":     "Node.js & Express Course — Free",
-              "description": "Build REST APIs and backend servers with Node.js and Express.",
-              "url":      "https://dev-el.co/course/backend-nodejs-express/introduction-to-nodejs-and-node-repl"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 5,
-              "name":     "SQL Course — Free",
-              "description": "Master SQL — queries, joins, aggregations, and database design.",
-              "url":      "https://dev-el.co/course/sql/every-app-runs-on-a-database"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 6,
-              "name":     "Git & GitHub Course — Free",
-              "description": "Learn version control, branching, and collaboration with Git and GitHub.",
-              "url":      "https://dev-el.co/course/git-and-github/introduction-to-git-and-github-version-control-essentials"
-            },
-            {
-              "@type":    "SiteNavigationElement",
-              "position": 7,
-              "name":     "Developer Roadmaps",
-              "description": "Step-by-step learning roadmaps — from beginner to job-ready developer.",
-              "url":      "https://dev-el.co/roadmaps"
+          {
+            "@type": "WebSite",
+            "@id": "https://dev-el.co/#website",
+            "url": "https://dev-el.co",
+            "name": "Dev.EL",
+            "publisher": { "@id": "https://dev-el.co/#org" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dev-el.co/?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
             }
-          ]
-        }
-      ]
-    }
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://dev-el.co/#site-navigation",
+            "name": "Dev.EL — Free Coding Courses",
+            "itemListElement": [
+              {
+                "@type": "SiteNavigationElement",
+                "position": 1,
+                "name": "HTML Course — Free",
+                "description": "Learn HTML from scratch — structure, tags, semantic markup, and forms.",
+                "url": "https://dev-el.co/course/html/introduction-to-html"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 2,
+                "name": "CSS Course — Free",
+                "description": "Master CSS — selectors, flexbox, grid, animations, and responsive design.",
+                "url": "https://dev-el.co/course/css/css-get-started"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 3,
+                "name": "JavaScript Course — Free",
+                "description": "Learn JavaScript from variables to async — the language of the web.",
+                "url": "https://dev-el.co/course/javascript/variables-data-types"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 4,
+                "name": "Node.js & Express Course — Free",
+                "description": "Build REST APIs and backend servers with Node.js and Express.",
+                "url": "https://dev-el.co/course/backend-nodejs-express/introduction-to-nodejs-and-node-repl"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 5,
+                "name": "SQL Course — Free",
+                "description": "Master SQL — queries, joins, aggregations, and database design.",
+                "url": "https://dev-el.co/course/sql/every-app-runs-on-a-database"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 6,
+                "name": "Git & GitHub Course — Free",
+                "description": "Learn version control, branching, and collaboration with Git and GitHub.",
+                "url": "https://dev-el.co/course/git-and-github/introduction-to-git-and-github-version-control-essentials"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 7,
+                "name": "Developer Roadmaps",
+                "description": "Step-by-step learning roadmaps — from beginner to job-ready developer.",
+                "url": "https://dev-el.co/roadmaps"
+              }
+            ]
+          }
+        ]
+      }
     </script>
   </head>
 
@@ -159,7 +190,45 @@
     ></script>
 
     <!-- Adsterra -->
-    <!-- <script async="async" data-cfasync="false" src="https://pl30507314.effectivecpmnetwork.com/129c0a41d4ac35f78bc456ad5be39ce3/invoke.js"></script>
-    <div id="container-129c0a41d4ac35f78bc456ad5be39ce3"></div> -->
+    <script
+      async="async"
+      data-cfasync="false"
+      src="https://pl30507314.effectivecpmnetwork.com/129c0a41d4ac35f78bc456ad5be39ce3/invoke.js"
+    ></script>
+    <div id="container-129c0a41d4ac35f78bc456ad5be39ce3"></div>
+
+    <script>
+      atOptions = {
+        key: "e277e06621291c49044eaa6ea1c1d0cf",
+        format: "iframe",
+        height: 50,
+        width: 320,
+        params: {},
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/e277e06621291c49044eaa6ea1c1d0cf/invoke.js"></script>
+
+    <script>
+      atOptions = {
+        key: "504f552951994620511a1bf201a9104b",
+        format: "iframe",
+        height: 90,
+        width: 728,
+        params: {},
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/504f552951994620511a1bf201a9104b/invoke.js"></script>
+
+    <script>
+      atOptions = {
+        key: "dcb8bebeb5f3c65d60165ecc48a5ac67",
+        format: "iframe",
+        height: 250,
+        width: 300,
+        params: {},
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/dcb8bebeb5f3c65d60165ecc48a5ac67/invoke.js"></script>
+    
   </body>
 </html>
