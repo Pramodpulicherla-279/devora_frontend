@@ -49,6 +49,26 @@
   align-items: center;
 }
 
+/* Error state shown when the lesson fails to load (loading itself uses
+   the shared DevLoader). */
+.lesson-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.lesson-loading-text {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ls-text-2);
+  max-width: 34ch;
+  line-height: 1.5;
+}
+
 /* ─────────────────────────────
    SIDEBAR
 ───────────────────────────── */

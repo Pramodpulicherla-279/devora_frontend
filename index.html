@@ -82,6 +82,54 @@
       rel="stylesheet"
     />
 
+    <!-- ── Body-level ad slot styling ─────────────────────────────────
+         Inlined here on purpose. #site-ads and its label are static markup
+         in <body>, so they paint before any JS runs. Styling them from
+         src/index.css (which only arrives once main.jsx executes) produced a
+         flash of a large unstyled "Advertisement" on an otherwise blank page.
+
+         Before React mounts, the slot is moved OFF-SCREEN rather than hidden.
+         It must never be display:none while the ad scripts run during initial
+         parse — they skip filling a hidden container, which intermittently
+         killed the ad entirely. Off-screen keeps it fully laid out and
+         painted (so it still fills) while stopping it from being the only
+         thing on screen for the seconds before the app boots.
+    ───────────────────────────────────────────────────────────────── -->
+    <style>
+      #site-ads {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 20px 16px 28px;
+      }
+
+      /* App not rendered yet — park it off-screen, still laid out at full size
+         and out of flow, so nothing appears ahead of the homepage. The flag is
+         set once by AppReadyFlag in App.jsx and never cleared. */
+      html:not([data-app-ready]) #site-ads {
+        position: absolute;
+        top: 0;
+        left: -10000px;
+        width: 840px;
+      }
+
+      #site-ads .site-ads-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #94a3b8;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1;
+      }
+
+      #site-ads iframe {
+        max-width: 100%;
+        border: 0;
+      }
+    </style>
+
     <!-- ── Static JSON-LD: EducationalOrganization (site-wide fallback) ─ -->
     <!-- Per-page schemas (LearningResource, FAQPage, Course, etc.) are   -->
     <!-- injected dynamically by the useSEO hook at runtime.              -->
@@ -189,24 +237,31 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Adsterra -->
-    <script
-      async="async"
-      data-cfasync="false"
-      src="https://pl30507314.effectivecpmnetwork.com/129c0a41d4ac35f78bc456ad5be39ce3/invoke.js"
-    ></script>
-    <div id="container-129c0a41d4ac35f78bc456ad5be39ce3"></div>
+    <!-- Adsterra — wrapped so full-height screens (e.g. lessons) can hide it.
+         These units inject at body level, outside #root, so without a wrapper
+         they add unreachable page-scroll below the app. See useHideSiteAds(). -->
+    <div id="site-ads">
+      <!-- Disclosure label. Rendered up front so the slot is identifiable
+           while the unit is still loading, and kept once it renders. -->
+      <span class="site-ads-label">Advertisement</span>
 
-    <script>
-      atOptions = {
-        key: "dcb8bebeb5f3c65d60165ecc48a5ac67",
-        format: "iframe",
-        height: 250,
-        width: 300,
-        params: {},
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/dcb8bebeb5f3c65d60165ecc48a5ac67/invoke.js"></script>
+      <script
+        async="async"
+        data-cfasync="false"
+        src="https://pl30507314.effectivecpmnetwork.com/129c0a41d4ac35f78bc456ad5be39ce3/invoke.js"
+      ></script>
+      <div id="container-129c0a41d4ac35f78bc456ad5be39ce3"></div>
 
+      <script>
+        atOptions = {
+          key: "dcb8bebeb5f3c65d60165ecc48a5ac67",
+          format: "iframe",
+          height: 250,
+          width: 300,
+          params: {},
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/dcb8bebeb5f3c65d60165ecc48a5ac67/invoke.js"></script>
+    </div>
   </body>
 </html>
