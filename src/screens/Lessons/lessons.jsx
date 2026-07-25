@@ -4,7 +4,9 @@ import {
     SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackPreview, SandpackConsole,
 } from '@codesandbox/sandpack-react';
 import Header from '../../components/Header/header';
+import DevLoader from '../../components/DevLoader/DevLoader';
 import { useSEO } from '../../hooks/useSEO';
+import { useHideSiteAds } from '../../hooks/useHideSiteAds';
 import { htmlToPlain, slugToTitle } from '../../utils/seoHelpers';
 import Footer from '../../components/Footer/footer';
 import './lessons.css'; // Import the new CSS file
@@ -391,6 +393,11 @@ function CourseScreen() {
     const [showAiChatPopup, setShowAiChatPopup] = useState(false);
     const [aiSandboxEnabled, setAiSandboxEnabled] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
+    const [loadError, setLoadError] = useState(null);
+
+    // No ads on this screen. They live at body level outside #root, so left
+    // alone they hang below the viewport-height layout as unreachable scroll.
+    useHideSiteAds();
 
     // Shared lesson context — passed to both the sandbox Code Guide and the chat popup
     // so the AI always knows which lesson/course the learner is working in.
@@ -520,6 +527,16 @@ function CourseScreen() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Clear the previous course when switching to another one. The fetch effect
+    // below is keyed on courseSlug but does not reset state, so without this the
+    // previously-viewed lesson stays on screen while the new course loads
+    // instead of the loader.
+    useEffect(() => {
+        setCourse(null);
+        setActiveTopic(null);
+        setLoadError(null);
+    }, [courseSlug]);
+
     useEffect(() => {
         const userInfo = localStorage.getItem('userInfo');
 
@@ -579,9 +596,11 @@ function CourseScreen() {
                     // console.log(fetchedCourse)
                 } else {
                     console.error("Failed to fetch course details:", result.error);
+                    setLoadError(result.error || 'We could not load this course.');
                 }
             } catch (error) {
                 console.error("Error fetching course details:", error);
+                setLoadError('We could not reach the server. Check your connection and try again.');
             }
         };
 
@@ -753,17 +772,32 @@ function CourseScreen() {
         }
     };
 
-    if (!course) {
+    // Hold the loader until there is something real to render. The course
+    // payload carries its lessons inline, so "ready" means the course arrived
+    // *and* a lesson has been selected from it — otherwise the bare
+    // "Select a topic" heading flashes between the two.
+    const courseHasLessons = course?.parts?.some(p => p.lessons?.length > 0);
+    const isLoadingLesson = !loadError && (!course || (courseHasLessons && !activeTopic));
+
+    if (loadError) {
         return (
             <div className="screen-container">
                 <Header backToTrack={true} />
                 <div className="page-container loading-container">
-                    <h1>Loading course...</h1>
+                    <div className="lesson-loading" role="alert">
+                        <p className="lesson-loading-text">{loadError}</p>
+                        <button className="nav-btn" onClick={() => window.location.reload()}>
+                            Try again
+                        </button>
+                    </div>
                 </div>
                 <Footer />
             </div>
         );
     }
+
+    // Same branded loader the Track screen uses.
+    if (isLoadingLesson) return <DevLoader />;
 
     const { prev, next, nextPart } = getNavigationInfo();
 

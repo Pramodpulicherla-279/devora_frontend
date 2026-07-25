@@ -58,9 +58,21 @@ function RouteTracker() {
   return null;
 }
 
+/** Marks the document once the app has rendered, so index.html can keep the
+ *  body-level ad slot off-screen until then. Set once and never cleared — a
+ *  #root:empty check was too fragile, since any unmatched route or null render
+ *  emptied #root and parked the ads off-screen for good. */
+function AppReadyFlag() {
+  useEffect(() => {
+    document.documentElement.dataset.appReady = 'true';
+  }, []);
+  return null;
+}
+
 export default function App() {
   return (
     <>
+      <AppReadyFlag />
       <RouteTracker />
       <Suspense fallback={<PageLoader />}>
         <Routes>

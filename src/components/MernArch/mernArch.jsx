@@ -278,7 +278,7 @@ function MernStackDiagram() {
                         </div>
 
                         <p className="mern-details-tip">
-                            As you go through Dev.eL lessons, you&apos;ll touch each layer and
+                            As you go through Dev.EL lessons, you&apos;ll touch each layer and
                             learn how they collaborate to deliver full-stack features.
                         </p>
                     </div>
