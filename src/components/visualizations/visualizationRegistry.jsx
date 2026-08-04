@@ -919,6 +919,57 @@ import SysdFrameworkVisualization from './interview-preparation/level-3/topic-9/
 import SysdUrlShortenerVisualization from './interview-preparation/level-3/topic-10/visual-1/visual';
 import SysdRateLimiterVisualization from './interview-preparation/level-3/topic-11/visual-1/visual';
 import SysdInterviewerVisualization from './interview-preparation/level-3/topic-12/visual-1/visual';
+// Android Automation Testing — Data-Driven & Hybrid Layer
+import AdataJsonDataVisualization from './androiddata/level-1/topic-1/visual-1/visual';
+import AdataOrchestraVisualization from './androiddata/level-1/topic-2/visual-1/visual';
+import AdataToolbeltVisualization from './androiddata/level-2/topic-1/visual-1/visual';
+import AdataIndependenceVisualization from './androiddata/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — Page Object Model
+import ApomBasePageVisualization from './androidpom/level-1/topic-1/visual-1/visual';
+import ApomRemoteControlVisualization from './androidpom/level-1/topic-2/visual-1/visual';
+import ApomJsonLocatorsVisualization from './androidpom/level-2/topic-1/visual-1/visual';
+import ApomBestPracticesVisualization from './androidpom/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — Framework Architecture
+import AarchStructureVisualization from './androidarch/level-1/topic-1/visual-1/visual';
+import AarchDriverFactoryVisualization from './androidarch/level-1/topic-2/visual-1/visual';
+import AarchConfigVisualization from './androidarch/level-2/topic-1/visual-1/visual';
+import AarchImportsVisualization from './androidarch/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — Pytest Foundation
+import ApytestGraderVisualization from './androidpytest/level-1/topic-1/visual-1/visual';
+import ApytestFixturesVisualization from './androidpytest/level-1/topic-2/visual-1/visual';
+import ApytestMarkersVisualization from './androidpytest/level-2/topic-1/visual-1/visual';
+import ApytestOopVisualization from './androidpytest/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — Locators & Interactions
+import AlocStrategiesVisualization from './androidloc/level-1/topic-1/visual-1/visual';
+import AlocInspectorVisualization from './androidloc/level-1/topic-2/visual-1/visual';
+import AlocStabilityLadderVisualization from './androidloc/level-2/topic-1/visual-1/visual';
+import AlocGesturesVisualization from './androidloc/level-2/topic-2/visual-1/visual';
+import AlocWaitsVisualization from './androidloc/level-3/topic-1/visual-1/visual';
+import AlocPopupsVisualization from './androidloc/level-3/topic-2/visual-1/visual';
+// Android Automation Testing — Android & Appium Fundamentals
+import AfundApkAnatomyVisualization from './androidfund/level-1/topic-1/visual-1/visual';
+import AfundCapabilitiesFormVisualization from './androidfund/level-1/topic-2/visual-1/visual';
+import AfundSessionLifecycleVisualization from './androidfund/level-2/topic-1/visual-1/visual';
+import AfundTwoLogsVisualization from './androidfund/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — Environment Setup
+import AenvVenvIsolationVisualization from './androidenv/level-1/topic-1/visual-1/visual';
+import AenvSdkChainVisualization from './androidenv/level-1/topic-2/visual-1/visual';
+import AenvPathLookupVisualization from './androidenv/level-2/topic-1/visual-1/visual';
+import AenvAppiumDriversVisualization from './androidenv/level-2/topic-2/visual-1/visual';
+import AenvAdbBridgeVisualization from './androidenv/level-3/topic-1/visual-1/visual';
+import AenvClientServerDriverVisualization from './androidenv/level-3/topic-2/visual-1/visual';
+// Android Automation Testing — Reporting & Logging
+import ArepAllureVisualization from './androidreport/level-1/topic-1/visual-1/visual';
+import ArepLoggingLevelsVisualization from './androidreport/level-1/topic-2/visual-1/visual';
+import ArepFailureHookVisualization from './androidreport/level-2/topic-1/visual-1/visual';
+import ArepTriageKitVisualization from './androidreport/level-2/topic-2/visual-1/visual';
+// Android Automation Testing — CI/CD & Report Deployment
+import AcicdJenkinsStagesVisualization from './androidcicd/level-1/topic-1/visual-1/visual';
+import AcicdActionsWorkflowVisualization from './androidcicd/level-1/topic-2/visual-1/visual';
+import AcicdEmulatorBootVisualization from './androidcicd/level-2/topic-1/visual-1/visual';
+import AcicdReportDeployVisualization from './androidcicd/level-2/topic-2/visual-1/visual';
+import AcicdParallelWorkersVisualization from './androidcicd/level-3/topic-1/visual-1/visual';
+import AcicdCapstoneStackVisualization from './androidcicd/level-3/topic-2/visual-1/visual';
 // Per-problem visuals — Core Algorithms interview lessons
 import SrchInsertPositionVisualization from './core-algorithms/level-1/topic-12/visual-2/visual';
 import SrchPeakElementVisualization from './core-algorithms/level-1/topic-12/visual-3/visual';
@@ -1925,6 +1976,66 @@ const visualizationRegistry = {
   'sysd-url-shortener-visualization'      : SysdUrlShortenerVisualization,
   'sysd-rate-limiter-visualization'       : SysdRateLimiterVisualization,
   'sysd-interviewer-visualization'        : SysdInterviewerVisualization,
+
+  // Android Automation Testing — Data-Driven & Hybrid Layer
+  'adata-json-data-visualization'             : AdataJsonDataVisualization,
+  'adata-orchestra-visualization'             : AdataOrchestraVisualization,
+  'adata-toolbelt-visualization'              : AdataToolbeltVisualization,
+  'adata-independence-visualization'          : AdataIndependenceVisualization,
+
+  // Android Automation Testing — Page Object Model
+  'apom-base-page-visualization'              : ApomBasePageVisualization,
+  'apom-remote-control-visualization'         : ApomRemoteControlVisualization,
+  'apom-json-locators-visualization'          : ApomJsonLocatorsVisualization,
+  'apom-best-practices-visualization'         : ApomBestPracticesVisualization,
+
+  // Android Automation Testing — Framework Architecture
+  'aarch-structure-visualization'             : AarchStructureVisualization,
+  'aarch-driver-factory-visualization'        : AarchDriverFactoryVisualization,
+  'aarch-config-visualization'                : AarchConfigVisualization,
+  'aarch-imports-visualization'               : AarchImportsVisualization,
+
+  // Android Automation Testing — Pytest Foundation
+  'apytest-grader-visualization'              : ApytestGraderVisualization,
+  'apytest-fixtures-visualization'            : ApytestFixturesVisualization,
+  'apytest-markers-visualization'             : ApytestMarkersVisualization,
+  'apytest-oop-visualization'                 : ApytestOopVisualization,
+
+  // Android Automation Testing — Locators & Interactions
+  'aloc-strategies-visualization'             : AlocStrategiesVisualization,
+  'aloc-inspector-visualization'              : AlocInspectorVisualization,
+  'aloc-stability-ladder-visualization'       : AlocStabilityLadderVisualization,
+  'aloc-gestures-visualization'               : AlocGesturesVisualization,
+  'aloc-waits-visualization'                  : AlocWaitsVisualization,
+  'aloc-popups-visualization'                 : AlocPopupsVisualization,
+
+  // Android Automation Testing — Android & Appium Fundamentals
+  'afund-apk-anatomy-visualization'           : AfundApkAnatomyVisualization,
+  'afund-capabilities-form-visualization'     : AfundCapabilitiesFormVisualization,
+  'afund-session-lifecycle-visualization'     : AfundSessionLifecycleVisualization,
+  'afund-two-logs-visualization'              : AfundTwoLogsVisualization,
+
+  // Android Automation Testing — Environment Setup
+  'aenv-venv-isolation-visualization'         : AenvVenvIsolationVisualization,
+  'aenv-sdk-chain-visualization'              : AenvSdkChainVisualization,
+  'aenv-path-lookup-visualization'            : AenvPathLookupVisualization,
+  'aenv-appium-drivers-visualization'         : AenvAppiumDriversVisualization,
+  'aenv-adb-bridge-visualization'             : AenvAdbBridgeVisualization,
+  'aenv-client-server-driver-visualization'   : AenvClientServerDriverVisualization,
+
+  // Android Automation Testing — Reporting & Logging
+  'arep-allure-visualization'                 : ArepAllureVisualization,
+  'arep-logging-levels-visualization'         : ArepLoggingLevelsVisualization,
+  'arep-failure-hook-visualization'           : ArepFailureHookVisualization,
+  'arep-triage-kit-visualization'             : ArepTriageKitVisualization,
+
+  // Android Automation Testing — CI/CD & Report Deployment
+  'acicd-jenkins-stages-visualization'        : AcicdJenkinsStagesVisualization,
+  'acicd-actions-workflow-visualization'      : AcicdActionsWorkflowVisualization,
+  'acicd-emulator-boot-visualization'         : AcicdEmulatorBootVisualization,
+  'acicd-report-deploy-visualization'         : AcicdReportDeployVisualization,
+  'acicd-parallel-workers-visualization'      : AcicdParallelWorkersVisualization,
+  'acicd-capstone-stack-visualization'        : AcicdCapstoneStackVisualization,
 
   // Per-problem visuals — Core Algorithms interview lessons
   'srch-insert-position-visualization'    : SrchInsertPositionVisualization,

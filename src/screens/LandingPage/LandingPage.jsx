@@ -32,6 +32,7 @@ const TRACK_COURSE_IDS = {
   'Prompt Engineering': [],
   'AI Engineering': [],
   'DSA with Python': [],
+  'Android Automation Testing': [],
 };
 
 /* ─── STATIC DB TRACKS — instant seed, no cold-start wait ───────── */
@@ -119,6 +120,16 @@ const STATIC_DB_TRACKS = [
       _c('6a3032b306a1b55796c430e0', 'Building AI Apps', 'building-ai-apps'),
     ],
   },
+  {
+    _id: '6a616d20214e1bb5c4d12371', name: 'Android Automation Testing', slug: 'android-automation-testing', type: 'Data',
+    description: 'Learn to automate testing for Android applications.',
+    courses: [
+      _c('6a302b5906a1b55796c42de7', 'AI & LLM Basics', 'ai-and-llm-basics'),
+      _c('6a302f4106a1b55796c42ee8', 'Core Prompting Techniques', 'core-prompting-techniques'),
+      _c('6a3030f506a1b55796c42fe5', 'Advanced Techniques', 'advanced-techniques'),
+      _c('6a3032b306a1b55796c430e0', 'Building AI Apps', 'building-ai-apps'),
+    ],
+  },
 ];
 
 /* ─── LEARNING TRACKS ─────────────────────── */
@@ -129,7 +140,7 @@ const LEARNING_TRACKS = [
   { name: 'Backend Development', icon: '⚙️', techs: ['Node.js', 'Express', 'MongoDB'], lessons: 36, level: 'Beginner → Advanced', hours: '24+', color: '#2e7d32' },
   { name: 'Prompt Engineering', icon: '🤖', techs: ['ChatGPT', 'Claude', 'RAG', 'LangChain'], lessons: 25, level: 'Beginner → Advanced', hours: '18+', color: '#6a1b9a' },
   { name: 'Playwright Automation', icon: '🎭', techs: ['Playwright', 'TypeScript', 'CI/CD'], lessons: 32, level: 'Intermediate', hours: '20+', color: '#00695c' },
-  { name: 'Appium Automation', icon: '📱', techs: ['Appium', 'Java', 'Android', 'iOS'], lessons: 28, level: 'Intermediate', hours: '22+', color: '#bf360c' },
+  { name: 'Android Automation Testing', icon: '📱', techs: ['Appium', 'Python', 'Android', 'Allure', 'POM'], lessons: 28, level: 'Beginner → Advanced', hours: '22+', color: '#bf360c' },
   { name: 'Data Analytics', icon: '📊', techs: ['Python', 'SQL', 'Power BI', 'Pandas'], lessons: 22, level: 'Beginner → Advanced', hours: '24+', color: '#0277bd' },
   { name: 'AI Engineering', icon: '🧠', techs: ['Python', 'PyTorch', 'LLMs', 'APIs'], lessons: 30, level: 'Intermediate → Adv.', hours: '26+', color: '#e65100' },
   { name: 'DSA with C++', icon: '🧩©️', techs: ['C++', 'STL', 'Data structure', 'Graphs', 'Trees', 'Dynamic Programming', 'Linked Lists', 'Arrays'], lessons: 30, level: 'Beginner → Interview Ready.', hours: '26+', color: '#3a00e6' },
@@ -917,7 +928,7 @@ export default function LandingPage() {
                     <span>⏱ {track.hours} hrs</span>
                   </div>
                   <div className="lp-tc-level">{track.level}</div>
-                  <div className="lp-tc-bar"><div className="lp-tc-bar-fill" style={{ width: `${25 + i * 8}%` }} /></div>
+                  {/* <div className="lp-tc-bar"><div className="lp-tc-bar-fill" style={{ width: `${25 + i * 8}%` }} /></div> */}
                 </div>
               );
             })}
