@@ -134,7 +134,7 @@ function buildTrackInterviewPdf({ track, courseData, accent, author, version, da
 export async function downloadTrackAsZip(track, opts = {}) {
   const {
     accent = '#6366f1',
-    author = 'Devora',
+    author = 'Dev.EL',
     version = '1.0',
     onProgress,
   } = opts;
