@@ -465,7 +465,7 @@ export default function TrackScreen() {
       const { downloadTrackAsZip } = await import('../../utils/trackExport/buildTrackPdf.js');
       await downloadTrackAsZip(track, {
         accent: meta.color,
-        author: 'Devora',
+        author: 'Dev.EL',
         version: '1.0',
         onProgress: ({ pct, label }) => setDl((d) => ({ ...d, pct, label })),
       });
